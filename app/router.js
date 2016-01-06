@@ -6,6 +6,9 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('about');
+  this.route('faq');
+  this.route('conventions', { path: '/convention/' });
 });
 
 export default Router;
