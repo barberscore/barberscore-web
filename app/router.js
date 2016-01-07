@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('about');
   this.route('faq');
   this.route('conventions', { path: '/convention/' });
+  this.route('convention', { path: '/convention/:convention_id' });
 });
 
 export default Router;
