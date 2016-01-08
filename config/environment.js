@@ -25,6 +25,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_NAMESPACE = 'api';
   }
 
   if (environment === 'test') {
@@ -40,7 +42,17 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.contentSecurityPolicy = {
+      'default-src': "'none'",
+      'script-src': "'self' http://s3-us-west-1.amazonaws.com",
+      'font-src': "'self' ",
+      'connect-src': "'self' http://barberscore.com",
+      'img-src': "'self' http://s3-us-west-1.amazonaws.com",
+      'style-src': "'self' http://s3-us-west-1.amazonaws.com ",
+      'media-src': "'self'"
+    };
+    ENV.APP.API_HOST = 'http://barberscore.herokuapp.com';
+    ENV.APP.API_NAMESPACE = 'api';
   }
 
   return ENV;
