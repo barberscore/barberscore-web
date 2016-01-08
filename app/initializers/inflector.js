@@ -10,6 +10,7 @@ export function initialize(/* application */) {
   inflector.uncountable('organization');
   inflector.uncountable('song');
   inflector.uncountable('group');
+  inflector.uncountable('award');
 }
 
 export default {

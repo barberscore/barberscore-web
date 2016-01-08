@@ -1,8 +1,21 @@
-<ul class='list-inline'>
-  {{#each model.rounds as |round|}}
-    <li>{{#link-to 'convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
-  {{/each}}
-</ul>
+<div class='row'>
+  <div class='col-md-6'>
+    By Schedule:
+  <ul class='list-inline'>
+    {{#each model.rounds as |round|}}
+      <li>{{#link-to 'convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+  </div>
+  <div class='col-md-6'>
+  By Contest:
+  <ul class='list-inline'>
+    {{#each model.contests as |contest|}}
+      <li>{{#link-to 'convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}</li>
+    {{/each}}
+  </ul>
+  </div>
+</div>
 <p>
   {{outlet}}
 </p>

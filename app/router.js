@@ -12,13 +12,15 @@ Router.map(function() {
   this.route('conventions', { path: '/convention/' });
   this.route('convention', { path: '/convention/:convention_id' }, function() {
     this.route('session', { path: '/:session_id' }, function() {
-      this.route('round', { path: '/:round_id' }, function() {
-      });
+      this.route('round', { path: '/:round_id' });
+      this.route('contest', { path: '/:contest_id' });
     });
   });
 
   this.route('groups', { path: '/group/' });
   this.route('group', { path: '/group/:group_id' });
+  this.route('organizations', { path: '/organization/' });
+  this.route('organization', { path: '/organization/:organization_id' });
 });
 
 export default Router;

@@ -1,0 +1,19 @@
+<div class='table-responsive'>
+<table class='table'>
+<thead>
+<tr>
+<th>Place</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+  {{#each model.contestants as |contestant|}}
+  <tr>
+    <td>{{contestant.place}}</td>
+    <td>{{#link-to 'group' contestant.performer.group}}{{contestant.performer.group.name}}{{/link-to}}</td>
+    <td>{{contestant.total_score}}</td>
+  </tr>
+  {{/each}}
+</tbody>
+</table>
+</div>
