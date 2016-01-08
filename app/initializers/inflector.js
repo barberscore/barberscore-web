@@ -9,6 +9,7 @@ export function initialize(/* application */) {
   inflector.uncountable('performance');
   inflector.uncountable('organization');
   inflector.uncountable('song');
+  inflector.uncountable('group');
 }
 
 export default {

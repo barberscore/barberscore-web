@@ -3,7 +3,7 @@
 </p>
 <ul class='list-inline'>
   {{#each model.sessions as |session|}}
-    <li>{{#link-to 'convention.session' session}}{{session.name}}{{/link-to}}</li>
+    <li>{{#link-to 'convention.session' session}}{{session.kind}}{{/link-to}}</li>
   {{/each}}
 </ul>
 <p>
