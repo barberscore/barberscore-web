@@ -9,7 +9,13 @@ Router.map(function() {
   this.route('about');
   this.route('faq');
   this.route('conventions', { path: '/convention/' });
-  this.route('convention', { path: '/convention/:convention_id' });
+
+  this.route('convention', { path: '/convention/:convention_id' }, function() {
+    this.route('session', { path: '/:session_id' }, function() {
+      this.route('round', { path: '/:round_id' }, function() {
+      });
+    });
+  });
 });
 
 export default Router;

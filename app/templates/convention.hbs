@@ -1,9 +1,11 @@
 <p>
   {{model.name}}
 </p>
+<ul class='list-inline'>
+  {{#each model.sessions as |session|}}
+    <li>{{#link-to 'convention.session' session}}{{session.name}}{{/link-to}}</li>
+  {{/each}}
+</ul>
 <p>
-  {{model.kind}}
-</p>
-<p>
-  {{model.organization.name}}
+  {{outlet}}
 </p>

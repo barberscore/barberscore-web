@@ -1,0 +1,8 @@
+<ul class='list-inline'>
+  {{#each model.rounds as |round|}}
+    <li>{{#link-to 'convention.session.round' round}}{{round.name}}{{/link-to}}</li>
+  {{/each}}
+</ul>
+<p>
+  {{outlet}}
+</p>
