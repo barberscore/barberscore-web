@@ -11,4 +11,4 @@ deployment:
   production:
     branch: master
     heroku:
-      appname: barberscore-web
+      appname: barberscore-ember
