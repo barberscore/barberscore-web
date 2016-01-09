@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('group', { path: '/group/:group_id' });
   this.route('organizations', { path: '/organization/' });
   this.route('organization', { path: '/organization/:organization_id' });
+  this.route('404', { path: '/*wildcard' });
 });
 
 export default Router;
