@@ -3,5 +3,6 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   name: DS.attr('string'),
   slug: DS.attr('string'),
+  picture: DS.attr('string'),
   performers: DS.hasMany('performer', {async: true}),
 });

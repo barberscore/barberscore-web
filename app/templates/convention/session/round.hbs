@@ -1,18 +1,21 @@
+<div>
+  {{outlet}}
+</div>
 <div class='table-responsive'>
-<table class='table'>
-<thead>
-<tr>
-<th>Draw</th>
-<th>Name</th>
-</tr>
-</thead>
-<tbody>
-  {{#each model.performances as |performance|}}
-  <tr>
-    <td>{{performance.draw}}</td>
-    <td>{{#link-to 'group' performance.performer.group}}{{performance.performer.group.name}}{{/link-to}}</td>
-  </tr>
-  {{/each}}
-</tbody>
-</table>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Draw</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model.performances as |performance|}}
+      <tr>
+        <td>{{performance.draw}}</td>
+        <td>{{#link-to 'convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
 </div>
