@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
-  status: DS.attr('peformance-status'),
+  status: DS.attr('performance-status'),
   draw: DS.attr('number'),
   scheduled: DS.attr('string'),
   actual: DS.attr('string'),
