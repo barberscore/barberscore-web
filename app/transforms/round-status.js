@@ -4,9 +4,11 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       0: 'New',
-      1: 'Active',
-      2: 'Candidate',
-      3: 'Inactive',
+      10: 'Built',
+      15: 'Ready',
+      20: 'Started',
+      25: 'Finished',
+      30: 'Final',
     };
     return map[serialized];
   },
@@ -14,9 +16,11 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'New': 0,
-      'Active': 1,
-      'Candidate': 2,
-      'Inactive': 3,
+      'Built': 10,
+      'Ready': 15,
+      'Started': 20,
+      'Finished': 25,
+      'Final': 30,
     };
     return map[deserialized];
   }

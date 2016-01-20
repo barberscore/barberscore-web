@@ -1,14 +1,14 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  organization: DS.belongsTo('organization', {async: true}),
   name: DS.attr('string'),
-  slug: DS.attr('string'),
-  date: DS.attr('string'),
+  status: DS.attr('convention-status'),
   kind: DS.attr('convention-kind'),
-  // division: DS.attr('convention-division'),
+  division: DS.attr('convention-division'),
+  year: DS.attr('number'),
+  date: DS.attr('string'),
   location: DS.attr('string'),
   // timezone: DS.attr('string'),
-  year: DS.attr('string'),
+  organization: DS.belongsTo('organization', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
 });
