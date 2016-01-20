@@ -19,4 +19,9 @@ export default DS.Model.extend({
   parent: DS.belongsTo('organization', {inverse: 'children', async: true}),
   children: DS.hasMany('organization', {inverse: 'parent', async: true}),
   conventions: DS.hasMany('convention', {async: true}),
+  awards: DS.hasMany('award', {async: true}),
+  chapters: DS.hasMany('chapter', {async: true}),
+  judges: DS.hasMany('judge', {async: true}),
+  performers: DS.hasMany('performer', {async: true}),
+  sessions: DS.hasMany('session', {async: true}),
 });

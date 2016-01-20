@@ -12,4 +12,5 @@ export default DS.Model.extend({
   contests: DS.hasMany('contest', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   performers: DS.hasMany('performer', {async: true}),
+  judges: DS.hasMany('judge', {async: true}),
 });

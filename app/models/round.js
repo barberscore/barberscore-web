@@ -9,4 +9,5 @@ export default DS.Model.extend({
   slots: DS.attr('number'),
   session: DS.belongsTo('session', {async: true}),
   performances: DS.hasMany('performance', {async: true}),
+  judges: DS.hasMany('judge', {async: true}),
 });

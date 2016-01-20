@@ -17,4 +17,9 @@ export default DS.Model.extend({
   full_name: DS.attr('string'),
   formal_name: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
+  arrangements: DS.hasMany('arranger', {async: true}),
+  certifications: DS.hasMany('certification', {async: true}),
+  choruses: DS.hasMany('director', {async: true}),
+  panels: DS.hasMany('judge', {async: true}),
+  quartets: DS.hasMany('singer', {async: true}),
 });
