@@ -1,23 +1,26 @@
-<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+<nav class="navbar navbar-default" role="navigation">
   <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#link-to "index" class="navbar-brand"}}Bootstrap for Ember{{/link-to}}
+      <div class='navbar-brand'>{{link-to 'Barberscore' 'index'}}</div>
     </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li>{{#link-to 'conventions'}}{{fa-icon 'trophy'}} Conventions{{/link-to}}</li>
-        <li>{{#link-to 'organizations'}}{{fa-icon 'university'}} Organizations{{/link-to}}</li>
-        <li>{{#link-to 'groups'}}{{fa-icon 'group'}} Groups{{/link-to}}</li>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+            <li>{{#link-to 'conventions'}}{{fa-icon 'trophy'}} Conventions{{/link-to}}</li>
+            <li>{{#link-to 'organizations'}}{{fa-icon 'university'}} Organizations{{/link-to}}</li>
+            <li>{{#link-to 'groups'}}{{fa-icon 'group'}} Groups{{/link-to}}</li>
       </ul>
-    </nav>
-  </div>
-</header>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 <div class='container'>
   {{outlet}}
