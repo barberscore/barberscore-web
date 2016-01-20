@@ -13,7 +13,7 @@ Router.map(function() {
   this.route('convention', { path: '/convention/:convention_id' }, function() {
     this.route('session', { path: '/:session_id' }, function() {
       this.route('round', { path: '/:round_id' }, function() {
-        this.route('performance', { path: '/:performance_id'});
+        this.route('group', { path: '/:group_id'});
       });
       this.route('contest', { path: '/:contest_id' });
     });

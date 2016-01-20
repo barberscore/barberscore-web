@@ -1,0 +1,28 @@
+<div>
+  {{#if model.picture}}
+      <img src='{{model.picture}}' class='img-responsive img-thumbnail'>
+  {{else}}
+      <img src='http://s3-us-west-1.amazonaws.com/barberscore-files/no_picture_available.gif' class='img-responsive img-thumbnail'>
+  {{/if}}
+</div>
+<br><br>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class='panel-title'>
+      <a data-toggle="collapse" data-parent="#accordion" href="#aboutContestant">About</a>
+    </h4>
+  </div>
+  <div id="aboutContestant" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <ul class='list-unstyled list-inline'>
+        {{#if model.website }}<li><a href='{{model.website}}'>{{model.website}}</a></li>{{/if}}
+        {{#if model.facebook }}<li><a href='{{model.facebook}}'>{{model.facebook}}</a></li>{{/if}}
+        {{#if model.twitter }}<li><a href='http://twitter.com/{{model.twitter}}'>{{model.twitter}}</a></li>{{/if}}
+        {{#if model.phone }}<li>{{model.phone}}</li>{{/if}}
+      </ul>
+      <p>
+        {{#if model.description }}{{model.description}}{{/if}}
+      </p>
+    </div>
+  </div>
+</div>
