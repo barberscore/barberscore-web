@@ -1,6 +1,6 @@
 <div class='row'>
-  {{#if (eq model.status 'final')}}
-  <div class='col-md-6'>
+  {{#if (eq model.status 'Final')}}
+  <div class='col-sm-6'>
   By Contest:
   <ul class='list-inline'>
     {{#each model.contests as |contest|}}
@@ -10,7 +10,7 @@
   </div>
   {{/if}}
   {{#if (lte model.status 'built')}}
-  <div class='col-md-6'>
+  <div class='col-sm-6'>
     By Schedule:
   <ul class='list-inline'>
     {{#each model.rounds as |round|}}
