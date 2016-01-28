@@ -17,7 +17,7 @@
         <td>{{performance.draw}}</td>
         <td>{{moment-format performance.start_dt  'h:mm A'}}</td>
         <td>{{#link-to 'convention.session.round.group' performance.performer.group}}{{performance.performer.group.name}}{{/link-to}}</td>
-        <td>{{performance.prelim}}</td>
+        <td>{{single-fixed performance.performer.prelim}}</td>
       </tr>
       {{/each}}
     </tbody>
