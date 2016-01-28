@@ -6,14 +6,18 @@
     <thead>
       <tr>
         <th>Draw</th>
+        <th>Scheduled</th>
         <th>Name</th>
+        <th>Prelim</th>
       </tr>
     </thead>
     <tbody>
       {{#each model.performances as |performance|}}
       <tr>
         <td>{{performance.draw}}</td>
+        <td>{{moment-format performance.start_dt  'h:mm A'}}</td>
         <td>{{#link-to 'convention.session.round.group' performance.performer.group}}{{performance.performer.group.name}}{{/link-to}}</td>
+        <td>{{performance.prelim}}</td>
       </tr>
       {{/each}}
     </tbody>
