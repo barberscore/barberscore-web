@@ -25,7 +25,7 @@
       {{contestant.place}}
     </td>
     <td>
-      {{#link-to 'group' contestant.performer.group}}{{contestant.performer.group.name}}{{/link-to}}<br>
+      {{#link-to 'convention.session.contest.group' contestant.performer.group}}{{contestant.performer.group.name}}{{/link-to}}
     </td>
     <td>
       {{#each contestant.performer.performances as |performance|}}

@@ -15,7 +15,9 @@ Router.map(function() {
       this.route('round', { path: '/:round_id' }, function() {
         this.route('group', { path: '/:group_id'});
       });
-      this.route('contest', { path: '/:contest_id' });
+      this.route('contest', { path: '/:contest_id' }, function() {
+        this.route('group', { path: '/:group_id'});
+      });
     });
   });
 
