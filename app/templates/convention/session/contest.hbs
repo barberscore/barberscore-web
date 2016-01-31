@@ -2,17 +2,100 @@
 <table class='table'>
 <thead>
 <tr>
-<th>Place</th>
-<th>Name</th>
-<th>Score</th>
+    <th>Place</th>
+    <th>Group</th>
+    <th>Song</th>
+    <th>MUS</th>
+    <th>PRS</th>
+    <th>SNG</th>
+    <th>TOT</th>
+    <th>M%</th>
+    <th>P%</th>
+    <th>S%</th>
+    <th>T%</th>
 </tr>
 </thead>
 <tbody>
   {{#each model.contestants as |contestant|}}
   <tr>
-    <td>{{contestant.place}}</td>
-    <td>{{#link-to 'group' contestant.performer.group}}{{contestant.performer.group.name}}{{/link-to}}</td>
-    <td>{{contestant.total_score}}</td>
+    <td>
+      {{contestant.place}}
+    </td>
+    <td>
+      {{#link-to 'group' contestant.performer.group}}{{contestant.performer.group.name}}{{/link-to}}<br>
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.title}}<br>
+        {{/each}}
+      <strong>Totals</strong>
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.mus_points}}<br>
+        {{/each}}
+        {{performance.mus_points}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.prs_points}}<br>
+        {{/each}}
+        {{performance.prs_points}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.sng_points}}<br>
+        {{/each}}
+        {{performance.sng_points}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.total_points}}<br>
+        {{/each}}
+        {{performance.total_points}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{single-fixed song.mus_score}}<br>
+        {{/each}}
+        {{single-fixed performance.mus_score}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{single-fixed song.prs_score}}<br>
+        {{/each}}
+        {{single-fixed performance.prs_score}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{single-fixed song.sng_score}}<br>
+        {{/each}}
+        {{single-fixed performance.sng_score}}
+      {{/each}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{single-fixed song.total_score}}<br>
+        {{/each}}
+        {{single-fixed performance.total_score}}
+      {{/each}}
+    </td>
   </tr>
   {{/each}}
 </tbody>
