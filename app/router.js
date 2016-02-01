@@ -22,7 +22,9 @@ Router.map(function() {
   });
 
   this.route('groups', { path: '/group/' });
-  this.route('group', { path: '/group/:group_id' });
+  this.route('group', { path: '/group/:group_id' }, function () {
+    this.route('edit', { path: '/edit' });
+  });
   this.route('organizations', { path: '/organization/' });
   this.route('organization', { path: '/organization/:organization_id' });
   this.route('404', { path: '/*wildcard' });
