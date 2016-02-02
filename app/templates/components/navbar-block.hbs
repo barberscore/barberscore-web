@@ -14,13 +14,6 @@
         <li>{{#link-to 'conventions'}}{{fa-icon 'trophy'}} Conventions{{/link-to}}</li>
         {{!-- <li>{{#link-to 'organizations'}}{{fa-icon 'university'}} Organizations{{/link-to}}</li> --}}
         {{!-- <li>{{#link-to 'groups'}}{{fa-icon 'group'}} Groups{{/link-to}}</li> --}}
-        <li>
-          {{#if session.isAuthenticated}}
-            <a {{action 'invalidateSession'}}>Logout</a>
-          {{else}}
-            {{#link-to 'login'}}Login{{/link-to}}
-          {{/if}}
-        </li>
       </ul>
     {{/bs-collapse}}
   </div><!-- /.container-fluid -->
