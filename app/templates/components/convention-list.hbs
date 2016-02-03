@@ -1,0 +1,6 @@
+<ul class='list-unstyled'>
+{{#each conventions as |convention|}}
+  <li>{{#link-to 'convention' convention}}{{convention.name}}{{/link-to}}</li>
+{{/each}}
+</ul>
+{{conventions.links}}

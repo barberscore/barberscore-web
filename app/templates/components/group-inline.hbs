@@ -29,6 +29,7 @@
     </div>
   </div>
 </div>
+{{#if sess.isAuthenticated}}
 <div>
   <form {{action "updateGroup" on="submit"}}>
   <h2>Edit Group</h2>
@@ -55,3 +56,4 @@
   <button class="btn btn-primary btn-block" type="submit">Save</button>
 </form>
 </div>
+{{/if}}
