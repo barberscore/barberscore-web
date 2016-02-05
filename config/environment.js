@@ -35,7 +35,8 @@ module.exports = function(environment) {
           'includeTimezone': 'all'
     };
     ENV['ember-simple-auth'] = {
-      authorizer: 'authorizer:token'
+      authorizer: 'authorizer:token',
+      routeAfterAuthentication: 'login',
     };
     ENV['ember-simple-auth-token'] = {
       serverTokenEndpoint: 'http://localhost:8000/api-token-auth/',
