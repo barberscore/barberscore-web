@@ -22,6 +22,11 @@ Router.map(function() {
     });
   });
 
+  this.route('admin', { path: '/admin/'}, function() {
+    this.route('conventions', { path: '/convention/' });
+    this.route('convention', { path: '/convention/:convention_id' });
+  });
+
   this.route('groups', { path: '/group/' });
   this.route('group', { path: '/group/:group_id' }, function () {
     this.route('edit', { path: '/edit' });
