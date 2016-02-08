@@ -1,17 +1,20 @@
-{{! app/templates/login.hbs }}
-<form {{action 'authenticate' on='submit'}}>
-  <label for="identification">Login</label>
-  {{input id='identification' placeholder='Enter Login' value=identification}}
-  <label for="password">Password</label>
-  {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button type="submit">Login</button>
-</form>
-<div>
-{{sess.isAuthenticated}}
-</div>
-<div>
-  {{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-  {{/if}}
-
-</div>
+<section class="page-header">
+  <h1>
+    Login
+  </h1>
+  <p class='lead'>
+    The site is currently under development; logins are only being provided on an as-needed basis.
+  </p>
+</section>
+<section>
+  <form {{action 'authenticate' on='submit' class='form'}}>
+    {{input id='identification' placeholder='Email' value=identification class='form-control'}}
+    {{input id='password' placeholder='Password' type='password' value=password class='form-control'}}
+    <button type="submit" class="btn btn-success">Login</button>
+  </form>
+  <div>
+      {{#if errorMessage}}
+        <span>{{errorMessage}}</span>
+      {{/if}}
+  </div>
+</section>
