@@ -92,6 +92,24 @@ module.exports = function(environment) {
           // 'none' - no data, just timezone API
           'includeTimezone': 'all'
     };
+    ENV['ember-simple-auth'] = {
+      authorizer: 'authorizer:token',
+      routeAfterAuthentication: 'login',
+    };
+    ENV['ember-simple-auth-token'] = {
+      serverTokenEndpoint: 'http://barberscore.herokuapp.com/api-token-auth/',
+      identificationField: 'email',
+      passwordField: 'password',
+      tokenPropertyName: 'token',
+      authorizationPrefix: 'JWT',
+      authorizationHeaderName: 'Authorization',
+      headers: {},
+      refreshAccessTokens: true,
+      serverTokenRefreshEndpoint: 'http://barberscore.herokuapp.com/api-token-refresh/',
+      tokenExpireName: 'expires_in',
+      refreshLeeway: 0,
+      timeFactor: 1  // example - set to "1000" to convert incoming seconds to milliseconds.
+    };
   }
 
 
