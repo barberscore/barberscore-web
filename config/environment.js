@@ -47,8 +47,8 @@ module.exports = function(environment) {
       authorizationHeaderName: 'Authorization',
       headers: {},
       refreshAccessTokens: true,
-      serverTokenRefreshEndpoint: '/api/token-refresh/',
-      tokenExpireName: 'exp',
+      serverTokenRefreshEndpoint: 'http://localhost:8000/api-token-refresh/',
+      tokenExpireName: 'expires_in',
       refreshLeeway: 0,
       timeFactor: 1  // example - set to "1000" to convert incoming seconds to milliseconds.
     };
