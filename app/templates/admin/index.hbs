@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h3>Contest Administrator Dashboard</h3>
+</div>
+<div>
+  <ol class='breadcrumb'>
+    <li class='active'>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+  </ol>
+</div>
+<div>
+<ul class='list-unstyled'>
+{{#each model as |convention|}}
+  <li>{{#link-to 'admin.convention' convention}}{{convention.name}}{{/link-to}}</li>
+{{/each}}
+</ul>
+</div>

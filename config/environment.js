@@ -36,7 +36,7 @@ module.exports = function(environment) {
     };
     ENV['ember-simple-auth'] = {
       authorizer: 'authorizer:token',
-      routeAfterAuthentication: 'login',
+      routeAfterAuthentication: 'admin',
     };
     ENV['ember-simple-auth-token'] = {
       serverTokenEndpoint: 'http://localhost:8000/api-token-auth/',

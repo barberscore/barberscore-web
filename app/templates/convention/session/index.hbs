@@ -1,3 +1,10 @@
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
+    <li class='active'>{{model.kind}}</li>
+  </ol>
+</div>
 <div class='row'>
   {{#if (eq model.status 'Final')}}
   <div class='col-sm-6'>

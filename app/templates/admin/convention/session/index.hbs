@@ -1,0 +1,14 @@
+<h3>Contest Administrator</h3>
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
+    <li class='active'>{{model.kind}}</li>
+  </ol>
+</div>
+<ul class='list-inline'>
+  <li>{{#link-to 'admin.convention.session.build'}}Build{{/link-to}}</li>
+  <li>{{#link-to 'admin.convention.session.run'}}Run{{/link-to}}</li>
+  <li>{{#link-to 'admin.convention.session.publish'}}Publish{{/link-to}}</li>
+</ul>
+<p>{{outlet}}</p>

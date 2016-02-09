@@ -1,4 +1,12 @@
 <div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li class='active'>{{model.goal}}</li>
+  </ol>
+</div>
+<div>
   {{outlet}}
 </div>
 <div class='table-responsive'>

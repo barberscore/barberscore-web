@@ -22,6 +22,16 @@ Router.map(function() {
     });
   });
 
+  this.route('admin', { path: '/admin/' }, function() {
+    this.route('convention', { path: '/:convention_id' }, function() {
+      this.route('session', { path: '/:session_id' }, function() {
+        this.route('build', { path: '/build'});
+        this.route('run', { path: '/run'});
+        this.route('publish', { path: '/publish'});
+      });
+    });
+  });
+
   this.route('groups', { path: '/group/' });
   this.route('group', { path: '/group/:group_id' }, function () {
     this.route('edit', { path: '/edit' });

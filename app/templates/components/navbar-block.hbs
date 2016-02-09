@@ -11,16 +11,20 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     {{#bs-collapse collapsed=isCollapsed class='navbar-collapse'}}
       <ul class="nav navbar-nav navbar-right">
+        <li>
+            {{#if sess.isAuthenticated}}
+              {{#link-to 'admin'}}{{fa-icon 'dashboard'}}  Contest Administrator{{/link-to}}
+            {{/if}}
+        </li>
         <li>{{#link-to 'conventions'}}{{fa-icon 'trophy'}} Conventions{{/link-to}}</li>
         {{!-- <li>{{#link-to 'organizations'}}{{fa-icon 'university'}} Organizations{{/link-to}}</li> --}}
         {{!-- <li>{{#link-to 'groups'}}{{fa-icon 'group'}} Groups{{/link-to}}</li> --}}
         <li>
             {{#if sess.isAuthenticated}}
-    <a {{action 'invalidateSession'}}>Logout</a>
-  {{else}}
-    {{#link-to 'login'}}Login{{/link-to}}
-  {{/if}}
-
+              <a {{action 'invalidateSession'}}>Logout</a>
+            {{else}}
+              {{#link-to 'login'}}Login{{/link-to}}
+            {{/if}}
         </li>
       </ul>
     {{/bs-collapse}}
