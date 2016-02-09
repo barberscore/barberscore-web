@@ -20,7 +20,7 @@
         <td>{{#link-to 'convention.session.round.group' performance.performer.group}}{{performance.performer.group.name}}{{/link-to}}</td>
         <td>
           {{#each performance.songs as |song|}}
-            {{song.title}}<br>
+            {{#if sess.isAuthenticated }}FOO{{/if}}{{song.title}}<br>
           {{/each}}
         </td>
         <td>{{single-fixed performance.performer.prelim}}</td>
