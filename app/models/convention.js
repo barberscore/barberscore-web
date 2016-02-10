@@ -6,9 +6,9 @@ export default DS.Model.extend({
   kind: DS.attr('convention-kind'),
   division: DS.attr('convention-division'),
   year: DS.attr('number'),
-  date: DS.attr('string'),
+  date: DS.attr(),
   location: DS.attr('string'),
-  // timezone: DS.attr('string'),
+  timezone: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
 });

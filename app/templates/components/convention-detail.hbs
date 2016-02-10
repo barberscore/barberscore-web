@@ -1,0 +1,10 @@
+{{#bs-form action="saveRecord"}}
+  {{bs-form-element controlType="text" value=model.status}}
+  {{bs-form-element controlType="text" value=model.kind}}
+  {{bs-form-element controlType="text" value=model.date}}
+  {{!-- {{bs-form-element controlType="text" value=model.timezone}} --}}
+  {{!-- {{bs-form-element controlType="text" value=model.org}} --}}
+  {{bs-form-element controlType="text" placeholder="Location" value=model.location}}
+  {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+{{/bs-form}}
+{{statusChoices}}
