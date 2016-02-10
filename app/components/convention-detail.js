@@ -5,9 +5,6 @@ export default Ember.Component.extend({
   actions: {
     editConvention: function() {
       this.set('isDisabled', false);
-      this.set('organizationChoices', function () {
-        this.store.findAll('organization');
-      }
     },
     saveRecord: function() {
       this.get('model').save();
@@ -26,5 +23,4 @@ export default Ember.Component.extend({
     'Spring',
     'Video',
   ],
-  organizationChoices: this.store.findAll('organization').toArray()
 });
