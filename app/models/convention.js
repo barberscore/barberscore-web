@@ -10,5 +10,6 @@ export default DS.Model.extend({
   location: DS.attr('string'),
   timezone: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
+  drcj: DS.belongsTo('person', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
 });

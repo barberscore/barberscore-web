@@ -22,4 +22,5 @@ export default DS.Model.extend({
   choruses: DS.hasMany('director', {async: true}),
   panels: DS.hasMany('judge', {async: true}),
   quartets: DS.hasMany('singer', {async: true}),
+  conventions: DS.hasMany('convention', {inverse:'drcj', async: true}),
 });

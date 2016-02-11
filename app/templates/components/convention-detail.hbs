@@ -1,8 +1,7 @@
-
 {{#bs-form action="saveRecord"}}
   {{#bs-form-group}}
-    {{#power-select selected=model.organization options=organizationChoices onchange=(action (mut model.organization)) as |name|}}
-    {{name}}
+    {{#power-select selected=model.organization options=organizations onchange=(action (mut model.organization)) as |name|}}
+    {{name.name}}
     {{/power-select}}
   {{/bs-form-group}}
   {{#bs-form-group}}
@@ -15,9 +14,19 @@
     {{name}}
     {{/power-select}}
   {{/bs-form-group}}
-  {{bs-form-element controlType="text" value=model.organization}}
-  {{!-- {{bs-form-element controlType="text" value=model.timezone}} --}}
-  {{!-- {{bs-form-element controlType="text" value=model.org}} --}}
+  {{#bs-form-group}}
+    {{#power-select
+      search=(action "searchRepo")
+      selected=model.drcj
+      onchange=(action (mut model.drcj))
+      as |repo|
+    }}
+      {{repo.name}}
+    {{/power-select}}
+  {{/bs-form-group}}
+
   {{bs-form-element controlType="text" placeholder="Location" value=model.location}}
   {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
 {{/bs-form}}
+{{organizations}}
+{{model}}
