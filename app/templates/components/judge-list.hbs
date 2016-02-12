@@ -3,12 +3,13 @@
   <tr>
   <th>Slot</th>
   <th>Judge</th>
+  <th>Status</th>
   </tr>
   </thead>
   <tbody>
   {{#each judges as |judge|}}
     <tr>
-    <td>{{judge.name}}</td>
+    <td>{{judge.category}} {{judge.kind}} {{judge.slot}}</td>
     {{!-- <td>{{judge.person.name}}</td> --}}
     <td>{{#power-select
       search=(action "searchPerson")
@@ -19,6 +20,16 @@
       {{person.name}}
     {{/power-select}}
     </td>
+    <td>{{#power-select
+      options=judgeStatus
+      selected=judge.status
+      onchange=(action (mut judge.status))
+      as |status|
+    }}
+      {{status}}
+    {{/power-select}}
+    </td>
+
     </tr>
   {{/each}}
   </tbody>

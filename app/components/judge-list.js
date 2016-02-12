@@ -23,5 +23,12 @@ export default Ember.Component.extend({
     if (Ember.isBlank(term)) { return resolve([]); }
     this.get('store').query('person', {'name__icontains': term})
       .then(data => resolve(data), reject);
-  }
+  },
+  judgeStatus: [
+    'New',
+    'Scheduled',
+    'Confirmed',
+    'Final',
+  ]
+
 });
