@@ -1,0 +1,8 @@
+{{#power-select
+  search=(action "searchGroup")
+  selected=group
+  onchange=(action "saveRecord")
+  as |group|
+}}
+  {{group.name}}
+{{/power-select}}

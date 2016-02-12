@@ -37,11 +37,30 @@
   </tbody>
 </table>
 </div>
-<ul class='list-inline'>
-  <li>{{#link-to 'admin.convention.session.build'}}Build{{/link-to}}</li>
-  <li>{{#link-to 'admin.convention.session.run'}}Run{{/link-to}}</li>
-  <li>{{#link-to 'admin.convention.session.publish'}}Publish{{/link-to}}</li>
-</ul>
+<div>
+<table class='table'>
+  <thead>
+  <tr>
+  <th>Group</th>
+  <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each model.performers as |performer|}}
+    <tr>
+    <td>
+      {{select-group model=performer group=performer.group}}
+      {{!-- {{select-person model=judge person=judge.person}} --}}
+    </td>
+    <td>
+      {{performer.status}}
+      {{!-- {{select-judge-status model=judge status=judge.status}} --}}
+    </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+</div>
 <p>
   {{outlet}}
 </p>
