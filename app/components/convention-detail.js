@@ -7,8 +7,15 @@ export default Ember.Component.extend({
     editConvention: function() {
       this.set('isDisabled', false);
     },
-    saveRecord: function() {
-      this.get('model').save();
+    saveRecord() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.get('model').save()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
     searchPerson(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {

@@ -9,7 +9,6 @@ export default DS.Model.extend({
   year: DS.attr('number'),
   organization: DS.belongsTo('organization', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
-  contests: DS.hasMany('contest', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   performers: DS.hasMany('performer', {async: true}),
   judges: DS.hasMany('judge', {inverse: 'session', async: true}),

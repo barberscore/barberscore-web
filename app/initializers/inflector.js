@@ -6,7 +6,6 @@ export function initialize(/* application */) {
   inflector.uncountable('session');
   inflector.uncountable('round');
   inflector.uncountable('performer');
-  inflector.uncountable('contest');
   inflector.uncountable('contestant');
   inflector.uncountable('performance');
   inflector.uncountable('organization');
@@ -14,6 +13,7 @@ export function initialize(/* application */) {
   inflector.uncountable('group');
   inflector.uncountable('award');
   inflector.uncountable('person');
+  inflector.uncountable('judge');
 }
 
 export default {

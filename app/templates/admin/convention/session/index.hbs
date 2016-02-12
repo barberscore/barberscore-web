@@ -6,9 +6,14 @@
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>
+<div>
+{{judge-list judges=model.judges}}
+</div>
 <ul class='list-inline'>
   <li>{{#link-to 'admin.convention.session.build'}}Build{{/link-to}}</li>
   <li>{{#link-to 'admin.convention.session.run'}}Run{{/link-to}}</li>
   <li>{{#link-to 'admin.convention.session.publish'}}Publish{{/link-to}}</li>
 </ul>
-<p>{{outlet}}</p>
+<p>
+  {{outlet}}
+</p>

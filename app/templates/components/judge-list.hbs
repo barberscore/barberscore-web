@@ -1,0 +1,25 @@
+<table class='table'>
+  <thead>
+  <tr>
+  <th>Slot</th>
+  <th>Judge</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each judges as |judge|}}
+    <tr>
+    <td>{{judge.name}}</td>
+    {{!-- <td>{{judge.person.name}}</td> --}}
+    <td>{{#power-select
+      search=(action "searchPerson")
+      selected=judge.person
+      onchange=(action (mut judge.person))
+      as |person|
+    }}
+      {{person.name}}
+    {{/power-select}}
+    </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

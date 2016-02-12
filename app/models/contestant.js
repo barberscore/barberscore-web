@@ -12,6 +12,6 @@ export default DS.Model.extend({
   prs_score: DS.attr('number'),
   sng_score: DS.attr('number'),
   total_score: DS.attr('number'),
-  contest: DS.belongsTo('contest', {async: true}),
+  award: DS.belongsTo('award', {async: true}),
   performer: DS.belongsTo('performer', {async: true}),
 });
