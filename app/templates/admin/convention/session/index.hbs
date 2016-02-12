@@ -60,7 +60,7 @@
       {{performer-status model=performer status=performer.status}}
     </td>
     <td>
-      {{#bs-button action='toggleAwards'}}Awards{{/bs-button}}
+      {{performer-award model=performer.awards selectedAwards=performerAwards}}
     </td>
     </tr>
   {{/each}}
