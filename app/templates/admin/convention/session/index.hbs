@@ -18,7 +18,7 @@
   <tr>
   <th>Slot</th>
   <th>Judge</th>
-  {{!-- <th>Status</th> --}}
+  <th>Status</th>
   </tr>
   </thead>
   <tbody>
@@ -42,7 +42,9 @@
   <thead>
   <tr>
   <th>Group</th>
+  <th>Organization</th>
   <th>Status</th>
+  <th>Awards</th>
   </tr>
   </thead>
   <tbody>
@@ -50,11 +52,15 @@
     <tr>
     <td>
       {{select-group model=performer group=performer.group}}
-      {{!-- {{select-person model=judge person=judge.person}} --}}
     </td>
     <td>
-      {{performer.status}}
-      {{!-- {{select-judge-status model=judge status=judge.status}} --}}
+      {{performer.organization.name}}
+    </td>
+    <td>
+      {{performer-status model=performer status=performer.status}}
+    </td>
+    <td>
+      {{#bs-button action='toggleAwards'}}Awards{{/bs-button}}
     </td>
     </tr>
   {{/each}}
