@@ -7,7 +7,35 @@
   </ol>
 </div>
 <div>
-{{judge-list judges=model.judges}}
+{{contest-admin model=model person=model.administrator}}
+</div>
+<div>
+{{session-status model=model status=model.status}}
+</div>
+<div>
+<table class='table'>
+  <thead>
+  <tr>
+  <th>Slot</th>
+  <th>Judge</th>
+  {{!-- <th>Status</th> --}}
+  </tr>
+  </thead>
+  <tbody>
+  {{#each model.judges as |judge|}}
+    <tr>
+    <td>{{judge.category}} {{judge.kind}} {{judge.slot}}</td>
+    {{!-- <td>{{judge.person.name}}</td> --}}
+    <td>
+      {{select-person model=judge person=judge.person}}
+    </td>
+    <td>
+      {{select-judge-status model=judge status=judge.status}}
+    </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
 </div>
 <ul class='list-inline'>
   <li>{{#link-to 'admin.convention.session.build'}}Build{{/link-to}}</li>

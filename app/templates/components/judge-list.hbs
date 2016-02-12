@@ -14,7 +14,7 @@
     <td>{{#power-select
       search=(action "searchPerson")
       selected=judge.person
-      onchange=(action (mut judge.person))
+      onchange=(action "saveRecord")
       as |person|
     }}
       {{person.name}}
@@ -23,13 +23,12 @@
     <td>{{#power-select
       options=judgeStatus
       selected=judge.status
-      onchange=(action (mut judge.status))
+      onchange=(action "saveRecord")
       as |status|
     }}
       {{status}}
     {{/power-select}}
     </td>
-
     </tr>
   {{/each}}
   </tbody>

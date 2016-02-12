@@ -3,16 +3,16 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
-      console.log(this);
-      // const flashMessages = Ember.get(this, 'flashMessages');
-      // this.judge.save()
-      // .then(() => {
-      //   flashMessages.success('Success');
-      // })
-      // .catch(() => {
-      //   flashMessages.danger('Error');
-      // });
+    saveRecord(person) {
+      this.model.set('administrator', person);
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.save()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
     searchPerson(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
@@ -25,11 +25,4 @@ export default Ember.Component.extend({
     this.get('store').query('person', {'name__icontains': term})
       .then(data => resolve(data), reject);
   },
-  judgeStatus: [
-    'New',
-    'Scheduled',
-    'Confirmed',
-    'Final',
-  ]
-
 });

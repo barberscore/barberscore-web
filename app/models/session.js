@@ -7,6 +7,7 @@ export default DS.Model.extend({
   size: DS.attr('number'),
   num_rounds: DS.attr('number'),
   year: DS.attr('number'),
+  administrator: DS.belongsTo('person', {async: true}),
   organization: DS.belongsTo('organization', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
