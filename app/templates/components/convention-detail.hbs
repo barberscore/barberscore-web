@@ -1,22 +1,47 @@
 {{#bs-form action="saveRecord"}}
-  {{#bs-form-group}}
-    {{#power-select selected=model.organization options=organizations onchange=(action (mut model.organization)) as |name|}}
-    {{name.name}}
+
+{{!--   {{#bs-form-group}}
+    {{#power-select disabled=true selected=model.organization options=organizations onchange=(action (mut model.organization)) as |organization|}}
+    {{organization.name}}
     {{/power-select}}
   {{/bs-form-group}}
+
   {{#bs-form-group}}
-    {{#power-select selected=model.status options=statusChoices onchange=(action (mut model.status)) as |name|}}
-    {{name}}
+    {{#power-select disabled=true selected=model.kind options=kindChoices onchange=(action (mut model.kind)) as |kind|}}
+    {{kind}}
     {{/power-select}}
   {{/bs-form-group}}
+
+  {{#if model.division}}
+    {{#bs-form-group}}
+      {{#power-select disabled=true selected=model.division options=divisionChoices onchange=(action (mut model.division)) as |division|}}
+      {{division}}
+      {{/power-select}}
+    {{/bs-form-group}}
+  {{/if}}
+
   {{#bs-form-group}}
-    {{#power-select selected=model.kind options=kindChoices onchange=(action (mut model.kind)) as |name|}}
-    {{name}}
+    {{#power-select disabled=true selected=model.year options=yearChoices onchange=(action (mut model.year)) as |year|}}
+    {{year}}
     {{/power-select}}
   {{/bs-form-group}}
+ --}}
+  {{#bs-form-group}}
+    {{bs-input controlType="text" placeholder="See Dave Binetti if you need to add this" value=model.human_date disabled=true}}
+  {{/bs-form-group}}
+
+  {{bs-form-element controlType="text" placeholder="Location" value=model.location}}
+
+  {{#bs-form-group}}
+    {{#power-select selected=model.timezone options=timezoneChoices onchange=(action (mut model.timezone)) as |timezone|}}
+    {{timezone}}
+    {{/power-select}}
+  {{/bs-form-group}}
+
   {{#bs-form-group}}
     {{#power-select
-      search=(action "searchRepo")
+      search=(action "searchPerson")
+      placeholder='DRCJ'
       selected=model.drcj
       onchange=(action (mut model.drcj))
       as |repo|
@@ -25,8 +50,12 @@
     {{/power-select}}
   {{/bs-form-group}}
 
-  {{bs-form-element controlType="text" placeholder="Location" value=model.location}}
+
+  {{#bs-form-group}}
+    {{#power-select selected=model.status options=statusChoices onchange=(action (mut model.status)) as |status|}}
+    {{status}}
+    {{/power-select}}
+  {{/bs-form-group}}
+
   {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
 {{/bs-form}}
-{{organizations}}
-{{model}}
