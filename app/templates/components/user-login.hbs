@@ -1,0 +1,10 @@
+{{#bs-form action='authenticate'}}
+  {{bs-form-element controlType="email" placeholder="Email" value=identification}}
+  {{bs-form-element controlType="password" placeholder="Password" value=password}}
+  {{bs-button defaultText="Login" type="primary" buttonType="submit"}}
+{{/bs-form}}
+  <div>
+      {{#if errorMessage}}
+        <span>{{errorMessage}}</span>
+      {{/if}}
+  </div>

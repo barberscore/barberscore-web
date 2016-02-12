@@ -7,14 +7,5 @@
   </p>
 </section>
 <section>
-  <form {{action 'authenticate' on='submit' class='form'}}>
-    {{input id='identification' placeholder='Email' value=identification class='form-control'}}
-    {{input id='password' placeholder='Password' type='password' value=password class='form-control'}}
-    <button type="submit" class="btn btn-success">Login</button>
-  </form>
-  <div>
-      {{#if errorMessage}}
-        <span>{{errorMessage}}</span>
-      {{/if}}
-  </div>
+  {{user-login}}
 </section>
