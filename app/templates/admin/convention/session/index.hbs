@@ -13,6 +13,14 @@
 {{session-status model=model status=model.status}}
 </div>
 <div>
+<h4>Rounds</h4>
+<ul class='list-unstyled'>
+{{#each model.rounds as |round|}}
+      <li>{{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+{{/each}}
+</ul>
+</div>
+<div>
 <table class='table'>
   <thead>
   <tr>
@@ -51,7 +59,7 @@
   {{#each model.performers as |performer|}}
     <tr>
     <td>
-      {{select-group model=performer group=performer.group}}
+      {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
     </td>
     <td>
       {{performer.organization.name}}
@@ -60,7 +68,6 @@
       {{performer-status model=performer status=performer.status}}
     </td>
     <td>
-      {{performer-award model=performer.awards selectedAwards=performerAwards}}
     </td>
     </tr>
   {{/each}}
@@ -68,5 +75,5 @@
 </table>
 </div>
 <p>
-  {{outlet}}
+{{outlet}}
 </p>
