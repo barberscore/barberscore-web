@@ -4,6 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('performance-status'),
   draw: DS.attr('number'),
+  slot: DS.attr('number'),
   start_dt: DS.attr('date'),
   scheduled: DS.attr('string'),
   actual: DS.attr('string'),

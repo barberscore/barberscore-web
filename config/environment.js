@@ -27,13 +27,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
-    ENV.moment = {
-          // Options:
-          // 'all' - all years, all timezones
-          // '2010-2020' - 2010-2020, all timezones
-          // 'none' - no data, just timezone API
-          'includeTimezone': 'all'
-    };
     ENV['ember-simple-auth'] = {
       authorizer: 'authorizer:token',
       routeAfterAuthentication: 'admin',
@@ -64,13 +57,6 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-    ENV.moment = {
-          // Options:
-          // 'all' - all years, all timezones
-          // '2010-2020' - 2010-2020, all timezones
-          // 'none' - no data, just timezone API
-          'includeTimezone': 'all'
-    };
   }
 
   if (environment === 'production') {
@@ -85,13 +71,6 @@ module.exports = function(environment) {
     };
     ENV.APP.API_HOST = 'http://barberscore.herokuapp.com';
     ENV.APP.API_NAMESPACE = 'api';
-    ENV.moment = {
-          // Options:
-          // 'all' - all years, all timezones
-          // '2010-2020' - 2010-2020, all timezones
-          // 'none' - no data, just timezone API
-          'includeTimezone': 'all'
-    };
     ENV['ember-simple-auth'] = {
       authorizer: 'authorizer:token',
       routeAfterAuthentication: 'admin',

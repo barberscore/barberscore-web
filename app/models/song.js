@@ -17,4 +17,5 @@ export default DS.Model.extend({
   catalog: DS.belongsTo('catalog', {async: true}),
   tune: DS.belongsTo('tune', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
+  scores: DS.hasMany('score', {async: true}),
 });
