@@ -22,10 +22,12 @@ Router.map(function() {
   this.route('admin', { path: '/admin/' }, function() {
     this.route('convention', { path: '/:convention_id' }, function() {
       this.route('session', { path: '/:session_id' }, function() {
-        this.route('round', { path: '/score/:round_id'}, function() {
-        });
         this.route('performer', { path: '/build/:performer_id'}, function() {
           this.route('awards', { path: '/awards/'}, function() {
+          });
+        });
+        this.route('round', { path: '/score/:round_id'}, function() {
+          this.route('performance', { path: '/:performance_id'}, function() {
           });
         });
       });

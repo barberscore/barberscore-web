@@ -1,0 +1,15 @@
+<h3>Contest Administrator</h3>
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.round.session.convention}}{{model.round.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.round.session}}{{model.round.session.kind}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.round.session}}{{model.round.session.kind}}{{/link-to}}</li>
+    <li class='active'>{{model.name}}</li>
+  </ol>
+</div>
+<div>
+<p>
+{{model.name}}
+</p>
+</div>

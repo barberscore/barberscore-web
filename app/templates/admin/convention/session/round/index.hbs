@@ -32,7 +32,7 @@
       {{moment-format performance.start_dt 'LT'}}
     </td>
     <td>
-      {{performance.performer.group.name}}<br>
+      {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}<br>
         {{performance.status}}
     </td>
     <td>
