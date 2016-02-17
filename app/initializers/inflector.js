@@ -15,6 +15,7 @@ export function initialize(/* application */) {
   inflector.uncountable('person');
   inflector.uncountable('judge');
   inflector.uncountable('score');
+  inflector.uncountable('tune');
 }
 
 export default {

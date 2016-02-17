@@ -4,7 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   // status: DS.attr('song-status'),
   // order: DS.attr('song-order'),
-  title: DS.attr('string'),
+  // title: DS.attr('string'),
   arranger: DS.attr('string'),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),

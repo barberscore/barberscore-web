@@ -37,7 +37,7 @@
     </td>
     <td>
     {{#each performance.songs as |song|}}
-      {{song.title}}<br>
+      {{select-tune model=song tune=song.tune}}<br>
     {{/each}}
     </td>
     {{#each performance.round.session.judges as |judge|}}
