@@ -4,12 +4,49 @@
     <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
     <li>{{#link-to 'admin.convention' model.round.session.convention}}{{model.round.session.convention.name}}{{/link-to}}</li>
     <li>{{#link-to 'admin.convention.session' model.round.session}}{{model.round.session.kind}}{{/link-to}}</li>
-    <li>{{#link-to 'admin.convention.session' model.round.session}}{{model.round.session.kind}}{{/link-to}}</li>
-    <li class='active'>{{model.name}}</li>
+    <li>{{#link-to 'admin.convention.session.round' model.round}}{{model.round.kind}}{{/link-to}}</li>
+    <li class='active'>Performance {{model.slot}}</li>
   </ol>
 </div>
 <div>
-<p>
-{{model.name}}
-</p>
+<h4>
+{{model.performer.group.name}}
+</h4>
+</div>
+<div>
+<ul class='list-unstyled'>
+{{#each model.songs as |song|}}
+  <li>{{select-tune model=song tune=song.tune}}</li>
+{{/each}}
+</ul>
+</div>
+<div>
+<table class='table'>
+  <thead>
+  <tr>
+  <th>Slot</th>
+  <th>Score</th>
+  <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each model.round.session.judges as |judge|}}
+    <tr>
+    <td>
+      {{judge.kind}} {{judge.category}} {{judge.slot}}<br>
+      {{judge.person.name}}
+    </td>
+    <td>
+    {{#each judge.scores as |score|}}
+      {{#if (eq score.song.performance.id model.id)}}
+       {{score-edit model=score points=score.points}}
+      {{/if}}
+    {{/each}}
+    </td>
+    <td>
+    </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
 </div>

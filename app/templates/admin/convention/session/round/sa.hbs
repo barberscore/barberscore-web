@@ -17,26 +17,38 @@
   <thead>
   <tr>
   <th>Slot</th>
-  <th>Schedule</th>
   <th>Performer</th>
-  <th>Status</th>
+  <th>Songs</th>
+  {{#each model.session.judges as |judge|}}
+    <th>{{judge.designation}}</th>
+  {{/each}}
   </tr>
   </thead>
   <tbody>
   {{#each model.performances as |performance|}}
     <tr>
     <td>
-      {{performance.slot}}
-    </td>
-    <td>
+      {{performance.slot}}<br>
       {{moment-format performance.start_dt 'LT'}}
     </td>
     <td>
-      {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}
-    </td>
-    <td>
+      {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}<br>
         {{performance.status}}
     </td>
+    <td>
+    {{#each performance.songs as |song|}}
+      {{select-tune model=song tune=song.tune}}<br>
+    {{/each}}
+    </td>
+    {{#each performance.round.session.judges as |judge|}}
+      <td>
+      {{#each judge.scores as |score|}}
+        {{#if (eq score.song.performance.id performance.id)}}
+          {{score-edit model=score points=score.points}}<br>
+        {{/if}}
+      {{/each}}
+      </td>
+    {{/each}}
     </tr>
   {{/each}}
   </tbody>
