@@ -1,0 +1,8 @@
+{{#power-select
+  search=(action "searchOrganization")
+  selected=organization
+  onchange=(action "saveRecord")
+  as |organization|
+}}
+  {{organization.name}}
+{{/power-select}}

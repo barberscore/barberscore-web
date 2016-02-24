@@ -6,84 +6,137 @@
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>
-<div>
-{{contest-admin model=model person=model.administrator}}
-</div>
-<div>
-{{session-status model=model status=model.status}}
-</div>
-<div>
-<h4>Awards</h4>
-<ul class='list-unstyled'>
-{{#each model.contests as |contest|}}
-      <li>{{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}</li>
-      {{!-- <li>{{contest.name}}</li> --}}
-{{/each}}
+<section>
+<ul class='list-inline'>
+  <li>{{contest-admin model=model person=model.administrator}}</li>
+  <li>{{session-status model=model status=model.status}}</li>
 </ul>
-</div>
-<div>
-<h4>Rounds</h4>
-<ul class='list-unstyled'>
-{{#each model.rounds as |round|}}
-      <li>{{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
-{{/each}}
-</ul>
-</div>
-<div>
-<table class='table'>
-  <thead>
-  <tr>
-  <th>Slot</th>
-  <th>Judge</th>
-  <th>Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  {{#each model.judges as |judge|}}
-    <tr>
-    <td>{{judge.category}} {{judge.kind}} {{judge.slot}}</td>
-    {{!-- <td>{{judge.person.name}}</td> --}}
-    <td>
-      {{select-person model=judge person=judge.person}}
-    </td>
-    <td>
-      {{select-judge-status model=judge status=judge.status}}
-    </td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-</div>
-<div>
-<table class='table'>
-  <thead>
-  <tr>
-  <th>Group</th>
-  <th>Organization</th>
-  <th>Status</th>
-  <th>Awards</th>
-  </tr>
-  </thead>
-  <tbody>
-  {{#each model.performers as |performer|}}
-    <tr>
-    <td>
-      {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
-    </td>
-    <td>
-      {{performer.organization.name}}
-    </td>
-    <td>
-      {{performer-status model=performer status=performer.status}}
-    </td>
-    <td>
-      {{#link-to 'admin.convention.session.performer.awards' performer}}Awards{{/link-to}}
-    </td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-</div>
-<p>
-{{outlet}}
-</p>
+</section>
+ {{#bs-accordion selected=selected collapsed=collapsed}}
+     {{#bs-accordion-item value="1" title="Awards"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.contests as |contest|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{contest.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
+                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="2" title="Rounds"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.rounds as |round|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}
+                </td>
+                <td>
+                  {{round.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
+                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="3" title="Judges"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Slot</th>
+              <th>Judge</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.judges as |judge|}}
+              <tr>
+                <td>
+                  {{judge.category}} {{judge.kind}} {{judge.slot}}
+                </td>
+                <td>
+                  {{select-person model=judge person=judge.person}}
+                </td>
+                <td>
+                  {{select-judge-status model=judge status=judge.status}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="4" title="Performers"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Group</th>
+              <th>Organization</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.performers as |performer|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{select-organization model=performer organization=performer.organization}}
+                </td>
+                <td>
+                  {{performer-status model=performer status=performer.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
+                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
