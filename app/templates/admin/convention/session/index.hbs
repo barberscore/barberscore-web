@@ -84,6 +84,7 @@
               <th>Slot</th>
               <th>Judge</th>
               <th>Status</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -96,7 +97,16 @@
                   {{select-person model=judge person=judge.person}}
                 </td>
                 <td>
-                  {{select-judge-status model=judge status=judge.status}}
+                  {{judge.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
+                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
                 </td>
               </tr>
             {{/each}}
@@ -136,6 +146,7 @@
                 </td>
               </tr>
             {{/each}}
+            {{add-performer session=model}}
           </tbody>
         </table>
      {{/bs-accordion-item}}
