@@ -30,6 +30,10 @@ Router.map(function() {
           this.route('performance', { path: '/:performance_id'}, function() {
           });
         });
+        this.route('contest', { path: '/compete/:contest_id'}, function() {
+          this.route('performance', { path: '/:performance_id'}, function() {
+          });
+        });
       });
     });
   });

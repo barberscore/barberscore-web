@@ -13,6 +13,15 @@
 {{session-status model=model status=model.status}}
 </div>
 <div>
+<h4>Awards</h4>
+<ul class='list-unstyled'>
+{{#each model.contests as |contest|}}
+      <li>{{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}</li>
+      {{!-- <li>{{contest.name}}</li> --}}
+{{/each}}
+</ul>
+</div>
+<div>
 <h4>Rounds</h4>
 <ul class='list-unstyled'>
 {{#each model.rounds as |round|}}

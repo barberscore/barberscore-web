@@ -16,6 +16,7 @@ export function initialize(/* application */) {
   inflector.uncountable('judge');
   inflector.uncountable('score');
   inflector.uncountable('tune');
+  inflector.uncountable('contest');
 }
 
 export default {

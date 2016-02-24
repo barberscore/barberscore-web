@@ -1,0 +1,31 @@
+<h3>Contest Administrator</h3>
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li class='active'>{{model.name}}</li>
+  </ol>
+</div>
+<div>
+<table class='table'>
+  <thead>
+  <tr>
+  <th>Place</th>
+  <th>Group</th>
+  <th>Points</th>
+  <th>Score</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each model.contestants as |contestant|}}
+    <tr>
+    <td>{{contestant.place}}</td>
+    <td>{{contestant.performer.group.name}}</td>
+    <td>{{contestant.total_points}}</td>
+    <td>{{single-fixed contestant.total_score}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+</div>

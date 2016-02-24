@@ -12,5 +12,6 @@ export default DS.Model.extend({
   convention: DS.belongsTo('convention', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   performers: DS.hasMany('performer', {async: true}),
+  contests: DS.hasMany('contest', {async: true}),
   judges: DS.hasMany('judge', {inverse: 'session', async: true}),
 });
