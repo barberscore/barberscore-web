@@ -6,12 +6,22 @@
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>
-<section>
-<ul class='list-inline'>
-  <li>{{contest-admin model=model person=model.administrator}}</li>
-  <li>{{session-status model=model status=model.status}}</li>
-</ul>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Session Details <span class='pull-right small'>{{model.status}}</span>
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <p>
+      {{contest-admin model=model person=model.administrator}}
+    </p>
+    <p>
+      {{contest-aca model=model person=model.aca}}
+    </p>
+  </div>
 </section>
+<section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
      {{#bs-accordion-item value="1" title="Awards"}}
         <table class='table'>
@@ -151,3 +161,4 @@
         </table>
      {{/bs-accordion-item}}
  {{/bs-accordion}}
+</section>

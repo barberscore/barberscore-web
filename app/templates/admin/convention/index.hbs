@@ -1,4 +1,6 @@
-<h3>Contest Administrator</h3>
+<h3>
+  Contest Administrator
+</h3>
 
 <div>
   <ol class='breadcrumb'>
@@ -6,16 +8,63 @@
     <li class='active'>{{model.name}}</li>
   </ol>
 </div>
-<div>
-{{convention-detail model=model}}
-</div>
-<br><br>
-<div>
-<h4>Sessions</h4>
-<ul class='list-unstyled'>
-  {{#each model.sessions as |session|}}
-    <li>{{#link-to 'admin.convention.session' session}}{{session.age}} {{session.kind}}{{/link-to}}</li>
-    {{!-- {{session.kind}} --}}
-  {{/each}}
-</ul>
-</div>
+
+
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Convention Detail
+      <span class='pull-right small'>{{model.status}}</span>
+    </h4>
+  </div>
+  <div class='panel-body'>
+    <p>
+      {{bs-input controlType="text" placeholder="See Dave Binetti if you need to add this" value=model.human_date disabled=true}}
+    </p>
+    <p>
+      {{convention-location model=model location=model.location}}
+    </p>
+    <p>
+      {{convention-drcj model=model person=model.drcj}}
+    </p>
+  </div>
+</section>
+
+
+
+<section>
+ {{#bs-accordion selected=selected}}
+     {{#bs-accordion-item value="1" title="Sessions" collapsed=false}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.sessions as |session|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.convention.session' session}}{{session.age}} {{session.kind}}{{/link-to}}
+                </td>
+                <td>
+                  {{session.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
+                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>
