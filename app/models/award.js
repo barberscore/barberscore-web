@@ -7,5 +7,5 @@ export default DS.Model.extend({
   rounds: DS.attr('number'),
   long_name: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
-  contestants: DS.hasMany('contestants', {inverse:'award', async: true}),
+  contests: DS.hasMany('contest', {inverse:'award', async: true}),
 });

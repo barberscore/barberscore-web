@@ -11,7 +11,7 @@
 <table class='table'>
   <thead>
   <tr>
-  <th>Place</th>
+  <th>Rank</th>
   <th>Group</th>
   <th>Points</th>
   <th>Score</th>
@@ -20,7 +20,7 @@
   <tbody>
   {{#each model.contestants as |contestant|}}
     <tr>
-    <td>{{contestant.place}}</td>
+    <td>{{contestant.rank}}</td>
     <td>{{contestant.performer.group.name}}</td>
     <td>{{contestant.total_points}}</td>
     <td>{{single-fixed contestant.total_score}}</td>
