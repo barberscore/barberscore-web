@@ -1,0 +1,9 @@
+  {{#power-select
+      search=(action "searchVenue")
+      selected=venue
+      placeholder='Venue'
+      onchange=(action "saveRecord")
+      as |venue|
+}}
+  {{venue.name}}
+{{/power-select}}
