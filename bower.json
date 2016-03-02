@@ -13,5 +13,8 @@
   },
   "resolutions": {
     "ember": "2.2.0"
+  },
+  "devDependencies": {
+    "bootstrap-daterangepicker": "^2.1.18"
   }
 }
