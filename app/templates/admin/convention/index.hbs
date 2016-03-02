@@ -18,20 +18,11 @@
     </h4>
   </div>
   <div class='panel-body'>
-    <p>
-      {{bs-input controlType="text" placeholder="See Dave Binetti if you need to add this" value=model.human_date disabled=true}}
-    </p>
-    <p>
-      {{!-- {{convention-location model=model location=model.location}} --}}
-      {{convention-venue model=model venue=model.venue}}
-    </p>
-    <p>
-      {{convention-drcj model=model person=model.drcj}}
-    </p>
+      {{date-range-picker start=betweenCreatedAtStartsAt end=betweenCreatedAtEndsAt ranges=null applyAction=(action 'saveDate') cancelClass=true}}
+      {{convention-venue model=model venue=model.venue class='form-group'}}
+      {{convention-drcj model=model person=model.drcj class='form-group'}}
   </div>
 </section>
-
-
 
 <section>
  {{#bs-accordion selected=selected}}
