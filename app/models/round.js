@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -10,4 +11,5 @@ export default DS.Model.extend({
   session: DS.belongsTo('session', {async: true}),
   performances: DS.hasMany('performance', {async: true}),
   judges: DS.hasMany('judge', {async: true}),
+  draw: memberAction({path: 'draw'}),
 });
