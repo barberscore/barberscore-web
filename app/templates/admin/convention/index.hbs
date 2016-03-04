@@ -18,7 +18,7 @@
     </h4>
   </div>
   <div class='panel-body'>
-      {{date-range-picker start=betweenCreatedAtStartsAt end=betweenCreatedAtEndsAt ranges=null applyAction=(action 'saveDate')}}
+      {{date-range-picker start=model.date.lower end=model.date.upper ranges=null applyAction=(action 'saveDate')}}
       {{convention-venue model=model venue=model.venue class='form-group'}}
       {{convention-drcj model=model person=model.drcj class='form-group'}}
   </div>
@@ -39,7 +39,7 @@
             {{#each model.sessions as |session|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session' session}}{{session.age}} {{session.kind}}{{/link-to}}
+                  {{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}
                 </td>
                 <td>
                   {{session.status}}

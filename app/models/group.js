@@ -14,5 +14,6 @@ export default DS.Model.extend({
   status: DS.attr('chapter-status'),
   kind: DS.attr('chapter-kind'),
   chapter: DS.belongsTo('chapter', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
   performers: DS.hasMany('performers', {async: true}),
 });

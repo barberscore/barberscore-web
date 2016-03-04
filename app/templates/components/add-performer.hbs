@@ -1,4 +1,4 @@
-{{#bs-form action="saveRecord"}}
+{{#bs-form formLayout="inline" action="saveRecord"}}
   {{#bs-form-group}}
     {{#power-select
       search=(action "searchGroup")
@@ -10,16 +10,5 @@
       {{group.name}}
     {{/power-select}}
   {{/bs-form-group}}
-  {{#bs-form-group}}
-{{#power-select
-      search=(action "searchOrganization")
-      placeholder='Search by Organization Name'
-      selected=organization
-      onchange=(action (mut organization))
-      as |organization|
-}}
-  {{organization.name}}
-{{/power-select}}
-  {{/bs-form-group}}
-  {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
 {{/bs-form}}

@@ -1,7 +1,7 @@
 {
   "name": "barberscore-ember",
   "dependencies": {
-    "ember": "2.3.0",
+    "ember": "~2.4.1",
     "ember-cli-shims": "0.1.0",
     "ember-cli-test-loader": "0.2.2",
     "ember-load-initializers": "0.1.7",
@@ -15,6 +15,7 @@
     "ember": "2.2.0"
   },
   "devDependencies": {
-    "bootstrap-daterangepicker": "^2.1.18"
+    "bootstrap-daterangepicker": "^2.1.18",
+    "ember-qunit-notifications": "0.1.0"
   }
 }

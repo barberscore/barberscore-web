@@ -3,7 +3,6 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('session-status'),
-  age: DS.attr('session-age'),
   kind: DS.attr('session-kind'),
   size: DS.attr('number'),
   num_rounds: DS.attr('number'),

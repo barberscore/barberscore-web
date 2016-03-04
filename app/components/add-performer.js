@@ -5,10 +5,12 @@ export default Ember.Component.extend({
   actions: {
     saveRecord() {
       const flashMessages = Ember.get(this, 'flashMessages');
+      // var organization = this.get('group').organization;
+      // console.log(organization);
       var performer = this.get('store').createRecord('performer', {
         session: this.get('session'),
         group: this.get('group'),
-        organization: this.get('organization'),
+        organization: this.get('group.organization'),
       });
       performer.save()
       .then(() => {
