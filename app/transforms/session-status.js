@@ -6,6 +6,7 @@ export default DS.Transform.extend({
       0: 'New',
       10: 'Built',
       20: 'Started',
+      25: 'Ranked',
       30: 'Finished',
       50: 'Final',
     };
@@ -17,6 +18,7 @@ export default DS.Transform.extend({
       'New': 0,
       'Built': 10,
       'Started': 20,
+      'Ranked': 25,
       'Finished': 30,
       'Final': 50,
     };

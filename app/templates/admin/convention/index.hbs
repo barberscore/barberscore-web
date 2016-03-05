@@ -1,7 +1,3 @@
-<h3>
-  Contest Administrator
-</h3>
-
 <div>
   <ol class='breadcrumb'>
     <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
@@ -14,10 +10,10 @@
   <div class='panel-heading'>
     <h4>
       Convention Detail
-      <span class='pull-right small'>{{model.status}}</span>
     </h4>
   </div>
   <div class='panel-body'>
+      {{convention-status model=model status=model.status class='form-group'}}
       {{date-range-picker start=model.date.lower end=model.date.upper ranges=null applyAction=(action 'saveDate')}}
       {{convention-venue model=model venue=model.venue class='form-group'}}
       {{convention-drcj model=model person=model.drcj class='form-group'}}
@@ -42,7 +38,7 @@
                   {{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}
                 </td>
                 <td>
-                  {{session.status}}
+                  {{session-status model=session status=session.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
