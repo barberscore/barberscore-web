@@ -15,7 +15,7 @@ export default DS.Model.extend({
   sng_score: DS.attr('number'),
   total_score: DS.attr('number'),
   catalog: DS.belongsTo('catalog', {async: true}),
-  tune: DS.belongsTo('tune', {async: true}),
+  chart: DS.belongsTo('chart', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
 });

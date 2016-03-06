@@ -21,8 +21,7 @@ export default DS.Model.extend({
   sessions_aca: DS.hasMany('session', {inverse: 'aca', async: true}),
   arrangements: DS.hasMany('arranger', {async: true}),
   certifications: DS.hasMany('certification', {async: true}),
-  choruses: DS.hasMany('director', {async: true}),
+  roles: DS.hasMany('role', {async: true}),
   panels: DS.hasMany('judge', {async: true}),
-  quartets: DS.hasMany('singer', {async: true}),
   conventions: DS.hasMany('convention', {inverse:'drcj', async: true}),
 });
