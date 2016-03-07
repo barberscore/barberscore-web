@@ -2,6 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
+  status: DS.attr('group-status'),
   date: DS.attr('date'),
   location: DS.attr('string'),
   website: DS.attr('string'),
@@ -11,8 +12,9 @@ export default DS.Model.extend({
   phone: DS.attr('string'),
   picture: DS.attr('string'),
   description: DS.attr('string'),
-  status: DS.attr('chapter-status'),
-  kind: DS.attr('chapter-kind'),
+  kind: DS.attr('group-kind'),
+  age: DS.attr('group-age'),
+  is_novice: DS.attr('boolean'),
   chapter: DS.belongsTo('chapter', {async: true}),
   organization: DS.belongsTo('organization', {async: true}),
   performers: DS.hasMany('performers', {async: true}),

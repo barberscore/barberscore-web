@@ -5,7 +5,7 @@ export default DS.Model.extend({
   status: DS.attr('organization-status'),
   level: DS.attr('organization-level'),
   kind: DS.attr('organization-kind'),
-  date: DS.attr('date'),
+  date: DS.attr(),
   location: DS.attr('string'),
   website: DS.attr('string'),
   facebook: DS.attr('string'),

@@ -8,7 +8,7 @@ export default DS.Model.extend({
   division: DS.attr('convention-division'),
   year: DS.attr('number'),
   date: DS.attr(),
-  human_date: DS.attr('string'),
+  // human_date: DS.attr('string'),
   // location: DS.attr('string'),
   // timezone: DS.attr('string'),
   venue: DS.belongsTo('venue', {async: true}),

@@ -90,13 +90,13 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.setlists as |setlist|}}
+            {{#each model.submissions as |submission|}}
               <tr>
                 <td>
-                  {{setlist.name}}
+                  {{submission.name}}
                 </td>
                 <td>
-                  {{setlist.status}}
+                  {{submission.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}

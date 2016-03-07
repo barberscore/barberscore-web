@@ -3,11 +3,9 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('performance-status'),
-  draw: DS.attr('number'),
   slot: DS.attr('number'),
-  start_dt: DS.attr('date'),
-  scheduled: DS.attr('string'),
-  actual: DS.attr('string'),
+  scheduled: DS.attr(),
+  actual: DS.attr(),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),
   sng_points: DS.attr('number'),
