@@ -1,3 +1,18 @@
-<p>
-  {{model.name}}
-</p>
+<div>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |organization|}}
+        <tr>
+          <td>
+            {{#link-to 'organizations.organization' organization}}{{organization.name}}{{/link-to}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

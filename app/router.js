@@ -48,14 +48,18 @@ Router.map(function() {
     });
   });
 
-  // this.route('groups', { path: '/group/' }, function() {
-  //   this.route('group', { path: '/group/:group_id' }, function () {
-  //   });
-  // });
-  // this.route('organizations', { path: '/organization/' }, function() {
-  //   this.route('organization', { path: '/organization/:organization_id' }, function() {
-  //   });
-  // });
+  this.route('groups', { path: '/group/' }, function() {
+    this.route('group', { path: '/:group_id' }, function () {
+    });
+  });
+  this.route('organizations', { path: '/organization/' }, function() {
+    this.route('organization', { path: '/:organization_id' }, function() {
+    });
+  });
+  this.route('persons', { path: '/person/' }, function() {
+    this.route('person', { path: '/:person_id' }, function() {
+    });
+  });
 
   this.route('404', { path: '/*wildcard' });
 });
