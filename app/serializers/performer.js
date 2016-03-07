@@ -5,13 +5,10 @@ export default DS.JSONAPISerializer.extend({
       contestants: {
         serialize: true
       },
-      directors: {
+      roles: {
         serialize: true
       },
       performances: {
-        serialize: true
-      },
-      singers: {
         serialize: true
       },
     }

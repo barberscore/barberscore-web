@@ -37,7 +37,7 @@
     </td>
     <td>
     {{#each performance.songs as |song|}}
-      {{select-chart model=song tune=song.chart}}<br>
+      {{select-chart model=song chart=song.chart}}<br>
     {{/each}}
     </td>
     {{#each performance.round.session.judges as |judge|}}

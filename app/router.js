@@ -10,15 +10,6 @@ Router.map(function() {
   this.route('about');
   this.route('faq');
 
-  this.route('conventions', { path: '/convention/' });
-  this.route('convention', { path: '/convention/:convention_id' }, function() {
-    this.route('session', { path: '/:session_id' }, function() {
-      this.route('round', { path: '/:round_id' }, function() {
-        this.route('group', { path: '/:group_id'});
-      });
-    });
-  });
-
   this.route('admin', { path: '/admin/' }, function() {
     this.route('convention', { path: '/:convention_id' }, function() {
       this.route('session', { path: '/:session_id' }, function() {
@@ -38,12 +29,34 @@ Router.map(function() {
     });
   });
 
-  this.route('groups', { path: '/group/' });
-  this.route('group', { path: '/group/:group_id' }, function () {
-    this.route('edit', { path: '/edit' });
+  this.route('conventions', { path: '/convention/' }, function() {
+    this.route('convention', { path: '/:convention_id' }, function() {
+      this.route('session', { path: '/:session_id' }, function() {
+        this.route('performer', { path: '/build/:performer_id'}, function() {
+          this.route('awards', { path: '/awards/'}, function() {
+          });
+        });
+        this.route('round', { path: '/score/:round_id'}, function() {
+          this.route('performance', { path: '/:performance_id'}, function() {
+          });
+        });
+        this.route('contest', { path: '/compete/:contest_id'}, function() {
+          this.route('performance', { path: '/:performance_id'}, function() {
+          });
+        });
+      });
+    });
   });
-  this.route('organizations', { path: '/organization/' });
-  this.route('organization', { path: '/organization/:organization_id' });
+
+  // this.route('groups', { path: '/group/' }, function() {
+  //   this.route('group', { path: '/group/:group_id' }, function () {
+  //   });
+  // });
+  // this.route('organizations', { path: '/organization/' }, function() {
+  //   this.route('organization', { path: '/organization/:organization_id' }, function() {
+  //   });
+  // });
+
   this.route('404', { path: '/*wildcard' });
 });
 

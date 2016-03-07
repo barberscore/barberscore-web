@@ -2,6 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
+  slug: DS.attr('string'),
   status: DS.attr('convention-status'),
   season: DS.attr('convention-season'),
   level: DS.attr('convention-level'),

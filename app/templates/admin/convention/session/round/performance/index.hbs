@@ -16,7 +16,7 @@
 <div>
 <ul class='list-unstyled'>
 {{#each model.songs as |song|}}
-  <li>{{select-tune model=song tune=song.tune}}</li>
+  <li>{{select-chart model=song chart=song.chart}}<br></li>
 {{/each}}
 </ul>
 </div>

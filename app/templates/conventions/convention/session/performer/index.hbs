@@ -1,0 +1,74 @@
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'conventions.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'conventions.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li class='active'>{{model.group.name}}</li>
+  </ol>
+</div>
+<section class='well'>
+<p>{{model.name}}</p>
+</section>
+<section>
+ {{#bs-accordion selected=selected collapsed=collapsed}}
+     {{#bs-accordion-item value="1" title="Members"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Part</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.roles as |role|}}
+              <tr>
+                <td>
+                  {{!-- {{#link-to 'conventions.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}} --}}
+                  {{role.person.name}}
+                </td>
+                <td>
+                  {{role.part}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="2" title="Performances"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.performances as |performance|}}
+              <tr>
+                <td>
+                  {{#link-to 'conventions.convention.session.round' performance.round}}{{performance.name}}{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="3" title="Contests"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.contestants as |contestant|}}
+              <tr>
+                <td>
+                  {{#link-to 'conventions.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>

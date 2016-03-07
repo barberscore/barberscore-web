@@ -1,0 +1,8 @@
+{{#power-select
+  search=(action "searchChart")
+  selected=chart
+  onchange=(action "saveRecord")
+  as |chart|
+}}
+  {{chart.name}}
+{{/power-select}}
