@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import moment from 'moment';
 
 export function datetimeRange(params) {
   if (params[0]) {
