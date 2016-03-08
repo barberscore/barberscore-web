@@ -1,4 +1,3 @@
-<h3>Contest conventionsistrator</h3>
 <div>
   <ol class='breadcrumb'>
     <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
@@ -11,19 +10,64 @@
 <table class='table'>
   <thead>
   <tr>
-  <th>Rank</th>
+  <th class='text-right'>Rank</th>
   <th>Group</th>
-  <th>Points</th>
-  <th>Score</th>
+  <th>Songs</th>
+  <th class='text-right'>MUS</th>
+  <th class='text-right'>PRS</th>
+  <th class='text-right'>SNG</th>
+  <th class='text-right'>Total</th>
   </tr>
   </thead>
   <tbody>
   {{#each model.contestants as |contestant|}}
     <tr>
-    <td>{{contestant.rank}}</td>
-    <td>{{contestant.performer.group.name}}</td>
-    <td>{{contestant.total_points}}</td>
-    <td>{{single-fixed contestant.total_score}}</td>
+    <td class='text-right'>
+      {{contestant.rank}}
+    </td>
+    <td>
+      {{#link-to 'conventions.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}
+    </td>
+    <td>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.chart.title}}<br>
+        {{/each}}
+        <em>{{performance.round.kind}}</em><br>
+      {{/each}}
+    </td>
+    <td class='text-right'>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{#if isRaw}}{{song.mus_points}}{{else}}{{song.mus_score}}{{/if}}<br>
+        {{/each}}
+        {{performance.mus_points}}<br>
+      {{/each}}
+    </td>
+    <td class='text-right'>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.prs_points}}<br>
+        {{/each}}
+        {{performance.prs_points}}<br>
+      {{/each}}
+    </td>
+    <td class='text-right'>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.sng_points}}<br>
+        {{/each}}
+        {{performance.sng_points}}<br>
+      {{/each}}
+    </td>
+    <td class='text-right'>
+      {{#each contestant.performer.performances as |performance|}}
+        {{#each performance.songs as |song|}}
+          {{song.total_points}}<br>
+        {{/each}}
+        {{performance.total_points}}<br>
+      {{/each}}
+    </td>
     </tr>
   {{/each}}
   </tbody>

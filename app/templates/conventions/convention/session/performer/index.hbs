@@ -9,7 +9,7 @@
 <section class='well'>
 <p>{{model.name}}</p>
 </section>
-<section>
+ <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
      {{#bs-accordion-item value="1" title="Members"}}
         <table class='table'>
@@ -23,8 +23,7 @@
             {{#each model.roles as |role|}}
               <tr>
                 <td>
-                  {{!-- {{#link-to 'conventions.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}} --}}
-                  {{role.person.name}}
+                  {{#link-to 'conventions.convention.session.performer.person' role.person}}{{role.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{role.part}}
@@ -72,3 +71,5 @@
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>
+
+{{!-- {{person-modal isOpen=false}} --}}

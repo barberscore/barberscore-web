@@ -7,15 +7,13 @@
   </ol>
 </div>
 <div>
-<p>
-{{model.name}}
-</p>
 </div>
 <div>
 <table class='table'>
   <thead>
   <tr>
-  <th>Slot</th>
+  <th>Order</th>
+  <th>Performer</th>
   <th>Scheduled</th>
   <th>Songs</th>
   </tr>
@@ -24,8 +22,11 @@
   {{#each model.performances as |performance|}}
     <tr>
     <td>
-      {{performance.slot}}<br>
-      {{performance.performer.group.name}}
+      {{performance.slot}}
+    </td>
+    <td>
+      {{#link-to 'conventions.convention.session.performer' performance.performer}}{{performance.performer.group.name}}{{/link-to}}
+
     </td>
     <td>
       {{datetime-range performance.scheduled}}

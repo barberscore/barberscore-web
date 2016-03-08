@@ -12,12 +12,17 @@
     </h3>
   </div>
   <div class='panel-body'>
-    {{model.name}}
+    <p>
+      {{model.name}}
+    </p>
+    <p>
+      {{#if model.administrator}}Contest Administrator: {{model.administrator.person.name}}{{/if}}
+    </p>
   </div>
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="2" title="Rounds"}}
+     {{#bs-accordion-item value="2" title="Schedule"}}
         <table class='table'>
           <thead>
             <tr>
@@ -47,7 +52,7 @@
             {{#each model.judges as |judge|}}
               <tr>
                 <td>
-                  {{judge.person.name}}
+                  {{#link-to 'conventions.convention.session.judge' judge}}{{judge.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{judge.category}}
@@ -57,7 +62,7 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Awards"}}
+     {{#bs-accordion-item value="1" title="Contests"}}
         <table class='table'>
           <thead>
             <tr>
