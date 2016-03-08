@@ -7,6 +7,7 @@
   </ol>
 </div>
 <div>
+{{x-toggle showLabels=true offLabel='Points' onLabel='Score' toggle='letsGo' class='pull-right'}}
 <table class='table'>
   <thead>
   <tr>
@@ -33,40 +34,46 @@
         {{#each performance.songs as |song|}}
           {{song.chart.title}}<br>
         {{/each}}
-        <em>{{performance.round.kind}}</em><br>
+        {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
       {{/each}}
+      <strong>Total</strong>
     </td>
     <td class='text-right'>
       {{#each contestant.performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.mus_points}}{{else}}{{song.mus_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.mus_points}}{{else}}{{single-fixed song.mus_score}}{{/if}}<br>
         {{/each}}
-        {{performance.mus_points}}<br>
+        {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{#if isRaw}}{{performance.mus_points}}{{else}}{{single-fixed performance.mus_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
+      <strong>{{#if isRaw}}{{contestant.mus_points}}{{else}}{{single-fixed contestant.mus_score}}{{/if}}</strong><br>
+
     </td>
     <td class='text-right'>
       {{#each contestant.performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{song.prs_points}}<br>
+          {{#if isRaw}}{{song.prs_points}}{{else}}{{single-fixed song.prs_score}}{{/if}}<br>
         {{/each}}
-        {{performance.prs_points}}<br>
+        {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{#if isRaw}}{{performance.prs_points}}{{else}}{{single-fixed performance.prs_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
+      <strong>{{#if isRaw}}{{contestant.prs_points}}{{else}}{{single-fixed contestant.prs_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each contestant.performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{song.sng_points}}<br>
+          {{#if isRaw}}{{song.sng_points}}{{else}}{{single-fixed song.sng_score}}{{/if}}<br>
         {{/each}}
-        {{performance.sng_points}}<br>
+        {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{#if isRaw}}{{performance.sng_points}}{{else}}{{single-fixed performance.sng_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
+      <strong>{{#if isRaw}}{{contestant.sng_points}}{{else}}{{single-fixed contestant.sng_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each contestant.performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{song.total_points}}<br>
+          {{#if isRaw}}{{song.total_points}}{{else}}{{single-fixed song.total_score}}{{/if}}<br>
         {{/each}}
-        {{performance.total_points}}<br>
+        {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{#if isRaw}}{{performance.total_points}}{{else}}{{single-fixed performance.total_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
+      <strong>{{#if isRaw}}{{contestant.total_points}}{{else}}{{single-fixed contestant.total_score}}{{/if}}</strong><br>
     </td>
     </tr>
   {{/each}}
