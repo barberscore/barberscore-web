@@ -11,7 +11,7 @@
 <table class='table'>
   <thead>
   <tr>
-  <th class='text-right'>Rank</th>
+  <th class='text-right'>{{#if model.is_qualifier}}Qualified{{else}}Rank{{/if}}</th>
   <th>Group</th>
   <th>Songs</th>
   <th class='text-right'>MUS</th>
@@ -24,7 +24,7 @@
   {{#each model.contestants as |contestant|}}
     <tr>
     <td class='text-right'>
-      {{contestant.rank}}
+      {{#if contestant.contest.is_qualifier}}{{qualified-truth contestant.rank}}{{else}}{{contestant.rank}}{{/if}}
     </td>
     <td>
       {{#link-to 'conventions.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}

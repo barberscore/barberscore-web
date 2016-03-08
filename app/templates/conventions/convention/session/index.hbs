@@ -73,7 +73,7 @@
             {{#each model.contests as |contest|}}
               <tr>
                 <td>
-                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}
+                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{/if}}{{/link-to}}
                 </td>
               </tr>
             {{/each}}
