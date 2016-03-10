@@ -1,6 +1,4 @@
-<button {{action "toggle"}}>
-  click me
-</button>
+<a href='#' {{action "openModal"}}>{{person.name}}</a>
 {{#bs-modal open=isOpen}}
-   {{outlet}}
+   {{render 'persons.person.modal' person}}
 {{/bs-modal}}

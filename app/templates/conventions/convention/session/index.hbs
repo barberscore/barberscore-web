@@ -13,96 +13,16 @@
   </div>
   <div class='panel-body'>
     <p>
-      {{model.name}}
+      {{model.name}}{{model.status}}
     </p>
     <p>
       {{#if model.administrator}}Contest Administrator: {{model.administrator.person.name}}{{/if}}
     </p>
   </div>
 </section>
+{{#if (eq model.status 'Final')}}
 <section>
- {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="2" title="Schedule"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.rounds as |round|}}
-              <tr>
-                <td>
-                  {{#link-to 'conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
-     {{#bs-accordion-item value="3" title="Judges"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Slot</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.judges as |judge|}}
-              <tr>
-                <td>
-                  {{#link-to 'conventions.convention.session.judge' judge}}{{judge.person.name}}{{/link-to}}
-                </td>
-                <td>
-                  {{judge.category}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Contests"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.contests as |contest|}}
-              <tr>
-                <td>
-                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{/if}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
-     {{#bs-accordion-item value="4" title="Performers"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.performers as |performer|}}
-              <tr>
-                <td>
-                  {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
- {{/bs-accordion}}
-</section>
-<br><br>
-<div>
-{{!-- {{x-toggle showLabels=true offLabel='Points' onLabel='Score' toggle='letsGo' class='pull-right'}} --}}
+{{x-toggle showLabels=true offLabel='Points' onLabel='Score' toggle='letsGo' class='pull-right'}}
 <table class='table'>
   <thead>
   <tr>
@@ -112,16 +32,17 @@
   <th class='text-right'>PRS</th>
   <th class='text-right'>SNG</th>
   <th class='text-right'>Total</th>
-  {{#each model.contests as |contest|}}
+  {{!-- {{#each model.contests as |contest|}}
     <th class='text-right'>{{contest.award.name}}</th>
-  {{/each}}
+  {{/each}} --}}
   </tr>
   </thead>
   <tbody>
   {{#each model.performers as |performer|}}
     <tr>
     <td>
-      {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+      {{!-- {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}} --}}
+      {{group-modal group=performer.group}}
     </td>
     <td>
       {{#each performer.performances as |performance|}}
@@ -169,7 +90,7 @@
       {{/each}}
       <strong>{{#if isRaw}}{{performer.total_points}}{{else}}{{single-fixed performer.total_score}}{{/if}}</strong><br>
     </td>
-    {{#each model.contests as |contest|}}
+    {{!-- {{#each model.contests as |contest|}}
       <td class='text-right'>
       {{#each performer.contestants as |contestant|}}
         {{#if (eq contest.id contestant.contest.id)}}
@@ -177,9 +98,99 @@
         {{/if}}
       {{/each}}
       </td>
-    {{/each}}
+    {{/each}} --}}
     </tr>
   {{/each}}
   </tbody>
 </table>
-</div>
+</section>
+{{/if}}
+<section>
+ {{#bs-accordion selected=selected collapsed=collapsed}}
+     {{#unless (eq model.status 'Final')}}
+     {{#bs-accordion-item value="2" title="Schedule"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>`
+          <tbody>
+            {{#each model.rounds as |round|}}
+              <tr>
+                <td>
+                  {{#link-to 'conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{/unless}}
+     {{#bs-accordion-item value="3" title="Judges"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Slot</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.judges as |judge|}}
+              <tr>
+                <td>
+                  {{!-- {{#link-to 'conventions.convention.session.judge' judge}}{{judge.person.name}}{{/link-to}} --}}
+                  {{person-modal person=judge.person}}
+                </td>
+                <td>
+                  {{judge.category}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="1" title="Contests"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Champion</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.contests as |contest|}}
+              <tr>
+                <td>
+                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{/if}}{{/link-to}}
+                </td>
+                <td>
+                  {{contest.champion.performer.group.name}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{#unless (eq model.status 'Final')}}
+     {{#bs-accordion-item value="4" title="Performers"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.performers as |performer|}}
+              <tr>
+                <td>
+                  {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{/unless}}
+ {{/bs-accordion}}
+</section>
