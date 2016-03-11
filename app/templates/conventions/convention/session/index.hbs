@@ -23,6 +23,7 @@
 {{#if (eq model.status 'Final')}}
 <section>
 {{x-toggle showLabels=true offLabel='Points' onLabel='Score' toggle='letsGo' class='pull-right'}}
+<div class='table-responsive'>
 <table class='table'>
   <thead>
   <tr>
@@ -47,7 +48,7 @@
     <td>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{song.chart.title}}<br>
+          {{truncate-text song.chart.title limit=30}}<br>
         {{/each}}
         {{#if (not-eq performer.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
       {{/each}}
@@ -103,6 +104,7 @@
   {{/each}}
   </tbody>
 </table>
+</div>
 </section>
 {{/if}}
 <section>

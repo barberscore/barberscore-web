@@ -13,11 +13,11 @@
   <tr>
   <th class='text-right'>{{#if model.is_qualifier}}Qualified{{else}}Rank{{/if}}</th>
   <th>Group</th>
-  <th>Songs</th>
+  {{!-- <th>Songs</th>
   <th class='text-right'>MUS</th>
   <th class='text-right'>PRS</th>
   <th class='text-right'>SNG</th>
-  <th class='text-right'>Total</th>
+  <th class='text-right'>Total</th> --}}
   </tr>
   </thead>
   <tbody>
@@ -27,10 +27,9 @@
       {{#if contestant.contest.is_qualifier}}{{qualified-truth contestant.rank}}{{else}}{{contestant.rank}}{{/if}}
     </td>
     <td>
-      {{!-- {{#link-to 'conventions.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}} --}}
       {{group-modal group=contestant.performer.group}}
     </td>
-    <td>
+    {{!-- <td>
       {{#each contestant.performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
           {{song.chart.title}}<br>
@@ -75,7 +74,7 @@
         {{#if (not-eq contestant.contest.award.num_rounds 1)}}<em>{{#if isRaw}}{{performance.total_points}}{{else}}{{single-fixed performance.total_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
       <strong>{{#if isRaw}}{{contestant.total_points}}{{else}}{{single-fixed contestant.total_score}}{{/if}}</strong><br>
-    </td>
+    </td> --}}
     </tr>
   {{/each}}
   </tbody>
