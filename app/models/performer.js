@@ -20,5 +20,4 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization', {async: true}),
   performances: DS.hasMany('performance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
-  roles: DS.hasMany('role', {async: true}),
 });

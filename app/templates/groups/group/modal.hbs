@@ -22,5 +22,15 @@
 <p>
   {{model.email}}
 </p>
+<ul class='list-inline'>
+{{#each model.roles as |role|}}
+  {{#if (eq role.status 'Active')}}<li>{{role.part}}: {{role.person.name}}</li>{{/if}}
+{{/each}}
+</ul>
 </div>
+</div>
+<div class='row'>
+<p class='in-modal'>
+{{model.description}}
+</p>
 </div>

@@ -11,43 +11,6 @@
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="4" title="Roles"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Status</th>
-              <th>Part</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.roles as |role|}}
-              <tr>
-                <td>
-                  {{!-- {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}} --}}
-                  {{role.name}}
-                </td>
-                <td>
-                  {{role.status}}
-                </td>
-                <td>
-                  {{role.part}}
-                </td>
-                <td>
-                  {{#bs-dropdown}}
-                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                    {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
-                    {{/bs-dropdown-menu}}
-                  {{/bs-dropdown}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
      {{#bs-accordion-item value="2" title="Awards"}}
         <table class='table'>
           <thead>
