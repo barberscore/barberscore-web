@@ -1,3 +1,5 @@
+import Ember from 'ember';
+
 export function truncateText(params, hash) {
   var value = params[0];
   var len = hash.limit;
