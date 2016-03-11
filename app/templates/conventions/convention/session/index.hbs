@@ -137,6 +137,7 @@
           </thead>
           <tbody>
             {{#each model.judges as |judge|}}
+              {{#if (eq judge.kind 'Official')}}
               <tr>
                 <td>
                   {{#if judge.person}}{{person-modal person=judge.person}}{{else}}(Not yet selected.){{/if}}
@@ -145,6 +146,7 @@
                   {{judge.category}}
                 </td>
               </tr>
+              {{/if}}
             {{/each}}
           </tbody>
         </table>
@@ -154,7 +156,7 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Champion</th>
+              <th>Champion/District Representative</th>
             </tr>
           </thead>
           <tbody>

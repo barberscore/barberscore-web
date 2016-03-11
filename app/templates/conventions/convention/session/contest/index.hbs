@@ -27,7 +27,8 @@
       {{#if contestant.contest.is_qualifier}}{{qualified-truth contestant.rank}}{{else}}{{contestant.rank}}{{/if}}
     </td>
     <td>
-      {{#link-to 'conventions.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}
+      {{!-- {{#link-to 'conventions.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}} --}}
+      {{group-modal group=contestant.performer.group}}
     </td>
     <td>
       {{#each contestant.performer.performances as |performance|}}
