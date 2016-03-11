@@ -114,7 +114,7 @@
             <tr>
               <th>Name</th>
             </tr>
-          </thead>`
+          </thead>
           <tbody>
             {{#each model.rounds as |round|}}
               <tr>
@@ -139,8 +139,7 @@
             {{#each model.judges as |judge|}}
               <tr>
                 <td>
-                  {{!-- {{#link-to 'conventions.convention.session.judge' judge}}{{judge.person.name}}{{/link-to}} --}}
-                  {{person-modal person=judge.person}}
+                  {{#if judge.person}}{{person-modal person=judge.person}}{{else}}(Not yet selected.){{/if}}
                 </td>
                 <td>
                   {{judge.category}}
@@ -165,7 +164,7 @@
                   {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{/if}}{{/link-to}}
                 </td>
                 <td>
-                  {{contest.champion.performer.group.name}}
+                  {{#if contest.champion}}{{contest.champion.performer.group.name}}{{else}}TBD{{/if}}
                 </td>
               </tr>
             {{/each}}
@@ -174,6 +173,7 @@
      {{/bs-accordion-item}}
      {{#unless (eq model.status 'Final')}}
      {{#bs-accordion-item value="4" title="Performers"}}
+        {{#if model.performers}}
         <table class='table'>
           <thead>
             <tr>
@@ -190,6 +190,9 @@
             {{/each}}
           </tbody>
         </table>
+        {{else}}
+          <h4>Performers not yet selected.  Please check back later</h4>
+        {{/if}}
      {{/bs-accordion-item}}
      {{/unless}}
  {{/bs-accordion}}

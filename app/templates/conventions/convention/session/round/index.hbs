@@ -8,7 +8,8 @@
 </div>
 <div>
 </div>
-<div>
+{{#if model.performances}}
+<section>
 <table class='table'>
   <thead>
   <tr>
@@ -40,4 +41,9 @@
   {{/each}}
   </tbody>
 </table>
-</div>
+</section>
+{{else}}
+<h3>
+Performances not scheduled yet.  Please check back later.
+</h3>
+{{/if}}
