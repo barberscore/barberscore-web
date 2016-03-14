@@ -3,6 +3,6 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model: function() {
-    return this.store.query('convention', {year__gte: 2015, year__lte: 2016});
+    return this.store.query('convention', {year: 2016, season: 4});
   },
 });
