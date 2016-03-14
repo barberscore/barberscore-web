@@ -1,8 +1,8 @@
 import Ember from 'ember';
 
 export function venueShort(params) {
-  if (params[0].city) {
-    return params[0].city + ', ' + params[0].state;
+  if (params[0].get('city')) {
+    return params[0].get('city') + ', ' + params[0].get('state');
   } else {
     return "";
   }
