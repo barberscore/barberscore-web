@@ -17,6 +17,8 @@ export default Ember.Component.extend({
   },
   contestantStatus: [
     'New',
+    'Eligible',
+    'Ineligible',
     'Did Not Qualify',
     'Qualified',
     'Final',
