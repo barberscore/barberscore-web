@@ -1,0 +1,8 @@
+{{#power-select
+      search=(action "searchJudge")
+      selected=person
+      onchange=(action "saveRecord")
+      as |person|
+}}
+  {{person.name}}
+{{/power-select}}
