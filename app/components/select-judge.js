@@ -5,14 +5,14 @@ export default Ember.Component.extend({
   actions: {
     saveRecord(person) {
       this.model.set('person', person);
-      const flashMessages = Ember.get(this, 'flashMessages');
+      // const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
-      .then(() => {
-        flashMessages.success('Success');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
+      // .then(() => {
+        // flashMessages.success('Success');
+      // })
+      // .catch(() => {
+        // flashMessages.danger('Error');
+      // });
     },
     searchJudge(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
