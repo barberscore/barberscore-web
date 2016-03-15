@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     saveRecord(person) {
       this.model.set('person', person);
       // const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      this.model.save();
       // .then(() => {
         // flashMessages.success('Success');
       // })
