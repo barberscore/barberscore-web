@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   },
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('person', {'name__icontains': term})
+    this.get('store').query('person', {'name__icontains': term, 'certifications__category': 1})
       .then(data => resolve(data), reject);
   },
 });
