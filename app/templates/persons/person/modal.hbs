@@ -8,19 +8,25 @@
 </div>
 <div class='col-md-6'>
 <h4>
-  {{model.name}}
+  {{model.common_name}}
 </h4>
 <p>
   {{model.location}}
 </p>
+{{#if model.facebook}}
 <p>
-  {{model.facebook}}
+  <a href='{{model.facebook}}'>Facebook</a>
 </p>
+{{/if}}
+{{#if model.twitter}}
 <p>
-  {{model.twitter}}
+  <a href='https://twitter.com/{{model.twitter}}'>{{model.twitter}}</a>
 </p>
+{{/if}}
+{{#if model.email}}
 <p>
-  {{model.email}}
+  <a href='mailto:{{model.email}}'>{{model.email}}</a>
 </p>
+{{/if}}
 </div>
 </div>

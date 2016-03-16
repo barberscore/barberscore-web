@@ -111,7 +111,7 @@
  {{#bs-accordion selected=selected collapsed=collapsed}}
      {{#unless (eq model.status 'Final')}}
      {{#bs-accordion-item value="2" title="Schedule"}}
-        <table class='table'>
+        {{!-- <table class='table'>
           <thead>
             <tr>
               <th>Name</th>
@@ -126,7 +126,13 @@
               </tr>
             {{/each}}
           </tbody>
-        </table>
+        </table> --}}
+        <ul class='list-inline'>
+          {{#each model.rounds as |round|}}
+            <li>{{#link-to 'conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+        {{outlet "round"}}
      {{/bs-accordion-item}}
      {{/unless}}
      {{#bs-accordion-item value="3" title="Judges"}}
@@ -162,10 +168,10 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.contests as |contest|}}
+            {{#each contestsSorted as |contest|}}
               <tr>
                 <td>
-                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{/if}}{{/link-to}}
+                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{else}} Championship{{/if}}{{/link-to}}
                 </td>
                 <td>
                   {{#if contest.champion}}{{contest.champion.performer.group.name}}{{else}}TBD{{/if}}
@@ -188,7 +194,7 @@
             {{#each model.performers as |performer|}}
               <tr>
                 <td>
-                  {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                  {{group-modal group=performer.group}}
                 </td>
               </tr>
             {{/each}}
