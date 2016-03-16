@@ -10,6 +10,6 @@ export default Ember.Controller.extend({
   judgeSortProperties: ['category',],
   judgesSorted: Ember.computed.sort(
     'model.judges',
-    'judgeSortProperties',
+    'judgeSortProperties'
   ),
 });
