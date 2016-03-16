@@ -6,5 +6,10 @@ export default Ember.Controller.extend({
     letsGo() {
       this.toggleProperty('isRaw');
     },
-  }
+  },
+  judgeSortProperties: ['category',],
+  judgesSorted: Ember.computed.sort(
+    'model.judges',
+    'judgeSortProperties',
+  ),
 });
