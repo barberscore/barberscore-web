@@ -4,7 +4,6 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
-  size: DS.attr('number'),
   administrator: DS.belongsTo('person', {inverse: 'sessions_ca', async: true}),
   aca: DS.belongsTo('person', {inverse: 'sessions_aca', async: true}),
   convention: DS.belongsTo('convention', {async: true}),

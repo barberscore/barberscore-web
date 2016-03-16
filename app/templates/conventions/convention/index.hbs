@@ -35,7 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.sessions as |session|}}
+            {{#each sessionsSorted as |session|}}
               <tr>
                 <td>
                   {{#link-to 'conventions.convention.session' session}}{{session.kind}}{{/link-to}}
