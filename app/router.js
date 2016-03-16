@@ -39,8 +39,6 @@ Router.map(function() {
           });
         });
         this.route('round', { path: '/round/:round_id'}, function() {
-          this.route('performance', { path: '/:performance_id'}, function() {
-          });
         });
         this.route('contest', { path: '/contest/:contest_id'}, function() {
           this.route('performance', { path: '/:performance_id'}, function() {
