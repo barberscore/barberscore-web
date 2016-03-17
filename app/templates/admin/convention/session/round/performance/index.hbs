@@ -15,8 +15,8 @@
 </div>
 <div>
 <ul class='list-unstyled'>
-{{#each model.songs as |song|}}
-  <li>{{select-chart model=song chart=song.chart}}<br></li>
+{{#each songsSorted as |song|}}
+  <li>{{select-submission model=song selected=song.chart.name}}{{song.chart.name}}<br></li>
 {{/each}}
 </ul>
 </div>

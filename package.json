@@ -23,7 +23,6 @@
     "ember-ajax": "0.7.1",
     "ember-api-actions": "0.0.11",
     "ember-bootstrap": "^0.6.3",
-    "ember-bootstrap-datetimepicker": "1.0.2",
     "ember-cli": "2.4.1",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-babel": "^5.1.5",

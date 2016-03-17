@@ -9,8 +9,7 @@
     "jquery": "1.11.3",
     "loader.js": "^3.5.0",
     "bootstrap": "~3.3.5",
-    "font-awesome": "~4.5.0",
-    "eonasdan-bootstrap-datetimepicker": "~4.14.30"
+    "font-awesome": "~4.5.0"
   },
   "resolutions": {
     "ember": "2.2.0"

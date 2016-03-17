@@ -29,7 +29,7 @@
       {{performance.slot}}
     </td>
     <td>
-      {{bs-datetimepicker date=performance.lowerMoment performance=performance updateDate=(action 'saveDate' )}}
+      {{moment-format performance.scheduled.lower 'LT'}}
     </td>
     <td>
       {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}

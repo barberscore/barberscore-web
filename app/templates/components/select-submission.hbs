@@ -1,0 +1,8 @@
+{{#power-select
+  search=(action "searchSubmission")
+  selected=selected
+  onchange=(action "saveRecord")
+  as |submission|
+}}
+  {{submission.chart.name}}
+{{/power-select}}
