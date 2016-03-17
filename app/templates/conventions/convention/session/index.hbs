@@ -109,7 +109,31 @@
 {{/if}}
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#unless (eq model.status 'Final')}}
+    {{#if (eq model.status 'New')}}
+
+     {{#bs-accordion-item value="4" title="Performers"}}
+        {{#if model.performers}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each performersSorted as |performer|}}
+              <tr>
+                <td>
+                  {{group-modal group=performer.group}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{else}}
+          <h4>Performers not yet selected.  Please check back later</h4>
+        {{/if}}
+     {{/bs-accordion-item}}
+     {{else}}
      {{#bs-accordion-item value="2" title="Schedule"}}
         {{!-- <table class='table'>
           <thead>
@@ -133,7 +157,7 @@
           {{/each}}
         </ul>
      {{/bs-accordion-item}}
-     {{/unless}}
+     {{/if}}
      {{#bs-accordion-item value="3" title="Judges"}}
         <table class='table'>
           <thead>
@@ -170,7 +194,7 @@
             {{#each contestsSorted as |contest|}}
               <tr>
                 <td>
-                  {{#link-to 'conventions.convention.session.contest' contest}}{{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{else}} Championship{{/if}}{{/link-to}}
+                  {{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{else}} Championship{{/if}}
                 </td>
                 <td>
                   {{#if contest.champion}}{{contest.champion.performer.group.name}}{{else}}TBD{{/if}}
@@ -180,29 +204,5 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     {{#unless (eq model.status 'Final')}}
-     {{#bs-accordion-item value="4" title="Performers"}}
-        {{#if model.performers}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.performers as |performer|}}
-              <tr>
-                <td>
-                  {{group-modal group=performer.group}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        {{else}}
-          <h4>Performers not yet selected.  Please check back later</h4>
-        {{/if}}
-     {{/bs-accordion-item}}
-     {{/unless}}
  {{/bs-accordion}}
 </section>

@@ -62,7 +62,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.judges as |judge|}}
+            {{#each judgesSorted as |judge|}}
               <tr>
                 <td>
                   {{judge.category}} {{judge.kind}} {{judge.slot}}
@@ -97,7 +97,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.contests as |contest|}}
+            {{#each contestsSorted as |contest|}}
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}

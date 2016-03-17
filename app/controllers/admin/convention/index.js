@@ -12,5 +12,10 @@ export default Ember.Controller.extend({
       this.model.set('date', date);
       this.model.save();
     }
-  }
+  },
+  sessionSortProperties: ['kind:asc',],
+  sortedSessions: Ember.computed.sort(
+    'model.sessions',
+    'sessionSortProperties'
+  ),
 });

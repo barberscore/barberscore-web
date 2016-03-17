@@ -25,4 +25,9 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
+  performerSortProperties: ['name',],
+  performersSorted: Ember.computed.sort(
+    'model.performers',
+    'performerSortProperties'
+  ),
 });

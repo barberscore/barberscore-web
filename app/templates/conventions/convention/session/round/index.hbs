@@ -20,13 +20,13 @@
   </tr>
   </thead>
   <tbody>
-  {{#each model.performances as |performance|}}
+  {{#each performancesSorted as |performance|}}
     <tr>
     <td>
       {{performance.slot}}
     </td>
     <td>
-      {{performance.performer.group.name}}
+      {{group-modal group=performance.performer.group}}
     </td>
     <td>
       {{datetime-range performance.scheduled}}
