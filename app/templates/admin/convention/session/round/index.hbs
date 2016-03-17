@@ -11,9 +11,6 @@
 <p>
 {{model.name}}
 </p>
-<p>
-{{draw-round round=model}}
-</p>
 </div>
 <div>
 <table class='table'>
@@ -26,13 +23,13 @@
   </tr>
   </thead>
   <tbody>
-  {{#each model.performances as |performance|}}
+  {{#each sortedPerformances as |performance|}}
     <tr>
     <td>
       {{performance.slot}}
     </td>
     <td>
-      {{moment-format performance.start_dt 'LT'}}
+      {{bs-datetimepicker date=performance.lowerMoment performance=performance updateDate=(action 'saveDate' )}}
     </td>
     <td>
       {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}
