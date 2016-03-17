@@ -6,5 +6,10 @@ export default Ember.Controller.extend({
     deleteRecord(performer) {
       performer.destroyRecord();
     }
-  }
+  },
+  performerSortProperties: ['name:asc',],
+  sortedPerformers: Ember.computed.sort(
+    'model.performers',
+    'performerSortProperties'
+  ),
 });

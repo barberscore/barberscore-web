@@ -130,13 +130,17 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.performers as |performer|}}
+            {{#each sortedPerformers as |performer|}}
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{select-organization model=performer organization=performer.organization}}
+                  {{#if (eq performer.group.kind 'Chorus')}}
+                    {{select-organization model=performer organization=performer.organization}}
+                  {{else}}
+                    N/A
+                  {{/if}}
                 </td>
                 <td>
                   {{performer-status model=performer status=performer.status}}
