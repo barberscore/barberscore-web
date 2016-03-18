@@ -16,7 +16,10 @@
       {{model.name}}
     </p>
     <p>
-      {{#if model.administrator}}Contest Administrator: {{model.administrator.person.name}}{{/if}}
+      {{#if model.administrator}}Contest Administrator: {{model.administrator.name}}{{/if}}
+    </p>
+    <p>
+      {{#if model.aca}}ACA: {{model.aca.name}}{{/if}}
     </p>
   </div>
 </section>
@@ -163,7 +166,7 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Slot</th>
+              <th>Category</th>
             </tr>
           </thead>
           <tbody>
