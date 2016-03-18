@@ -12,27 +12,30 @@
 <h4>
 {{model.performer.group.name}}
 </h4>
-</div>
-f{{foos}}
-<div>
-<ul class='list-unstyled'>
-{{#each songsSorted as |song|}}
-  {{!-- <li>{{select-submission model=song options=foos selected=song.chart.name}}{{song.chart.name}}<br></li> --}}
-  <li>
-    {{#power-select
-        options=model.foos
-        selected=submission
-        onchange=(action "saveRecord" song)
-        as |submission|
-    }}
-      {{submission.chart.name}}
-    {{/power-select}}
-  </li>
-<li>{{song.chart.name}}</li>
+<p>{{#each allSongs as |fooo|}}
+{{fooo}}
 {{/each}}
-</ul>
+</p>
 </div>
-{{model.chart.name}}
+<div>
+    {{#power-select
+        options=model.performer.submissions
+        selected=model.chart.name
+        onchange=(action "saveOne")
+        as |choiceOne|
+    }}
+      {{choiceOne.chart.name}}
+    {{/power-select}}
+    <br><br>
+    {{#power-select
+        options=model.performer.submissions
+        selected=subTwo
+        onchange=(action "saveTwo")
+        as |choiceTwo|
+    }}
+      {{choiceTwo.chart.name}}
+    {{/power-select}}
+</div>
 <div>
 <table class='table'>
   <thead>
