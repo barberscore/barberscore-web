@@ -8,33 +8,22 @@
     <li class='active'>Performance {{model.slot}}</li>
   </ol>
 </div>
-<div>
 <h4>
 {{model.performer.group.name}}
 </h4>
-<p>{{#each allSongs as |fooo|}}
-{{fooo}}
+<div>
+<p>{{#each model.songs as |song|}}
+    {{#power-select
+        options=model.performer.submissions
+        selected=song.chart
+        onchange=(action (mut song.chart) value='chart')
+        as |submission|
+    }}
+      {{submission.chart.name}}
+    {{/power-select}}
+{{song.chart}}
 {{/each}}
 </p>
-</div>
-<div>
-    {{#power-select
-        options=model.performer.submissions
-        selected=model.chart.name
-        onchange=(action "saveOne")
-        as |choiceOne|
-    }}
-      {{choiceOne.chart.name}}
-    {{/power-select}}
-    <br><br>
-    {{#power-select
-        options=model.performer.submissions
-        selected=subTwo
-        onchange=(action "saveTwo")
-        as |choiceTwo|
-    }}
-      {{choiceTwo.chart.name}}
-    {{/power-select}}
 </div>
 <div>
 <table class='table'>
@@ -46,7 +35,7 @@
   </tr>
   </thead>
   <tbody>
-  {{#each model.round.session.judges as |judge|}}
+  {{#each sortedJudges as |judge|}}
     <tr>
     <td>
       {{judge.kind}} {{judge.category}} {{judge.slot}}<br>
