@@ -6,6 +6,8 @@ export default DS.Model.extend({
   slot: DS.attr('number'),
   scheduled: DS.attr(),
   actual: DS.attr(),
+  get_preceding: DS.attr('string'),
+  get_next: DS.attr('string'),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),
   sng_points: DS.attr('number'),

@@ -8,9 +8,6 @@ export default Ember.Controller.extend({
     'judgeSortProperties'
   ),
 
-
-
-
   // songOne: Ember.computed.filterBy('model.songs', 'order', 'First'),
   // songTwo: Ember.computed.filterBy('model.songs', 'order', 'Second'),
   // allSongs: this.model.get('performer.submissions.@each.chart'),
