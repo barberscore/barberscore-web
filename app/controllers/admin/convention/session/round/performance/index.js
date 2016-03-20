@@ -7,7 +7,11 @@ export default Ember.Controller.extend({
     'model.round.session.judges',
     'judgeSortProperties'
   ),
-
+  pointSortProperties: ['points',],
+  sortedPoints: Ember.computed.sort(
+    'model.scores',
+    'pointSortProperties'
+  )
 
 
 

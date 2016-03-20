@@ -9,7 +9,7 @@
   </ol>
 </div>
 <h4>
-{{model.performer.group.name}}
+{{model.performer.group.name}} - {{sortedPoints}}
 </h4>
 <div>
 <p>{{#each model.songs as |song|}}
@@ -25,6 +25,9 @@
 {{/each}}
 </p>
 </div>
+{{#each sortedPoints as |points|}}
+  {{points}}
+{{/each}}
 <div>
 <table class='table'>
   <thead>
