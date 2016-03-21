@@ -11,7 +11,7 @@ export default Ember.Component.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        flashMessages.success('Success');
+        // flashMessages.success('Success');
       })
       .catch(() => {
         flashMessages.danger('Error');

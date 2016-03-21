@@ -7,11 +7,11 @@ export default Ember.Component.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       // var organization = this.get('group').organization;
       // console.log(organization);
-      var performer = this.get('store').createRecord('performer', {
+      var contest = this.get('store').createRecord('contest', {
         session: this.get('session'),
-        group: this.get('group'),
+        award: this.get('award'),
       });
-      performer.save()
+      contest.save()
       .then(() => {
         // flashMessages.success('Success');
       })
@@ -19,16 +19,11 @@ export default Ember.Component.extend({
         flashMessages.danger('Error');
       });
     },
-    searchGroup(term) {
+    searchAward(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, 'group', resolve, reject, 600);
+        Ember.run.debounce(this, this._performSearch, term, 'award', resolve, reject, 600);
       });
     },
-    searchOrganization(term) {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, 'organization', resolve, reject, 600);
-      });
-    }
   },
   _performSearch(term, model, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }

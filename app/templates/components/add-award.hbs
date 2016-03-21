@@ -1,0 +1,14 @@
+{{#bs-form formLayout="inline" action="saveRecord"}}
+  {{#bs-form-group}}
+    {{#power-select
+      search=(action "searchAward")
+      placeholder='Search by Award Name'
+      selected=award
+      onchange=(action (mut award))
+      as |award|
+    }}
+      {{award.name}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
+{{/bs-form}}

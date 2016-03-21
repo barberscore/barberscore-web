@@ -135,6 +135,7 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Qualifier</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -144,6 +145,9 @@
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
                 </td>
                 <td>
                   {{contest-status model=contest status=contest.status}}
@@ -159,6 +163,7 @@
                 </td>
               </tr>
             {{/each}}
+            {{add-award session=model}}
           </tbody>
         </table>
      {{/bs-accordion-item}}
