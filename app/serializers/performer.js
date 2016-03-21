@@ -8,5 +8,8 @@ export default DS.JSONAPISerializer.extend({
       performances: {
         serialize: true
       },
+      submissions: {
+        serialize: true
+      },
     }
 });

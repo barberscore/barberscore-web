@@ -13,19 +13,17 @@
 <li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
 </ul>
 <h4>
-{{model.performer.group.name}} - {{sortedPoints}}
-</h4>
+{{model.performer.group.name}}
 <div>
 <p>{{#each model.songs as |song|}}
     {{#power-select
         options=model.performer.submissions
-        selected=song.chart
-        onchange=(action (mut song.chart) value='chart')
+        onchange=(action 'saveSong' value='chart' song)
         as |submission|
     }}
       {{submission.chart.name}}
     {{/power-select}}
-{{song.chart}}
+    {{song.chart.name}}
 {{/each}}
 </p>
 </div>
