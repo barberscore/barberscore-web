@@ -21,4 +21,5 @@ export default DS.Model.extend({
   performances: DS.hasMany('performance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
+  roles: DS.hasMany('role', {async: true}),
 });

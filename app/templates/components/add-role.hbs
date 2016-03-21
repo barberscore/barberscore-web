@@ -1,0 +1,25 @@
+{{#bs-form formLayout="inline" action="saveRecord"}}
+  {{#bs-form-group}}
+    {{#power-select
+      search=(action "searchPerson")
+      placeholder='Search by Person Name'
+      selected=person
+      onchange=(action (mut person))
+      as |person|
+    }}
+      {{person.name}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{#bs-form-group}}
+    {{#power-select
+      options=rolePart
+      placeholder='Choose Role'
+      selected=part
+      onchange=(action (mut part))
+      as |part|
+    }}
+      {{part}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
+{{/bs-form}}

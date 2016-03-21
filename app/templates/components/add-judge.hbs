@@ -1,0 +1,26 @@
+{{#bs-form formLayout="inline" action="saveRecord"}}
+  {{#bs-form-group}}
+    {{#power-select
+      options=judgeCategory
+      placeholder='Select Category'
+      selected=category
+      onchange=(action (mut category))
+      as |category|
+    }}
+      {{category}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  &nbsp;
+  {{#bs-form-group}}
+    {{#power-select
+      options=judgeKind
+      placeholder='Select Kind'
+      selected=kind
+      onchange=(action (mut kind))
+      as |kind|
+    }}
+      {{kind}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}
+{{/bs-form}}

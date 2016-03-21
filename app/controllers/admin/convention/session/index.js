@@ -3,8 +3,11 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
-    deleteRecord(performer) {
+    deletePerformer(performer) {
       performer.destroyRecord();
+    },
+    deleteJudge(judge) {
+      judge.destroyRecord();
     }
   },
   performerSortProperties: ['name:asc',],
@@ -25,7 +28,7 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
-  judgeSortProperties: ['slot',],
+  judgeSortProperties: ['kind', 'category', 'slot',],
   judgesSorted: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'

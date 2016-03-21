@@ -18,5 +18,4 @@ export default DS.Model.extend({
   chapter: DS.belongsTo('chapter', {async: true}),
   organization: DS.belongsTo('organization', {async: true}),
   performers: DS.hasMany('performers', {async: true}),
-  roles: DS.hasMany('role', {async: true}),
 });

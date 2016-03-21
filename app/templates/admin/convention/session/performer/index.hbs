@@ -43,7 +43,7 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="3" title="Setlist"}}
+     {{#bs-accordion-item value="3" title="Submissions"}}
         <table class='table'>
           <thead>
             <tr>
@@ -75,23 +75,27 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Performances"}}
+     {{#bs-accordion-item value="1" title="Roles"}}
         <table class='table'>
           <thead>
             <tr>
               <th>Name</th>
+              <th>Part</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {{#each model.performances as |performance|}}
+            {{#each model.roles as |role|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.name}}{{/link-to}}
+                  {{role.person.name}}
                 </td>
                 <td>
-                {{performance.status}}
+                  {{role.part}}
+                </td>
+                <td>
+                  {{role.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
@@ -104,6 +108,7 @@
                 </td>
               </tr>
             {{/each}}
+            {{add-role performer=model}}
           </tbody>
         </table>
      {{/bs-accordion-item}}
