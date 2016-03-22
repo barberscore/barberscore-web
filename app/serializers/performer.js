@@ -11,5 +11,8 @@ export default DS.JSONAPISerializer.extend({
       submissions: {
         serialize: true
       },
+      roles: {
+        serialize: true
+      },
     }
 });
