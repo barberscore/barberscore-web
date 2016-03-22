@@ -17,9 +17,10 @@
   <thead>
   <tr>
   <th>Slot</th>
-  <th>Scheduled</th>
+  {{!-- <th>Scheduled</th> --}}
   <th>Performance</th>
   <th>Status</th>
+  <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -28,14 +29,23 @@
     <td>
       {{performance.slot}}
     </td>
-    <td>
+    {{!-- <td>
       {{moment-format performance.scheduled.lower 'LT'}}
-    </td>
+    </td> --}}
     <td>
       {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}
     </td>
     <td>
         {{performance.status}}
+    </td>
+    <td>
+      {{#bs-dropdown}}
+        {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+        {{#bs-dropdown-menu}}
+          <li><a href='#' {{action 'moveTop' performance}}>Move to Top</a></li>
+          <li><a href='#' {{action 'moveBottom' performance}}>Move to Bottom</a></li>
+        {{/bs-dropdown-menu}}
+      {{/bs-dropdown}}
     </td>
     </tr>
   {{/each}}

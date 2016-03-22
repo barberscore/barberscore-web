@@ -79,8 +79,7 @@
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                      <li><a href='#' {{action 'drawRound' round}}>Draw</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>

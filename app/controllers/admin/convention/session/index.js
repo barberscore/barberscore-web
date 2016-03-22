@@ -8,7 +8,19 @@ export default Ember.Controller.extend({
     },
     deleteJudge(judge) {
       judge.destroyRecord();
-    }
+    },
+    drawRound(round) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      round.draw()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      round.reload();
+      this.transitionToRoute('admin.convention.session.round', round);
+    },
   },
   performerSortProperties: ['name:asc',],
   sortedPerformers: Ember.computed.sort(
