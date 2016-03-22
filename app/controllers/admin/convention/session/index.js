@@ -3,11 +3,20 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
+    addPerformance(performance) {
+      performance.add_performance();
+    },
     deletePerformer(performer) {
       performer.destroyRecord();
     },
+    scratchJudge(judge) {
+      judge.destroyRecord();
+    },
     deleteJudge(judge) {
       judge.destroyRecord();
+    },
+    deleteContest(contest) {
+      contest.destroyRecord();
     },
     drawRound(round) {
       const flashMessages = Ember.get(this, 'flashMessages');

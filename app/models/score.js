@@ -6,6 +6,8 @@ export default DS.Model.extend({
   points: DS.attr('number'),
   kind: DS.attr('score-kind'),
   category: DS.attr('score-category'),
+  dixon_test: DS.attr('string'),
+  asterisk_test: DS.attr('string'),
   song: DS.belongsTo('song', {async: true}),
   judge: DS.belongsTo('judge', {async: true}),
 });

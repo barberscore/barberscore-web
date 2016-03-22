@@ -9,6 +9,9 @@ export default Ember.Controller.extend({
     'performanceSortProperties'
   ),
   actions: {
+    deletePerformance(performance) {
+      performance.destroyRecord();
+    },
     saveDate(date, performance) {
       var scheduled = {
         lower: moment(date).utc().format(),
@@ -28,6 +31,43 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
       round.reload();
+    },
+    moveTop(performance) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      performance.move_top()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      })
+      .finally(()=>{
+        this.get('model.performances').sortBy('performance.slot');
+      });
+    },
+    moveBottom(performance) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      performance.move_bottom()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      performance.reload();
+    },
+    scratch(performance) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      performance.scratch()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      })
+      .finally(()=>{
+        this.get('model.performances').removeObject(performance);
+      });
     },
   },
 });

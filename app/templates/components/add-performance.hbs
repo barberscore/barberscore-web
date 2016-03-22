@@ -1,0 +1,14 @@
+{{#bs-form formLayout="inline" action="saveRecord"}}
+  {{#bs-form-group}}
+    {{#power-select
+      search=(action "searchPerformer")
+      placeholder='Search by Performer Name'
+      selected=performer
+      onchange=(action (mut performer))
+      as |performer|
+    }}
+      {{performer.name}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
+{{/bs-form}}

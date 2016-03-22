@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -19,4 +20,8 @@ export default DS.Model.extend({
   round: DS.belongsTo('round', {async: true}),
   performer: DS.belongsTo('performer', {async: true}),
   songs: DS.hasMany('song', {async: true}),
+  move_top: memberAction({path: 'move_top'}),
+  move_bottom: memberAction({path: 'move_bottom'}),
+  scratch: memberAction({path: 'scratch'}),
+  dixon: memberAction({path: 'dixon'}),
 });

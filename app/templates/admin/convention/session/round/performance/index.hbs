@@ -11,20 +11,23 @@
 <ul class='list-inline'>
 <li>{{#link-to 'admin.convention.session.round.performance' model.get_preceding tagName='button'}}Previous{{/link-to}}</li>
 <li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
+<li>{{#bs-button action=(action 'dixonTest')}}Dixon Test{{/bs-button}}</li>
 </ul>
 <h4>
 {{model.performer.group.name}}
 </h4>
 <div>
-<p>{{#each model.songs as |song|}}
+<p>
+{{#each model.songs as |song|}}
     {{#power-select
         options=model.performer.submissions
-        onchange=(action 'saveSong' value='chart')
+        selectedItemComponent="selected-chart"
+        selected=song.chart
+        onchange=(action 'saveSong' song)
         as |submission|
     }}
       {{submission.chart.name}}
     {{/power-select}}
-    {{song.chart.name}}
 {{/each}}
 </p>
 </div>
@@ -37,7 +40,8 @@
   <tr>
   <th>Slot</th>
   <th>Score</th>
-  <th>Status</th>
+  <th>Dixon</th>
+  <th>Asterisk</th>
   </tr>
   </thead>
   <tbody>
@@ -55,6 +59,18 @@
     {{/each}}
     </td>
     <td>
+    {{#each judge.scores as |score|}}
+      {{#if (eq score.song.performance.id model.id)}}
+       {{#if (eq score.dixon_test 'false')}}{{fa-icon 'minus-circle'}}{{/if}}<br>
+      {{/if}}
+    {{/each}}
+    </td>
+    <td>
+    {{#each judge.scores as |score|}}
+      {{#if (eq score.song.performance.id model.id)}}
+       {{#if (eq score.asterisk_test 'false')}}{{fa-icon 'minus-circle'}}{{/if}}<br>
+      {{/if}}
+    {{/each}}
     </td>
     </tr>
   {{/each}}

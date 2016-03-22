@@ -13,8 +13,12 @@ export default Ember.Controller.extend({
     'scoreSortProperties'
   ),
   actions: {
-    saveSong(song) {
-      console.log(song);
-    }
+    saveSong(song, submission) {
+      song.set('chart', submission.get('chart'));
+      song.save();
+    },
+    dixonTest() {
+      this.model.dixon();
+    },
   },
 });

@@ -44,11 +44,14 @@
         {{#bs-dropdown-menu}}
           <li><a href='#' {{action 'moveTop' performance}}>Move to Top</a></li>
           <li><a href='#' {{action 'moveBottom' performance}}>Move to Bottom</a></li>
+          <li><a href='#' {{action 'scratch' performance}}>Scratch</a></li>
+          <li><a href='#' {{action 'deletePerformance' performance}}>Delete</a></li>
         {{/bs-dropdown-menu}}
       {{/bs-dropdown}}
     </td>
     </tr>
   {{/each}}
+  {{add-performance round=model}}
   </tbody>
 </table>
 </div>
