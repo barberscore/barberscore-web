@@ -7,11 +7,14 @@
   </ol>
 </div>
 <section class='well'>
-<p>{{model.name}}</p>
+<h3>
+Performer Details
+</h3>
+<p>{{model.group.name}}</p>
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="2" title="Awards"}}
+     {{#bs-accordion-item value="2" title="Contests"}}
         <table class='table'>
           <thead>
             <tr>
@@ -33,8 +36,7 @@
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                      <li><a href='#' {{action 'deleteContest' judge}}>Delete</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
@@ -56,7 +58,7 @@
             {{#each model.submissions as |submission|}}
               <tr>
                 <td>
-                  {{submission.name}}
+                  {{submission.chart.name}}
                 </td>
                 <td>
                   {{submission.status}}
@@ -72,6 +74,7 @@
                 </td>
               </tr>
             {{/each}}
+            {{add-chart performer=model}}
           </tbody>
         </table>
      {{/bs-accordion-item}}
