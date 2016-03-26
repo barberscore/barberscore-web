@@ -5,6 +5,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   status: DS.attr('performance-status'),
   slot: DS.attr('number'),
+  rank: DS.attr('number'),
   scheduled: DS.attr(),
   actual: DS.attr(),
   get_preceding: DS.attr('string'),

@@ -3,12 +3,19 @@ import moment from 'moment';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['slot',],
+  performanceSortProperties: ['rank'],
   sortedPerformances: Ember.computed.sort(
     'model.performances',
     'performanceSortProperties'
   ),
+  isRaw: false,
   actions: {
+    sortBy: function(performanceSortProperties) {
+      this.set('performanceSortProperties', [performanceSortProperties]);
+    },
+    letsGo() {
+      this.toggleProperty('isRaw');
+    },
     deletePerformance(performance) {
       performance.destroyRecord();
     },
@@ -31,6 +38,17 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
       round.reload();
+    },
+    rankRound() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.rank()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      this.model.reload();
     },
     moveTop(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');

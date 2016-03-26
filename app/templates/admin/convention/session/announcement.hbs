@@ -1,0 +1,16 @@
+<h3>
+Announcements
+</h3>
+<h4>{{model.name}}</h4>
+<section>
+<ul class='list-unstyled'>
+  {{#each sortedContests as |contest|}}
+    <li>{{contest.name}}</li>
+    <ul class='list-unstyled'>
+    {{#each contest.contestants as |contestant|}}
+    <li>{{contestant.rank}} - {{contestant.name}}</li>
+    {{/each}}
+    </ul>
+  {{/each}}
+</ul>
+</section>

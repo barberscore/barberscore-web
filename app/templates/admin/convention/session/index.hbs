@@ -67,7 +67,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each judgesSorted as |judge|}}
+            {{#each sortedJudges as |judge|}}
               <tr>
                 <td>
                   {{judge.category}} {{judge.kind}} {{judge.slot}}
@@ -104,7 +104,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each contestsSorted as |contest|}}
+            {{#each sortedContests as |contest|}}
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}
@@ -159,6 +159,13 @@
             {{/each}}
           </tbody>
         </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="5" title="Documents"}}
+        <ul class='list-unstyled'>
+          <li>{{#link-to 'admin.convention.session.oss' model}}Official Scoring Sheet{{/link-to}}</li>
+          <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+          <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
+        </ul>
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>

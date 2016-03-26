@@ -123,7 +123,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each performersSorted as |performer|}}
+            {{#each sortedPerformers as |performer|}}
               <tr>
                 <td>
                   {{group-modal group=performer.group}}
@@ -170,7 +170,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each judgesSorted as |judge|}}
+            {{#each sortedJudges as |judge|}}
               {{#if (eq judge.kind 'Official')}}
               <tr>
                 <td>
@@ -194,7 +194,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each contestsSorted as |contest|}}
+            {{#each sortedContests as |contest|}}
               <tr>
                 <td>
                   {{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{else}} Championship{{/if}}

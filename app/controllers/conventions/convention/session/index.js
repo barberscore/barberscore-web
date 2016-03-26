@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
     },
   },
   judgeSortProperties: ['category',],
-  judgesSorted: Ember.computed.sort(
+  sortedJudges: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'
   ),
@@ -21,12 +21,12 @@ export default Ember.Controller.extend({
     'award.size:asc',
     'award.scope:asc',
   ],
-  contestsSorted: Ember.computed.sort(
+  sortedContests: Ember.computed.sort(
     'model.contests',
     'contestSortProperties'
   ),
   performerSortProperties: ['name',],
-  performersSorted: Ember.computed.sort(
+  sortedPerformers: Ember.computed.sort(
     'model.performers',
     'performerSortProperties'
   ),

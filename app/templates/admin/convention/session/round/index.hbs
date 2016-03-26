@@ -11,12 +11,27 @@
 <p>
 {{model.name}}
 </p>
+<p>
+      {{#bs-button action=(action 'rankRound')}}
+        Rank
+      {{/bs-button}}
+</p>
+<p>
+{{!-- {{x-toggle showLabels=true offLabel='Order' onLabel='Rank' toggle='letsGo'}} --}}
+<ul class='list-inline'>
+<li>{{#bs-button action=(action 'sortBy' 'slot')}}Order{{/bs-button}}</li>
+<li>{{#bs-button action=(action 'sortBy' 'rank')}}Rank{{/bs-button}}</li>
+<li></li>
+</ul>
+</p>
 </div>
+<p>{{totalScores}}</p>
 <div>
 <table class='table'>
   <thead>
   <tr>
   <th>Slot</th>
+  <th>Rank</th>
   {{!-- <th>Scheduled</th> --}}
   <th>Performance</th>
   <th>Status</th>
@@ -28,6 +43,9 @@
     <tr>
     <td>
       {{performance.slot}}
+    </td>
+    <td>
+      {{performance.rank}}
     </td>
     {{!-- <td>
       {{moment-format performance.scheduled.lower 'LT'}}

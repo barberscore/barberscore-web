@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
+  isRaw: false,
   actions: {
     addPerformance(performance) {
       performance.add_performance();
@@ -30,6 +31,9 @@ export default Ember.Controller.extend({
       round.reload();
       this.transitionToRoute('admin.convention.session.round', round);
     },
+    letsGo() {
+      this.toggleProperty('isRaw');
+    },
   },
   performerSortProperties: ['name:asc',],
   sortedPerformers: Ember.computed.sort(
@@ -45,12 +49,12 @@ export default Ember.Controller.extend({
     'award.size:asc',
     'award.scope:asc',
   ],
-  contestsSorted: Ember.computed.sort(
+  sortedContests: Ember.computed.sort(
     'model.contests',
     'contestSortProperties'
   ),
   judgeSortProperties: ['kind', 'category', 'slot',],
-  judgesSorted: Ember.computed.sort(
+  sortedJudges: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'
   ),
