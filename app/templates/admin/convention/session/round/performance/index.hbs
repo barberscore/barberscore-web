@@ -8,19 +8,31 @@
     <li class='active'>Performance {{model.slot}}</li>
   </ol>
 </div>
-<ul class='list-inline'>
-<li>{{#link-to 'admin.convention.session.round.performance' model.get_preceding tagName='button'}}Previous{{/link-to}}</li>
-<li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
-<li>{{#bs-button action=(action 'dixonTest')}}Dixon Test{{/bs-button}}</li>
-</ul>
-<p>{{model.total_points}}- {{model.pointss}}</p>
-
+<section>
 <h4>
 {{model.performer.group.name}}
 </h4>
-<div>
-<p>
-{{#each model.songs as |song|}}
+</section>
+<div class='table-responsive'>
+<table class='table'>
+  <thead>
+  <tr>
+  {{!-- <th>Group</th> --}}
+  <th class="col-md-6">Songs</th>
+  <th class='text-right'>MUS</th>
+  <th class='text-right'>PRS</th>
+  <th class='text-right'>SNG</th>
+  <th class='text-right'>TOT</th>
+  {{!-- <th class='text-right'>Total</th> --}}
+  {{!-- {{#each model.contests as |contest|}}
+    <th class='text-right'>{{contest.award.name}}</th>
+  {{/each}} --}}
+  </tr>
+  </thead>
+  <tbody>
+    {{#each model.songs as |song|}}
+      <tr>
+        <td>
     {{#power-select
         options=model.performer.submissions
         selectedItemComponent="selected-chart"
@@ -30,21 +42,55 @@
     }}
       {{submission.chart.name}}
     {{/power-select}}
-    <br><br>{{song.pointss}}<br><br>
-{{/each}}
-</p>
+
+        </td>
+        <td class='text-right'>
+          {{song.musPointsSum}}
+        </td>
+        <td class='text-right'>
+          {{song.prsPointsSum}}
+        </td>
+        <td class='text-right'>
+          {{song.sngPointsSum}}
+        </td>
+        <td class='text-right'>
+          {{song.pointsSum}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+  <tfoot>
+  <tr>
+        <th>
+          Totals
+        </th>
+        <th class='text-right'>
+          {{model.musPointsSum}}
+        </th>
+        <th class='text-right'>
+          {{model.prsPointsSum}}
+        </th>
+        <th class='text-right'>
+          {{model.sngPointsSum}}
+        </th>
+        <th class='text-right'>
+          {{model.pointsSum}}
+        </th>
+    </tr>
+  </tfoot>
+</table>
 </div>
-{{#each sortedScores as |scores|}}
-  {{scores}}
-{{/each}}
+<ul class='list-inline'>
+<li>{{#link-to 'admin.convention.session.round.performance' model.get_preceding tagName='button'}}Previous{{/link-to}}</li>
+<li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
+</ul>
 <div>
 <table class='table'>
   <thead>
   <tr>
   <th>Slot</th>
   <th>Score</th>
-  <th>Dixon</th>
-  <th>Asterisk</th>
+  <th>Review</th>
   </tr>
   </thead>
   <tbody>
@@ -62,18 +108,7 @@
     {{/each}}
     </td>
     <td>
-    {{#each judge.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
-       {{#if (eq score.dixon_test 'false')}}{{fa-icon 'minus-circle'}}{{/if}}<br>
-      {{/if}}
-    {{/each}}
-    </td>
-    <td>
-    {{#each judge.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
-       {{#if (eq score.asterisk_test 'false')}}{{fa-icon 'minus-circle'}}{{/if}}<br>
-      {{/if}}
-    {{/each}}
+      Foo
     </td>
     </tr>
   {{/each}}

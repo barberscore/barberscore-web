@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
@@ -25,4 +26,21 @@ export default DS.Model.extend({
   move_bottom: memberAction({path: 'move_bottom'}),
   scratch: memberAction({path: 'scratch'}),
   dixon: memberAction({path: 'dixon'}),
+  points: Ember.computed.mapBy('songs', 'pointsSum'),
+  pointsSum: Ember.computed.sum('points'),
+  musScoresPoints: Ember.computed.mapBy('songs', 'musPointsSum'),
+  musPointsSum: Ember.computed.sum('musScoresPoints'),
+  // musPointsMean: Ember.computed('musPointsSum', 'musScores', function() {
+  //   return (this.get('musPointsSum') / this.get('musScoresPoints').length).toFixed(1);
+  // }),
+  prsScoresPoints: Ember.computed.mapBy('songs', 'prsPointsSum'),
+  prsPointsSum: Ember.computed.sum('prsScoresPoints'),
+  // prsPointsMean: Ember.computed('prsPointsSum', 'prsScores', function() {
+  //   return (this.get('prsPointsSum') / this.get('prsScoresPoints').length).toFixed(1);
+  // }),
+  sngScoresPoints: Ember.computed.mapBy('songs', 'sngPointsSum'),
+  sngPointsSum: Ember.computed.sum('sngScoresPoints'),
+  // sngPointsMean: Ember.computed('sngPointsSum', 'sngScores', function() {
+  //   return (this.get('sngPointsSum') / this.get('sngScoresPoints').length).toFixed(1);
+  // }),
 });
