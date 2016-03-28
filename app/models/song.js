@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -16,4 +17,6 @@ export default DS.Model.extend({
   chart: DS.belongsTo('chart', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
+  scoresPoints: Ember.computed.mapBy('scores', 'points'),
+  pointss: Ember.computed.sum('scoresPoints'),
 });
