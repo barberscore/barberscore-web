@@ -5,6 +5,6 @@ export default DS.Model.extend({
   status: DS.attr('chapter-status'),
   code: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
-  groups: DS.belongsTo('group', {async: true}),
-  members: DS.belongsTo('member', {async: true}),
+  groups: DS.hasMany('group', {async: true}),
+  members: DS.hasMany('member', {async: true}),
 });

@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['rank'],
+  performanceSortProperties: ['slot'],
   sortedPerformances: Ember.computed.sort(
     'model.performances',
     'performanceSortProperties'
