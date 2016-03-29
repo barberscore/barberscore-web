@@ -18,9 +18,11 @@ export default DS.Model.extend({
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   points: Ember.computed.mapBy('scores', 'points'),
+  pointsSort: ['points',],
+  pointsSorted: Ember.computed.sort('scores', 'pointsSort'),
   pointsSum: Ember.computed.sum('points'),
-  pointsMean: Ember.computed('scoresSum', 'points', function() {
-    return (this.get('scoresSum') / this.get('points').length).toFixed(1);
+  pointsMean: Ember.computed('pointsSum', 'points', function() {
+    return (this.get('pointsSum') / this.get('points').length);
   }),
   musScores: Ember.computed.filterBy('scores', 'category', 'Music'),
   musScoresPoints: Ember.computed.mapBy('musScores', 'points'),

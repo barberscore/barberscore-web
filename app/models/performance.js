@@ -27,7 +27,12 @@ export default DS.Model.extend({
   scratch: memberAction({path: 'scratch'}),
   dixon: memberAction({path: 'dixon'}),
   points: Ember.computed.mapBy('songs', 'pointsSum'),
+  means: Ember.computed.mapBy('songs', 'pointsMean'),
+  meansSum: Ember.computed.sum('means'),
   pointsSum: Ember.computed.sum('points'),
+  pointsMean: Ember.computed('meansSum', 'means', function() {
+    return (this.get('meansSum') / this.get('means').length);
+  }),
   musScoresPoints: Ember.computed.mapBy('songs', 'musPointsSum'),
   musPointsSum: Ember.computed.sum('musScoresPoints'),
   // musPointsMean: Ember.computed('musPointsSum', 'musScores', function() {

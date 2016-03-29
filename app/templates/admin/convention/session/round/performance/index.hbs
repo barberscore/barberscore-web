@@ -9,11 +9,18 @@
   </ol>
 </div>
 <section>
+<div>
 <h4>
 {{model.performer.group.name}}<br>
 {{#if model.performer.group.chapter}}{{model.performer.group.chapter.name}}{{/if}}
+<ul class='list-inline pull-right'>
+<li>{{#link-to 'admin.convention.session.round.performance' model.get_preceding tagName='button'}}Previous{{/link-to}}</li>
+<li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
+</ul>
 </h4>
+</div>
 </section>
+<br><br><br>
 <div class='table-responsive'>
 <table class='table'>
   <thead>
@@ -81,17 +88,14 @@
   </tfoot>
 </table>
 </div>
-<ul class='list-inline'>
-<li>{{#link-to 'admin.convention.session.round.performance' model.get_preceding tagName='button'}}Previous{{/link-to}}</li>
-<li>{{#link-to 'admin.convention.session.round.performance' model.get_next tagName='button'}}Next{{/link-to}}</li>
-</ul>
-<div>
+<div class='table-responsive'>
 <table class='table'>
   <thead>
   <tr>
-  <th>Slot</th>
+  <th class='col-md-6'>Slot</th>
   <th>Score</th>
-  <th>Review</th>
+  <th>Variance</th>
+  <th>Actions</th>
   </tr>
   </thead>
   <tbody>
@@ -109,7 +113,24 @@
     {{/each}}
     </td>
     <td>
-      Foo
+    {{#each judge.scores as |score|}}
+      {{#if (eq score.song.performance.id model.id)}}
+      {{#if score.isReview}}{{#link-to 'admin.convention.session.round.variance' model class='text-danger'}}Review{{/link-to}}{{else}}&nbsp;{{/if}}<br>
+      {{/if}}
+    {{/each}}
+    </td>
+    <td>
+    {{#each judge.scores as |score|}}
+      {{#if (eq score.song.performance.id model.id)}}
+      {{#bs-dropdown}}
+        {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+        {{#bs-dropdown-menu}}
+          <li><a href='#' {{action 'moveTop' performance}}>Penalty - Accompaniment</a></li>
+          <li><a href='#' {{action 'moveBottom' performance}}>Penalty - Repetition</a></li>
+        {{/bs-dropdown-menu}}
+      {{/bs-dropdown}}<br>
+      {{/if}}
+    {{/each}}
     </td>
     </tr>
   {{/each}}
