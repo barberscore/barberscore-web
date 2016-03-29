@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -22,4 +23,5 @@ export default DS.Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
   roles: DS.hasMany('role', {async: true}),
+  scratch: memberAction({path: 'scratch'}),
 });

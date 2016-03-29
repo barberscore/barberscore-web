@@ -7,6 +7,12 @@ export default Ember.Controller.extend({
     addPerformance(performance) {
       performance.add_performance();
     },
+    scratchPerformer(performer) {
+      performer.scratch();
+    },
+    disqualifyPerformer(performer) {
+      performer.disqualify();
+    },
     deletePerformer(performer) {
       performer.destroyRecord();
     },

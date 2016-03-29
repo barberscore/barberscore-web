@@ -9,6 +9,7 @@ export default DS.Transform.extend({
       30: 'Declined',
       40: 'Dropped',
       50: 'Official',
+      55: 'Disqualified',
       60: 'Finished',
       90: 'Final',
     };
@@ -23,6 +24,7 @@ export default DS.Transform.extend({
       'Declined': 30,
       'Dropped': 40,
       'Official': 50,
+      'Disqualified': 55,
       'Finished': 60,
       'Final': 90,
     };
