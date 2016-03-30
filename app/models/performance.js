@@ -22,6 +22,7 @@ export default DS.Model.extend({
   round: DS.belongsTo('round', {async: true}),
   performer: DS.belongsTo('performer', {async: true}),
   songs: DS.hasMany('song', {async: true}),
+  build: memberAction({path: 'build'}),
   move_top: memberAction({path: 'move_top'}),
   move_up: memberAction({path: 'move_up'}),
   move_down: memberAction({path: 'move_down'}),

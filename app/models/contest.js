@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -9,4 +10,5 @@ export default DS.Model.extend({
   champion: DS.belongsTo('contestant', {async: true, inverse: 'champion'}),
   award: DS.belongsTo('award', {async: true}),
   session: DS.belongsTo('session', {async: true}),
+  build: memberAction({path: 'build'}),
 });
