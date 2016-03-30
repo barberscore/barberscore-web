@@ -63,6 +63,32 @@ export default Ember.Controller.extend({
         this.get('model.performances').sortBy('performance.slot');
       });
     },
+    moveUp(performance) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      performance.move_up()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      })
+      .finally(()=>{
+        this.model.refresh();
+      });
+    },
+    moveDown(performance) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      performance.move_down()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      })
+      .finally(()=>{
+        this.get('model.performances').sortBy('performance.slot');
+      });
+    },
     moveBottom(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');
       performance.move_bottom()

@@ -7,31 +7,25 @@
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>
-<div>
-<p>
-{{model.name}}
-</p>
-<p>
-      {{#bs-button action=(action 'rankRound')}}
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Round Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+      {{round-status model=model status=model.status class='form-group'}}
+      {{#bs-button action=(action 'rankRound') class='form-group'}}
         Rank
       {{/bs-button}}
-</p>
-<p>
-{{!-- {{x-toggle showLabels=true offLabel='Order' onLabel='Rank' toggle='letsGo'}} --}}
-<ul class='list-inline'>
-<li>{{#bs-button action=(action 'sortBy' 'slot')}}Order{{/bs-button}}</li>
-<li>{{#bs-button action=(action 'sortBy' 'rank')}}Rank{{/bs-button}}</li>
-<li></li>
-</ul>
-</p>
-</div>
-<p>{{totalScores}}</p>
-<div>
+  </div>
+</section>
+<div class='table-responsive'>
 <table class='table'>
   <thead>
   <tr>
-  <th>Slot</th>
-  <th>Rank</th>
+  <th class='col-md-1'>Slot</th>
+  {{!-- <th>Rank</th> --}}
   {{!-- <th>Scheduled</th> --}}
   <th>Performance</th>
   <th>Status</th>
@@ -44,9 +38,9 @@
     <td>
       {{performance.slot}}
     </td>
-    <td>
+    {{!-- <td>
       {{performance.rank}}
-    </td>
+    </td> --}}
     {{!-- <td>
       {{moment-format performance.scheduled.lower 'LT'}}
     </td> --}}
@@ -54,13 +48,15 @@
       {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}
     </td>
     <td>
-        {{performance.status}}
+        {{performance-status model=performance status=performance.status}}
     </td>
     <td>
       {{#bs-dropdown}}
         {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
         {{#bs-dropdown-menu}}
           <li><a href='#' {{action 'moveTop' performance}}>Move to Top</a></li>
+          <li><a href='#' {{action 'moveUp' performance}}>Move Up</a></li>
+          <li><a href='#' {{action 'moveDown' performance}}>Move Down</a></li>
           <li><a href='#' {{action 'moveBottom' performance}}>Move to Bottom</a></li>
           <li><a href='#' {{action 'scratch' performance}}>Scratch</a></li>
           <li><a href='#' {{action 'deletePerformance' performance}}>Delete</a></li>
@@ -69,7 +65,7 @@
     </td>
     </tr>
   {{/each}}
-  {{add-performance round=model}}
   </tbody>
 </table>
 </div>
+{{add-performance round=model}}

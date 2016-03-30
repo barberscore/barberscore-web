@@ -12,8 +12,11 @@ export default Ember.Controller.extend({
       song.set('chart', submission.get('chart'));
       song.save();
     },
-    dixonTest() {
-      this.model.dixon();
+    startPerformance() {
+      this.model.start();
+    },
+    finishPerformance() {
+      this.model.finish();
     },
   },
 });
