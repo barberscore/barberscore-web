@@ -12,20 +12,20 @@
   <thead>
   <tr>
   <th>Rank</th>
-  <th>Status</th>
   <th>Group</th>
   <th>Points</th>
   <th>Score</th>
+  <th>Status</th>
   </tr>
   </thead>
   <tbody>
-  {{#each model.contestants as |contestant|}}
+  {{#each sortedContestants as |contestant|}}
     <tr>
     <td>{{contestant.rank}}</td>
-    <td>{{contestant-status model=contestant status=contestant.status}}</td>
     <td>{{contestant.performer.group.name}}</td>
     <td>{{contestant.total_points}}</td>
     <td>{{single-fixed contestant.total_score}}</td>
+    <td>{{contestant-status model=contestant status=contestant.status}}</td>
     </tr>
   {{/each}}
   </tbody>

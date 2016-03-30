@@ -15,6 +15,7 @@
       {{session-status model=model status=model.status class='form-group'}}
       {{contest-admin model=model person=model.administrator class='form-group'}}
       {{contest-aca model=model person=model.aca class='form-group'}}
+      {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
   </div>
 </section>
 <section>
@@ -94,14 +95,15 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Awards"}}
+     {{#bs-accordion-item value="1" title="Contests"}}
         <table class='table'>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Qualifier</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <th class='col-md-4'>Name</th>
+              <th class='col-md-1'>Qualifier</th>
+              <th class='col-md-5'>Champion</th>
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -112,6 +114,10 @@
                 </td>
                 <td>
                   {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
+                </td>
+                <td>
+                  {{!-- {{contest.champion.performer.group.name}} --}}
+                  {{contest-champion model=contest champion=contest.champion class='form-group'}}
                 </td>
                 <td>
                   {{contest-status model=contest status=contest.status}}
@@ -126,9 +132,9 @@
                 </td>
               </tr>
             {{/each}}
-            {{add-award session=model}}
           </tbody>
         </table>
+        {{add-award session=model}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="2" title="Rounds"}}
         <table class='table'>

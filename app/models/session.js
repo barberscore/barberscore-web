@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
@@ -11,4 +12,5 @@ export default DS.Model.extend({
   performers: DS.hasMany('performer', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   judges: DS.hasMany('judge', {inverse: 'session', async: true}),
+  finish: memberAction({path: 'finish'}),
 });
