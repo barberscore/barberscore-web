@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['slot'],
+  performanceSortProperties: ['slot', 'name',],
   sortedPerformances: Ember.computed.sort(
     'model.performances',
     'performanceSortProperties'
@@ -28,16 +28,16 @@ export default Ember.Controller.extend({
       performance.set('scheduled', scheduled);
       performance.save();
     },
-    drawRound(round) {
+    drawRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      round.draw()
+      this.model.draw()
       .then(() => {
         flashMessages.success('Success');
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
-      round.reload();
+      this.model.reload();
     },
     rankRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
