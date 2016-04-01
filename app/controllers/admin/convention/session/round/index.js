@@ -39,9 +39,9 @@ export default Ember.Controller.extend({
       });
       this.model.reload();
     },
-    rankRound() {
+    promoteRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.rank()
+      this.model.promote()
       .then(() => {
         flashMessages.success('Success');
       })

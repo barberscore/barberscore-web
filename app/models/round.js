@@ -10,4 +10,5 @@ export default DS.Model.extend({
   performances: DS.hasMany('performance', {async: true}),
   draw: memberAction({path: 'draw'}),
   rank: memberAction({path: 'rank'}),
+  promote: memberAction({path: 'promote'}),
 });

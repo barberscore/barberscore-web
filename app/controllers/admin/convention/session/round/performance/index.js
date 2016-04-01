@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  judgeSortProperties: ['slot',],
+  judgeSortProperties: ['kind', 'category','slot',],
   sortedJudges: Ember.computed.sort(
     'model.round.session.judges',
     'judgeSortProperties'

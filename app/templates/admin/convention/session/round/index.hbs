@@ -15,11 +15,11 @@
   </div>
   <div class='panel-body'>
       {{round-status model=model status=model.status class='form-group'}}
+      {{#bs-button action=(action 'promoteRound') class='form-group'}}
+        Promote
+      {{/bs-button}}
       {{#bs-button action=(action 'drawRound') class='form-group'}}
         Draw
-      {{/bs-button}}
-      {{#bs-button action=(action 'rankRound') class='form-group'}}
-        Rank
       {{/bs-button}}
   </div>
 </section>
