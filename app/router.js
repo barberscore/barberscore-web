@@ -13,7 +13,6 @@ Router.map(function() {
   this.route('admin', { path: '/admin/' }, function() {
     this.route('convention', { path: '/:convention_id' }, function() {
       this.route('session', { path: '/:session_id' }, function() {
-        this.route('oss', { path: '/oss'});
         this.route('sa', { path: '/sa'});
         this.route('announcement', { path: '/announcement'});
         this.route('performer', { path: '/build/:performer_id'}, function() {
@@ -27,6 +26,7 @@ Router.map(function() {
           });
         });
         this.route('contest', { path: '/compete/:contest_id'}, function() {
+          this.route('oss', { path: '/oss'});
           this.route('performance', { path: '/:performance_id'}, function() {
           });
         });

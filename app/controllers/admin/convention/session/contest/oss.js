@@ -2,14 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isRaw: false,
-  performerSortProperties: ['total_points:desc',],
-  sortedPerformers: Ember.computed.sort(
-    'model.performers',
-    'performerSortProperties'
+  contestantSortProperties: ['total_points:desc',],
+  sortedContestants: Ember.computed.sort(
+    'model.contestants',
+    'contestantSortProperties'
   ),
   contestSortProperties: ['name:asc',],
   sortedContests: Ember.computed.sort(
-    'model.contests',
+    'model.session.contests',
     'contestSortProperties'
   ),
   actions: {

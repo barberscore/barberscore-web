@@ -6,11 +6,16 @@
     <li class='active'>{{model.group.name}}</li>
   </ol>
 </div>
-<section class='well'>
-<h3>
-Performer Details
-</h3>
-<p>{{model.group.name}}</p>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Performer Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+      {{performer-status model=model status=model.status class='form-group'}}
+      {{select-organization model=model organization=model.organization}}
+  </div>
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
