@@ -19,38 +19,42 @@
       {{/bs-button}}
   </div>
 </section>
-<br><br><br>
-<h3>Contestants</h3>
-<div class='table-responsive'>
-<table class='table'>
-  <thead>
-  <tr>
-  <th>Rank</th>
-  <th>Group</th>
-  <th>Points</th>
-  <th>Score</th>
-  <th>Status</th>
-  </tr>
-  </thead>
-  <tbody>
-  {{#each sortedContestants as |contestant|}}
-    <tr>
-    <td>{{contestant.rank}}</td>
-    <td>{{contestant.performer.group.name}}</td>
-    <td>{{contestant.total_points}}</td>
-    <td>{{single-fixed contestant.total_score}}</td>
-    <td>{{contestant-status model=contestant status=contestant.status}}</td>
-    <td>
-      {{#bs-dropdown}}
-        {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-        {{#bs-dropdown-menu}}
-          <li><a href='#' {{action 'deleteContestant' contestant}}>Delete</a></li>
-        {{/bs-dropdown-menu}}
-      {{/bs-dropdown}}
-    </td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-  {{add-contestant-performer contest=model}}
-</div>
+<section>
+ {{#bs-accordion selected=selected collapsed=collapsed}}
+     {{#bs-accordion-item value="2" title="Contestants"}}
+        <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+          <tr>
+          <th>Rank</th>
+          <th>Group</th>
+          <th>Points</th>
+          <th>Score</th>
+          <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each sortedContestants as |contestant|}}
+            <tr>
+            <td>{{contestant.rank}}</td>
+            <td>{{#link-to 'admin.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}</td>
+            <td>{{contestant.total_points}}</td>
+            <td>{{single-fixed contestant.total_score}}</td>
+            <td>{{contestant-status model=contestant status=contestant.status}}</td>
+            <td>
+              {{#bs-dropdown}}
+                {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                {{#bs-dropdown-menu}}
+                  <li><a href='#' {{action 'deleteContestant' contestant}}>Delete</a></li>
+                {{/bs-dropdown-menu}}
+              {{/bs-dropdown}}
+            </td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+          {{add-contestant-performer contest=model}}
+        </div>
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>
