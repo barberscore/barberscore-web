@@ -1,13 +1,14 @@
+
 {{#bs-form formLayout="inline" action="saveRecord" class='form-block'}}
   {{#bs-form-group}}
     {{#power-select
-      options=sortedAwards
-      placeholder='Search by Award Name (if qualifier, search for parent award)'
-      selected=award
-      onchange=(action (mut award))
-      as |award|
+      options=sortedContests
+      placeholder='Search by Contest Name (add Performer from Session if necessary)'
+      selected=contest
+      onchange=(action (mut contest))
+      as |contest|
     }}
-      {{award.name}}
+      {{contest.award.name}}
     {{/power-select}}
   {{/bs-form-group}}
   {{bs-button defaultText="Add" type="primary" buttonType="submit"}}

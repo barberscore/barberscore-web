@@ -14,7 +14,10 @@
   </div>
   <div class='panel-body'>
       {{performer-status model=model status=model.status class='form-group'}}
-      {{select-organization model=model organization=model.organization}}
+      {{select-organization model=model organization=model.organization class='form-group'}}
+      {{#bs-button action=(action 'buildPerformer') class='form-group'}}Build{{/bs-button}}
+      {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}}
+      {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}}
   </div>
 </section>
 <section>
@@ -49,6 +52,8 @@
             {{/each}}
           </tbody>
         </table>
+        {{add-contestant-contest performer=model}}
+
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="3" title="Submissions"}}
         <table class='table'>
