@@ -23,7 +23,6 @@ export default Ember.Component.extend({
         performer: this.get('performer'),
         actual: actual,
         scheduled: scheduled,
-        slot: 199,
       });
       performance.save()
       .then(() => {
@@ -33,15 +32,10 @@ export default Ember.Component.extend({
         flashMessages.danger('Error');
       });
     },
-    searchPerformer(term) {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, 'performer', resolve, reject, 600);
-      });
-    },
   },
-  _performSearch(term, model, resolve, reject) {
-    if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query(model, {'name__icontains': term})
-      .then(data => resolve(data), reject);
-  }
+  performerSortProperties: ['name:asc',],
+  sortedPerformers: Ember.computed.sort(
+    'round.session.performers',
+    'performerSortProperties'
+  ),
 });
