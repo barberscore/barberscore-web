@@ -12,5 +12,8 @@ export default Ember.Controller.extend({
     disqualifyPerformer() {
       this.model.disqualify();
     },
+    deleteContestant(contestant) {
+      contestant.destroyRecord();
+    },
   },
 });
