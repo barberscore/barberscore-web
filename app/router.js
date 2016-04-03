@@ -21,8 +21,8 @@ Router.map(function() {
         });
         this.route('round', { path: '/score/:round_id'}, function() {
           this.route('performance', { path: '/:performance_id'}, function() {
-          });
-          this.route('variance', { path: '/variance/:performance_id'}, function() {
+            this.route('variance', { path: '/variance'}, function() {
+            });
           });
         });
         this.route('contest', { path: '/compete/:contest_id'}, function() {

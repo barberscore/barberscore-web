@@ -136,7 +136,7 @@
     {{#each judge.scores as |score|}}
       {{!-- {{#if (eq score.judge.kind 'Official')}} --}}
       {{#if (eq score.song.performance.id model.id)}}
-      {{#if score.isReview}}{{#link-to 'admin.convention.session.round.variance' model class='text-danger'}}Review{{/link-to}}{{else}}&nbsp;{{/if}}<br>
+      {{#if score.isReview}}{{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Review{{/link-to}}{{else}}&nbsp;{{/if}}<br>
       {{/if}}
       {{!-- {{/if}} --}}
     {{/each}}

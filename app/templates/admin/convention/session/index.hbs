@@ -17,6 +17,7 @@
       <li>{{contest-admin model=model person=model.administrator class='form-group'}}</li>
       <li>{{contest-aca model=model person=model.aca class='form-group'}}</li>
       <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+      <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
       <li>{{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}</li>
       </ul>
   </div>
