@@ -25,8 +25,26 @@ export default Ember.Controller.extend({
     deleteContest(contest) {
       contest.destroyRecord();
     },
+    openSession() {
+      this.model.open();
+    },
+    closeSession() {
+      this.model.close();
+    },
+    readySession() {
+      this.model.ready();
+    },
+    startSession() {
+      this.model.start();
+    },
     finishSession() {
       this.model.finish();
+    },
+    draftSession() {
+      this.model.draft();
+    },
+    publishSession() {
+      this.model.publish();
     },
     drawRound(round) {
       const flashMessages = Ember.get(this, 'flashMessages');

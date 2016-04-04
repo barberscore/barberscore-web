@@ -16,7 +16,6 @@
       {{performer-status model=model status=model.status class='form-group'}}
       {{select-organization model=model organization=model.organization class='form-group'}}
       {{men-edit model=performer men=performer.men}}
-      {{#bs-button action=(action 'buildPerformer') class='form-group'}}Build{{/bs-button}}
       {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}}
       {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}}
   </div>
@@ -85,9 +84,9 @@
                 </td>
               </tr>
             {{/each}}
-            {{add-chart performer=model}}
           </tbody>
         </table>
+        {{add-chart performer=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="1" title="Roles"}}
         <table class='table'>

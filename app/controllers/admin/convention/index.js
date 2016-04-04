@@ -3,6 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
+    startConvention() {
+      this.model.start();
+    },
+    finishConvention() {
+      this.model.finish();
+    },
     saveDate(start, end) {
       var date = {
         lower: start,

@@ -13,10 +13,7 @@
     </h3>
   </div>
   <div class='panel-body'>
-      <li>{{#link-to 'admin.convention.session.contest.oss' model}}Official Scoring Summary{{/link-to}}</li>
-      {{#bs-button action=(action 'buildContest') class='form-group'}}
-        Build
-      {{/bs-button}}
+      {{#link-to 'admin.convention.session.contest.oss' model class='form-group'}}Official Scoring Summary{{/link-to}}
   </div>
 </section>
 <section>
@@ -31,6 +28,7 @@
           <th>Points</th>
           <th>Score</th>
           <th>Status</th>
+          <th>Actions</th>
           </tr>
           </thead>
           <tbody>

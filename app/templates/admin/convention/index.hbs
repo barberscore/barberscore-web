@@ -17,6 +17,8 @@
       {{date-range-picker start=model.date.lower end=model.date.upper ranges=null applyAction=(action 'saveDate')}}
       {{convention-venue model=model venue=model.venue class='form-group'}}
       {{convention-drcj model=model person=model.drcj class='form-group'}}
+      {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}}
+      {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}}
   </div>
 </section>
 

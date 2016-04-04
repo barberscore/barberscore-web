@@ -18,8 +18,14 @@
       <li>{{contest-aca model=model person=model.aca class='form-group'}}</li>
       <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
       <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
-      <li>{{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}</li>
       </ul>
+      {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
+      {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
+      {{#bs-button action=(action 'readySession') class='form-group'}}Ready{{/bs-button}}
+      {{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}
+      {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
+      {{#bs-button action=(action 'draftSession') class='form-group'}}Draft{{/bs-button}}
+      {{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}
   </div>
 </section>
 <section>
@@ -58,9 +64,9 @@
                 </td>
               </tr>
             {{/each}}
-            {{add-performer session=model}}
           </tbody>
         </table>
+        {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="3" title="Judges"}}
         <table class='table'>
