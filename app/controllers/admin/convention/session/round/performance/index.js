@@ -7,6 +7,11 @@ export default Ember.Controller.extend({
     'model.round.session.judges',
     'judgeSortProperties'
   ),
+  songSortProperties: ['order',],
+  sortedSongs: Ember.computed.sort(
+    'model.songs',
+    'songSortProperties'
+  ),
   actions: {
     saveSong(song, submission) {
       song.set('chart', submission.get('chart'));
