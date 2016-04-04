@@ -61,7 +61,7 @@
     {{#each model.songs as |song|}}
       <tr>
         <td>
-    {{#power-select
+    {{song.order}}: {{#power-select
         options=model.performer.submissions
         selectedItemComponent="selected-chart"
         selected=song.chart
@@ -128,7 +128,7 @@
     <td>
     {{#each judge.scores as |score|}}
       {{#if (eq score.song.performance.id model.id)}}
-       {{score-edit model=score points=score.points}}
+       {{score.song.order}}: {{score-edit model=score points=score.points}}
       {{/if}}
     {{/each}}
     </td>
