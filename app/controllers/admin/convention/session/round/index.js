@@ -50,6 +50,17 @@ export default Ember.Controller.extend({
       });
       this.model.reload();
     },
+    resortRound() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.resort()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      this.model.reload();
+    },
     moveTop(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');
       performance.move_top()

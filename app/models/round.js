@@ -11,4 +11,5 @@ export default DS.Model.extend({
   draw: memberAction({path: 'draw'}),
   rank: memberAction({path: 'rank'}),
   promote: memberAction({path: 'promote'}),
+  resort: memberAction({path: 'resort'}),
 });
