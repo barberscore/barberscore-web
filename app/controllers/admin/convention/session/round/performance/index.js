@@ -17,14 +17,14 @@ export default Ember.Controller.extend({
       song.set('chart', submission.get('chart'));
       song.save();
     },
-    buildPerformance() {
-      this.model.build();
-    },
     startPerformance() {
       this.model.start();
     },
     finishPerformance() {
       this.model.finish();
+    },
+    completePerformance() {
+      this.model.complete();
     },
   },
 });

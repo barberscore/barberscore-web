@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import moment from 'moment';
+// import moment from 'moment';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
@@ -8,21 +8,21 @@ export default Ember.Component.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       // var organization = this.get('group').organization;
       // console.log(organization);
-      var actual = {
-        lower: moment().utc().format(),
-        upper: moment().add(10, 'minutes').utc().format(),
-        bounds: "[)"
-      };
-      var scheduled = {
-        lower: moment().utc().format(),
-        upper: moment().add(10, 'minutes').utc().format(),
-        bounds: "[)"
-      };
+      // var actual = {
+      //   lower: moment().utc().format(),
+      //   upper: moment().add(10, 'minutes').utc().format(),
+      //   bounds: "[)"
+      // };
+      // var scheduled = {
+      //   lower: moment().utc().format(),
+      //   upper: moment().add(10, 'minutes').utc().format(),
+      //   bounds: "[)"
+      // };
       var performance = this.get('store').createRecord('performance', {
         round: this.get('round'),
         performer: this.get('performer'),
-        actual: actual,
-        scheduled: scheduled,
+        actual: null,
+        scheduled: null,
       });
       performance.save()
       .then(() => {

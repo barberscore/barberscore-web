@@ -30,6 +30,7 @@ export default DS.Model.extend({
   scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start'}),
   finish: memberAction({path: 'finish'}),
+  complete: memberAction({path: 'complete'}),
   points: Ember.computed.mapBy('songs', 'pointsSum'),
   means: Ember.computed.mapBy('songs', 'pointsMean'),
   meansSum: Ember.computed.sum('means'),

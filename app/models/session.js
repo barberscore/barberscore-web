@@ -12,6 +12,11 @@ export default DS.Model.extend({
   performers: DS.hasMany('performer', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   judges: DS.hasMany('judge', {inverse: 'session', async: true}),
+  open: memberAction({path: 'open'}),
+  close: memberAction({path: 'close'}),
+  ready: memberAction({path: 'ready'}),
   start: memberAction({path: 'start'}),
   finish: memberAction({path: 'finish'}),
+  draft: memberAction({path: 'draft'}),
+  publish: memberAction({path: 'publish'}),
 });

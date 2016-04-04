@@ -61,6 +61,28 @@ export default Ember.Controller.extend({
       });
       this.model.reload();
     },
+    startRound() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.start()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      this.model.reload();
+    },
+    finishRound() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.finish()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+      this.model.reload();
+    },
     moveTop(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');
       performance.move_top()
