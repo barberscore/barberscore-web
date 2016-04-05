@@ -14,7 +14,7 @@ export default DS.Model.extend({
   judges: DS.hasMany('judge', {inverse: 'session', async: true}),
   open: memberAction({path: 'open'}),
   close: memberAction({path: 'close'}),
-  ready: memberAction({path: 'ready'}),
+  prepare: memberAction({path: 'prepare'}),
   start: memberAction({path: 'start'}),
   finish: memberAction({path: 'finish'}),
   draft: memberAction({path: 'draft'}),

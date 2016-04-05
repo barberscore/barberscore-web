@@ -6,23 +6,15 @@ export default Ember.Component.extend({
   actions: {
     saveRecord() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      // var organization = this.get('group').organization;
-      // console.log(organization);
-      // var actual = {
-      //   lower: moment().utc().format(),
-      //   upper: moment().add(10, 'minutes').utc().format(),
-      //   bounds: "[)"
-      // };
-      // var scheduled = {
-      //   lower: moment().utc().format(),
-      //   upper: moment().add(10, 'minutes').utc().format(),
-      //   bounds: "[)"
-      // };
+      var actual = {
+      };
+      var scheduled = {
+      };
       var performance = this.get('store').createRecord('performance', {
         round: this.get('round'),
         performer: this.get('performer'),
-        actual: null,
-        scheduled: null,
+        actual: actual,
+        scheduled: scheduled,
       });
       performance.save()
       .then(() => {

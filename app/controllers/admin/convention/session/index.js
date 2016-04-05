@@ -31,8 +31,8 @@ export default Ember.Controller.extend({
     closeSession() {
       this.model.close();
     },
-    readySession() {
-      this.model.ready();
+    prepareSession() {
+      this.model.prepare();
     },
     startSession() {
       this.model.start();

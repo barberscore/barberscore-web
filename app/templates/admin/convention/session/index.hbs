@@ -16,12 +16,10 @@
       <li>{{session-status model=model status=model.status class='form-group'}}</li>
       <li>{{contest-admin model=model person=model.administrator class='form-group'}}</li>
       <li>{{contest-aca model=model person=model.aca class='form-group'}}</li>
-      <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
-      <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
       </ul>
       {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
       {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
-      {{#bs-button action=(action 'readySession') class='form-group'}}Ready{{/bs-button}}
+      {{#bs-button action=(action 'prepareSession') class='form-group'}}Prepare{{/bs-button}}
       {{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}
       {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
       {{#bs-button action=(action 'draftSession') class='form-group'}}Draft{{/bs-button}}
@@ -176,6 +174,12 @@
             {{/each}}
           </tbody>
         </table>
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="5" title="Documents"}}
+      <ul class='list-unstyled'>
+        <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+        <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
+      </ul>
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>
