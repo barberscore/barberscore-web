@@ -33,6 +33,7 @@
           <thead>
             <tr>
               <th>Group</th>
+              {{#if (eq model.kind 'Chorus')}}<th>Men</th>{{/if}}
               <th>Organization</th>
               <th>Status</th>
               <th>Actions</th>
@@ -44,6 +45,10 @@
                 <td>
                   {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
                 </td>
+                  {{#if (eq performer.group.kind 'Chorus')}}
+                    <td>{{men-edit model=performer men=performer.men}}</td>
+                  {{/if}}
+
                 <td>
                   {{select-organization model=performer organization=performer.organization}}
                 </td>
@@ -177,8 +182,11 @@
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="5" title="Documents"}}
       <ul class='list-unstyled'>
-        <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
         <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
+        {{#each primaryContests as |contest|}}
+          <li>{{#link-to 'admin.convention.session.contest.oss' contest}}{{contest.award.name}}{{/link-to}}</li>
+        {{/each}}
+        <li>{{#link-to 'admin.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
       </ul>
      {{/bs-accordion-item}}
  {{/bs-accordion}}

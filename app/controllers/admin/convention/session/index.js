@@ -62,6 +62,7 @@ export default Ember.Controller.extend({
       this.toggleProperty('isRaw');
     },
   },
+
   performerSortProperties: ['name:asc',],
   sortedPerformers: Ember.computed.sort(
     'model.performers',
@@ -84,5 +85,9 @@ export default Ember.Controller.extend({
   sortedJudges: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'
+  ),
+  primaryContests: Ember.computed.filterBy(
+    'model.contests',
+    'award.is_primary'
   ),
 });

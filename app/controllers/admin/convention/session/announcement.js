@@ -7,4 +7,20 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
+  nextRoundArray: Ember.computed.filterBy(
+    'model.rounds',
+    'status',
+    'Ready'
+  ),
+  nextRound: Ember.computed(
+    'nextRoundArray',
+    function() {
+      return this.get('nextRoundArray')[0];
+    }
+  ),
+  performanceSortProperties: ['slot:asc',],
+  sortedPerformances: Ember.computed.sort(
+    'nextRound.performances',
+    'performanceSortProperties'
+  ),
 });

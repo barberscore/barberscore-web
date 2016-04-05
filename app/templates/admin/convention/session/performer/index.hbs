@@ -15,7 +15,7 @@
   <div class='panel-body'>
       {{performer-status model=model status=model.status class='form-group'}}
       {{select-organization model=model organization=model.organization class='form-group'}}
-      {{men-edit model=performer men=performer.men}}
+      {{men-edit model=model men=model.men}}
       {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}}
       {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}}
   </div>
