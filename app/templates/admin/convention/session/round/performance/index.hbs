@@ -61,7 +61,7 @@
     {{#each sortedSongs as |song|}}
       <tr>
         <td>
-    {{#power-select
+    {{song.order}} {{song.id}}: {{#power-select
         options=model.performer.submissions
         selectedItemComponent="selected-chart"
         selected=song.chart
@@ -142,7 +142,7 @@
     {{/each}}
     </td>
     <td>
-    {{!-- {{#each judge.scores as |score|}}
+    {{#each judge.scores as |score|}}
       {{#if (eq score.song.performance.id model.id)}}
       {{#bs-dropdown}}
         {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
@@ -152,7 +152,7 @@
         {{/bs-dropdown-menu}}
       {{/bs-dropdown}}<br>
       {{/if}}
-    {{/each}} --}}
+    {{/each}}
     </td>
     </tr>
   {{/each}}

@@ -98,15 +98,15 @@ export default Ember.Controller.extend({
     },
     moveUp(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');
+
       performance.move_up()
       .then(() => {
         flashMessages.success('Success');
+        let reloaded =  this.get('model.performances').map( performance => performance.reload() );
+        return Ember.RSVP.all(reloaded);
       })
       .catch(() => {
         flashMessages.danger('Error');
-      })
-      .finally(()=>{
-        this.model.refresh();
       });
     },
     moveDown(performance) {
