@@ -61,7 +61,7 @@
     {{#each sortedSongs as |song|}}
       <tr>
         <td>
-    {{song.order}} {{song.id}}: {{#power-select
+    {{#power-select
         options=model.performer.submissions
         selectedItemComponent="selected-chart"
         selected=song.chart
@@ -109,8 +109,12 @@
 </table>
 </div>
 <div class='table-responsive'>
-<table class='table'>
-  <thead>
+{{#score-entry-table
+    judges=sortedJudges
+    performance=model
+    as |data actions|
+}}
+    <thead>
   <tr>
   <th class='col-md-6'>Slot</th>
   <th>Score</th>
@@ -119,30 +123,24 @@
   </tr>
   </thead>
   <tbody>
-  {{#each sortedJudges as |judge|}}
+  {{#each data as |panelist|}}
     <tr>
     <td>
-      {{judge.kind}} {{judge.category}} {{judge.slot}}<br>
-      {{judge.person.name}}
+      {{panelist.judge.kind}} {{panelist.judge.category}} {{panelist.judge.slot}}<br>
+      {{panelist.judge.person.name}}
     </td>
     <td>
-    {{#each judge.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
-       {{score.song.order}}: {{score-edit model=score points=score.points}}
-      {{/if}}
+    {{#each (sort-by 'song.order' panelist.scores) as |score|}}
+       {{score-edit model=score points=score.points}}
     {{/each}}
     </td>
     <td>
-    {{#each judge.scores as |score|}}
-      {{!-- {{#if (eq score.judge.kind 'Official')}} --}}
-      {{#if (eq score.song.performance.id model.id)}}
+    {{!-- {{#each (sort-by 'song.order' panelist.scores) as |score|}}
       {{#if score.isReview}}{{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Review{{/link-to}}{{else}}&nbsp;{{/if}}<br>
-      {{/if}}
-      {{!-- {{/if}} --}}
-    {{/each}}
+    {{/each}} --}}
     </td>
     <td>
-    {{#each judge.scores as |score|}}
+    {{!-- {{#each panelist.scores as |score|}}
       {{#if (eq score.song.performance.id model.id)}}
       {{#bs-dropdown}}
         {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
@@ -152,10 +150,10 @@
         {{/bs-dropdown-menu}}
       {{/bs-dropdown}}<br>
       {{/if}}
-    {{/each}}
+    {{/each}} --}}
     </td>
     </tr>
   {{/each}}
   </tbody>
-</table>
+{{/score-entry-table}}
 </div>

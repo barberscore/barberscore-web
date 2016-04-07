@@ -4,7 +4,13 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
     startConvention() {
-      this.model.start();
+      this.model.start()
+      .then(response => {
+        this.store.pushPayload('convention', response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     },
     finishConvention() {
       this.model.finish();
