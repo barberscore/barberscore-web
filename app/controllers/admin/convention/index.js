@@ -22,12 +22,8 @@ export default Ember.Controller.extend({
       });
     },
     saveDate(start, end) {
-      var date = {
-        lower: start,
-        upper: end,
-        bounds: "[)"
-      };
-      this.model.set('date', date);
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
       this.model.save();
     }
   },

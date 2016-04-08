@@ -14,7 +14,15 @@
   </div>
   <div class='panel-body'>
       {{convention-status model=model status=model.status class='form-group'}}
-      {{date-range-picker start=model.date.lower end=model.date.upper ranges=null applyAction=(action 'saveDate')}}
+      {{date-range-picker
+          start=model.date.lower
+          end=model.date.upper
+          ranges=null
+          serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+          timePicker=true
+          timePicker24Hour=true
+          applyAction=(action 'saveDate')
+      }}
       {{convention-venue model=model venue=model.venue class='form-group'}}
       {{convention-drcj model=model person=model.drcj class='form-group'}}
       {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}}
