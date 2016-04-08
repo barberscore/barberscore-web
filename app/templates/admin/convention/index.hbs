@@ -13,7 +13,7 @@
     </h4>
   </div>
   <div class='panel-body'>
-      {{convention-status model=model status=model.status class='form-group'}}
+      {{!-- {{convention-status model=model status=model.status class='form-group'}} --}}
       {{date-range-picker
           start=model.date.lower
           end=model.date.upper
@@ -25,12 +25,17 @@
       }}
       {{convention-venue model=model venue=model.venue class='form-group'}}
       {{convention-drcj model=model person=model.drcj class='form-group'}}
-      {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}}
-      {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}}
+      {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
+      {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
+      <ul class='list-inline'>
+        {{#each sortedSessions as |session|}}
+          <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
   </div>
 </section>
 
-<section>
+{{!-- <section>
  {{#bs-accordion selected=selected}}
      {{#bs-accordion-item value="1" title="Sessions" collapsed=false}}
         <table class='table'>
@@ -65,4 +70,4 @@
         </table>
      {{/bs-accordion-item}}
  {{/bs-accordion}}
-</section>
+</section> --}}

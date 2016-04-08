@@ -30,16 +30,16 @@
       <li>Scheduled: {{datetime-range model.scheduled}}</li>
       <li>Actual: {{datetime-range model.actual}}</li>
       <li>{{performance-status model=model status=model.status class='form-group'}}</li>
-      <li>{{#bs-button action=(action 'startPerformance') class='form-group'}}
-        Start
-      {{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'finishPerformance') class='form-group'}}
-        Finish
-      {{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'completePerformance') class='form-group'}}
-        Complete
-      {{/bs-button}}</li>
     </ul>
+      {{#bs-button action=(action 'startPerformance') class='form-group'}}
+        Start
+      {{/bs-button}}
+      {{#bs-button action=(action 'finishPerformance') class='form-group'}}
+        Finish
+      {{/bs-button}}
+      {{#bs-button action=(action 'completePerformance') class='form-group'}}
+        Complete
+      {{/bs-button}}
   </div>
 </section>
 <br><br><br>

@@ -10,6 +10,11 @@ export default Ember.Controller.extend({
   ),
   isRaw: false,
   actions: {
+    saveDate(start, end) {
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
+      this.model.save();
+    },
     sortBy: function(performanceSortProperties) {
       this.set('performanceSortProperties', [performanceSortProperties]);
     },
@@ -18,15 +23,6 @@ export default Ember.Controller.extend({
     },
     deletePerformance(performance) {
       performance.destroyRecord();
-    },
-    saveDate(date, performance) {
-      var scheduled = {
-        lower: moment(date).utc().format(),
-        upper: moment(date).add(10, 'minutes').utc().format(),
-        bounds: "[)"
-      };
-      performance.set('scheduled', scheduled);
-      performance.save();
     },
     drawRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
@@ -64,24 +60,22 @@ export default Ember.Controller.extend({
     startRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.start()
-      .then(() => {
-        flashMessages.success('Success');
+      .then((response) => {
+        this.store.pushPayload('round', response);
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
-      this.model.reload();
     },
     finishRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.finish()
-      .then(() => {
-        flashMessages.success('Success');
+      .then((response) => {
+        this.store.pushPayload('round', response);
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
-      this.model.reload();
     },
     moveTop(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');

@@ -14,6 +14,16 @@
   <div class='panel-body'>
       <ul class='list-unstyled'>
       <li>{{session-status model=model status=model.status class='form-group'}}</li>
+      {{date-range-picker
+          start=model.date.lower
+          end=model.date.upper
+          ranges=null
+          serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+          timePicker=true
+          timePicker24Hour=true
+          applyAction=(action 'saveDate')
+      }}
+      {{!-- <li>Status: {{model.status}}</li> --}}
       <li>{{contest-admin model=model person=model.administrator class='form-group'}}</li>
       <li>{{contest-aca model=model person=model.aca class='form-group'}}</li>
       </ul>
@@ -24,6 +34,12 @@
       {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
       {{#bs-button action=(action 'draftSession') class='form-group'}}Draft{{/bs-button}}
       {{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}
+      <br><br>
+      <ul class='list-inline'>
+        {{#each model.rounds as |round|}}
+          <li>{{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
   </div>
 </section>
 <section>
@@ -149,7 +165,7 @@
         </table>
         {{add-award session=model}}
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="2" title="Rounds"}}
+{{!--      {{#bs-accordion-item value="2" title="Rounds"}}
         <table class='table'>
           <thead>
             <tr>
@@ -179,7 +195,7 @@
             {{/each}}
           </tbody>
         </table>
-     {{/bs-accordion-item}}
+     {{/bs-accordion-item}} --}}
      {{#bs-accordion-item value="5" title="Documents"}}
       <ul class='list-unstyled'>
         <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>

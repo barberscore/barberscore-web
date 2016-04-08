@@ -4,6 +4,11 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   isRaw: false,
   actions: {
+    saveDate(start, end) {
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
+      this.model.save();
+    },
     addPerformance(performance) {
       performance.add_performance();
     },
@@ -26,25 +31,74 @@ export default Ember.Controller.extend({
       contest.destroyRecord();
     },
     openSession() {
-      this.model.open();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.open()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     closeSession() {
-      this.model.close();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.close()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     prepareSession() {
-      this.model.prepare();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.prepare()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     startSession() {
-      this.model.start();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.start()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     finishSession() {
-      this.model.finish();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.finish()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     draftSession() {
-      this.model.draft();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.draft()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     publishSession() {
-      this.model.publish();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.publish()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      })
+      .catch(response => {
+        flashMessages.danger("Error" );
+      });
     },
     drawRound(round) {
       const flashMessages = Ember.get(this, 'flashMessages');

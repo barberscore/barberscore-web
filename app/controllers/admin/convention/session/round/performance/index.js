@@ -36,7 +36,13 @@ export default Ember.Controller.extend({
       });
     },
     completePerformance() {
-      this.model.complete();
+      this.model.complete()
+      .then(response => {
+        this.store.pushPayload('performance', response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     },
   },
 });

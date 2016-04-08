@@ -15,6 +15,15 @@
   </div>
   <div class='panel-body'>
       {{round-status model=model status=model.status class='form-group'}}
+      {{date-range-picker
+          start=model.date.lower
+          end=model.date.upper
+          ranges=null
+          serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+          timePicker=true
+          timePicker24Hour=true
+          applyAction=(action 'saveDate')
+      }}
       {{!-- {{#bs-button action=(action 'promoteRound') class='form-group'}}
         Promote
       {{/bs-button}}
@@ -24,12 +33,12 @@
       {{#bs-button action=(action 'resortRound') class='form-group'}}
         Resort
       {{/bs-button}} --}}
-      {{!-- {{#bs-button action=(action 'startRound') class='form-group'}}
+      {{#bs-button action=(action 'startRound') class='form-group'}}
         Start
       {{/bs-button}}
       {{#bs-button action=(action 'finishRound') class='form-group'}}
         Finish
-      {{/bs-button}} --}}
+      {{/bs-button}}
   </div>
 </section>
 <section>

@@ -19,6 +19,7 @@ export default Ember.Component.extend({
     'New',
     'Started',
     'Finished',
+    'Completed',
     'Confirmed',
     'Final',
   ]
