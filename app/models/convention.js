@@ -18,5 +18,5 @@ export default DS.Model.extend({
   drcj: DS.belongsTo('person', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
   start: memberAction({path: 'start', type: 'post'}),
-  finish: memberAction({path: 'finish'}),
+  finish: memberAction({path: 'finish', type: 'post'}),
 });

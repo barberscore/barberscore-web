@@ -13,7 +13,13 @@ export default Ember.Controller.extend({
       });
     },
     finishConvention() {
-      this.model.finish();
+      this.model.finish()
+      .then(response => {
+        this.store.pushPayload('convention', response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     },
     saveDate(start, end) {
       var date = {

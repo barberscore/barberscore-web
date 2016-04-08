@@ -26,18 +26,20 @@
     </h4>
   </div>
   <div class='panel-body'>
-      {{datetime-range model.scheduled}}
-      {{datetime-range model.actual}}
-      {{performance-status model=model status=model.status class='form-group'}}
-      {{#bs-button action=(action 'startPerformance') class='form-group'}}
+  <ul class='list-unstyled'>
+      <li>Scheduled: {{datetime-range model.scheduled}}</li>
+      <li>Actual: {{datetime-range model.actual}}</li>
+      <li>{{performance-status model=model status=model.status class='form-group'}}</li>
+      <li>{{#bs-button action=(action 'startPerformance') class='form-group'}}
         Start
-      {{/bs-button}}
-      {{#bs-button action=(action 'finishPerformance') class='form-group'}}
+      {{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'finishPerformance') class='form-group'}}
         Finish
-      {{/bs-button}}
-      {{#bs-button action=(action 'completePerformance') class='form-group'}}
+      {{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'completePerformance') class='form-group'}}
         Complete
-      {{/bs-button}}
+      {{/bs-button}}</li>
+    </ul>
   </div>
 </section>
 <br><br><br>

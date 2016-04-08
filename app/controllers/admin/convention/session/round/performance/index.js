@@ -18,10 +18,22 @@ export default Ember.Controller.extend({
       song.save();
     },
     startPerformance() {
-      this.model.start();
+      this.model.start()
+      .then(response => {
+        this.store.pushPayload('performance', response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     },
     finishPerformance() {
-      this.model.finish();
+      this.model.finish()
+      .then(response => {
+        this.store.pushPayload('performance', response);
+      })
+      .catch(response => {
+        console.log(response);
+      });
     },
     completePerformance() {
       this.model.complete();
