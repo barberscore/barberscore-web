@@ -17,6 +17,20 @@ export default DS.Model.extend({
   chart: DS.belongsTo('chart', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
+
+  ascSortProperties: ['points:asc',],
+  ascSortedScores: Ember.computed.sort(
+    'scores',
+    'ascSortProperties'
+  ),
+  descSortProperties: ['points:desc',],
+  descSortedScores: Ember.computed.sort(
+    'scores',
+    'descSortProperties'
+  ),
+
+
+
   officialScores: Ember.computed.filterBy('scores', 'kind', 'Official'),
   points: Ember.computed.mapBy('officialScores', 'points'),
   pointsSort: ['points',],
