@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -56,7 +56,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -66,7 +66,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -76,7 +76,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -86,7 +86,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
@@ -96,7 +96,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('session', response);
       })
-      .catch(response => {
+      .catch(() => {
         flashMessages.danger("Error" );
       });
     },
