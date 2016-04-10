@@ -5,5 +5,5 @@ export default DS.Model.extend({
   status: DS.attr('role-status'),
   part: DS.attr('role-part'),
   person: DS.belongsTo('person', {async: true}),
-  performer: DS.belongsTo('performer', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
 });

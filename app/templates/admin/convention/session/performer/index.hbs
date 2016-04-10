@@ -15,7 +15,16 @@
   <div class='panel-body'>
       {{performer-status model=model status=model.status class='form-group'}}
       {{select-organization model=model organization=model.organization class='form-group'}}
+      {{#if (eq model.group.kind 'Chorus')}}
+      {{select-director model=model role=model.director class='form-group'}}
+      {{select-codirector model=model role=model.codirector class='form-group'}}
       {{men-edit model=model men=model.men}}
+      {{else}}
+      {{select-tenor model=model role=model.tenor class='form-group'}}
+      {{select-lead model=model role=model.lead class='form-group'}}
+      {{select-baritone model=model role=model.baritone class='form-group'}}
+      {{select-bass model=model role=model.bass class='form-group'}}
+      {{/if}}
       {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}}
       {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}}
   </div>
@@ -88,7 +97,7 @@
         </table>
         {{add-chart performer=model class='form-group'}}
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Roles"}}
+     {{!-- {{#bs-accordion-item value="1" title="Roles"}}
         <table class='table'>
           <thead>
             <tr>
@@ -124,6 +133,6 @@
           </tbody>
         </table>
         {{add-role performer=model}}
-     {{/bs-accordion-item}}
+     {{/bs-accordion-item}} --}}
  {{/bs-accordion}}
 </section>

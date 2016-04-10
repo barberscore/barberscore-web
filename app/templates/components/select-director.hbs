@@ -1,0 +1,10 @@
+{{#power-select
+      options=sortedRoles
+      selected=role
+      placeholder="Director"
+      onchange=(action "saveRecord")
+      allowClear=true
+      as |role|
+}}
+  {{role.person.name}}
+{{/power-select}}
