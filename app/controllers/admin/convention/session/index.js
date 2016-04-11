@@ -144,4 +144,7 @@ export default Ember.Controller.extend({
     'model.contests',
     'award.is_primary'
   ),
+  organizationChoices: Ember.computed(function() {
+    return this.get('store').findAll('organization');
+  })
 });

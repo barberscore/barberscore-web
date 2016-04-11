@@ -14,8 +14,5 @@ export default Ember.Component.extend({
       });
     },
   },
-  organizationChoices: function() {
-    return this.store.findAll('Organization');
-  }
 });
 

@@ -14,10 +14,13 @@ export default Ember.Component.extend({
       });
     },
   },
-  awardSortProperties: ['name:asc',],
-  sortedAwards: Ember.computed.sort(
-    'session.convention.organization.awards',
-    'awardSortProperties'
-  ),
+  allAwards: Ember.computed(function() {
+    return this.get('store').findAll('award');
+  }),
+  sortedAwards: Ember.computed.filterBy(
+    'allAwards',
+    'organization',
+    'model.contest.session.organization'
+  )
 });
 
