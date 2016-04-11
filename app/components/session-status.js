@@ -17,13 +17,13 @@ export default Ember.Component.extend({
   },
   sessionStatus: [
     'New',
-    'Open',
+    'Opened',
     'Closed',
-    'Ready',
+    'Prepared',
     'Started',
     'Finished',
-    'Drafted',
+    // 'Drafted',
     'Published',
-    'Final',
+    // 'Final',
   ]
 });

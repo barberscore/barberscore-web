@@ -24,5 +24,6 @@ export default DS.Model.extend({
   judges: DS.hasMany('judge', {async: true}),
   groups: DS.hasMany('group', {async: true}),
   performers: DS.hasMany('performer', {async: true}),
+  participants: DS.hasMany('participant', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
 });

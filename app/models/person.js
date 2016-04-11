@@ -27,5 +27,6 @@ export default DS.Model.extend({
   certifications: DS.hasMany('certification', {async: true}),
   roles: DS.hasMany('role', {async: true}),
   panels: DS.hasMany('judge', {async: true}),
+  assistants: DS.hasMany('assistant', {async: true}),
   conventions: DS.hasMany('convention', {inverse:'drcj', async: true}),
 });

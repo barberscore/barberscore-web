@@ -50,9 +50,9 @@ export default Ember.Controller.extend({
         flashMessages.danger("Error" );
       });
     },
-    prepareSession() {
+    validateSession() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.prepare()
+      this.model.validate()
       .then(response => {
         this.store.pushPayload('session', response);
       })

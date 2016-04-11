@@ -25,75 +25,59 @@
       }} --}}
       {{!-- <li>Status: {{model.status}}</li> --}}
       <li>{{contest-admin model=model person=model.administrator class='form-group'}}</li>
-      <li>{{contest-aca model=model person=model.aca class='form-group'}}</li>
+      {{!-- <li>{{contest-aca model=model person=model.aca class='form-group'}}</li> --}}
       </ul>
       {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
       {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
-      {{!-- {{#bs-button action=(action 'prepareSession') class='form-group'}}Prepare{{/bs-button}} --}}
+      {{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}
       {{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}
       {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
       {{!-- {{#bs-button action=(action 'draftSession') class='form-group'}}Draft{{/bs-button}} --}}
       {{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}
       <br><br>
-      <ul class='list-inline'>
+      {{!-- <ul class='list-inline'>
         {{#each model.rounds as |round|}}
           <li>{{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
         {{/each}}
-      </ul>
+      </ul> --}}
   </div>
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="4" title="Performers"}}
+     <h4>Pre-Session</h4>
+     {{#bs-accordion-item value="6" title="Assistants"}}
         <table class='table'>
           <thead>
             <tr>
-              <th>Group</th>
-              {{#if (eq model.kind 'Chorus')}}<th>Men</th>{{/if}}
-              <th>Organization</th>
+              <th>Name</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {{#each sortedPerformers as |performer|}}
+            {{#each model.assistants as |assistant|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
-                </td>
-                  {{#if (eq performer.group.kind 'Chorus')}}
-                    <td>{{men-edit model=performer men=performer.men}}</td>
-                  {{/if}}
-
-                <td>{{model.organzationChoices}}
-                  {{!-- {{select-organization model=performer organization=performer.organization options=model.organizationChoices}} --}}
-{{#power-select
-  options=organizationChoices
-  selected=performer.organization
-  onchange=(action (mut performer.organization))
-  as |organization|
-}}
-  {{organization.name}}
-{{/power-select}}
+                  {{assistant.person.name}}
                 </td>
                 <td>
-                  {{performer-status model=performer status=performer.status}}
+                  {{assistant.status}}
+
                 </td>
                 <td>
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li><a href='#' {{action 'addPerformance' performer}}>Add Performance</a></li>
-                      <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
-                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                      {{!-- <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li> --}}
+                      <li>Delete</li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
               </tr>
             {{/each}}
+            {{!-- {{add-judge model=model}} --}}
           </tbody>
         </table>
-        {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="3" title="Judges"}}
         <table class='table'>
@@ -173,7 +157,60 @@
         </table>
         {{add-award session=model}}
      {{/bs-accordion-item}}
-{{!--      {{#bs-accordion-item value="2" title="Rounds"}}
+     {{#bs-accordion-item value="4" title="Performers"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Group</th>
+              {{#if (eq model.kind 'Chorus')}}<th>Men</th>{{/if}}
+              <th>Organization</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedPerformers as |performer|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                </td>
+                  {{#if (eq performer.group.kind 'Chorus')}}
+                    <td>{{men-edit model=performer men=performer.men}}</td>
+                  {{/if}}
+
+                <td>{{model.organzationChoices}}
+                  {{!-- {{select-organization model=performer organization=performer.organization options=model.organizationChoices}} --}}
+{{#power-select
+  options=organizationChoices
+  selected=performer.organization
+  onchange=(action (mut performer.organization))
+  as |organization|
+}}
+  {{organization.name}}
+{{/power-select}}
+                </td>
+                <td>
+                  {{performer-status model=performer status=performer.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'addPerformance' performer}}>Add Performance</a></li>
+                      <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
+                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{add-performer session=model class='form-group'}}
+     {{/bs-accordion-item}}
+     <br><br>
+     <h4>Peri-Session</h4>
+     {{#bs-accordion-item value="2" title="Rounds"}}
         <table class='table'>
           <thead>
             <tr>
@@ -203,7 +240,10 @@
             {{/each}}
           </tbody>
         </table>
-     {{/bs-accordion-item}} --}}
+     {{/bs-accordion-item}}
+     <br><br>
+      <h4>Post-Session</h4>
+
      {{#bs-accordion-item value="5" title="Documents"}}
       <ul class='list-unstyled'>
         <li>{{#link-to 'admin.convention.session.announcement' model}}Announcement Sheet{{/link-to}}</li>
