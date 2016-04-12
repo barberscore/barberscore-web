@@ -18,6 +18,8 @@ export default Ember.Controller.extend({
       song.save();
     },
     startPerformance() {
+      this.set('model.round.session.cursor', this.model.id);
+      this.get('model.round.session.content').save();
       this.model.start()
       .then(response => {
         this.store.pushPayload('performance', response);

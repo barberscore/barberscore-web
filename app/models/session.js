@@ -20,4 +20,5 @@ export default DS.Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   draft: memberAction({path: 'draft', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
+  cursor: DS.attr('string'),
 });
