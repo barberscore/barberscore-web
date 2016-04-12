@@ -19,6 +19,10 @@ Router.map(function() {
           this.route('awards', { path: '/awards/'}, function() {
           });
         });
+        this.route('judge', { path: '/judge/:judge_id'}, function() {
+        });
+        this.route('assistant', { path: '/assistant/:assistant_id'}, function() {
+        });
         this.route('round', { path: '/score/:round_id'}, function() {
           this.route('performance', { path: '/:performance_id'}, function() {
             this.route('variance', { path: '/variance'}, function() {

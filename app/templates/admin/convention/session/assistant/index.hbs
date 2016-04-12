@@ -1,0 +1,20 @@
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li class='active'>{{model.group.name}}</li>
+  </ol>
+</div>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Performer Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+  {{model.name}}
+  </div>
+</section>
+<section>
+</section>

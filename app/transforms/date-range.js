@@ -3,7 +3,7 @@ import DS from 'ember-data';
 
 export default DS.Transform.extend({
   serialize: function(value) {
-    if (value.get('lower') && value.get('upper')) {
+    if (value.get('lower') || value.get('upper')) {
     var dt = {
         lower: value.get('lower'),
         upper: value.get('upper'),

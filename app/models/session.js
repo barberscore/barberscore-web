@@ -7,7 +7,6 @@ export default DS.Model.extend({
   kind: DS.attr('session-kind'),
   date: DS.attr('date-range'),
   administrator: DS.belongsTo('person', {inverse: 'sessions_ca', async: true}),
-  aca: DS.belongsTo('person', {inverse: 'sessions_aca', async: true}),
   convention: DS.belongsTo('convention', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   performers: DS.hasMany('performer', {async: true}),

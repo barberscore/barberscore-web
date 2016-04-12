@@ -58,11 +58,10 @@
             {{#each model.assistants as |assistant|}}
               <tr>
                 <td>
-                  {{assistant.person.name}}
+                  {{#link-to 'admin.convention.session.assistant' assistant}}{{assistant.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{assistant.status}}
-
                 </td>
                 <td>
                   {{#bs-dropdown}}
@@ -208,8 +207,6 @@
         </table>
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
-     <br><br>
-     <h4>Peri-Session</h4>
      {{#bs-accordion-item value="2" title="Rounds"}}
         <table class='table'>
           <thead>
@@ -240,6 +237,11 @@
             {{/each}}
           </tbody>
         </table>
+     {{/bs-accordion-item}}
+     <br><br>
+     <h4>Peri-Session</h4>
+     {{#bs-accordion-item value="7" title="Score"}}
+      Scoring Template
      {{/bs-accordion-item}}
      <br><br>
       <h4>Post-Session</h4>
