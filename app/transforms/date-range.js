@@ -3,13 +3,21 @@ import DS from 'ember-data';
 
 export default DS.Transform.extend({
   serialize: function(value) {
-    if (value.get('lower') || value.get('upper')) {
-    var dt = {
+    try {
+      return {
         lower: value.get('lower'),
         upper: value.get('upper'),
         bounds: "[)"
       };
-      return dt;
+    } catch(err) {
+      return {};
+    }
+    if (value.get('lower') == null || value.get('upper')==null) {
+      return {
+        lower: value.get('lower'),
+        upper: value.get('upper'),
+        bounds: "[)"
+      };
     } else {
       return {};
     }
