@@ -5,22 +5,31 @@ export default Ember.Component.extend({
   actions: {
     saveRecord() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      var contest = this.get('store').createRecord('contest', {
+        session: this.get('session'),
+        award: this.get('award'),
+      });
+      contest.save()
       .then(() => {
-        flashMessages.success('Success');
+        flashMessages.success('Contest Added');
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
-    },
+    }
   },
-  allAwards: Ember.computed(function() {
+  allAwards: Ember.computed(function(){
     return this.get('store').findAll('award');
   }),
-  sortedAwards: Ember.computed.filterBy(
+  filteredAwards: Ember.computed.filterBy(
     'allAwards',
-    'organization',
-    'model.contest.session.organization'
-  )
+    'kind',
+    'session.kind'
+  ),
+  sortAwards: ['name:asc'],
+  availableAwards: Ember.computed.sort(
+    'allAwards',
+    'sortAwards'
+  ),
 });
 

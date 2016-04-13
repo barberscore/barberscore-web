@@ -1,5 +1,5 @@
 {{#bs-form formLayout="inline" action="saveRecord"}}
-  {{#bs-form-group classNames=['foo']}}
+  {{#bs-form-group}}
 {{#power-select
       search=(action "searchJudge")
       placeholder="Enter Judge Name"
@@ -7,7 +7,7 @@
       onchange=(action (mut person))
       as |person|
 }}
-  {{person.name}}
+      {{person.name}}{{#if person.certifications}}&nbsp;[{{#each person.certifications as |cert|}}{{cert.category}},&nbsp;{{/each}}]{{/if}}
 {{/power-select}}
   {{/bs-form-group}}
   &nbsp;

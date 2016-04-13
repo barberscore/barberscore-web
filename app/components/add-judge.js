@@ -10,12 +10,10 @@ export default Ember.Component.extend({
         kind: this.get('kind'),
         category: this.get('category'),
       });
-      judge.save();
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      judge.save()
       .then(() => {
-        // flashMessages.success('Success');
-        this.model.reload();
+        flashMessages.success('Judge Added');
       })
       .catch(() => {
         flashMessages.danger('Error');

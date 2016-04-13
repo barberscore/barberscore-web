@@ -49,6 +49,7 @@
         <table class='table'>
           <thead>
             <tr>
+              <th class='col-md-1'>Picture</th>
               <th>Name</th>
               <th>Kind</th>
               <th>Status</th>
@@ -58,6 +59,9 @@
           <tbody>
             {{#each model.assistants as |assistant|}}
               <tr>
+                <td>
+                  {{person-picture person=assistant.person}}
+                </td>
                 <td>
                   {{!-- {{#link-to 'admin.convention.session.assistant' assistant}}{{assistant.person.name}}{{/link-to}} --}}
                   {{person-modal person=assistant.person}}
@@ -87,6 +91,7 @@
         <table class='table'>
           <thead>
             <tr>
+              <th class='col-md-1'>Picture</th>
               <th>Name</th>
               <th>Category</th>
               <th>Kind</th>
@@ -97,6 +102,9 @@
           <tbody>
             {{#each sortedJudges as |judge|}}
               <tr>
+                <td>
+                  {{person-picture person=judge.person}}
+                </td>
                 <td>
                   {{person-modal person=judge.person}}
                 </td>
@@ -130,7 +138,7 @@
             <tr>
               <th class='col-md-4'>Name</th>
               <th class='col-md-1'>Qualifier</th>
-              <th class='col-md-5'>Champion</th>
+              {{!-- <th class='col-md-5'>Champion</th> --}}
               <th class='col-md-1'>Status</th>
               <th class='col-md-1'>Actions</th>
             </tr>
@@ -144,10 +152,10 @@
                 <td>
                   {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
                 </td>
-                <td>
-                  {{!-- {{contest.champion.performer.group.name}} --}}
+                {{!-- <td>
+                  {{contest.champion.performer.group.name}}
                   {{contest-champion model=contest champion=contest.champion class='form-group'}}
-                </td>
+                </td> --}}
                 <td>
                   {{contest-status model=contest status=contest.status}}
                 </td>

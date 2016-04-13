@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       });
       assistant.save()
       .then(() => {
-        // flashMessages.success('Success');
+        flashMessages.success('Assistant Added');
       })
       .catch(() => {
         flashMessages.danger('Error');

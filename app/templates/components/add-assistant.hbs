@@ -4,10 +4,11 @@
       search=(action "searchPerson")
       placeholder='Search by Person Name'
       selected=person
+      searchField='name'
       onchange=(action (mut person))
       as |person|
     }}
-      {{person.name}}
+      {{person.name}}{{#if person.certifications}}&nbsp;[{{#each person.certifications as |cert|}}{{cert.category}},&nbsp;{{/each}}]{{/if}}
     {{/power-select}}
   {{/bs-form-group}}
   {{#bs-form-group}}
