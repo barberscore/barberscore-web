@@ -50,6 +50,7 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Kind</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -58,17 +59,20 @@
             {{#each model.assistants as |assistant|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session.assistant' assistant}}{{assistant.person.name}}{{/link-to}}
+                  {{!-- {{#link-to 'admin.convention.session.assistant' assistant}}{{assistant.person.name}}{{/link-to}} --}}
+                  {{person-modal person=assistant.person}}
                 </td>
                 <td>
-                  {{assistant.status}}
+                  {{assistant.kind}}
+                </td>
+                <td>
+                  {{assistant-status model=assistant status=assistant.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      {{!-- <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li> --}}
-                      <li>Delete</li>
+                      <li><a href='#' {{action 'deleteAssistant' assistant}}>Delete</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
@@ -83,8 +87,9 @@
         <table class='table'>
           <thead>
             <tr>
-              <th>Slot</th>
-              <th>Judge</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Kind</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -93,10 +98,13 @@
             {{#each sortedJudges as |judge|}}
               <tr>
                 <td>
-                  {{judge.category}} {{judge.kind}} {{judge.slot}}
+                  {{person-modal person=judge.person}}
                 </td>
                 <td>
-                  {{select-judge model=judge person=judge.person}}
+                  {{judge.category}}
+                </td>
+                <td>
+                  {{judge.kind}}
                 </td>
                 <td>
                   {{judge-status model=judge status=judge.status}}
@@ -112,9 +120,9 @@
                 </td>
               </tr>
             {{/each}}
-            {{add-judge model=model}}
           </tbody>
         </table>
+        {{add-judge model=model}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="1" title="Contests"}}
         <table class='table'>

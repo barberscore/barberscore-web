@@ -27,6 +27,9 @@ export default Ember.Controller.extend({
     deleteJudge(judge) {
       judge.destroyRecord();
     },
+    deleteAssistant(judge) {
+      judge.destroyRecord();
+    },
     deleteContest(contest) {
       contest.destroyRecord();
     },

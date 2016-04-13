@@ -15,15 +15,7 @@ export default Ember.Component.extend({
       });
     },
   },
-  sessionStatus: [
+  assistantStatus: [
     'New',
-    'Opened',
-    'Closed',
-    'Validated',
-    'Started',
-    'Finished',
-    // 'Drafted',
-    'Published',
-    // 'Final',
   ]
 });

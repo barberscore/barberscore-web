@@ -6,6 +6,7 @@ export default Ember.Component.extend({
     saveRecord() {
       var judge = this.get('store').createRecord('judge', {
         session: this.get('model'),
+        person: this.get('person'),
         kind: this.get('kind'),
         category: this.get('category'),
       });
@@ -20,6 +21,11 @@ export default Ember.Component.extend({
         flashMessages.danger('Error');
       });
     },
+    searchJudge(term) {
+      return new Ember.RSVP.Promise((resolve, reject) => {
+        Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
+      });
+    }
   },
   judgeKind: [
     'Official',
@@ -29,5 +35,10 @@ export default Ember.Component.extend({
     'Music',
     'Presentation',
     'Singing',
-  ]
+  ],
+  _performSearch(term, resolve, reject) {
+    if (Ember.isBlank(term)) { return resolve([]); }
+    this.get('store').query('person', {'name__icontains': term, 'certifications__category': '1,2,3'})
+      .then(data => resolve(data), reject);
+  }
 });

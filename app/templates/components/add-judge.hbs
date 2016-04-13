@@ -1,4 +1,16 @@
 {{#bs-form formLayout="inline" action="saveRecord"}}
+  {{#bs-form-group classNames=['foo']}}
+{{#power-select
+      search=(action "searchJudge")
+      placeholder="Enter Judge Name"
+      selected=person
+      onchange=(action (mut person))
+      as |person|
+}}
+  {{person.name}}
+{{/power-select}}
+  {{/bs-form-group}}
+  &nbsp;
   {{#bs-form-group}}
     {{#power-select
       options=judgeCategory
@@ -22,5 +34,6 @@
       {{kind}}
     {{/power-select}}
   {{/bs-form-group}}
+  &nbsp;
   {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}
 {{/bs-form}}
