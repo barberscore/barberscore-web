@@ -5,3 +5,7 @@
 .in-modal {
   margin: 10px;
 }
+
+.ember-basic-dropdown {
+  min-width: 200px;
+}

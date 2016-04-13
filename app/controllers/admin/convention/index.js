@@ -25,7 +25,20 @@ export default Ember.Controller.extend({
       this.model.set('date.lower', start);
       this.model.set('date.upper', end);
       this.model.save();
-    }
+    },
+    saveConvention() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.save()
+      .then(() => {
+        flashMessages.success('Saved');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+    },
+    deleteParticipant(participant) {
+      participant.destroyRecord();
+    },
   },
   sessionSortProperties: ['kind:asc',],
   sortedSessions: Ember.computed.sort(

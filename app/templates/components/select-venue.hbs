@@ -2,8 +2,9 @@
       search=(action "searchVenue")
       selected=venue
       placeholder='Venue'
-      onchange=(action "saveRecord")
+      allowClear=true
+      onchange=(action (mut venue))
       as |venue|
 }}
-  {{venue-short venue}}
+  {{venue.name}}
 {{/power-select}}

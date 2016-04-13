@@ -1,0 +1,39 @@
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Venue Detail
+    </h4>
+  </div>
+  <div class='panel-body'>
+  <strong>{{model.name}}</strong>
+  <br><br>
+    {{#bs-form action="saveVenue"}}
+      {{#bs-form-group}}
+        {{input value=model.location placeholder='Venue Name'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{input value=model.city placeholder='City'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{input value=model.state placeholder='State/Province'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{input value=model.airport placeholder='Airport Code'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{#power-select
+          options=timezoneChoices
+          placeholder='Pick Timezone.'
+          selected=model.timezone
+          onchange=(action (mut model.timezone))
+          allowClear=true
+          as |timezone|
+        }}
+          {{timezone}}
+        {{/power-select}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+</section>
+

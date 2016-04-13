@@ -2,7 +2,8 @@
       search=(action "searchPerson")
       selected=person
       placeholder='DRCJ'
-      onchange=(action "saveRecord")
+      allowClear=true
+      onchange=(action (mut person))
       as |person|
 }}
   {{person.name}}

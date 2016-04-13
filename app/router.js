@@ -37,6 +37,10 @@ Router.map(function() {
         });
       });
     });
+    this.route('organization', { path: '/organization/:organization_id'}, function() {
+    });
+    this.route('venue', { path: '/venue/:venue_id'}, function() {
+    });
   });
 
   this.route('conventions', { path: '/convention/' }, function() {

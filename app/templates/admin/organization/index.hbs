@@ -1,0 +1,18 @@
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Organization Detail
+    </h4>
+  </div>
+  <div class='panel-body'>
+  <strong>{{model.name}}</strong>
+  <br><br>
+    {{#bs-form action="saveOrganization"}}
+      {{#bs-form-group}}
+        {{input value=model.website placeholder='Website'}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+</section>
+

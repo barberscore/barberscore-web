@@ -3,17 +3,6 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord(person) {
-      this.model.set('drcj', person);
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
-      .then(() => {
-        // flashMessages.success('Success');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
     searchPerson(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
