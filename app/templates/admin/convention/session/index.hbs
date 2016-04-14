@@ -173,7 +173,7 @@
         </table>
         {{add-award session=model}}
      {{/bs-accordion-item}}
-     {{#bs-accordion-item value="4" title="Performers"}}
+     {{#bs-accordion-item value="4" title="Entrants"}}
         <table class='table'>
           <thead>
             <tr>
@@ -188,7 +188,7 @@
             {{#each sortedPerformers as |performer|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}
                 </td>
                   {{#if (eq performer.group.kind 'Chorus')}}
                     <td>{{men-edit model=performer men=performer.men}}</td>
@@ -196,14 +196,14 @@
 
                 <td>{{model.organzationChoices}}
                   {{!-- {{select-organization model=performer organization=performer.organization options=model.organizationChoices}} --}}
-{{#power-select
-  options=organizationChoices
-  selected=performer.organization
-  onchange=(action (mut performer.organization))
-  as |organization|
-}}
-  {{organization.name}}
-{{/power-select}}
+                  {{#power-select
+                    options=organizationChoices
+                    selected=performer.organization
+                    onchange=(action (mut performer.organization))
+                    as |organization|
+                  }}
+                    {{organization.name}}
+                  {{/power-select}}
                 </td>
                 <td>
                   {{performer-status model=performer status=performer.status}}

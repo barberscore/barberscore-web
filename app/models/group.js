@@ -2,6 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Model.extend({
   name: DS.attr('string'),
+  chap_name: DS.attr('string'),
   status: DS.attr('group-status'),
   date: DS.attr('date'),
   location: DS.attr('string'),

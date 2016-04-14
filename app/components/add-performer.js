@@ -32,7 +32,7 @@ export default Ember.Component.extend({
   },
   _performSearch(term, model, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query(model, {'name__icontains': term})
+    this.get('store').query(model, {'chap_name__icontains': term})
       .then(data => resolve(data), reject);
   }
 });
