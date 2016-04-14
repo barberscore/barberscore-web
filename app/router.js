@@ -39,6 +39,8 @@ Router.map(function() {
     });
     this.route('organization', { path: '/organization/:organization_id'}, function() {
     });
+    this.route('person', { path: '/person/:person_id'}, function() {
+    });
     this.route('venue', { path: '/venue/:venue_id'}, function() {
     });
   });

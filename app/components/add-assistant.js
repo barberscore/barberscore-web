@@ -8,6 +8,7 @@ export default Ember.Component.extend({
       var assistant = this.get('store').createRecord('assistant', {
         session: this.get('session'),
         person: this.get('person'),
+        category: this.get('category'),
         kind: this.get('kind'),
       });
       assistant.save()
@@ -29,6 +30,10 @@ export default Ember.Component.extend({
     this.get('store').query(model, {'name__icontains': term})
       .then(data => resolve(data), reject);
   },
+  assistantCategory: [
+    'ACA',
+    'Other',
+  ],
   assistantKind: [
     'Official',
     'Practice',

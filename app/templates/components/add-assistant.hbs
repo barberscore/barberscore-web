@@ -13,6 +13,17 @@
   {{/bs-form-group}}
   {{#bs-form-group}}
     {{#power-select
+      options=assistantCategory
+      placeholder='Choose Category'
+      selected=category
+      onchange=(action (mut category))
+      as |category|
+    }}
+      {{category}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{#bs-form-group}}
+    {{#power-select
       options=assistantKind
       placeholder='Choose Kind'
       selected=kind

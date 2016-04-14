@@ -1,0 +1,33 @@
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Person Detail
+    </h4>
+  </div>
+  <div class='panel-body'>
+    {{#bs-form action='savePerson'}}
+      {{#bs-form-group}}
+        {{bs-input value=model.full_name}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.location}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.website}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.facebook}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.twitter}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.email}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.phone}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+</section>
