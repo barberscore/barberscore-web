@@ -4,21 +4,16 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   serialize: function(value) {
     try {
-      return {
-        lower: value.get('lower'),
-        upper: value.get('upper'),
-        bounds: "[)"
-      };
+      if (value.get('lower') != null && value.get('upper')!=null) {
+        return {
+          lower: value.get('lower'),
+          upper: value.get('upper'),
+          bounds: "[)"
+        };
+      } else {
+        return {};
+      }
     } catch(err) {
-      return {};
-    }
-    if (value.get('lower') == null || value.get('upper')==null) {
-      return {
-        lower: value.get('lower'),
-        upper: value.get('upper'),
-        bounds: "[)"
-      };
-    } else {
       return {};
     }
   },

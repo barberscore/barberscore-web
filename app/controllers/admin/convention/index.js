@@ -21,6 +21,10 @@ export default Ember.Controller.extend({
     //     console.log(response);
     //   });
     // },
+    updateDate(start, end) {
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
+    },
     saveDate(start, end) {
       this.model.set('date.lower', start);
       this.model.set('date.upper', end);

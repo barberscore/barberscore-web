@@ -32,7 +32,7 @@
             serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
             timePicker=true
             timePicker24Hour=true
-            applyAction=(action (mut model.date.lower model.date.upper))
+            applyAction=(action 'updateDate')
         }}
       {{/bs-form-group}}
       {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
