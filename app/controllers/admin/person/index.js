@@ -13,12 +13,4 @@ export default Ember.Controller.extend({
       });
     }
   },
-  timezoneChoices: [
-    'US/Arizona',
-    'US/Central',
-    'US/Eastern',
-    'US/Hawaii',
-    'US/Mountain',
-    'US/Pacific',
-  ]
 });

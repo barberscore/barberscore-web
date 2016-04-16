@@ -1,15 +1,15 @@
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h4>
-      Organization Detail
+      Group Detail
     </h4>
   </div>
   <div class='panel-body'>
   <strong>{{model.name}}</strong>
   <br><br>
-    {{#bs-form action="saveOrganization"}}
+    {{#bs-form action="saveGroup"}}
       {{#bs-form-group}}
-        {{bs-input value=model.website placeholder='Website'}}
+        {{bs-input value=model.name placeholder='Group Name'}}
       {{/bs-form-group}}
       {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
     {{/bs-form}}

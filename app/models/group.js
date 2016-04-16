@@ -4,7 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   chap_name: DS.attr('string'),
   status: DS.attr('group-status'),
-  date: DS.attr('date'),
+  date: DS.attr('date-range'),
   location: DS.attr('string'),
   website: DS.attr('string'),
   facebook: DS.attr('string'),

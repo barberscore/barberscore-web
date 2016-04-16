@@ -37,6 +37,12 @@ Router.map(function() {
         });
       });
     });
+    this.route('award', { path: '/award/:award_id'}, function() {
+    });
+    this.route('chart', { path: '/chart/:chart_id'}, function() {
+    });
+    this.route('group', { path: '/group/:group_id'}, function() {
+    });
     this.route('organization', { path: '/organization/:organization_id'}, function() {
     });
     this.route('person', { path: '/person/:person_id'}, function() {

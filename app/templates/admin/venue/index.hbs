@@ -9,16 +9,16 @@
   <br><br>
     {{#bs-form action="saveVenue"}}
       {{#bs-form-group}}
-        {{input value=model.location placeholder='Venue Name'}}
+        {{bs-input value=model.location placeholder='Venue Name'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{input value=model.city placeholder='City'}}
+        {{bs-input value=model.city placeholder='City'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{input value=model.state placeholder='State/Province'}}
+        {{bs-input value=model.state placeholder='State/Province'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{input value=model.airport placeholder='Airport Code'}}
+        {{bs-input value=model.airport placeholder='Airport Code'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
         {{#power-select

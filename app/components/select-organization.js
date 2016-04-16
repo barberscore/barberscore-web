@@ -15,8 +15,13 @@ export default Ember.Component.extend({
       });
     },
   },
-  organizationChoices: Ember.computed(function() {
+  allOrganizations: Ember.computed(function() {
     return this.get('store').findAll('organization');
-  })
+  }),
+  orgsSort: ['-level', 'kind', 'name:asc'],
+  organizationChoices: Ember.computed.sort(
+    'allOrganizations',
+    'orgsSort'
+  )
 });
 

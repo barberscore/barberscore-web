@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   actions: {
-    saveOrganization() {
+    saveAward() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
