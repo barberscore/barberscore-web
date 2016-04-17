@@ -1,8 +1,36 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+  isEditing: false,
   actions: {
+    editConvention() {
+      this.set('isEditing', true);
+    },
+    cancelConvention() {
+      this.model.rollbackAttributes();
+      this.set('isEditing', false);
+    },
+    updateDate(start, end) {
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
+    },
+    saveConvention() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.save()
+      .then(() => {
+        this.set('isEditing', false);
+        flashMessages.success('Saved');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+    },
+    deleteParticipant(participant) {
+      participant.destroyRecord();
+    },
+    deleteSession(session) {
+      session.destroyRecord();
+    },
     // startConvention() {
     //   this.model.start()
     //   .then(response => {
@@ -21,28 +49,6 @@ export default Ember.Controller.extend({
     //     console.log(response);
     //   });
     // },
-    updateDate(start, end) {
-      this.model.set('date.lower', start);
-      this.model.set('date.upper', end);
-    },
-    saveDate(start, end) {
-      this.model.set('date.lower', start);
-      this.model.set('date.upper', end);
-      this.model.save();
-    },
-    saveConvention() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
-      .then(() => {
-        flashMessages.success('Saved');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
-    deleteParticipant(participant) {
-      participant.destroyRecord();
-    },
   },
   sessionSortProperties: ['kind:asc',],
   sortedSessions: Ember.computed.sort(

@@ -13,6 +13,7 @@
     </h4>
   </div>
   <div class='panel-body'>
+  {{#if isEditing}}
     {{#bs-form action='saveConvention'}}
       {{#bs-form-group}}
         {{select-drcj person=model.drcj}}
@@ -35,6 +36,7 @@
             applyAction=(action 'updateDate')
         }}
       {{/bs-form-group}}
+      {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
       {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
     {{/bs-form}}
       {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
@@ -44,6 +46,21 @@
           <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
         {{/each}}
       </ul> --}}
+    {{else}}
+      <p>
+        {{model.drcj.name}}
+      </p>
+      <p>
+      {{model.venue.name}}
+      </p>
+      <p>
+      {{model.season}}
+      </p>
+      <p>
+      {{date-range model.date}}
+      </p>
+      {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
+    {{/if}}
   </div>
 </section>
 
@@ -105,8 +122,7 @@
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                      <li><a href='#' {{action 'deleteSession' session}}>Delete</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
@@ -114,6 +130,7 @@
             {{/each}}
           </tbody>
         </table>
+        {{add-session convention=model}}
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>

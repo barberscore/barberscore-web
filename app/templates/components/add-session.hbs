@@ -1,0 +1,14 @@
+{{#bs-form formLayout="inline" action="saveSession"}}
+  {{#bs-form-group}}
+    {{#power-select
+      options=sessionChoices
+      placeholder='Choose Session Type'
+      selected=kind
+      onchange=(action (mut kind))
+      as |kind|
+    }}
+      {{kind}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
+{{/bs-form}}

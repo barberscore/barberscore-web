@@ -120,7 +120,7 @@ export default Ember.Controller.extend({
     },
   },
 
-  performerSortProperties: ['name:asc',],
+  performerSortProperties: ['group.chap_name:asc',],
   sortedPerformers: Ember.computed.sort(
     'model.performers',
     'performerSortProperties'

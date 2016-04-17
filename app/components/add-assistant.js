@@ -14,6 +14,9 @@ export default Ember.Component.extend({
       assistant.save()
       .then(() => {
         flashMessages.success('Assistant Added');
+        this.set('person', null);
+        this.set('category', null);
+        this.set('kind', null);
       })
       .catch(() => {
         flashMessages.danger('Error');

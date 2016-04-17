@@ -3,15 +3,15 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveParticipant() {
+    saveSession() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      var participant = this.get('store').createRecord('participant', {
+      var session = this.get('store').createRecord('session', {
         convention: this.get('convention'),
-        organization: this.get('organization'),
+        kind: this.get('kind'),
       });
-      participant.save()
+      session.save()
       .then(() => {
-        this.set('organization', null);
+        this.set('kind', null);
         // flashMessages.success('Success');
       })
       .catch(() => {
@@ -19,7 +19,10 @@ export default Ember.Component.extend({
       });
     },
   },
-  organizationChoices: Ember.computed(function(){
-    return this.get('store').findAll('organization');
-  })
+  sessionChoices: [
+    'Quartet',
+    'Chorus',
+    'Seniors',
+    'Youth',
+  ]
 });
