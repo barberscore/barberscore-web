@@ -14,7 +14,15 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteConvention() {
-      this.model.destroyRecord();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.destroyRecord()
+      .then(() => {
+        flashMessages.warning('Deleted');
+        this.transitionToRoute('admin');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
     saveConvention() {
       const flashMessages = Ember.get(this, 'flashMessages');
