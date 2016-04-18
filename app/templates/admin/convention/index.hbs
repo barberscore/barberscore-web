@@ -36,8 +36,9 @@
             applyAction=(action 'updateDate')
         }}
       {{/bs-form-group}}
-      {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
       {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
     {{/bs-form}}
       {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
       {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
@@ -48,10 +49,10 @@
       </ul> --}}
     {{else}}
       <p>
-        {{model.drcj.name}}
+        {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}
       </p>
       <p>
-      {{model.venue.name}}
+      {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}
       </p>
       <p>
       {{model.season}}
@@ -60,6 +61,7 @@
       {{date-range model.date}}
       </p>
       {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
     {{/if}}
   </div>
 </section>

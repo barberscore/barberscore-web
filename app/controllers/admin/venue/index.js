@@ -1,17 +1,32 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  isEditing: false,
   actions: {
+    newVenue() {
+      this.set('isEditing', true);
+    },
+    editVenue() {
+      this.set('isEditing', true);
+    },
+    cancelVenue() {
+      this.model.rollbackAttributes();
+      this.set('isEditing', false);
+    },
+    deleteVenue() {
+      this.model.destroyRecord();
+    },
     saveVenue() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        flashMessages.success("Saved" );
+        this.set('isEditing', false);
+        flashMessages.success('Saved');
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        flashMessages.danger('Error');
       });
-    }
+    },
   },
   timezoneChoices: [
     'US/Arizona',

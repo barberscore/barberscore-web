@@ -3,6 +3,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   actions: {
+    newConvention() {
+      this.set('isEditing', true);
+    },
     editConvention() {
       this.set('isEditing', true);
     },
@@ -10,9 +13,8 @@ export default Ember.Controller.extend({
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    updateDate(start, end) {
-      this.model.set('date.lower', start);
-      this.model.set('date.upper', end);
+    deleteConvention() {
+      this.model.destroyRecord();
     },
     saveConvention() {
       const flashMessages = Ember.get(this, 'flashMessages');
@@ -24,6 +26,10 @@ export default Ember.Controller.extend({
       .catch(() => {
         flashMessages.danger('Error');
       });
+    },
+    updateDate(start, end) {
+      this.model.set('date.lower', start);
+      this.model.set('date.upper', end);
     },
     deleteParticipant(participant) {
       participant.destroyRecord();

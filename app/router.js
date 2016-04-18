@@ -12,6 +12,8 @@ Router.map(function() {
 
   this.route('admin', { path: '/admin/' }, function() {
     this.route('convention', { path: '/convention/:convention_id' }, function() {
+      this.route('new', { path: '/new'}, function() {
+      });
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('sa', { path: '/sa'});
         this.route('cursor', { path: '/cursor/:performance_id'});

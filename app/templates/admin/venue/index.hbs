@@ -7,6 +7,7 @@
   <div class='panel-body'>
   <strong>{{model.name}}</strong>
   <br><br>
+  {{#if isEditing}}
     {{#bs-form action="saveVenue"}}
       {{#bs-form-group}}
         {{bs-input value=model.location placeholder='Venue Name'}}
@@ -32,8 +33,29 @@
           {{timezone}}
         {{/power-select}}
       {{/bs-form-group}}
-      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelVenue')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deleteVenue') class='pull-right btn-danger'}}Delete{{/bs-button}}
     {{/bs-form}}
+  {{else}}
+      <p>
+        {{model.location}}
+      </p>
+      <p>
+        {{model.city}}
+      </p>
+      <p>
+        {{model.state}}
+      </p>
+      <p>
+        {{model.airport}}
+      </p>
+      <p>
+        {{model.timezone}}
+      </p>
+      {{#bs-button action=(action 'editVenue')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newVenue') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
 </section>
 
