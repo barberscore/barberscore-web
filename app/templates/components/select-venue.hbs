@@ -1,8 +1,8 @@
   {{#power-select
       search=(action "searchVenue")
+      disabled=disabled
       selected=venue
       placeholder='Venue'
-      allowClear=true
       onchange=(action (mut venue))
       as |venue|
 }}

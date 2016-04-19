@@ -9,22 +9,36 @@
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h4>
-      Convention Detail
+      Convention Detail {{risers}}
     </h4>
   </div>
   <div class='panel-body'>
-  {{#if isEditing}}
     {{#bs-form action='saveConvention'}}
       {{#bs-form-group}}
-        {{select-drcj person=model.drcj}}
+        {{select-drcj disabled=isStatic person=model.drcj}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{select-venue venue=model.venue}}
+        {{select-venue disabled=isStatic venue=model.venue}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{select-season season=model.season}}
+        {{select-season disabled=isStatic season=model.season}}
       {{/bs-form-group}}
       {{#bs-form-group}}
+        {{#power-select-multiple
+          options=riserChoices
+          selected=model.risers
+          disabled=isStatic
+          placeholder="Risers."
+          onchange=(action (mut model.risers))
+          as |risers|
+        }}
+          {{risers}}
+        {{/power-select-multiple}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{#if isStatic}}
+        {{date-range model.date}}
+        {{else}}
         {{date-range-picker
             start=model.date.lower
             end=model.date.upper
@@ -35,34 +49,18 @@
             timePicker24Hour=true
             applyAction=(action 'updateDate')
         }}
+        {{/if}}
       {{/bs-form-group}}
-      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-      {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
-      {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{#if isStatic}}
+        {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
+      {{else}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/if}}
     {{/bs-form}}
       {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
       {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
-      {{!-- <ul class='list-inline'>
-        {{#each sortedSessions as |session|}}
-          <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
-        {{/each}}
-      </ul> --}}
-    {{else}}
-      <p>
-        {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}
-      </p>
-      <p>
-      {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}
-      </p>
-      <p>
-      {{model.season}}
-      </p>
-      <p>
-      {{date-range model.date}}
-      </p>
-      {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
-      {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
-    {{/if}}
   </div>
 </section>
 

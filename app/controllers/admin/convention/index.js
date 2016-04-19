@@ -1,17 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isEditing: false,
+  isStatic: true,
   actions: {
     newConvention() {
-      this.set('isEditing', true);
+      this.set('isStatic', true);
     },
     editConvention() {
-      this.set('isEditing', true);
+      this.set('isStatic', false);
     },
     cancelConvention() {
       this.model.rollbackAttributes();
-      this.set('isEditing', false);
+      this.set('isStatic', true);
     },
     deleteConvention() {
       const flashMessages = Ember.get(this, 'flashMessages');
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.set('isEditing', false);
+        this.set('isStatic', true);
         flashMessages.success('Saved');
       })
       .catch(() => {
@@ -69,4 +69,7 @@ export default Ember.Controller.extend({
     'model.sessions',
     'sessionSortProperties'
   ),
+  riserChoices: [
+    3,4,5,6,7,8,9,10,11,12,13
+  ]
 });

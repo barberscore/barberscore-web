@@ -7,7 +7,7 @@
   <div class='panel-body'>
   <strong>{{model.name}}</strong>
   <br><br>
-  {{#if isEditing}}
+  {{#if isStatic}}
     {{#bs-form action="saveVenue"}}
       {{#bs-form-group}}
         {{bs-input value=model.location placeholder='Venue Name'}}
