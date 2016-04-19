@@ -1,0 +1,10 @@
+{{#power-select
+      options=kindChoices
+      selected=kind
+      placeholder="Convention Kind"
+      onchange=(action (mut kind))
+      allowClear=true
+      as |kind|
+}}
+  {{kind}}
+{{/power-select}}

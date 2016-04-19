@@ -1,17 +1,17 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isStatic: true,
+  isEditing: false,
   actions: {
     newConvention() {
-      this.set('isStatic', true);
+      this.set('isEditing', false);
     },
     editConvention() {
-      this.set('isStatic', false);
+      this.set('isEditing', true);
     },
     cancelConvention() {
       this.model.rollbackAttributes();
-      this.set('isStatic', true);
+      this.set('isEditing', false);
     },
     deleteConvention() {
       const flashMessages = Ember.get(this, 'flashMessages');
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.set('isStatic', true);
+        this.set('isEditing', false);
         flashMessages.success('Saved');
       })
       .catch(() => {

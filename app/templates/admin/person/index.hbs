@@ -5,29 +5,36 @@
     </h4>
   </div>
   <div class='panel-body'>
-    {{#bs-form action='savePerson'}}
+  <strong>{{model.name}}</strong>
+  <br><br>
+  {{#if isEditing}}
+    {{#bs-form action="savePerson"}}
       {{#bs-form-group}}
-        {{bs-input value=model.full_name}}
+        {{bs-input value=model.name placeholder='Person Name'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{bs-input value=model.location}}
+        {{bs-input value=model.location placeholder='Location'}}
       {{/bs-form-group}}
       {{#bs-form-group}}
-        {{bs-input value=model.website}}
-      {{/bs-form-group}}
-      {{#bs-form-group}}
-        {{bs-input value=model.facebook}}
-      {{/bs-form-group}}
-      {{#bs-form-group}}
-        {{bs-input value=model.twitter}}
-      {{/bs-form-group}}
-      {{#bs-form-group}}
-        {{bs-input value=model.email}}
-      {{/bs-form-group}}
-      {{#bs-form-group}}
-        {{bs-input value=model.phone}}
+        {{bs-input value=model.email placeholder='Email Address'}}
       {{/bs-form-group}}
       {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelPerson')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deletePerson') class='pull-right btn-danger'}}Delete{{/bs-button}}
     {{/bs-form}}
+  {{else}}
+      <p>
+        {{model.name}}
+      </p>
+      <p>
+        {{model.location}}
+      </p>
+      <p>
+        {{model.email}}
+      </p>
+      {{#bs-button action=(action 'editPerson')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newPerson') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
 </section>
+

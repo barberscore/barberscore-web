@@ -1,10 +1,10 @@
   {{#power-select
       search=(action "searchVenue")
-      disabled=disabled
       selected=venue
       placeholder='Venue'
       onchange=(action (mut venue))
-      as |venue|
+      oncreate=(action "createVenue")
+      as |venue term|
 }}
   {{venue.name}}
 {{/power-select}}

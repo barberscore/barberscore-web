@@ -4,6 +4,7 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   slug: DS.attr('string'),
   status: DS.attr('convention-status'),
+  kind: DS.attr('convention-kind'),
   season: DS.attr('convention-season'),
   risers: DS.attr(),
   level: DS.attr('convention-level'),

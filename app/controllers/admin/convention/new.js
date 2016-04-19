@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   actions: {
     cancelConvention() {
       this.model.rollbackAttributes();
-      this.set('isStatic', true);
+      this.set('isEditing', false);
     },
     saveConvention() {
       const flashMessages = Ember.get(this, 'flashMessages');
