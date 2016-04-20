@@ -4,7 +4,11 @@ export default Ember.Controller.extend({
   isEditing: false,
   actions: {
     newConvention() {
-      this.set('isEditing', false);
+      let newConvention = this.store.createRecord(
+        'convention'
+      );
+      this.set('model', newConvention);
+      this.set('isEditing', true);
     },
     editConvention() {
       this.set('isEditing', true);
@@ -28,6 +32,7 @@ export default Ember.Controller.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
+        this.transitionToRoute('admin.convention', this.model);
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })

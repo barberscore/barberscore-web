@@ -62,6 +62,7 @@
       <p>{{model.risers}}</p>
       <p>{{date-range model.date}}</p>
       {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
     {{/if}}
       {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
       {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
