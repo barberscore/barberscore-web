@@ -1,0 +1,9 @@
+{{#power-select
+  search=(action "searchJudge")
+  placeholder="Enter Judge Name"
+  selected=person
+  onchange=(action (mut person))
+  as |person|
+}}
+  {{person.name}}
+{{/power-select}}

@@ -4,10 +4,42 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   isRaw: false,
   actions: {
-    saveDate(start, end) {
-      this.model.set('date.lower', start);
-      this.model.set('date.upper', end);
-      this.model.save();
+    newSession() {
+      let newSession = this.store.createRecord(
+        'session'
+      );
+      this.set('model', newSession);
+      this.set('isEditing', true);
+    },
+    editSession() {
+      this.set('isEditing', true);
+    },
+    cancelSession() {
+      this.model.rollbackAttributes();
+      this.set('isEditing', false);
+    },
+    deleteSession() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.destroyRecord()
+      .then(() => {
+        flashMessages.warning('Deleted');
+        this.transitionToRoute('admin');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+    },
+    saveSession() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.save()
+      .then(() => {
+        this.transitionToRoute('admin.session', this.model);
+        this.set('isEditing', false);
+        flashMessages.success('Saved');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
     addPerformance(performance) {
       performance.add_performance();
@@ -113,7 +145,7 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
       round.reload();
-      this.transitionToRoute('admin.convention.session.round', round);
+      this.transitionToRoute('admin.session.session.round', round);
     },
     letsGo() {
       this.toggleProperty('isRaw');

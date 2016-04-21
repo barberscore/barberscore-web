@@ -1,10 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  judgeStatus: [
-    'New',
-    'Scheduled',
-    'Confirmed',
-    'Final',
+  judgeKind: [
+    'Official',
+    'Practice',
+    'Guest',
   ]
 });

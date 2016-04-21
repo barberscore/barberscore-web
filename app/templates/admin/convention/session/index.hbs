@@ -12,33 +12,49 @@
     </h3>
   </div>
   <div class='panel-body'>
-      <ul class='list-unstyled'>
-      <li>{{session-status model=model status=model.status class='form-group'}}</li>
-      {{!-- {{date-range-picker
-          start=model.date.lower
-          end=model.date.upper
-          ranges=null
-          serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
-          timePicker=true
-          timePicker24Hour=true
-          applyAction=(action 'saveDate')
-      }} --}}
-      {{!-- <li>Status: {{model.status}}</li> --}}
-      <li>{{contest-admin model=model person=model.administrator class='form-group'}}</li>
-      </ul>
-      {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
-      {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
-      {{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}
-      {{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}
-      {{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}
-      {{!-- {{#bs-button action=(action 'draftSession') class='form-group'}}Draft{{/bs-button}} --}}
-      {{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}
+  {{#if isEditing}}
+      {{#bs-form action='saveSession'}}
+        {{#bs-form-group}}
+          {{session-status status=model.status}}
+        {{/bs-form-group}}
+          {{!-- {{date-range-picker
+              start=model.date.lower
+              end=model.date.upper
+              ranges=null
+              serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+              timePicker=true
+              timePicker24Hour=true
+              applyAction=(action 'saveDate')
+          }} --}}
+        {{#bs-form-group}}
+          {{select-ca person=model.administrator}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteSession') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+    {{else}}
+      <p>
+        {{model.name}}
+      </p>
+      <p>
+        {{model.status}}
+      </p>
+      <p>
+        {{model.administrator.name}}
+      </p>
+      {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
       <br><br>
-      {{!-- <ul class='list-inline'>
-        {{#each model.rounds as |round|}}
-          <li>{{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
-        {{/each}}
-      </ul> --}}
+      <ul class='list-inline'>
+        <li>{{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}</li>
+      </ul>
   </div>
 </section>
 <section>
@@ -64,16 +80,15 @@
                 </td>
                 <td>
                   {{#link-to 'admin.convention.session.assistant' assistant}}{{assistant.person.name}}{{/link-to}}
-                  {{!-- {{person-modal person=assistant.person}} --}}
                 </td>
                 <td>
-                  {{assistant-category model=assistant category=assistant.category}}
+                  {{assistant.category}}
                 </td>
                 <td>
-                  {{assistant-kind model=assistant kind=assistant.kind}}
+                  {{assistant.kind}}
                 </td>
                 <td>
-                  {{assistant-status model=assistant status=assistant.status}}
+                  {{assistant.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
@@ -119,7 +134,7 @@
                   {{judge.kind}}
                 </td>
                 <td>
-                  {{judge-status model=judge status=judge.status}}
+                  {{judge.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}

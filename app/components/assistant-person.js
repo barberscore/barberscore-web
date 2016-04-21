@@ -4,11 +4,11 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord(person) {
-      this.model.set('administrator', person);
+      this.model.set('person', person);
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        flashMessages.success('Success');
+        // flashMessages.success('Success');
       })
       .catch(() => {
         flashMessages.danger('Error');
@@ -22,7 +22,7 @@ export default Ember.Component.extend({
   },
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('person', {'name__icontains': term, 'certifications__category': '0'})
+    this.get('store').query('person', {'name__icontains': term})
       .then(data => resolve(data), reject);
   },
 });

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
+    saveAssistant() {
       const flashMessages = Ember.get(this, 'flashMessages');
       var assistant = this.get('store').createRecord('assistant', {
         session: this.get('session'),

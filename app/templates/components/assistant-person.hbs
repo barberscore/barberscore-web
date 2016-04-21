@@ -1,0 +1,8 @@
+{{#power-select
+      search=(action "searchPerson")
+      selected=person
+      onchange=(action (mut person))
+      as |person|
+}}
+  {{person.name}}
+{{/power-select}}

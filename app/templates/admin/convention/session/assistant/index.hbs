@@ -5,19 +5,39 @@
     </h3>
   </div>
   <div class='panel-body'>
-  <p>
-    {{#link-to 'admin.person' model.person}}{{model.person.name}}{{/link-to}}
-  </p>
-  <p>
-  {{model.status}}
-  </p>
-  <p>
-  {{model.category}}
-  </p>
-  <p>
-  {{model.kind}}
-  </p>
+  {{#if isEditing}}
+      {{#bs-form action='saveAssistant'}}
+        {{#bs-form-group}}
+          {{assistant-person  person=model.person}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{assistant-status status=model.status}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{assistant-category category=model.category}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{assistant-kind kind=model.kind}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelAssistant')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteAssistant') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+    {{else}}
+      <p>
+        {{#link-to 'admin.person' model.person}}{{model.person.name}}{{/link-to}}
+      </p>
+      <p>
+      {{model.status}}
+      </p>
+      <p>
+      {{model.category}}
+      </p>
+      <p>
+      {{model.kind}}
+      </p>
+      {{#bs-button action=(action 'editAssistant')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newAssistant') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
-</section>
-<section>
 </section>

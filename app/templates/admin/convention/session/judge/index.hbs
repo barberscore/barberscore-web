@@ -5,26 +5,39 @@
     </h3>
   </div>
   <div class='panel-body'>
-  <p>
-    {{#link-to 'admin.person' model.person}}{{model.person.name}}{{/link-to}}
-  </p>
-  <p>
-  {{model.status}}
-  </p>
-  <p>
-  {{model.category}}
-  </p>
-  <p>
-  {{model.kind}}
-  </p>
+  {{#if isEditing}}
+      {{#bs-form action='saveJudge'}}
+        {{#bs-form-group}}
+          {{judge-person  person=model.person}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{judge-status status=model.status}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{judge-category category=model.category}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{judge-kind kind=model.kind}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelJudge')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+    {{else}}
+      <p>
+        {{#link-to 'admin.person' model.person}}{{model.person.name}}{{/link-to}}
+      </p>
+      <p>
+      {{model.status}}
+      </p>
+      <p>
+      {{model.category}}
+      </p>
+      <p>
+      {{model.kind}}
+      </p>
+      {{#bs-button action=(action 'editJudge')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newJudge') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
-</section>
-<section>
-<h4>Scores</h4>
-  <ul class='list-unstyled'>
-
-{{#each model.scores as |score|}}
-<li>{{score.song.performer}}</li>
-{{/each}}
-  </ul>
 </section>

@@ -2,7 +2,7 @@
       search=(action "searchPerson")
       selected=person
       placeholder='Contest Administrator'
-      onchange=(action "saveRecord")
+      onchange=(action (mut person))
       as |person|
 }}
   {{person.name}}
