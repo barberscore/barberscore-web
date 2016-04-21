@@ -7,12 +7,40 @@
   <div class='panel-body'>
   <strong>{{model.name}}</strong>
   <br><br>
+  {{#if isEditing}}
     {{#bs-form action="saveOrganization"}}
+      {{#bs-form-group}}
+        {{bs-input value=model.name placeholder='Organization Name'}}
+      {{/bs-form-group}}
       {{#bs-form-group}}
         {{bs-input value=model.website placeholder='Website'}}
       {{/bs-form-group}}
-      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+      {{#bs-form-group}}
+        {{bs-input value=model.location placeholder='Location'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.email placeholder='Email Address'}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelOrganization')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deleteOrganization') class='pull-right btn-danger'}}Delete{{/bs-button}}
     {{/bs-form}}
+  {{else}}
+      <p>
+        {{model.name}}
+      </p>
+      <p>
+        <a href='{{model.website}}'>{{model.website}}</a>
+      </p>
+      <p>
+        {{model.location}}
+      </p>
+      <p>
+        {{model.email}}
+      </p>
+      {{#bs-button action=(action 'editOrganization')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newOrganization') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
 </section>
 
