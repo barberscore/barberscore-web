@@ -1,10 +1,11 @@
-  {{#power-select
+  {{#power-select-with-create
       search=(action "searchPerson")
       selected=person
       placeholder='DRCJ'
       allowClear=true
       onchange=(action (mut person))
+      oncreate=(action "createPerson")
       as |person|
 }}
   {{person.name}}
-{{/power-select}}
+{{/power-select-with-create}}

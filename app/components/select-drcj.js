@@ -7,7 +7,14 @@ export default Ember.Component.extend({
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
       });
-    }
+    },
+   createPerson(personName) {
+      let newPerson = this.get('store').createRecord('person', {
+        name: personName,
+      });
+      newPerson.save();
+      this.set('person', newPerson);
+    },
   },
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
