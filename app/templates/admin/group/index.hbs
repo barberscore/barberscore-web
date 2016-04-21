@@ -1,18 +1,31 @@
 <section class='panel panel-default'>
   <div class='panel-heading'>
-    <h4>
-      Group Detail
-    </h4>
+    <h3>
+      Group Details
+    </h3>
   </div>
   <div class='panel-body'>
-  <strong>{{model.name}}</strong>
-  <br><br>
-    {{#bs-form action="saveGroup"}}
-      {{#bs-form-group}}
-        {{bs-input value=model.name placeholder='Group Name'}}
-      {{/bs-form-group}}
-      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
-    {{/bs-form}}
+      {{#if isEditing}}
+        {{group-status model=model status=model.status class='form-group'}}
+        {{select-organization model=model organization=model.organization class='form-group'}}
+        {{#if (eq model.kind 'Chorus')}}
+
+        {{else}}
+
+        {{/if}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelGroup')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteGroup') class='pull-right btn-danger'}}Delete{{/bs-button}}
+
+      {{else}}
+        <p>{{model.name}}</p>
+        {{#if (eq model.group.kind 'Chorus')}}
+
+        {{else}}
+
+        {{/if}}
+        {{#bs-button action=(action 'editGroup')}}Edit{{/bs-button}}
+        {{#bs-button action=(action 'newGroup') class='btn-primary pull-right'}}New{{/bs-button}}
+      {{/if}}
   </div>
 </section>
-

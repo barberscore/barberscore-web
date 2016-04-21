@@ -9,25 +9,45 @@
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
-      Performer Details
+      Entrant Details
     </h3>
   </div>
   <div class='panel-body'>
-      {{#link-to 'admin.group' model.group class='form-group'}}{{model.group.name}}{{/link-to}}
-      {{performer-status model=model status=model.status class='form-group'}}
-      {{select-organization model=model organization=model.organization class='form-group'}}
-      {{#if (eq model.group.kind 'Chorus')}}
-      {{select-director model=model role=model.director class='form-group'}}
-      {{select-codirector model=model role=model.codirector class='form-group'}}
-      {{men-edit model=model men=model.men}}
+      {{#if isEditing}}
+        {{performer-status model=model status=model.status class='form-group'}}
+        {{select-organization model=model organization=model.organization class='form-group'}}
+        {{#if (eq model.group.kind 'Chorus')}}
+          {{select-director model=model role=model.director class='form-group'}}
+          {{select-codirector model=model role=model.codirector class='form-group'}}
+          {{men-edit model=model men=model.men}}
+        {{else}}
+          {{select-tenor model=model role=model.tenor class='form-group'}}
+          {{select-lead model=model role=model.lead class='form-group'}}
+          {{select-baritone model=model role=model.baritone class='form-group'}}
+          {{select-bass model=model role=model.bass class='form-group'}}
+        {{/if}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelPerformer')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deletePerformer') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{!-- {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}} --}}
+        {{!-- {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}} --}}
       {{else}}
-      {{select-tenor model=model role=model.tenor class='form-group'}}
-      {{select-lead model=model role=model.lead class='form-group'}}
-      {{select-baritone model=model role=model.baritone class='form-group'}}
-      {{select-bass model=model role=model.bass class='form-group'}}
+        <p>{{#link-to 'admin.group' model.group class='form-group'}}{{model.group.name}}{{/link-to}}</p>
+        <p>{{model.status}}</p>
+        <p>{{model.organzation}}</p>
+        {{#if (eq model.group.kind 'Chorus')}}
+          <p>{{model.director.name}}</p>
+          <p>{{model.codirector.name}}</p>
+          <p>{{model.men}}</p>
+        {{else}}
+         <p>{{model.tenor}}</p>
+         <p>{{model.lead}}</p>
+         <p>{{model.baritone}}</p>
+         <p>{{model.bass}}</p>
+        {{/if}}
+        {{#bs-button action=(action 'editPerformer')}}Edit{{/bs-button}}
+        {{#bs-button action=(action 'newPerformer') class='btn-primary pull-right'}}New{{/bs-button}}
       {{/if}}
-      {{#bs-button action=(action 'scratchPerformer') class='form-group'}}Scratch{{/bs-button}}
-      {{#bs-button action=(action 'disqualifyPerformer') class='form-group'}}Disqualify{{/bs-button}}
   </div>
 </section>
 <section>

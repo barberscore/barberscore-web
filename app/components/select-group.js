@@ -3,22 +3,18 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord(group) {
-      this.model.set('group', group);
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
-      .then(() => {
-        // flashMessages.success('Success');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
     searchGroup(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
       });
-    }
+    },
+   createGroup(groupName) {
+      let newGroup = this.get('store').createRecord('group', {
+        name: groupName,
+      });
+      newGroup.save();
+      this.set('group', newGroup);
+    },
   },
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }

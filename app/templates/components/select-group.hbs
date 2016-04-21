@@ -1,8 +1,11 @@
-{{#power-select
+{{#power-select-with-create
   search=(action "searchGroup")
   selected=group
-  onchange=(action "saveRecord")
-  as |group|
+  placeholder='Select Group'
+  allowClear=true
+  onchange=(action (mut group))
+  oncreate=(action "createGroup")
+  as |group term|
 }}
   {{group.name}}
-{{/power-select}}
+{{/power-select-with-create}}
