@@ -8,7 +8,6 @@ export default Ember.Component.extend({
       var performer = this.get('store').createRecord('performer', {
         session: this.get('session'),
         group: this.get('group'),
-        organization: this.get('group.chapter.organization'),
       });
       performer.save()
       .then(() => {
