@@ -3,7 +3,9 @@ import moment from 'moment';
 
 export function dateRange(params) {
   if (params[0]) {
-    return moment(params[0].lower).format('LL') + ' - ' + moment(params[0].upper).format('LL');
+    let start = moment(params[0].lower).format('LL');
+    let finish = (params[0].upper) ? moment(params[0].upper).format('LL') : 'Present';
+    return start + ' - ' + finish;
   } else {
     return "";
   }
