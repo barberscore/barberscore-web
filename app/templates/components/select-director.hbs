@@ -1,10 +1,10 @@
 {{#power-select
-      options=sortedRoles
+      options=filteredRoles
       selected=role
-      placeholder="Co-Director (if any)"
-      onchange=(action "saveRecord")
+      placeholder="Director"
+      onchange=(action (mut role))
       allowClear=true
       as |role|
 }}
-  {{role.person.name}}
+  {{role.person.name}}: {{date-range role.date}}
 {{/power-select}}

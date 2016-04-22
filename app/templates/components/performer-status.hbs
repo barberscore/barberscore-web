@@ -1,7 +1,7 @@
 {{#power-select
   options=performerStatus
   selected=status
-  onchange=(action "saveRecord")
+  onchange=(action (mut status))
   as |status|
 }}
   {{status}}

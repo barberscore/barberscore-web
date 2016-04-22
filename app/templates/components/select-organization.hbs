@@ -3,7 +3,7 @@
   selected=organization
   placeholder='Select Organization'
   searchField='name'
-  onchange=(action "saveRecord")
+  onchange=(action (mut organization))
   as |organization|
 }}
   {{organization.name}}

@@ -1,8 +1,8 @@
 {{#power-select
-      options=sortedRoles
+      options=filteredRoles
       selected=role
       placeholder="Lead"
-      onchange=(action "saveRecord")
+      onchange=(action (mut role))
       allowClear=true
       as |role|
 }}

@@ -33,7 +33,6 @@ export default Ember.Controller.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.transitionToRoute('admin.performer', this.model);
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })

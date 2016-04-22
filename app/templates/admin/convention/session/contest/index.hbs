@@ -1,43 +1,29 @@
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
-    <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
-    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
-    <li class='active'>{{model.name}}</li>
-  </ol>
-</div>
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
-      {{model.name}}
+      Contest Details
     </h3>
   </div>
   <div class='panel-body'>
-      {{#link-to 'admin.convention.session.contest.oss' model class='form-group'}}Official Scoring Summary{{/link-to}}
+      {{model.name}}
   </div>
 </section>
 <section>
- {{#bs-accordion selected=selected collapsed=collapsed}}
+ {{#bs-accordion}}
      {{#bs-accordion-item value="2" title="Contestants"}}
         <div class='table-responsive'>
         <table class='table'>
           <thead>
           <tr>
-          <th>Rank</th>
-          <th>Group</th>
-          <th>Points</th>
-          <th>Score</th>
-          <th>Status</th>
-          <th>Actions</th>
+            <th>Entrant</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
           {{#each sortedContestants as |contestant|}}
             <tr>
-            <td>{{contestant.rank}}</td>
-            <td>{{#link-to 'admin.convention.session.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}</td>
-            <td>{{contestant.total_points}}</td>
-            <td>{{single-fixed contestant.total_score}}</td>
+            <td>{{contestant.performer.group.name}}</td>
             <td>{{contestant-status model=contestant status=contestant.status}}</td>
             <td>
               {{#bs-dropdown}}
