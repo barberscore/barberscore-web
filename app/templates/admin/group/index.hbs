@@ -11,13 +11,28 @@
           {{bs-input value=model.name}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{bs-input value=model.name}}
+          {{group-status status=model.status}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{bs-input value=model.name}}
+          {{bs-input value=model.location placeholder='Location'}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{bs-input value=model.name}}
+          {{bs-input value=model.website placeholder='Website'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.facebook placeholder='Facebook'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.twitter placeholder='Twitter'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.email placeholder='Email'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.phone placeholder='Phone'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-textarea value=model.description}}
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{!-- {{date-range-picker
@@ -38,7 +53,6 @@
       {{else}}
         <p>{{model.name}}</p>
         <p>{{model.status}}</p>
-        <p>{{date-range model.date}}</p>
         <p>{{model.location}}</p>
         <p>{{model.website}}</p>
         <p>{{model.facebook}}</p>
@@ -88,7 +102,7 @@
             {{/each}}
           </tbody>
         </table>
-        {{add-participant convention=model}}
+        {{add-role group=model}}
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>

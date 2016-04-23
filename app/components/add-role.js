@@ -8,7 +8,7 @@ export default Ember.Component.extend({
       // var organization = this.get('group').organization;
       // console.log(organization);
       var role = this.get('store').createRecord('role', {
-        performer: this.get('performer'),
+        group: this.get('group'),
         person: this.get('person'),
         part: this.get('part'),
       });
