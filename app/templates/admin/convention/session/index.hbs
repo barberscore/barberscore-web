@@ -176,7 +176,7 @@
                   {{contest-champion model=contest champion=contest.champion class='form-group'}}
                 </td> --}}
                 <td>
-                  {{contest-status model=contest status=contest.status}}
+                  {{contest.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
@@ -228,7 +228,7 @@
                     </td>
                   {{/if}} --}}
                 <td>
-                  {{performer-status model=performer status=performer.status}}
+                  {{performer-status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
