@@ -70,12 +70,17 @@
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
-                <td><span class="handle">{{fa-icon 'arrows-v' size=2}}</span></td>
+                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
               {{/sortable-item}}
             {{/each}}
             </tbody>
           {{/sortable-group}}
-          {{#bs-button action=(action 'saveOrder')}}Save{{/bs-button}}
+          {{#if isEditing}}
+            {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
+          {{else}}
+            {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
+          {{/if}}
         </div>
         {{add-performance round=model}}
      {{/bs-accordion-item}}

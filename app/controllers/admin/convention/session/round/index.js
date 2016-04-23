@@ -7,13 +7,25 @@ export default Ember.Controller.extend({
     'model.performances',
     'performanceSortProperties'
   ),
+  isEditing: false,
   isRaw: false,
   actions: {
+    editOrder() {
+      this.set('isEditing', true);
+    },
     saveOrder() {
       let children = this.get('model.performances');
       children.forEach(function(item) {
         item.save();
       });
+      this.set('isEditing', false);
+    },
+    cancelOrder() {
+      let children = this.get('model.performances');
+      children.forEach(function(item) {
+        item.rollbackAttributes();
+      });
+      this.set('isEditing', false);
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
