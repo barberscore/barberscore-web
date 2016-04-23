@@ -45,64 +45,41 @@
  {{#bs-accordion selected=selected collapsed=collapsed}}
      {{#bs-accordion-item value="2" title="Performances"}}
         <div class='table-responsive'>
-        <table class='table'>
-          <thead>
-          <tr>
-          <th class='col-md-1'>Slot</th>
-          {{!-- <th>Rank</th> --}}
-          {{!-- <th>Scheduled</th> --}}
-          <th>Performance</th>
-          <th>Status</th>
-          <th>Actions</th>
-          </tr>
-          </thead>
-          <tbody>
-          {{#each sortedPerformances as |performance|}}
+          {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+            <thead>
             <tr>
-            <td>
-              {{performance.slot}}
-            </td>
-            {{!-- <td>
-              {{performance.rank}}
-            </td> --}}
-            {{!-- <td>
-              {{moment-format performance.scheduled.lower 'LT'}}
-            </td> --}}
-            <td>
-              {{#link-to 'admin.convention.session.round.performance' performance}}{{performance.performer.group.name}}{{/link-to}}
-            </td>
-            <td>
-                {{performance-status model=performance status=performance.status}}
-            </td>
-            <td>
-              {{#bs-dropdown}}
-                {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                {{#bs-dropdown-menu}}
-                  <li><a href='#' {{action 'moveTop' performance}}>Move to Top</a></li>
-                  <li><a href='#' {{action 'moveUp' performance}}>Move Up</a></li>
-                  <li><a href='#' {{action 'moveDown' performance}}>Move Down</a></li>
-                  <li><a href='#' {{action 'moveBottom' performance}}>Move to Bottom</a></li>
-                  <li><a href='#' {{action 'scratch' performance}}>Scratch</a></li>
-                  <li><a href='#' {{action 'deletePerformance' performance}}>Delete</a></li>
-                {{/bs-dropdown-menu}}
-              {{/bs-dropdown}}
-            </td>
+              <th>Slot</th>
+              <th>Performer</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Change</th>
             </tr>
-          {{/each}}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+            {{#each sortedPerformances as |item|}}
+              {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                <td>{{item.slot}}</td>
+                <td>{{item.performer.group.name}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'scratch' performance}}>Scratch</a></li>
+                      <li><a href='#' {{action 'deletePerformance' performance}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+                <td><span class="handle">{{fa-icon 'arrows-v' size=2}}</span></td>
+              {{/sortable-item}}
+            {{/each}}
+            </tbody>
+          {{/sortable-group}}
+          {{#bs-button action=(action 'saveOrder')}}Save{{/bs-button}}
         </div>
         {{add-performance round=model}}
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>
 <section>
-{{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
-  {{#each model.performances as |item|}}
-    {{#sortable-item tagName="li" model=item group=group handle=".handle"}}
-      {{item.slot}}
-      <span class="handle">&varr;</span>
-    {{/sortable-item}}
-  {{/each}}
-{{/sortable-group}}
 </section>

@@ -9,8 +9,18 @@ export default Ember.Controller.extend({
   ),
   isRaw: false,
   actions: {
-    reorderItems(itemModels, draggedModel) {
-      console.log(itemModels);
+    saveOrder() {
+      let children = this.get('model.performances');
+      children.forEach(function(item, index) {
+        item.save();
+      });
+    },
+    reorderItems(itemModels) {
+      itemModels.forEach(function(item, index) {
+        let slot = item.get('slot');
+        console.log('Slot %@: %@ %@'.fmt(index+1, slot));
+        item.set('slot', index+1);
+      });
     },
     saveDate(start, end) {
       this.model.set('date.lower', start);
