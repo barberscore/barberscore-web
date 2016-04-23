@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
   actions: {
     saveOrder() {
       let children = this.get('model.performances');
-      children.forEach(function(item, index) {
+      children.forEach(function(item) {
         item.save();
       });
     },
