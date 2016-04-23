@@ -9,6 +9,9 @@ export default Ember.Controller.extend({
   ),
   isRaw: false,
   actions: {
+    reorderItems(itemModels, draggedModel) {
+      console.log(itemModels);
+    },
     saveDate(start, end) {
       this.model.set('date.lower', start);
       this.model.set('date.upper', end);

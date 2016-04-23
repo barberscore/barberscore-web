@@ -50,6 +50,7 @@
     "ember-resolver": "2.0.x",
     "ember-simple-auth": "1.0.x",
     "ember-simple-auth-token": "1.0.x",
+    "ember-sortable": "1.8.1",
     "ember-truth-helpers": "1.2.x",
     "loader.js": "4.0.x",
     "moment": "2.11.x",

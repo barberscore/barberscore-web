@@ -96,3 +96,13 @@
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>
+<section>
+{{#sortable-group tagName="ul" onChange="reorderItems" as |group|}}
+  {{#each model.performances as |item|}}
+    {{#sortable-item tagName="li" model=item group=group handle=".handle"}}
+      {{item.slot}}
+      <span class="handle">&varr;</span>
+    {{/sortable-item}}
+  {{/each}}
+{{/sortable-group}}
+</section>
