@@ -14,7 +14,7 @@ export default DS.Model.extend({
   prs_score: DS.attr('number'),
   sng_score: DS.attr('number'),
   total_score: DS.attr('number'),
-  chart: DS.belongsTo('chart', {async: true}),
+  submission: DS.belongsTo('submission', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
 

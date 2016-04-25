@@ -5,4 +5,5 @@ export default DS.Model.extend({
   status: DS.attr('submission-status'),
   performer: DS.belongsTo('performer', {async: true}),
   chart: DS.belongsTo('chart', {async: true}),
+  songs: DS.hasMany('songs', {async: true}),
 });
