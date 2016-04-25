@@ -4,8 +4,6 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord(submission) {
-      console.log(this.foos());
-      console.log(submission.get('chart.name'));
       this.model.set('chart', submission.get('chart'));
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()

@@ -1,46 +1,43 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  isEditing: false,
   actions: {
-    newGroup() {
-      let newGroup = this.store.createRecord(
-        'group'
+    newRole() {
+      let newRole = this.store.createRecord(
+        'role'
       );
-      this.set('model', newGroup);
+      this.set('model', newRole);
       this.set('isEditing', true);
     },
-    editGroup() {
+    editRole() {
       this.set('isEditing', true);
     },
-    cancelGroup() {
+    cancelRole() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteGroup() {
+    deleteRole() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.destroyRecord()
       .then(() => {
         flashMessages.warning('Deleted');
-        this.transitionToRoute('admin');
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
     },
-    saveGroup() {
+    saveRole() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.transitionToRoute('admin.group', this.model);
+        // this.transitionToRoute('admin.role', this.model);
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
-    },
-    deleteRole(role) {
-      role.destroyRecord();
     },
   },
 });

@@ -40,4 +40,10 @@ export default Ember.Controller.extend({
       });
     },
   },
+  seasonChoices: [
+    'International',
+    'Midwinter',
+    'Spring',
+    'Fall',
+  ]
 });

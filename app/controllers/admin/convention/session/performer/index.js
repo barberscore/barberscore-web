@@ -52,5 +52,8 @@ export default Ember.Controller.extend({
     deleteContestant(contestant) {
       contestant.destroyRecord();
     },
+    deleteSubmission(submission) {
+      submission.destroyRecord();
+    },
   },
 });

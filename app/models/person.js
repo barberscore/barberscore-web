@@ -13,6 +13,7 @@ export default DS.Model.extend({
   phone: DS.attr('string', {defaultValue:''}),
   picture: DS.attr('string', {defaultValue:''}),
   description: DS.attr('string', {defaultValue:''}),
+  id_name: DS.attr('string'),
   common_name: DS.attr('string'),
   full_name: DS.attr('string'),
   formal_name: DS.attr('string'),

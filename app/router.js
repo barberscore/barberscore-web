@@ -42,6 +42,8 @@ Router.map(function() {
     this.route('chart', { path: '/chart/:chart_id'}, function() {
     });
     this.route('group', { path: '/group/:group_id'}, function() {
+        this.route('role', { path: '/role/:role_id'}, function() {
+        });
     });
     this.route('organization', { path: '/organization/:organization_id'}, function() {
     });

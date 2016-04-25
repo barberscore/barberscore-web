@@ -10,6 +10,18 @@
       {{#bs-form-group}}
         {{bs-input value=model.name placeholder='Award Name'}}
       {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{#power-select
+          options=seasonChoices
+          placeholder='Season award conferred'
+          selected=model.season
+          onchange=(action (mut model.season))
+          allowClear=true
+          as |season|
+        }}
+          {{season}}
+        {{/power-select}}
+      {{/bs-form-group}}
       {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
       {{#bs-button action=(action 'cancelAward')}}Cancel{{/bs-button}}
       {{#bs-button action=(action 'deleteAward') class='pull-right btn-danger'}}Delete{{/bs-button}}

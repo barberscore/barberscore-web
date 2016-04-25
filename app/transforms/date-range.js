@@ -10,6 +10,12 @@ export default DS.Transform.extend({
           upper: value.get('upper'),
           bounds: "[)"
         };
+      } else if (value.get('lower') != null && value.get('upper')==null) {
+        return {
+          lower: value.get('lower'),
+          upper: null,
+          bounds: "[)"
+        };
       } else {
         return {};
       }

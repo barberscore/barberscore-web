@@ -24,6 +24,9 @@
             {{#bs-form-group}}
               {{men-edit men=model.men}}
             {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{select-risers model=model risers=model.risers}}
+            {{/bs-form-group}}
           {{else}}
             {{#bs-form-group}}
               {{select-tenor model=model role=model.tenor}}
@@ -56,6 +59,7 @@
         <p><strong>Director: </strong>{{model.director.person.name}}</p>
         <p><strong>Co-Director: </strong>{{model.codirector.person.name}}</p>
         <p><strong>Men on Stage: </strong>{{model.men}}</p>
+        <p><strong>Risers: </strong>{{model.risers}}</p>
       {{else}}
        <p><strong>Tenor: </strong>{{model.tenor.person.name}}</p>
        <p><strong>Lead: </strong>{{model.lead.person.name}}</p>
@@ -126,8 +130,7 @@
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
+                      <li><a href='#' {{action 'deleteSubmission' submission}}>Delete</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>

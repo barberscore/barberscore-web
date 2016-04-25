@@ -10,6 +10,7 @@ export default DS.Model.extend({
   baritone: DS.belongsTo('role', {async: true}),
   bass: DS.belongsTo('role', {async: true}),
   men: DS.attr('number'),
+  risers: DS.attr('number'),
   director: DS.belongsTo('role', {async: true}),
   codirector: DS.belongsTo('role', {async: true}),
   representing: DS.belongsTo('organization', {async: true}),
