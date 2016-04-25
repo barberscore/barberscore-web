@@ -179,7 +179,12 @@ export default Ember.Controller.extend({
     'model.contests',
     'award.is_primary'
   ),
-  organizationChoices: Ember.computed(function() {
+  allOrganizations: Ember.computed(function() {
     return this.get('store').findAll('organization');
-  })
+  }),
+  orgsSort: ['lft'],
+  organizationChoices: Ember.computed.sort(
+    'allOrganizations',
+    'orgsSort'
+  )
 });

@@ -16,7 +16,7 @@ export default DS.Model.extend({
   description: DS.attr('string'),
   short_name: DS.attr('string'),
   long_name: DS.attr('string'),
-  tree_id: DS.attr('number'),
+  lft: DS.attr('number'),
   parent: DS.belongsTo('organization', {inverse: 'children', async: true}),
   children: DS.hasMany('organization', {inverse: 'parent', async: true}),
   conventions: DS.hasMany('convention', {async: true}),

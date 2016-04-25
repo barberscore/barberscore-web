@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   allOrganizations: Ember.computed(function() {
     return this.get('store').findAll('organization');
   }),
-  orgsSort: ['-level', 'kind', 'name:asc'],
+  orgsSort: ['lft'],
   organizationChoices: Ember.computed.sort(
     'allOrganizations',
     'orgsSort'
