@@ -3,10 +3,10 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
+    saveJudge() {
       var judge = this.get('store').createRecord('judge', {
         session: this.get('model'),
-        person: this.get('person'),
+        certification: this.get('certification'),
         kind: this.get('kind'),
         category: this.get('category'),
       });
@@ -14,6 +14,9 @@ export default Ember.Component.extend({
       judge.save()
       .then(() => {
         flashMessages.success('Judge Added');
+        this.set('certification', null);
+        this.set('kind', null);
+        this.set('category', null);
       })
       .catch(() => {
         flashMessages.danger('Error');
@@ -23,7 +26,7 @@ export default Ember.Component.extend({
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
       });
-    }
+    },
   },
   judgeKind: [
     'Official',
@@ -36,7 +39,7 @@ export default Ember.Component.extend({
   ],
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('person', {'name__icontains': term, 'certifications__category': '1,2,3'})
+    this.get('store').query('certification', {'name__icontains': term})
       .then(data => resolve(data), reject);
   }
 });

@@ -1,13 +1,13 @@
-{{#bs-form formLayout="inline" action="saveRecord"}}
+{{#bs-form formLayout="inline" class='judge-width' action="saveJudge"}}
   {{#bs-form-group}}
 {{#power-select
       search=(action "searchJudge")
       placeholder="Enter Judge Name"
-      selected=person
-      onchange=(action (mut person))
-      as |person|
+      selected=certification
+      onchange=(action (mut certification))
+      as |certification|
 }}
-      {{person.name}}{{#if person.certifications}}&nbsp;[{{#each person.certifications as |cert|}}{{cert.category}},&nbsp;{{/each}}]{{/if}}
+    {{certification.name}}
 {{/power-select}}
   {{/bs-form-group}}
   &nbsp;

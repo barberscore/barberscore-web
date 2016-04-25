@@ -19,3 +19,7 @@
 .person-text {
     padding: 6px;
 }
+
+.ember-power-select-placeholder {
+  min-width: 300px;
+}

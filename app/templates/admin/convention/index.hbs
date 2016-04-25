@@ -56,11 +56,11 @@
       {{/bs-form}}
     {{else}}
 
-      <p>{{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
-      <p>{{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
-      <p>{{model.season}}</p>
-      <p>{{model.risers}}</p>
-      <p>{{date-range model.date}}</p>
+      <p><strong>DRCJ</strong>: {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
+      <p><strong>Venue</strong>: {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
+      <p><strong>Season</strong>: {{model.season}}</p>
+      <p><strong>Risers</strong>: {{model.risers}}</p>
+      <p><strong>Dates</strong>: {{date-range model.date}}</p>
       {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
     {{/if}}

@@ -7,7 +7,7 @@ export default DS.Model.extend({
   designation: DS.attr('string'),
   kind: DS.attr('judge-kind'),
   slot: DS.attr('number'),
-  person: DS.belongsTo('person', {async: true}),
+  session: DS.belongsTo('session', {async: true}),
   certification: DS.belongsTo('certification', {async: true}),
   scores: DS.hasMany('score', {async: true}),
 });
