@@ -24,13 +24,13 @@
     {{/bs-form}}
   {{else}}
       <p>
-        {{model.name}}
+        <strong>Name: </strong>{{model.name}}
       </p>
       <p>
-        {{model.location}}
+        <strong>Location: </strong>{{model.location}}
       </p>
       <p>
-        {{model.email}}
+        <strong>Email: </strong>{{model.email}}
       </p>
       {{#bs-button action=(action 'editPerson')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newPerson') class='btn-primary pull-right'}}New{{/bs-button}}

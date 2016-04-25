@@ -44,23 +44,23 @@
       {{/bs-form}}
     {{else}}
       <p>
-        {{#link-to 'admin.group' model.group}}{{model.group.name}}{{/link-to}}
+        <strong>Group: </strong>{{#link-to 'admin.group' model.group}}{{model.group.name}}{{/link-to}}
       </p>
       <p>
-        {{model.status}}
+        <strong>Status: </strong>{{model.status}}
       </p>
       <p>
-        {{model.representing.name}}
+        <strong>Representing: </strong>{{model.representing.name}}
       </p>
       {{#if (eq model.group.kind 'Chorus')}}
-        <p>{{model.director.person.name}}</p>
-        <p>{{model.codirector.person.name}}</p>
-        <p>{{model.men}}</p>
+        <p><strong>Director: </strong>{{model.director.person.name}}</p>
+        <p><strong>Co-Director: </strong>{{model.codirector.person.name}}</p>
+        <p><strong>Men on Stage: </strong>{{model.men}}</p>
       {{else}}
-       <p>{{model.tenor.person.name}}</p>
-       <p>{{model.lead.person.name}}</p>
-       <p>{{model.baritone.person.name}}</p>
-       <p>{{model.bass.person.name}}</p>
+       <p><strong>Tenor: </strong>{{model.tenor.person.name}}</p>
+       <p><strong>Lead: </strong>{{model.lead.person.name}}</p>
+       <p><strong>Baritone: </strong>{{model.baritone.person.name}}</p>
+       <p><strong>Bass: </strong>{{model.bass.person.name}}</p>
       {{/if}}
       {{#bs-button action=(action 'editPerformer')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newPerformer') class='btn-primary pull-right'}}New{{/bs-button}}
@@ -71,11 +71,11 @@
 </section>
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="2" title="Contestants"}}
+     {{#bs-accordion-item value="2" title="Contesting"}}
         <table class='table'>
           <thead>
             <tr>
-              <th>Contest</th>
+              <th>Award</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -87,7 +87,7 @@
                   {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{contestant-status model=contestant status=contestant.status}}
+                  {{contestant.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}

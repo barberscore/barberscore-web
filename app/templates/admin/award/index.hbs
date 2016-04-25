@@ -5,14 +5,30 @@
     </h4>
   </div>
   <div class='panel-body'>
-  <strong>{{model.name}}</strong>
-  <br><br>
+  {{#if isEditing}}
     {{#bs-form action="saveAward"}}
       {{#bs-form-group}}
-        {{bs-input value=model.status placeholder='Status'}}
+        {{bs-input value=model.name placeholder='Award Name'}}
       {{/bs-form-group}}
-      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelAward')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deleteAward') class='pull-right btn-danger'}}Delete{{/bs-button}}
     {{/bs-form}}
+  {{else}}
+      <p>
+        <strong>Name: </strong>{{model.name}}
+      </p>
+      <p>
+        <strong>Status: </strong>{{model.status}}
+      </p>
+      <p>
+        <strong>Kind: </strong>{{model.kind}}
+      </p>
+      <p>
+        <strong>Season: </strong>{{model.season}}
+      </p>
+      {{#bs-button action=(action 'editAward')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newAward') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
   </div>
 </section>
-

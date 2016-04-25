@@ -5,8 +5,6 @@
     </h4>
   </div>
   <div class='panel-body'>
-  <strong>{{model.name}}</strong>
-  <br><br>
   {{#if isEditing}}
     {{#bs-form action="saveOrganization"}}
       {{#bs-form-group}}
@@ -27,16 +25,16 @@
     {{/bs-form}}
   {{else}}
       <p>
-        {{model.name}}
+        <strong>Name: </strong>{{model.name}}
       </p>
       <p>
-        <a href='{{model.website}}'>{{model.website}}</a>
+        <strong>Website: </strong><a href='{{model.website}}'>{{model.website}}</a>
       </p>
       <p>
-        {{model.location}}
+        <strong>Location: </strong>{{model.location}}
       </p>
       <p>
-        {{model.email}}
+        <strong>Contact: </strong>{{model.email}}
       </p>
       {{#bs-button action=(action 'editOrganization')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newOrganization') class='btn-primary pull-right'}}New{{/bs-button}}
