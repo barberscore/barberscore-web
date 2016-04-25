@@ -50,6 +50,7 @@
           <thead>
             <tr>
               <th>Name</th>
+              <th>Season</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -59,6 +60,9 @@
               <tr>
                 <td>
                   {{#link-to 'admin.award' award}}{{award.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{award.season}}
                 </td>
                 <td>
                   {{award.status}}

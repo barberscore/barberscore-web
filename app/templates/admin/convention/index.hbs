@@ -55,7 +55,10 @@
           {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{/bs-form}}
     {{else}}
-
+      <p><strong>Name</strong>: {{model.name}}</p>
+      <p>
+        <strong>Status</strong>: {{model.status}}
+      </p>
       <p><strong>DRCJ</strong>: {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
       <p><strong>Venue</strong>: {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
       <p><strong>Season</strong>: {{model.season}}</p>

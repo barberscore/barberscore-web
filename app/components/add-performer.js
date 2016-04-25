@@ -18,8 +18,9 @@ export default Ember.Component.extend({
       });
     },
     searchGroup(term) {
+      let kind = (this.get('session.kind') === 'Chorus') ? 2 : 1;
       return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, 'group', resolve, reject, 600);
+        Ember.run.debounce(this, this._performSearch, term, 'group', kind, resolve, reject, 600);
       });
     },
     searchOrganization(term) {
@@ -28,9 +29,9 @@ export default Ember.Component.extend({
       });
     }
   },
-  _performSearch(term, model, resolve, reject) {
+  _performSearch(term, model, kind, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query(model, {'chap_name__icontains': term})
+    this.get('store').query(model, {'chap_name__icontains': term, 'kind': kind})
       .then(data => resolve(data), reject);
   }
 });

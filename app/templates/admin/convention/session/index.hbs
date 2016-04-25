@@ -35,13 +35,13 @@
       {{/bs-form}}
     {{else}}
       <p>
-        {{model.name}}
+        <strong>Name</strong>: {{model.name}}
       </p>
       <p>
-        {{model.status}}
+        <strong>Status</strong>: {{model.status}}
       </p>
       <p>
-        {{model.administrator.name}}
+        <strong>Contest Administrator</strong>: {{model.administrator.name}}
       </p>
       {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
@@ -228,7 +228,7 @@
                     </td>
                   {{/if}} --}}
                 <td>
-                  {{performer-status}}
+                  {{performer.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
