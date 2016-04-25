@@ -6,4 +6,5 @@ export default DS.Model.extend({
   status: DS.attr('certification-status'),
   category: DS.attr('certification-category'),
   person: DS.belongsTo('person', {async: true}),
+  judges: DS.hasMany('judge', {async: true}),
 });

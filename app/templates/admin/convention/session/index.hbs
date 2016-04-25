@@ -121,11 +121,11 @@
             {{#each sortedJudges as |judge|}}
               <tr>
                 <td>
-                  {{person-picture person=judge.person}}
+                  {{person-picture person=judge.certification.person}}
                 </td>
                 <td>
-                  {{#link-to 'admin.convention.session.judge' judge}}{{judge.person.name}}{{/link-to}}
-                  {{!-- {{person-modal person=judge.person}} --}}
+                  {{#link-to 'admin.convention.session.judge' judge}}{{judge.certification.person.name}}{{/link-to}}
+                  {{!-- {{person-modal person=judge.certification.person}} --}}
                 </td>
                 <td>
                   {{judge.category}}
