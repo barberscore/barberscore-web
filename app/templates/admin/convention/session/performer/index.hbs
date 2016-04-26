@@ -14,6 +14,9 @@
         {{#bs-form-group}}
           {{select-representing representing=model.representing}}
         {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{x-toggle showLabels=true offLabel='No Eval' onLabel='Eval' value=model.is_evaluation toggled=model.is_evaluation}}
+        {{/bs-form-group}}
           {{#if (eq model.group.kind 'Chorus')}}
             {{#bs-form-group}}
               {{select-director model=model role=model.director}}
@@ -54,6 +57,9 @@
       </p>
       <p>
         <strong>Representing: </strong>{{model.representing.name}}
+      </p>
+      <p>
+        <strong>Evaluation: </strong>{{#if model.is_evaluation}}Yes{{else}}No{{/if}}
       </p>
       {{#if (eq model.group.kind 'Chorus')}}
         <p><strong>Director: </strong>{{model.director.person.name}}</p>

@@ -8,7 +8,7 @@ export default Ember.Component.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       // var organization = this.get('group').organization;
       // console.log(organization);
-      let low = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]')
+      let low = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
       var role = this.get('store').createRecord('role', {
         group: this.get('group'),
         person: this.get('person'),
