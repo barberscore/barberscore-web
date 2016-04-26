@@ -14,6 +14,9 @@
           {{group-status status=model.status}}
         {{/bs-form-group}}
         {{#bs-form-group}}
+          {{select-organization organization=model.organization}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
           {{bs-input value=model.location placeholder='Location'}}
         {{/bs-form-group}}
         {{#bs-form-group}}
@@ -51,15 +54,16 @@
         {{#bs-button action=(action 'deleteGroup') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{/bs-form}}
       {{else}}
-        <p>{{model.name}}</p>
-        <p>{{model.status}}</p>
-        <p>{{model.location}}</p>
-        <p>{{model.website}}</p>
-        <p>{{model.facebook}}</p>
-        <p>{{model.twitter}}</p>
-        <p>{{model.email}}</p>
-        <p>{{model.phone}}</p>
-        <p>{{model.description}}</p>
+        <p><strong>Name: </strong>{{model.name}}</p>
+        <p><strong>Status: </strong>{{model.status}}</p>
+        <p><strong>Home: </strong>{{model.organization.name}}</p>
+        <p><strong>Location: </strong>{{model.location}}</p>
+        <p><strong>Website: </strong>{{model.website}}</p>
+        <p><strong>Facebook: </strong>{{model.facebook}}</p>
+        <p><strong>Twitter: </strong>{{model.twitter}}</p>
+        <p><strong>Email: </strong>{{model.email}}</p>
+        <p><strong>Phone: </strong>{{model.phone}}</p>
+        <p><strong>Description: </strong>{{model.description}}</p>
         {{#bs-button action=(action 'editGroup')}}Edit{{/bs-button}}
         {{#bs-button action=(action 'newGroup') class='btn-primary pull-right'}}New{{/bs-button}}
       {{/if}}
