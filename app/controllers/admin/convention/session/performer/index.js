@@ -3,6 +3,16 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   actions: {
+    previousItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur-1);
+      this.transitionToRoute('admin.convention.session.performer', newCur);
+    },
+    nextItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur+1);
+      this.transitionToRoute('admin.convention.session.performer', newCur);
+    },
     newPerformer() {
       let newPerformer = this.store.createRecord(
         'performer'
