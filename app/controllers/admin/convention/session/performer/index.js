@@ -65,5 +65,19 @@ export default Ember.Controller.extend({
     deleteSubmission(submission) {
       submission.destroyRecord();
     },
+    contestantSortProperties: [
+      'award.organization',
+      'award.is_primary:desc',
+      'award.is_novice:desc',
+      'award.is_improved:asc',
+      'award.name',
+      'award.kind',
+      'award.size',
+      'award.scope'
+    ],
+    sortedContestants: Ember.computed.sort(
+      'model.contestants',
+      'contestantSortProperties'
+    ),
   },
 });

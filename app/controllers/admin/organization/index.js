@@ -41,7 +41,6 @@ export default Ember.Controller.extend({
     },
   },
   awardSort: [
-    'level',
     'organization',
     'is_primary:desc',
     'is_novice:desc',

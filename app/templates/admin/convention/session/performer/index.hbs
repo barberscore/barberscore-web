@@ -98,7 +98,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.contestants as |contestant|}}
+            {{#each sortedContestants as |contestant|}}
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
