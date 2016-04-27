@@ -11,7 +11,8 @@ export default Ember.Component.extend({
       });
       contest.save()
       .then(() => {
-        flashMessages.success('Contest Added');
+        // flashMessages.success('Contest Added');
+        contest.set('award', null);
       })
       .catch(() => {
         flashMessages.danger('Error');

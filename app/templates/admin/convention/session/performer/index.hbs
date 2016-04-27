@@ -104,7 +104,7 @@
                   {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
+                  {{#if contestant.contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
                 </td>
                 <td>
                   {{contestant.status}}
