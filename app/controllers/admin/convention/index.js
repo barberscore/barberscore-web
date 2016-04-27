@@ -74,6 +74,11 @@ export default Ember.Controller.extend({
     'model.sessions',
     'sessionSortProperties'
   ),
+  participantSortProperties: ['organization.lft:asc',],
+  sortedParticipants: Ember.computed.sort(
+    'model.participants',
+    'participantSortProperties'
+  ),
   riserChoices: [
     3,4,5,6,7,8,9,10,11,12,13
   ]
