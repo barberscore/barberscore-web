@@ -84,7 +84,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.participants as |participant|}}
+            {{#each sortedParticipants as |participant|}}
               <tr>
                 <td>
                   {{#link-to 'admin.organization' participant.organization}}{{participant.organization.name}}{{/link-to}}

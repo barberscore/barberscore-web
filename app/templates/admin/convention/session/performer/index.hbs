@@ -92,6 +92,7 @@
           <thead>
             <tr>
               <th>Award</th>
+              <th>Qualifier</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -101,6 +102,9 @@
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
                 </td>
                 <td>
                   {{contestant.status}}

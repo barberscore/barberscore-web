@@ -6,4 +6,9 @@ export default Ember.Controller.extend({
     'model.sessions',
     'sessionSortProperties'
   ),
+  participantSortProperties: ['lft:asc',],
+  sortedParticipants: Ember.computed.sort(
+    'model.participants',
+    'participantSortProperties'
+  ),
 });

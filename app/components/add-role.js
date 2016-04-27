@@ -1,22 +1,15 @@
 import Ember from 'ember';
-import moment from 'moment';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
+    saveRole() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      // var organization = this.get('group').organization;
-      // console.log(organization);
-      let low = moment().format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
       var role = this.get('store').createRecord('role', {
         group: this.get('group'),
         person: this.get('person'),
         part: this.get('part'),
-        date: {
-          lower: low,
-          upper: null
-        }
+        date: {},
       });
       role.save()
       .then(() => {
