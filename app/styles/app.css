@@ -23,3 +23,7 @@
 .ember-power-select-placeholder {
   min-width: 200px;
 }
+
+.judge-width {
+  min-width: 300px;
+}

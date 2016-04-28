@@ -1,8 +1,10 @@
-{{#bs-form formLayout="inline" class='judge-width' action="saveJudge"}}
+{{#bs-form formLayout="inline" action="saveJudge"}}
   {{#bs-form-group}}
     {{#power-select
           search=(action "searchJudge")
           placeholder="Enter Judge Name"
+          class='judge-width'
+          allowClear=true
           selected=certification
           onchange=(action (mut certification))
           as |certification|
