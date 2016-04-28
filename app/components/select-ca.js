@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   },
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('certification', {'name__icontains': term})
+    this.get('store').query('certification', {'name__icontains': term, 'category': '0'})
       .then(data => resolve(data), reject);
   },
 });
