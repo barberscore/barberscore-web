@@ -13,10 +13,7 @@ export default Ember.Component.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       judge.save()
       .then(() => {
-        flashMessages.success('Judge Added');
         this.set('certification', null);
-        this.set('kind', null);
-        this.set('category', null);
       })
       .catch(() => {
         flashMessages.danger('Error');
