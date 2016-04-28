@@ -27,7 +27,10 @@
               applyAction=(action 'saveDate')
           }} --}}
         {{#bs-form-group}}
-          {{select-ca person=model.administrator}}
+          {{select-ca certification=model.ca}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{select-aca certification=model.aca}}
         {{/bs-form-group}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
         {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
@@ -41,7 +44,10 @@
         <strong>Status</strong>: {{model.status}}
       </p>
       <p>
-        <strong>Contest Administrator</strong>: {{model.administrator.name}}
+        <strong>Contest Administrator</strong>: {{model.ca.person.name}}
+      </p>
+      <p>
+        <strong>ACA</strong>: {{model.aca.person.name}}
       </p>
       {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
@@ -60,7 +66,7 @@
 <section>
  {{#bs-accordion selected=selected collapsed=collapsed}}
      <h4>Pre-Session</h4>
-     {{#bs-accordion-item value="6" title="Assistants"}}
+     {{!-- {{#bs-accordion-item value="6" title="Assistants"}}
         <table class='table'>
           <thead>
             <tr>
@@ -100,11 +106,10 @@
                 </td>
               </tr>
             {{/each}}
-            {{!-- {{add-judge model=model}} --}}
           </tbody>
         </table>
         {{add-assistant session=model}}
-     {{/bs-accordion-item}}
+     {{/bs-accordion-item}} --}}
      {{#bs-accordion-item value="3" title="Judges"}}
         <table class='table'>
           <thead>
@@ -124,8 +129,7 @@
                   {{person-picture person=judge.certification.person}}
                 </td>
                 <td>
-                  {{#link-to 'admin.convention.session.judge' judge}}{{judge.certification.person.name}}{{/link-to}}
-                  {{!-- {{person-modal person=judge.certification.person}} --}}
+                  {{#link-to 'admin.convention.session.judge' judge.id}}{{judge.certification.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{judge.category}}

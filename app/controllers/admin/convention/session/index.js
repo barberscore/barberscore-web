@@ -33,7 +33,6 @@ export default Ember.Controller.extend({
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.transitionToRoute('admin.session', this.model);
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })
@@ -170,7 +169,7 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
-  judgeSortProperties: ['kind', 'category', 'slot',],
+  judgeSortProperties: ['kind', 'category.id', 'slot',],
   sortedJudges: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'
