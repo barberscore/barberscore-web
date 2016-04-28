@@ -1,39 +1,14 @@
 {{#bs-form formLayout="inline" class='judge-width' action="saveJudge"}}
   {{#bs-form-group}}
-{{#power-select
-      search=(action "searchJudge")
-      placeholder="Enter Judge Name"
-      selected=certification
-      onchange=(action (mut certification))
-      as |certification|
-}}
-    {{certification.name}}
-{{/power-select}}
-  {{/bs-form-group}}
-  &nbsp;
-  {{#bs-form-group}}
     {{#power-select
-      options=judgeCategory
-      placeholder='Select Category'
-      selected=category
-      onchange=(action (mut category))
-      as |category|
+          search=(action "searchJudge")
+          placeholder="Enter Judge Name"
+          selected=certification
+          onchange=(action (mut certification))
+          as |certification|
     }}
-      {{category}}
+        {{certification.name}}
     {{/power-select}}
   {{/bs-form-group}}
-  &nbsp;
-  {{#bs-form-group}}
-    {{#power-select
-      options=judgeKind
-      placeholder='Select Kind'
-      selected=kind
-      onchange=(action (mut kind))
-      as |kind|
-    }}
-      {{kind}}
-    {{/power-select}}
-  {{/bs-form-group}}
-  &nbsp;
   {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}
 {{/bs-form}}

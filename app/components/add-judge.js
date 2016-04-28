@@ -7,8 +7,8 @@ export default Ember.Component.extend({
       var judge = this.get('store').createRecord('judge', {
         session: this.get('model'),
         certification: this.get('certification'),
-        kind: this.get('kind'),
-        category: this.get('category'),
+        kind: "Official",
+        category: this.get('certification.category'),
       });
       const flashMessages = Ember.get(this, 'flashMessages');
       judge.save()
