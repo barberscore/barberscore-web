@@ -46,7 +46,7 @@
     "ember-load-initializers": "0.5.x",
     "ember-moment": "6.0.x",
     "ember-power-select": "0.8.x",
-    "ember-power-select-with-create": "https://github.com/cibernox/ember-power-select-with-create.git#2799126a9da13fbc3108d92c8592e6dfb2796f29",
+    "ember-power-select-with-create": "0.1.x",
     "ember-resolver": "2.0.x",
     "ember-simple-auth": "1.0.x",
     "ember-simple-auth-token": "1.0.x",

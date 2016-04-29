@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
@@ -31,4 +32,7 @@ export default DS.Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
   scratch: memberAction({path: 'scratch'}),
+  soa: Ember.computed(function() {
+    return this.get('session.rounds');
+  }),
 });

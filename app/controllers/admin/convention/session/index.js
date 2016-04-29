@@ -149,6 +149,30 @@ export default Ember.Controller.extend({
     letsGo() {
       this.toggleProperty('isRaw');
     },
+    editOrder() {
+      this.set('isEditing', true);
+    },
+    saveOrder() {
+      let children = this.get('model.performers');
+      children.forEach(function(item) {
+        item.save();
+      });
+      this.set('isEditing', false);
+    },
+    cancelOrder() {
+      let children = this.get('model.performers');
+      children.forEach(function(item) {
+        item.rollbackAttributes();
+      });
+      this.set('isEditing', false);
+    },
+    reorderItems(itemModels) {
+      itemModels.forEach(function(item, index) {
+        let soa = item.get('slot');
+        console.log('Slot %@: %@ %@'.fmt(index+1, soa));
+        item.set('soa', index+1);
+      });
+    }
   },
 
   performerSortProperties: ['group.chap_name:asc',],

@@ -201,12 +201,6 @@
           <thead>
             <tr>
               <th class='col-md-4'>Group</th>
-              {{!-- <th class='col-md-1'>Organization</th>
-              {{#if (eq model.kind 'Chorus')}}
-              <th>Director</th>
-              <th>CoDirector</th>
-              <th>Men</th>
-              {{/if}} --}}
               <th class='col-md-1'>Status</th>
               <th class='col-md-1'>Actions</th>
             </tr>
@@ -217,22 +211,8 @@
                 <td>
                   {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}
                 </td>
-                {{!-- <td>{{model.organzationChoices}}
-                  {{select-organization model=performer organization=performer.organization}}
-                </td>
-                  {{#if (eq performer.group.kind 'Chorus')}}
-                    <td>
-                      {{select-director model=performer director=performer.director}}
-                    </td>
-                    <td>
-                      {{select-codirector model=performer director=performer.codirector}}
-                    </td>
-                    <td>
-                      {{men-edit model=performer men=performer.men}}
-                    </td>
-                  {{/if}} --}}
                 <td>
-                  {{performer.status}}
+                  {{performer.status}} -> {{#each performer.soa as |f|}}{{f}}{{/each}}
                 </td>
                 <td>
                   {{#bs-dropdown}}
