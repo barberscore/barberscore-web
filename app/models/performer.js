@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
@@ -10,6 +9,7 @@ export default DS.Model.extend({
   lead: DS.belongsTo('role', {async: true}),
   baritone: DS.belongsTo('role', {async: true}),
   bass: DS.belongsTo('role', {async: true}),
+  soa: DS.attr('number'),
   men: DS.attr('number'),
   risers: DS.attr('number'),
   is_evaluation: DS.attr('boolean'),
@@ -32,7 +32,4 @@ export default DS.Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
   scratch: memberAction({path: 'scratch'}),
-  soa: Ember.computed(function() {
-    return this.get('session.rounds');
-  }),
 });

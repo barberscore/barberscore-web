@@ -197,37 +197,44 @@
         {{add-award session=model}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="4" title="Entrants"}}
-        <table class='table'>
-          <thead>
+        <div class='table-responsive'>
+          {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+            <thead>
             <tr>
-              <th class='col-md-4'>Group</th>
-              <th class='col-md-1'>Status</th>
-              <th class='col-md-1'>Actions</th>
+              <th>Slot</th>
+              <th>Performer</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Change</th>
             </tr>
-          </thead>
-          <tbody>
-            {{#each sortedPerformers as |performer|}}
-              <tr>
-                <td>
-                  {{#link-to 'admin.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}
-                </td>
-                <td>
-                  {{performer.status}} -> {{#each performer.soa as |f|}}{{f}}{{/each}}
-                </td>
+            </thead>
+            <tbody>
+            {{#each sortedPerformers as |item|}}
+              {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                <td>{{item.soa}}</td>
+                <td>{{#link-to 'admin.convention.session.performer' item}}{{item.group.chap_name}}{{/link-to}}</td>
+                <td>{{item.status}}</td>
                 <td>
                   {{#bs-dropdown}}
                     {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                     {{#bs-dropdown-menu}}
-                      <li><a href='#' {{action 'addPerformance' performer}}>Add Performance</a></li>
-                      <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
-                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                      <li><a href='#' {{action 'scratch' item}}>Scratch</a></li>
+                      <li><a href='#' {{action 'deletePerformance' item}}>Delete</a></li>
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
-              </tr>
+                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
+              {{/sortable-item}}
             {{/each}}
-          </tbody>
-        </table>
+            </tbody>
+            {{/sortable-group}}
+            {{#if isEditing}}
+              {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
+              {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
+            {{else}}
+              {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
+            {{/if}}
+          </div>
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="2" title="Schedule"}}
