@@ -168,8 +168,6 @@ export default Ember.Controller.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        let soa = item.get('slot');
-        console.log('Slot %@: %@ %@'.fmt(index+1, soa));
         item.set('soa', index+1);
       });
     }
