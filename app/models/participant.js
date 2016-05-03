@@ -5,4 +5,5 @@ export default DS.Model.extend({
   status: DS.attr('participant-status'),
   convention: DS.belongsTo('convention', {async: true}),
   organization: DS.belongsTo('organization', {async: true}),
+  is_qualifier: DS.attr('boolean'),
 });

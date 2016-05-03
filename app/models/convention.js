@@ -11,6 +11,7 @@ export default DS.Model.extend({
   year: DS.attr('number'),
   date: DS.attr('date-range'),
   venue: DS.belongsTo('venue', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
   drcj: DS.belongsTo('person', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
   participants: DS.hasMany('participant', {async: true}),

@@ -21,6 +21,8 @@ export default Ember.Component.extend({
   },
   allAwards: Ember.computed(function(){
     return this.get('store').findAll('award');
+    // var awards = this.get('
+
   }),
   filteredAwards: Ember.computed.filterBy(
     'allAwards',

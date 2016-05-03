@@ -19,7 +19,13 @@
           {{select-convention-kind kind=model.kind}}
         {{/bs-form-group}} --}}
         {{#bs-form-group}}
+          {{select-organization organization=model.organization}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
           {{select-drcj person=model.drcj}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{convention-kind kind=model.kind}}
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{select-venue venue=model.venue}}
@@ -59,7 +65,9 @@
       <p>
         <strong>Status</strong>: {{model.status}}
       </p>
+      <p><strong>Host</strong>: {{#link-to 'admin.organization' model.organization}}{{model.organization.name}}{{/link-to}}</p>
       <p><strong>DRCJ</strong>: {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
+      <p><strong>Kind</strong>: {{model.kind}}</p>
       <p><strong>Venue</strong>: {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
       <p><strong>Season</strong>: {{model.season}}</p>
       <p><strong>Risers</strong>: {{model.risers}}</p>
@@ -79,7 +87,7 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Kind</th>
+              <th>Qualifier</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -87,11 +95,10 @@
             {{#each sortedParticipants as |participant|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.organization' participant.organization}}{{participant.organization.name}}{{/link-to}}
-                  {{!-- {{participant.organization.name}} --}}
+                  {{#link-to 'admin.convention.participant' participant}}{{participant.organization.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{participant.organization.kind}}
+                  {{yn-boolean participant.is_qualifier}}
                 </td>
                 <td>
                   {{#bs-dropdown}}

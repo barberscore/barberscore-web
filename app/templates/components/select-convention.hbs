@@ -1,0 +1,11 @@
+{{#power-select
+  options=conventionChoices
+  selected=convention
+  allowClear=true
+  placeholder='Select Convention'
+  searchField='name'
+  onchange=(action (mut convention))
+  as |convention|
+}}
+  {{convention.name}}
+{{/power-select}}
