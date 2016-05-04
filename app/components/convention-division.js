@@ -1,13 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  conventionKind: [
-
-
-  "International",
-  "District",
-  // 'Division,
-  // 'District and Division,
+  conventionDivision: [
   "EVG Division I",
   "EVG Division II",
   "EVG Division III",

@@ -30,11 +30,14 @@
           {{select-organization organization=model.organization}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{select-drcj person=model.drcj}}
+          {{convention-division kind=model.division}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{convention-kind kind=model.kind}}
+          {{select-drcj person=model.drcj}}
         {{/bs-form-group}}
+        {{!-- {{#bs-form-group}}
+          {{convention-kind kind=model.kind}}
+        {{/bs-form-group}} --}}
         {{#bs-form-group}}
           {{select-venue venue=model.venue}}
         {{/bs-form-group}}
@@ -64,9 +67,12 @@
               applyAction=(action 'updateDate')
           }}
         {{/bs-form-group}}
-          {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-          {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
-          {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{#bs-form-group}}
+          {{x-toggle showLabels=true offLabel='No Prelims' onLabel='Prelims' value=model.is_prelims toggled=model.is_prelims}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{/bs-form}}
     {{else}}
       <p><strong>Name</strong>: {{model.name}}</p>
@@ -74,12 +80,14 @@
         <strong>Status</strong>: {{model.status}}
       </p>
       <p><strong>Host</strong>: {{#link-to 'admin.organization' model.organization}}{{model.organization.name}}{{/link-to}}</p>
+      <p><strong>Sub</strong>: {{#if model.division}}{{model.division}}{{else}}(None){{/if}}</p>
       <p><strong>DRCJ</strong>: {{#link-to 'admin.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
-      <p><strong>Kind</strong>: {{model.kind}}</p>
+      {{!-- <p><strong>Kind</strong>: {{model.kind}}</p> --}}
       <p><strong>Venue</strong>: {{#link-to 'admin.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
       <p><strong>Season</strong>: {{model.season}}</p>
       <p><strong>Risers</strong>: {{model.risers}}</p>
       <p><strong>Dates</strong>: {{date-range model.date}}</p>
+      <p><strong>Prelims</strong>: {{yn-boolean model.is_prelims}}</p>
       {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
     {{/if}}
@@ -90,7 +98,7 @@
 
 <section>
  {{#bs-accordion selected=selected}}
-     {{#bs-accordion-item value="1" title="District/Divisions"}}
+     {{!-- {{#bs-accordion-item value="1" title="District/Divisions"}}
         <table class='table'>
           <thead>
             <tr>
@@ -121,7 +129,7 @@
           </tbody>
         </table>
         {{add-participant convention=model}}
-     {{/bs-accordion-item}}
+     {{/bs-accordion-item}} --}}
      {{#bs-accordion-item value="2" title="Sessions"}}
         <table class='table'>
           <thead>
