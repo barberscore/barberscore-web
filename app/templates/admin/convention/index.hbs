@@ -6,6 +6,14 @@
 </div>
 
 
+  <div>
+<ul class='list-inline'>
+  <li>{{#bs-button disabled=false action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
+  <li>{{#bs-button disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+</ul>
+  </div>
+
+
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h4>

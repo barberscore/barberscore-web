@@ -3,6 +3,16 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   actions: {
+    previousItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur-1);
+      this.transitionToRoute('admin.convention', newCur);
+    },
+    nextItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur+1);
+      this.transitionToRoute('admin.convention', newCur);
+    },
     newConvention() {
       let newConvention = this.store.createRecord(
         'convention'
@@ -81,5 +91,16 @@ export default Ember.Controller.extend({
   ),
   riserChoices: [
     0,3,4,5,6,7,8,9,10,11,12,13
-  ]
+  ],
+  conventionSort: [
+    'date',
+  ],
+  store: Ember.inject.service(),
+  parentConventions: Ember.computed(function(){
+    return this.store.query('convention', {year: 2016});
+  }),
+  sortedItems: Ember.computed.sort(
+    'parentConventions',
+    'conventionSort'
+  ),
 });
