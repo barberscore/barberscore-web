@@ -170,7 +170,7 @@
             {{#each sortedContests as |contest|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.convention.session.contest' contest}}{{contest.award.name}}{{/link-to}}
+                  {{#link-to 'admin.convention.session.contest' contest}}{{contest.name}}{{/link-to}}
                 </td>
                 <td>
                   {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
