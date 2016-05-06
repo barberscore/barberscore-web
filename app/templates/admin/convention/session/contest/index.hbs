@@ -1,3 +1,12 @@
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session.contest' model}}{{model.name}}{{/link-to}}</li>
+    {{!-- <li class='active'>{{model.kind}}</li> --}}
+  </ol>
+</div>
 <section class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
@@ -9,8 +18,8 @@
   </div>
 </section>
 <section>
- {{#bs-accordion}}
-     {{#bs-accordion-item value="2" title="Contestants"}}
+ {{#bs-accordion selected=2}}
+     {{#bs-accordion-item value="2" title="Contestants" collapsed=false}}
         <div class='table-responsive'>
         <table class='table'>
           <thead>

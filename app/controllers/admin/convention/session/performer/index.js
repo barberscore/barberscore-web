@@ -67,14 +67,14 @@ export default Ember.Controller.extend({
     },
   },
   contestantSortProperties: [
-    'award.organization',
-    'award.is_primary:desc',
-    'award.is_novice:desc',
-    'award.is_improved:asc',
-    'award.name',
-    'award.kind',
-    'award.size',
-    'award.scope'
+    'contest.is_qualifier:asc',
+    'contest.award.level:desc',
+    'contest.award.organization.name:asc',
+    'contest.award.is_primary:desc',
+    'contest.award.kind:asc',
+    'contest.award.is_improved:asc',
+    'contest.award.size:asc',
+    'contest.award.scope:asc',
   ],
   sortedContestants: Ember.computed.sort(
     'model.contestants',

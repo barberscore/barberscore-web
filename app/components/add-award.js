@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
+    saveAward() {
       const flashMessages = Ember.get(this, 'flashMessages');
       var contest = this.get('store').createRecord('contest', {
         session: this.get('session'),
@@ -12,7 +12,7 @@ export default Ember.Component.extend({
       contest.save()
       .then(() => {
         // flashMessages.success('Contest Added');
-        contest.set('award', null);
+        this.set('award', null);
       })
       .catch(() => {
         flashMessages.danger('Error');
