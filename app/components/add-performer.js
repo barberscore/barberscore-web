@@ -11,6 +11,7 @@ export default Ember.Component.extend({
       });
       performer.save()
       .then(() => {
+        this.set('group', null);
         // flashMessages.success('Success');
       })
       .catch(() => {

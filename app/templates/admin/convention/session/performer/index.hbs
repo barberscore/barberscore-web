@@ -1,4 +1,13 @@
-  <div>
+<div>
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session.performer' model}}{{model.name}}{{/link-to}}</li>
+    {{!-- <li class='active'>{{model.kind}}</li> --}}
+  </ol>
+</div>
+<div>
 <ul class='list-inline'>
   <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
   <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
