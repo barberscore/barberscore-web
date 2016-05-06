@@ -40,9 +40,6 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
-    addPerformance(performance) {
-      performance.add_performance();
-    },
     scratchPerformer(performer) {
       performer.scratch();
     },
