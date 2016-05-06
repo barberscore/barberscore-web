@@ -7,7 +7,7 @@ export default DS.Transform.extend({
       2: 'Chorus',
       10: 'Seniors',
       20: 'Collegiate',
-      30: 'Novice',
+      30: 'Youth',
     };
     return map[serialized];
   },
@@ -18,7 +18,7 @@ export default DS.Transform.extend({
       'Chorus': 2,
       'Seniors': 10,
       'Collegiate': 20,
-      'Novice': 30,
+      'Youth': 30,
     };
     return map[deserialized];
   }
