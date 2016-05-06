@@ -179,8 +179,9 @@ export default Ember.Controller.extend({
     'performerSortProperties'
   ),
   contestSortProperties: [
-    'award.is_qualifier:asc',
-    'award.organization:asc',
+    'is_qualifier:asc',
+    'award.level:desc',
+    'award.organization.name:asc',
     'award.is_primary:desc',
     'award.kind:asc',
     'award.is_improved:asc',
