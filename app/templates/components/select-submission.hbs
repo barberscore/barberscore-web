@@ -1,10 +1,11 @@
-{{#power-select
+{{#power-select-with-create
       options=submissionChoices
       selected=submission
       placeholder="Select Song"
       onchange=(action (mut submission))
+      oncreate=(action "createSubmission" term)
       allowClear=true
-      as |submission|
+      as |submission term|
 }}
   {{submission.chart.name}}
-{{/power-select}}
+{{/power-select-with-create}}

@@ -34,7 +34,7 @@
         Resort
       {{/bs-button}} --}}
       <p>
-        {{model.mt.name}}
+      {{select-mt mt=model.mt class='form-group'}}
       </p>
       {{#bs-button action=(action 'startRound') class='form-group'}}
         Start
