@@ -12,7 +12,24 @@ export default Ember.Controller.extend({
     'model.songs',
     'songSortProperties'
   ),
+  performanceSortProperties: [
+    'slot',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.round.performances',
+    'performanceSortProperties'
+  ),
   actions: {
+    previousItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur-1);
+      this.transitionToRoute('admin.convention.session.round.performance', newCur);
+    },
+    nextItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur+1);
+      this.transitionToRoute('admin.convention.session.round.performance', newCur);
+    },
     saveSong(song, submission) {
       song.set('chart', submission.get('chart'));
       song.save();

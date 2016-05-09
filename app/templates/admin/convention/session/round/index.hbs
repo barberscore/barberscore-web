@@ -62,7 +62,7 @@
             {{#each sortedPerformances as |item|}}
               {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
                 <td>{{item.slot}}</td>
-                <td>{{item.performer.group.name}}</td>
+                <td>{{#link-to 'admin.convention.session.round.performance' item}}{{item.performer.group.name}}{{/link-to}}</td>
                 <td>{{item.status}}</td>
                 <td>
                   {{#bs-dropdown}}
