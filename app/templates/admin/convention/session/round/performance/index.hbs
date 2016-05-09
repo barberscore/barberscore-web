@@ -26,20 +26,14 @@
     </h4>
   </div>
   <div class='panel-body'>
-  <ul class='list-unstyled'>
-      <li>Scheduled: {{datetime-range model.scheduled}}</li>
-      <li>Actual: {{datetime-range model.actual}}</li>
-      <li>{{performance-status model=model status=model.status class='form-group'}}</li>
+      {{!-- <li>Scheduled: {{datetime-range model.scheduled}}</li> --}}
+      {{!-- <li>Actual: {{datetime-range model.actual}}</li> --}}
+      <p>{{performance-status model=model status=model.status class='form-group'}}</p>
+    <ul class='list-inline'>
+      <li>{{#bs-button action=(action 'startPerformance') class='form-group'}}Start{{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'finishPerformance') class='form-group'}}Finish{{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'completePerformance') class='form-group'}}Complete{{/bs-button}}</li>
     </ul>
-      {{#bs-button action=(action 'startPerformance') class='form-group'}}
-        Start
-      {{/bs-button}}
-      {{#bs-button action=(action 'finishPerformance') class='form-group'}}
-        Finish
-      {{/bs-button}}
-      {{#bs-button action=(action 'completePerformance') class='form-group'}}
-        Complete
-      {{/bs-button}}
   </div>
 </section>
 <br><br><br>
@@ -63,16 +57,7 @@
     {{#each sortedSongs as |song|}}
       <tr>
         <td>
-    {{#power-select
-        options=model.performer.submissions
-        selectedItemComponent="selected-chart"
-        selected=song.chart
-        onchange=(action 'saveSong' song)
-        as |submission|
-    }}
-      {{submission.chart.name}}
-    {{/power-select}}
-
+          {{select-submission model=model submission=song.submission}}
         </td>
         <td class='text-right'>
           {{song.musPointsSum}}
@@ -109,6 +94,8 @@
     </tr>
   </tfoot>
 </table>
+  <p>{{#bs-button action=(action 'savePerformance') class='form-group btn-primary'}}Save Song Titles{{/bs-button}}</p>
+
 </div>
 <div class='table-responsive'>
 <table class='table'>
@@ -120,12 +107,13 @@
   <th>Actions</th>
   </tr>
   </thead>
+
   <tbody>
   {{#each sortedJudges as |judge|}}
     <tr>
     <td>
-      {{judge.kind}} {{judge.category}} {{judge.slot}}<br>
-      {{judge.person.name}}
+      {{judge.kind}} {{judge.category}}<br>
+      {{judge.certification.person.name}}
     </td>
     <td>
     {{#each (sort-by 'song.order' judge.scores) as |score|}}

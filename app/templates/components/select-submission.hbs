@@ -1,0 +1,10 @@
+{{#power-select
+      options=submissionChoices
+      selected=submission
+      placeholder="Select Song"
+      onchange=(action (mut submission))
+      allowClear=true
+      as |submission|
+}}
+  {{submission.chart.name}}
+{{/power-select}}

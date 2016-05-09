@@ -30,6 +30,15 @@ export default Ember.Controller.extend({
       let newCur = sortedItems.objectAt(nowCur+1);
       this.transitionToRoute('admin.convention.session.round.performance', newCur);
     },
+    savePerformance() {
+      this.model.save()
+      .then(response => {
+        response.get('songs').invoke('save');
+      })
+      .catch(response => {
+        console.log(response);
+      });
+    },
     saveSong(song, submission) {
       song.set('chart', submission.get('chart'));
       song.save();

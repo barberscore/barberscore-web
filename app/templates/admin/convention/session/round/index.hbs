@@ -45,8 +45,8 @@
   </div>
 </section>
 <section>
- {{#bs-accordion selected=selected collapsed=collapsed}}
-     {{#bs-accordion-item value="2" title="Performances"}}
+ {{#bs-accordion}}
+     {{#bs-accordion-item value="2" title="Performances" collapsed=false}}
         <div class='table-responsive'>
           {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
             <thead>
