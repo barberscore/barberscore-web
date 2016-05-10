@@ -9,6 +9,7 @@ export default DS.Model.extend({
   rank: DS.attr('number'),
   scheduled: DS.attr('date-range'),
   actual: DS.attr('date-range'),
+  is_advancing: DS.attr('boolean'),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),
   sng_points: DS.attr('number'),

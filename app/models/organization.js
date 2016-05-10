@@ -7,6 +7,7 @@ export default DS.Model.extend({
   kind: DS.attr('organization-kind'),
   date: DS.attr('date-range'),
   location: DS.attr('string'),
+  spots: DS.attr('number'),
   website: DS.attr('string'),
   facebook: DS.attr('string'),
   twitter: DS.attr('string'),
