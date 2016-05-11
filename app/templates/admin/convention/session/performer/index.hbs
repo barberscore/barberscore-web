@@ -2,8 +2,8 @@
   <ol class='breadcrumb'>
     <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
     <li>{{#link-to 'admin.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
-    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.name}}{{/link-to}}</li>
-    <li>{{#link-to 'admin.convention.session.performer' model}}{{model.name}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li>{{#link-to 'admin.convention.session.performer' model}}{{model.group.name}}{{/link-to}}</li>
     {{!-- <li class='active'>{{model.kind}}</li> --}}
   </ol>
 </div>
