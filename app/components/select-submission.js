@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   sortSubmissions: [
-    'name:asc',
+    'chart.name:asc',
   ],
   submissionChoices: Ember.computed.sort(
     'model.performer.submissions',

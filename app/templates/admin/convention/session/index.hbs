@@ -237,6 +237,8 @@
           </div>
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
+     <br><br>
+     <h4>Session</h4>
      {{#bs-accordion-item value="2" title="Schedule"}}
         <table class='table'>
           <thead>
@@ -268,8 +270,6 @@
           </tbody>
         </table>
      {{/bs-accordion-item}}
-     <br><br>
-     <h4>Peri-Session</h4>
      {{#bs-accordion-item value="7" title="Score"}}
        <p>
        {{#link-to 'admin.convention.session.cursor' model.cursor}}Score Performances{{/link-to}}
