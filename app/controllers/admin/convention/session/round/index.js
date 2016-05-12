@@ -10,8 +10,8 @@ export default Ember.Controller.extend({
   isEditing: false,
   isRaw: false,
   actions: {
-    sortBy(sortProps) {
-      this.set('performanceSortProperties', [sortProps]);
+    sortBy(performanceSortProperties) {
+      this.set('performanceSortProperties', [performanceSortProperties]);
     },
     editOrder() {
       this.set('isEditing', true);
@@ -41,9 +41,6 @@ export default Ember.Controller.extend({
       this.model.set('date.lower', start);
       this.model.set('date.upper', end);
       this.model.save();
-    },
-    sortBy: function(performanceSortProperties) {
-      this.set('performanceSortProperties', [performanceSortProperties]);
     },
     letsGo() {
       this.toggleProperty('isRaw');
