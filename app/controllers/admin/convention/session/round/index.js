@@ -10,6 +10,9 @@ export default Ember.Controller.extend({
   isEditing: false,
   isRaw: false,
   actions: {
+    sortBy(sortProps) {
+      this.set('performanceSortProperties', [sortProps]);
+    },
     editOrder() {
       this.set('isEditing', true);
     },
