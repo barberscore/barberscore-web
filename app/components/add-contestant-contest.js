@@ -12,6 +12,7 @@ export default Ember.Component.extend({
       contestant.save()
       .then(() => {
         // flashMessages.success('Success');
+        this.set('contest', null);
       })
       .catch(() => {
         flashMessages.danger('Error');
