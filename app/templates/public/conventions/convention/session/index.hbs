@@ -1,7 +1,7 @@
 <div>
   <ol class='breadcrumb'>
-    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
-    <li>{{#link-to 'conventions.convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'public.conventions.convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>
@@ -153,7 +153,7 @@
         </table> --}}
         <ul class='list-inline'>
           {{#each model.rounds as |round|}}
-            <li>{{#link-to 'conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+            <li>{{#link-to 'public.conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
           {{/each}}
         </ul>
      {{/bs-accordion-item}}

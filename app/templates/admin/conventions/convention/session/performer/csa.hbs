@@ -7,4 +7,23 @@
       <li class='active'>{{model.group.name}}</li>
     </ol>
 </section>
-<p>Contestant Scoring Analysis</p>
+
+<section>
+<h3>
+  Contestant Scoring Analysis
+</h3>
+<h3>
+  {{model.group.name}}
+</h3>
+<h4>
+    {{model.session.convention.name}}, {{date-range model.session.convention.date}}
+</h4>
+</section>
+<section>
+{{#each model.contestants as |contestant|}}
+  <p>{{contestant.contest.award.name}}: {{contestant.rank}}</p>
+{{/each}}
+{{#each model.contestants as |contestant|}}
+  <p>{{contestant.contest.award.name}}: {{contestant.rank}}</p>
+{{/each}}
+</section>

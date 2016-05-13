@@ -1,6 +1,6 @@
 <div>
   <ol class='breadcrumb'>
-    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
   </ol>
 </div>
 <div>
@@ -15,7 +15,7 @@
     <tbody>
       {{#each model as |convention|}}
         <tr>
-        <td>{{#link-to 'conventions.convention' convention}}{{convention.name}}{{/link-to}}</td>
+        <td>{{#link-to 'public.conventions.convention' convention}}{{convention.name}}{{/link-to}}</td>
         <td>{{venue-short convention.venue}}</td>
         <td>{{date-range convention.date}}</td>
         </tr>

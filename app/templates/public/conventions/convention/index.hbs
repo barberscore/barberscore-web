@@ -1,6 +1,6 @@
 <div>
   <ol class='breadcrumb'>
-    <li>{{#link-to 'conventions'}}Conventions{{/link-to}}</li>
+    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
     <li class='active'>{{model.name}}</li>
   </ol>
 </div>
@@ -38,7 +38,7 @@
             {{#each sortedSessions as |session|}}
               <tr>
                 <td>
-                  {{#link-to 'conventions.convention.session' session}}{{session.kind}}{{/link-to}}
+                  {{#link-to 'public.conventions.convention.session' session}}{{session.kind}}{{/link-to}}
                 </td>
               </tr>
             {{/each}}
