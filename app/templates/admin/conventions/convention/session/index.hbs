@@ -1,0 +1,264 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions'}}Conventions{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions.convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
+      <li class='active'>{{model.kind}} Session</li>
+    </ol>
+</section>
+
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Session Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+  {{#if isEditing}}
+      {{#bs-form action='saveSession'}}
+        {{#bs-form-group}}
+          {{session-status status=model.status}}
+        {{/bs-form-group}}
+          {{!-- {{date-range-picker
+              start=model.date.lower
+              end=model.date.upper
+              ranges=null
+              serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+              timePicker=true
+              timePicker24Hour=true
+              applyAction=(action 'saveDate')
+          }} --}}
+        {{#bs-form-group}}
+          {{select-ca certification=model.ca}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{select-aca certification=model.aca}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteSession') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+    {{else}}
+      <p>
+        <strong>Name</strong>: {{model.name}}
+      </p>
+      <p>
+        <strong>Status</strong>: {{model.status}}
+      </p>
+      <p>
+        <strong>Contest Administrator</strong>: {{model.ca.person.name}}
+      </p>
+      <p>
+        <strong>ACA</strong>: {{model.aca.person.name}}
+      </p>
+      {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
+      <br><br>
+      <ul class='list-inline'>
+        <li>{{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'startSession') class='form-group'}}Start{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'finishSession') class='form-group'}}Finish{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'publishSession') class='form-group'}}Publish{{/bs-button}}</li>
+      </ul>
+  </div>
+</section>
+<section>
+ {{#bs-accordion selected=selected collapsed=collapsed}}
+     <h4>Pre-Session</h4>
+     {{#bs-accordion-item value="3" title="Judges"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Picture</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Kind</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedJudges as |judge|}}
+              <tr>
+                <td>
+                  {{person-picture person=judge.certification.person}}
+                </td>
+                <td>
+                  {{#link-to 'admin.conventions.convention.session.judge' judge.id}}{{judge.certification.person.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{judge.category}}
+                </td>
+                <td>
+                  {{judge.kind}}
+                </td>
+                <td>
+                  {{judge.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'scratchJudge' judge}}>Scratch</a></li>
+                      <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{add-judge model=model}}
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="1" title="Contests"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-4'>Name</th>
+              <th class='col-md-1'>Qualifier</th>
+              {{!-- <th class='col-md-5'>Champion</th> --}}
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedContests as |contest|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.conventions.convention.session.contest' contest}}{{contest.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
+                </td>
+                {{!-- <td>
+                  {{contest.champion.performer.group.name}}
+                  {{contest-champion model=contest champion=contest.champion class='form-group'}}
+                </td> --}}
+                <td>
+                  {{contest.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'deleteContest' contest}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{add-award session=model}}
+     {{/bs-accordion-item}}
+     {{#bs-accordion-item value="4" title="Entrants"}}
+        <div class='table-responsive'>
+          {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+            <thead>
+            <tr>
+              <th>Slot</th>
+              <th>Performer</th>
+              <th>Status</th>
+              <th>Actions</th>
+              <th>Change</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each sortedPerformers as |performer|}}
+              {{#sortable-item tagName="tr" model=performer group=group handle=".handle"}}
+                <td>{{performer.soa}}</td>
+                <td>{{#link-to 'admin.conventions.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}</td>
+                <td>{{performer.status}}</td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      {{!-- <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li> --}}
+                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
+              {{/sortable-item}}
+            {{/each}}
+            </tbody>
+            {{/sortable-group}}
+            {{#if isEditing}}
+              {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
+              {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
+            {{else}}
+              {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
+            {{/if}}
+          </div>
+        {{add-performer session=model class='form-group'}}
+     {{/bs-accordion-item}}
+     <br><br>
+     <h4>Session</h4>
+     {{#bs-accordion-item value="2" title="Rounds"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.rounds as |round|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}
+                </td>
+                <td>
+                  {{round.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'drawRound' round}}>Draw</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+     {{/bs-accordion-item}}
+     {{!-- {{#bs-accordion-item value="7" title="Score"}}
+       <p>
+       {{#link-to 'admin.conventions.convention.session.cursor' model.cursor}}Score Performances{{/link-to}}
+       </p>
+     {{/bs-accordion-item}} --}}
+     <br><br>
+      <h4>Post-Session</h4>
+
+     {{#bs-accordion-item value="5" title="Documents"}}
+      Session
+      <ul>
+        <li>{{#link-to 'admin.conventions.convention.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+        Rounds
+        <ul>
+          {{#each model.rounds as |round|}}
+            <li>{{#link-to 'admin.conventions.convention.session.round.announcement' round}}{{round.kind}} Announcements{{/link-to}}</li>
+          {{/each}}
+        </ul>
+        Contests
+        <ul>
+          {{#each sortedContests as |contest|}}
+            <li>{{#link-to 'admin.conventions.convention.session.contest.oss' contest}}{{contest.award.name}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+        Performers
+        <ul>
+          {{#each model.performers as |performer|}}
+            <li>{{#link-to 'admin.conventions.convention.session.performer.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+      </ul>
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>

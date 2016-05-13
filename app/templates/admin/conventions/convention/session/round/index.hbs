@@ -1,0 +1,106 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions'}}Conventions{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions.convention.session' model.session}}{{model.session.kind}} Session{{/link-to}}</li>
+      <li class='active'>{{model.kind}}</li>
+    </ol>
+</section>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Round Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+      {{round-status model=model status=model.status class='form-group'}}
+      {{!-- {{date-range-picker
+          start=model.date.lower
+          end=model.date.upper
+          ranges=null
+          serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+          timePicker=true
+          timePicker24Hour=true
+          applyAction=(action 'saveDate')
+      }} --}}
+      {{!-- {{#bs-button action=(action 'promoteRound') class='form-group'}}
+        Promote
+      {{/bs-button}}
+      {{#bs-button action=(action 'drawRound') class='form-group'}}
+        Draw
+      {{/bs-button}}
+      {{#bs-button action=(action 'resortRound') class='form-group'}}
+        Resort
+      {{/bs-button}} --}}
+      <p>
+      {{select-mt mt=model.mt class='form-group'}}
+      </p>
+      <p>Advance: {{model.session.convention.organization.spots}}</p>
+      {{#bs-button action=(action 'startRound') class='form-group'}}
+        Start
+      {{/bs-button}}
+      {{#bs-button action=(action 'finishRound') class='form-group'}}
+        Finish
+      {{/bs-button}}
+  </div>
+</section>
+<section>
+ {{#bs-accordion}}
+     {{#bs-accordion-item value="2" title="Performances" collapsed=false}}
+        <div class='table-responsive'>
+          {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+            <thead>
+            <tr>
+              <th {{action 'sortBy' 'slot:asc'}}>Slot</th>
+              <th {{action 'sortBy' 'performer.name:asc'}}>Performer</th>
+              <th {{action 'sortBy' 'total_score:desc'}}>Score</th>
+              <th>Status</th>
+              {{#unless (eq model.kind 'Finals')}}<th>Advance</th>{{/unless}}
+              <th>Actions</th>
+              <th>Change</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each sortedPerformances as |item|}}
+              {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                <td>{{item.slot}}</td>
+                <td>{{#link-to 'admin.conventions.convention.session.round.performance' item}}{{item.performer.group.name}}{{/link-to}}</td>
+                <td>{{single-fixed item.total_score}}</td>
+                <td>{{item.status}}</td>
+                {{#unless (eq model.kind 'Finals')}}
+                  <td>
+                    {{#if isEditing}}
+                      {{x-toggle showLabels=true offLabel='Not' onLabel='Advancing' value=item.is_advancing toggled=item.is_advancing}}
+                    {{else}}
+                      {{#if item.is_advancing}}<span class='text-success'>{{fa-icon 'check-circle'}}</span>{{else}}<span class='text-danger'>{{fa-icon 'times-circle'}}</span>{{/if}}
+                    {{/if}}
+                  </td>
+                {{/unless}}
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'scratch' performer}}>Scratch</a></li>
+                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
+              {{/sortable-item}}
+            {{/each}}
+            </tbody>
+          {{/sortable-group}}
+          {{#if isEditing}}
+            {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
+          {{else}}
+            {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
+          {{/if}}
+        </div>
+        {{add-performance round=model}}
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>
+<section>
+</section>

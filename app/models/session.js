@@ -14,7 +14,6 @@ export default DS.Model.extend({
   performers: DS.hasMany('performer', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   judges: DS.hasMany('judge', {async: true}),
-  assistants: DS.hasMany('assistant', {async: true}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   validate: memberAction({path: 'validate', type: 'post'}),

@@ -1,0 +1,24 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li class='active'>Charts</li>
+    </ol>
+</section>
+<section>
+  <div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |chart|}}
+          <tr>
+          <td>{{#link-to 'admin.charts.chart' chart}}{{chart.name}}{{/link-to}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

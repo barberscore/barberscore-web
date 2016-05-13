@@ -15,5 +15,4 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization', {async: true}),
   drcj: DS.belongsTo('person', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
-  participants: DS.hasMany('participant', {async: true}),
 });

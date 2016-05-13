@@ -1,0 +1,118 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.groups'}}Groups{{/link-to}}</li>
+      <li class='active'>{{model.name}}</li>
+    </ol>
+</section>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Group Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+      {{#if isEditing}}
+      {{#bs-form action='saveGroup'}}
+        {{#bs-form-group}}
+          {{bs-input value=model.name}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{group-status status=model.status}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{select-organization organization=model.organization}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.location placeholder='Location'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.website placeholder='Website'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.facebook placeholder='Facebook'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.twitter placeholder='Twitter'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.email placeholder='Email'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-input value=model.phone placeholder='Phone'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bs-textarea value=model.description}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{!-- {{date-range-picker
+              start=model.date.lower
+              end=model.date.upper
+              autoUpdateInput=false
+              ranges=null
+              serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+              timePicker=true
+              timePicker24Hour=true
+              applyAction=(action 'updateDate')
+          }} --}}
+        {{/bs-form-group}}
+          {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelGroup')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteGroup') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+      {{else}}
+        <p><strong>Name: </strong>{{model.name}}</p>
+        <p><strong>Status: </strong>{{model.status}}</p>
+        <p><strong>Home: </strong>{{model.organization.name}}</p>
+        <p><strong>Location: </strong>{{model.location}}</p>
+        <p><strong>Website: </strong>{{model.website}}</p>
+        <p><strong>Facebook: </strong>{{model.facebook}}</p>
+        <p><strong>Twitter: </strong>{{model.twitter}}</p>
+        <p><strong>Email: </strong>{{model.email}}</p>
+        <p><strong>Phone: </strong>{{model.phone}}</p>
+        <p><strong>Description: </strong>{{model.description}}</p>
+        {{#bs-button action=(action 'editGroup')}}Edit{{/bs-button}}
+        {{#bs-button action=(action 'newGroup') class='btn-primary pull-right'}}New{{/bs-button}}
+      {{/if}}
+  </div>
+</section>
+<section>
+ {{#bs-accordion selected=selected}}
+     {{#bs-accordion-item value="1" title="Membership"}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Part</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.roles as |role|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.groups.group.role' role}}{{role.person.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{role.part}}
+                </td>
+                <td>
+                  {{role.status}}
+                </td>
+                <td>
+                  {{#bs-dropdown}}
+                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                    {{#bs-dropdown-menu}}
+                      <li><a href='#' {{action 'deleteRole' role}}>Delete</a></li>
+                    {{/bs-dropdown-menu}}
+                  {{/bs-dropdown}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{add-role group=model}}
+     {{/bs-accordion-item}}
+ {{/bs-accordion}}
+</section>

@@ -1,27 +1,14 @@
-<div class="page-header">
-  <h3>Contest Administrator Dashboard</h3>
-</div>
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'admin'}}Conventions{{/link-to}}</li>
-  </ol>
-</div>
-<div>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each model as |convention|}}
-        <tr>
-        <td>{{#link-to 'admin.convention' convention}}{{convention.name}}{{/link-to}}</td>
-        <td>{{date-range convention.date}}</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-  {{add-convention}}
-</div>
+<section>
+    <ol class='breadcrumb'>
+      <li class='active'>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+    </ol>
+</section>
+<section>
+  <p>{{#link-to 'admin.conventions'}}Conventions{{/link-to}}</p>
+  <p>{{#link-to 'admin.organizations'}}Organizations{{/link-to}}</p>
+  <p>{{#link-to 'admin.awards'}}Awards{{/link-to}}</p>
+  <p>{{#link-to 'admin.charts'}}Charts{{/link-to}}</p>
+  <p>{{#link-to 'admin.groups'}}Groups{{/link-to}}</p>
+  <p>{{#link-to 'admin.persons'}}Persons{{/link-to}}</p>
+  <p>{{#link-to 'admin.venues'}}Venues{{/link-to}}</p>
+</section>

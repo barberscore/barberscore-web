@@ -1,0 +1,24 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li class='active'>Organizations</li>
+    </ol>
+</section>
+<section>
+  <div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |organization|}}
+          <tr>
+          <td>{{#link-to 'admin.organizations.organization' organization}}{{organization.name}}{{/link-to}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

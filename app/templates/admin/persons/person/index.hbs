@@ -1,0 +1,47 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.persons'}}Persons{{/link-to}}</li>
+      <li class='active'>{{model.name}}</li>
+    </ol>
+</section>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Person Detail
+    </h4>
+  </div>
+  <div class='panel-body'>
+  <strong>{{model.name}}</strong>
+  <br><br>
+  {{#if isEditing}}
+    {{#bs-form action="savePerson"}}
+      {{#bs-form-group}}
+        {{bs-input value=model.name placeholder='Person Name'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.location placeholder='Location'}}
+      {{/bs-form-group}}
+      {{#bs-form-group}}
+        {{bs-input value=model.email placeholder='Email Address'}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+      {{#bs-button action=(action 'cancelPerson')}}Cancel{{/bs-button}}
+      {{#bs-button action=(action 'deletePerson') class='pull-right btn-danger'}}Delete{{/bs-button}}
+    {{/bs-form}}
+  {{else}}
+      <p>
+        <strong>Name: </strong>{{model.name}}
+      </p>
+      <p>
+        <strong>Location: </strong>{{model.location}}
+      </p>
+      <p>
+        <strong>Email: </strong>{{model.email}}
+      </p>
+      {{#bs-button action=(action 'editPerson')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newPerson') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
+  </div>
+</section>
+

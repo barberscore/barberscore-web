@@ -2,9 +2,6 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     attrs: {
-      assistants: {
-        serialize: true
-      },
       certifications: {
         serialize: true
       },

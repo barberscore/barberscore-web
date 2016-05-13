@@ -1,0 +1,53 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions'}}Conventions{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+      <li>{{#link-to 'admin.conventions.convention.session' model.session}}{{model.session.kind}} Session{{/link-to}}</li>
+      <li class='active'>{{model.kind}} {{model.category}} Judge {{model.certification.person.name}}</li>
+    </ol>
+</section>
+
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Judge Details
+    </h3>
+  </div>
+  <div class='panel-body'>
+  {{#if isEditing}}
+      {{#bs-form-group}}
+        {{model.certification.person.name}}
+      {{/bs-form-group}}
+      {{#bs-form action='saveJudge'}}
+        {{#bs-form-group}}
+          {{judge-status status=model.status}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{judge-category category=model.category}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{judge-kind kind=model.kind}}
+        {{/bs-form-group}}
+        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{#bs-button action=(action 'cancelJudge')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{/bs-form}}
+    {{else}}
+      <p>
+        <strong>Person: </strong>{{#link-to 'admin.persons.person' model.certification.person}}{{model.certification.person.name}}{{/link-to}}
+      </p>
+      <p>
+      <strong>Status: </strong>{{model.status}}
+      </p>
+      <p>
+      <strong>Category: </strong>{{model.category}}
+      </p>
+      <p>
+      <strong>Kind: </strong>{{model.kind}}
+      </p>
+      {{#bs-button action=(action 'editJudge')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newJudge') class='btn-primary pull-right'}}New{{/bs-button}}
+    {{/if}}
+  </div>
+</section>
