@@ -11,8 +11,8 @@ export default DS.Model.extend({
   session: DS.belongsTo('session', {async: true}),
   performances: DS.hasMany('performance', {async: true}),
   draw: memberAction({path: 'draw'}),
-  promote: memberAction({path: 'promote'}),
   resort: memberAction({path: 'resort'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
+  promote: memberAction({path: 'promote', type: 'post'}),
 });

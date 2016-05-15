@@ -101,6 +101,16 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
+    promoteRound() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.promote()
+      .then((response) => {
+        this.store.pushPayload('round', response);
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+    },
     moveTop(performance) {
       const flashMessages = Ember.get(this, 'flashMessages');
       performance.move_top()

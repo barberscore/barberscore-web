@@ -37,12 +37,11 @@
       {{select-mt mt=model.mt class='form-group'}}
       </p>
       <p>Advance: {{model.session.convention.organization.spots}}</p>
-      {{#bs-button action=(action 'startRound') class='form-group'}}
-        Start
-      {{/bs-button}}
-      {{#bs-button action=(action 'finishRound') class='form-group'}}
-        Finish
-      {{/bs-button}}
+      <ul class='list-inline'>
+        <li>{{#bs-button action=(action 'startRound') class='form-group'}}Start{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'finishRound') class='form-group'}}Finish{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'promoteRound') class='form-group'}}Promote{{/bs-button}}</li>
+      </ul>
   </div>
 </section>
 <section>
