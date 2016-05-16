@@ -1,0 +1,25 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li>{{#link-to 'admin.chapters'}}Chapters{{/link-to}}</li>
+      <li class='active'>{{model.name}}</li>
+    </ol>
+</section>
+<section class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      Chaopter Detail
+    </h4>
+  </div>
+  <div class='panel-body'>
+  <strong>{{model.name}}</strong>
+  <br><br>
+    {{#bs-form action="saveChapter"}}
+      {{#bs-form-group}}
+        {{bs-input value=model.name placeholder='Name'}}
+      {{/bs-form-group}}
+      {{bs-button defaultText="Save " type="primary" buttonType="submit"}}
+    {{/bs-form}}
+  </div>
+</section>
+

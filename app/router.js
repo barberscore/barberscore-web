@@ -43,6 +43,10 @@ Router.map(function() {
       this.route('chart', { path: '/:chart_id'}, function() {
       });
     });
+    this.route('chapters', { path: '/chapter/'}, function() {
+      this.route('chapter', { path: '/:chapter_id'}, function() {
+      });
+    });
     this.route('groups', { path: '/group/'}, function() {
       this.route('group', { path: '/:group_id'}, function() {
           this.route('role', { path: '/role/:role_id'}, function() {
