@@ -189,7 +189,7 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
-  judgeSortProperties: ['kind', 'category.id', 'slot',],
+  judgeSortProperties: ['category', 'kind', 'slot',],
   sortedJudges: Ember.computed.sort(
     'model.judges',
     'judgeSortProperties'
