@@ -28,12 +28,6 @@
               timePicker24Hour=true
               applyAction=(action 'saveDate')
           }} --}}
-        {{!-- {{#bs-form-group}}
-          {{select-ca certification=model.ca}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{select-aca certification=model.aca}}
-        {{/bs-form-group}} --}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
         {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
         {{#bs-button action=(action 'deleteSession') class='pull-right btn-danger'}}Delete{{/bs-button}}
@@ -44,12 +38,6 @@
       </p>
       <p>
         <strong>Status</strong>: {{model.status}}
-      </p>
-      <p>
-        <strong>Contest Administrator</strong>: {{model.ca.person.name}}
-      </p>
-      <p>
-        <strong>ACA</strong>: {{model.aca.person.name}}
       </p>
       {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
       {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}

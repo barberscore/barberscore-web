@@ -15,9 +15,6 @@
     <p>
       {{model.name}}
     </p>
-    <p>
-      {{#if model.administrator}}Contest Administrator: {{person-modal person=model.administrator}}{{/if}}
-    </p>
   </div>
 </section>
 {{#if (eq model.status 'Final')}}

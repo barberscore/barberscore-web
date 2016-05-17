@@ -27,8 +27,6 @@ export default Ember.Component.extend({
   },
   judgeKind: [
     'Official',
-    'CA',
-    'ACA',
     'Practice',
   ],
   judgeCategory: [

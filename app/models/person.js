@@ -22,7 +22,6 @@ export default DS.Model.extend({
   nick_name: DS.attr('string'),
   organization: DS.belongsTo('organization', {async: true}),
   chapter: DS.belongsTo('chapter', {async: true}),
-  sessions_ca: DS.hasMany('session', {inverse: 'administrator', async: true}),
   certifications: DS.hasMany('certification', {async: true}),
   roles: DS.hasMany('role', {async: true}),
   panels: DS.hasMany('judge', {async: true}),
