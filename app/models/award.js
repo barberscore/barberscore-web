@@ -12,7 +12,7 @@ export default DS.Model.extend({
   is_improved: DS.attr('boolean'),
   is_novice: DS.attr('boolean'),
   idiom: DS.attr('string'),
-  cutoff: DS.attr('number'),
+  threshold: DS.attr('number'),
   level: DS.attr('award-level'),
   organization: DS.belongsTo('organization', {async: true}),
   contests: DS.hasMany('contest', {inverse:'award', async: true}),
