@@ -7,7 +7,7 @@ export default DS.Model.extend({
   season: DS.attr('award-season'),
   size: DS.attr('award-size'),
   scope: DS.attr('award-scope'),
-  num_rounds: DS.attr('number'),
+  championship_rounds: DS.attr('number'),
   is_primary: DS.attr('boolean'),
   is_improved: DS.attr('boolean'),
   is_novice: DS.attr('boolean'),
