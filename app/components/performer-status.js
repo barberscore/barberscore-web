@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   performerStatus: [
     'New',
-    'Qualified',
+    'Invited',
     'Accepted',
     'Declined',
     'Dropped',
