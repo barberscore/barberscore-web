@@ -6,9 +6,11 @@ export default DS.Transform.extend({
       0: 'New',
       10: 'Eligible',
       20: 'Ineligible',
-      30: 'Did Not Qualify',
+      40: 'District Representative',
       50: 'Qualified',
-      90: 'Final',
+      60: 'Ranked',
+      70: 'Scratched',
+      80: 'Disqualified',
     };
     return map[serialized];
   },
@@ -18,9 +20,11 @@ export default DS.Transform.extend({
       'New': 0,
       'Eligible': 10,
       'Ineligible': 20,
-      'Did Not Qualify': 30,
+      'District Representative': 40,
       'Qualified': 50,
-      'Final': 90,
+      'Ranked': 60,
+      'Scratched': 70,
+      'Disqualified': 80,
     };
     return map[deserialized];
   }

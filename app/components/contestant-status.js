@@ -19,8 +19,10 @@ export default Ember.Component.extend({
     'New',
     'Eligible',
     'Ineligible',
-    'Did Not Qualify',
+    'District Representative',
     'Qualified',
-    'Final',
+    'Ranked',
+    'Scratched',
+    'Disqualified',
   ]
 });

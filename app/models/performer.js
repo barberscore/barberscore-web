@@ -13,6 +13,7 @@ export default DS.Model.extend({
   men: DS.attr('number'),
   risers: DS.attr('number'),
   is_evaluation: DS.attr('boolean'),
+  is_private: DS.attr('boolean'),
   director: DS.belongsTo('role', {async: true}),
   codirector: DS.belongsTo('role', {async: true}),
   representing: DS.belongsTo('organization', {async: true}),
