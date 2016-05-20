@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   },
   sessionStatus: [
     'New',
+    'Listed',
     'Opened',
     'Closed',
     'Validated',
