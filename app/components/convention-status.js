@@ -18,9 +18,11 @@ export default Ember.Component.extend({
   contestantStatus: [
     'New',
     'Scheduled',
-    'Upcoming',
+    'Opened',
+    'Closed',
+    'Validated',
     'Started',
     'Finished',
-    'Final',
+    'Published',
   ]
 });

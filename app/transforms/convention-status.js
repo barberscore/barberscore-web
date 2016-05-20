@@ -4,12 +4,13 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       0: 'New',
-      10: 'Scheduled',
-      15: 'Upcoming',
+      2: 'Scheduled',
+      4: 'Opened',
+      8: 'Closed',
+      10: 'Validated',
       20: 'Started',
       30: 'Finished',
-      40: 'Recent',
-      50: 'Final',
+      45: 'Published',
     };
     return map[serialized];
   },
@@ -17,12 +18,13 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'New': 0,
-      'Scheduled': 10,
-      'Upcoming': 15,
+      'Scheduled': 2,
+      'Opened': 4,
+      'Closed': 8,
+      'Validated': 10,
       'Started': 20,
       'Finished': 30,
-      'Recent': 40,
-      'Final': 50,
+      'Published': 45,
     };
     return map[deserialized];
   }
