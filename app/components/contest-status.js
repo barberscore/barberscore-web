@@ -17,7 +17,9 @@ export default Ember.Component.extend({
   },
   contestStatus: [
     'New',
-    'Active',
-    'Inactive',
+    'Opened',
+    'Closed',
+    'Validated',
+    'Published',
   ]
 });
