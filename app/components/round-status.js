@@ -17,11 +17,8 @@ export default Ember.Component.extend({
   },
   roundStatus: [
     'New',
-    'Built',
-    'Ready',
     'Started',
     'Finished',
-    'Ranked',
-    'Final',
+    'Published',
   ]
 });
