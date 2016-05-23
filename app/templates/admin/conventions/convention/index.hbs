@@ -31,7 +31,7 @@
           {{select-organization organization=model.organization}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{convention-division kind=model.division}}
+          {{convention-kind kind=model.kind}}
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{select-drcj person=model.drcj}}
@@ -81,7 +81,7 @@
         <strong>Status</strong>: {{model.status}}
       </p>
       <p><strong>Host</strong>: {{#link-to 'admin.organizations.organization' model.organization}}{{model.organization.name}}{{/link-to}}</p>
-      <p><strong>Sub</strong>: {{#if model.division}}{{model.division}}{{else}}(None){{/if}}</p>
+      <p><strong>Kind</strong>: {{#if model.kind}}{{model.kind}}{{else}}(None){{/if}}</p>
       <p><strong>DRCJ</strong>: {{#link-to 'admin.persons.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
       {{!-- <p><strong>Kind</strong>: {{model.kind}}</p> --}}
       <p><strong>Venue</strong>: {{#link-to 'admin.venues.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
