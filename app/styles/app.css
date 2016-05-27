@@ -27,3 +27,8 @@
 .judge-width {
   min-width: 300px;
 }
+
+section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

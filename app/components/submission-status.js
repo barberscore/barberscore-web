@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord(status) {
+    saveSubmission(status) {
       this.model.set('status', status);
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
@@ -15,10 +15,8 @@ export default Ember.Component.extend({
       });
     },
   },
-  judgeStatus: [
+  submissionStatus: [
     'New',
-    'Scheduled',
-    'Confirmed',
-    'Final',
+    'Validated',
   ]
 });

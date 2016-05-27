@@ -7,7 +7,7 @@ export default Ember.Component.extend({
     'Accepted',
     'Declined',
     'Dropped',
-    'Enrolled',
+    'Validated',
     'Scratched',
     'Disqualified',
     'Finished',

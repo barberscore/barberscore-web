@@ -26,9 +26,10 @@
     </h4>
   </div>
   <div class='panel-body'>
-      {{!-- <li>Scheduled: {{datetime-range model.scheduled}}</li> --}}
-      {{!-- <li>Actual: {{datetime-range model.actual}}</li> --}}
-      <p>{{performance-status model=model status=model.status class='form-group'}}</p>
+      <p>Status: {{model.status}}</p>
+      <p>Scheduled: {{datetime-range model.scheduled}}</p>
+      <p>Actual: {{datetime-range model.actual}}</p>
+      {{!-- <p>{{performance-status model=model status=model.status class='form-group'}}</p> --}}
     <ul class='list-inline'>
       <li>{{#bs-button action=(action 'startPerformance') class='form-group'}}Start{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'finishPerformance') class='form-group'}}Finish{{/bs-button}}</li>
@@ -36,116 +37,123 @@
     </ul>
   </div>
 </section>
-<br><br><br>
-<div class='table-responsive'>
-<table class='table'>
-  <thead>
-  <tr>
-  {{!-- <th>Group</th> --}}
-  <th class="col-md-8">Songs</th>
-  <th class='text-right'>MUS</th>
-  <th class='text-right'>PRS</th>
-  <th class='text-right'>SNG</th>
-  <th class='text-right'>TOT</th>
-  {{!-- <th class='text-right'>Total</th> --}}
-  {{!-- {{#each model.contests as |contest|}}
-    <th class='text-right'>{{contest.award.name}}</th>
-  {{/each}} --}}
-  </tr>
-  </thead>
-  <tbody>
-    {{#each sortedSongs as |song|}}
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class="col-md-8">Songs</th>
+          <th class='text-right'>MUS</th>
+          <th class='text-right'>PRS</th>
+          <th class='text-right'>SNG</th>
+          <th class='text-right'>TOT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedSongs as |song|}}
+          <tr>
+            <td>
+              {{select-submission model=song submission=song.submission}}
+            </td>
+            <td class='text-right'>
+              {{song.musPointsSum}}
+            </td>
+            <td class='text-right'>
+              {{song.prsPointsSum}}
+            </td>
+            <td class='text-right'>
+              {{song.sngPointsSum}}
+            </td>
+            <td class='text-right'>
+              {{song.pointsSum}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
       <tr>
-        <td>
-          {{select-submission model=model submission=song.submission}}
-        </td>
-        <td class='text-right'>
-          {{song.musPointsSum}}
-        </td>
-        <td class='text-right'>
-          {{song.prsPointsSum}}
-        </td>
-        <td class='text-right'>
-          {{song.sngPointsSum}}
-        </td>
-        <td class='text-right'>
-          {{song.pointsSum}}
-        </td>
-      </tr>
-    {{/each}}
-  </tbody>
-  <tfoot>
-  <tr>
-        <th>
-          Totals
-        </th>
-        <th class='text-right'>
-          {{model.musPointsSum}}
-        </th>
-        <th class='text-right'>
-          {{model.prsPointsSum}}
-        </th>
-        <th class='text-right'>
-          {{model.sngPointsSum}}
-        </th>
-        <th class='text-right'>
-          {{model.pointsSum}}
-        </th>
-    </tr>
-  </tfoot>
-</table>
-  <p>{{#bs-button action=(action 'savePerformance') class='form-group btn-primary'}}Save Song Titles{{/bs-button}}</p>
-
-</div>
-<div class='table-responsive'>
-<table class='table'>
-  <thead>
-  <tr>
-  <th class='col-md-6'>Slot</th>
-  <th>Score</th>
-  <th>Variance</th>
-  <th>Actions</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  {{#each sortedJudges as |judge|}}
-    <tr>
-    <td>
-      {{judge.kind}} {{judge.category}}<br>
-      {{judge.certification.person.name}}
-    </td>
-    <td>
-    {{#each (sort-by 'song.order' judge.scores) as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
-       {{score-edit model=score points=score.points}}
-      {{/if}}
-    {{/each}}
-    </td>
-    <td>
-    {{#each judge.scores as |score|}}
-      {{!-- {{#if (eq score.judge.kind 'Official')}} --}}
-      {{#if (eq score.song.performance.id model.id)}}
-      {{#if score.highReview}}{{#link-to 'admin.conventions.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}{{else}}&nbsp;{{/if}}{{#if score.lowReview}}{{#link-to 'admin.conventions.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}{{else}}&nbsp;{{/if}}<br>
-      {{/if}}
-      {{!-- {{/if}} --}}
-    {{/each}}
-    </td>
-    <td>
-    {{#each judge.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
-      {{#bs-dropdown}}
-        {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-        {{#bs-dropdown-menu}}
-          <li><a href='#' {{action 'moveTop' performance}}>Penalty - Accompaniment</a></li>
-          <li><a href='#' {{action 'moveBottom' performance}}>Penalty - Repetition</a></li>
-        {{/bs-dropdown-menu}}
-      {{/bs-dropdown}}<br>
-      {{/if}}
-    {{/each}}
-    </td>
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-</div>
+          <th>
+            Totals
+          </th>
+          <th class='text-right'>
+            {{model.musPointsSum}}
+          </th>
+          <th class='text-right'>
+            {{model.prsPointsSum}}
+          </th>
+          <th class='text-right'>
+            {{model.sngPointsSum}}
+          </th>
+          <th class='text-right'>
+            {{model.pointsSum}}
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+    <p>{{#bs-button action=(action 'savePerformance') class='form-group btn-primary'}}Save Performance{{/bs-button}}</p>
+  </div>
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class='col-md-6'>Slot</th>
+          <th>Score</th>
+          <th>Variance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedJudges as |judge|}}
+          {{#unless (eq judge.category 'Admin')}}
+            <tr>
+              <td>
+                {{judge.kind}} {{judge.category}}<br>
+                {{judge.certification.person.name}}
+              </td>
+              <td>
+                {{#each (sort-by 'song.order' judge.scores) as |score|}}
+                  {{#if (eq score.song.performance.id model.id)}}
+                   {{score-edit model=score points=score.points}}
+                  {{/if}}
+                {{/each}}
+              </td>
+              <td>
+                {{#each judge.scores as |score|}}
+                  {{#if (eq score.song.performance.id model.id)}}
+                    {{#if score.highReview}}
+                      {{#link-to 'admin.conventions.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
+                    {{else}}
+                      &nbsp;
+                    {{/if}}
+                    {{#if score.lowReview}}
+                      {{#link-to 'admin.conventions.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
+                    {{else}}
+                      &nbsp;
+                    {{/if}}
+                    <br>
+                  {{/if}}
+                {{/each}}
+              </td>
+              <td>
+                {{#each judge.scores as |score|}}
+                  {{#if (eq score.song.performance.id model.id)}}
+                    {{#bs-dropdown}}
+                      {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                      {{#bs-dropdown-menu}}
+                        <li><a href='#' {{action 'moveTop' performance}}>Penalty - Accompaniment</a></li>
+                        <li><a href='#' {{action 'moveBottom' performance}}>Penalty - Repetition</a></li>
+                      {{/bs-dropdown-menu}}
+                    {{/bs-dropdown}}
+                    <br>
+                  {{/if}}
+                {{/each}}
+              </td>
+            </tr>
+          {{/unless}}
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

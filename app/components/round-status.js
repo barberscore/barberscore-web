@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   },
   roundStatus: [
     'New',
+    'Validated',
     'Started',
     'Finished',
     'Published',

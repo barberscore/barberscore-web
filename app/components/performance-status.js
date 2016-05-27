@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   },
   performanceStatus: [
     'New',
+    'Validated',
     'Started',
     'Finished',
   ]

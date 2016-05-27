@@ -6,7 +6,7 @@ export default Ember.Component.extend({
     'chart.name:asc',
   ],
   submissionChoices: Ember.computed.sort(
-    'model.performer.submissions',
+    'model.performance.performer.submissions',
     'sortSubmissions'
   ),
   actions: {
@@ -14,13 +14,13 @@ export default Ember.Component.extend({
       let cht = this.get('store').queryRecord('chart', {
         name: submissionTitle
       });
-      let per  = this.get('model.performer');
+      let per  = this.get('model.performance.performer');
       let newSubmission = this.get('store').createRecord('submission', {
         performer: per,
         chart: cht
       });
       newSubmission.save();
-      this.set('submission', newSubmission);
+      this.set('model.submission', newSubmission);
     },
   },
 });

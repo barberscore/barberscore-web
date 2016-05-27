@@ -5,6 +5,7 @@ export default Ember.Component.extend({
     'New',
     'Scheduled',
     'Confirmed',
+    'Validated',
     'Final',
   ]
 });

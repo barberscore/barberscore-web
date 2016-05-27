@@ -21,6 +21,7 @@ export default Ember.Component.extend({
     'Ineligible',
     'District Representative',
     'Qualified',
+    'Validated',
     'Ranked',
     'Scratched',
     'Disqualified',

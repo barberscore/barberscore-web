@@ -3,8 +3,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   judgeSortProperties: ['kind', 'category','slot',],
+  scoringJudges: Ember.computed.filter('model.round.session.judges',
+    function(item) {
+      // console.log(item.get('Name'));
+      return item.get('category') !== 'Admin';
+    }
+  ),
   sortedJudges: Ember.computed.sort(
-    'model.round.session.judges',
+    'scoringJudges',
     'judgeSortProperties'
   ),
   songSortProperties: ['order',],
@@ -34,6 +40,13 @@ export default Ember.Controller.extend({
       this.model.save()
       .then(response => {
         response.get('songs').invoke('save');
+        let foo = response.get('songs');
+        foo.forEach(function(song) {
+          let bar = song.get('scores');
+          bar.forEach(function(score) {
+            score.save();
+          });
+        });
       })
       .catch(response => {
         console.log(response);
