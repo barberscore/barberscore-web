@@ -22,7 +22,7 @@ export default Ember.Component.extend({
     'District Representative',
     'Qualified',
     'Validated',
-    'Ranked',
+    'Finished',
     'Scratched',
     'Disqualified',
   ]

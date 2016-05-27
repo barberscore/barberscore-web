@@ -9,7 +9,7 @@ export default DS.Transform.extend({
       40: 'District Representative',
       50: 'Qualified',
       55: 'Validated',
-      60: 'Ranked',
+      60: 'Finished',
       70: 'Scratched',
       80: 'Disqualified',
     };
@@ -24,7 +24,7 @@ export default DS.Transform.extend({
       'District Representative': 40,
       'Qualified': 50,
       'Validated': 55,
-      'Ranked': 60,
+      'Finished': 60,
       'Scratched': 70,
       'Disqualified': 80,
     };

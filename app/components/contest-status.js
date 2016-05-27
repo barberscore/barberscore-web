@@ -20,6 +20,7 @@ export default Ember.Component.extend({
     'Opened',
     'Closed',
     'Validated',
+    'Finished',
     'Published',
   ]
 });

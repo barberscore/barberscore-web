@@ -12,6 +12,7 @@ export default DS.Transform.extend({
       50: 'Validated',
       52: 'Scratched',
       55: 'Disqualified',
+      57: 'Started',
       60: 'Finished',
       // 90: 'Final',
     };
@@ -29,6 +30,7 @@ export default DS.Transform.extend({
       'Validated': 50,
       'Scratched': 52,
       'Disqualified': 55,
+      'Started': 576,
       'Finished': 60,
       // 'Final': 90,
     };

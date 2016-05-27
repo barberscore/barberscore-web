@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     'Validated',
     'Scratched',
     'Disqualified',
+    'Started',
     'Finished',
   ]
 });
