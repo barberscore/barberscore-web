@@ -147,17 +147,17 @@
           {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
             <thead>
             <tr>
-              <th>Slot</th>
+              {{!-- <th>Slot</th> --}}
               <th>Performer</th>
               <th>Status</th>
               <th>Actions</th>
-              <th>Change</th>
+              {{!-- <th>Change</th> --}}
             </tr>
             </thead>
             <tbody>
             {{#each sortedPerformers as |performer|}}
               {{#sortable-item tagName="tr" model=performer group=group handle=".handle"}}
-                <td>{{performer.soa}}</td>
+                {{!-- <td>{{performer.soa}}</td> --}}
                 <td>{{#link-to 'admin.conventions.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}</td>
                 <td>{{performer.status}}</td>
                 <td>
@@ -169,17 +169,17 @@
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td>
-                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
+                {{!-- <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td> --}}
               {{/sortable-item}}
             {{/each}}
             </tbody>
             {{/sortable-group}}
-            {{#if isEditing}}
+            {{!-- {{#if isEditing}}
               {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
               {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
             {{else}}
               {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
-            {{/if}}
+            {{/if}} --}}
           </div>
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
