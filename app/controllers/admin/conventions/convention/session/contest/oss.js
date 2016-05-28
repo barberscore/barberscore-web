@@ -13,8 +13,13 @@ export default Ember.Controller.extend({
     'contestSortProperties'
   ),
   panelSort: ['designation:asc',],
-  sortedPanel: Ember.computed.sort(
+  officialJudges: Ember.computed.filterBy(
     'model.session.judges',
+    'kind',
+    'Official'
+  ),
+  sortedPanel: Ember.computed.sort(
+    'officialJudges',
     'panelSort'
   ),
   actions: {
