@@ -12,6 +12,11 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
+  panelSort: ['designation:asc',],
+  sortedPanel: Ember.computed.sort(
+    'model.session.judges',
+    'panelSort'
+  ),
   actions: {
     letsGo() {
       this.toggleProperty('isRaw');

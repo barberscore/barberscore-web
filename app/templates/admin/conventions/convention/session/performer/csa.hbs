@@ -21,7 +21,7 @@
 </section>
 <section>
   {{#each model.contestants as |contestant|}}
-    <p>{{contestant.contest.award.name}}: {{contestant.rank}}</p>
+    <h4>{{contestant.contest.award.name}}: {{contestant.rank}}</h4>
   {{/each}}
 </section>
 
@@ -31,7 +31,6 @@
     <table class='table'>
       <thead>
         <tr>
-          <th>Rank</th>
           <th>Songs</th>
           <th class='text-right'>MUS</th>
           <th class='text-right'>PRS</th>
@@ -41,9 +40,6 @@
       </thead>
       <tbody>
         <tr>
-          <td>
-            {{model.rank}}
-          </td>
           <td>
             {{#each model.performances as |performance|}}
               {{#each performance.songs as |song|}}
@@ -102,7 +98,9 @@
         <tr>
           <th>Songs</th>
           {{#each sortedPanel as |judge|}}
-            <th class='text-right'>{{judge.designation}}</th>
+            {{#unless (eq judge.category 'Admin')}}
+              <th class='text-right'>{{judge.designation}}</th>
+            {{/unless}}
           {{/each}}
         </tr>
       </thead>
@@ -118,18 +116,29 @@
             <strong>Total</strong>
           </td>
           {{#each sortedPanel as |judge|}}
-            <td class='text-right'>
-              {{#each model.performances as |performance|}}
-                {{#each performance.songs as |song|}}
-                  {{#each song.scores as |score|}}
-                    {{#if (eq score.judge.id judge.id)}}{{score.points}}<br>{{/if}}
+            {{#unless (eq judge.category 'Admin')}}
+              <td class='text-right'>
+                {{#each model.performances as |performance|}}
+                  {{#each performance.songs as |song|}}
+                    {{#each song.scores as |score|}}
+                      {{#if (eq score.judge.id judge.id)}}{{score.points}}<br>{{/if}}
+                    {{/each}}
                   {{/each}}
                 {{/each}}
-              {{/each}}
-            </td>
+              </td>
+            {{/unless}}
           {{/each}}
         </tr>
       </tbody>
     </table>
   </div>
 </section>
+<section>
+  <h4>Judges</h4>
+    <ul class='list-unstyled'>
+      {{#each sortedPanel as |judge|}}
+        <li>{{judge.designation}}: {{judge.certification.person.common_name}}</li>
+      {{/each}}
+    </ul>
+</section>
+

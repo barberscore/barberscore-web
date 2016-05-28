@@ -41,8 +41,8 @@ Awards
   {{#each model.session.contests as |contest|}}
     <li>{{contest.award.name}}: {{contest.champion.performer.group.name}} {{contest.champion.total_points}} {{single-fixed contest.champion.total_score}}</li>
     <ul>
-    {{#each (sort-by 'rank' contest.contestants) as |contestant|}}
-      <li>{{contestant.rank}}: {{contestant.performer.group.name}} {{contestant.total_score}}</li>
+    {{#each (take 3 (sort-by 'rank' contest.contestants)) as |contestant|}}
+      <li>{{contestant.rank}}: {{contestant.performer.group.name}} {{contestant.total_points}} {{single-fixed contestant.total_score}}</li>
     {{/each}}
     </ul>
   {{/each}}

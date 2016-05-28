@@ -95,3 +95,11 @@
 </table>
 </div>
 </section>
+<section>
+  <h4>Judges</h4>
+    <ul class='list-unstyled'>
+      {{#each sortedPanel as |judge|}}
+        <li>{{judge.designation}}: {{judge.certification.person.common_name}}</li>
+      {{/each}}
+    </ul>
+</section>
