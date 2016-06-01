@@ -20,6 +20,7 @@ export default DS.Model.extend({
   total_score: DS.attr('number'),
   round: DS.belongsTo('round', {async: true}),
   performer: DS.belongsTo('performer', {async: true}),
+  performancescore: DS.belongsTo('performancescore', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   build: memberAction({path: 'build'}),
   move_top: memberAction({path: 'move_top'}),

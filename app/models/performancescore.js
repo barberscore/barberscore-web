@@ -1,8 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('contestant-status'),
+  is_advancing: DS.attr('boolean'),
   rank: DS.attr('number'),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),
@@ -12,8 +11,5 @@ export default DS.Model.extend({
   prs_score: DS.attr('number'),
   sng_score: DS.attr('number'),
   total_score: DS.attr('number'),
-  champion: DS.belongsTo('contest', {async: true, inverse: 'champion'}),
-  contest: DS.belongsTo('contest', {async: true}),
-  performer: DS.belongsTo('performer', {async: true}),
-  contestantscore: DS.belongsTo('contestantscore', {async: true}),
+  performance: DS.belongsTo('performance', {async: true}),
 });

@@ -17,6 +17,7 @@ export default DS.Model.extend({
   director: DS.belongsTo('role', {async: true}),
   codirector: DS.belongsTo('role', {async: true}),
   representing: DS.belongsTo('organization', {async: true}),
+  performerscore: DS.belongsTo('performerscore', {async: true}),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   mus_points: DS.attr('number'),
