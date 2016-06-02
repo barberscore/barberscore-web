@@ -14,5 +14,5 @@ export default DS.Model.extend({
   resort: memberAction({path: 'resort'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  promote: memberAction({path: 'promote', type: 'post'}),
+  publish: memberAction({path: 'publish', type: 'post'}),
 });

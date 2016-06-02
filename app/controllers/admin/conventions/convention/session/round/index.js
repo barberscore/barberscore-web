@@ -90,9 +90,9 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
-    promoteRound() {
+    publishRound() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.promote()
+      this.model.publish()
       .then((response) => {
         this.store.pushPayload('round', response);
       })

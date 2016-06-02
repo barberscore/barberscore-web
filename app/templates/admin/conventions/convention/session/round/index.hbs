@@ -40,7 +40,7 @@
       <ul class='list-inline'>
         <li>{{#bs-button action=(action 'startRound') class='form-group'}}Start{{/bs-button}}</li>
         <li>{{#bs-button action=(action 'finishRound') class='form-group'}}Finish{{/bs-button}}</li>
-        <li>{{#bs-button action=(action 'promoteRound') class='form-group'}}Promote{{/bs-button}}</li>
+        <li>{{#bs-button action=(action 'publishRound') class='form-group'}}Publish{{/bs-button}}</li>
       </ul>
   </div>
 </section>
@@ -133,7 +133,7 @@
                         {{/bs-dropdown-menu}}
                       {{/bs-dropdown}}
                     </td>
-                    <td>{{single-fixed performance.performancescore.total_score}}</td>
+                    <td>{{single-fixed performance.performancescore.total_score}}{{single-fixed performance.performer.performerscore.total_score}}</td>
                     {{#unless (eq model.kind 'Finals')}}
                       <td>
                         {{#if isEditing}}
