@@ -162,6 +162,9 @@
      <h4>Session</h4>
      {{#bs-accordion-item value="2" title="Performances"}}
         <div class='row'>
+          <div class='col-md-8'>
+            <p>{{outlet}}</p>
+          </div>
           <div class='col-md-4'>
             <div class='table-responsive'>
               <table class='table'>
@@ -169,11 +172,11 @@
                   <tr>
                     <th {{action 'sortPerformancesBy' 'slot:asc'}}>Slot</th>
                     <th {{action 'sortPerformancesBy' 'performer.name:asc'}}>Performer</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    {{!-- <th>Status</th> --}}
+                    {{!-- <th>Actions</th> --}}
                     <th {{action 'sortPerformancesBy' 'performancescore.total_score:desc'}}>Score</th>
                     <th {{action 'sortPerformancesBy' 'performer.performerscore.total_score:desc'}}>Cumulative</th>
-                    {{#unless (eq model.kind 'Finals')}}<th>Advance</th>{{/unless}}
+                    {{!-- {{#unless (eq model.kind 'Finals')}}<th>Advance</th>{{/unless}} --}}
                   </tr>
                   </thead>
                   <tbody>
@@ -181,19 +184,19 @@
                       <tr>
                       <td>{{performance.slot}}</td>
                       <td>{{#link-to 'admin.conventions.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
-                      <td>{{performance.status}}</td>
-                      <td>
+                      {{!-- <td>{{performance.status}}</td> --}}
+                      {{!-- <td>
                         {{#bs-dropdown}}
                           {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
                           {{#bs-dropdown-menu}}
-                            {{!-- <li><a href='#' {{action 'scratch' performer}}>Scratch</a></li> --}}
-                            {{!-- <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li> --}}
+                            <li><a href='#' {{action 'scratch' performer}}>Scratch</a></li>
+                            <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
                           {{/bs-dropdown-menu}}
                         {{/bs-dropdown}}
-                      </td>
+                      </td> --}}
                       <td>{{single-fixed performance.performancescore.total_score}}</td>
                       <td>{{single-fixed performance.performer.performerscore.total_score}}</td>
-                      {{#unless (eq model.kind 'Finals')}}
+                      {{!-- {{#unless (eq model.kind 'Finals')}}
                         <td>
                           {{#if isEditing}}
                             {{x-toggle showLabels=true offLabel='Not' onLabel='Advancing' value=performance.is_advancing toggled=performance.is_advancing}}
@@ -201,7 +204,7 @@
                             {{#if performance.performancescore.is_advancing}}<span class='text-success'>{{fa-icon 'check-circle'}}</span>{{else}}<span class='text-danger'>{{fa-icon 'times-circle'}}</span>{{/if}}
                           {{/if}}
                         </td>
-                      {{/unless}}
+                      {{/unless}} --}}
                       </tr>
                     {{/each}}
                   </tbody>
@@ -213,9 +216,6 @@
                 {{/if}}
               </table>
             </div>
-          </div>
-          <div class='col-md-8'>
-            {{outlet}}
           </div>
         </div>
      {{/bs-accordion-item}}

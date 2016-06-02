@@ -1,8 +1,12 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  isHeaderCollapsed: false,
   isEditing: false,
   actions: {
+    collapseHeader() {
+      this.toggleProperty('isHeaderCollapsed');
+    },
     previousItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur-1);

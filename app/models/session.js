@@ -6,6 +6,7 @@ export default DS.Model.extend({
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
   date: DS.attr('date-range'),
+  num_rounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   performers: DS.hasMany('performer', {async: true}),

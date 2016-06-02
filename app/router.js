@@ -11,6 +11,7 @@ Router.map(function() {
       this.route('convention', { path: '/:convention_id' }, function() {
         this.route('session', { path: '/session/:session_id' }, function() {
           this.route('sa', { path: '/sa'});
+          this.route('current', { path: '/current/:performance_id'});
           this.route('cursor', { path: '/cursor/:performance_id'});
           this.route('announcement', { path: '/announcement'});
           this.route('performer', { path: '/performer/:performer_id'}, function() {

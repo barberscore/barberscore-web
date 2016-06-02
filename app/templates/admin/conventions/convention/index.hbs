@@ -5,96 +5,98 @@
       <li class='active'>{{model.name}}</li>
     </ol>
 </section>
-
-
+<section>
   <div>
-<ul class='list-inline'>
-  <li>{{#bs-button disabled=false action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
-  <li>{{#bs-button disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
-</ul>
+    <ul class='list-inline'>
+      <li>{{#bs-button disabled=false action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
+      <li>{{#bs-button disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+    </ul>
   </div>
-
-
-<section class='panel panel-default'>
-  <div class='panel-heading'>
-    <h4>
-      Convention Detail
-    </h4>
-  </div>
-  <div class='panel-body'>
-    {{#if isEditing}}
-      {{#bs-form action='saveConvention'}}
-        {{!-- {{#bs-form-group}}
-          {{select-convention-kind kind=model.kind}}
-        {{/bs-form-group}} --}}
-        {{#bs-form-group}}
-          {{select-organization organization=model.organization}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{convention-kind kind=model.kind}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{select-drcj person=model.drcj}}
-        {{/bs-form-group}}
-        {{!-- {{#bs-form-group}}
-          {{convention-kind kind=model.kind}}
-        {{/bs-form-group}} --}}
-        {{#bs-form-group}}
-          {{select-venue venue=model.venue}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{select-season season=model.season}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{#power-select-multiple
-            options=riserChoices
-            selected=model.risers
-            placeholder="Risers."
-            onchange=(action (mut model.risers))
-            as |risers|
-          }}
-            {{risers}}
-          {{/power-select-multiple}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{date-range-picker
-              start=model.date.lower
-              end=model.date.upper
-              autoUpdateInput=false
-              ranges=null
-              serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
-              timePicker=true
-              timePicker24Hour=true
-              applyAction=(action 'updateDate')
-          }}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{x-toggle showLabels=true offLabel='No Prelims' onLabel='Prelims' value=model.is_prelims toggled=model.is_prelims}}
-        {{/bs-form-group}}
-        {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-        {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
-      {{/bs-form}}
-    {{else}}
-      <p><strong>Name</strong>: {{model.name}}</p>
-      <p>
-        <strong>Status</strong>: {{model.status}}
-      </p>
-      <p><strong>Host</strong>: {{#link-to 'admin.organizations.organization' model.organization}}{{model.organization.name}}{{/link-to}}</p>
-      <p><strong>Kind</strong>: {{#if model.kind}}{{model.kind}}{{else}}(None){{/if}}</p>
-      <p><strong>DRCJ</strong>: {{#link-to 'admin.persons.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
-      {{!-- <p><strong>Kind</strong>: {{model.kind}}</p> --}}
-      <p><strong>Venue</strong>: {{#link-to 'admin.venues.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
-      <p><strong>Season</strong>: {{model.season}}</p>
-      <p><strong>Risers</strong>: {{model.risers}}</p>
-      <p><strong>Dates</strong>: {{date-range model.date}}</p>
-      <p><strong>Prelims</strong>: {{yn-boolean model.is_prelims}}</p>
-      {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
-      {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
-    {{/if}}
-      {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
-      {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
-  </div>
+</section>
+<section>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h4 {{action 'collapseHeader'}}>
+          {{model.name}}
+        </h4>
+      </div>
+  {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        {{#if isEditing}}
+          {{#bs-form action='saveConvention'}}
+            {{!-- {{#bs-form-group}}
+              {{select-convention-kind kind=model.kind}}
+            {{/bs-form-group}} --}}
+            {{#bs-form-group}}
+              {{select-organization organization=model.organization}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{convention-kind kind=model.kind}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{select-drcj person=model.drcj}}
+            {{/bs-form-group}}
+            {{!-- {{#bs-form-group}}
+              {{convention-kind kind=model.kind}}
+            {{/bs-form-group}} --}}
+            {{#bs-form-group}}
+              {{select-venue venue=model.venue}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{select-season season=model.season}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{#power-select-multiple
+                options=riserChoices
+                selected=model.risers
+                placeholder="Risers."
+                onchange=(action (mut model.risers))
+                as |risers|
+              }}
+                {{risers}}
+              {{/power-select-multiple}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{date-range-picker
+                  start=model.date.lower
+                  end=model.date.upper
+                  autoUpdateInput=false
+                  ranges=null
+                  serverFormat='YYYY-MM-DD[T]HH:mm:ss.SSS[Z]'
+                  timePicker=true
+                  timePicker24Hour=true
+                  applyAction=(action 'updateDate')
+              }}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{x-toggle showLabels=true offLabel='No Prelims' onLabel='Prelims' value=model.is_prelims toggled=model.is_prelims}}
+            {{/bs-form-group}}
+            {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+            {{#bs-button action=(action 'cancelConvention')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{/bs-form}}
+        {{else}}
+          <p><strong>Name</strong>: {{model.name}}</p>
+          <p>
+            <strong>Status</strong>: {{model.status}}
+          </p>
+          <p><strong>Host</strong>: {{#link-to 'admin.organizations.organization' model.organization}}{{model.organization.name}}{{/link-to}}</p>
+          <p><strong>Kind</strong>: {{#if model.kind}}{{model.kind}}{{else}}(None){{/if}}</p>
+          <p><strong>DRCJ</strong>: {{#link-to 'admin.persons.person' model.drcj}}{{model.drcj.name}}{{/link-to}}</p>
+          {{!-- <p><strong>Kind</strong>: {{model.kind}}</p> --}}
+          <p><strong>Venue</strong>: {{#link-to 'admin.venues.venue' model.venue}}{{model.venue.name}}{{/link-to}}</p>
+          <p><strong>Season</strong>: {{model.season}}</p>
+          <p><strong>Risers</strong>: {{model.risers}}</p>
+          <p><strong>Dates</strong>: {{date-range model.date}}</p>
+          <p><strong>Prelims</strong>: {{yn-boolean model.is_prelims}}</p>
+          {{#bs-button action=(action 'editConvention')}}Edit{{/bs-button}}
+          {{#bs-button action=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}}
+        {{/if}}
+          {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
+          {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
+      </div>
+  {{/bs-collapse}}
+    </div>
 </section>
 
 <section>

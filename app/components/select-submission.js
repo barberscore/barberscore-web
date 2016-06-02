@@ -22,5 +22,17 @@ export default Ember.Component.extend({
       newSubmission.save();
       this.set('model.submission', newSubmission);
     },
+   saveSubmission(submission) {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.set('submission', submission);
+      this.model.save()
+      .then(() => {
+        flashMessages.success('Success');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
+    },
   },
 });
+
