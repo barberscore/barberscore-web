@@ -150,14 +150,14 @@ export default Ember.Controller.extend({
       this.set('isEditing', true);
     },
     saveOrder() {
-      let children = this.get('model.performers');
+      let children = this.get('currentPerformances');
       children.forEach(function(item) {
         item.save();
       });
       this.set('isEditing', false);
     },
     cancelOrder() {
-      let children = this.get('model.performers');
+      let children = this.get('currentPerformances');
       children.forEach(function(item) {
         item.rollbackAttributes();
       });
@@ -165,7 +165,7 @@ export default Ember.Controller.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        item.set('soa', index+1);
+        item.set('slot', index+1);
       });
     }
   },

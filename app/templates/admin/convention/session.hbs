@@ -158,7 +158,7 @@
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#if true}}
-     {{#bs-accordion-item value="9" title="Sche"}}
+     {{#bs-accordion-item value="9" title="Schedule"}}
         <div class='table-responsive'>
           {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
             <thead>
@@ -172,7 +172,7 @@
             </thead>
             <tbody>
             {{#each currentPerformances as |performance|}}
-              {{#sortable-item tagName="tr" model=performer group=group handle=".handle"}}
+              {{#sortable-item tagName="tr" model=performance group=group handle=".handle"}}
                     <td>{{performance.slot}}</td>
                     <td>{{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
                 {{!-- <td>{{performer.status}}</td> --}}
@@ -185,7 +185,7 @@
                     {{/bs-dropdown-menu}}
                   {{/bs-dropdown}}
                 </td> --}}
-                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=2}}</span>{{/if}}</td>
+                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=1}}</span>{{/if}}</td>
               {{/sortable-item}}
             {{/each}}
             </tbody>
