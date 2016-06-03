@@ -2,7 +2,23 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isEditing: false,
+  isDetailsCollapsed: false,
+  isContestingCollapsed: false,
+  isSubmissionsCollapsed: false,
+  isRolesCollapsed: false,
   actions: {
+    toggleDetails() {
+      return this.toggleProperty('isDetailsCollapsed');
+    },
+    toggleContesting() {
+      return this.toggleProperty('isContestingCollapsed');
+    },
+    toggleSubmissions() {
+      return this.toggleProperty('isSubmissionsCollapsed');
+    },
+    toggleRoles() {
+      return this.toggleProperty('isRolesCollapsed');
+    },
     previousItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur-1);

@@ -16,9 +16,12 @@
 <section>
     <div class='panel panel-default'>
       <div class='panel-heading'>
-        <h4 {{action 'collapseHeader'}}>
-          {{model.name}}
-        </h4>
+        <ul class='list-inline'>
+          <li {{action 'collapseHeader'}}><h4>{{model.name}}</h4></li>
+          {{#each model.sessions as |session|}}
+            <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
       </div>
   {{#bs-collapse collapsed=isHeaderCollapsed}}
       <div class='panel-body'>
@@ -98,13 +101,13 @@
   {{/bs-collapse}}
     </div>
 </section>
-<section>
+{{!-- <section>
   <ul class='list-inline'>
     {{#each model.sessions as |session|}}
       <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
     {{/each}}
   </ul>
-</section>
+</section> --}}
 <section>
   <p>
     {{outlet}}
