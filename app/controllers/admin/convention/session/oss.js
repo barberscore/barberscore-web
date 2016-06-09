@@ -2,19 +2,29 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isRaw: false,
-  contestantSortProperties: ['total_points:desc',],
+  contestantSortProperties: [
+    'total_points:desc',
+    'sng_points:desc',
+    'mus_points:desc',
+    'prs_points:desc'
+  ],
   sortedContestants: Ember.computed.sort(
-    'model.contestants',
+    'model.primary.contestants',
     'contestantSortProperties'
   ),
   contestSortProperties: ['name:asc',],
+  championshipContests: Ember.computed.filterBy(
+    'model.contests',
+    'is_qualifier',
+    false
+  ),
   sortedContests: Ember.computed.sort(
-    'model.session.contests',
+    'championshipContests',
     'contestSortProperties'
   ),
   panelSort: ['designation:asc',],
   officialJudges: Ember.computed.filterBy(
-    'model.session.judges',
+    'model.judges',
     'kind',
     'Official'
   ),

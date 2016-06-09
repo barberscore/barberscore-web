@@ -12,14 +12,12 @@ Router.map(function() {
     this.route('convention', { path: 'convention/:convention_id' }, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('sa', { path: '/sa'});
+        this.route('announcement', { path: '/announcement'});
+        this.route('oss', { path: '/oss'});
         this.route('current', { path: '/current/:performance_id'});
         this.route('cursor', { path: '/cursor/:performance_id'});
-        this.route('announcement', { path: '/announcement'});
-        this.route('performer', { path: '/performer/:performer_id'}, function() {
-          this.route('csa', { path: '/csa'});
-          this.route('awards', { path: '/awards/'}, function() {
-          });
-        });
+        this.route('performer', { path: '/performer/:performer_id'});
+        this.route('csa', { path: '/csa/:performer_id'});
         this.route('judge', { path: '/judge/:judge_id'}, function() {
         });
         this.route('round', { path: '/round/:round_id'}, function() {

@@ -101,6 +101,42 @@ export default Ember.Controller.extend({
         flashMessages.danger("Error" );
       });
     },
+    startCurrent() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.get('current').then(current => {
+        current.start()
+        .then(response => {
+          this.store.pushPayload('round', response);
+        })
+        .catch(() => {
+          flashMessages.danger("Error" );
+        });
+      });
+    },
+    finishCurrent() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.get('current').then(current => {
+        current.finish()
+        .then(response => {
+          this.store.pushPayload('round', response);
+        })
+        .catch(() => {
+          flashMessages.danger("Error" );
+        });
+      });
+    },
+    publishCurrent() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.get('current').then(current => {
+        current.publish()
+        .then(response => {
+          this.store.pushPayload('round', response);
+        })
+        .catch(() => {
+          flashMessages.danger("Error" );
+        });
+      });
+    },
     finishSession() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.finish()
@@ -216,7 +252,7 @@ export default Ember.Controller.extend({
   // }),
   perfSort: ['slot', ],
   currentPerformances: Ember.computed.sort(
-    'currentRound.0.performances',
+    'model.current.performances',
     'perfSort'
   ),
   roundsSort: ['num', ],

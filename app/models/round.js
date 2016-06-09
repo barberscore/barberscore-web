@@ -8,6 +8,7 @@ export default DS.Model.extend({
   date: DS.attr('date-range'),
   num: DS.attr('number'),
   mt: DS.belongsTo('group', {async: true}),
+  current_session: DS.belongsTo('session', {async: true, inverse: 'current'}),
   session: DS.belongsTo('session', {async: true}),
   performances: DS.hasMany('performance', {async: true}),
   draw: memberAction({path: 'draw'}),

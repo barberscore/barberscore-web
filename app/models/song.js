@@ -17,7 +17,6 @@ export default DS.Model.extend({
   submission: DS.belongsTo('submission', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
-  songscore: DS.belongsTo('songscore', {async: true}),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

@@ -15,5 +15,4 @@ export default DS.Model.extend({
   champion: DS.belongsTo('contest', {async: true, inverse: 'champion'}),
   contest: DS.belongsTo('contest', {async: true}),
   performer: DS.belongsTo('performer', {async: true}),
-  contestantscore: DS.belongsTo('contestantscore', {async: true}),
 });
