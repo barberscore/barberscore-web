@@ -1,8 +1,8 @@
 <div>
   <ol class='breadcrumb'>
     <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
-    <li>{{#link-to 'public.conventions.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
-    <li>{{#link-to 'public.conventions.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
+    <li>{{#link-to 'public.convention' model.session.convention}}{{model.session.convention.name}}{{/link-to}}</li>
+    <li>{{#link-to 'public.convention.session' model.session}}{{model.session.kind}}{{/link-to}}</li>
     <li class='active'>{{model.kind}}</li>
   </ol>
 </div>

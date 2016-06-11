@@ -71,20 +71,16 @@ Router.map(function() {
     this.route('about');
     this.route('faq');
     this.route('conventions', { path: '/convention/' }, function() {
-      this.route('convention', { path: '/:convention_id' }, function() {
-        this.route('session', { path: '/:session_id' }, function() {
-          this.route('judge', { path: '/judge/:judge_id'}, function() {
-          });
-          this.route('performer', { path: '/performer/:performer_id'}, function() {
-            this.route('person', { path: '/:person_id'}, function () {
-            });
-          });
-          this.route('round', { path: '/round/:round_id'}, function() {
-          });
-          this.route('contest', { path: '/contest/:contest_id'}, function() {
-            this.route('performance', { path: '/:performance_id'}, function() {
-            });
-          });
+    });
+    this.route('convention', { path: '/convention/:convention_id' }, function() {
+      this.route('session', { path: '/session/:session_id' }, function() {
+        this.route('judge', { path: '/judge/:judge_id'}, function() {
+        });
+        this.route('performer', { path: '/performer/:performer_id'}, function() {
+        });
+        this.route('round', { path: '/round/:round_id'}, function() {
+        });
+        this.route('contest', { path: '/contest/:contest_id'}, function() {
         });
       });
     });

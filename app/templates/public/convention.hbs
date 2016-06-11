@@ -38,7 +38,7 @@
             {{#each sortedSessions as |session|}}
               <tr>
                 <td>
-                  {{#link-to 'public.conventions.convention.session' session}}{{session.kind}}{{/link-to}}
+                  {{#link-to 'public.convention.session' session}}{{session.kind}}{{/link-to}}
                 </td>
               </tr>
             {{/each}}
@@ -47,3 +47,6 @@
      {{/bs-accordion-item}}
  {{/bs-accordion}}
 </section>
+<p>
+{{outlet}}
+</p>
