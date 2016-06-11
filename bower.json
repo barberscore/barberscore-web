@@ -7,7 +7,6 @@
     "ember-load-initializers": "0.5.x",
     "jquery": "1.11.x",
     "bootstrap": "3.3.x",
-    "bootstrap-daterangepicker": "2.1.x",
     "font-awesome": "4.6.x"
   },
   "devDependencies": {
