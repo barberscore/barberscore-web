@@ -4,14 +4,11 @@
     "ember": "2.6.x",
     "ember-cli-shims": "0.1.x",
     "ember-cli-test-loader": "0.2.x",
-    "ember-load-initializers": "0.1.x",
-    "ember-qunit-notifications": "0.1.x",
+    "ember-load-initializers": "0.5.x",
     "jquery": "1.11.x",
-    "loader.js": "3.5.x",
     "bootstrap": "3.3.x",
     "bootstrap-daterangepicker": "2.1.x",
-    "font-awesome": "4.6.x",
-    "ember-qunit-notifications": "0.1.x"
+    "font-awesome": "4.6.x"
   },
   "devDependencies": {
   }
