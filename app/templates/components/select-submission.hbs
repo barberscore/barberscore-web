@@ -2,7 +2,7 @@
       options=submissionChoices
       selected=submission
       placeholder="Select Song"
-      onchange=(action (mut submission))
+      onchange=(action "saveSubmission")
       oncreate=(action "createSubmission" term)
       allowClear=true
       as |submission term|

@@ -17,7 +17,6 @@ export default DS.Model.extend({
   submission: DS.belongsTo('submission', {async: true}),
   performance: DS.belongsTo('performance', {async: true}),
   scores: DS.hasMany('score', {async: true}),
-  songscore: DS.belongsTo('songscore', {async: true}),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(
@@ -34,8 +33,8 @@ export default DS.Model.extend({
 
   officialScores: Ember.computed.filterBy('scores', 'kind', 'Official'),
   points: Ember.computed.mapBy('officialScores', 'points'),
-  pointsSort: ['points',],
-  pointsSorted: Ember.computed.sort('officialScores', 'pointsSort'),
+  // pointsSort: ['points',],
+  // pointsSorted: Ember.computed.sort('officialScores', 'pointsSort'),
   pointsSum: Ember.computed.sum('points'),
   pointsMean: Ember.computed('pointsSum', 'points', function() {
     return (this.get('pointsSum') / this.get('points').length);
