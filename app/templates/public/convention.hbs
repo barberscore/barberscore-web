@@ -1,52 +1,47 @@
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
-    <li class='active'>{{model.name}}</li>
-  </ol>
-</div>
-
-
-<section class='panel panel-default'>
-  <div class='panel-heading'>
-    <h4>
-      Convention Detail
-    </h4>
-  </div>
-  <div class='panel-body'>
-    <p>
-      {{model.name}}
-    </p>
-    <p>
-      {{venue-short model.venue}}
-    </p>
-    <p>
-      {{date-range model.date}}
-    </p>
-  </div>
-</section>
-
 <section>
- {{#bs-accordion selected=selected}}
-     {{#bs-accordion-item value="1" title="Sessions" collapsed=false}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedSessions as |session|}}
-              <tr>
-                <td>
-                  {{#link-to 'public.convention.session' session}}{{session.kind}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
- {{/bs-accordion}}
+  <div class='row'>
+    <div class='col-md-10'>
+      <ol class='breadcrumb'>
+        <li>{{#link-to 'public'}}Home{{/link-to}}</li>
+        <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
+        <li class='active'>{{model.name}}</li>
+      </ol>
+    </div>
+    <div class='col-md-2'>
+      <ul class='list-inline'>
+        <li>{{#bs-button size='sm' disabled=false action=(action 'previousItem' sortedItems model)}}Prev{{/bs-button}}</li>
+        <li>{{#bs-button size='sm' disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+      </ul>
+    </div>
+  </div>
 </section>
-<p>
-{{outlet}}
-</p>
+<section>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <ul class='list-inline'>
+          <li {{action 'collapseHeader'}}><h4>{{model.name}}</h4></li>
+          {{#each model.sessions as |session|}}
+            <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+      </div>
+  {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        <p>
+          <strong>Name</strong>: {{model.name}}
+        </p>
+        <p>
+          <strong>Venue</strong>: {{model.venue.name}}
+        </p>
+        <p>
+          <strong>Dates</strong>: {{date-range model.date}}
+        </p>
+      </div>
+  {{/bs-collapse}}
+    </div>
+</section>
+<section>
+  <p>
+    {{outlet}}
+  </p>
+</section>
