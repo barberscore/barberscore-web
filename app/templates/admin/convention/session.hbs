@@ -6,6 +6,8 @@
       <li>{{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'drawCurrent') class='form-group'}}Draw {{model.current.kind}}{{/bs-button}}</li>
+      <li>{{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}</li>
       <li>{{#bs-button action=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}</li>
@@ -81,7 +83,7 @@
                   {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
                 </td> --}}
                 {{!-- <td>
-                  {{contest.champion.performer.group.name}}
+                  {{contest.champion}}
                   {{contest-champion model=contest champion=contest.champion class='form-group'}}
                 </td> --}}
                 <td>
@@ -131,109 +133,51 @@
         </div>
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
-     {{#if true}}
      {{#bs-accordion-item value="9" title="Schedule"}}
-        <div class='table-responsive'>
-          {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
-            <thead>
-            <tr>
-              <th>Slot</th>
-              <th>Performer</th>
-              {{!-- <th>Status</th> --}}
-              {{!-- <th>Actions</th>  --}}
-              <th>Change</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each currentPerformances as |performance|}}
-              {{#sortable-item tagName="tr" model=performance group=group handle=".handle"}}
-                    <td>{{performance.slot}}</td>
-                    <td>{{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
-                {{!-- <td>{{performer.status}}</td> --}}
-                {{!-- <td>
-                  {{#bs-dropdown}}
-                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                    {{#bs-dropdown-menu}}
-                      <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
-                      <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
-                    {{/bs-dropdown-menu}}
-                  {{/bs-dropdown}}
-                </td> --}}
-                <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=1}}</span>{{/if}}</td>
-              {{/sortable-item}}
-            {{/each}}
-            </tbody>
-            {{/sortable-group}}
-            {{#if isEditing}}
-              {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
-              {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
-            {{else}}
-              {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
-            {{/if}}
-          </div>
-        {{add-performer session=model class='form-group'}}
-     {{/bs-accordion-item}}
-     {{else}}
-     {{#bs-accordion-item value="2" title="Schedule"}}
-          <div class='col-md-12'>
-            <div class='table-responsive'>
-              <table class='table'>
-                  <thead>
-                  <tr>
-                    <th {{action 'sortPerformancesBy' 'slot:asc'}}>Slot</th>
-                    <th {{action 'sortPerformancesBy' 'performer.name:asc'}}>Performer</th>
-                    {{!-- <th>Status</th> --}}
-                    {{!-- <th>Actions</th> --}}
-                    <th {{action 'sortPerformancesBy' 'performer.total_score:desc'}}>Score</th>
-                    <th {{action 'sortPerformancesBy' 'performer.total_score:desc'}}>Cumulative</th>
-                    {{!-- {{#unless (eq model.kind 'Finals')}}<th>Advance</th>{{/unless}} --}}
-                  </tr>
-                  </thead>
-                  <tbody>
-                    {{#each currentPerformances as |performance|}}
-                      <tr>
+        {{#each model.rounds as |round|}}
+          <h5>
+            {{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}
+          </h5>
+          <div class='table-responsive'>
+            {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+              <thead>
+              <tr>
+                <th>Slot</th>
+                <th>Performer</th>
+                {{!-- <th>Status</th> --}}
+                {{!-- <th>Actions</th>  --}}
+                <th>Change</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each (sort-by 'slot' round.performances) as |performance|}}
+                {{#sortable-item tagName="tr" model=performance group=group handle=".handle"}}
                       <td>{{performance.slot}}</td>
                       <td>{{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
-                      {{!-- <td>{{performance.status}}</td> --}}
-                      {{!-- <td>
-                        {{#bs-dropdown}}
-                          {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                          {{#bs-dropdown-menu}}
-                            <li><a href='#' {{action 'scratch' performer}}>Scratch</a></li>
-                            <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
-                          {{/bs-dropdown-menu}}
-                        {{/bs-dropdown}}
-                      </td> --}}
-                      <td>{{single-fixed performance.total_score}}</td>
-                      <td>{{single-fixed performance.performer.total_score}}</td>
-                      {{!-- {{#unless (eq model.kind 'Finals')}}
-                        <td>
-                          {{#if isEditing}}
-                            {{x-toggle showLabels=true offLabel='Not' onLabel='Advancing' value=performance.is_advancing toggled=performance.is_advancing}}
-                          {{else}}
-                            {{#if performance.self.songs.filteris_advancing}}<span class='text-success'>{{fa-icon 'check-circle'}}</span>{{else}}<span class='text-danger'>{{fa-icon 'times-circle'}}</span>{{/if}}
-                          {{/if}}
-                        </td>
-                      {{/unless}} --}}
-                      </tr>
-                    {{/each}}
-                  </tbody>
-                {{#if isEditing}}
-                  {{!-- {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}} --}}
-                  {{!-- {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}} --}}
-                {{else}}
-                  {{!-- {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}} --}}
-                {{/if}}
-              </table>
+                  {{!-- <td>{{performer.status}}</td> --}}
+                  {{!-- <td>
+                    {{#bs-dropdown}}
+                      {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                      {{#bs-dropdown-menu}}
+                        <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
+                        <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
+                      {{/bs-dropdown-menu}}
+                    {{/bs-dropdown}}
+                  </td> --}}
+                  <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=1}}</span>{{/if}}</td>
+                {{/sortable-item}}
+              {{/each}}
+              </tbody>
+              {{/sortable-group}}
+              {{#if isEditing}}
+                {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
+                {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
+              {{else}}
+                {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
+              {{/if}}
             </div>
-          </div>
+        {{/each}}
      {{/bs-accordion-item}}
-     {{/if}}
-     {{!-- {{#bs-accordion-item value="7" title="Score"}}
-       <p>
-       {{#link-to 'admin.convention.session.cursor' model.cursor}}Score Performances{{/link-to}}
-       </p>
-     {{/bs-accordion-item}} --}}
      {{#bs-accordion-item value="5" title="Documents"}}
       Session
       <ul>

@@ -19,6 +19,7 @@ export default DS.Model.extend({
   representing: DS.belongsTo('organization', {async: true}),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
+  rank: DS.attr('number'),
   mus_points: DS.attr('number'),
   prs_points: DS.attr('number'),
   sng_points: DS.attr('number'),

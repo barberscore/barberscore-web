@@ -18,6 +18,7 @@ Router.map(function() {
         this.route('cursor', { path: '/cursor/:performance_id'});
         this.route('performer', { path: '/performer/:performer_id'});
         this.route('csa', { path: '/csa/:performer_id'});
+        this.route('round', { path: '/round/:round_id'});
         this.route('judge', { path: '/judge/:judge_id'}, function() {
         });
         this.route('round', { path: '/round/:round_id'}, function() {

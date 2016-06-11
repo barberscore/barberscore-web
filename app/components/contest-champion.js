@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord(contestant) {
-      this.model.set('champion', contestant);
+      this.model.set('champion', contestant.get('performer.group.name'));
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {

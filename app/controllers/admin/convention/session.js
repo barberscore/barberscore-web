@@ -101,6 +101,30 @@ export default Ember.Controller.extend({
         flashMessages.danger("Error" );
       });
     },
+    drawCurrent() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.get('current').then(current => {
+        current.draw()
+        .then(response => {
+          this.store.pushPayload('round', response);
+        })
+        .catch(() => {
+          flashMessages.danger("Error" );
+        });
+      });
+    },
+    validateCurrent() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.model.get('current').then(current => {
+        current.validate()
+        .then(response => {
+          this.store.pushPayload('round', response);
+        })
+        .catch(() => {
+          flashMessages.danger("Error" );
+        });
+      });
+    },
     startCurrent() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.get('current').then(current => {
@@ -166,18 +190,6 @@ export default Ember.Controller.extend({
       .catch(() => {
         flashMessages.danger("Error" );
       });
-    },
-    drawRound(round) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      round.draw()
-      .then(() => {
-        flashMessages.success('Success');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-      round.reload();
-      this.transitionToRoute('admin.session.session.round', round);
     },
     letsGo() {
       this.toggleProperty('isRaw');

@@ -31,7 +31,7 @@ Awards
 </h3>
 <ul class='list-unstyled'>
   {{#each model.contests as |contest|}}
-    <li>{{contest.award.name}}: {{contest.champion.performer.group.name}} {{contest.champion.total_points}} {{single-fixed contest.champion.total_score}}</li>
+    <li>{{contest.award.name}} Champion: {{contest.champion}}</li>
     <ul>
     {{#each (take 5 (sort-by 'rank' contest.contestants)) as |contestant|}}
       <li>{{contestant.rank}}: {{contestant.performer.group.name}} {{contestant.total_points}} {{single-fixed contestant.total_score}}</li>

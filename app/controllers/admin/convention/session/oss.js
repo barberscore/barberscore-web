@@ -2,15 +2,16 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isRaw: false,
-  contestantSortProperties: [
+  performerSortProperties: [
+    'rank:asc',
     'total_points:desc',
     'sng_points:desc',
     'mus_points:desc',
     'prs_points:desc'
   ],
-  sortedContestants: Ember.computed.sort(
-    'model.primary.contestants',
-    'contestantSortProperties'
+  sortedPerformers: Ember.computed.sort(
+    'model.performers',
+    'performerSortProperties'
   ),
   contestSortProperties: ['name:asc',],
   championshipContests: Ember.computed.filterBy(
