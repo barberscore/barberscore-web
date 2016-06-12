@@ -1,0 +1,63 @@
+<section>
+    <h3>
+      {{model.performer.group.name}}
+    </h3>
+    <h4>
+      {{#if model.performer.group.chapter}}{{model.performer.group.chapter.name}}{{/if}}
+    </h4>
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class="col-md-8">Songs</th>
+          <th class='text-right'>MUS</th>
+          <th class='text-right'>PRS</th>
+          <th class='text-right'>SNG</th>
+          <th class='text-right'>TOT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedSongs as |song|}}
+          <tr>
+            <td>
+              {{song.submission.chart.title}}
+            </td>
+            <td class='text-right'>
+              {{song.mus_points}}
+            </td>
+            <td class='text-right'>
+              {{song.prs_points}}
+            </td>
+            <td class='text-right'>
+              {{song.sng_points}}
+            </td>
+            <td class='text-right'>
+              {{song.total_points}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+      <tr>
+          <th>
+            Totals
+          </th>
+          <th class='text-right'>
+            {{model.mus_points}}
+          </th>
+          <th class='text-right'>
+            {{model.prs_points}}
+          </th>
+          <th class='text-right'>
+            {{model.sng_points}}
+          </th>
+          <th class='text-right'>
+            {{model.total_points}}
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>

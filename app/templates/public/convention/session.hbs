@@ -1,208 +1,73 @@
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
-    <li>{{#link-to 'public.convention' model.convention}}{{model.convention.name}}{{/link-to}}</li>
-    <li class='active'>{{model.kind}}</li>
-  </ol>
-</div>
-<section class='panel panel-default'>
-  <div class='panel-heading'>
-    <h3>
-      Session Details
-    </h3>
-  </div>
-  <div class='panel-body'>
-    <p>
-      {{model.name}}
-    </p>
-  </div>
-</section>
-{{#if (eq model.status 'Final')}}
 <section>
-{{x-toggle showLabels=true offLabel='Points' onLabel='Score' toggle='letsGo' class='pull-right'}}
-<div class='table-responsive'>
-<table class='table'>
-  <thead>
-  <tr>
-  <th>Group</th>
-  <th>Songs</th>
-  <th class='text-right'>MUS</th>
-  <th class='text-right'>PRS</th>
-  <th class='text-right'>SNG</th>
-  <th class='text-right'>Total</th>
-  {{!-- {{#each model.contests as |contest|}}
-    <th class='text-right'>{{contest.award.name}}</th>
-  {{/each}} --}}
-  </tr>
-  </thead>
-  <tbody>
-  {{#each model.performers as |performer|}}
-    <tr>
-    <td>
-      {{!-- {{#link-to 'conventions.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}} --}}
-      {{group-modal group=performer.group}}
-    </td>
-    <td>
-      {{#each performer.performances as |performance|}}
-        {{#each performance.songs as |song|}}
-          {{truncate-text song.chart.title limit=30}}<br>
-        {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
-      {{/each}}
-      <strong>Total</strong>
-    </td>
-    <td class='text-right'>
-      {{#each performer.performances as |performance|}}
-        {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.mus_points}}{{else}}{{single-fixed song.mus_score}}{{/if}}<br>
-        {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.mus_points}}{{else}}{{single-fixed performance.mus_score}}{{/if}}</em><br>{{/if}}
-      {{/each}}
-      <strong>{{#if isRaw}}{{performer.mus_points}}{{else}}{{single-fixed performer.mus_score}}{{/if}}</strong><br>
-
-    </td>
-    <td class='text-right'>
-      {{#each performer.performances as |performance|}}
-        {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.prs_points}}{{else}}{{single-fixed song.prs_score}}{{/if}}<br>
-        {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.prs_points}}{{else}}{{single-fixed performance.prs_score}}{{/if}}</em><br>{{/if}}
-      {{/each}}
-      <strong>{{#if isRaw}}{{performer.prs_points}}{{else}}{{single-fixed performer.prs_score}}{{/if}}</strong><br>
-    </td>
-    <td class='text-right'>
-      {{#each performer.performances as |performance|}}
-        {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.sng_points}}{{else}}{{single-fixed song.sng_score}}{{/if}}<br>
-        {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.sng_points}}{{else}}{{single-fixed performance.sng_score}}{{/if}}</em><br>{{/if}}
-      {{/each}}
-      <strong>{{#if isRaw}}{{performer.sng_points}}{{else}}{{single-fixed performer.sng_score}}{{/if}}</strong><br>
-    </td>
-    <td class='text-right'>
-      {{#each performer.performances as |performance|}}
-        {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.total_points}}{{else}}{{single-fixed song.total_score}}{{/if}}<br>
-        {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.total_points}}{{else}}{{single-fixed performance.total_score}}{{/if}}</em><br>{{/if}}
-      {{/each}}
-      <strong>{{#if isRaw}}{{performer.total_points}}{{else}}{{single-fixed performer.total_score}}{{/if}}</strong><br>
-    </td>
-    {{!-- {{#each model.contests as |contest|}}
-      <td class='text-right'>
-      {{#each performer.contestants as |contestant|}}
-        {{#if (eq contest.id contestant.contest.id)}}
-          {{contestant.rank}}
-        {{/if}}
-      {{/each}}
-      </td>
-    {{/each}} --}}
-    </tr>
-  {{/each}}
-  </tbody>
-</table>
-</div>
-</section>
-{{/if}}
-<section>
- {{#bs-accordion selected=selected collapsed=collapsed}}
-    {{#if (eq model.status 'New')}}
-
-     {{#bs-accordion-item value="4" title="Performers"}}
-        {{#if model.performers}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedPerformers as |performer|}}
-              <tr>
-                <td>
-                  {{group-modal group=performer.group}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        {{else}}
-          <h4>Performers not yet selected.  Please check back later</h4>
-        {{/if}}
-     {{/bs-accordion-item}}
-     {{else}}
-     {{#bs-accordion-item value="2" title="Schedule"}}
-        {{!-- <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.rounds as |round|}}
-              <tr>
-                <td>
-                  {{#link-to 'conventions.convention.session.round' round}}{{round.kind}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table> --}}
-        <ul class='list-inline'>
-          {{#each model.rounds as |round|}}
-            <li>{{#link-to 'public.convention.session.round' round}}{{round.kind}}{{/link-to}}</li>
+  <div class='row'>
+    <div class='col-md-4'>
+     {{#bs-accordion selected=selected collapsed=collapsed}}
+       {{#bs-accordion-item value="9" title="Schedule"}}
+          {{#each sortedRounds as |round|}}
+            <h5>
+              {{#link-to 'public.convention.session.round' round}}{{round.kind}}{{/link-to}}
+            </h5>
+            <div class='table-responsive'>
+              <table class='table'>
+                <thead>
+                <tr>
+                  <th>Slot</th>
+                  <th>Performer</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{#each (sort-by 'slot' round.performances) as |performance|}}
+                    <tr>
+                      <td>
+                        {{performance.slot}}
+                      </td>
+                      <td>
+                        {{#link-to 'public.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
           {{/each}}
-        </ul>
-     {{/bs-accordion-item}}
-     {{/if}}
-     {{#bs-accordion-item value="3" title="Judges"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Category</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedJudges as |judge|}}
-              {{#if (eq judge.kind 'Official')}}
-              <tr>
-                <td>
-                  {{#if judge.person}}{{person-modal person=judge.person}}{{else}}(Not yet selected.){{/if}}
-                </td>
-                <td>
-                  {{judge.category}}
-                </td>
-              </tr>
-              {{/if}}
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
-     {{#bs-accordion-item value="1" title="Contests"}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Champion/District Representative</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedContests as |contest|}}
-              <tr>
-                <td>
-                  {{contest.award.name}}{{#if contest.is_qualifier}} Qualifier{{else}} Championship{{/if}}
-                </td>
-                <td>
-                  {{#if contest.champion}}{{contest.champion}}{{else}}TBD{{/if}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
- {{/bs-accordion}}
+       {{/bs-accordion-item}}
+       {{#bs-accordion-item value="5" title="Results"}}
+          {{#if finishedPerformers}}
+            <h5>
+              {{#link-to 'public.convention.session.oss' model}}Official Scoring Summary{{/link-to}}
+            </h5>
+            <div class='table-responsive'>
+              <table class='table'>
+                <thead>
+                <tr>
+                  <th>Place</th>
+                  <th>Performer</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {{#each finishedPerformers as |performer|}}
+                    <tr>
+                      <td>
+                        {{performer.rank}}
+                      </td>
+                      <td>
+                        {{#link-to 'public.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}
+                      </td>
+                    </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          {{else}}
+            <p>
+              No results yet.
+            </p>
+          {{/if}}
+       {{/bs-accordion-item}}
+     {{/bs-accordion}}
+    </div>
+    <div class='col-md-8'>
+      {{outlet}}
+    </div>
+  </div>
 </section>
-<div>
-  {{outlet}}
-</div>

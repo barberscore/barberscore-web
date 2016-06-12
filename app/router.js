@@ -80,7 +80,11 @@ Router.map(function() {
         });
         this.route('round', { path: '/round/:round_id'}, function() {
         });
+        this.route('current', { path: '/current/:performance_id'}, function() {
+        });
         this.route('contest', { path: '/contest/:contest_id'}, function() {
+        });
+        this.route('oss', { path: '/oss'}, function() {
         });
       });
     });
