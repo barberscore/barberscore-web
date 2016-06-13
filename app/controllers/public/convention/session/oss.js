@@ -33,6 +33,16 @@ export default Ember.Controller.extend({
     'officialJudges',
     'panelSort'
   ),
+  finishedSort: ['rank', 'performer.group.name',],
+  donePerformers: Ember.computed.filterBy(
+    'model.performers',
+    'status',
+    'Published'
+  ),
+  finishedPerformers: Ember.computed.sort(
+    'donePerformers',
+    'finishedSort'
+  ),
   actions: {
     letsGo() {
       this.toggleProperty('isRaw');

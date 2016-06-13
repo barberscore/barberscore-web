@@ -10,10 +10,10 @@ export default Ember.Controller.extend({
   donePerformers: Ember.computed.filterBy(
     'model.performers',
     'status',
-    'Finished'
+    'Published'
   ),
   finishedPerformers: Ember.computed.sort(
     'donePerformers',
-    'roundsSort'
+    'finishedSort'
   )
 });
