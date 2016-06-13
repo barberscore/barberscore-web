@@ -139,43 +139,30 @@
             {{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}
           </h5>
           <div class='table-responsive'>
-            {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
+            <table class='table'>
               <thead>
               <tr>
                 <th>Slot</th>
                 <th>Performer</th>
                 {{!-- <th>Status</th> --}}
                 {{!-- <th>Actions</th>  --}}
-                <th>Change</th>
+                {{!-- <th>Change</th> --}}
               </tr>
               </thead>
               <tbody>
-              {{#each (sort-by 'slot' round.performances) as |performance|}}
-                {{#sortable-item tagName="tr" model=performance group=group handle=".handle"}}
-                      <td>{{performance.slot}}</td>
-                      <td>{{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}</td>
-                  {{!-- <td>{{performer.status}}</td> --}}
-                  {{!-- <td>
-                    {{#bs-dropdown}}
-                      {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                      {{#bs-dropdown-menu}}
-                        <li><a href='#' {{action 'scratchPerformer' performer}}>Scratch</a></li>
-                        <li><a href='#' {{action 'deletePerformer' performer}}>Delete</a></li>
-                      {{/bs-dropdown-menu}}
-                    {{/bs-dropdown}}
-                  </td> --}}
-                  <td>{{#if isEditing}}<span class="handle">{{fa-icon 'arrows-v' size=1}}</span>{{/if}}</td>
-                {{/sortable-item}}
-              {{/each}}
+                {{#each (sort-by 'slot' round.performances) as |performance|}}
+                  <tr>
+                    <td>
+                      {{performance.slot}}
+                    </td>
+                    <td>
+                      {{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}
+                    </td>
+                  </tr>
+                {{/each}}
               </tbody>
-              {{/sortable-group}}
-              {{#if isEditing}}
-                {{#bs-button action=(action 'cancelOrder')}}Cancel{{/bs-button}}
-                {{#bs-button action=(action 'saveOrder') class='btn-primary'}}Save{{/bs-button}}
-              {{else}}
-                {{#bs-button action=(action 'editOrder')}}Edit{{/bs-button}}
-              {{/if}}
-            </div>
+            </table>
+          </div>
         {{/each}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="5" title="Documents"}}
