@@ -4,49 +4,33 @@
     <li class='active'>{{model.name}}</li>
   </ol>
 </div>
-
-
-<section class='panel panel-default'>
-  <div class='panel-heading'>
-    <h4>
-      Convention Detail
-    </h4>
-  </div>
-  <div class='panel-body'>
-    <p>
-      {{model.name}}
-    </p>
-    <p>
-      {{venue-short model.venue}}
-    </p>
-    <p>
-      {{date-range model.date}}
-    </p>
-  </div>
-</section>
-
 <section>
- {{#bs-accordion selected=selected}}
-     {{#bs-accordion-item value="1" title="Sessions" collapsed=false}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedSessions as |session|}}
-              <tr>
-                <td>
-                  {{#link-to 'public.convention.session' session}}{{session.kind}}{{/link-to}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-     {{/bs-accordion-item}}
- {{/bs-accordion}}
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <ul class='list-inline'>
+          <li {{action 'collapseHeader'}}><h4>{{model.name}}</h4></li>
+          {{#each model.sessions as |session|}}
+            <li>{{#link-to 'public.convention.session' session}}{{session.kind}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+      </div>
+  {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        <p>
+          <strong>Name</strong>: {{model.name}}
+        </p>
+        <p>
+          <strong>Venue</strong>: {{model.venue.name}}
+        </p>
+        <p>
+          <strong>Dates</strong>: {{date-range model.date}}
+        </p>
+      </div>
+  {{/bs-collapse}}
+    </div>
 </section>
-<p>
-{{outlet}}
-</p>
+<section>
+  <p>
+    {{outlet}}
+  </p>
+</section>

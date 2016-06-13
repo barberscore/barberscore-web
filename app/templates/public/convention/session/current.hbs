@@ -1,0 +1,110 @@
+<section>
+  {{!-- <ul class='list-inline'> --}}
+  <div class='row'>
+  <div class='col-xs-6'>{{#bs-button action=(action 'previousItem' sortedItems model) block=true}}Prev{{/bs-button}}</div>
+  <div class='col-xs-6'>{{#bs-button action=(action 'nextItem' sortedItems model) block=true}}Next{{/bs-button}}</div>
+  </div>
+  {{!-- </ul> --}}
+</section>
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+    {{#if model.performer.group.picture}}
+        <img src='{{model.performer.group.picture}}' class='img-responsive img-thumbnail'>
+    {{else}}
+        <img src='http://s3-us-west-1.amazonaws.com/barberscore/no_image_available.jpg' class='img-responsive img-thumbnail'>
+    {{/if}}
+    </div>
+    <div class='col-md-6'>
+      <h3>
+        {{model.performer.group.name}}
+      </h3>
+      <h4>
+        {{#if model.performer.group.chapter}}{{model.performer.group.chapter.name}}{{/if}}
+      </h4>
+      <p>
+        {{model.performer.group.location}}
+      </p>
+      {{#if model.performer.group.facebook}}
+      <p>
+        <a href='{{model.performer.group.facebook}}'>Facebook</a>
+      </p>
+      {{/if}}
+      {{#if model.performer.group.twitter}}
+      <p>
+        <a href='https://twitter.com/{{model.performer.group.twitter}}'>{{model.performer.group.twitter}}</a>
+      </p>
+      {{/if}}
+      {{#if model.performer.group.email}}
+      <p>
+        <a href='mailto:{{model.performer.group.email}}'>{{model.performer.group.email}}</a>
+      </p>
+      {{/if}}
+      <ul class='list-inline'>
+      {{#each model.performer.group.roles as |role|}}
+        {{#if (eq role.status 'Active')}}<li>{{role.part}}: {{role.person.name}}</li>{{/if}}
+      {{/each}}
+      </ul>
+    </div>
+  </div>
+  <div class='row'>
+  <p class='in-modal'>
+  {{model.performer.group.description}}
+  </p>
+  </div>
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class="col-md-8">Songs</th>
+          <th class='text-right'>MUS</th>
+          <th class='text-right'>PRS</th>
+          <th class='text-right'>SNG</th>
+          <th class='text-right'>TOT</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedSongs as |song|}}
+          <tr>
+            <td>
+              {{song.submission.chart.title}}
+            </td>
+            <td class='text-right'>
+              {{song.mus_points}}
+            </td>
+            <td class='text-right'>
+              {{song.prs_points}}
+            </td>
+            <td class='text-right'>
+              {{song.sng_points}}
+            </td>
+            <td class='text-right'>
+              {{song.total_points}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+      <tr>
+          <th>
+            Totals
+          </th>
+          <th class='text-right'>
+            {{model.mus_points}}
+          </th>
+          <th class='text-right'>
+            {{model.prs_points}}
+          </th>
+          <th class='text-right'>
+            {{model.sng_points}}
+          </th>
+          <th class='text-right'>
+            {{model.total_points}}
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
