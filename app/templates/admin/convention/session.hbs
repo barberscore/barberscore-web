@@ -116,7 +116,7 @@
             <tbody>
               {{#each sortedPerformers as |performer|}}
                 <tr>
-                  <td>{{#link-to 'admin.convention.session.performer' performer}}{{performer.group.chap_name}}{{/link-to}}</td>
+                  <td>{{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}</td>
                   <td>{{performer.status}}</td>
                   {{!-- <td>
                     {{#bs-dropdown}}

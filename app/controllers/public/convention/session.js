@@ -15,5 +15,24 @@ export default Ember.Controller.extend({
   finishedPerformers: Ember.computed.sort(
     'donePerformers',
     'finishedSort'
-  )
+  ),
+  performanceSortProperties: [
+    'round.kind', 'slot', 'performer.group.name',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.current',
+    'performanceSortProperties'
+  ),
+  actions: {
+    previousItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur-1);
+      this.transitionToRoute('public.convention.session.current', newCur);
+    },
+    nextItem(sortedItems, cursor) {
+      let nowCur = sortedItems.indexOf(cursor);
+      let newCur = sortedItems.objectAt(nowCur+1);
+      this.transitionToRoute('public.convention.session.current', newCur);
+    }
+  }
 });
