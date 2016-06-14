@@ -16,8 +16,10 @@
 <section>
     <div class='panel panel-default'>
       <div class='panel-heading'>
+        <h4 {{action 'collapseHeader'}}>
+          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}
+        </h4>
         <ul class='list-inline'>
-          <li {{action 'collapseHeader'}}><h4>{{model.name}}</h4></li>
           {{#each model.sessions as |session|}}
             <li>{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
           {{/each}}

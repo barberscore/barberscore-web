@@ -1,0 +1,10 @@
+{{#power-select
+      options=rounds
+      selected=current
+      placeholder="Contest"
+      onchange=(action (mut current))
+      allowClear=true
+      as |current|
+}}
+  {{current.name}}
+{{/power-select}}

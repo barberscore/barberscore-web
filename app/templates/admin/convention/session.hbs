@@ -1,17 +1,51 @@
-<p>
-{{model.status}} -> {{model.current.kind}}: {{model.current.status}}
-</p>
 <section>
-   <ul class='list-inline'>
-      <li>{{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'drawCurrent') class='form-group'}}Draw {{model.current.kind}}{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}</li>
-      <li>{{#bs-button action=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}</li>
-  </ul>
+    <div class='panel panel-default'>
+      <div class='panel-heading'>
+        <h4 {{action 'collapseHeader'}}>
+          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}
+        </h4>
+      </div>
+  {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        {{#if isEditing}}
+          {{#bs-form action='saveSession'}}
+            {{#bs-form-group}}
+              {{select-contest contests=model.contests primary=model.primary}}
+            {{/bs-form-group}}
+            {{#bs-form-group}}
+              {{select-round rounds=model.rounds current=model.current}}
+            {{/bs-form-group}}
+            {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+            {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'deleteSession') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{/bs-form}}
+        {{else}}
+          <p>
+            <strong>Primary</strong>: {{#link-to 'admin.convention.session.contest' model.primary}}{{model.primary.name}}{{/link-to}}
+          </p>
+          <p>
+            <strong>Current</strong>: {{#link-to 'admin.convention.session.round' model.current}}{{model.current.name}}: {{model.current.status}}{{/link-to}}
+          </p>
+          {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
+          {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
+        {{/if}}
+          {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
+          {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
+      </div>
+  {{/bs-collapse}}
+    </div>
+</section>
+<section>
+   {{#bs-button-group}}
+      {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
+      {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
+      {{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}
+      {{#bs-button action=(action 'drawCurrent') class='form-group'}}Draw {{model.current.kind}}{{/bs-button}}
+      {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
+      {{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
+      {{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
+      {{#bs-button action=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}
+  {{/bs-button-group}}
 </section>
 <section>
 <div class='row'>

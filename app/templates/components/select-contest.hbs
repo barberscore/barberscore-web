@@ -1,0 +1,10 @@
+{{#power-select
+      options=contests
+      selected=primary
+      placeholder="Contest"
+      onchange=(action (mut primary))
+      allowClear=true
+      as |primary|
+}}
+  {{primary.name}}
+{{/power-select}}

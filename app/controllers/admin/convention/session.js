@@ -2,8 +2,12 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
+  isHeaderCollapsed: false,
   isRaw: false,
   actions: {
+    collapseHeader() {
+      this.toggleProperty('isHeaderCollapsed');
+    },
     sortPerformancesBy(performanceSortProperties) {
       this.set('perfSort', [performanceSortProperties]);
     },
