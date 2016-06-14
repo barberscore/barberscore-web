@@ -1,14 +1,9 @@
-{{#bs-form formLayout="inline" action="saveRecord"}}
-  {{#bs-form-group}}
-    {{#power-select
-      search=(action "searchGroup")
-      placeholder='Create Manual Entry.  (Add Group to Session.)'
-      selected=group
-      onchange=(action (mut group))
-      as |group|
-    }}
-      {{group.name}}
-    {{/power-select}}
-  {{/bs-form-group}}
-  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
-{{/bs-form}}
+{{#power-select
+  search=(action "searchGroup")
+  placeholder='Create Manual Entry.  (Add Group to Session.)'
+  selected=group
+  onchange=(action "saveRecord")
+  as |group|
+}}
+  {{group.name}}
+{{/power-select}}

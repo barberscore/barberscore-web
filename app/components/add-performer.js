@@ -3,11 +3,11 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveRecord() {
+    saveRecord(group) {
       const flashMessages = Ember.get(this, 'flashMessages');
       var performer = this.get('store').createRecord('performer', {
         session: this.get('session'),
-        group: this.get('group'),
+        group: group,
       });
       performer.save()
       .then(() => {
