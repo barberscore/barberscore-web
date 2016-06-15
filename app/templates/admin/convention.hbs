@@ -21,7 +21,7 @@
         </h4>
           {{#bs-button-group}}
           {{#each model.sessions as |session|}}
-            {{#bs-button}}{{session.kind}}{{/bs-button}}{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}</li>
+            {{#bs-button}}{{session.kind}}{{/bs-button}}{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}
           {{/each}}
           {{/bs-button-group}}
       </div>
