@@ -5,25 +5,25 @@
       <li class='active'>{{model.name}}</li>
     </ol>
 </section>
-{{!-- <section>
+<section>
   <div>
     <ul class='list-inline'>
       <li>{{#bs-button disabled=false action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
       <li>{{#bs-button disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
     </ul>
   </div>
-</section> --}}
+</section>
 <section>
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h4 {{action 'collapseHeader'}}>
-          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}
+          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}: {{model.status}}
         </h4>
-          {{#bs-button-group}}
+        <ul class='list-inline'>
           {{#each model.sessions as |session|}}
-            {{#bs-button}}{{session.kind}}{{/bs-button}}{{#link-to 'admin.convention.session' session}}{{session.kind}}{{/link-to}}
+            <li><h4>{{#link-to 'admin.convention.session' session}}{{session.kind}} Contest{{/link-to}}</h4></li>
           {{/each}}
-          {{/bs-button-group}}
+        </ul>
       </div>
   {{#bs-collapse collapsed=isHeaderCollapsed}}
       <div class='panel-body'>

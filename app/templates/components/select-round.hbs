@@ -1,8 +1,8 @@
 {{#power-select
       options=rounds
       selected=current
-      placeholder="Contest"
-      onchange=(action (mut current))
+      placeholder="Select Current Round"
+      onchange=(action "saveCurrent")
       allowClear=true
       as |current|
 }}

@@ -2,35 +2,17 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <h4 {{action 'collapseHeader'}}>
-          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}
+          {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}: {{model.status}}
         </h4>
       </div>
   {{#bs-collapse collapsed=isHeaderCollapsed}}
       <div class='panel-body'>
-        {{#if isEditing}}
-          {{#bs-form action='saveSession'}}
-            {{#bs-form-group}}
-              {{select-contest contests=model.contests primary=model.primary}}
-            {{/bs-form-group}}
-            {{#bs-form-group}}
-              {{select-round rounds=model.rounds current=model.current}}
-            {{/bs-form-group}}
-            {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-            {{#bs-button action=(action 'cancelSession')}}Cancel{{/bs-button}}
-            {{#bs-button action=(action 'deleteSession') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{/bs-form}}
-        {{else}}
-          <p>
-            <strong>Primary</strong>: {{#link-to 'admin.convention.session.contest' model.primary}}{{model.primary.name}}{{/link-to}}
-          </p>
-          <p>
-            <strong>Current</strong>: {{#link-to 'admin.convention.session.round' model.current}}{{model.current.name}}: {{model.current.status}}{{/link-to}}
-          </p>
-          {{#bs-button action=(action 'editSession')}}Edit{{/bs-button}}
-          {{#bs-button action=(action 'newSession') class='btn-primary pull-right'}}New{{/bs-button}}
-        {{/if}}
-          {{!-- {{#bs-button action=(action 'startConvention') class='form-group'}}Start{{/bs-button}} --}}
-          {{!-- {{#bs-button action=(action 'finishConvention') class='form-group'}}Finish{{/bs-button}} --}}
+        {{#bs-form-group}}
+          {{select-contest contests=model.contests primary=model.primary model=model}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{select-round rounds=model.rounds current=model.current model=model}}
+        {{/bs-form-group}}
       </div>
   {{/bs-collapse}}
     </div>

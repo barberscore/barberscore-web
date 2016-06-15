@@ -73,6 +73,8 @@ Router.map(function() {
     this.route('conventions', { path: '/convention/' }, function() {
     });
     this.route('convention', { path: '/convention/:convention_id' }, function() {
+      this.route('oss', { path: '/oss/:session_id'}, function() {
+      });
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('judge', { path: '/judge/:judge_id'}, function() {
         });
@@ -83,8 +85,6 @@ Router.map(function() {
         this.route('current', { path: '/current/:performance_id'}, function() {
         });
         this.route('contest', { path: '/contest/:contest_id'}, function() {
-        });
-        this.route('oss', { path: '/oss'}, function() {
         });
       });
     });
