@@ -1,21 +1,23 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('award-status'),
-  kind: DS.attr('award-kind'),
-  season: DS.attr('award-season'),
-  size: DS.attr('award-size'),
-  scope: DS.attr('award-scope'),
-  championship_rounds: DS.attr('number'),
-  is_primary: DS.attr('boolean'),
-  is_improved: DS.attr('boolean'),
-  is_novice: DS.attr('boolean'),
-  idiom: DS.attr('string'),
-  threshold: DS.attr('number'),
-  level: DS.attr('award-level'),
-  organization: DS.belongsTo('organization', {async: true}),
-  contests: DS.hasMany('contest', {inverse:'award', async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('award-status'),
+  kind: attr('award-kind'),
+  season: attr('award-season'),
+  size: attr('award-size'),
+  scope: attr('award-scope'),
+  championship_rounds: attr('number'),
+  is_primary: attr('boolean'),
+  is_improved: attr('boolean'),
+  is_novice: attr('boolean'),
+  idiom: attr('string'),
+  threshold: attr('number'),
+  level: attr('award-level'),
+  organization: belongsTo('organization', {async: true}),
+  contests: hasMany('contest', {inverse:'award', async: true}),
   seasonChoices: [
     'International',
     'Midwinter',

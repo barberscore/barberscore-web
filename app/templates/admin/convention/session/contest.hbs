@@ -1,4 +1,4 @@
-<section class='panel panel-default'>
+<div class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
       Contest Details
@@ -18,7 +18,7 @@
           </tr>
           </thead>
           <tbody>
-          {{#each sortedContestants as |contestant|}}
+          {{#each model.sortedContestants as |contestant|}}
             <tr>
             <td>{{contestant.performer.group.name}}</td>
             <td>{{contestant-status model=contestant status=contestant.status}}</td>
@@ -37,4 +37,4 @@
           {{add-contestant-performer contest=model}}
         </div>
   </div>
-</section>
+</div>

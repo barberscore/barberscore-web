@@ -23,16 +23,6 @@ export default Ember.Controller.extend({
     'championshipContests',
     'contestSortProperties'
   ),
-  panelSort: ['designation:asc',],
-  officialJudges: Ember.computed.filterBy(
-    'model.judges',
-    'kind',
-    'Official'
-  ),
-  sortedPanel: Ember.computed.sort(
-    'officialJudges',
-    'panelSort'
-  ),
   actions: {
     letsGo() {
       this.toggleProperty('isRaw');

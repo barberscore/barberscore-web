@@ -1,17 +1,19 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo} from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('contestant-status'),
-  rank: DS.attr('number'),
-  mus_points: DS.attr('number'),
-  prs_points: DS.attr('number'),
-  sng_points: DS.attr('number'),
-  total_points: DS.attr('number'),
-  mus_score: DS.attr('number'),
-  prs_score: DS.attr('number'),
-  sng_score: DS.attr('number'),
-  total_score: DS.attr('number'),
-  contest: DS.belongsTo('contest', {async: true}),
-  performer: DS.belongsTo('performer', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('contestant-status'),
+  rank: attr('number'),
+  mus_points: attr('number'),
+  prs_points: attr('number'),
+  sng_points: attr('number'),
+  total_points: attr('number'),
+  mus_score: attr('number'),
+  prs_score: attr('number'),
+  sng_score: attr('number'),
+  total_score: attr('number'),
+  contest: belongsTo('contest', {async: true}),
+  performer: belongsTo('performer', {async: true}),
 });

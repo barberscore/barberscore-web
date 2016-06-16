@@ -22,7 +22,7 @@
           <th class='text-right'>PRS</th>
           <th class='text-right'>SNG</th>
           <th class='text-right'>Total</th>
-          {{#each sortedPanel as |judge|}}
+          {{#each model.sortedJudges as |judge|}}
             {{#unless (eq judge.category 'Admin')}}
               <th class='text-right'>{{judge.designation}}</th>
             {{/unless}}
@@ -30,7 +30,7 @@
         </tr>
       </thead>
       <tbody>
-      {{#each sortedPerformers as |performer|}}
+      {{#each model.sortedPerformers as |performer|}}
         <tr>
           {{!-- <td>
             {{performer.rank}}
@@ -106,7 +106,7 @@
 <section>
   <h4>Judges</h4>
     <ul class='list-unstyled'>
-      {{#each sortedPanel as |judge|}}
+      {{#each model.sortedJudges as |judge|}}
         <li>{{judge.designation}}: {{judge.certification.person.common_name}}</li>
       {{/each}}
     </ul>

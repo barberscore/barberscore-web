@@ -1,10 +1,12 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo} from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('role-status'),
-  part: DS.attr('role-part'),
-  person: DS.belongsTo('person', {async: true}),
-  group: DS.belongsTo('group', {async: true}),
-  date: DS.attr('date-range'),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('role-status'),
+  part: attr('role-part'),
+  person: belongsTo('person', {async: true}),
+  group: belongsTo('group', {async: true}),
+  date: attr('date-range'),
 });

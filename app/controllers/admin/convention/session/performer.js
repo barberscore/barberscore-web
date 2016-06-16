@@ -82,26 +82,4 @@ export default Ember.Controller.extend({
       submission.destroyRecord();
     },
   },
-  contestantSortProperties: [
-    'contest.is_qualifier:asc',
-    'contest.award.level:desc',
-    'contest.award.organization.name:asc',
-    'contest.award.is_primary:desc',
-    'contest.award.kind:asc',
-    'contest.award.is_improved:asc',
-    'contest.award.size:asc',
-    'contest.award.scope:asc',
-  ],
-  sortedContestants: Ember.computed.sort(
-    'model.contestants',
-    'contestantSortProperties'
-  ),
-  performanceSortProperties: [
-    'soa',
-    'name',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.session.performers',
-    'performanceSortProperties'
-  ),
 });

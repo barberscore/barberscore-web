@@ -10,7 +10,7 @@
   </h4>
 </section>
 <section>
-  {{#each model.contestants as |contestant|}}
+  {{#each model.sortedContestants as |contestant|}}
     <h4>{{contestant.contest.award.name}}: {{contestant.rank}}</h4>
   {{/each}}
 </section>
@@ -87,7 +87,7 @@
       <thead>
         <tr>
           <th>Songs</th>
-          {{#each sortedPanel as |judge|}}
+          {{#each model.sortedOfficialJudges as |judge|}}
             {{#unless (eq judge.category 'Admin')}}
               <th class='text-right'>{{judge.designation}}</th>
             {{/unless}}

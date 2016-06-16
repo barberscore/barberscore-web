@@ -22,7 +22,6 @@ Router.map(function() {
         this.route('judge', { path: '/judge/:judge_id'}, function() {
         });
         this.route('round', { path: '/round/:round_id'}, function() {
-          this.route('announcement', { path: '/announcement'});
           this.route('performance', { path: '/performance/:performance_id'}, function() {
             this.route('variance', { path: '/variance'}, function() {
             });

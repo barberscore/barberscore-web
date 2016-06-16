@@ -1,13 +1,15 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  location: DS.attr('string'),
-  city: DS.attr('string'),
-  state: DS.attr('string'),
-  airport: DS.attr('string'),
-  timezone: DS.attr('string'),
-  conventions: DS.hasMany('convention', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  location: attr('string'),
+  city: attr('string'),
+  state: attr('string'),
+  airport: attr('string'),
+  timezone: attr('string'),
+  conventions: hasMany('convention', {async: true}),
   timezoneChoices: [
     'US/Arizona',
     'US/Central',

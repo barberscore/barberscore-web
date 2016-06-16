@@ -1,6 +1,7 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { belongsTo, hasMany } from 'ember-data/relationships';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
 
 
@@ -26,12 +27,61 @@ export default Model.extend({
   publish: memberAction({path: 'publish', type: 'post'}),
   cursor: attr('string'),
 
-  performerSortProperties: ['group.chap_name:asc',],
+  performerSortProperties: [
+    'group.chap_name:asc',
+  ],
   sortedPerformers: Ember.computed.sort(
     'performers',
     'performerSortProperties'
   ),
-  contestSortProperties: [
+
+  publishedPerformers: Ember.computed.filterBy(
+    'performers',
+    'status',
+    'Published'
+  ),
+
+  publishedSort: [
+    'rank',
+    'performer.group.name',
+  ],
+  sortedPublishedPerformers: Ember.computed.sort(
+    'publishedPerformers',
+    'publishedSort'
+  ),
+
+  primaryPerformers: Ember.computed.filterBy(
+    'publishedPerformers',
+    'rank'
+  ),
+  primarySort: [
+    'rank',
+    'sng_points:desc',
+    'mus_points:desc',
+    'prs_points:desc',
+  ],
+  sortedPrimaryPerformers: Ember.computed.sort(
+    'primaryPerformers',
+    'primarySort'
+  ),
+
+  secondaryPerformers: Ember.computed.filterBy(
+    'publishedPerformers',
+    'rank',
+    null
+  ),
+  secondarySort: [
+    'total_points:desc',
+    'sng_points:desc',
+    'mus_points:desc',
+    'prs_points:desc',
+  ],
+  sortedSecondaryPerformers: Ember.computed.sort(
+    'secondaryPerformers',
+    'secondarySort'
+  ),
+
+  contestSort: [
     'is_qualifier:asc',
     'award.level:desc',
     'award.organization.name:asc',
@@ -43,38 +93,64 @@ export default Model.extend({
   ],
   sortedContests: Ember.computed.sort(
     'contests',
-    'contestSortProperties'
+    'contestSort'
   ),
-  judgeSortProperties: ['category', 'kind', 'slot',],
+
+  championshipContests: Ember.computed.filterBy(
+    'contests',
+    'is_qualifier',
+    false
+  ),
+
+  sortedChampionshipContests: Ember.computed.sort(
+    'championshipContests',
+    'contestSort'
+  ),
+
+  qualificationContests: Ember.computed.filterBy(
+    'contests',
+    'is_qualifier',
+    true
+  ),
+
+  sortedQualificiationContests: Ember.computed.sort(
+    'qualificationContests',
+    'contestSort'
+  ),
+
+  judgeSort: [
+    'category',
+    'kind',
+    'slot',
+  ],
   sortedJudges: Ember.computed.sort(
     'judges',
-    'judgeSortProperties'
+    'judgeSort'
   ),
-  primaryContests: Ember.computed.filterBy(
-    'contests',
-    'award.is_primary'
+
+  officialJudges: Ember.computed.filterBy(
+    'judges',
+    'kind',
+    'Official'
   ),
-  allOrganizations: Ember.computed(function() {
-    return this.get('store').findAll('organization');
-  }),
-  orgsSort: ['lft'],
-  organizationChoices: Ember.computed.sort(
-    'allOrganizations',
-    'orgsSort'
+  sortedOfficialJudges: Ember.computed.sort(
+    'officialJudges',
+    'judgeSort'
   ),
-  currentRound: Ember.computed.filterBy(
-    'rounds',
-    'status',
-    'Started'
-  ),
-  perfSort: ['slot', ],
-  currentPerformances: Ember.computed.sort(
-    'current.performances',
-    'perfSort'
-  ),
-  roundsSort: ['num', ],
+
+  roundsSort: [
+    'num:desc',
+  ],
   sortedRounds: Ember.computed.sort(
     'rounds',
     'roundsSort'
-  )
+  ),
+
+  currentPerformancesSort: [
+    'slot',
+  ],
+  currentPerformances: Ember.computed.sort(
+    'current.performances',
+    'currentPerformancesSort'
+  ),
 });

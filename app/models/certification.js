@@ -1,10 +1,12 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  date: DS.attr(),
-  status: DS.attr('certification-status'),
-  category: DS.attr('certification-category'),
-  person: DS.belongsTo('person', {async: true}),
-  judges: DS.hasMany('judge', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  date: attr(),
+  status: attr('certification-status'),
+  category: attr('certification-category'),
+  person: belongsTo('person', {async: true}),
+  judges: hasMany('judge', {async: true}),
 });
