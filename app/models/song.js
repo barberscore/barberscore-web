@@ -1,22 +1,24 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('song-status'),
-  order: DS.attr('song-order'),
-  arranger: DS.attr('string'),
-  mus_points: DS.attr('number'),
-  prs_points: DS.attr('number'),
-  sng_points: DS.attr('number'),
-  total_points: DS.attr('number'),
-  mus_score: DS.attr('number'),
-  prs_score: DS.attr('number'),
-  sng_score: DS.attr('number'),
-  total_score: DS.attr('number'),
-  submission: DS.belongsTo('submission', {async: true}),
-  performance: DS.belongsTo('performance', {async: true}),
-  scores: DS.hasMany('score', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('song-status'),
+  order: attr('song-order'),
+  arranger: attr('string'),
+  mus_points: attr('number'),
+  prs_points: attr('number'),
+  sng_points: attr('number'),
+  total_points: attr('number'),
+  mus_score: attr('number'),
+  prs_score: attr('number'),
+  sng_score: attr('number'),
+  total_score: attr('number'),
+  submission: belongsTo('submission', {async: true}),
+  performance: belongsTo('performance', {async: true}),
+  scores: hasMany('score', {async: true}),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

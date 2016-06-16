@@ -1,41 +1,31 @@
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'public.conventions'}}Conventions{{/link-to}}</li>
-    <li class='active'>{{model.name}}</li>
-  </ol>
-</div>
 <section>
-    <div class='panel panel-default'>
-      <div class='panel-heading'>
-        <h4 {{action 'collapseHeader'}}>
-          {{#if isHeaderCollapsed}}
-            {{fa-icon 'caret-right'}}
-          {{else}}
-            {{fa-icon 'caret-down'}}
-          {{/if}}
-          &nbsp;{{model.name}}
-        </h4>
-        <ul class='list-inline'>
-          {{#each model.sessions as |session|}}
-            {{#if (eq session.status 'Published')}}
-              <li><h4>{{#link-to 'public.convention.oss' session}}{{session.kind}} Contest{{/link-to}}</h4></li>
-            {{else}}
-              <li><h4>{{#link-to 'public.convention.session' session}}{{session.kind}} Contest{{/link-to}}</h4></li>
-            {{/if}}
-          {{/each}}
-        </ul>
-      </div>
-        {{#bs-collapse collapsed=isHeaderCollapsed}}
-          <div class='panel-body'>
-            <p>
-              <strong>Venue</strong>: {{model.venue.name}}
-            </p>
-            <p>
-              <strong>Dates</strong>: {{date-range model.date}}
-            </p>
-          </div>
-        {{/bs-collapse}}
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseHeader'}}>
+        {{#if isHeaderCollapsed}}
+          {{fa-icon 'caret-right'}}
+        {{else}}
+          {{fa-icon 'caret-down'}}
+        {{/if}}
+        &nbsp;{{model.name}}
+      </h4>
+      <ul class='list-inline'>
+        {{#each model.sortedSessions as |session|}}
+            <li><h4>{{#link-to 'public.convention.session' session}}{{session.kind}} Contest{{/link-to}}</h4></li>
+        {{/each}}
+      </ul>
     </div>
+      {{#bs-collapse collapsed=isHeaderCollapsed}}
+        <div class='panel-body'>
+          <p>
+            <strong>Venue</strong>: {{model.venue.name}}
+          </p>
+          <p>
+            <strong>Dates</strong>: {{date-range model.date}}
+          </p>
+        </div>
+      {{/bs-collapse}}
+  </div>
 </section>
 <section>
   <p>

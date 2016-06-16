@@ -1,18 +1,42 @@
-<div>
-  <ol class='breadcrumb'>
-    <li>{{#link-to 'groups'}}Groups{{/link-to}}</li>
-    <li class='active'>{{model.name}}</li>
-  </ol>
+<div class='row'>
+<div class='col-md-6'>
+{{#if model.picture}}
+    <img src='{{model.picture}}' class='img-responsive img-thumbnail'>
+{{else}}
+    <img src='http://s3-us-west-1.amazonaws.com/barberscore/no_image_available.jpg' class='img-responsive img-thumbnail'>
+{{/if}}
 </div>
-
-
-<section class='panel panel-default'>
-  <div class='panel-heading'>
-    <h4>
-      Group Detail
-    </h4>
-  </div>
-  <div class='panel-body'>
-    {{model.name}}
-  </div>
-</section>
+<div class='col-md-6'>
+<h4>
+  {{model.name}}
+</h4>
+<p>
+  {{model.location}}
+</p>
+{{#if model.facebook}}
+<p>
+  <a href='{{model.facebook}}'>Facebook</a>
+</p>
+{{/if}}
+{{#if model.twitter}}
+<p>
+  <a href='https://twitter.com/{{model.twitter}}'>{{model.twitter}}</a>
+</p>
+{{/if}}
+{{#if model.email}}
+<p>
+  <a href='mailto:{{model.email}}'>{{model.email}}</a>
+</p>
+{{/if}}
+<ul class='list-inline'>
+{{#each model.roles as |role|}}
+  {{#if (eq role.status 'Active')}}<li>{{role.part}}: {{role.person.name}}</li>{{/if}}
+{{/each}}
+</ul>
+</div>
+</div>
+<div class='row'>
+<p class='in-modal'>
+{{model.description}}
+</p>
+</div>

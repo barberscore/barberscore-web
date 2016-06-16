@@ -13,7 +13,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each model as |convention|}}
+      {{#each recentConventions as |convention|}}
         <tr>
         <td>{{#link-to 'public.convention' convention}}{{convention.name}}{{/link-to}}</td>
         <td>{{venue-short convention.venue}}</td>

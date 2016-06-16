@@ -1,37 +1,64 @@
-import DS from 'ember-data';
+import Ember from 'ember';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('performer-status'),
-  picture: DS.attr('string'),
-  tenor: DS.belongsTo('role', {async: true}),
-  lead: DS.belongsTo('role', {async: true}),
-  baritone: DS.belongsTo('role', {async: true}),
-  bass: DS.belongsTo('role', {async: true}),
-  soa: DS.attr('number'),
-  men: DS.attr('number'),
-  risers: DS.attr('number'),
-  is_evaluation: DS.attr('boolean'),
-  is_private: DS.attr('boolean'),
-  director: DS.belongsTo('role', {async: true}),
-  codirector: DS.belongsTo('role', {async: true}),
-  representing: DS.belongsTo('organization', {async: true}),
-  seed: DS.attr('number'),
-  prelim: DS.attr('number'),
-  rank: DS.attr('number'),
-  mus_points: DS.attr('number'),
-  prs_points: DS.attr('number'),
-  sng_points: DS.attr('number'),
-  total_points: DS.attr('number'),
-  mus_score: DS.attr('number'),
-  prs_score: DS.attr('number'),
-  sng_score: DS.attr('number'),
-  total_score: DS.attr('number'),
-  group: DS.belongsTo('group', {async: true}),
-  session: DS.belongsTo('session', {async: true}),
-  performances: DS.hasMany('performance', {async: true}),
-  contestants: DS.hasMany('contestant', {async: true}),
-  submissions: DS.hasMany('submission', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('performer-status'),
+  picture: attr('string'),
+  tenor: belongsTo('role', {async: true}),
+  lead: belongsTo('role', {async: true}),
+  baritone: belongsTo('role', {async: true}),
+  bass: belongsTo('role', {async: true}),
+  soa: attr('number'),
+  men: attr('number'),
+  risers: attr('number'),
+  is_evaluation: attr('boolean'),
+  is_private: attr('boolean'),
+  director: belongsTo('role', {async: true}),
+  codirector: belongsTo('role', {async: true}),
+  representing: belongsTo('organization', {async: true}),
+  seed: attr('number'),
+  prelim: attr('number'),
+  rank: attr('number'),
+  mus_points: attr('number'),
+  prs_points: attr('number'),
+  sng_points: attr('number'),
+  total_points: attr('number'),
+  mus_score: attr('number'),
+  prs_score: attr('number'),
+  sng_score: attr('number'),
+  total_score: attr('number'),
+  group: belongsTo('group', {async: true}),
+  session: belongsTo('session', {async: true}),
+  performances: hasMany('performance', {async: true}),
+  contestants: hasMany('contestant', {async: true}),
+  submissions: hasMany('submission', {async: true}),
   scratch: memberAction({path: 'scratch'}),
+
+  contestantSort: [
+    'contest.is_qualifier:asc',
+    'contest.award.level:desc',
+    'contest.award.organization.name:asc',
+    'contest.award.is_primary:desc',
+    'contest.award.kind:asc',
+    'contest.award.is_improved:asc',
+    'contest.award.size:asc',
+    'contest.award.scope:asc',
+  ],
+  sortedContestants: Ember.computed.sort(
+    'contestants',
+    'contestantSort'
+  ),
+
+  performanceSort: [
+    'soa',
+    'name',
+  ],
+  sortedPerformances: Ember.computed.sort(
+    'performances',
+    'performanceSort'
+  ),
 });

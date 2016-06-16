@@ -1,13 +1,15 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('judge-status'),
-  category: DS.attr('judge-category'),
-  designation: DS.attr('string'),
-  kind: DS.attr('judge-kind'),
-  slot: DS.attr('number'),
-  session: DS.belongsTo('session', {async: true}),
-  certification: DS.belongsTo('certification', {async: true}),
-  scores: DS.hasMany('score', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('judge-status'),
+  category: attr('judge-category'),
+  designation: attr('string'),
+  kind: attr('judge-kind'),
+  slot: attr('number'),
+  session: belongsTo('session', {async: true}),
+  certification: belongsTo('certification', {async: true}),
+  scores: hasMany('score', {async: true}),
 });

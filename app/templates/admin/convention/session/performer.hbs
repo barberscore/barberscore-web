@@ -1,11 +1,4 @@
-<section>
-  <ul class='list-inline'>
-    <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
-    <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
-  </ul>
-</section>
-<section>
-  <div class='panel panel-default'>
+<div class='panel panel-default'>
   <div class='panel-heading'>
     <h4>
         <span {{action "toggleDetails"}}>Details</span>
@@ -85,7 +78,12 @@
       {{/if}}
     </div>
   {{/bs-collapse}}
-  </div>
+</div>
+<section>
+  <ul class='list-inline'>
+    <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
+    <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+  </ul>
 </section>
 <section>
   <div class='panel panel-default'>
@@ -107,7 +105,7 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each sortedContestants as |contestant|}}
+                {{#each model.sortedContestants as |contestant|}}
                   <tr>
                     <td>
                       {{#link-to 'admin.convention.session.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}

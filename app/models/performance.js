@@ -1,28 +1,30 @@
 import Ember from 'ember';
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
 
-export default DS.Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('performance-status'),
-  slot: DS.attr('number'),
-  rank: DS.attr('number'),
-  scheduled: DS.attr('date-range'),
-  actual: DS.attr('date-range'),
-  actual_start: DS.attr('date'),
-  actual_finish: DS.attr('date'),
-  is_advancing: DS.attr('boolean'),
-  mus_points: DS.attr('number'),
-  prs_points: DS.attr('number'),
-  sng_points: DS.attr('number'),
-  total_points: DS.attr('number'),
-  mus_score: DS.attr('number'),
-  prs_score: DS.attr('number'),
-  sng_score: DS.attr('number'),
-  total_score: DS.attr('number'),
-  round: DS.belongsTo('round', {async: true}),
-  performer: DS.belongsTo('performer', {async: true}),
-  songs: DS.hasMany('song', {async: true}),
+export default Model.extend({
+  name: attr('string'),
+  status: attr('performance-status'),
+  slot: attr('number'),
+  rank: attr('number'),
+  scheduled: attr('date-range'),
+  actual: attr('date-range'),
+  actual_start: attr('date'),
+  actual_finish: attr('date'),
+  is_advancing: attr('boolean'),
+  mus_points: attr('number'),
+  prs_points: attr('number'),
+  sng_points: attr('number'),
+  total_points: attr('number'),
+  mus_score: attr('number'),
+  prs_score: attr('number'),
+  sng_score: attr('number'),
+  total_score: attr('number'),
+  round: belongsTo('round', {async: true}),
+  performer: belongsTo('performer', {async: true}),
+  songs: hasMany('song', {async: true}),
   build: memberAction({path: 'build'}),
   move_top: memberAction({path: 'move_top'}),
   move_up: memberAction({path: 'move_up'}),

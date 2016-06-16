@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedJudges as |judge|}}
+            {{#each model.sortedJudges as |judge|}}
               <tr>
                 {{!-- <td>
                   {{person-picture person=judge.certification.person}}
@@ -90,7 +90,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedContests as |contest|}}
+            {{#each model.sortedContests as |contest|}}
               <tr>
                 <td>
                   {{#link-to 'admin.convention.session.contest' contest}}{{contest.name}}{{/link-to}}
@@ -130,7 +130,7 @@
             </tr>
             </thead>
             <tbody>
-              {{#each sortedPerformers as |performer|}}
+              {{#each model.sortedPerformers as |performer|}}
                 <tr>
                   <td>{{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}</td>
                   <td>{{performer.status}}</td>
@@ -150,7 +150,7 @@
         {{add-performer session=model class='form-group'}}
      {{/bs-accordion-item}}
      {{#bs-accordion-item value="9" title="Schedule"}}
-        {{#each model.rounds as |round|}}
+        {{#each model.sortedRounds as |round|}}
           <h5>
             {{#link-to 'admin.convention.session.round' round}}{{round.kind}}{{/link-to}}
           </h5>
@@ -189,7 +189,7 @@
         <li>{{#link-to 'admin.convention.session.oss' model}}Official Scoring Summary{{/link-to}}</li>
         CSAs
         <ul>
-          {{#each model.performers as |performer|}}
+          {{#each model.sortedPerformers as |performer|}}
             <li>{{#link-to 'admin.convention.session.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
           {{/each}}
         </ul>

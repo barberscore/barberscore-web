@@ -7,14 +7,4 @@ export default Ember.Controller.extend({
       this.toggleProperty('isRaw');
     },
   },
-  panelSort: ['designation:asc',],
-  officialJudges: Ember.computed.filterBy(
-    'model.session.judges',
-    'kind',
-    'Official'
-  ),
-  sortedPanel: Ember.computed.sort(
-    'officialJudges',
-    'panelSort'
-  ),
 });
