@@ -8,4 +8,12 @@ export default DS.Model.extend({
   airport: DS.attr('string'),
   timezone: DS.attr('string'),
   conventions: DS.hasMany('convention', {async: true}),
+  timezoneChoices: [
+    'US/Arizona',
+    'US/Central',
+    'US/Eastern',
+    'US/Hawaii',
+    'US/Mountain',
+    'US/Pacific',
+  ]
 });

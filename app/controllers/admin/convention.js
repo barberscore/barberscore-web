@@ -80,23 +80,4 @@ export default Ember.Controller.extend({
     //   });
     // },
   },
-  sessionSortProperties: ['kind:asc',],
-  sortedSessions: Ember.computed.sort(
-    'model.sessions',
-    'sessionSortProperties'
-  ),
-  riserChoices: [
-    0,3,4,5,6,7,8,9,10,11,12,13
-  ],
-  conventionSort: [
-    'date',
-  ],
-  store: Ember.inject.service(),
-  parentConventions: Ember.computed(function(){
-    return this.store.query('convention', {year: 2016});
-  }),
-  sortedItems: Ember.computed.sort(
-    'parentConventions',
-    'conventionSort'
-  ),
 });

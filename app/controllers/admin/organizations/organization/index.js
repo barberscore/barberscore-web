@@ -40,18 +40,4 @@ export default Ember.Controller.extend({
       });
     },
   },
-  awardSort: [
-    'organization',
-    'is_primary:desc',
-    'is_novice:desc',
-    'is_improved:asc',
-    'name',
-    'kind',
-    'size',
-    'scope'
-  ],
-  sortedAwards: Ember.computed.sort(
-    'model.awards',
-    'awardSort'
-  )
 });

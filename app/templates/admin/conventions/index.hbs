@@ -15,10 +15,12 @@
       </thead>
       <tbody>
         {{#each model as |convention|}}
+          {{#if (gte convention.year 2015)}}
           <tr>
           <td>{{#link-to 'admin.convention' convention}}{{convention.name}}{{/link-to}}</td>
           <td>{{date-range convention.date}}</td>
           </tr>
+          {{/if}}
         {{/each}}
       </tbody>
     </table>

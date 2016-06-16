@@ -14,4 +14,12 @@ export default DS.Model.extend({
   organization: DS.belongsTo('organization', {async: true}),
   drcj: DS.belongsTo('person', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
+  sessionSortProperties: ['kind:asc',],
+  sortedSessions: Ember.computed.sort(
+    'sessions',
+    'sessionSortProperties'
+  ),
+  riserChoices: [
+    0,3,4,5,6,7,8,9,10,11,12,13
+  ],
 });

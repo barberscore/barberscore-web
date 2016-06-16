@@ -61,7 +61,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedAwards as |award|}}
+            {{#each model.sortedAwards as |award|}}
               <tr>
                 <td>
                   {{#link-to 'admin.awards.award' award}}{{award.name}}{{/link-to}}

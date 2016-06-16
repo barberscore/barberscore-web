@@ -27,4 +27,18 @@ export default DS.Model.extend({
   groups: DS.hasMany('group', {async: true}),
   performers: DS.hasMany('performer', {inverse: 'representing', async: true}),
   sessions: DS.hasMany('session', {async: true}),
+  awardSort: [
+    'organization',
+    'is_primary:desc',
+    'is_novice:desc',
+    'is_improved:asc',
+    'name',
+    'kind',
+    'size',
+    'scope'
+  ],
+  sortedAwards: Ember.computed.sort(
+    'awards',
+    'awardSort'
+  )
 });
