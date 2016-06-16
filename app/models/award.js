@@ -16,4 +16,10 @@ export default DS.Model.extend({
   level: DS.attr('award-level'),
   organization: DS.belongsTo('organization', {async: true}),
   contests: DS.hasMany('contest', {inverse:'award', async: true}),
+  seasonChoices: [
+    'International',
+    'Midwinter',
+    'Spring',
+    'Fall',
+  ]
 });
