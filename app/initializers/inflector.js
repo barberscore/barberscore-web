@@ -20,6 +20,7 @@ export function initialize(/* application */) {
   inflector.uncountable('round');
   inflector.uncountable('score');
   inflector.uncountable('session');
+  inflector.uncountable('slot');
   inflector.uncountable('song');
   inflector.uncountable('submission');
   inflector.uncountable('venue');
