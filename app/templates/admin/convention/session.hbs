@@ -166,10 +166,10 @@
               </tr>
               </thead>
               <tbody>
-                {{#each (sort-by 'slot' round.performances) as |performance|}}
+                {{#each (sort-by 'num' round.performances) as |performance|}}
                   <tr>
                     <td>
-                      {{performance.slot}}
+                      {{performance.num}}
                     </td>
                     <td>
                       {{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}

@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['slot', 'performer.total_score:desc',],
+  performanceSortProperties: ['num', 'performer.total_score:desc',],
   sortedPerformances: Ember.computed.sort(
     'model.performances',
     'performanceSortProperties'
@@ -32,9 +32,9 @@ export default Ember.Controller.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        let slot = item.get('slot');
-        console.log('Slot %@: %@ %@'.fmt(index+1, slot));
-        item.set('slot', index+1);
+        let num = item.get('num');
+        console.log('Num %@: %@ %@'.fmt(index+1, num));
+        item.set('num', index+1);
       });
     },
     saveDate(start, end) {
@@ -110,7 +110,7 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       })
       .finally(()=>{
-        this.get('model.performances').sortBy('performance.slot');
+        this.get('model.performances').sortBy('performance.num');
       });
     },
     moveUp(performance) {
@@ -136,7 +136,7 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       })
       .finally(()=>{
-        this.get('model.performances').sortBy('performance.slot');
+        this.get('model.performances').sortBy('performance.num');
       });
     },
     moveBottom(performance) {

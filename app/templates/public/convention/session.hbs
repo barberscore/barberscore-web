@@ -18,17 +18,25 @@
             <tr>
               <th>Slot</th>
               <th>Performer</th>
+              <th>Representing</th>
+              <th>Scheduled</th>
             </tr>
             </thead>
             <tbody>
               {{#each model.current.sortedPerformances as |performance|}}
                 <tr>
                   <td>
-                    {{performance.slot}}
+                    {{performance.num}}
                   </td>
                   <td>
                     {{group-modal group=performance.performer.group}}
                     {{#if (eq performance.performer.group.kind 'Chorus')}}{{performance.performer.group.chapter.name}}{{/if}}
+                  </td>
+                  <td>
+                    {{#link-to 'public.organizations.organization' performance.performer.representing}}{{performance.performer.representing.name}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{moment-format performance.slot.onstage}}
                   </td>
                 </tr>
               {{/each}}

@@ -17,7 +17,7 @@
           {{#sortable-group tagName="table" class='table' onChange="reorderItems" as |group|}}
             <thead>
             <tr>
-              <th {{action 'sortBy' 'slot:asc'}}>Slot</th>
+              <th {{action 'sortBy' 'num:asc'}}>Slot</th>
               <th {{action 'sortBy' 'performer.rank:asc'}}>Rank</th>
               <th {{action 'sortBy' 'performer.total_score:desc'}}>Score</th>
               <th {{action 'sortBy' 'performer.name:asc'}}>Performer</th>
@@ -31,7 +31,7 @@
             <tbody>
             {{#each sortedPerformances as |item|}}
               {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
-                <td>{{item.slot}}</td>
+                <td>{{item.num}}</td>
                 <td>{{item.performer.rank}}</td>
                 <td>{{single-fixed item.performer.total_score}}</td>
                 <td>{{item.performer.group.name}}</td>

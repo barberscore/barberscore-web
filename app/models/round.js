@@ -21,7 +21,7 @@ export default Model.extend({
   publish: memberAction({path: 'publish', type: 'post'}),
 
   performanceSort: [
-    'slot',
+    'num',
     'name',
   ],
   sortedPerformances: Ember.computed.sort(

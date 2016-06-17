@@ -147,7 +147,7 @@ export default Model.extend({
   ),
 
   currentPerformancesSort: [
-    'slot',
+    'num',
   ],
   currentPerformances: Ember.computed.sort(
     'current.performances',

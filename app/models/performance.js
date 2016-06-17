@@ -7,7 +7,7 @@ import {memberAction} from 'ember-api-actions';
 export default Model.extend({
   name: attr('string'),
   status: attr('performance-status'),
-  slot: attr('number'),
+  num: attr('number'),
   rank: attr('number'),
   scheduled: attr('date-range'),
   actual: attr('date-range'),
@@ -25,6 +25,7 @@ export default Model.extend({
   round: belongsTo('round', {async: true}),
   performer: belongsTo('performer', {async: true}),
   songs: hasMany('song', {async: true}),
+  slot: belongsTo('slot', {async: true}),
   build: memberAction({path: 'build'}),
   move_top: memberAction({path: 'move_top'}),
   move_up: memberAction({path: 'move_up'}),

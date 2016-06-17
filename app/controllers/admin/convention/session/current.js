@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
     'songSortProperties'
   ),
   performanceSortProperties: [
-    'slot',
+    'num',
   ],
   sortedItems: Ember.computed.sort(
     'model.round.performances',

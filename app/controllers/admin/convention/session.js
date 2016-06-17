@@ -217,7 +217,7 @@ export default Ember.Controller.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        item.set('slot', index+1);
+        item.set('num', index+1);
       });
     }
   },
