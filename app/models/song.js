@@ -31,9 +31,11 @@ export default Model.extend({
     'descSortProperties'
   ),
 
-
-
-  officialScores: Ember.computed.filterBy('scores', 'kind', 'Official'),
+  populatedScores: Ember.computed.filterBy(
+    'scores',
+    'notEmptyPoints'
+  ),
+  officialScores: Ember.computed.filterBy('populatedScores', 'kind', 'Official'),
   points: Ember.computed.mapBy('officialScores', 'points'),
   // pointsSort: ['points',],
   // pointsSorted: Ember.computed.sort('officialScores', 'pointsSort'),

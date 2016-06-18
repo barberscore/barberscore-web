@@ -49,4 +49,8 @@ export default Model.extend({
           return false;
       }
   }),
+  notEmptyPoints: Ember.computed.gt(
+    'points',
+    0
+  )
 });
