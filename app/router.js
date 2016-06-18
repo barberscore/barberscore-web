@@ -15,7 +15,7 @@ Router.map(function() {
         this.route('announcement', { path: '/announcement'});
         this.route('oss', { path: '/oss'});
         this.route('current', { path: '/current/:performance_id'});
-        this.route('cursor', { path: '/cursor/:performance_id'});
+        this.route('cursor', { path: '/cursor/'});
         this.route('performer', { path: '/performer/:performer_id'});
         this.route('csa', { path: '/csa/:performer_id'});
         this.route('round', { path: '/round/:round_id'});

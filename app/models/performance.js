@@ -3,6 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -26,6 +27,7 @@ export default Model.extend({
   performer: belongsTo('performer', {async: true}),
   songs: hasMany('song', {async: true}),
   slot: belongsTo('slot', {async: true}),
+  session: belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),
   move_top: memberAction({path: 'move_top'}),
   move_up: memberAction({path: 'move_up'}),
@@ -35,26 +37,28 @@ export default Model.extend({
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
-  points: Ember.computed.mapBy('songs', 'pointsSum'),
-  means: Ember.computed.mapBy('songs', 'pointsMean'),
-  meansSum: Ember.computed.sum('means'),
-  pointsSum: Ember.computed.sum('points'),
-  pointsMean: Ember.computed('meansSum', 'means', function() {
+
+
+  points: computed.mapBy('songs', 'pointsSum'),
+  means: computed.mapBy('songs', 'pointsMean'),
+  meansSum: computed.sum('means'),
+  pointsSum: computed.sum('points'),
+  pointsMean: computed('meansSum', 'means', function() {
     return (this.get('meansSum') / this.get('means').length);
   }),
-  musScoresPoints: Ember.computed.mapBy('songs', 'musPointsSum'),
-  musPointsSum: Ember.computed.sum('musScoresPoints'),
-  // musPointsMean: Ember.computed('musPointsSum', 'musScores', function() {
+  musScoresPoints: computed.mapBy('songs', 'musPointsSum'),
+  musPointsSum: computed.sum('musScoresPoints'),
+  // musPointsMean: computed('musPointsSum', 'musScores', function() {
   //   return (this.get('musPointsSum') / this.get('musScoresPoints').length).toFixed(1);
   // }),
-  prsScoresPoints: Ember.computed.mapBy('songs', 'prsPointsSum'),
-  prsPointsSum: Ember.computed.sum('prsScoresPoints'),
-  // prsPointsMean: Ember.computed('prsPointsSum', 'prsScores', function() {
+  prsScoresPoints: computed.mapBy('songs', 'prsPointsSum'),
+  prsPointsSum: computed.sum('prsScoresPoints'),
+  // prsPointsMean: computed('prsPointsSum', 'prsScores', function() {
   //   return (this.get('prsPointsSum') / this.get('prsScoresPoints').length).toFixed(1);
   // }),
-  sngScoresPoints: Ember.computed.mapBy('songs', 'sngPointsSum'),
-  sngPointsSum: Ember.computed.sum('sngScoresPoints'),
-  // sngPointsMean: Ember.computed('sngPointsSum', 'sngScores', function() {
+  sngScoresPoints: computed.mapBy('songs', 'sngPointsSum'),
+  sngPointsSum: computed.sum('sngScoresPoints'),
+  // sngPointsMean: computed('sngPointsSum', 'sngScores', function() {
   //   return (this.get('sngPointsSum') / this.get('sngScoresPoints').length).toFixed(1);
   // }),
 });

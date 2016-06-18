@@ -25,7 +25,7 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   draft: memberAction({path: 'draft', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
-  cursor: attr('string'),
+  cursor: belongsTo('performance', {async: true}),
 
   performerSortProperties: [
     'group.chap_name:asc',

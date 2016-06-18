@@ -13,6 +13,9 @@
         {{#bs-form-group}}
           {{select-round rounds=model.rounds current=model.current model=model}}
         {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{#link-to 'admin.convention.session.cursor' model.cursor}}{{model.cursor.name}}{{/link-to}}
+        {{/bs-form-group}}
       </div>
   {{/bs-collapse}}
     </div>
