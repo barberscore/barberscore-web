@@ -3,11 +3,10 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isRaw: false,
   performerSortProperties: [
-    'rank:asc',
-    'total_points:desc',
-    'sng_points:desc',
-    'mus_points:desc',
-    'prs_points:desc'
+    'totPoints:desc',
+    'sngPoints:desc',
+    'musPoints:desc',
+    'prsPoints:desc'
   ],
   sortedPerformers: Ember.computed.sort(
     'model.performers',

@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     'scoringJudges',
     'judgeSortProperties'
   ),
-  songSortProperties: ['order',],
+  songSortProperties: ['num',],
   sortedSongs: Ember.computed.sort(
     'model.songs',
     'songSortProperties'

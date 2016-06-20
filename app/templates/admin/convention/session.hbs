@@ -14,7 +14,7 @@
           {{select-round rounds=model.rounds current=model.current model=model}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{#link-to 'admin.convention.session.cursor' model.cursor}}{{model.cursor.name}}{{/link-to}}
+          {{select-performance performances=model.currentPerformances cursor=model.cursor model=model}}
         {{/bs-form-group}}
       </div>
   {{/bs-collapse}}
@@ -22,10 +22,10 @@
 </section>
 <section>
    {{#bs-button-group}}
-      {{#bs-button action=(action 'openSession') class='form-group'}}Open{{/bs-button}}
-      {{#bs-button action=(action 'closeSession') class='form-group'}}Close{{/bs-button}}
-      {{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}}
-      {{#bs-button action=(action 'drawCurrent') class='form-group'}}Draw {{model.current.kind}}{{/bs-button}}
+      {{#bs-button action=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bs-button}}
+      {{#bs-button action=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bs-button}}
+      {{!-- {{#bs-button action=(action 'validateSession') class='form-group'}}Validate{{/bs-button}} --}}
+      {{!-- {{#bs-button action=(action 'drawCurrent') class='form-group'}}Draw {{model.current.kind}}{{/bs-button}} --}}
       {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
       {{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
       {{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
@@ -127,16 +127,22 @@
           <table class='table'>
             <thead>
             <tr>
-              <th>Performer</th>
-              <th>Status</th>
+              <th{{action 'sortBy' 'group.chap_name:asc'}}>Performer</th>
+                <th{{action 'sortBy' 'totPoints:desc'}}>Points</th>
+                <th>Score</th>
               {{!-- <th>Actions</th> --}}
             </tr>
             </thead>
             <tbody>
-              {{#each model.sortedPerformers as |performer|}}
+              {{#each sortedPerformers as |performer|}}
                 <tr>
                   <td>{{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}</td>
-                  <td>{{performer.status}}</td>
+                    <td>
+                      {{performer.totPoints}}
+                    </td>
+                    <td>
+                      {{performer.totScore}}
+                    </td>
                   {{!-- <td>
                     {{#bs-dropdown}}
                       {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
@@ -163,7 +169,8 @@
               <tr>
                 <th>Slot</th>
                 <th>Performer</th>
-                {{!-- <th>Status</th> --}}
+                {{!-- <th>Points</th> --}}
+                {{!-- <th>Score</th> --}}
                 {{!-- <th>Actions</th>  --}}
                 {{!-- <th>Change</th> --}}
               </tr>
@@ -177,6 +184,12 @@
                     <td>
                       {{#link-to 'admin.convention.session.current' performance}}{{performance.performer.group.name}}{{/link-to}}
                     </td>
+                    {{!-- <td>
+                      {{performance.totPoints}}
+                    </td> --}}
+                    {{!-- <td>
+                      {{performance.totScore}}
+                    </td> --}}
                   </tr>
                 {{/each}}
               </tbody>

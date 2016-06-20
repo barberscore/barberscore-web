@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo} from 'ember-data/relationships';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -13,7 +14,7 @@ export default Model.extend({
   asterisk_test: attr('string'),
   song: belongsTo('song', {async: true}),
   judge: belongsTo('judge', {async: true}),
-  lowReview: Ember.computed(
+  lowReview: computed(
     'song.ascSortedScores',
     function() {
       var ultimate = this.get('song.ascSortedScores').objectAt(0);
@@ -31,7 +32,7 @@ export default Model.extend({
           return false;
       }
   }),
-  highReview: Ember.computed(
+  highReview: computed(
     'song.descSortedScores',
     function() {
       var ultimate = this.get('song.descSortedScores').objectAt(0);
@@ -49,8 +50,8 @@ export default Model.extend({
           return false;
       }
   }),
-  notEmptyPoints: Ember.computed.gt(
+  notEmptyPoints: computed.gt(
     'points',
     0
-  )
+  ),
 });

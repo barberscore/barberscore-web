@@ -4,12 +4,12 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   judgeSortProperties: ['kind', 'category','slot',],
   sortedJudges: Ember.computed.sort(
-    'model.round.session.judges',
+    'model.cursor.round.session.judges',
     'judgeSortProperties'
   ),
-  songSortProperties: ['order',],
+  songSortProperties: ['num',],
   sortedSongs: Ember.computed.sort(
-    'model.songs',
+    'model.cursor.songs',
     'songSortProperties'
   ),
   actions: {

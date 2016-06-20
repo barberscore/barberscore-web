@@ -3,7 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
-
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -28,14 +28,15 @@ export default Model.extend({
   cursor: belongsTo('performance', {async: true}),
 
   performerSortProperties: [
+    'performer.totPoints:desc',
     'group.chap_name:asc',
   ],
-  sortedPerformers: Ember.computed.sort(
+  sortedPerformers: computed.sort(
     'performers',
     'performerSortProperties'
   ),
 
-  publishedPerformers: Ember.computed.filterBy(
+  publishedPerformers: computed.filterBy(
     'performers',
     'status',
     'Published'
@@ -45,12 +46,12 @@ export default Model.extend({
     'rank',
     'performer.group.name',
   ],
-  sortedPublishedPerformers: Ember.computed.sort(
+  sortedPublishedPerformers: computed.sort(
     'publishedPerformers',
     'publishedSort'
   ),
 
-  primaryPerformers: Ember.computed.filterBy(
+  primaryPerformers: computed.filterBy(
     'publishedPerformers',
     'rank'
   ),
@@ -60,12 +61,12 @@ export default Model.extend({
     'mus_points:desc',
     'prs_points:desc',
   ],
-  sortedPrimaryPerformers: Ember.computed.sort(
+  sortedPrimaryPerformers: computed.sort(
     'primaryPerformers',
     'primarySort'
   ),
 
-  secondaryPerformers: Ember.computed.filterBy(
+  secondaryPerformers: computed.filterBy(
     'publishedPerformers',
     'rank',
     null
@@ -76,7 +77,7 @@ export default Model.extend({
     'mus_points:desc',
     'prs_points:desc',
   ],
-  sortedSecondaryPerformers: Ember.computed.sort(
+  sortedSecondaryPerformers: computed.sort(
     'secondaryPerformers',
     'secondarySort'
   ),
@@ -91,29 +92,29 @@ export default Model.extend({
     'award.size:asc',
     'award.scope:asc',
   ],
-  sortedContests: Ember.computed.sort(
+  sortedContests: computed.sort(
     'contests',
     'contestSort'
   ),
 
-  championshipContests: Ember.computed.filterBy(
+  championshipContests: computed.filterBy(
     'contests',
     'is_qualifier',
     false
   ),
 
-  sortedChampionshipContests: Ember.computed.sort(
+  sortedChampionshipContests: computed.sort(
     'championshipContests',
     'contestSort'
   ),
 
-  qualificationContests: Ember.computed.filterBy(
+  qualificationContests: computed.filterBy(
     'contests',
     'is_qualifier',
     true
   ),
 
-  sortedQualificiationContests: Ember.computed.sort(
+  sortedQualificiationContests: computed.sort(
     'qualificationContests',
     'contestSort'
   ),
@@ -123,17 +124,17 @@ export default Model.extend({
     'kind',
     'slot',
   ],
-  sortedJudges: Ember.computed.sort(
+  sortedJudges: computed.sort(
     'judges',
     'judgeSort'
   ),
 
-  officialJudges: Ember.computed.filterBy(
+  officialJudges: computed.filterBy(
     'judges',
     'kind',
     'Official'
   ),
-  sortedOfficialJudges: Ember.computed.sort(
+  sortedOfficialJudges: computed.sort(
     'officialJudges',
     'judgeSort'
   ),
@@ -141,7 +142,7 @@ export default Model.extend({
   roundsSort: [
     'num:desc',
   ],
-  sortedRounds: Ember.computed.sort(
+  sortedRounds: computed.sort(
     'rounds',
     'roundsSort'
   ),
@@ -149,7 +150,7 @@ export default Model.extend({
   currentPerformancesSort: [
     'num',
   ],
-  currentPerformances: Ember.computed.sort(
+  currentPerformances: computed.sort(
     'current.performances',
     'currentPerformancesSort'
   ),

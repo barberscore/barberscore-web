@@ -2,11 +2,12 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
   status: attr('song-status'),
-  order: attr('song-order'),
+  num: attr('number'),
   arranger: attr('string'),
   mus_points: attr('number'),
   prs_points: attr('number'),
@@ -57,63 +58,75 @@ export default Model.extend({
     'Singing'
   ),
 
-  totMapped: Ember.computed.mapBy(
+  totRawPoints: computed.mapBy(
     'totScores',
     'points'
   ),
-  totPoints: Ember.computed.sum(
-    'totMapped'
+  totPoints: computed.sum(
+    'totRawPoints'
+  ),
+  totCount: computed.alias(
+    'totRawPoints.length'
   ),
   totScore: Ember.computed(
     'totPoints',
-    'totMapped',
+    'totCount',
     function() {
-        return (this.get('totPoints') / this.get('totMapped').length).toFixed(1);
+        return (this.get('totPoints') / this.get('totCount')).toFixed(1);
       }
    ),
 
-  musMapped: Ember.computed.mapBy(
+  musScoresPoints: computed.mapBy(
     'musScores',
     'points'
   ),
-  musPoints: Ember.computed.sum(
-    'musMapped'
+  musPoints: computed.sum(
+    'musScoresPoints'
+  ),
+  musCount: computed.alias(
+    'musScoresPoints.length'
   ),
   musScore: Ember.computed(
     'musPoints',
-    'musMapped',
+    'musCount',
     function() {
-        return (this.get('musPoints') / this.get('musMapped').length).toFixed(1);
+        return (this.get('musPoints') / this.get('musCount')).toFixed(1);
       }
    ),
 
-  prsMapped: Ember.computed.mapBy(
+  prsScoresPoints: computed.mapBy(
     'prsScores',
     'points'
   ),
-  prsPoints: Ember.computed.sum(
-    'prsMapped'
+  prsPoints: computed.sum(
+    'prsScoresPoints'
+  ),
+  prsCount: computed.alias(
+    'prsScoresPoints.length'
   ),
   prsScore: Ember.computed(
     'prsPoints',
-    'prsMapped',
+    'prsCount',
     function() {
-        return (this.get('prsPoints') / this.get('prsMapped').length).toFixed(1);
+        return (this.get('prsPoints') / this.get('prsCount')).toFixed(1);
       }
    ),
 
-  sngMapped: Ember.computed.mapBy(
+  sngScoresPoints: computed.mapBy(
     'sngScores',
     'points'
   ),
-  sngPoints: Ember.computed.sum(
-    'sngMapped'
+  sngPoints: computed.sum(
+    'sngScoresPoints'
+  ),
+  sngCount: computed.alias(
+    'sngScoresPoints.length'
   ),
   sngScore: Ember.computed(
     'sngPoints',
-    'sngMapped',
+    'sngCount',
     function() {
-        return (this.get('sngPoints') / this.get('sngMapped').length).toFixed(1);
+        return (this.get('sngPoints') / this.get('sngCount')).toFixed(1);
       }
    ),
 });

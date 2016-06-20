@@ -3,6 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -60,5 +61,90 @@ export default Model.extend({
   sortedPerformances: Ember.computed.sort(
     'performances',
     'performanceSort'
+  ),
+
+  tp: computed.mapBy(
+    'performances',
+    'totPoints'
+  ),
+  tc: computed.mapBy(
+    'performances',
+    'stc'
+  ),
+  totPoints: computed.sum(
+    'tp'
+  ),
+  stc: computed.sum(
+    'tc'
+  ),
+  totScore: computed(
+    'totPoints',
+    'stc',
+    function() {
+      return (this.get('totPoints') / this.get('stc')).toFixed(1);
+    }
+  ),
+  mp: computed.mapBy(
+    'performances',
+    'musPoints'
+  ),
+  mc: computed.mapBy(
+    'performances',
+    'musCount'
+  ),
+  musPoints: computed.sum(
+    'mp'
+  ),
+  smc: computed.sum(
+    'mc'
+  ),
+  musScore: computed(
+    'musPoints',
+    'smc',
+    function() {
+      return (this.get('musPoints') / this.get('smc')).toFixed(1);
+    }
+  ),
+  pp: computed.mapBy(
+    'performances',
+    'prsPoints'
+  ),
+  pc: computed.mapBy(
+    'performances',
+    'prsCount'
+  ),
+  prsPoints: computed.sum(
+    'pp'
+  ),
+  spc: computed.sum(
+    'pc'
+  ),
+  prsScore: computed(
+    'prsPoints',
+    'spc',
+    function() {
+      return (this.get('prsPoints') / this.get('prs')).toFixed(1);
+    }
+  ),
+  sp: computed.mapBy(
+    'performances',
+    'sngPoints'
+  ),
+  sc: computed.mapBy(
+    'performances',
+    'sngCount'
+  ),
+  sngPoints: computed.sum(
+    'sp'
+  ),
+  ssc: computed.sum(
+    'sc'
+  ),
+  sngScore: computed(
+    'sngPoints',
+    'ssc',
+    function() {
+      return (this.get('sngPoints') / this.get('ssc')).toFixed(1);
+    }
   ),
 });

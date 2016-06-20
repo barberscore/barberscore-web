@@ -4,9 +4,20 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   isHeaderCollapsed: false,
   isRaw: false,
+  performerSortProperties: [
+    'performer.totPoints:desc',
+    'group.chap_name:asc',
+  ],
+  sortedPerformers: Ember.computed.sort(
+    'model.performers',
+    'performerSortProperties'
+  ),
   actions: {
     collapseHeader() {
       this.toggleProperty('isHeaderCollapsed');
+    },
+    sortBy(performerSortProperties) {
+      this.set('performerSortProperties', [performerSortProperties]);
     },
     sortPerformancesBy(performanceSortProperties) {
       this.set('perfSort', [performanceSortProperties]);
@@ -132,6 +143,7 @@ export default Ember.Controller.extend({
     startCurrent() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.get('current').then(current => {
+        // this.model.cursor = current.get('opener');
         current.start()
         .then(response => {
           this.store.pushPayload('round', response);

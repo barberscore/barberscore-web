@@ -28,4 +28,9 @@ export default Model.extend({
     'performances',
     'performanceSort'
   ),
+  opener: Ember.computed(
+    function() {
+      return this.get('sortedPerformances')[0];
+    }
+  )
 });

@@ -96,7 +96,7 @@
                 {{judge.certification.person.name}}
               </td>
               <td>
-                {{#each (sort-by 'song.order' judge.scores) as |score|}}
+                {{#each (sort-by 'song.num' judge.scores) as |score|}}
                   {{#if (eq score.song.performance.id model.id)}}
                    {{score-edit model=score points=score.points}}
                   {{/if}}
