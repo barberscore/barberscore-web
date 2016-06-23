@@ -7,8 +7,8 @@
     "ember-load-initializers": "0.5.x",
     "jquery": "1.11.x",
     "bootstrap": "3.3.x",
-    "font-awesome": "4.6.x"
+    "font-awesome": "4.6.x",
+    "pikaday": "^1.4.0"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

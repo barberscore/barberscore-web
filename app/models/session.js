@@ -154,4 +154,17 @@ export default Model.extend({
     'current.performances',
     'currentPerformancesSort'
   ),
+  ranks: Ember.computed('performers', function() {
+      let lastScore = null;
+      let rank = 0;
+      return this.get('performers').sortBy('totPoints').reverse().map(performer => {
+         let score = performer.get('totPoints');
+         if (score !== lastScore) {rank++;}
+         lastScore = score;
+         return {
+             performer: performer,
+             rank: rank
+         };
+      });
+  })
 });

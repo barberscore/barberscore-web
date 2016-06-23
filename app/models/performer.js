@@ -38,6 +38,7 @@ export default Model.extend({
   contestants: hasMany('contestant', {async: true}),
   submissions: hasMany('submission', {async: true}),
   scratch: memberAction({path: 'scratch'}),
+  penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
 
   contestantSort: [
     'contest.is_qualifier:asc',

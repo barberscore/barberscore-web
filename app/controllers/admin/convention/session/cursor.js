@@ -12,39 +12,51 @@ export default Ember.Controller.extend({
     'model.cursor.songs',
     'songSortProperties'
   ),
+  nextNum: Ember.computed(function(){
+    return this.get('model.cursor.num') +1;
+  }),
+  nextPerformances: Ember.computed.filterBy(
+    'model.cursor.round.performances',
+    'num',
+    'nextNum'
+  ),
   actions: {
+    // previousItem(sortedItems, cursor) {
+    //   let nowCur = sortedItems.indexOf(cursor);
+    //   let newCur = sortedItems.objectAt(nowCur-1);
+    //   this.transitionToRoute('admin.convention', newCur);
+    // },
+    // nextItem() {
+    //   this.
+    //   this.transitionToRoute('admin.convention', newCur);
+    // },
+    saveActualStart(date) {
+      this.get('model.cursor').then((cursor) => {
+        cursor.set('actual_start', date);
+        cursor.save();
+      });
+    },
+    saveActualFinish(date) {
+      this.get('model.cursor').then((cursor) => {
+        cursor.set('actual_finish', date);
+        cursor.save();
+      });
+    },
     saveSong(song, submission) {
       song.set('chart', submission.get('chart'));
       song.save();
     },
-    startPerformance() {
-      this.set('model.round.session.cursor', this.model.id);
-      this.get('model.round.session.content').save();
-      this.model.start()
-      .then(response => {
-        this.store.pushPayload('performance', response);
-      })
-      .catch(response => {
-        console.log(response);
-      });
+    penalizeRepetition(score) {
+      score.penalizeRepetition();
     },
-    finishPerformance() {
-      this.model.finish()
-      .then(response => {
-        this.store.pushPayload('performance', response);
-      })
-      .catch(response => {
-        console.log(response);
-      });
+    penalizeAccompaniment(score) {
+      score.penalizeAccompaniment();
     },
-    completePerformance() {
-      this.model.complete()
-      .then(response => {
-        this.store.pushPayload('performance', response);
-      })
-      .catch(response => {
-        console.log(response);
-      });
+    penalizeContent(score) {
+      score.penalizeContent();
+    },
+    penalizeEnhancement(score) {
+      score.penalizeEnhancement();
     },
   },
 });

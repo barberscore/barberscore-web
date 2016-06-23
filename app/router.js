@@ -11,6 +11,11 @@ Router.map(function() {
     });
     this.route('convention', { path: 'convention/:convention_id' }, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
+        this.route('judges', { path: '/judge'});
+        this.route('contests', { path: '/contest'});
+        this.route('performers', { path: '/performer'});
+        this.route('rounds', { path: '/round'});
+        this.route('reports', { path: '/report'});
         this.route('sa', { path: '/sa'});
         this.route('announcement', { path: '/announcement'});
         this.route('oss', { path: '/oss'});
