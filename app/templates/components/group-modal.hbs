@@ -30,8 +30,8 @@
           <a href='mailto:{{model.email}}'>{{model.email}}</a>
         </p>
       {{/if}}
-      <ul class='list-inline'>
-        {{#each model.roles as |role|}}
+      <ul class='list-unstyled'>
+        {{#each model.sortedRoles as |role|}}
           {{#if (eq role.status 'Active')}}<li>{{role.part}}: {{role.person.name}}</li>{{/if}}
         {{/each}}
       </ul>

@@ -1,6 +1,7 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo} from 'ember-data/relationships';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -9,4 +10,24 @@ export default Model.extend({
   person: belongsTo('person', {async: true}),
   group: belongsTo('group', {async: true}),
   date: attr('date-range'),
+
+  partSort: computed(
+    'part',
+    function(){
+      if (this.get('part') === 'Tenor') {
+        return 1;
+      } else if (this.get('part') === 'Lead') {
+        return 2;
+      } else if (this.get('part') === 'Baritone') {
+        return 3;
+      } else if (this.get('part') === 'Bass') {
+        return 4;
+      } else if (this.get('part') === 'Director') {
+        return 5;
+      } else {
+        return 0;
+      }
+    }
+  ),
+
 });
