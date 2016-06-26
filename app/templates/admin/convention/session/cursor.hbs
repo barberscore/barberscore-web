@@ -1,143 +1,154 @@
-{{!-- <section>
-<div>
-<ul class='list-inline'>
-  <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
-  <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
-</ul>
-  </div>
-</section> --}}
 <section>
-    <h3>
-      {{model.cursor.performer.group.name}}
-    </h3>
-    <h4>
-      {{#if model.cursor.performer.group.chapter}}{{model.cursor.performer.group.chapter.name}}{{/if}}
-    </h4>
-    <ul class='list-inline'>
-    <div class='row'>
-{{!--       <li class='col-md-4'>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='LT' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
-      <li class='col-md-4'>{{bs-datetimepicker date=model.actual_finish forceDateOutput=true format='LT' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li>
- --}}    </div>
-    </ul>
-    {{!-- <p>{{performance-status model=model status=model.status class='form-group'}}</p> --}}
-</section>
-<section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th class="col-md-8">Songs</th>
-          <th class='text-right'>MUS</th>
-          <th class='text-right'>PRS</th>
-          <th class='text-right'>SNG</th>
-          <th class='text-right'>TOT</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedSongs as |song|}}
-          <tr>
-            <td>
-              {{select-submission model=song submission=song.submission}}
-            </td>
-            <td class='text-right'>
-              {{song.musPoints}}
-            </td>
-            <td class='text-right'>
-              {{song.prsPoints}}
-            </td>
-            <td class='text-right'>
-              {{song.sngPoints}}
-            </td>
-            <td class='text-right'>
-              {{song.totPoints}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-      <tfoot>
-      <tr>
-          <th>
-            Totals
-          </th>
-          <th class='text-right'>
-            {{model.cursor.musPoints}}
-          </th>
-          <th class='text-right'>
-            {{model.cursor.prsPoints}}
-          </th>
-          <th class='text-right'>
-            {{model.cursor.sngPoints}}
-          </th>
-          <th class='text-right'>
-            {{model.cursor.totPoints}}
-          </th>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</section>
-<section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th class='col-md-4'>Slot</th>
-          <th>Score</th>
-          {{!-- <th>Variance</th> --}}
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedJudges as |judge|}}
-          {{#unless (eq judge.category 'Admin')}}
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>Score</h4>
+      <ul class='list-inline'>
+        {{!-- <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li> --}}
+        {{!-- <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li> --}}
+      </ul>
+    </div>
+    {{#if model.cursor}}
+      <div class='panel-body'>
+        {{!-- <div class='row'> --}}
+          <h3 class='form-group'>
+            {{model.cursor.performer.group.name}}
+          </h3>
+          <h4 class='form-group'>
+            {{#if model.cursor.performer.group.chapter}}{{model.cursor.performer.group.chapter.name}}{{/if}}
+            </h4>
+          <ul class='list-inline form-group'>
+            <li>{{bs-datetimepicker date=model.cursor.actual_start forceDateOutput=true format='LT' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
+            <li>{{bs-datetimepicker date=model.cursor.actual_finish forceDateOutput=true format='LT' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li>
+          </ul>
+        {{!-- </div> --}}
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class="col-md-8">Songs</th>
+                <th class='text-right'>MUS</th>
+                <th class='text-right'>PRS</th>
+                <th class='text-right'>SNG</th>
+                <th class='text-right'>TOT</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedSongs as |song|}}
+                <tr>
+                  <td>
+                    {{select-submission model=song submission=song.submission}}
+                  </td>
+                  <td class='text-right'>
+                    {{song.musPoints}}
+                  </td>
+                  <td class='text-right'>
+                    {{song.prsPoints}}
+                  </td>
+                  <td class='text-right'>
+                    {{song.sngPoints}}
+                  </td>
+                  <td class='text-right'>
+                    {{song.totPoints}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+            <tfoot>
             <tr>
-              <td>
-                {{judge.kind}} {{judge.category}}<br>
-                {{judge.certification.person.name}}
-              </td>
-              <td>
-                {{#each (sort-by 'song.num' judge.scores) as |score|}}
-                  {{#if (eq score.song.performance.id model.cursor.id)}}
-                   {{score-edit model=score points=score.points}}
-                  {{/if}}
-                {{/each}}
-              </td>
-              {{!-- <td>
-                {{#each judge.scores as |score|}}
-                  {{#if (eq score.song.performance.id model.id)}}
-                    {{#if score.highReview}}
-                      {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
-                    {{else}}
-                      &nbsp;
-                    {{/if}}
-                    {{#if score.lowReview}}
-                      {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
-                    {{else}}
-                      &nbsp;
-                    {{/if}}
-                    <br>
-                  {{/if}}
-                {{/each}}
-              </td> --}}
-              <td>
-                {{#each judge.scores as |score|}}
-                  {{#if (eq score.song.performance.id model.cursor.id)}}
-                    {{#bs-dropdown}}
-                      {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                      {{#bs-dropdown-menu}}
-                        <li><a href='#' {{action 'moveTop' performance}}>Penalty - Accompaniment</a></li>
-                        <li><a href='#' {{action 'moveBottom' performance}}>Penalty - Repetition</a></li>
-                      {{/bs-dropdown-menu}}
-                    {{/bs-dropdown}}
-                    <br>
-                  {{/if}}
-                {{/each}}
-              </td>
-            </tr>
-          {{/unless}}
-        {{/each}}
-      </tbody>
-    </table>
-    <p>{{#bs-button action=(action 'finishPerformance') class='form-group btn-primary'}}Finish Performance{{/bs-button}}</p>
+                <th>
+                  Totals
+                </th>
+                <th class='text-right'>
+                  {{model.cursor.musPoints}}
+                </th>
+                <th class='text-right'>
+                  {{model.cursor.prsPoints}}
+                </th>
+                <th class='text-right'>
+                  {{model.cursor.sngPoints}}
+                </th>
+                <th class='text-right'>
+                  {{model.cursor.totPoints}}
+                </th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='col-md-4'>Judge</th>
+                <th class='col-md-1'>Score</th>
+                <th>Variance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedJudges as |judge|}}
+                {{#unless (eq judge.category 'Admin')}}
+                  <tr>
+                    <td>
+                      {{judge.kind}} {{judge.category}}<br>
+                      {{judge.certification.person.name}}
+                    </td>
+                    <td>
+                      {{#each (sort-by 'song.num' judge.scores) as |score|}}
+                        {{#if (eq score.song.performance.id model.cursor.id)}}
+                         {{score-edit model=score points=score.points}}
+                        {{/if}}
+                      {{/each}}
+                    </td>
+                    <td>
+                      {{#each judge.scores as |score|}}
+                        {{#if (eq score.song.performance.id model.cursor.id)}}
+                          {{#if score.highReview}}
+                            {{!-- {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}} --}}
+                            <span class='text-danger'>High</span>
+                          {{else}}
+                            &nbsp;
+                          {{/if}}
+                          {{#if score.lowReview}}
+                            {{!-- {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}} --}}
+                            <span class='text-danger'>Low</span>
+                          {{else}}
+                            &nbsp;
+                          {{/if}}
+                          <br>
+                        {{/if}}
+                      {{/each}}
+                    </td>
+                    <td>
+                      {{#each judge.scores as |score|}}
+                        {{#if (eq score.song.performance.id model.cursor.id)}}
+                          {{#bs-dropdown class='form-group'}}
+                            {{#bs-dropdown-button}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                            {{#bs-dropdown-menu}}
+                              {{#if (eq score.category 'Music')}}
+                                <li><a href='#' {{action 'penalizeRepetition' performance}}>Penalty - Repetition</a></li>
+                                <li><a href='#' {{action 'penalizeAccompaniment' performance}}>Penalty - Accompaniment</a></li>
+                              {{else if (eq score.category 'Presentation')}}
+                                <li><a href='#' {{action 'penalizeContent' performance}}>Penalty - Patriotic/Religious</a></li>
+                              {{else if (eq score.category 'Singing')}}
+                                <li><a href='#' {{action 'penalizeEnhancement' performance}}>Penalty - Sound Enhancement</a></li>
+                              {{/if}}
+                            {{/bs-dropdown-menu}}
+                          {{/bs-dropdown}}
+                          <br>
+                        {{/if}}
+                      {{/each}}
+                    </td>
+                  </tr>
+                {{/unless}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    {{else}}
+      <div class='panel-body'>
+        <h4>Select first performance to score.</h4>
+      </div>
+    {{/if}}
   </div>
 </section>

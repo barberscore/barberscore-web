@@ -32,6 +32,18 @@ export default Model.extend({
     'descSortProperties'
   ),
 
+  // lowReviews: computed.mapBy(
+  //   'scores',
+  //   'lowReview'
+  // ),
+
+  noVariance: computed(
+    'scores.@each.lowReview',
+    function() {
+      return this.get('scores').isAny('lowReview');
+    }
+  ),
+
   populatedScores: Ember.computed.filterBy(
     'scores',
     'notEmptyPoints'

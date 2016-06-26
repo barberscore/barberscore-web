@@ -1,0 +1,24 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseHeader'}}>
+        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Order of Appearance
+      </h4>
+      <ul class='list-inline'>
+        {{#each model.sortedRounds as |round|}}
+          <li>{{#link-to 'admin.convention.session.rounds.round' round}}{{round.kind}}{{/link-to}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        <p>
+          (No additional content.)
+        </p>
+      </div>
+    {{/bs-collapse}}
+  </div>
+</section>
+<section>
+  {{outlet}}
+</section>

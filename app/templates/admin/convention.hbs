@@ -1,4 +1,4 @@
-<section>
+{{!-- <section>
     <ol class='breadcrumb'>
       <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
       <li>{{#link-to 'admin.conventions'}}Conventions{{/link-to}}</li>
@@ -12,7 +12,7 @@
       <li>{{#bs-button disabled=false action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
     </ul>
   </div>
-</section>
+</section> --}}
 <section>
     <div class='panel panel-default'>
       <div class='panel-heading'>
@@ -21,7 +21,7 @@
         </h4>
         <ul class='list-inline'>
           {{#each model.sessions as |session|}}
-            <li><h4>{{#link-to 'admin.convention.session' session}}{{session.kind}} Contest{{/link-to}}</h4></li>
+            <li>{{#link-to 'admin.convention.session' session}}{{session.kind}} Contest{{/link-to}}</li>
           {{/each}}
         </ul>
       </div>

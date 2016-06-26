@@ -7,13 +7,16 @@ const {computed} = Ember;
 export default Model.extend({
   name: attr('string'),
   status: attr('score-status'),
-  points: attr('number'),
   kind: attr('score-kind'),
   category: attr('score-category'),
-  dixon_test: attr('string'),
-  asterisk_test: attr('string'),
+  points: attr('number'),
+  original: attr('number'),
+  violation: attr('score-violation'),
+  penalty: attr('number'),
+
   song: belongsTo('song', {async: true}),
   judge: belongsTo('judge', {async: true}),
+
   lowReview: computed(
     'song.ascSortedScores',
     function() {
@@ -50,8 +53,7 @@ export default Model.extend({
           return false;
       }
   }),
-  notEmptyPoints: computed.gt(
-    'points',
-    0
+  notEmptyPoints: computed.notEmpty(
+    'points'
   ),
 });

@@ -6,7 +6,6 @@ export default Ember.Component.extend({
     saveRecord() {
       const flashMessages = Ember.get(this, 'flashMessages');
       // var organization = this.get('group').organization;
-      // console.log(organization);
       var contest = this.get('store').createRecord('submission', {
         performer: this.get('performer'),
         chart: this.get('chart'),

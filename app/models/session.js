@@ -147,6 +147,14 @@ export default Model.extend({
     'roundsSort'
   ),
 
+  slotsSort: [
+    'onstage',
+  ],
+  sortedSlots: computed.sort(
+    'slots',
+    'slotsSort'
+  ),
+
   currentPerformancesSort: [
     'num',
   ],
@@ -154,4 +162,25 @@ export default Model.extend({
     'current.performances',
     'currentPerformancesSort'
   ),
+  allPerformancesSort: [
+    'num',
+  ],
+  allPerformances: computed.sort(
+    'sortedRounds.[].performances',
+    'allPerformancesSort'
+  ),
+  ranks: Ember.computed('performers', function() {
+    let lastScore = null;
+    let lastRank = null;
+    return this.get('performers').sortBy('totPoints').reverse().map((competitor, index) => {
+       let score = competitor.get('totPoints');
+       let rank = score === lastScore ? lastRank : index+1;
+       lastScore = score;
+       lastRank = rank;
+       return {
+           score: score,
+           rank: rank
+       };
+    });
+  })
 });

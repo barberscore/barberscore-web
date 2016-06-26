@@ -11,27 +11,28 @@ Router.map(function() {
     });
     this.route('convention', { path: 'convention/:convention_id' }, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
+        this.route('judges', { path: '/judge'}, function() {
+          this.route('judge', { path: '/:judge_id'});
+        });
+        this.route('contests', { path: '/contest'}, function() {
+          this.route('contest', { path: '/:contest_id'});
+        });
+        this.route('performers', { path: '/performer'}, function() {
+          this.route('performer', { path: '/:performer_id'});
+        });
+        this.route('rounds', { path: '/round'}, function() {
+          this.route('round', { path: '/:round_id'});
+        });
+        this.route('currents', { path: '/current'}, function() {
+          this.route('current', { path: '/:performance_id'});
+        });
+        this.route('schedules', { path: '/schedule'});
+        this.route('reports', { path: '/report'});
         this.route('sa', { path: '/sa'});
         this.route('announcement', { path: '/announcement'});
         this.route('oss', { path: '/oss'});
-        this.route('current', { path: '/current/:performance_id'});
         this.route('cursor', { path: '/cursor/'});
-        this.route('performer', { path: '/performer/:performer_id'});
         this.route('csa', { path: '/csa/:performer_id'});
-        this.route('round', { path: '/round/:round_id'});
-        this.route('judge', { path: '/judge/:judge_id'}, function() {
-        });
-        this.route('round', { path: '/round/:round_id'}, function() {
-          this.route('performance', { path: '/performance/:performance_id'}, function() {
-            this.route('variance', { path: '/variance'}, function() {
-            });
-          });
-        });
-        this.route('contest', { path: '/contest/:contest_id'}, function() {
-          this.route('oss', { path: '/oss'});
-          this.route('performance', { path: 'performance/:performance_id'}, function() {
-          });
-        });
       });
     });
     this.route('awards', { path: '/award/'}, function() {

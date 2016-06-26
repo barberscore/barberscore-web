@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  isHeaderCollapsed: false,
+  isHeaderCollapsed: true,
   isRaw: false,
   performerSortProperties: [
     'performer.totPoints:desc',
