@@ -147,12 +147,27 @@ export default Model.extend({
     'roundsSort'
   ),
 
+  slotsSort: [
+    'onstage',
+  ],
+  sortedSlots: computed.sort(
+    'slots',
+    'slotsSort'
+  ),
+
   currentPerformancesSort: [
     'num',
   ],
   currentPerformances: computed.sort(
     'current.performances',
     'currentPerformancesSort'
+  ),
+  allPerformancesSort: [
+    'num',
+  ],
+  allPerformances: computed.sort(
+    'sortedRounds.[].performances',
+    'allPerformancesSort'
   ),
   ranks: Ember.computed('performers', function() {
     let lastScore = null;

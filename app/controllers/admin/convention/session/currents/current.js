@@ -5,7 +5,6 @@ export default Ember.Controller.extend({
   judgeSortProperties: ['kind', 'category','slot',],
   scoringJudges: Ember.computed.filter('model.round.session.judges',
     function(item) {
-      // console.log(item.get('Name'));
       return item.get('category') !== 'Admin';
     }
   ),
@@ -29,12 +28,12 @@ export default Ember.Controller.extend({
     previousItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur-1);
-      this.transitionToRoute('admin.convention.session.round.performance', newCur);
+      this.transitionToRoute('admin.convention.session.currents.current', newCur);
     },
     nextItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur+1);
-      this.transitionToRoute('admin.convention.session.round.performance', newCur);
+      this.transitionToRoute('admin.convention.session.currents.current', newCur);
     },
     savePerformance() {
       this.model.save()
@@ -51,18 +50,6 @@ export default Ember.Controller.extend({
       .catch(response => {
         console.log(response);
       });
-    },
-    saveActualStart(date) {
-      this.model.set('actual_start', date);
-      this.model.save();
-    },
-    saveActualFinish(date) {
-      this.model.set('actual_finish', date);
-      this.model.save();
-    },
-    saveSong(song, submission) {
-      song.set('chart', submission.get('chart'));
-      song.save();
     },
     startPerformance() {
       this.model.start()
@@ -90,6 +77,30 @@ export default Ember.Controller.extend({
       .catch(response => {
         console.log(response);
       });
+    },
+    saveActualStart(date) {
+      this.model.set('actual_start', date);
+      this.model.save();
+    },
+    saveActualFinish(date) {
+      this.model.set('actual_finish', date);
+      this.model.save();
+    },
+    saveSong(song, submission) {
+      song.set('chart', submission.get('chart'));
+      song.save();
+    },
+    penalizeRepetition(score) {
+      score.penalizeRepetition();
+    },
+    penalizeAccompaniment(score) {
+      score.penalizeAccompaniment();
+    },
+    penalizeContent(score) {
+      score.penalizeContent();
+    },
+    penalizeEnhancement(score) {
+      score.penalizeEnhancement();
     },
   },
 });

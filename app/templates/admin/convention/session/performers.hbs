@@ -17,7 +17,7 @@
           <tbody>
             {{#each sortedPerformers as |performer|}}
               <tr>
-                <td>{{#link-to 'admin.convention.session.performer' performer}}{{performer.group.name}}{{/link-to}}</td>
+                <td>{{#link-to 'admin.convention.session.performers.performer' performer}}{{performer.group.name}}{{/link-to}}</td>
                   <td>
                     {{performer.totPoints}}
                   </td>
@@ -44,4 +44,7 @@
       {{add-performer session=model class='form-group'}}
     </div>
   </div>
+</section>
+<section>
+  {{outlet}}
 </section>

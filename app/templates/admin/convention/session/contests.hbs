@@ -18,7 +18,7 @@
           {{#each model.sortedContests as |contest|}}
             <tr>
               <td>
-                {{#link-to 'admin.convention.session.contest' contest}}{{contest.name}}{{/link-to}}
+                {{#link-to 'admin.convention.session.contests.contest' contest}}{{contest.name}}{{/link-to}}
               </td>
               {{!-- <td>
                 {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
@@ -45,4 +45,7 @@
       {{add-award session=model}}
     </div>
   </div>
+</section>
+<section>
+  {{outlet}}
 </section>

@@ -8,9 +8,10 @@
         <li>{{#link-to 'admin.convention.session.judges' model}}Judges{{/link-to}}</li>
         <li>{{#link-to 'admin.convention.session.contests' model}}Contests{{/link-to}}</li>
         <li>{{#link-to 'admin.convention.session.performers' model}}Entrants{{/link-to}}</li>
-        <li>{{#link-to 'admin.convention.session.rounds' model}}Rounds{{/link-to}}</li>
+        {{!-- <li>{{#link-to 'admin.convention.session.schedules' model}}Schedule{{/link-to}}</li> --}}
+        <li>{{#link-to 'admin.convention.session.rounds' model}}OAs{{/link-to}}</li>
+        <li>{{#link-to 'admin.convention.session.currents' model}}Scores{{/link-to}}</li>
         <li>{{#link-to 'admin.convention.session.reports' model}}Reports{{/link-to}}</li>
-        <li>{{#link-to 'admin.convention.session.cursor' model}}Score{{/link-to}}</li>
       </ul>
     </div>
     {{#bs-collapse collapsed=isHeaderCollapsed}}

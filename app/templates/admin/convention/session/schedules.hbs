@@ -1,0 +1,41 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>Schedule</h4>
+    </div>
+    <div class='panel-body'>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+            <tr>
+              <th>Slot</th>
+              <th>Performer</th>
+              {{!-- <th>Points</th> --}}
+              {{!-- <th>Score</th> --}}
+              {{!-- <th>Actions</th>  --}}
+              {{!-- <th>Change</th> --}}
+            </tr>
+            </thead>
+            <tbody>
+              {{#each model.sortedSlots as |slot|}}
+                <tr>
+                  <td>
+                    {{slot.num}}
+                  </td>
+                  <td>
+                    {{#link-to 'admin.convention.session.current' slot.performance}}{{slot.performance.performer.group.name}}{{/link-to}}
+                  </td>
+                  {{!-- <td>
+                    {{performance.totPoints}}
+                  </td> --}}
+                  {{!-- <td>
+                    {{performance.totScore}}
+                  </td> --}}
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
+</section>

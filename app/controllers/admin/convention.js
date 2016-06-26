@@ -61,23 +61,5 @@ export default Ember.Controller.extend({
     deleteSession(session) {
       session.destroyRecord();
     },
-    // startConvention() {
-    //   this.model.start()
-    //   .then(response => {
-    //     this.store.pushPayload('convention', response);
-    //   })
-    //   .catch(response => {
-    //     console.log(response);
-    //   });
-    // },
-    // finishConvention() {
-    //   this.model.finish()
-    //   .then(response => {
-    //     this.store.pushPayload('convention', response);
-    //   })
-    //   .catch(response => {
-    //     console.log(response);
-    //   });
-    // },
   },
 });
