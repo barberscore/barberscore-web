@@ -1,4 +1,4 @@
-<a href='#' {{action "openModal"}}>{{model.name}}</a>
+<a href='#' {{action "openModal"}}>{{model.name}}</a>{{#if model.organization}} ({{model.organization.short_name}}){{/if}}
 {{#bs-modal open=isOpen size='lg'}}
   <div class='row'>
     <div class='col-md-6'>

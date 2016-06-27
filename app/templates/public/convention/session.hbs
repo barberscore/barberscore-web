@@ -18,7 +18,6 @@
             <tr>
               <th>Slot</th>
               <th>Performer</th>
-              <th>Representing</th>
               <th>Scheduled</th>
             </tr>
             </thead>
@@ -32,9 +31,9 @@
                     {{group-modal model=performance.performer.group}}
                     {{#if (eq performance.performer.group.kind 'Chorus')}}{{performance.performer.group.chapter.name}}{{/if}}
                   </td>
-                  <td>
+                  {{!-- <td>
                     {{#link-to 'public.organizations.organization' performance.performer.representing}}{{performance.performer.representing.name}}{{/link-to}}
-                  </td>
+                  </td> --}}
                   <td>
                     {{moment-format performance.slot.onstage 'LT Z z'}}
                   </td>
