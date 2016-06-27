@@ -6,15 +6,10 @@ export default Ember.Component.extend({
   actions: {
     saveRecord() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      var actual = {
-      };
-      var scheduled = {
-      };
       var performance = this.get('store').createRecord('performance', {
         round: this.get('round'),
         performer: this.get('performer'),
-        actual: actual,
-        scheduled: scheduled,
+        // slot: this.get('slot'),
       });
       performance.save()
       .then(() => {
@@ -29,5 +24,12 @@ export default Ember.Component.extend({
   sortedPerformers: Ember.computed.sort(
     'round.session.performers',
     'performerSortProperties'
+  ),
+  slotSort: [
+    'num:asc',
+  ],
+  sortedSlots: Ember.computed.sort(
+    'round.slots',
+    'slotSort'
   ),
 });

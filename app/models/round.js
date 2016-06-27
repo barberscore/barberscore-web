@@ -14,6 +14,7 @@ export default Model.extend({
   current_session: belongsTo('session', {async: true, inverse: 'current'}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
+  slots: hasMany('slot', {async: true}),
   draw: memberAction({path: 'draw'}),
   resort: memberAction({path: 'resort'}),
   start: memberAction({path: 'start', type: 'post'}),

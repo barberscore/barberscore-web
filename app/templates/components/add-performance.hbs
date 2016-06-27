@@ -10,5 +10,16 @@
       {{performer.group.name}}
     {{/power-select}}
   {{/bs-form-group}}
-  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
+{{!--   {{#bs-form-group}}
+    {{#power-select
+      options=sortedSlots
+      placeholder='Choose Slot'
+      selected=slot
+      onchange=(action (mut slot))
+      as |slot|
+    }}
+      {{slot.num}}
+    {{/power-select}}
+  {{/bs-form-group}}
+ --}}  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
 {{/bs-form}}
