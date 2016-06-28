@@ -32,7 +32,6 @@ export default Ember.Controller.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        let num = item.get('num');
         item.set('num', index+1);
       });
     },
