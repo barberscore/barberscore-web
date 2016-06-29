@@ -28,8 +28,7 @@ export default Model.extend({
   cursor: belongsTo('performance', {async: true}),
 
   performerSortProperties: [
-    'performer.totPoints:desc',
-    'group.chap_name:asc',
+    'totPoints:desc',
   ],
   sortedPerformers: computed.sort(
     'performers',
@@ -169,7 +168,7 @@ export default Model.extend({
     'sortedRounds.[].performances',
     'allPerformancesSort'
   ),
-  ranks: Ember.computed('performers', function() {
+  ranks: Ember.computed('performers.@each.totPoints', function() {
     let lastScore = null;
     let lastRank = null;
     return this.get('performers').sortBy('totPoints').reverse().map((competitor, index) => {

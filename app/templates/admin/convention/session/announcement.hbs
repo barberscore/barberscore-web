@@ -31,12 +31,7 @@ Awards
 </h3>
 <ul class='list-unstyled'>
   {{#each model.contests as |contest|}}
-    <li>{{contest.award.name}} Champion: {{contest.champion}}</li>
-    <ul>
-    {{#each (take 5 (sort-by 'rank' contest.contestants)) as |contestant|}}
-      <li>{{contestant.rank}}: {{contestant.performer.group.name}} {{contestant.total_points}} {{single-fixed contestant.total_score}}</li>
-    {{/each}}
-    </ul>
+    <li>{{contest.award.name}} Champion: {{contest.totChampion}}</li>
   {{/each}}
 </ul>
 </section>

@@ -25,7 +25,7 @@
   {{#each sortedPerformers as |performer|}}
     <tr>
     <td>
-      {{performer.rank}}
+      {{performer.totRank}}
     </td>
     <td>
       {{performer.group.name}}<br>
@@ -43,39 +43,39 @@
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.musPoints}}{{else}}{{single-fixed song.musScore}}{{/if}}<br>
+          {{#if isRaw}}{{song.musPoints}}{{else}}{{song.musScore}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.musPoints}}{{else}}{{single-fixed performance.musScore}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.musPoints}}{{else}}{{performance.musScore}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.musPoints}}{{else}}{{single-fixed performer.musScore}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.musPoints}}{{else}}{{performer.musScore}}{{/if}}</strong><br>
 
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.prsPoints}}{{else}}{{single-fixed song.ƒ}}{{/if}}<br>
+          {{#if isRaw}}{{song.prsPoints}}{{else}}{{song.prsScore}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.prsPoints}}{{else}}{{single-fixed performance.prsScore}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.prsPoints}}{{else}}{{performance.prsScore}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.prsPoints}}{{else}}{{single-fixed performer.prsScore}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.prsPoints}}{{else}}{{performer.prsScore}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.sngPoints}}{{else}}{{single-fixed song.sngScore}}{{/if}}<br>
+          {{#if isRaw}}{{song.sngPoints}}{{else}}{{song.sngScore}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.sngPoints}}{{else}}{{single-fixed performance.sngScore}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.sngPoints}}{{else}}{{performance.sngScore}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.sngPoints}}{{else}}{{single-fixed performer.sngScore}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.sngPoints}}{{else}}{{performer.sngScore}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.totPoints}}{{else}}{{single-fixed song.totScore}}{{/if}}<br>
+          {{#if isRaw}}{{song.totPoints}}{{else}}{{song.totScore}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.totPoints}}{{else}}{{single-fixed performance.totScore}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.totPoints}}{{else}}{{performance.totScore}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.totPoints}}{{else}}{{single-fixed performer.totScore}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.totPoints}}{{else}}{{performer.totScore}}{{/if}}</strong><br>
     </td>
     </tr>
   {{/each}}

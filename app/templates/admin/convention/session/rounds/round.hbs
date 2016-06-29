@@ -19,7 +19,7 @@
         {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
           <td>{{item.num}}</td>
           <td>{{item.performer.group.name}}</td>
-          {{!-- <td>{{single-fixed item.total_score}}</td> --}}
+          {{!-- <td>{{item.total_score}}</td> --}}
           <td>{{moment-format item.actual_start 'LT'}}</td>
           <td>{{moment-format item.actual_finish 'LT'}}</td>
           <td>{{item.status}}</td>

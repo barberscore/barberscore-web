@@ -114,7 +114,7 @@ export default Model.extend({
     'prsPoints',
     'spc',
     function() {
-      return (this.get('prsPoints') / this.get('prs')).toFixed(1);
+      return (this.get('prsPoints') / this.get('spc')).toFixed(1);
     }
   ),
   sp: computed.mapBy(

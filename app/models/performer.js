@@ -91,7 +91,7 @@ export default Model.extend({
   ),
   mc: computed.mapBy(
     'performances',
-    'musCount'
+    'smc'
   ),
   musPoints: computed.sum(
     'mp'
@@ -112,7 +112,7 @@ export default Model.extend({
   ),
   pc: computed.mapBy(
     'performances',
-    'prsCount'
+    'spc'
   ),
   prsPoints: computed.sum(
     'pp'
@@ -124,7 +124,7 @@ export default Model.extend({
     'prsPoints',
     'spc',
     function() {
-      return (this.get('prsPoints') / this.get('prs')).toFixed(1);
+      return (this.get('prsPoints') / this.get('spc')).toFixed(1);
     }
   ),
   sp: computed.mapBy(
@@ -133,7 +133,7 @@ export default Model.extend({
   ),
   sc: computed.mapBy(
     'performances',
-    'sngCount'
+    'ssc'
   ),
   sngPoints: computed.sum(
     'sp'
@@ -148,4 +148,11 @@ export default Model.extend({
       return (this.get('sngPoints') / this.get('ssc')).toFixed(1);
     }
   ),
+  totRank: computed(
+    'session.ranks.@each.{score,rank}',
+    'totPoints',
+    function() {
+      return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
+    }
+  )
 });
