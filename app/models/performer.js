@@ -13,7 +13,6 @@ export default Model.extend({
   lead: belongsTo('role', {async: true}),
   baritone: belongsTo('role', {async: true}),
   bass: belongsTo('role', {async: true}),
-  soa: attr('number'),
   men: attr('number'),
   risers: attr('number'),
   is_evaluation: attr('boolean'),

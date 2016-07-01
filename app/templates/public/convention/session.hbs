@@ -16,16 +16,20 @@
           <table class='table'>
             <thead>
             <tr>
-              <th>Slot</th>
-              <th>Performer</th>
+              <th {{action 'sortPerformancesBy' 'num:asc'}}>Slot</th>
+              <th {{action 'sortPerformancesBy' 'performer.prelim:desc'}}>Prelim</th>
+              <th {{action 'sortPerformancesBy' 'performer.group.name:asc'}}>Performer</th>
               <th class='text-right'>Scheduled</th>
             </tr>
             </thead>
             <tbody>
-              {{#each model.current.sortedPerformances as |performance|}}
+              {{#each sortedPerformances as |performance|}}
                 <tr>
                   <td>
                     {{performance.num}}
+                  </td>
+                  <td>
+                    {{single-fixed performance.performer.prelim}}
                   </td>
                   <td>
                     {{group-modal model=performance.performer.group}}
