@@ -55,8 +55,7 @@ export default Model.extend({
   ),
 
   performanceSort: [
-    'soa',
-    'name',
+    'round.kindSort:desc',
   ],
   sortedPerformances: Ember.computed.sort(
     'performances',

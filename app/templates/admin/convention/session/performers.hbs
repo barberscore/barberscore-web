@@ -12,6 +12,7 @@
             <th{{action 'sortPerformersBy' 'group.chap_name:asc'}}>Performer</th>
               <th{{action 'sortPerformersBy' 'totPoints:desc'}}>Points</th>
               <th>Score</th>
+            <th>Status</th>
             <th>Actions</th>
           </tr>
           </thead>
@@ -29,6 +30,9 @@
                 </td>
                 <td>
                   {{performer.totScore}}
+                </td>
+                <td>
+                  {{performer.status}}
                 </td>
                 <td>
                   {{#bs-dropdown}}

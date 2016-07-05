@@ -3,6 +3,7 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
+const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -21,6 +22,20 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
+  kindSort: computed(
+    'kind',
+    function(){
+      if (this.get('kind') === 'Quarter-Finals') {
+        return 1;
+      } else if (this.get('kind') === 'Semi-Finals') {
+        return 2;
+      } else if (this.get('kind') === 'Finals') {
+        return 3;
+      } else {
+        return 0;
+      }
+    }
+  ),
   performanceSort: [
     'num',
     'name',
