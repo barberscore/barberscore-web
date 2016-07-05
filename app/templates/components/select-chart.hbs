@@ -1,8 +1,10 @@
-{{#power-select
-  search=(action "searchChart")
+{{#power-select-with-create
+  options=submissions
   selected=chart
+  placeholder="Select Song"
   onchange=(action "saveRecord")
-  as |chart|
+  oncreate=(action "searchChart" term)
+  as |chart term|
 }}
-  {{chart.name}}
-{{/power-select}}
+  {{chart.title}}
+{{/power-select-with-create}}

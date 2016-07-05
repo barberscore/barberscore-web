@@ -18,6 +18,7 @@ export default Model.extend({
   sng_score: attr('number'),
   total_score: attr('number'),
   submission: belongsTo('submission', {async: true}),
+  chart: belongsTo('chart', {async: true}),
   performance: belongsTo('performance', {async: true}),
   scores: hasMany('score', {async: true}),
 

@@ -38,7 +38,8 @@
             {{#each sortedSongs as |song|}}
               <tr>
                 <td>
-                  {{select-submission model=song submission=song.submission}}
+                  {{!-- {{select-submission model=song submission=song.submission}} --}}
+                  {{select-chart model=song chart=song.chart submissions=model.performer.submissions}}
                 </td>
                 <td class='text-right'>
                   {{song.musPoints}}
