@@ -20,7 +20,7 @@
               <th {{action 'sortPerformancesBy' 'performer.prelim:desc'}}>Prelim</th>
               <th {{action 'sortPerformancesBy' 'performer.group.name:asc'}}>Performer</th>
               <th>Songs</th>
-              <th class='text-right'>Scheduled</th>
+              <th class='text-right'>Scheduled/Actual</th>
             </tr>
             </thead>
             <tbody>
@@ -45,7 +45,8 @@
                     {{/each}}
                   </td>
                   <td class='text-right'>
-                    {{moment-format performance.slot.onstage 'LT Z z'}}
+                    {{moment-format performance.slot.onstage 'LT Z z'}}<br>
+                    {{moment-format performance.actual_start 'LT Z z'}}
                   </td>
                 </tr>
               {{/each}}
