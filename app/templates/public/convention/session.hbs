@@ -19,6 +19,7 @@
               <th {{action 'sortPerformancesBy' 'num:asc'}}>Slot</th>
               <th {{action 'sortPerformancesBy' 'performer.prelim:desc'}}>Prelim</th>
               <th {{action 'sortPerformancesBy' 'performer.group.name:asc'}}>Performer</th>
+              <th>Songs</th>
               <th class='text-right'>Scheduled</th>
             </tr>
             </thead>
@@ -38,6 +39,11 @@
                   {{!-- <td>
                     {{#link-to 'public.organizations.organization' performance.performer.representing}}{{performance.performer.representing.name}}{{/link-to}}
                   </td> --}}
+                  <td>
+                    {{#each performance.songsSorted as |song|}}
+                      {{truncate-text song.submission.chart.title limit=50}}<br>
+                    {{/each}}
+                  </td>
                   <td class='text-right'>
                     {{moment-format performance.slot.onstage 'LT Z z'}}
                   </td>

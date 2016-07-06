@@ -32,6 +32,14 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
+  songSort: [
+    'num',
+  ],
+  sortedSongs: Ember.computed.sort(
+    'songs',
+    'songSort'
+  ),
+
   // totSongsPoints: computed.mapBy(
   //   'songs',
   //   'totPoints',
