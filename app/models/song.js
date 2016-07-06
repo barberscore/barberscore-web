@@ -39,9 +39,9 @@ export default Model.extend({
   // ),
 
   noVariance: computed(
-    'scores.@each.lowReview',
+    'scores.@each.hasVariance',
     function() {
-      return this.get('scores').isAny('lowReview');
+      return this.get('scores').isAny('hasVariance');
     }
   ),
 

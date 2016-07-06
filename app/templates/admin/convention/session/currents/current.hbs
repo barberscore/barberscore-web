@@ -28,6 +28,7 @@
           <thead>
             <tr>
               <th class="col-md-8">Songs</th>
+              <th class='text-right'></th>
               <th class='text-right'>MUS</th>
               <th class='text-right'>PRS</th>
               <th class='text-right'>SNG</th>
@@ -38,8 +39,11 @@
             {{#each sortedSongs as |song|}}
               <tr>
                 <td>
-                  {{!-- {{select-submission model=song submission=song.submission}} --}}
-                  {{select-chart model=song chart=song.chart submissions=model.performer.submissions}}
+                  {{select-submission model=song submission=song.submission}}
+                  {{!-- {{select-chart model=song chart=song.chart submissions=model.performer.submissions}} --}}
+                </td>
+                <td>
+                  {{#if song.noVariance}}<span class="label label-danger">Variance</span>{{else}}{{/if}}
                 </td>
                 <td class='text-right'>
                   {{song.musPoints}}
@@ -61,6 +65,7 @@
               <th>
                 Totals
               </th>
+              <th></th>
               <th class='text-right'>
                 {{model.musPoints}}
               </th>
@@ -83,8 +88,8 @@
             <tr>
               <th class='col-md-4'>Judge</th>
               <th class='col-md-1'>Score</th>
-              <th>Variance</th>
-              <th>Actions</th>
+              {{!-- <th>Variance</th> --}}
+              {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
@@ -98,30 +103,32 @@
                   <td>
                     {{#each (sort-by 'song.num' judge.scores) as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
-                       {{score-edit model=score points=score.points}}
+                        {{#if score.hasVariance}}
+                          <div class='has-error'>{{score-edit model=score points=score.points}}</div>
+                        {{else}}
+                          {{score-edit model=score points=score.points}}
+                        {{/if}}
                       {{/if}}
                     {{/each}}
                   </td>
-                  <td>
+                  {{!-- <td>
                     {{#each judge.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#if score.highReview}}
-                          {{!-- {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}} --}}
-                          <span class='text-danger'>High</span>
+                          {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
                         {{else}}
                           &nbsp;
                         {{/if}}
                         {{#if score.lowReview}}
-                          {{!-- {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}} --}}
-                          <span class='text-danger'>Low</span>
+                          {{#link-to 'admin.convention.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
                         {{else}}
                           &nbsp;
                         {{/if}}
                         <br>
                       {{/if}}
                     {{/each}}
-                  </td>
-                  <td>
+                  </td> --}}
+                  {{!-- <td>
                     {{#each judge.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#bs-dropdown class='form-group'}}
@@ -140,7 +147,7 @@
                         <br>
                       {{/if}}
                     {{/each}}
-                  </td>
+                  </td> --}}
                 </tr>
               {{/unless}}
             {{/each}}

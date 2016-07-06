@@ -56,4 +56,8 @@ export default Model.extend({
   notEmptyPoints: computed.notEmpty(
     'points'
   ),
+  hasVariance: computed.or(
+    'lowReview',
+    'highReview'
+  ),
 });
