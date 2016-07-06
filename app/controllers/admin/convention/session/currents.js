@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  isHeaderCollapsed: false,
+  isHeaderCollapsed: true,
   actions: {
     collapseHeader() {
       this.toggleProperty('isHeaderCollapsed');
