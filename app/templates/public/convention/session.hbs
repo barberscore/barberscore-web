@@ -40,7 +40,7 @@
                     {{#link-to 'public.organizations.organization' performance.performer.representing}}{{performance.performer.representing.name}}{{/link-to}}
                   </td> --}}
                   <td>
-                    {{#each performance.songsSorted as |song|}}
+                    {{#each performance.sortedSongs as |song|}}
                       {{truncate-text song.submission.chart.title limit=50}}<br>
                     {{/each}}
                   </td>
