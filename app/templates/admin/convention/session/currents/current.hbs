@@ -18,8 +18,10 @@
         <h4>
           Current OA: {{model.num}}
         </h4>
+        <h4>
+          Scheduled: {{moment-format model.slot.onstage 'HH:mm'}}
+        </h4>
         <ul class='list-inline form-group'>
-          <li>{{moment-format model.slot.onstage 'HH:mm'}}</li>
           <li>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='HH:mm' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
           <li>{{bs-datetimepicker date=model.actual_finish forceDateOutput=true format='HH:mm' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li>
           {{#if model.performer.group.chapter}}
