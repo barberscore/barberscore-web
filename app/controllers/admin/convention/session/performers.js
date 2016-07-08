@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     },
   },
   performerSortProperties: [
-    'performer.totPoints:desc',
+    'performer.totRank:asc',
     'group.chap_name:asc',
   ],
   sortedPerformers: Ember.computed.sort(
