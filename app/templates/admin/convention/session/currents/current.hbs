@@ -95,7 +95,7 @@
           <tbody>
             {{#each sortedJudges as |judge|}}
               {{#unless (eq judge.category 'Admin')}}
-                <tr>
+                <tr class={{judge.rowClass}}>
                   <td>
                     {{judge.kind}} {{judge.category}}<br>
                     {{judge.certification.person.name}}
@@ -103,11 +103,9 @@
                   <td>
                     {{#each (sort-by 'song.num' judge.scores) as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
-                        {{#if score.hasVariance}}
-                          <div class='has-error'>{{score-edit model=score points=score.points}}</div>
-                        {{else}}
+                        <div class={{score.hasVarianceClass}}>
                           {{score-edit model=score points=score.points}}
-                        {{/if}}
+                        </div>
                       {{/if}}
                     {{/each}}
                   </td>

@@ -20,24 +20,31 @@ export default Model.extend({
   lowReview: computed(
     'song.ascSortedScores',
     function() {
-      var ultimate = this.get('song.ascSortedScores').objectAt(0);
-      var penultimate = this.get('song.ascSortedScores').objectAt(1);
-      if (penultimate && ultimate) {
-        if (
-          (penultimate.get('points') - ultimate.get('points') > 5) &&
-          (ultimate.get('points') === this.get('points'))
-        ) {
-          return true;
-        } else {
-          return false;
-        }
+      if (false) {
+        return false;
       } else {
-          return false;
+        var ultimate = this.get('song.ascSortedScores').objectAt(0);
+        var penultimate = this.get('song.ascSortedScores').objectAt(1);
+        if (penultimate && ultimate) {
+          if (
+            (penultimate.get('points') - ultimate.get('points') > 5) &&
+            (ultimate.get('points') === this.get('points'))
+          ) {
+            return true;
+          } else {
+            return false;
+          }
+        } else {
+            return false;
+        }
       }
   }),
   highReview: computed(
     'song.descSortedScores',
     function() {
+      if (false) {
+        return false;
+      } else {
       var ultimate = this.get('song.descSortedScores').objectAt(0);
       var penultimate = this.get('song.descSortedScores').objectAt(1);
       if (penultimate && ultimate) {
@@ -52,6 +59,7 @@ export default Model.extend({
       } else {
           return false;
       }
+    }
   }),
   notEmptyPoints: computed.notEmpty(
     'points'
@@ -61,7 +69,9 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ===  'Music' && Math.abs((this.get('points') - this.get('song.musScore'))) > 5) {
+      if (false) {
+        return false;
+      } else if (this.get('category') ===  'Music' && Math.abs((this.get('points') - this.get('song.musScore'))) > 5) {
         return true;
       } else {
       } return false;
@@ -72,7 +82,9 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ===  'Presentation' && Math.abs((this.get('points') - this.get('song.prsScore'))) > 5) {
+      if (false) {
+        return false;
+      } else if (this.get('category') ===  'Presentation' && Math.abs((this.get('points') - this.get('song.prsScore'))) > 5) {
         return true;
       } else {
       } return false;
@@ -83,7 +95,9 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ===  'Singing' && Math.abs((this.get('points') - this.get('song.sngScore'))) > 5) {
+      if (false) {
+        return false;
+      } else if (this.get('category') ===  'Singing' && Math.abs((this.get('points') - this.get('song.sngScore'))) > 5) {
         return true;
       } else {
       } return false;
@@ -95,5 +109,15 @@ export default Model.extend({
     'musVar',
     'prsVar',
     'sngVar'
+  ),
+  hasVarianceClass: computed(
+    'hasVariance',
+    function() {
+      if (false) {
+        return 'has-error';
+      } else {
+        return '';
+      }
+    }
   ),
 });

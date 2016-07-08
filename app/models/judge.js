@@ -12,4 +12,19 @@ export default Model.extend({
   session: belongsTo('session', {async: true}),
   certification: belongsTo('certification', {async: true}),
   scores: hasMany('score', {async: true}),
+
+  rowClass: Ember.computed(
+    'category',
+    function() {
+      if (this.get('category') === 'Music') {
+        return 'danger';
+      } else if (this.get('category') === 'Presentation') {
+        return 'success';
+      } else if (this.get('category') === 'Singing') {
+        return 'warning';
+      } else {
+        return 'foobar';
+      }
+    }
+  )
 });
