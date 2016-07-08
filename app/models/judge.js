@@ -18,11 +18,11 @@ export default Model.extend({
     'category',
     function() {
       if (this.get('category') === 'Music') {
-        return 'danger';
+        return 'warning';
       } else if (this.get('category') === 'Presentation') {
         return 'success';
       } else if (this.get('category') === 'Singing') {
-        return 'warning';
+        return 'info';
       } else {
         return 'foobar';
       }
