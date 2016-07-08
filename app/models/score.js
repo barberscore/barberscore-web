@@ -61,7 +61,7 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ==  'Music' && Math.abs((this.get('points') - this.get('song.musScore'))) > 5) {
+      if (this.get('category') ===  'Music' && Math.abs((this.get('points') - this.get('song.musScore'))) > 5) {
         return true;
       } else {
       } return false;
@@ -72,7 +72,7 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ==  'Presentation' && Math.abs((this.get('points') - this.get('song.prsScore'))) > 5) {
+      if (this.get('category') ===  'Presentation' && Math.abs((this.get('points') - this.get('song.prsScore'))) > 5) {
         return true;
       } else {
       } return false;
@@ -83,7 +83,7 @@ export default Model.extend({
     'category',
     'points',
     function() {
-      if (this.get('category') ==  'Singing' && Math.abs((this.get('points') - this.get('song.sngScore'))) > 5) {
+      if (this.get('category') ===  'Singing' && Math.abs((this.get('points') - this.get('song.sngScore'))) > 5) {
         return true;
       } else {
       } return false;
