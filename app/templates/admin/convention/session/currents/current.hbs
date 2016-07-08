@@ -21,6 +21,9 @@
         <ul class='list-inline form-group'>
           <li>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='HH:mm' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
           <li>{{bs-datetimepicker date=model.actual_finish forceDateOutput=true format='HH:mm' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li>
+          {{#if model.performer.group.chapter}}
+            <li>{{mens-edit model=model men=model.performer.men}}</li>
+          {{/if}}
         </ul>
       {{!-- </div> --}}
       <div class='table-responsive'>
