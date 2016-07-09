@@ -88,8 +88,9 @@
       {{performer.rank}}
     </td>
     <td>
-      {{group-modal model=performer.group}}<br>
-      {{#if (eq performer.group.kind 'Chorus')}}{{performer.group.chapter.name}}{{/if}}
+      {{group-modal model=performer.group}}
+      {{#if (eq performer.group.kind 'Chorus')}}{{performer.group.chapter.name}}<br>{{/if}}
+      {{#if (eq performer.group.kind 'Chorus')}}Men on Stage: {{performer.men}}{{/if}}
     </td>
     <td>
       {{#each performer.performances as |performance|}}
@@ -223,7 +224,7 @@
     {{#each-in (group-by "category" model.sortedOfficialJudges) as |category officialJudges|}}
       <li><strong>{{category}}</strong>
         {{#each officialJudges as |judge|}}
-          {{judge.certification.person.name}}{{#unless (eq officialJudges.lastObject judge)}},{{/unless}}
+          {{judge.certification.person.common_name}}{{#unless (eq officialJudges.lastObject judge)}},{{/unless}}
         {{/each}}
       </li>
     {{/each-in}}
