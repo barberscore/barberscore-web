@@ -13,8 +13,10 @@
               <th{{action 'sortPerformersBy' 'totPoints:desc'}}>Points</th>
               <th>Score</th>
             <th>Status</th>
-            <th>Director</th>
-            <th>Co-Director</th>
+            <th>Tenor</th>
+            <th>Lead</th>
+            <th>Baritone</th>
+            <th>Bass</th>
           </tr>
           </thead>
           <tbody>
@@ -36,10 +38,16 @@
                   {{performer.status}}
                 </td>
                 <td>
-                {{performer.director.person.common_name}}
+                {{performer.tenor.person.common_name}}
                 </td>
                 <td>
-                {{performer.codirector.person.common_name}}
+                {{performer.lead.person.common_name}}
+                </td>
+                <td>
+                {{performer.baritone.person.common_name}}
+                </td>
+                <td>
+                {{performer.bass.person.common_name}}
                 </td>
                 {{!-- <td>
                   {{#bs-dropdown}}
