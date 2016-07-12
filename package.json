@@ -24,6 +24,7 @@
     "ember-api-actions": "0.1.x",
     "ember-bootstrap": "0.7.x",
     "ember-bootstrap-datetimepicker": "1.0.4",
+    "ember-breadcrumbs": "0.1.9",
     "ember-cli": "2.6.x",
     "ember-cli-app-version": "1.0.x",
     "ember-cli-babel": "5.1.x",
