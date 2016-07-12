@@ -1,0 +1,29 @@
+<section>
+    <ol class='breadcrumb'>
+      <li>{{#link-to 'admin'}}Admin{{/link-to}}</li>
+      <li class='active'>Sessions</li>
+    </ol>
+</section>
+<section>
+  <div>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Convention</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |session|}}
+          <tr>
+            <td>{{session.name}}</td>
+            <td>{{convention.name}}</td>
+            <td>{{date-range convention.date}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{!-- {{add-convention}} --}}
+  </div>
+</section>
