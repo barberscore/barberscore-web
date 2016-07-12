@@ -50,6 +50,12 @@ Router.map(function() {
     this.route('jm', {path: '/certification-manager'}, function() {
       this.route('judge', { path: '/certification/:judge_id'});
     });
+    this.route('qm', {path: '/quartet-manager'}, function() {
+      this.route('group', { path: '/quartet/:group_id'});
+    });
+    this.route('hm', {path: '/chorus-manager'}, function() {
+      this.route('group', { path: '/chorus/:group_id'});
+    });
     // CRUD
     this.route('awards', { path: '/award/'}, function() {
       this.route('award', { path: '/:award_id'}, function() {
