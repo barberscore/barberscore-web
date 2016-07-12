@@ -1,3 +1,12 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseHeader'}}>
+        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Judges
+      </h4>
+    </div>
+    {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
         <table class='table'>
           <thead>
             <tr>
@@ -16,7 +25,7 @@
                   {{person-picture person=judge.certification.person}}
                 </td> --}}
                 <td>
-                  {{#link-to 'admin.cm.session.judge' judge.id}}{{judge.certification.person.name}}{{/link-to}}
+                  {{#link-to 'admin.cm.session.judges.judge' judge}}{{judge.certification.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{judge.category}}
@@ -41,3 +50,10 @@
           </tbody>
         </table>
         {{add-judge model=model}}
+      </div>
+    {{/bs-collapse}}
+  </div>
+</section>
+<section>
+  {{outlet}}
+</section>

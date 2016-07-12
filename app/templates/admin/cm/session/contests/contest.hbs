@@ -1,0 +1,29 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Contestants: {{model.contestants.length}}
+    </h3>
+  </div>
+  <div class='panel-body'>
+      <h4>
+        {{model.name}}
+      </h4>
+        <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+          <tr>
+            <th>Entrant</th>
+          </tr>
+          </thead>
+          <tbody>
+          {{#each model.sortedContestants as |contestant|}}
+            <tr>
+              <td>{{#link-to 'admin.cm.session.performers.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}</td>
+            </tr>
+          {{/each}}
+          </tbody>
+        </table>
+          {{add-contestant-performer contest=model}}
+        </div>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+<section>
+  <div class='table-responsive'>
         <table class='table'>
           <thead>
             <tr>
@@ -10,13 +12,13 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.sortedJudges as |judge|}}
+            {{#each model as |judge|}}
               <tr>
                 {{!-- <td>
                   {{person-picture person=judge.certification.person}}
                 </td> --}}
                 <td>
-                  {{#link-to 'admin.cm.session.judge' judge.id}}{{judge.certification.person.name}}{{/link-to}}
+                  {{#link-to 'admin.jm.judge' judge}}{{judge.certification.person.name}}{{/link-to}}
                 </td>
                 <td>
                   {{judge.category}}
@@ -41,3 +43,8 @@
           </tbody>
         </table>
         {{add-judge model=model}}
+      </div>
+  </section>
+<section>
+  {{outlet}}
+</section>

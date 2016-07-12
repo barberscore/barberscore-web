@@ -1,0 +1,20 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>Reports</h4>
+    </div>
+    <div class='panel-body'>
+      <ul>
+        <li>{{#link-to 'admin.cm.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+        <li>{{#link-to 'admin.cm.session.announcement' model}}{{model.current.kind}} Announcements{{/link-to}}</li>
+        <li>{{#link-to 'admin.cm.session.oss' model}}Official Scoring Summary{{/link-to}}</li>
+        CSAs
+        <ul>
+          {{#each model.sortedPerformers as |performer|}}
+            <li>{{#link-to 'admin.cm.session.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+      </ul>
+    </div>
+  </div>
+</section>

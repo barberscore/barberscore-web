@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       this.model.set('cursor', cursor);
       this.model.save()
       .then(() => {
-        this.get('router').transitionTo('admin.convention.session.cursor');
+        this.get('router').transitionTo('admin.cm.session.cursor');
       })
       .catch(() => {
         flashMessages.danger('Error');

@@ -6,25 +6,37 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('admin', { path: '/admin/' }, function() {
-    this.route('conventions', { path: '/convention/' }, function() {
-    });
-    this.route('convention', { path: 'convention/:convention_id' }, function() {
+  this.route('admin', { path: '/admin' }, function() {
+    this.route('cm', {path: '/contest-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
-        this.route('judges', { path: '/judge'}, function() {
+        this.route('judges', { path: '/panel'}, function() {
           this.route('judge', { path: '/:judge_id'});
         });
         this.route('contests', { path: '/contest'}, function() {
           this.route('contest', { path: '/:contest_id'});
         });
-        this.route('performers', { path: '/performer'}, function() {
+        this.route('performers', { path: '/entrant'}, function() {
           this.route('performer', { path: '/:performer_id'});
         });
         this.route('rounds', { path: '/round'}, function() {
           this.route('round', { path: '/:round_id'});
         });
-        this.route('currents', { path: '/current'}, function() {
-          this.route('current', { path: '/:performance_id'});
+        this.route('schedules', { path: '/schedule'});
+        this.route('reports', { path: '/report'});
+        this.route('sa', { path: '/sa'});
+        this.route('announcement', { path: '/announcement'});
+        this.route('oss', { path: '/oss'});
+        this.route('csa', { path: '/csa/:performer_id'});
+      });
+    });
+    this.route('sm', {path: '/scoring-manager'}, function() {
+      this.route('session', { path: '/session/:session_id' }, function() {
+        this.route('rounds', { path: '/round'}, function() {
+          this.route('round', { path: '/:round_id'}, function() {
+            this.route('performances', { path: '/performance'}, function() {
+              this.route('performance', { path: '/:performance_id'});
+            });
+          });
         });
         this.route('schedules', { path: '/schedule'});
         this.route('reports', { path: '/report'});
@@ -35,6 +47,10 @@ Router.map(function() {
         this.route('csa', { path: '/csa/:performer_id'});
       });
     });
+    this.route('jm', {path: '/certification-manager'}, function() {
+      this.route('judge', { path: '/certification/:judge_id'});
+    });
+    // CRUD
     this.route('awards', { path: '/award/'}, function() {
       this.route('award', { path: '/:award_id'}, function() {
       });
@@ -46,6 +62,8 @@ Router.map(function() {
     this.route('chapters', { path: '/chapter/'}, function() {
       this.route('chapter', { path: '/:chapter_id'}, function() {
       });
+    });
+    this.route('conventions', { path: '/convention/' }, function() {
     });
     this.route('groups', { path: '/group/'}, function() {
       this.route('group', { path: '/:group_id'}, function() {

@@ -1,0 +1,71 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseHeader'}}>
+        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.current.kind}} Performances
+      </h4>
+    </div>
+    {{#bs-collapse collapsed=isHeaderCollapsed}}
+      <div class='panel-body'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>OA</th>
+              <th>Name</th>
+              <th>Songs</th>
+              <th>MUS</th>
+              <th>PRS</th>
+              <th>SNG</th>
+              <th>TOT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedPerformances as |performance|}}
+              <tr>
+                <td>
+                  {{performance.num}}
+                </td>
+                <td>
+                  {{#link-to 'admin.sm.session.rounds.round.performances.performance' performance}}{{performance.performer.group.name}}{{/link-to}}<br>
+                  {{performance.performer.group.chapter.name}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.submission.chart.title}}<br>
+                  {{/each}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.musPoints}}<br>
+                  {{/each}}
+                  {{performance.musPoints}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.prsPoints}}<br>
+                  {{/each}}
+                  {{performance.prsPoints}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.sngPoints}}<br>
+                  {{/each}}
+                  {{performance.sngPoints}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.totPoints}}<br>
+                  {{/each}}
+                  {{performance.totPoints}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{/bs-collapse}}
+  </div>
+</section>
+<section>
+  {{outlet}}
+</section>

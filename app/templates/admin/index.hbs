@@ -1,13 +1,9 @@
-<section>
-    <ol class='breadcrumb'>
-      <li class='active'>{{#link-to 'admin'}}Admin{{/link-to}}</li>
-    </ol>
-</section>
+{{bread-crumbs}}
 <section>
   <ul class='list-unstyled'>
-    <li>Contest Manager</li>
-    <li>Score Manager</li>
-    <li>Judge Manager</li>
+    <li>{{#link-to 'admin.cm'}}Contest Manager{{/link-to}}</li>
+    <li>{{#link-to 'admin.sm'}}Scoring Manager{{/link-to}}</li>
+    <li>{{#link-to 'admin.jm'}}Certification Manager{{/link-to}}</li>
     <li>Group Manager</li>
     <li>Chart Manager</li>
     <li>Award Manager</li>
