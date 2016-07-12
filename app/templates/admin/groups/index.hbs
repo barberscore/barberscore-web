@@ -10,12 +10,14 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Kind</th>
         </tr>
       </thead>
       <tbody>
         {{#each model as |group|}}
           <tr>
-          <td>{{#link-to 'admin.groups.group' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.groups.group' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{group.kind}}</td>
           </tr>
         {{/each}}
       </tbody>
