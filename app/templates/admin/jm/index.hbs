@@ -1,50 +1,48 @@
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
   <div class='table-responsive'>
-        <table class='table'>
-          <thead>
+      <table class='table'>
+        <thead>
+          <tr>
+            {{!-- <th class='col-md-1'>Picture</th> --}}
+            <th {{action 'sortBy' 'person.name:asc'}}>Name</th>
+            <th {{action 'sortBy' 'category:asc'}}>Category</th>
+            <th {{action 'sortBy' 'kind:asc'}}>Kind</th>
+            <th {{action 'sortBy' 'status:asc'}}>Status</th>
+            {{!-- <th>Actions</th> --}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedCertifications as |certification|}}
             <tr>
-              {{!-- <th class='col-md-1'>Picture</th> --}}
-              <th>Name</th>
-              <th>Category</th>
-              <th>Kind</th>
-              <th>Status</th>
-              {{!-- <th>Actions</th> --}}
+              {{!-- <td>
+                {{person-picture person=judge.certification.person}}
+              </td> --}}
+              <td>
+                {{#link-to 'admin.jm.certification' certification}}{{certification.person.name}}{{/link-to}}
+              </td>
+              <td>
+                {{certification.category}}
+              </td>
+              <td>
+                {{certification.kind}}
+              </td>
+              <td>
+                {{certification.status}}
+              </td>
+              {{!-- <td>
+                {{#bs-dropdown}}
+                  {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                  {{#bs-dropdown-menu}}
+                    <li><a href='#' {{action 'scratchJudge' judge}}>Scratch</a></li>
+                    <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li>
+                  {{/bs-dropdown-menu}}
+                {{/bs-dropdown}}
+              </td> --}}
             </tr>
-          </thead>
-          <tbody>
-            {{#each model as |judge|}}
-              <tr>
-                {{!-- <td>
-                  {{person-picture person=judge.certification.person}}
-                </td> --}}
-                <td>
-                  {{#link-to 'admin.jm.judge' judge}}{{judge.certification.person.name}}{{/link-to}}
-                </td>
-                <td>
-                  {{judge.category}}
-                </td>
-                <td>
-                  {{judge.kind}}
-                </td>
-                <td>
-                  {{judge.status}}
-                </td>
-                {{!-- <td>
-                  {{#bs-dropdown}}
-                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                    {{#bs-dropdown-menu}}
-                      <li><a href='#' {{action 'scratchJudge' judge}}>Scratch</a></li>
-                      <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li>
-                    {{/bs-dropdown-menu}}
-                  {{/bs-dropdown}}
-                </td> --}}
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        {{add-judge model=model}}
-      </div>
-  </section>
-<section>
-  {{outlet}}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
 </section>
+{{outlet}}

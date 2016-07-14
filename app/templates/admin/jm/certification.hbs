@@ -1,0 +1,103 @@
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+        {{model-picture picture=model.person.picture}}
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-form formLayout='vertical' model=model}}
+        {{#bs-form-group}}
+          {{#power-select
+            options=statusOptions
+            placeholder='Status'
+            disabled=isDisabled
+            allowClear=true
+            selected=model.status
+            onchange=(action (mut model.status))
+            as |status|
+          }}
+            {{status}}
+          {{/power-select}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{#power-select
+            options=kindOptions
+            placeholder='Kind'
+            disabled=isDisabled
+            allowClear=true
+            selected=model.kind
+            onchange=(action (mut model.kind))
+            as |kind|
+          }}
+            {{kind}}
+          {{/power-select}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{#power-select
+            options=categoryOptions
+            placeholder='Category'
+            disabled=isDisabled
+            allowClear=true
+            selected=model.category
+            onchange=(action (mut model.category))
+            as |kind|
+          }}
+            {{kind}}
+          {{/power-select}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+          {{bootstrap-datepicker disabled=isDisabled placeholder="Start Date" class="form-control" value=model.start_date format='yyyy-mm-dd'}}
+        {{/bs-form-group}}
+        {{#bs-form-group}}
+        {{bootstrap-datepicker disabled=isDisabled placeholder="End Date" class="form-control" value=model.end_date format='yyyy-mm-dd'}}
+        {{/bs-form-group}}
+      <table class='table table-hover'>
+        <thead>
+          <tr>
+            <th>Session</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model.judges as |judge|}}
+            <tr>
+              {{!-- <td>
+                {{person-picture person=judge.certification.person}}
+              </td> --}}
+              <td>
+                {{judge.session.name}}
+              </td>
+              <td>
+                {{judge.status}}
+              </td>
+              {{!-- <td>
+                {{#bs-dropdown}}
+                  {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
+                  {{#bs-dropdown-menu}}
+                    <li><a href='#' {{action 'scratchJudge' judge}}>Scratch</a></li>
+                    <li><a href='#' {{action 'deleteJudge' judge}}>Delete</a></li>
+                  {{/bs-dropdown-menu}}
+                {{/bs-dropdown}}
+              </td> --}}
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      {{/bs-form}}
+    </div>
+    <div class='panel-footer'>
+      {{#bs-form action='saveCertification'}}
+        {{#if isEditing}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button action=(action 'cancelCertification')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'deleteCertification') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{else}}
+          {{#bs-button action=(action 'editCertification')}}Edit{{/bs-button}}
+        {{/if}}
+      {{/bs-form}}
+    </div>
+  </div>
+</section>

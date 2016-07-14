@@ -9,6 +9,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       // 'Quartet'
     // );
     // return this.store.findAll('group').filterBy('kind', 'Quartet');
-    return this.get('store').query('group', {kind: 2})
+    return this.get('store').query('group', {kind: 2});
   },
 });

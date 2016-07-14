@@ -119,12 +119,12 @@
                     {{#each judge.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#if score.highReview}}
-                          {{#link-to 'admin.cm.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
+                          {{#link-to 'admin.contest-manager.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
                         {{else}}
                           &nbsp;
                         {{/if}}
                         {{#if score.lowReview}}
-                          {{#link-to 'admin.cm.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
+                          {{#link-to 'admin.contest-manager.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
                         {{else}}
                           &nbsp;
                         {{/if}}

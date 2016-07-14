@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
-    this.route('cm', {path: '/contest-manager'}, function() {
+    this.route('contest-manager', {path: '/contest-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('judges', { path: '/panel'}, function() {
           this.route('judge', { path: '/:judge_id'});
@@ -48,46 +48,19 @@ Router.map(function() {
       });
     });
     this.route('jm', {path: '/certification-manager'}, function() {
-      this.route('judge', { path: '/certification/:judge_id'});
+      this.route('certification', { path: '/certification/:certification_id'});
     });
     this.route('qm', {path: '/quartet-manager'}, function() {
-      this.route('group', { path: '/quartet/:group_id'});
+      this.route('quartet', { path: '/:group_id'});
     });
     this.route('hm', {path: '/chorus-manager'}, function() {
-      this.route('group', { path: '/chorus/:group_id'});
+      this.route('chorus', { path: '/:group_id'});
     });
-    // CRUD
-    this.route('awards', { path: '/award/'}, function() {
-      this.route('award', { path: '/:award_id'}, function() {
-      });
+    this.route('dm', {path: '/district-manager'}, function() {
+      this.route('organization', { path: '/district/:district_id'});
     });
-    this.route('charts', { path: '/chart/'}, function() {
-      this.route('chart', { path: '/:chart_id'}, function() {
-      });
-    });
-    this.route('chapters', { path: '/chapter/'}, function() {
-      this.route('chapter', { path: '/:chapter_id'}, function() {
-      });
-    });
-    this.route('conventions', { path: '/convention/' }, function() {
-    });
-    this.route('groups', { path: '/group/'}, function() {
-      this.route('group', { path: '/:group_id'}, function() {
-          this.route('role', { path: '/role/:role_id'}, function() {
-          });
-      });
-    });
-    this.route('organizations', { path: '/organization/'}, function() {
-      this.route('organization', { path: '/:organization_id'}, function() {
-      });
-    });
-    this.route('persons', { path: '/person/'}, function() {
-      this.route('person', { path: '/:person_id'}, function() {
-      });
-    });
-    this.route('venues', { path: '/venue/'}, function() {
-      this.route('venue', { path: '/:venue_id'}, function() {
-      });
+    this.route('rm', {path: '/chart-manager'}, function() {
+      this.route('chart', { path: '/chart/:chart_id'});
     });
   });
   this.route('public', { path: '/' }, function() {
