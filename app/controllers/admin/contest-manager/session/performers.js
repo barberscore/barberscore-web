@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
   isHeaderCollapsed: false,
   performerSortProperties: [
     'performer.totRank:asc',
-    'group.chap_name:asc',
+    'group.nomen:asc',
   ],
   sortedPerformers: Ember.computed.sort(
     'model.performers',

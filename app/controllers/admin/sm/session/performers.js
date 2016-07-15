@@ -11,10 +11,11 @@ export default Ember.Controller.extend({
   },
   performerSortProperties: [
     'performer.totRank:asc',
-    'group.chap_name:asc',
+    'group.nomen:asc',
   ],
   sortedPerformers: Ember.computed.sort(
     'model.performers',
     'performerSortProperties'
   ),
 });
+id

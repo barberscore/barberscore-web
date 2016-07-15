@@ -6,7 +6,7 @@ const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
-  chap_name: attr('string'),
+  nomen: attr('string'),
   status: attr('group-status'),
   date: attr('date-range'),
   location: attr('string'),

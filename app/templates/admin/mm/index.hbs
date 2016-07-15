@@ -1,0 +1,34 @@
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+<section>
+  <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              {{!-- <th class='col-md-1'>Picture</th> --}}
+              <th>Name</th>
+              <th>Status</th>
+              {{!-- <th>Actions</th> --}}
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model as |person|}}
+              <tr>
+                {{!-- <td>
+                  {{person-picture person=judge.certification.person}}
+                </td> --}}
+                <td>
+                  {{#link-to 'admin.mm.member' person}}{{person.nomen}}{{/link-to}}
+                </td>
+                <td>
+                  {{person.status}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+        {{!-- {{add-judge model=model}} --}}
+      </div>
+  </section>
+<section>
+  {{outlet}}
+</section>

@@ -4,6 +4,7 @@ import {belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),
+  nomen: attr('string'),
   status: attr('chapter-status'),
   code: attr('string'),
   organization: belongsTo('organization', {async: true}),

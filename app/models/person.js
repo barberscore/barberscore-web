@@ -15,7 +15,7 @@ export default Model.extend({
   phone: attr('string', {defaultValue:''}),
   picture: attr('string', {defaultValue:''}),
   description: attr('string', {defaultValue:''}),
-  id_name: attr('string'),
+  nomen: attr('string'),
   common_name: attr('string'),
   full_name: attr('string'),
   formal_name: attr('string'),

@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   isRaw: false,
   performerSortProperties: [
     'performer.totPoints:desc',
-    'group.chap_name:asc',
+    'group.nomen:asc',
   ],
   sortedPerformers: Ember.computed.sort(
     'model.performers',

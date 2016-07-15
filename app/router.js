@@ -62,6 +62,9 @@ Router.map(function() {
     this.route('rm', {path: '/chart-manager'}, function() {
       this.route('chart', { path: '/chart/:chart_id'});
     });
+    this.route('mm', {path: '/member-manager'}, function() {
+      this.route('member', { path: '/member/:person_id'});
+    });
   });
   this.route('public', { path: '/' }, function() {
     this.route('login');

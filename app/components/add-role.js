@@ -27,7 +27,7 @@ export default Ember.Component.extend({
   },
   _performSearch(term, model, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query(model, {'id_name__icontains': term})
+    this.get('store').query(model, {'nomen__icontains': term})
       .then(data => resolve(data), reject);
   },
   rolePart: [
