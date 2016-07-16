@@ -10,7 +10,8 @@ export default Model.extend({
   part: attr('role-part'),
   person: belongsTo('person', {async: true}),
   group: belongsTo('group', {async: true}),
-  date: attr('date-range'),
+  start_date: attr('isodate'),
+  finish_date: attr('isodate'),
 
   partSort: computed(
     'part',

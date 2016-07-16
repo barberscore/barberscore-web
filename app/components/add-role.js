@@ -9,7 +9,6 @@ export default Ember.Component.extend({
         group: this.get('group'),
         person: this.get('person'),
         part: this.get('part'),
-        date: {},
       });
       role.save()
       .then(() => {

@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   allConventions: Ember.computed(function() {
     return this.get('store').findAll('convention');
   }),
-  conventionsSort: ['date:desc'],
+  conventionsSort: ['start_date:desc'],
   organizationChoices: Ember.computed.sort(
     'allConventions',
     'conventionsSort'

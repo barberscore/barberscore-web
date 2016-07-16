@@ -40,8 +40,8 @@ export default Ember.Controller.extend({
       });
     },
     saveDate(start, end) {
-      this.model.set('date.lower', start);
-      this.model.set('date.upper', end);
+      this.model.set('start_date', start);
+      this.model.set('end_date', end);
       this.model.save();
     },
     letsGo() {
