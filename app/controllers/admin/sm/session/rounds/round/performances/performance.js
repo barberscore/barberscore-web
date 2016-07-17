@@ -86,10 +86,6 @@ export default Ember.Controller.extend({
       this.model.set('actual_finish', date);
       this.model.save();
     },
-    saveSong(song, submission) {
-      song.set('chart', submission.get('chart'));
-      song.save();
-    },
     penalizeRepetition(score) {
       score.penalizeRepetition();
     },

@@ -33,7 +33,7 @@
           <td>
             {{#each model.performances as |performance|}}
               {{#each performance.songs as |song|}}
-                {{truncate-text song.submission.chart.title limit=50}}<br>
+                {{truncate-text song.submission.title limit=50}}<br>
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
             {{/each}}
@@ -99,7 +99,7 @@
           <td>
             {{#each model.performances as |performance|}}
               {{#each performance.songs as |song|}}
-                {{truncate-text song.submission.chart.title limit=50}}<br>
+                {{truncate-text song.submission.title limit=50}}<br>
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
             {{/each}}

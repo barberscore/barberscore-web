@@ -59,9 +59,6 @@ Router.map(function() {
     this.route('dm', {path: '/district-manager'}, function() {
       this.route('organization', { path: '/district/:district_id'});
     });
-    this.route('rm', {path: '/chart-manager'}, function() {
-      this.route('chart', { path: '/chart/:chart_id'});
-    });
     this.route('mm', {path: '/member-manager'}, function() {
       this.route('member', { path: '/member/:person_id'});
     });

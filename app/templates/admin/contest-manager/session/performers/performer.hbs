@@ -156,7 +156,7 @@
             {{#each model.submissions as |submission|}}
               <tr>
                 <td>
-                  {{submission.chart.name}}
+                  {{submission.title}}
                 </td>
                 <td>
                   {{submission.status}}
@@ -174,7 +174,6 @@
           </tbody>
         </table>
       </div>
-      {{add-chart performer=model}}
     </div>
     {{/bs-collapse}}
   </div>

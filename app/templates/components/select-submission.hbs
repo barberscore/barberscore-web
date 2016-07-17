@@ -1,11 +1,10 @@
-{{#power-select-with-create
+{{#power-select
       options=submissionChoices
       selected=submission
       placeholder="Select Song"
       onchange=(action "saveSubmission")
-      oncreate=(action "createSubmission" term)
       allowClear=true
-      as |submission term|
+      as |submission|
 }}
-  {{submission.chart.name}}
-{{/power-select-with-create}}
+  {{submission.title}}
+{{/power-select}}

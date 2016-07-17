@@ -42,10 +42,6 @@ export default Ember.Controller.extend({
         cursor.save();
       });
     },
-    saveSong(song, submission) {
-      song.set('chart', submission.get('chart'));
-      song.save();
-    },
     penalizeRepetition(score) {
       score.penalizeRepetition();
     },
