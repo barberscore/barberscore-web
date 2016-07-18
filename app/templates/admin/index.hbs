@@ -1,12 +1,55 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
-  <ul class='list-unstyled'>
-    <li>{{#link-to 'admin.contest-manager'}}Contest Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.sm'}}Scoring Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.jm'}}Certification Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.qm'}}Quartet Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.hm'}}Chorus Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.dm'}}District Manager{{/link-to}}</li>
-    <li>{{#link-to 'admin.mm'}}Member Manager{{/link-to}}</li>
-  </ul>
+<div class='row'>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.contest-manager'}}
+        {{fa-icon 'microphone' size=5}}<br>
+        Contest Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.sm'}}
+        {{fa-icon 'trophy' size=5}}<br>
+        Scoring Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.jm'}}
+        {{fa-icon 'balance-scale' size=5}}<br>
+        Judge Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.qm'}}
+        {{fa-icon 'users' size=5}}<br>
+        Quartet Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.hm'}}
+        {{fa-icon 'cubes' size=5}}<br>
+        Chorus Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.dm'}}
+        {{fa-icon 'bank' size=5}}<br>
+        District Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'admin.mm'}}
+        {{fa-icon 'user' size=5}}<br>
+        Member Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{fa-icon 'music' size=5}}<br>
+      Catalog Manager
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{fa-icon 'calendar' size=5}}<br>
+      Schedule Manager
+    </p>
+  </div>
 </section>

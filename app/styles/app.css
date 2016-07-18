@@ -6,6 +6,10 @@
   margin: 10px;
 }
 
+.spacing {
+  margin: 20px;
+}
+
 .ember-basic-dropdown {
   width: auto;
   min-width: 200px;
