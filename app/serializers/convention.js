@@ -5,5 +5,8 @@ export default DS.JSONAPISerializer.extend({
       sessions: {
         serialize: true
       },
+      hosts: {
+        serialize: true
+      },
     }
 });
