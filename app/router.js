@@ -29,7 +29,7 @@ Router.map(function() {
         this.route('csa', { path: '/csa/:performer_id'});
       });
     });
-    this.route('sm', {path: '/scoring-manager'}, function() {
+    this.route('scoring-manager', {path: '/scoring-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('rounds', { path: '/round'}, function() {
           this.route('round', { path: '/:round_id'}, function() {
@@ -50,16 +50,16 @@ Router.map(function() {
     this.route('judge-manager', {path: '/judge-manager'}, function() {
       this.route('judge', { path: '/judge/:judge_id'});
     });
-    this.route('qm', {path: '/quartet-manager'}, function() {
+    this.route('quartet-manager', {path: '/quartet-manager'}, function() {
       this.route('quartet', { path: '/:group_id'});
     });
-    this.route('hm', {path: '/chorus-manager'}, function() {
+    this.route('chorus-manager', {path: '/chorus-manager'}, function() {
       this.route('chorus', { path: '/:group_id'});
     });
-    this.route('dm', {path: '/district-manager'}, function() {
-      this.route('organization', { path: '/district/:district_id'});
+    this.route('organization-manager', {path: '/organization-manager'}, function() {
+      this.route('organization', { path: '/organization/:district_id'});
     });
-    this.route('mm', {path: '/member-manager'}, function() {
+    this.route('member-manager', {path: '/member-manager'}, function() {
       this.route('member', { path: '/member/:person_id'});
     });
   });

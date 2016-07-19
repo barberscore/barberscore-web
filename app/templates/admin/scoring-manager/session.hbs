@@ -6,8 +6,8 @@
         {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}: {{model.status}}
       </h4>
       <ul class='list-inline'>
-        <li>{{#link-to 'admin.sm.session.rounds' model}}Rounds{{/link-to}}</li>
-        <li>{{#link-to 'admin.sm.session.reports' model}}Reports{{/link-to}}</li>
+        <li>{{#link-to 'admin.scoring-manager.session.rounds' model}}Rounds{{/link-to}}</li>
+        <li>{{#link-to 'admin.scoring-manager.session.reports' model}}Reports{{/link-to}}</li>
       </ul>
     </div>
     {{#bs-collapse collapsed=isHeaderCollapsed}}

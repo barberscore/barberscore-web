@@ -6,25 +6,21 @@
             <tr>
               {{!-- <th class='col-md-1'>Picture</th> --}}
               <th>Name</th>
-              <th>Kind</th>
               <th>Status</th>
               {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
-            {{#each model as |quartet|}}
+            {{#each model as |person|}}
               <tr>
                 {{!-- <td>
                   {{person-picture person=assignment.judge.person}}
                 </td> --}}
                 <td>
-                  {{#link-to 'admin.qm.quartet' quartet}}{{quartet.name}}{{/link-to}}
+                  {{#link-to 'admin.member-manager.member' person}}{{person.nomen}}{{/link-to}}
                 </td>
                 <td>
-                  {{quartet.kind}}
-                </td>
-                <td>
-                  {{quartet.status}}
+                  {{person.status}}
                 </td>
               </tr>
             {{/each}}

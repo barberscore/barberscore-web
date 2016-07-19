@@ -6,21 +6,25 @@
             <tr>
               {{!-- <th class='col-md-1'>Picture</th> --}}
               <th>Name</th>
+              <th>Kind</th>
               <th>Status</th>
               {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
-            {{#each model as |person|}}
+            {{#each model as |chorus|}}
               <tr>
                 {{!-- <td>
                   {{person-picture person=assignment.judge.person}}
                 </td> --}}
                 <td>
-                  {{#link-to 'admin.mm.member' person}}{{person.nomen}}{{/link-to}}
+                  {{#link-to 'admin.chorus-manager.chorus' chorus}}{{chorus.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{person.status}}
+                  {{chorus.kind}}
+                </td>
+                <td>
+                  {{chorus.status}}
                 </td>
               </tr>
             {{/each}}
@@ -29,6 +33,4 @@
         {{!-- {{add-assignment model=model}} --}}
       </div>
   </section>
-<section>
   {{outlet}}
-</section>

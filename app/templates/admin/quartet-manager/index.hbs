@@ -12,19 +12,19 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model as |chorus|}}
+            {{#each model as |quartet|}}
               <tr>
                 {{!-- <td>
                   {{person-picture person=assignment.judge.person}}
                 </td> --}}
                 <td>
-                  {{#link-to 'admin.hm.chorus' chorus}}{{chorus.name}}{{/link-to}}
+                  {{#link-to 'admin.quartet-manager.quartet' quartet}}{{quartet.name}}{{/link-to}}
                 </td>
                 <td>
-                  {{chorus.kind}}
+                  {{quartet.kind}}
                 </td>
                 <td>
-                  {{chorus.status}}
+                  {{quartet.status}}
                 </td>
               </tr>
             {{/each}}
@@ -33,4 +33,6 @@
         {{!-- {{add-assignment model=model}} --}}
       </div>
   </section>
+<section>
   {{outlet}}
+</section>

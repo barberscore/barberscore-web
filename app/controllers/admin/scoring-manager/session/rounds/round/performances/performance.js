@@ -28,12 +28,12 @@ export default Ember.Controller.extend({
     previousItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur-1);
-      this.transitionToRoute('admin.sm.session.rounds.round.performances.performance', newCur);
+      this.transitionToRoute('admin.scoring-manager.session.rounds.round.performances.performance', newCur);
     },
     nextItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur+1);
-      this.transitionToRoute('admin.sm.session.rounds.round.performances.performance', newCur);
+      this.transitionToRoute('admin.scoring-manager.session.rounds.round.performances.performance', newCur);
     },
     savePerformance() {
       this.model.save()
