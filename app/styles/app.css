@@ -36,3 +36,9 @@ section {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.panel-heading  .img-responsive {
+    display: block;
+    width: auto;
+    max-height: 100px;
+}

@@ -47,7 +47,7 @@ Router.map(function() {
         this.route('csa', { path: '/csa/:performer_id'});
       });
     });
-    this.route('jm', {path: '/judge-manager'}, function() {
+    this.route('judge-manager', {path: '/judge-manager'}, function() {
       this.route('judge', { path: '/judge/:judge_id'});
     });
     this.route('qm', {path: '/quartet-manager'}, function() {

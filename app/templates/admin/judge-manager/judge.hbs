@@ -2,7 +2,7 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-        {{model-picture picture=model.person.picture}}
+      {{model-picture picture=model.person.picture}}
       <h4>
         {{model.name}}
       </h4>
@@ -54,6 +54,9 @@
         {{#bs-form-group}}
         {{bootstrap-datepicker disabled=isDisabled placeholder="End Date" class="form-control" value=model.end_date format='yyyy-mm-dd'}}
         {{/bs-form-group}}
+        <h6>
+        Assignments
+        </h6>
       <table class='table table-hover'>
         <thead>
           <tr>
