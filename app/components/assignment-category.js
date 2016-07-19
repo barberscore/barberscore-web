@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  judgeCategory: [
+  assignmentCategory: [
     'Admin',
     'Music',
     'Presentation',

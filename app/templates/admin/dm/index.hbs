@@ -14,7 +14,7 @@
             {{#each model as |organization|}}
               <tr>
                 {{!-- <td>
-                  {{person-picture person=judge.certification.person}}
+                  {{person-picture person=assignment.judge.person}}
                 </td> --}}
                 <td>
                   {{#link-to 'admin.dm.organization' organization}}{{organization.name}}{{/link-to}}
@@ -26,7 +26,7 @@
             {{/each}}
           </tbody>
         </table>
-        {{!-- {{add-judge model=model}} --}}
+        {{!-- {{add-assignment model=model}} --}}
       </div>
   </section>
 <section>

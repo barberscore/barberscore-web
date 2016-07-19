@@ -15,7 +15,7 @@
             {{#each model as |chorus|}}
               <tr>
                 {{!-- <td>
-                  {{person-picture person=judge.certification.person}}
+                  {{person-picture person=assignment.judge.person}}
                 </td> --}}
                 <td>
                   {{#link-to 'admin.hm.chorus' chorus}}{{chorus.name}}{{/link-to}}
@@ -30,7 +30,7 @@
             {{/each}}
           </tbody>
         </table>
-        {{!-- {{add-judge model=model}} --}}
+        {{!-- {{add-assignment model=model}} --}}
       </div>
   </section>
   {{outlet}}

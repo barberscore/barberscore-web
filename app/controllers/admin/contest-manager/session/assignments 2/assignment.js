@@ -3,21 +3,21 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   actions: {
-    newJudge() {
-      let newJudge = this.store.createRecord(
-        'judge'
+    newAssignment() {
+      let newAssignment = this.store.createRecord(
+        'assignment'
       );
-      this.set('model', newJudge);
+      this.set('model', newAssignment);
       this.set('isEditing', true);
     },
-    editJudge() {
+    editAssignment() {
       this.set('isEditing', true);
     },
-    cancelJudge() {
+    cancelAssignment() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteJudge() {
+    deleteAssignment() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.destroyRecord()
       .then(() => {
@@ -28,11 +28,11 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
-    saveJudge() {
+    saveAssignment() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        // this.transitionToRoute('admin.judge', this.model);
+        // this.transitionToRoute('admin.assignment', this.model);
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })

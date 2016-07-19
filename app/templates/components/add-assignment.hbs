@@ -1,16 +1,16 @@
-{{#bs-form formLayout="inline" action="saveJudge"}}
+{{#bs-form formLayout="inline" action="saveAssignment"}}
   {{#bs-form-group}}
     {{#power-select
-          search=(action "searchJudge")
-          placeholder="Enter Judge Name"
-          class='judge-width'
+          search=(action "searchAssignment")
+          placeholder="Enter Assignment Name"
+          class='assignment-width'
           allowClear=true
-          selected=certification
-          onchange=(action (mut certification))
-          as |certification|
+          selected=judge
+          onchange=(action (mut judge))
+          as |judge|
     }}
-        {{certification.name}}
+        {{judge.name}}
     {{/power-select}}
   {{/bs-form-group}}
-  {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}
+  {{bs-button defaultText="Add Assignment" type="primary" buttonType="submit"}}
 {{/bs-form}}

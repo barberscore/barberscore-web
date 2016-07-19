@@ -3,33 +3,33 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
-    saveJudge() {
-      var judge = this.get('store').createRecord('judge', {
+    saveAssignment() {
+      var assignment = this.get('store').createRecord('assignment', {
         session: this.get('model'),
-        certification: this.get('certification'),
+        judge: this.get('judge'),
         kind: "Official",
-        category: this.get('certification.category'),
+        category: this.get('judge.category'),
       });
       const flashMessages = Ember.get(this, 'flashMessages');
-      judge.save()
+      assignment.save()
       .then(() => {
-        this.set('certification', null);
+        this.set('judge', null);
       })
       .catch(() => {
         flashMessages.danger('Error');
       });
     },
-    searchJudge(term) {
+    searchAssignment(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
       });
     },
   },
-  judgeKind: [
+  assignmentKind: [
     'Official',
     'Practice',
   ],
-  judgeCategory: [
+  assignmentCategory: [
     'Admin',
     'Music',
     'Presentation',
@@ -37,7 +37,7 @@ export default Ember.Component.extend({
   ],
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('certification', {'name__icontains': term})
+    this.get('store').query('judge', {'name__icontains': term})
       .then(data => resolve(data), reject);
   }
 });

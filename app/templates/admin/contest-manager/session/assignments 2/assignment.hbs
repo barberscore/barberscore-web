@@ -1,34 +1,34 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
-      Judge Details
+      Assignment Details
     </h3>
   </div>
   <div class='panel-body'>
   {{#if isEditing}}
       {{#bs-form-group}}
-        {{model.certification.person.name}}
+        {{model.judge.person.name}}
       {{/bs-form-group}}
-      {{#bs-form action='saveJudge'}}
+      {{#bs-form action='saveAssignment'}}
         {{#bs-form-group}}
-          {{judge-status status=model.status}}
+          {{assignment-status status=model.status}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{judge-category category=model.category}}
+          {{assignment-category category=model.category}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{judge-kind kind=model.kind}}
+          {{assignment-kind kind=model.kind}}
         {{/bs-form-group}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-        {{#bs-button action=(action 'cancelJudge')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{#bs-button action=(action 'cancelAssignment')}}Cancel{{/bs-button}}
+        {{#bs-button action=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{/bs-form}}
     {{else}}
       <p>
-        {{person-picture person=model.certification.person}}
+        {{person-picture person=model.judge.person}}
       </p>
       <p>
-        <strong>Person: </strong>{{#link-to 'admin.persons.person' model.certification.person}}{{model.certification.person.name}}{{/link-to}}
+        <strong>Person: </strong>{{#link-to 'admin.persons.person' model.judge.person}}{{model.judge.person.name}}{{/link-to}}
       </p>
       <p>
       <strong>Status: </strong>{{model.status}}
@@ -39,8 +39,8 @@
       <p>
       <strong>Kind: </strong>{{model.kind}}
       </p>
-      {{#bs-button action=(action 'editJudge')}}Edit{{/bs-button}}
-      {{#bs-button action=(action 'newJudge') class='btn-primary pull-right'}}New{{/bs-button}}
+      {{#bs-button action=(action 'editAssignment')}}Edit{{/bs-button}}
+      {{#bs-button action=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}}
     {{/if}}
   </div>
 </div>

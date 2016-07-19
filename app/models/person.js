@@ -25,8 +25,8 @@ export default Model.extend({
   nick_name: attr('string'),
   organization: belongsTo('organization', {async: true}),
   chapter: belongsTo('chapter', {async: true}),
-  certifications: hasMany('certification', {async: true}),
+  judges: hasMany('judge', {async: true}),
   roles: hasMany('role', {async: true}),
-  panels: hasMany('judge', {async: true}),
+  panels: hasMany('assignment', {async: true}),
   conventions: hasMany('convention', {inverse:'drcj', async: true}),
 });

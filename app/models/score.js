@@ -15,7 +15,7 @@ export default Model.extend({
   penalty: attr('number'),
 
   song: belongsTo('song', {async: true}),
-  judge: belongsTo('judge', {async: true}),
+  assignment: belongsTo('assignment', {async: true}),
 
   lowReview: computed(
     'song.ascSortedScores',

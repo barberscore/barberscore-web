@@ -27,7 +27,7 @@ export default Model.extend({
   conventions: hasMany('convention', {async: true}),
   awards: hasMany('award', {async: true}),
   chapters: hasMany('chapter', {async: true}),
-  judges: hasMany('judge', {async: true}),
+  assignments: hasMany('assignment', {async: true}),
   groups: hasMany('group', {async: true}),
   performers: hasMany('performer', {inverse: 'representing', async: true}),
   sessions: hasMany('session', {async: true}),

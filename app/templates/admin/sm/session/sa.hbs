@@ -22,9 +22,9 @@
           <th class='text-right'>PRS</th>
           <th class='text-right'>SNG</th>
           <th class='text-right'>Total</th>
-          {{#each model.sortedJudges as |judge|}}
-            {{#unless (eq judge.category 'Admin')}}
-              <th class='text-right'>{{judge.designation}}</th>
+          {{#each model.sortedAssignments as |assignment|}}
+            {{#unless (eq assignment.category 'Admin')}}
+              <th class='text-right'>{{assignment.designation}}</th>
             {{/unless}}
           {{/each}}
         </tr>
@@ -84,13 +84,13 @@
             {{/each}}
             <strong>{{#if isRaw}}{{performer.totPoints}}{{else}}{{performer.totScore}}{{/if}}</strong><br>
           </td>
-          {{#each model.sortedJudges as |judge|}}
-            {{#unless (eq judge.category 'Admin')}}
+          {{#each model.sortedAssignments as |assignment|}}
+            {{#unless (eq assignment.category 'Admin')}}
               <td class='text-right'>
                 {{#each performer.performances as |performance|}}
                   {{#each performance.songs as |song|}}
                     {{#each song.scores as |score|}}
-                      {{#if (eq score.judge.id judge.id)}}{{score.points}}<br>{{/if}}
+                      {{#if (eq score.assignment.id assignment.id)}}{{score.points}}<br>{{/if}}
                     {{/each}}
                   {{/each}}
                 {{/each}}
@@ -104,10 +104,10 @@
   </div>
 </section>
 <section>
-  <h4>Judges</h4>
+  <h4>Assignments</h4>
     <ul class='list-unstyled'>
-      {{#each model.sortedJudges as |judge|}}
-        <li>{{judge.designation}}: {{judge.certification.person.common_name}}</li>
+      {{#each model.sortedAssignments as |assignment|}}
+        <li>{{assignment.designation}}: {{assignment.judge.person.common_name}}</li>
       {{/each}}
     </ul>
 </section>

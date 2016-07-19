@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  judgeSortProperties: ['kind', 'category','slot',],
-  scoringJudges: Ember.computed.filter('model.round.session.judges',
+  assignmentSortProperties: ['kind', 'category','slot',],
+  scoringAssignments: Ember.computed.filter('model.round.session.assignments',
     function(item) {
       return item.get('category') !== 'Admin';
     }
   ),
-  sortedJudges: Ember.computed.sort(
-    'scoringJudges',
-    'judgeSortProperties'
+  sortedAssignments: Ember.computed.sort(
+    'scoringAssignments',
+    'assignmentSortProperties'
   ),
   songSortProperties: ['num',],
   sortedSongs: Ember.computed.sort(

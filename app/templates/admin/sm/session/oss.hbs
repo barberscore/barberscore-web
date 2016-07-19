@@ -92,10 +92,10 @@
     </ul>
 </section>
 <section>
-  <h4>Judges</h4>
+  <h4>Assignments</h4>
     <ul class='list-unstyled'>
-      {{#each model.sortedOfficialJudges as |judge|}}
-        <li>{{judge.designation}}: {{judge.certification.person.common_name}}</li>
+      {{#each model.sortedOfficialAssignments as |assignment|}}
+        <li>{{assignment.designation}}: {{assignment.judge.person.common_name}}</li>
       {{/each}}
     </ul>
 </section>

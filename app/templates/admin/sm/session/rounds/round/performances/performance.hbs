@@ -91,22 +91,22 @@
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-4'>Judge</th>
+              <th class='col-md-4'>Assignment</th>
               <th class='col-md-1'>Score</th>
               {{!-- <th>Variance</th> --}}
               {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
-            {{#each sortedJudges as |judge|}}
-              {{#unless (eq judge.category 'Admin')}}
-                <tr class={{judge.rowClass}}>
+            {{#each sortedAssignments as |assignment|}}
+              {{#unless (eq assignment.category 'Admin')}}
+                <tr class={{assignment.rowClass}}>
                   <td>
-                    {{judge.kind}} {{judge.category}}<br>
-                    {{judge.certification.person.name}}
+                    {{assignment.kind}} {{assignment.category}}<br>
+                    {{assignment.judge.person.name}}
                   </td>
                   <td>
-                    {{#each (sort-by 'song.num' judge.scores) as |score|}}
+                    {{#each (sort-by 'song.num' assignment.scores) as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         <div class={{score.hasVarianceClass}}>
                           {{score-edit model=score points=score.points}}
@@ -115,7 +115,7 @@
                     {{/each}}
                   </td>
                   {{!-- <td>
-                    {{#each judge.scores as |score|}}
+                    {{#each assignment.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#if score.highReview}}
                           {{#link-to 'admin.contest-manager.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
@@ -132,7 +132,7 @@
                     {{/each}}
                   </td> --}}
                   {{!-- <td>
-                    {{#each judge.scores as |score|}}
+                    {{#each assignment.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#bs-dropdown class='form-group'}}
                           {{#bs-dropdown-button}}Actions <span class="caret"></span>{{/bs-dropdown-button}}

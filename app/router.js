@@ -9,8 +9,8 @@ Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
     this.route('contest-manager', {path: '/contest-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
-        this.route('judges', { path: '/panel'}, function() {
-          this.route('judge', { path: '/:judge_id'});
+        this.route('assignments', { path: '/panel'}, function() {
+          this.route('assignment', { path: '/:assignment_id'});
         });
         this.route('contests', { path: '/contest'}, function() {
           this.route('contest', { path: '/:contest_id'});
@@ -47,8 +47,8 @@ Router.map(function() {
         this.route('csa', { path: '/csa/:performer_id'});
       });
     });
-    this.route('jm', {path: '/certification-manager'}, function() {
-      this.route('certification', { path: '/certification/:certification_id'});
+    this.route('jm', {path: '/judge-manager'}, function() {
+      this.route('judge', { path: '/judge/:judge_id'});
     });
     this.route('qm', {path: '/quartet-manager'}, function() {
       this.route('quartet', { path: '/:group_id'});
@@ -73,7 +73,7 @@ Router.map(function() {
       this.route('oss', { path: '/oss/:session_id'}, function() {
       });
       this.route('session', { path: '/session/:session_id' }, function() {
-        this.route('judge', { path: '/judge/:judge_id'}, function() {
+        this.route('assignment', { path: '/assignment/:assignment_id'}, function() {
         });
         this.route('performer', { path: '/performer/:performer_id'}, function() {
         });

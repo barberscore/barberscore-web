@@ -219,12 +219,12 @@
     </ul>
 </section> --}}
 <section>
-  <h4>Judges</h4>
+  <h4>Assignments</h4>
   <ul class='list-unstyled'>
-    {{#each-in (group-by "category" model.sortedOfficialJudges) as |category officialJudges|}}
+    {{#each-in (group-by "category" model.sortedOfficialAssignments) as |category officialAssignments|}}
       <li><strong>{{category}}</strong>
-        {{#each officialJudges as |judge|}}
-          {{judge.certification.person.common_name}}{{#unless (eq officialJudges.lastObject judge)}},{{/unless}}
+        {{#each officialAssignments as |assignment|}}
+          {{assignment.judge.person.common_name}}{{#unless (eq officialAssignments.lastObject assignment)}},{{/unless}}
         {{/each}}
       </li>
     {{/each-in}}

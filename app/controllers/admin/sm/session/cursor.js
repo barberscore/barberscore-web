@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  judgeSortProperties: ['kind', 'category','slot',],
-  sortedJudges: Ember.computed.sort(
-    'model.cursor.round.session.judges',
-    'judgeSortProperties'
+  assignmentSortProperties: ['kind', 'category','slot',],
+  sortedAssignments: Ember.computed.sort(
+    'model.cursor.round.session.assignments',
+    'assignmentSortProperties'
   ),
   songSortProperties: ['num',],
   sortedSongs: Ember.computed.sort(

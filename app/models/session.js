@@ -18,7 +18,7 @@ export default Model.extend({
   rounds: hasMany('round', {async: true}),
   performers: hasMany('performer', {async: true}),
   contests: hasMany('contest', {async: true}),
-  judges: hasMany('judge', {async: true}),
+  assignments: hasMany('assignment', {async: true}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   validate: memberAction({path: 'validate', type: 'post'}),
@@ -119,24 +119,24 @@ export default Model.extend({
     'contestSort'
   ),
 
-  judgeSort: [
+  assignmentSort: [
     'category',
     'kind',
     'slot',
   ],
-  sortedJudges: computed.sort(
-    'judges',
-    'judgeSort'
+  sortedAssignments: computed.sort(
+    'assignments',
+    'assignmentSort'
   ),
 
-  officialJudges: computed.filterBy(
-    'judges',
+  officialAssignments: computed.filterBy(
+    'assignments',
     'kind',
     'Official'
   ),
-  sortedOfficialJudges: computed.sort(
-    'officialJudges',
-    'judgeSort'
+  sortedOfficialAssignments: computed.sort(
+    'officialAssignments',
+    'assignmentSort'
   ),
 
   roundsSort: [

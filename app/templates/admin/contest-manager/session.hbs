@@ -6,7 +6,7 @@
         {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}: {{model.status}}
       </h4>
       <ul class='list-inline'>
-        <li>{{#link-to 'admin.contest-manager.session.judges' model}}Judges{{/link-to}}</li>
+        <li>{{#link-to 'admin.contest-manager.session.assignments' model}}Assignments{{/link-to}}</li>
         <li>{{#link-to 'admin.contest-manager.session.contests' model}}Contests{{/link-to}}</li>
         <li>{{#link-to 'admin.contest-manager.session.performers' model}}Entrants{{/link-to}}</li>
       </ul>

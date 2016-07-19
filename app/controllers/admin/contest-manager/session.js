@@ -67,11 +67,11 @@ export default Ember.Controller.extend({
     deletePerformer(performer) {
       performer.destroyRecord();
     },
-    scratchJudge(judge) {
-      judge.destroyRecord();
+    scratchAssignment(assignment) {
+      assignment.destroyRecord();
     },
-    deleteJudge(judge) {
-      judge.destroyRecord();
+    deleteAssignment(assignment) {
+      assignment.destroyRecord();
     },
     deleteContest(contest) {
       contest.destroyRecord();

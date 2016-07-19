@@ -2,19 +2,19 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   collapseChorus: false,
-  certificationSortProperties: [
+  judgeSortProperties: [
     'person.name:asc',
   ],
-  sortedCertifications: Ember.computed.sort(
+  sortedJudges: Ember.computed.sort(
     'model',
-    'certificationSortProperties'
+    'judgeSortProperties'
   ),
   actions: {
     collapseHeader() {
       this.toggleProperty('collapseChorus');
     },
-    sortBy(certificationSortProperties) {
-      this.set('certificationSortProperties', [certificationSortProperties]);
+    sortBy(judgeSortProperties) {
+      this.set('judgeSortProperties', [judgeSortProperties]);
     },
   }
 });

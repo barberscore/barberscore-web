@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  judgeStatus: [
+  assignmentStatus: [
     'New',
     'Scheduled',
     'Confirmed',

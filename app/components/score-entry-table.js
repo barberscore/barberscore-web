@@ -6,22 +6,22 @@ export default Ember.Component.extend({
   numberOfSongs: 2,
 
   /**
-   [ { judge: <judge object>,
+   [ { assignment: <assignment object>,
        scores: [ <score 1>, <score 2> ]
      },
-     { judge: <judge object>,
+     { assignment: <assignment object>,
        scores: [ <score 1>, <score 2> ]
      }
    ]
   **/
-  data: Ember.computed('judges.[]', 'performance', function(){
-    let judges = this.get('judges');
+  data: Ember.computed('assignments.[]', 'performance', function(){
+    let assignments = this.get('assignments');
     let performance = this.get('performance');
 
-    let result =  judges.map(function(judge) {
+    let result =  assignments.map(function(assignment) {
       return {
-        judge,
-        scores: judge.get('scores').filterBy('song.performance.id', performance.get('id'))
+        assignment,
+        scores: assignment.get('scores').filterBy('song.performance.id', performance.get('id'))
       };
     });
 

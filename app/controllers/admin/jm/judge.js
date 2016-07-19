@@ -21,21 +21,21 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   actions: {
-    newCertification() {
-      let newCertification = this.store.createRecord(
-        'certification'
+    newJudge() {
+      let newJudge = this.store.createRecord(
+        'judge'
       );
-      this.set('model', newCertification);
+      this.set('model', newJudge);
       this.set('isEditing', true);
     },
-    editCertification() {
+    editJudge() {
       this.set('isEditing', true);
     },
-    cancelCertification() {
+    cancelJudge() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteCertification() {
+    deleteJudge() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.destroyRecord()
       .then(() => {
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
-    saveCertification() {
+    saveJudge() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {

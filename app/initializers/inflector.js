@@ -3,14 +3,14 @@ import Ember from 'ember';
 export function initialize(/* application */) {
   var inflector = Ember.Inflector.inflector;
   inflector.uncountable('award');
-  inflector.uncountable('certification');
+  inflector.uncountable('judge');
   inflector.uncountable('chapter');
   inflector.uncountable('contest');
   inflector.uncountable('contestant');
   inflector.uncountable('convention');
   inflector.uncountable('group');
   inflector.uncountable('host');
-  inflector.uncountable('judge');
+  inflector.uncountable('assignment');
   inflector.uncountable('member');
   inflector.uncountable('organization');
   inflector.uncountable('performance');
