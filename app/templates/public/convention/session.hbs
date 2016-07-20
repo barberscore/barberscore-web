@@ -85,7 +85,7 @@
   {{#each model.sortedPrimaryPerformers as |performer|}}
     <tr>
     <td>
-      {{performer.rank}}
+      {{performer.performerscore.rank}}
     </td>
     <td>
       {{group-modal model=performer.group}}
@@ -143,7 +143,7 @@
   {{#each model.sortedSecondaryPerformers as |performer|}}
     <tr>
     <td>
-      {{performer.rank}}
+      {{performer.performerscore.rank}}
     </td>
     <td>
       {{performer.group.name}}<br>

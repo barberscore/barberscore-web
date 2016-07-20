@@ -36,6 +36,7 @@ export default Model.extend({
   performances: hasMany('performance', {async: true}),
   contestants: hasMany('contestant', {async: true}),
   submissions: hasMany('submission', {async: true}),
+  performerscore: belongsTo('performerscore', {async: true}),
   scratch: memberAction({path: 'scratch'}),
   penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
 

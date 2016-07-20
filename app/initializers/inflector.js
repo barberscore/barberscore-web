@@ -15,6 +15,7 @@ export function initialize(/* application */) {
   inflector.uncountable('organization');
   inflector.uncountable('performance');
   inflector.uncountable('performer');
+  inflector.uncountable('performerscore');
   inflector.uncountable('person');
   inflector.uncountable('role');
   inflector.uncountable('round');
