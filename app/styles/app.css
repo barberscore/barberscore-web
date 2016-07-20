@@ -42,3 +42,10 @@ section {
     width: auto;
     max-height: 100px;
 }
+
+.alerts {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  margin: 0 auto;
+}

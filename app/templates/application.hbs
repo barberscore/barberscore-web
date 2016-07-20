@@ -34,8 +34,10 @@
 
 
 <div class='container'>
-  {{#each flashMessages.queue as |flash|}}
-    {{flash-message flash=flash}}
-  {{/each}}
+  <div class='alerts'>
+    {{#each flashMessages.queue as |flash|}}
+      {{flash-message flash=flash}}
+    {{/each}}
+  </div>
   {{outlet}}
 </div>
