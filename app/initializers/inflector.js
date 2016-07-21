@@ -6,6 +6,7 @@ export function initialize(/* application */) {
   inflector.uncountable('judge');
   inflector.uncountable('chapter');
   inflector.uncountable('contest');
+  inflector.uncountable('contestscore');
   inflector.uncountable('contestant');
   inflector.uncountable('convention');
   inflector.uncountable('group');

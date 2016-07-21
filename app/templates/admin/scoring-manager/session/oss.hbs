@@ -87,7 +87,7 @@
   <h4>Contests</h4>
     <ul class='list-unstyled'>
       {{#each model.sortedContests as |contest|}}
-        <li>{{contest.award.name}} Champion: {{contest.champion}}</li>
+        <li>{{contest.award.name}} Champion: {{contest.contestscore.champion}}</li>
       {{/each}}
     </ul>
 </section>

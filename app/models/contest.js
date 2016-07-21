@@ -14,6 +14,7 @@ export default Model.extend({
   primary_contest: belongsTo('session', {async: true, inverse: 'primary'}),
   award: belongsTo('award', {async: true}),
   session: belongsTo('session', {async: true}),
+  contestscore: belongsTo('contestscore', {async: true}),
   build: memberAction({path: 'build'}),
 
   contestantSort: [
