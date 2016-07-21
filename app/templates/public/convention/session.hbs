@@ -104,39 +104,39 @@
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.mus_points}}{{else}}{{single-fixed song.mus_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.mus_points}}{{else}}{{single-fixed song.songscore.mus_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.mus_points}}{{else}}{{single-fixed performance.mus_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.mus_points}}{{else}}{{single-fixed performance.performancescore.mus_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.mus_points}}{{else}}{{single-fixed performer.mus_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.mus_points}}{{else}}{{single-fixed performer.performerscore.mus_score}}{{/if}}</strong><br>
 
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.prs_points}}{{else}}{{single-fixed song.prs_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.prs_points}}{{else}}{{single-fixed song.songscore.prs_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.prs_points}}{{else}}{{single-fixed performance.prs_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.prs_points}}{{else}}{{single-fixed performance.performancescore.prs_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.prs_points}}{{else}}{{single-fixed performer.prs_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.prs_points}}{{else}}{{single-fixed performer.performerscore.prs_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.sng_points}}{{else}}{{single-fixed song.sng_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.sng_points}}{{else}}{{single-fixed song.songscore.sng_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.sng_points}}{{else}}{{single-fixed performance.sng_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.sng_points}}{{else}}{{single-fixed performance.performancescore.sng_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.sng_points}}{{else}}{{single-fixed performer.sng_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.sng_points}}{{else}}{{single-fixed performer.performerscore.sng_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.total_points}}{{else}}{{single-fixed song.total_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.total_points}}{{else}}{{single-fixed song.songscore.total_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.total_points}}{{else}}{{single-fixed performance.total_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.total_points}}{{else}}{{single-fixed performance.performancescore.total_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.total_points}}{{else}}{{single-fixed performer.total_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.total_points}}{{else}}{{single-fixed performer.performerscore.total_score}}{{/if}}</strong><br>
     </td>
     </tr>
   {{/each}}
@@ -161,39 +161,39 @@
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.mus_points}}{{else}}{{single-fixed song.mus_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.mus_points}}{{else}}{{single-fixed song.songscore.mus_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.mus_points}}{{else}}{{single-fixed performance.mus_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.mus_points}}{{else}}{{single-fixed performance.performancescore.mus_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.mus_points}}{{else}}{{single-fixed performer.mus_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.mus_points}}{{else}}{{single-fixed performer.performerscore.mus_score}}{{/if}}</strong><br>
 
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.prs_points}}{{else}}{{single-fixed song.prs_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.prs_points}}{{else}}{{single-fixed song.songscore.prs_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.prs_points}}{{else}}{{single-fixed performance.prs_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.prs_points}}{{else}}{{single-fixed performance.performancescore.prs_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.prs_points}}{{else}}{{single-fixed performer.prs_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.prs_points}}{{else}}{{single-fixed performer.performerscore.prs_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.sng_points}}{{else}}{{single-fixed song.sng_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.sng_points}}{{else}}{{single-fixed song.songscore.sng_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.sng_points}}{{else}}{{single-fixed performance.sng_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.sng_points}}{{else}}{{single-fixed performance.performancescore.sng_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.sng_points}}{{else}}{{single-fixed performer.sng_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.sng_points}}{{else}}{{single-fixed performer.performerscore.sng_score}}{{/if}}</strong><br>
     </td>
     <td class='text-right'>
       {{#each performer.performances as |performance|}}
         {{#each performance.songs as |song|}}
-          {{#if isRaw}}{{song.total_points}}{{else}}{{single-fixed song.total_score}}{{/if}}<br>
+          {{#if isRaw}}{{song.songscore.total_points}}{{else}}{{single-fixed song.songscore.total_score}}{{/if}}<br>
         {{/each}}
-        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.total_points}}{{else}}{{single-fixed performance.total_score}}{{/if}}</em><br>{{/if}}
+        {{#if (not-eq performer.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.total_points}}{{else}}{{single-fixed performance.performancescore.total_score}}{{/if}}</em><br>{{/if}}
       {{/each}}
-      <strong>{{#if isRaw}}{{performer.total_points}}{{else}}{{single-fixed performer.total_score}}{{/if}}</strong><br>
+      <strong>{{#if isRaw}}{{performer.performerscore.total_points}}{{else}}{{single-fixed performer.performerscore.total_score}}{{/if}}</strong><br>
     </td>
     </tr>
   {{/each}}
