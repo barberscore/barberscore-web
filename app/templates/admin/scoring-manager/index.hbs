@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model as |session|}}
+        {{#each sortedSessions as |session|}}
           <tr>
             <td>{{#link-to 'admin.scoring-manager.session' session}}{{session.name}}{{/link-to}}</td>
             <td>{{convention.name}}</td>

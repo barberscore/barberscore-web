@@ -17,9 +17,10 @@ export default Model.extend({
   prs_score: attr('number'),
   sng_score: attr('number'),
   total_score: attr('number'),
+  songscore: belongsTo('songscore', {async: true}),
   submission: belongsTo('submission', {async: true}),
   performance: belongsTo('performance', {async: true}),
-  scores: hasMany('score', {async: true}),
+  scores: hasMany('score', {async: false}),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

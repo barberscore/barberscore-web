@@ -1,9 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
-import {memberAction} from 'ember-api-actions';
-const {computed} = Ember;
+import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),

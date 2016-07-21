@@ -24,6 +24,7 @@ export default Model.extend({
   round: belongsTo('round', {async: true}),
   performer: belongsTo('performer', {async: true}),
   songs: hasMany('song', {async: true}),
+  performancescore: belongsTo('performancescore', {async: true}),
   slot: belongsTo('slot', {async: true}),
   session: belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),
