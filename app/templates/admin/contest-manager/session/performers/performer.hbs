@@ -51,7 +51,12 @@
         {{/bs-form}}
       {{else}}
         <p>
-          <strong>Group: </strong>{{#link-to 'admin.groups.group' model.group}}{{model.group.name}}{{/link-to}}
+          <strong>Group: </strong>
+          {{#if (eq model.group.kind 'Chorus') }}
+            {{#link-to 'admin.chorus-manager.chorus' model.group}}{{model.group.name}}{{/link-to}}
+          {{else}}
+            {{#link-to 'admin.quartet-manager.quartet' model.group}}{{model.group.name}}{{/link-to}}
+          {{/if}}
         </p>
         <p>
           <strong>Status: </strong>{{model.status}}

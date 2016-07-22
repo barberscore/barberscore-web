@@ -25,6 +25,7 @@ export default Model.extend({
   nick_name: attr('string'),
   organization: belongsTo('organization', {async: true}),
   chapter: belongsTo('chapter', {async: true}),
+  members: hasMany('member', {async: true}),
   judges: hasMany('judge', {async: true}),
   roles: hasMany('role', {async: true}),
   panels: hasMany('assignment', {async: true}),

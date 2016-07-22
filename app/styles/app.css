@@ -49,3 +49,7 @@ section {
   right: 30px;
   margin: 0 auto;
 }
+
+.smallbox {
+  max-height: 200px;
+}

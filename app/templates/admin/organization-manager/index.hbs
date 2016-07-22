@@ -4,7 +4,7 @@
         <table class='table'>
           <thead>
             <tr>
-              {{!-- <th class='col-md-1'>Picture</th> --}}
+              <th class='col-md-1'>Picture</th>
               <th>Name</th>
               <th>Status</th>
               {{!-- <th>Actions</th> --}}
@@ -13,9 +13,9 @@
           <tbody>
             {{#each model as |organization|}}
               <tr>
-                {{!-- <td>
-                  {{person-picture person=assignment.judge.person}}
-                </td> --}}
+                <td>
+                  {{model-picture picture=organization.picture}}
+                </td>
                 <td>
                   {{#link-to 'admin.organization-manager.organization' organization}}{{organization.name}}{{/link-to}}
                 </td>

@@ -4,12 +4,12 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       0: 'New',
-      10: 'Active',
-      20: 'Inactive',
-      30: 'Retired',
-      40: 'Deceased',
-      50: 'Stix Issue',
-      60: 'Possible Duplicate',
+      1: 'Active',
+      2: 'Inactive',
+      3: 'Retired',
+      5: 'Deceased',
+      6: '(Six)',
+      9: '(Nine)',
     };
     return map[serialized];
   },
@@ -17,13 +17,14 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'New': 0,
-      'Active': 10,
-      'Inactive': 20,
-      'Retired': 30,
-      'Deceased': 40,
-      'Stix Issue': 50,
-      'Possible Duplicate': 60,
+      'Active': 1,
+      'Inactive': 2,
+      'Retired': 3,
+      'Deceased': 5,
+      '(Six)': 6,
+      '(Nine)': 9,
     };
     return map[deserialized];
   }
 });
+

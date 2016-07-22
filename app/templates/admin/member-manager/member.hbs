@@ -1,3 +1,138 @@
-<p>
-  {{model.nomen}}
-</p>
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseHeader'}}>
+        {{#if collapseChorus}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}
+      </h4>
+    </div>
+    {{#bs-collapse collapsed=collapseChorus}}
+      <div class='panel-body'>
+        {{#bs-form formLayout='vertical' model=model action='saveChorus'}}
+          {{#bs-form-group}}{{model-picture picture=model.picture}}{{/bs-form-group}}
+          {{bs-form-element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
+          {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}}
+          {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
+          {{bs-form-element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
+          {{bs-form-element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
+          {{bs-form-element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
+          {{bs-form-element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
+          {{bs-form-element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
+          {{bs-form-element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
+          {{#if isEditing}}
+              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+              {{#bs-button action=(action 'cancelChorus')}}Cancel{{/bs-button}}
+              {{#bs-button action=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{else}}
+            {{#bs-button action=(action 'editChorus')}}Edit{{/bs-button}}
+          {{/if}}
+        {{/bs-form}}
+      </div>
+    {{/bs-collapse}}
+  </div>
+</section>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseRole'}}>
+        {{#if isRoleCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Chapters
+      </h4>
+    </div>
+    {{#bs-collapse collapsed=isRoleCollapsed}}
+      <div class='panel-body'>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                {{!-- <th class='col-md-1'>Picture</th> --}}
+                <th>Name</th>
+                {{!-- <th>Status</th> --}}
+                {{!-- <th>Actions</th> --}}
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.members as |member|}}
+                <tr>
+                  {{!-- <td>
+                    {{person-picture person=assignment.judge.person}}
+                  </td> --}}
+                  <td>
+                    {{bs-input type='text' disabled=isRoleDisabled placeholder='Name' value=member.chapter.name}}
+                  </td>
+                  <td>
+                    {{!-- {{bs-input type='text' disabled=isRoleDisabled placeholder='Status' value=award.status}} --}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class='panel-footer'>
+        {{#bs-form formLayout='inline' model=model action='saveRoles'}}
+          {{#if isRoleEditing}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button action=(action 'cancelRole')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{else}}
+            {{#bs-button action=(action 'editRole')}}Edit{{/bs-button}}
+          {{/if}}
+        {{/bs-form}}
+      </div>
+    {{/bs-collapse}}
+    </div>
+</section>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 {{action 'collapseRole'}}>
+        {{#if isRoleCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Groups
+      </h4>
+    </div>
+    {{#bs-collapse collapsed=isRoleCollapsed}}
+      <div class='panel-body'>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                {{!-- <th class='col-md-1'>Picture</th> --}}
+                <th>Name</th>
+                {{!-- <th>Status</th> --}}
+                {{!-- <th>Actions</th> --}}
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.roles as |role|}}
+                <tr>
+                  {{!-- <td>
+                    {{person-picture person=assignment.judge.person}}
+                  </td> --}}
+                  <td>
+                  {{role}}
+                  </td>
+                  <td>
+                    {{bs-input type='text' disabled=isRoleDisabled placeholder='Name' value=member.chapter.name}}
+                  </td>
+                  <td>
+                    {{!-- {{bs-input type='text' disabled=isRoleDisabled placeholder='Status' value=award.status}} --}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class='panel-footer'>
+        {{#bs-form formLayout='inline' model=model action='saveRoles'}}
+          {{#if isRoleEditing}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button action=(action 'cancelRole')}}Cancel{{/bs-button}}
+            {{#bs-button action=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{else}}
+            {{#bs-button action=(action 'editRole')}}Edit{{/bs-button}}
+          {{/if}}
+        {{/bs-form}}
+      </div>
+    {{/bs-collapse}}
+    </div>
+</section>

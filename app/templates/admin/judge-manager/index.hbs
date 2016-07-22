@@ -4,7 +4,7 @@
       <table class='table'>
         <thead>
           <tr>
-            {{!-- <th class='col-md-1'>Picture</th> --}}
+            <th class='col-md-1'>Picture</th>
             <th {{action 'sortBy' 'person.name:asc'}}>Name</th>
             <th {{action 'sortBy' 'category:asc'}}>Category</th>
             <th {{action 'sortBy' 'kind:asc'}}>Kind</th>
@@ -18,6 +18,9 @@
               {{!-- <td>
                 {{person-picture person=assignment.judge.person}}
               </td> --}}
+              <td>
+                {{model-picture picture=judge.person.picture}}
+              </td>
               <td>
                 {{#link-to 'admin.judge-manager.judge' judge}}{{judge.person.name}}{{/link-to}}
               </td>

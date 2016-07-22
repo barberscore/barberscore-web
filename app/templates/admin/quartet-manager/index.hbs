@@ -4,9 +4,8 @@
         <table class='table'>
           <thead>
             <tr>
-              {{!-- <th class='col-md-1'>Picture</th> --}}
+              <th class='col-md-1'>Picture</th>
               <th>Name</th>
-              <th>Kind</th>
               <th>Status</th>
               {{!-- <th>Actions</th> --}}
             </tr>
@@ -14,14 +13,11 @@
           <tbody>
             {{#each model as |quartet|}}
               <tr>
-                {{!-- <td>
-                  {{person-picture person=assignment.judge.person}}
-                </td> --}}
                 <td>
-                  {{#link-to 'admin.quartet-manager.quartet' quartet}}{{quartet.name}}{{/link-to}}
+                  {{model-picture picture=quartet.picture}}
                 </td>
                 <td>
-                  {{quartet.kind}}
+                  {{#link-to 'admin.quartet-manager.quartet' quartet}}{{quartet.name}}{{/link-to}}
                 </td>
                 <td>
                   {{quartet.status}}

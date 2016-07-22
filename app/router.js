@@ -57,7 +57,7 @@ Router.map(function() {
       this.route('chorus', { path: '/:group_id'});
     });
     this.route('organization-manager', {path: '/organization-manager'}, function() {
-      this.route('organization', { path: '/organization/:district_id'});
+      this.route('organization', { path: '/organization/:organization_id'});
     });
     this.route('member-manager', {path: '/member-manager'}, function() {
       this.route('member', { path: '/member/:person_id'});

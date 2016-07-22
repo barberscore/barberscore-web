@@ -4,18 +4,18 @@
         <table class='table'>
           <thead>
             <tr>
-              {{!-- <th class='col-md-1'>Picture</th> --}}
-              <th>Name</th>
-              <th>Status</th>
+              <th class='col-md-1'>Picture</th>
+          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
+          <th {{action 'sortBy' 'status:asc'}}>Status</th>
               {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
-            {{#each model as |person|}}
+            {{#each sortedPersons as |person|}}
               <tr>
-                {{!-- <td>
-                  {{person-picture person=assignment.judge.person}}
-                </td> --}}
+                <td>
+                  {{model-picture picture=person.picture}}
+                </td>
                 <td>
                   {{#link-to 'admin.member-manager.member' person}}{{person.nomen}}{{/link-to}}
                 </td>
