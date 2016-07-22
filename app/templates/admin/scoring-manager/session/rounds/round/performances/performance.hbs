@@ -1,7 +1,7 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4>Performance</h4>
+      <h4>Appearance</h4>
       <ul class='list-inline'>
         <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
         <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
@@ -19,7 +19,7 @@
           Current OA: {{model.num}}
         </h4>
         <h4>
-          {{!-- Scheduled: {{moment-format model.slot.onstage 'HH:mm'}} --}}
+          Scheduled: {{moment-format model.slot.onstage 'HH:mm'}}
         </h4>
         <ul class='list-inline form-group'>
           <li>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='HH:mm' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
@@ -91,10 +91,10 @@
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-4'>Assignment</th>
+              <th class='col-md-9'>Assignment</th>
+              <th>Variance</th>
               <th class='col-md-1'>Score</th>
-              {{!-- <th>Variance</th> --}}
-              {{!-- <th>Actions</th> --}}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -106,6 +106,23 @@
                     {{assignment.judge.person.name}}
                   </td>
                   <td>
+                    {{#each assignment.scores as |score|}}
+                      {{#if (eq score.song.performance.id model.id)}}
+                        {{#if score.highReview}}
+                          <span class="label label-danger">High</span>
+                        {{else}}
+                          &nbsp;
+                        {{/if}}
+                        {{#if score.lowReview}}
+                          <span class="label label-danger">Low</span>
+                        {{else}}
+                          &nbsp;
+                        {{/if}}
+                        <br>
+                      {{/if}}
+                    {{/each}}
+                  </td>
+                  <td>
                     {{#each (sort-by 'song.num' assignment.scores) as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         <div class={{score.hasVarianceClass}}>
@@ -114,24 +131,7 @@
                       {{/if}}
                     {{/each}}
                   </td>
-                  {{!-- <td>
-                    {{#each assignment.scores as |score|}}
-                      {{#if (eq score.song.performance.id model.id)}}
-                        {{#if score.highReview}}
-                          {{#link-to 'admin.contest-manager.session.round.performance.variance' model class='text-danger'}}High{{/link-to}}
-                        {{else}}
-                          &nbsp;
-                        {{/if}}
-                        {{#if score.lowReview}}
-                          {{#link-to 'admin.contest-manager.session.round.performance.variance' model class='text-danger'}}Low{{/link-to}}
-                        {{else}}
-                          &nbsp;
-                        {{/if}}
-                        <br>
-                      {{/if}}
-                    {{/each}}
-                  </td> --}}
-                  {{!-- <td>
+                  <td>
                     {{#each assignment.scores as |score|}}
                       {{#if (eq score.song.performance.id model.id)}}
                         {{#bs-dropdown class='form-group'}}
@@ -150,7 +150,7 @@
                         <br>
                       {{/if}}
                     {{/each}}
-                  </td> --}}
+                  </td>
                 </tr>
               {{/unless}}
             {{/each}}

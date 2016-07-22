@@ -5,13 +5,13 @@
     </div>
     <div class='panel-body'>
       <ul>
-        <li>{{#link-to 'admin.contest-manager.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.announcement' model}}{{model.current.kind}} Announcements{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.oss' model}}Official Scoring Summary{{/link-to}}</li>
+        <li>{{#link-to 'admin.scoring-manager.session.sa' model}}Judging Scoring Analysis{{/link-to}}</li>
+        <li>{{#link-to 'admin.scoring-manager.session.announcement' model}}{{model.current.kind}} Announcements{{/link-to}}</li>
+        <li>{{#link-to 'admin.scoring-manager.session.oss' model}}Official Scoring Summary{{/link-to}}</li>
         CSAs
         <ul>
           {{#each model.sortedPerformers as |performer|}}
-            <li>{{#link-to 'admin.contest-manager.session.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
+            <li>{{#link-to 'admin.scoring-manager.session.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
           {{/each}}
         </ul>
       </ul>
