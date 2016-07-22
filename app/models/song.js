@@ -20,7 +20,7 @@ export default Model.extend({
   songscore: belongsTo('songscore', {async: true}),
   submission: belongsTo('submission', {async: true}),
   performance: belongsTo('performance', {async: true}),
-  scores: hasMany('score', {async: false}),
+  scores: hasMany('score', {async: true}),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

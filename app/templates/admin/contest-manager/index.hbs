@@ -4,17 +4,19 @@
     <table class='table'>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Convention</th>
-          <th>Date</th>
+          <th {{action 'sortBy' 'name:asc'}}>Name</th>
+          <th {{action 'sortBy' 'status:asc'}}>Status</th>
+          <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
+          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |session|}}
+        {{#each sortedSessions as |session|}}
           <tr>
             <td>{{#link-to 'admin.contest-manager.session' session}}{{session.name}}{{/link-to}}</td>
-            <td>{{convention.name}}</td>
-            <td>{{convention.start_date}}</td>
+            <td>{{session.status}}</td>
+            <td>{{session.convention.name}}</td>
+            <td>{{moment-format session.convention.start_date 'LL'}}</td>
           </tr>
         {{/each}}
       </tbody>

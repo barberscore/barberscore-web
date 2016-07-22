@@ -8,4 +8,9 @@ export default Ember.Controller.extend({
     'model',
     'sessionSortProperties'
   ),
+  actions: {
+    sortBy(sessionSortProperties) {
+      this.set('sessionSortProperties', [sessionSortProperties]);
+    },
+  }
 });
