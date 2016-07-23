@@ -10,7 +10,6 @@ export default Model.extend({
   cycle: attr('number'),
   is_qualifier: attr('boolean'),
   contestants: hasMany('contestant', {async: true}),
-  champion: attr('string'),
   primary_contest: belongsTo('session', {async: true, inverse: 'primary'}),
   award: belongsTo('award', {async: true}),
   session: belongsTo('session', {async: true}),
