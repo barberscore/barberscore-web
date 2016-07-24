@@ -36,27 +36,27 @@
                 </td>
                 <td>
                   {{#each performance.songs as |song|}}
-                    {{song.musPoints}}<br>
+                    {{song.songscore.mus_points}}<br>
                   {{/each}}
-                  {{performance.musPoints}}
+                  {{performance.performancescore.mus_points}}
                 </td>
                 <td>
                   {{#each performance.songs as |song|}}
-                    {{song.prsPoints}}<br>
+                    {{song.songscore.prs_points}}<br>
                   {{/each}}
-                  {{performance.prsPoints}}
+                  {{performance.performancescore.prs_points}}
                 </td>
                 <td>
                   {{#each performance.songs as |song|}}
-                    {{song.sngPoints}}<br>
+                    {{song.songscore.sng_points}}<br>
                   {{/each}}
-                  {{performance.sngPoints}}
+                  {{performance.performancescore.sng_points}}
                 </td>
                 <td>
                   {{#each performance.songs as |song|}}
-                    {{song.totPoints}}<br>
+                    {{song.songscore.total_points}}<br>
                   {{/each}}
-                  {{performance.totPoints}}
+                  {{performance.performancescore.total_points}}
                 </td>
               </tr>
             {{/each}}

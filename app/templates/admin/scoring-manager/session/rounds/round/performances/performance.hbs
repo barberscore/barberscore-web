@@ -51,16 +51,16 @@
                   {{#if song.noVariance}}<span class="label label-danger">Variance</span>{{else}}{{/if}}
                 </td>
                 <td class='text-right'>
-                  {{song.musPoints}}
+                  {{song.songscore.mus_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.prsPoints}}
+                  {{song.songscore.prs_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.sngPoints}}
+                  {{song.songscore.sng_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.totPoints}}
+                  {{song.songscore.total_points}}
                 </td>
               </tr>
             {{/each}}
@@ -72,16 +72,17 @@
               </th>
               <th></th>
               <th class='text-right'>
-                {{model.musPoints}}
+                {{model.performancescore.mus_points}}
               </th>
               <th class='text-right'>
-                {{model.prsPoints}}
+                {{model.performances
+                }}
               </th>
               <th class='text-right'>
-                {{model.sngPoints}}
+                {{model.performancescore.sng_points}}
               </th>
               <th class='text-right'>
-                {{model.totPoints}}
+                {{model.performancescore.total_points}}
               </th>
             </tr>
           </tfoot>

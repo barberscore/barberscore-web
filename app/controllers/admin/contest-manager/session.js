@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   isHeaderCollapsed: true,
   isRaw: false,
   performerSortProperties: [
-    'performer.totPoints:desc',
+    'performer.performerscore.total_points:desc',
     'group.nomen:asc',
   ],
   sortedPerformers: Ember.computed.sort(

@@ -29,7 +29,7 @@ export default Model.extend({
   cursor: belongsTo('performance', {async: true}),
 
   performerSortProperties: [
-    'totPoints:desc',
+    'performerscore.total_points:desc',
   ],
   sortedPerformers: computed.sort(
     'performers',
