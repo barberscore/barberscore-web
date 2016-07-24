@@ -75,8 +75,7 @@
                 {{model.performancescore.mus_points}}
               </th>
               <th class='text-right'>
-                {{model.performances
-                }}
+                {{model.performancescore.prs_points}}
               </th>
               <th class='text-right'>
                 {{model.performancescore.sng_points}}
@@ -158,6 +157,7 @@
           </tbody>
         </table>
       </div>
+      {{#bs-button action='savePerformance'}}Save{{/bs-button}}
     </div>
   </div>
 </section>
