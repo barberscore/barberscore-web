@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     'performanceSortProperties'
   ),
   performerSortProperties: [
-    'rank',
+    'performerscore.rank:asc',
   ],
   sortedPerformers: Ember.computed.sort(
     'model.performers',

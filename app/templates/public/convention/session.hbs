@@ -69,20 +69,20 @@
 <table class='table'>
   <thead>
   <tr>
-  <th>Rank</th>
-  <th>Group</th>
+  <th {{action 'sortPerformersBy' 'performerscore.rank:asc'}}>Rank</th>
+  <th {{action 'sortPerformersBy' 'group.name:asc'}}>Group</th>
   <th>Songs</th>
-  <th class='text-right'>MUS</th>
-  <th class='text-right'>PRS</th>
-  <th class='text-right'>SNG</th>
-  <th class='text-right'>Total</th>
+  <th {{action 'sortPerformersBy' 'performerscore.mus_points:desc'}}class='text-right'>MUS</th>
+  <th {{action 'sortPerformersBy' 'performerscore.prs_points:desc'}}class='text-right'>PRS</th>
+  <th {{action 'sortPerformersBy' 'performerscore.sng_points:desc'}}class='text-right'>SNG</th>
+  <th {{action 'sortPerformersBy' 'performerscore.total_points:desc'}}class='text-right'>Total</th>
   {{!-- {{#each model.contests as |contest|}}
     <th class='text-right'>{{contest.award.name}}</th>
   {{/each}} --}}
   </tr>
   </thead>
   <tbody>
-  {{#each model.sortedPerformers as |performer|}}
+  {{#each sortedPerformers as |performer|}}
     <tr>
     <td>
       {{performer.performerscore.rank}}

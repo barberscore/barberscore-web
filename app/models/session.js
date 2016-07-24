@@ -28,14 +28,6 @@ export default Model.extend({
   publish: memberAction({path: 'publish', type: 'post'}),
   cursor: belongsTo('performance', {async: true}),
 
-  performerSortProperties: [
-    'performerscore.total_points:desc',
-  ],
-  sortedPerformers: computed.sort(
-    'performers',
-    'performerSortProperties'
-  ),
-
   publishedPerformers: computed.filterBy(
     'performers',
     'status',
