@@ -11,6 +11,13 @@ export default Ember.Controller.extend({
     'model.current.performances',
     'performanceSortProperties'
   ),
+  performerSortProperties: [
+    'rank',
+  ],
+  sortedPerformers: Ember.computed.sort(
+    'model.performers',
+    'performerSortProperties'
+  ),
   actions: {
     collapseHeader() {
       this.toggleProperty('isCurrentCollapsed');
@@ -20,6 +27,9 @@ export default Ember.Controller.extend({
     },
     sortPerformancesBy(performanceSortProperties) {
       this.set('performanceSortProperties', [performanceSortProperties]);
+    },
+    sortPerformersBy(performerSortProperties) {
+      this.set('performerSortProperties', [performerSortProperties]);
     },
   }
 });

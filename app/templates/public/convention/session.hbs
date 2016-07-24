@@ -57,7 +57,7 @@
     {{/bs-collapse}}
   </div>
 {{/if}}
-{{#if model.publishedPerformers}}
+{{#if (eq model.status 'Published')}}
 <section>
 <h3>
   Official Scoring Summary
@@ -82,7 +82,7 @@
   </tr>
   </thead>
   <tbody>
-  {{#each model.sortedPrimaryPerformers as |performer|}}
+  {{#each model.sortedPerformers as |performer|}}
     <tr>
     <td>
       {{performer.performerscore.rank}}
@@ -219,7 +219,7 @@
     </ul>
 </section> --}}
 <section>
-  <h4>Assignments</h4>
+  <h4>Judging Panel</h4>
   <ul class='list-unstyled'>
     {{#each-in (group-by "category" model.sortedOfficialAssignments) as |category officialAssignments|}}
       <li><strong>{{category}}</strong>
