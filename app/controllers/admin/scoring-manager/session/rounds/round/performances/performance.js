@@ -46,6 +46,14 @@ export default Ember.Controller.extend({
             score.save();
           });
         });
+        this.model.verify()
+        .then(response => {
+          console.log(response);
+          this.store.pushPayload('performance', response);
+        })
+        .catch(response => {
+          console.log(response);
+        });
       })
       .catch(response => {
         console.log(response);

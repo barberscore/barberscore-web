@@ -22,6 +22,7 @@ export default Model.extend({
   build: memberAction({path: 'build'}),
   scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start', type: 'post'}),
+  verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
