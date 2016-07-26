@@ -10,7 +10,7 @@
     <div class='panel-body'>
       {{!-- <div class='row'> --}}
         <h3 class='form-group'>
-          {{model.performer.group.name}}
+          {{model.performer.group.name}}&nbsp;{{#if (eq model.status 'Flagged')}}<span class="label label-danger">Variance</span>{{/if}}
         </h3>
         <h4 class='form-group'>
           {{#if model.performer.group.chapter}}{{model.performer.group.chapter.name}}{{/if}}
@@ -34,7 +34,6 @@
           <thead>
             <tr>
               <th class="col-md-8">Songs</th>
-              <th class='text-right'></th>
               <th class='text-right'>MUS</th>
               <th class='text-right'>PRS</th>
               <th class='text-right'>SNG</th>
@@ -46,9 +45,6 @@
               <tr>
                 <td>
                   {{select-submission model=song submission=song.submission}}
-                </td>
-                <td>
-                  {{#if song.noVariance}}<span class="label label-danger">Variance</span>{{else}}{{/if}}
                 </td>
                 <td class='text-right'>
                   {{song.songscore.mus_points}}
@@ -70,7 +66,6 @@
               <th>
                 Totals
               </th>
-              <th></th>
               <th class='text-right'>
                 {{model.performancescore.mus_points}}
               </th>
@@ -107,18 +102,7 @@
                   </td>
                   <td>
                     {{#each assignment.scores as |score|}}
-                      {{#if (eq score.song.performance.id model.id)}}
-                        {{#if score.highReview}}
-                          <span class="label label-danger">High</span>
-                        {{else}}
-                          &nbsp;
-                        {{/if}}
-                        {{#if score.lowReview}}
-                          <span class="label label-danger">Low</span>
-                        {{else}}
-                          &nbsp;
-                        {{/if}}
-                        <br>
+                      {{#if (eq score.song.performance.id model.id)}}<br>
                       {{/if}}
                     {{/each}}
                   </td>

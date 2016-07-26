@@ -13,7 +13,7 @@ export default Model.extend({
   original: attr('number'),
   violation: attr('score-violation'),
   penalty: attr('number'),
-
+  is_flagged: attr('boolean'),
   song: belongsTo('song', {async: true}),
   assignment: belongsTo('assignment', {async: true}),
 
@@ -111,10 +111,10 @@ export default Model.extend({
     'sngVar'
   ),
   hasVarianceClass: computed(
-    'hasVariance',
+    'is_flagged',
     function() {
-      if (false) {
-        return 'has-error';
+      if (this.get('is_flagged')) {
+        return 'has-error has-feedback';
       } else {
         return '';
       }

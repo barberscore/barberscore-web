@@ -36,6 +36,7 @@ export default Ember.Controller.extend({
       this.transitionToRoute('admin.scoring-manager.session.rounds.round.performances.performance', newCur);
     },
     savePerformance() {
+      let ns = this.store;
       this.model.save()
       .then(response => {
         response.get('songs').invoke('save');
@@ -47,13 +48,25 @@ export default Ember.Controller.extend({
           });
         });
         this.model.verify()
-        .then(response => {
-          console.log(response);
-          this.store.pushPayload('performance', response);
-        })
-        .catch(response => {
-          console.log(response);
+        .then(() => {
+          this.get('target.router').refresh();
         });
+        // .then(rs => {
+        //   this.store.pushPayload('performance', rs);
+        //   console.log(rs.data.id);
+        //   this.store.findRecord('performance', rs.data.id).then(bat => {
+        //     let baz = bat.get('songs');
+        //     baz.forEach(function(song) {
+        //       song.reload()
+        //       .then(ps => {
+        //         ns.push(ns.normalize('song', ps));
+        //       });
+        //     });
+        //   })
+        // })
+        // .catch(rs => {
+        //   console.log(rs);
+        // });
       })
       .catch(response => {
         console.log(response);
