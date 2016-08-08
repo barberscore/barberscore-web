@@ -65,21 +65,21 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.contentSecurityPolicy = {
       'default-src': "'none'",
-      'script-src': "'self' http://s3-us-west-1.amazonaws.com",
+      'script-src': "'self' https://s3-us-west-1.amazonaws.com",
       'font-src': "'self' ",
-      'connect-src': "'self' http://barberscore.com",
-      'img-src': "'self' http://s3-us-west-1.amazonaws.com",
-      'style-src': "'self' http://s3-us-west-1.amazonaws.com ",
+      'connect-src': "'self' https://barberscore.com",
+      'img-src': "'self' https://s3-us-west-1.amazonaws.com",
+      'style-src': "'self' https://s3-us-west-1.amazonaws.com ",
       'media-src': "'self'"
     };
-    ENV.APP.API_HOST = 'http://barberscore.herokuapp.com';
+    ENV.APP.API_HOST = 'https://api.barberscore.com';
     ENV.APP.API_NAMESPACE = 'api';
     ENV['ember-simple-auth'] = {
       authorizer: 'authorizer:token',
       routeAfterAuthentication: 'admin',
     };
     ENV['ember-simple-auth-token'] = {
-      serverTokenEndpoint: 'http://barberscore.herokuapp.com/api-token-auth/',
+      serverTokenEndpoint: 'https://api.barberscore.com/api-token-auth/',
       identificationField: 'email',
       passwordField: 'password',
       tokenPropertyName: 'token',
@@ -87,7 +87,7 @@ module.exports = function(environment) {
       authorizationHeaderName: 'Authorization',
       headers: {},
       refreshAccessTokens: true,
-      serverTokenRefreshEndpoint: 'http://barberscore.herokuapp.com/api-token-refresh/',
+      serverTokenRefreshEndpoint: 'https://api.barberscore.com/api-token-refresh/',
       tokenExpireName: 'expires_in',
       refreshLeeway: 0,
       timeFactor: 1  // example - set to "1000" to convert incoming seconds to milliseconds.
