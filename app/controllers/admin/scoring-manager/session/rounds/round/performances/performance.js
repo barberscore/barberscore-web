@@ -36,7 +36,6 @@ export default Ember.Controller.extend({
       this.transitionToRoute('admin.scoring-manager.session.rounds.round.performances.performance', newCur);
     },
     savePerformance() {
-      let ns = this.store;
       this.model.save()
       .then(response => {
         response.get('songs').invoke('save');

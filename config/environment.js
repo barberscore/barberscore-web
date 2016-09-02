@@ -30,24 +30,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
-    ENV['ember-simple-auth'] = {
-      authorizer: 'authorizer:token',
-      routeAfterAuthentication: 'admin',
-    };
-    ENV['ember-simple-auth-token'] = {
-      serverTokenEndpoint: 'http://localhost:8000/api-token-auth/',
-      identificationField: 'email',
-      passwordField: 'password',
-      tokenPropertyName: 'token',
-      authorizationPrefix: 'JWT ',
-      authorizationHeaderName: 'Authorization',
-      headers: {},
-      refreshAccessTokens: true,
-      serverTokenRefreshEndpoint: 'http://localhost:8000/api-token-refresh/',
-      tokenExpireName: 'expires_in',
-      refreshLeeway: 0,
-      timeFactor: 1  // example - set to "1000" to convert incoming seconds to milliseconds.
-    };
   }
 
   if (environment === 'test') {
@@ -74,24 +56,6 @@ module.exports = function(environment) {
     };
     ENV.APP.API_HOST = 'https://api.barberscore.com';
     ENV.APP.API_NAMESPACE = 'api';
-    ENV['ember-simple-auth'] = {
-      authorizer: 'authorizer:token',
-      routeAfterAuthentication: 'admin',
-    };
-    ENV['ember-simple-auth-token'] = {
-      serverTokenEndpoint: 'https://api.barberscore.com/api-token-auth/',
-      identificationField: 'email',
-      passwordField: 'password',
-      tokenPropertyName: 'token',
-      authorizationPrefix: 'JWT ',
-      authorizationHeaderName: 'Authorization',
-      headers: {},
-      refreshAccessTokens: true,
-      serverTokenRefreshEndpoint: 'https://api.barberscore.com/api-token-refresh/',
-      tokenExpireName: 'expires_in',
-      refreshLeeway: 0,
-      timeFactor: 1  // example - set to "1000" to convert incoming seconds to milliseconds.
-    };
   }
 
 
