@@ -64,7 +64,7 @@ Router.map(function() {
     });
   });
   this.route('public', { path: '/' }, function() {
-    this.route('login');
+    // this.route('login');
     this.route('about');
     this.route('faq');
     this.route('conventions', { path: '/convention/' }, function() {

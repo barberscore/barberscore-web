@@ -30,6 +30,22 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
+    ENV['auth0-ember-simple-auth'] = {
+      clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
+      domain: "barberscore.auth0.com"
+    };
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'index',
+      routeAfterAuthentication: 'admin',
+      routeIfAlreadyAuthenticated: 'admin'
+    };
+    ENV['contentSecurityPolicy'] = {
+      'font-src': "'self' data: https://*.auth0.com",
+      'style-src': "'self' 'unsafe-inline'",
+      'script-src': "'self' 'unsafe-eval' https://*.auth0.com",
+      'img-src': '*.gravatar.com *.wp.com data:',
+      'connect-src': "'self' http://localhost:* https://your-app-domain.auth0.com"
+    };
   }
 
   if (environment === 'test') {

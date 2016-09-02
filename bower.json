@@ -9,7 +9,9 @@
     "bootstrap": "3.3.x",
     "font-awesome": "4.6.x",
     "pikaday": "^1.4.0",
-    "bootstrap-datepicker": "^1.6.1"
+    "bootstrap-datepicker": "^1.6.1",
+    "auth0-lock": "^7.10.2",
+    "jsrsasign": "^5.0.1"
   },
   "devDependencies": {}
 }
