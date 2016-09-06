@@ -44,7 +44,7 @@ module.exports = function(environment) {
       'style-src': "'self' 'unsafe-inline'",
       'script-src': "'self' 'unsafe-eval' https://*.auth0.com",
       'img-src': '*.gravatar.com *.wp.com data:',
-      'connect-src': "'self' http://localhost:* https://your-app-domain.auth0.com"
+      'connect-src': "'self' http://localhost:* https://barberscore.auth0.com"
     };
   }
 
@@ -61,13 +61,22 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV['auth0-ember-simple-auth'] = {
+      clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
+      domain: "barberscore.auth0.com"
+    };
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'index',
+      routeAfterAuthentication: 'admin',
+      routeIfAlreadyAuthenticated: 'admin'
+    };
     ENV.contentSecurityPolicy = {
       'default-src': "'none'",
-      'script-src': "'self' https://s3-us-west-1.amazonaws.com",
-      'font-src': "'self' ",
-      'connect-src': "'self' https://barberscore.com",
-      'img-src': "'self' https://s3-us-west-1.amazonaws.com",
-      'style-src': "'self' https://s3-us-west-1.amazonaws.com ",
+      'script-src': "'self' 'unsafe-eval' https://*.auth0.comhttps://s3-us-west-1.amazonaws.com",
+      'font-src': "'self' data: https://*.auth0.com",
+      'connect-src': "'self' https://barberscore.com https://barberscore.auth0.com",
+      'img-src': "'self' https://s3-us-west-1.amazonaws.com *.gravatar.com *.wp.com data:",
+      'style-src': "'self' 'unsafe-inline' https://s3-us-west-1.amazonaws.com",
       'media-src': "'self'"
     };
     ENV.APP.API_HOST = 'https://api.barberscore.com';
