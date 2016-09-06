@@ -6,5 +6,5 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   host: ENV.APP.API_HOST,
   namespace: ENV.APP.API_NAMESPACE,
   coalesceFindRequests: true,
-  authorizer: 'authorizer:token'
+  authorizer: 'authorizer:jwt'
 });
