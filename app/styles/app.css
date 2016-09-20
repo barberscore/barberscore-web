@@ -53,3 +53,7 @@ section {
 .smallbox {
   max-height: 200px;
 }
+
+.navcenter {
+  margin-top: 8px;
+}
