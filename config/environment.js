@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'barberscore-ember',
     environment: environment,
     baseURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     moment: {
       allowEmpty: true // default: false
     },
