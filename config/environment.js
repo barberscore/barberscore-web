@@ -6,6 +6,31 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    moment: {
+      allowEmpty: true // default: false
+    },
+    contentSecurityPolicy: {
+      'font-src': [
+        'data:',
+        'https://*.auth0.com',
+      ].join(' '),
+      'style-src': [
+        '\'unsafe-inline\'',
+      ].join(' '),
+      'script-src': [
+        '\'unsafe-eval\'',
+        'https://*.auth0.com',
+      ].join(' '),
+      'img-src': [
+        'data:',
+        '*.gravatar.com',
+        '*.wp.com',
+      ].join(' '),
+      'connect-src': [
+        'http://localhost:*',
+        'https://barberscore.auth0.com',
+      ].join(' ')
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -17,9 +42,16 @@ module.exports = function(environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
-    moment: {
-      allowEmpty: true // default: false
-    }
+  };
+
+  ENV['auth0-ember-simple-auth'] = {
+    clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
+    domain: "barberscore.auth0.com"
+  };
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'index',
+    routeAfterAuthentication: 'admin',
+    routeIfAlreadyAuthenticated: 'admin'
   };
 
   if (environment === 'development') {
@@ -30,22 +62,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
-    ENV['auth0-ember-simple-auth'] = {
-      clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-      domain: "barberscore.auth0.com"
-    };
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'index',
-      routeAfterAuthentication: 'admin',
-      routeIfAlreadyAuthenticated: 'admin'
-    };
-    ENV['contentSecurityPolicy'] = {
-      'font-src': "'self' data: https://*.auth0.com",
-      'style-src': "'self' 'unsafe-inline'",
-      'script-src': "'self' 'unsafe-eval' https://*.auth0.com",
-      'img-src': '*.gravatar.com *.wp.com data:',
-      'connect-src': "'self' http://localhost:* https://barberscore.auth0.com"
-    };
   }
 
   if (environment === 'test') {
@@ -61,28 +77,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV['auth0-ember-simple-auth'] = {
-      clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-      domain: "barberscore.auth0.com"
-    };
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'index',
-      routeAfterAuthentication: 'admin',
-      routeIfAlreadyAuthenticated: 'admin'
-    };
-    ENV.contentSecurityPolicy = {
-      'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' https://*.auth0.comhttps://s3-us-west-1.amazonaws.com",
-      'font-src': "'self' data: https://*.auth0.com",
-      'connect-src': "'self' https://barberscore.com https://barberscore.auth0.com",
-      'img-src': "'self' https://s3-us-west-1.amazonaws.com *.gravatar.com *.wp.com data:",
-      'style-src': "'self' 'unsafe-inline' https://s3-us-west-1.amazonaws.com",
-      'media-src': "'self'"
-    };
     ENV.APP.API_HOST = 'https://api.barberscore.com';
     ENV.APP.API_NAMESPACE = 'api';
   }
-
-
   return ENV;
 };
