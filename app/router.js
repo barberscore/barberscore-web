@@ -63,41 +63,42 @@ Router.map(function() {
       this.route('member', { path: '/member/:person_id'});
     });
   });
+
   this.route('public', { path: '/' }, function() {
-    // this.route('login');
     this.route('about');
     this.route('faq');
-    this.route('conventions', { path: '/convention/' }, function() {
-    });
-    this.route('convention', { path: '/convention/:convention_id' }, function() {
-      this.route('oss', { path: '/oss/:session_id'}, function() {
-      });
-      this.route('session', { path: '/session/:session_id' }, function() {
-        this.route('assignment', { path: '/assignment/:assignment_id'}, function() {
-        });
-        this.route('performer', { path: '/performer/:performer_id'}, function() {
-        });
-        this.route('round', { path: '/round/:round_id'}, function() {
-        });
-        this.route('current', { path: '/current/:performance_id'}, function() {
-        });
-        this.route('contest', { path: '/contest/:contest_id'}, function() {
-        });
-      });
-    });
-    this.route('groups', { path: '/group/' }, function() {
-      this.route('group', { path: '/:group_id' }, function () {
-      });
-    });
-    this.route('organizations', { path: '/organization/' }, function() {
-      this.route('organization', { path: '/:organization_id' }, function() {
-      });
-    });
-    this.route('persons', { path: '/person/' }, function() {
-      this.route('person', { path: '/:person_id' }, function() {
-      });
-    });
+  //   this.route('conventions', { path: '/convention/' }, function() {
+  //   });
+  //   this.route('convention', { path: '/convention/:convention_id' }, function() {
+  //     this.route('oss', { path: '/oss/:session_id'}, function() {
+  //     });
+  //     this.route('session', { path: '/session/:session_id' }, function() {
+  //       this.route('assignment', { path: '/assignment/:assignment_id'}, function() {
+  //       });
+  //       this.route('performer', { path: '/performer/:performer_id'}, function() {
+  //       });
+  //       this.route('round', { path: '/round/:round_id'}, function() {
+  //       });
+  //       this.route('current', { path: '/current/:performance_id'}, function() {
+  //       });
+  //       this.route('contest', { path: '/contest/:contest_id'}, function() {
+  //       });
+  //     });
+  //   });
+  //   this.route('groups', { path: '/group/' }, function() {
+  //     this.route('group', { path: '/:group_id' }, function () {
+  //     });
+  //   });
+  //   this.route('organizations', { path: '/organization/' }, function() {
+  //     this.route('organization', { path: '/:organization_id' }, function() {
+  //     });
+  //   });
+  //   this.route('persons', { path: '/person/' }, function() {
+  //     this.route('person', { path: '/:person_id' }, function() {
+  //     });
+  //   });
   });
+
   this.route('404', { path: '/*wildcard' });
 });
 
