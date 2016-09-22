@@ -22,6 +22,9 @@ module.exports = function(deployTarget) {
       region: 'us-west-1',
       filePattern: '**/*.{js,css,png,gif,html,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}'
     };
+    ENV.slack = {
+      webhookURL: 'https://hooks.slack.com/services/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'
+    };
   }
 
   // Note: if you need to build some configuration asynchronously, you can return

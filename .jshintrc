@@ -11,6 +11,7 @@
   "debug": false,
   "devel": true,
   "eqeqeq": true,
+  "esversion": 6,
   "evil": true,
   "forin": false,
   "immed": false,
@@ -28,6 +29,5 @@
   "strict": false,
   "white": false,
   "eqnull": true,
-  "esnext": true,
   "unused": true
 }

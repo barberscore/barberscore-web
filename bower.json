@@ -1,17 +1,17 @@
 {
   "name": "barberscore-ember",
   "dependencies": {
-    "ember": "2.6.x",
+    "ember": "2.8.x",
     "ember-cli-shims": "0.1.x",
     "ember-cli-test-loader": "0.2.x",
     "ember-load-initializers": "0.5.x",
     "jquery": "1.11.x",
     "bootstrap": "3.3.x",
     "font-awesome": "4.6.x",
-    "pikaday": "^1.4.0",
-    "bootstrap-datepicker": "^1.6.1",
-    "auth0-lock": "^7.10.2",
-    "jsrsasign": "^5.0.1"
+    "pikaday": "1.4.x",
+    "bootstrap-datepicker": "1.6.x",
+    "auth0-lock": "7.10.x",
+    "jsrsasign": "5.0.x"
   },
   "devDependencies": {}
 }
