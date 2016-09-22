@@ -11,7 +11,8 @@
     "pikaday": "1.4.x",
     "bootstrap-datepicker": "1.6.x",
     "auth0-lock": "7.10.x",
-    "jsrsasign": "5.0.x"
+    "jsrsasign": "5.0.x",
+    "bugsnag": "~2.5.0"
   },
   "devDependencies": {}
 }
