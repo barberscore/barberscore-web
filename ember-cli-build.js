@@ -6,6 +6,9 @@ module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     'ember-power-select': {
       theme: 'bootstrap'
+    },
+    babel: {
+      includePolyfill: true
     }
   });
 
