@@ -22,7 +22,7 @@
         {{!-- <li>{{#link-to 'persons'}}{{fa-icon 'user'}} Persons{{/link-to}}</li> --}}
         <li>
             {{#if session.isAuthenticated}}
-              {{#bs-button action="logout" class='btn-default navcenter'}}Logout{{/bs-button}}
+              {{#bs-button action="logout" class='btn-default navcenter'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>Logout {{/bs-button}}
             {{else}}
               {{!-- <a href='#' {{action 'login'}}>Login</a> --}}
               {{#bs-button action="login" class='btn-primary navcenter'}}Login{{/bs-button}}

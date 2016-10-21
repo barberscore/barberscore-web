@@ -1,56 +1,60 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
-<p>Welcome {{currentUser.user}}</p>
+<p>Welcome {{currentUser.user.person.common_name}}</p>
 <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.contest-manager'}}
+      {{#link-to 'admin.contest-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'microphone' size=5}}<br>
         Contest Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.scoring-manager'}}
+      {{#link-to 'admin.scoring-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'trophy' size=5}}<br>
         Scoring Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.judge-manager'}}
+      {{#link-to 'admin.judge-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'balance-scale' size=5}}<br>
         Judge Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.quartet-manager'}}
+      {{#link-to 'admin.quartet-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'users' size=5}}<br>
         Quartet Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.chorus-manager'}}
+      {{#link-to 'admin.chorus-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'cubes' size=5}}<br>
         Chorus Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.organization-manager'}}
+      {{#link-to 'admin.organization-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'bank' size=5}}<br>
         Organization Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.member-manager'}}
+      {{#link-to 'admin.member-manager' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'user' size=5}}<br>
         Member Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{fa-icon 'music' size=5}}<br>
-      Catalog Manager
+      {{#link-to 'admin.member-manager' disabled=true tagName='button' class='btn btn-default launcher'}}
+        {{fa-icon 'music' size=5}}<br>
+        Catalog Manager
+      {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{fa-icon 'calendar' size=5}}<br>
-      Schedule Manager
+      {{#link-to 'admin.member-manager' disabled=true tagName='button' class='btn btn-default launcher'}}
+        {{fa-icon 'calendar' size=5}}<br>
+        Schedule Manager
+      {{/link-to}}
     </p>
   </div>
 </section>

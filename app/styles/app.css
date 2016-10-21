@@ -57,3 +57,8 @@ section {
 .navcenter {
   margin-top: 8px;
 }
+
+.launcher {
+  width: 200px;
+  height: 200px;
+}
