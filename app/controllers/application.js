@@ -9,5 +9,6 @@ export default Ember.Controller.extend({
     toggleCollapsed() {
       this.toggleProperty('isCollapsed');
     }
-  }
+  },
+  currentUser: Ember.inject.service('current-user')
 });
