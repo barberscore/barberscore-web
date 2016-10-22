@@ -25,6 +25,7 @@ export default Model.extend({
   organization: belongsTo('organization', {async: true}),
   performers: hasMany('performers', {async: true}),
   roles: hasMany('role', {async: true}),
+  permissions: attr(),
 
   roleSort: [
     'partSort',

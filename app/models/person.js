@@ -31,4 +31,5 @@ export default Model.extend({
   panels: hasMany('assignment', {async: true}),
   conventions: hasMany('convention', {inverse:'drcj', async: true}),
   user: belongsTo('user', {async: true}),
+  permissions: attr(),
 });

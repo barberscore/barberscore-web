@@ -11,11 +11,12 @@ export default Ember.Component.extend({
       });
       contestant.save()
       .then(() => {
-        // flashMessages.success('Success');
+        flashMessages.success('Success');
         this.set('performer', null);
       })
-      .catch(() => {
-        flashMessages.danger('Error');
+      .catch((failure) => {
+        contestant.deleteRecord();
+        flashMessages.danger(failure);
       });
     },
   },

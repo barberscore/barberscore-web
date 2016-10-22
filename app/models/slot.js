@@ -8,5 +8,6 @@ export default Model.extend({
   round: belongsTo('round', {async: true}),
   performances: hasMany('performance', {async: true}),
   num: attr('number'),
-  onstage: attr('date')
+  onstage: attr('date'),
+  permissions: attr(),
 });

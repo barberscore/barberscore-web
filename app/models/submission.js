@@ -12,4 +12,5 @@ export default Model.extend({
   is_parody: attr('boolean'),
   performer: belongsTo('performer', {async: true}),
   songs: hasMany('songs', {async: true}),
+  permissions: attr(),
 });

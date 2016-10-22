@@ -13,6 +13,7 @@ export default Model.extend({
   session: belongsTo('session', {async: true}),
   judge: belongsTo('judge', {async: true}),
   scores: hasMany('score', {async: true}),
+  permissions: attr(),
 
   rowClass: Ember.computed(
     'category',

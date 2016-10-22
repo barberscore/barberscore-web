@@ -19,6 +19,7 @@ export default Model.extend({
   drcj: belongsTo('person', {async: true}),
   sessions: hasMany('session', {async: true}),
   hosts: hasMany('host', {async: true}),
+  permissions: attr(),
 
   sessionSort: [
     'kind:asc',

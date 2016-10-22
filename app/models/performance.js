@@ -25,6 +25,7 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
+  permissions: attr(),
 
   songSort: [
     'num',

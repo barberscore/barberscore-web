@@ -5,4 +5,5 @@ export default DS.Model.extend({
   is_active: DS.attr('boolean'),
   is_staff: DS.attr('boolean'),
   person: DS.belongsTo('person', {async: true}),
+  permissions: attr(),
 });

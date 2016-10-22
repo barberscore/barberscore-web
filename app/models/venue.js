@@ -10,6 +10,7 @@ export default Model.extend({
   airport: attr('string'),
   timezone: attr('string'),
   conventions: hasMany('convention', {async: true}),
+  permissions: attr(),
   timezoneChoices: [
     'US/Arizona',
     'US/Central',

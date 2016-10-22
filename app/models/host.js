@@ -7,4 +7,5 @@ export default Model.extend({
   status: attr('host-status'),
   convention: belongsTo('convention', {async: true}),
   organization: belongsTo('organization', {async: true}),
+  permissions: attr(),
 });

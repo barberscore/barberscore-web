@@ -11,4 +11,5 @@ export default Model.extend({
   prs_score: attr('number'),
   sng_score: attr('number'),
   total_score: attr('number'),
+  permissions: attr(),
 });

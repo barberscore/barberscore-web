@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
       this.model.destroyRecord()
       .then(() => {
         flashMessages.warning('Deleted');
-        this.transitionToRoute('admin');
       })
       .catch(() => {
         flashMessages.danger('Error');
@@ -36,8 +35,9 @@ export default Ember.Controller.extend({
         this.set('isEditing', false);
         flashMessages.success('Saved');
       })
-      .catch(() => {
-        flashMessages.danger('Error');
+      .catch((failure) => {
+        this.model.rollbackAttributes();
+        flashMessages.danger(failure);
       });
     },
   },

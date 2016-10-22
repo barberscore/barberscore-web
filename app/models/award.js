@@ -18,6 +18,9 @@ export default Model.extend({
   level: attr('award-level'),
   organization: belongsTo('organization', {async: true}),
   contests: hasMany('contest', {inverse:'award', async: true}),
+  permissions: attr(),
+
+
   seasonChoices: [
     'International',
     'Midwinter',

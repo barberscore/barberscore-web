@@ -10,4 +10,5 @@ export default Model.extend({
   organization: belongsTo('organization', {async: true}),
   groups: hasMany('group', {async: true}),
   members: hasMany('member', {async: true}),
+  permissions: attr(),
 });

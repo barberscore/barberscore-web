@@ -44,10 +44,9 @@ section {
 }
 
 .alerts {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  margin: 0 auto;
+  position: fixed;
+  top: 5px;
+  right: 50px;
 }
 
 .smallbox {

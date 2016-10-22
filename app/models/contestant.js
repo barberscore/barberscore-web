@@ -8,4 +8,5 @@ export default Model.extend({
   contestscore: belongsTo('contestantscore', {async: true}),
   contest: belongsTo('contest', {async: true}),
   performer: belongsTo('performer', {async: true}),
+  permissions: attr(),
 });

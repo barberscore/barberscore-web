@@ -14,9 +14,11 @@ export default Ember.Component.extend({
       assignment.save()
       .then(() => {
         this.set('judge', null);
+        flashMessages.success("Saved");
       })
-      .catch(() => {
-        flashMessages.danger('Error');
+      .catch((failure) => {
+        assignment.deleteRecord();
+        flashMessages.danger(failure);
       });
     },
     searchAssignment(term) {

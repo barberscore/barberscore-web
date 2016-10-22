@@ -13,6 +13,7 @@ export default Model.extend({
   submission: belongsTo('submission', {async: true}),
   performance: belongsTo('performance', {async: true}),
   scores: hasMany('score', {async: true}),
+  permissions: attr(),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

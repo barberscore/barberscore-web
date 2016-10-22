@@ -11,11 +11,12 @@ export default Ember.Component.extend({
       });
       contest.save()
       .then(() => {
-        // flashMessages.success('Contest Added');
+        flashMessages.success('Contest Added');
         this.set('award', null);
       })
-      .catch(() => {
-        flashMessages.danger('Error');
+      .catch((failure) => {
+        contest.deleteRecord();
+        flashMessages.danger(failure);
       });
     }
   },

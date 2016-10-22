@@ -22,6 +22,7 @@ export default Model.extend({
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
+  permissions: attr(),
 
   kindSort: computed(
     'kind',

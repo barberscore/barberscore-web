@@ -33,6 +33,7 @@ export default Model.extend({
   performers: hasMany('performer', {inverse: 'representing', async: true}),
   sessions: hasMany('session', {async: true}),
   hosts: hasMany('host', {async: true}),
+  permissions: attr(),
   awardSort: [
     'organization',
     'is_primary:desc',

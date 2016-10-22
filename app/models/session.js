@@ -27,6 +27,7 @@ export default Model.extend({
   draft: memberAction({path: 'draft', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
   cursor: belongsTo('performance', {async: true}),
+  permissions: attr(),
 
   publishedPerformers: computed.filterBy(
     'performers',

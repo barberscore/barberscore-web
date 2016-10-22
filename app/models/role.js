@@ -12,6 +12,7 @@ export default Model.extend({
   group: belongsTo('group', {async: true}),
   start_date: attr('isodate'),
   finish_date: attr('isodate'),
+  permissions: attr(),
 
   partSort: computed(
     'part',

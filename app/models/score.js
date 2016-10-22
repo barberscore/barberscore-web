@@ -16,6 +16,7 @@ export default Model.extend({
   is_flagged: attr('boolean'),
   song: belongsTo('song', {async: true}),
   assignment: belongsTo('assignment', {async: true}),
+  permissions: attr(),
 
   lowReview: computed(
     'song.ascSortedScores',
