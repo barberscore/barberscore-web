@@ -11,4 +11,5 @@ export default Model.extend({
   end_date: attr('isodate'),
   person: belongsTo('person', {async: true}),
   assignments: hasMany('assignment', {async: true}),
+  permissions: attr(),
 });

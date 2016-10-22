@@ -48,4 +48,11 @@
       </table>
     </div>
 </section>
+<section>
+    {{#if currentUser.user.person.member.is_cj}}
+      <div>
+        {{add-judge}}
+      </div>
+    {{/if}}
+</section>
 {{outlet}}

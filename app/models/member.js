@@ -4,6 +4,7 @@ import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
   name: attr('string'),
+  is_cj: attr('boolean'),
   status: attr('member-status'),
   person: belongsTo('person', {async: true}),
   chapter: belongsTo('chapter', {async: true}),

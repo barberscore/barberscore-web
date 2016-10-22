@@ -23,7 +23,7 @@ export default Model.extend({
   first_name: attr('string'),
   last_name: attr('string'),
   nick_name: attr('string'),
-  organization: belongsTo('organization', {async: true}),
+  organizations: hasMany('organization', {async: true}),
   chapter: belongsTo('chapter', {async: true}),
   members: hasMany('member', {async: true}),
   judges: hasMany('judge', {async: true}),

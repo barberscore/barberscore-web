@@ -1,0 +1,10 @@
+{{#power-select
+      options=choices
+      selected=category
+      placeholder="Select Category"
+      onchange=(action (mut category))
+      allowClear=true
+      as |category|
+}}
+  {{category}}
+{{/power-select}}

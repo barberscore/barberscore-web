@@ -22,6 +22,7 @@ export default Model.extend({
   short_name: attr('string'),
   long_name: attr('string'),
   lft: attr('number'),
+  representative: belongsTo('person', {async: true}),
   parent: belongsTo('organization', {inverse: 'children', async: true}),
   children: hasMany('organization', {inverse: 'parent', async: true}),
   conventions: hasMany('convention', {async: true}),

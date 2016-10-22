@@ -7,6 +7,13 @@ export default Ember.Controller.extend({
   isRoleDisabled: Ember.computed.not('isRoleEditing'),
   collapseChorus: false,
   isRoleCollapsed: false,
+  currentUser: Ember.inject.service('current-user'),
+  isOwner: Ember.computed(
+    'currentUser',
+    function() {
+      return this.get('currentUser.user.person.organizations').includes(this.get('model'));
+    }
+  ),
   actions: {
     collapseHeader() {
       this.toggleProperty('collapseChorus');

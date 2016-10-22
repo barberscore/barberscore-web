@@ -1,7 +1,10 @@
 {{#power-select
       search=(action "searchPerson")
       selected=person
-      onchange=(action "saveRecord")
+      onchange=(action (mut person))
+      placeholder="Enter Person Name"
+      class='assignment-width'
+      allowClear=true
       as |person|
 }}
   {{person.name}}

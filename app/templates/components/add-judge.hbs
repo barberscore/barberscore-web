@@ -1,0 +1,46 @@
+{{#bs-form formLayout="inline" action="saveJudge"}}
+  {{#bs-form-group}}
+    {{#power-select
+          search=(action "searchPerson")
+          selected=person
+          onchange=(action (mut person))
+          placeholder="Enter Person Name"
+          class='assignment-width'
+          allowClear=true
+          as |person|
+    }}
+      {{person.name}}
+    {{/power-select}}
+    {{#power-select
+          options=judgeCategory
+          selected=category
+          placeholder="Select Category"
+          onchange=(action (mut category))
+          allowClear=true
+          as |category|
+    }}
+      {{category}}
+    {{/power-select}}
+    {{#power-select
+          options=judgeKind
+          selected=kind
+          placeholder="Select Kind"
+          onchange=(action (mut kind))
+          allowClear=true
+          as |kind|
+    }}
+      {{kind}}
+    {{/power-select}}
+    {{#power-select
+          options=judgeStatus
+          selected=status
+          placeholder="Select Status"
+          onchange=(action (mut status))
+          allowClear=true
+          as |status|
+    }}
+      {{status}}
+    {{/power-select}}
+  {{/bs-form-group}}
+  {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}
+{{/bs-form}}
