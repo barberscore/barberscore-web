@@ -55,6 +55,7 @@
     "ember-data": "2.8.x",
     "ember-disable-proxy-controllers": "1.0.x",
     "ember-export-application-global": "1.0.x",
+    "ember-intercom-io": "0.1.2",
     "ember-load-initializers": "0.5.x",
     "ember-moment": "6.0.x",
     "ember-pikaday": "2.x.x",

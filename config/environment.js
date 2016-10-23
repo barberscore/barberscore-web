@@ -20,17 +20,34 @@ module.exports = function(environment) {
       'script-src': [
         '\'unsafe-eval\'',
         'https://*.auth0.com',
+        'https://widget.intercom.io',
+        'https://js.intercomcdn.com',
+      ].join(' '),
+      'media-src': [
+        'https://js.intercomcdn.com',
       ].join(' '),
       'img-src': [
         'data:',
         '*.gravatar.com',
         '*.wp.com',
+        'https://static.intercomcdn.com',
+        'https://js.intercomcdn.com',
       ].join(' '),
       'connect-src': [
         'http://localhost:*',
         'https://barberscore.auth0.com',
+        'https://api-iam.intercom.io',
+        'https://api-ping.intercom.io',
+        'https://nexus-websocket-a.intercom.io',
+        'https://nexus-websocket-b.intercom.io',
+        'wss://nexus-websocket-a.intercom.io',
+        'wss://nexus-websocket-b.intercom.io',
       ].join(' ')
     },
+    // intercom: {
+    //   appId: 'hb6rvkui',
+    //   deferReadinessUntilLoaded: false
+    // },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
