@@ -65,6 +65,7 @@
     "ember-simple-auth": "1.1.x",
     "ember-sortable": "1.8.x",
     "ember-truth-helpers": "1.2.x",
+    "ember-uploader": "1.2.0",
     "ember-welcome-page": "1.0.x",
     "eonasdan-bootstrap-datetimepicker": "4.x.x",
     "loader.js": "4.0.x",

@@ -9,7 +9,13 @@
     {{#bs-collapse collapsed=collapseChorus}}
       <div class='panel-body'>
         {{#bs-form formLayout='vertical' model=model action='saveChorus'}}
-          {{#bs-form-group}}{{model-picture picture=model.picture}}{{/bs-form-group}}
+          {{#bs-form-group}}
+            {{#if isEditing}}
+              {{file-upload target=model.id}}
+            {{else}}
+              {{model-picture picture=model.picture}}
+            {{/if}}
+          {{/bs-form-group}}
           {{bs-form-element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
           {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}}
           {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
