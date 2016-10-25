@@ -3,6 +3,18 @@
 module.exports = function(deployTarget) {
   var ENV = {
     build: {},
+    pipeline: {
+      activateOnDeploy: true
+    },
+    s3: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      filePattern: "*"
+    },
+    cloudfront: {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    }
   };
 
   if (deployTarget === 'development') {
