@@ -1,7 +1,7 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <h4>
-        <span {{action "toggleDetails"}}>Details</span>
+    <h4 {{action "toggleDetails"}}>
+        {{#if isDetailsCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Details</span>
     </h4>
   </div>
   {{#bs-collapse collapsed=isDetailsCollapsed}}
@@ -16,7 +16,7 @@
             {{select-representing representing=model.representing}}
           {{/bs-form-group}}
           {{#bs-form-group}}
-            {{x-toggle showLabels=true offLabel='No Eval' onLabel='Eval' value=model.is_evaluation toggled=model.is_evaluation}}
+            {{x-toggle showLabels=true onLabel='Eval::true' offLabel='No Eval::false' value=model.is_evaluation onToggle=(mut model.is_evaluation)}}
           {{/bs-form-group}}
             {{#if (eq model.group.kind 'Chorus')}}
               {{#bs-form-group}}
@@ -84,17 +84,17 @@
     </div>
   {{/bs-collapse}}
 </div>
-<section>
+<!-- <section>
   <ul class='list-inline'>
     <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
     <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
   </ul>
-</section>
+</section> -->
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4>
-        <span {{action "toggleContesting"}}>Contesting</span>
+      <h4 {{action "toggleContesting"}}>
+        {{#if isContestingCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Contesting</span>
       </h4>
     </div>
     {{#bs-collapse collapsed=isContestingCollapsed}}
@@ -113,7 +113,8 @@
                 {{#each model.sortedContestants as |contestant|}}
                   <tr>
                     <td>
-                      {{#link-to 'admin.contest-manager.session.contests.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}}
+                      {{!-- {{#link-to 'admin.contest-manager.session.contests.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}} --}}
+                      {{contestant.contest.award.name}}
                     </td>
                     <td>
                       {{#if contestant.contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
@@ -142,8 +143,8 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4>
-        <span {{action "toggleSubmissions"}}>Submissions</span>
+      <h4 {{action "toggleSubmissions"}}>
+        {{#if isSubmissionsCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Submissions</span>
       </h4>
     </div>
     {{#bs-collapse collapsed=isSubmissionsCollapsed}}
@@ -179,57 +180,8 @@
           </tbody>
         </table>
       </div>
+      {{add-submission-performer performer=model}}
     </div>
-    {{/bs-collapse}}
+  {{/bs-collapse}}
   </div>
 </section>
-{{!-- <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        <span {{action "toggleRoles"}}>Roles</span>
-      </h4>
-    </div>
-    {{#bs-collapse collapsed=isRolesCollapsed}}
-    <div class='panel-body'>
-      <div class='table-responsive'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Part</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.roles as |role|}}
-              <tr>
-                <td>
-                  {{role.person.name}}
-                </td>
-                <td>
-                  {{role.part}}
-                </td>
-                <td>
-                  {{role.status}}
-                </td>
-                <td>
-                  {{#bs-dropdown}}
-                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                    {{#bs-dropdown-menu}}
-                      <li>{{#link-to "index"}}Something{{/link-to}}</li>
-                      <li>{{#link-to "index"}}Something different{{/link-to}}</li>
-                    {{/bs-dropdown-menu}}
-                  {{/bs-dropdown}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-      {{add-role performer=model}}
-    </div>
-    {{/bs-collapse}}
-  </div>
-</section> --}}

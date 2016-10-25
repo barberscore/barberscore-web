@@ -76,10 +76,24 @@ export default Ember.Controller.extend({
       this.model.disqualify();
     },
     deleteContestant(contestant) {
-      contestant.destroyRecord();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      contestant.destroyRecord()
+      .then(() => {
+        flashMessages.warning('Deleted');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
     deleteSubmission(submission) {
-      submission.destroyRecord();
+      const flashMessages = Ember.get(this, 'flashMessages');
+      submission.destroyRecord()
+      .then(() => {
+        flashMessages.warning('Deleted');
+      })
+      .catch(() => {
+        flashMessages.danger('Error');
+      });
     },
   },
 });
