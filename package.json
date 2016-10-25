@@ -19,7 +19,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "auth0-ember-simple-auth": "git://github.com/auth0/auth0-ember-simple-auth.git#da157a737e534f8881a82420237c2b4ee9f144d0",
     "broccoli-asset-rev": "2.4.x",
     "ember-ajax": "2.x.x",
     "ember-api-actions": "0.1.x",
@@ -33,8 +32,7 @@
     "ember-cli-daterangepicker": "0.2.x",
     "ember-cli-dependency-checker": "1.x.x",
     "ember-cli-deploy": "1.0.0-beta.1",
-    "ember-cli-deploy-build": "0.1.x",
-    "ember-cli-deploy-s3": "0.3.x",
+    "ember-cli-deploy-aws-pack": "0.4.0",
     "ember-cli-deploy-slack": "0.1.x",
     "ember-cli-flash": "1.3.x",
     "ember-cli-font-awesome": "1.5.x",
@@ -63,10 +61,14 @@
     "ember-power-select-with-create": "0.x.x",
     "ember-resolver": "2.x.x",
     "ember-simple-auth": "1.1.x",
+    "ember-simple-auth-auth0": "0.1.7",
     "ember-sortable": "1.8.x",
     "ember-truth-helpers": "1.2.x",
+<<<<<<< HEAD
     "ember-uploader": "1.2.0",
     "ember-welcome-page": "1.0.x",
+=======
+>>>>>>> origin/master
     "eonasdan-bootstrap-datetimepicker": "4.x.x",
     "loader.js": "4.0.x",
     "moment": "2.15.x",

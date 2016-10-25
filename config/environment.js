@@ -60,15 +60,18 @@ module.exports = function(environment) {
       // when it is created
     },
   };
+  ENV.APP.API_HOST = process.env.API_HOST;
+  ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
 
-  ENV['auth0-ember-simple-auth'] = {
-    clientID: "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-    domain: "barberscore.auth0.com"
-  };
   ENV['ember-simple-auth'] = {
     authenticationRoute: 'index',
     routeAfterAuthentication: 'admin',
-    routeIfAlreadyAuthenticated: 'admin'
+    routeIfAlreadyAuthenticated: 'admin',
+    auth0: {
+      clientID: process.env.AUTH0_CLIENT_ID,
+      domain: process.env.AUTH0_DOMAIN,
+      redirectURI: '/'
+    }
   };
 
   if (environment === 'development') {
@@ -77,8 +80,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.APP.API_HOST = 'http://localhost:8000';
-    ENV.APP.API_NAMESPACE = 'api';
   }
 
   if (environment === 'test') {
@@ -93,8 +94,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.APP.API_HOST = 'https://api.barberscore.com';
-    ENV.APP.API_NAMESPACE = 'api';
   }
   return ENV;
 };
