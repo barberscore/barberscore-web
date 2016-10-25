@@ -64,11 +64,7 @@
     "ember-simple-auth-auth0": "0.1.7",
     "ember-sortable": "1.8.x",
     "ember-truth-helpers": "1.2.x",
-<<<<<<< HEAD
     "ember-uploader": "1.2.0",
-    "ember-welcome-page": "1.0.x",
-=======
->>>>>>> origin/master
     "eonasdan-bootstrap-datetimepicker": "4.x.x",
     "loader.js": "4.0.x",
     "moment": "2.15.x",
