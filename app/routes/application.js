@@ -18,6 +18,14 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     login () {
       var lockOptions = {
         autoclose: true,
+        languageDictionary: {
+          emailInputPlaceholder: "your email",
+          title: ""
+        },
+        theme: {
+          logo: 'https://s3-us-west-1.amazonaws.com/barberscore/static/images/bhs_logo.png',
+          primaryColor: '#337ab7'
+        },
         auth: {
           redirect: false,
           // I think this may be the key to DRF
