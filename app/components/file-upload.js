@@ -16,9 +16,9 @@ export default EmberUploader.FileField.extend({
     if (!Ember.isEmpty(files)) {
       // this second argument is optional and can to be sent as extra data with the upload
       // uploader.upload(files[0]);
-      uploader.upload(files[0]).then(data => {
+      uploader.upload(files[0]).then(() => {
         console.log('success');
-      }, error => {
+      }).catch(() => {
         console.log('failure');
       })
     }
