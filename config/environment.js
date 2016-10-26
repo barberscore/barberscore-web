@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'barberscore-ember',
     environment: environment,
     rootURL: '/',
-    locationType: 'hash',
+    locationType: 'auto',
     moment: {
       allowEmpty: true // default: false
     },
@@ -34,8 +34,6 @@ module.exports = function(environment) {
         'https://js.intercomcdn.com',
       ].join(' '),
       'connect-src': [
-        'http://localhost:*',
-        'https://barberscore.auth0.com',
         'https://api-iam.intercom.io',
         'https://api-ping.intercom.io',
         'https://nexus-websocket-a.intercom.io',
@@ -60,26 +58,24 @@ module.exports = function(environment) {
       // when it is created
     },
   };
-  ENV.APP.API_HOST = process.env.API_HOST;
-  ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
-
-  ENV['ember-simple-auth'] = {
-    authenticationRoute: 'index',
-    routeAfterAuthentication: 'admin',
-    routeIfAlreadyAuthenticated: 'admin',
-    auth0: {
-      clientID: process.env.AUTH0_CLIENT_ID,
-      domain: process.env.AUTH0_DOMAIN,
-      redirectURI: '/'
-    }
-  };
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'index',
+      routeAfterAuthentication: 'index',
+      routeIfAlreadyAuthenticated: 'index',
+      auth0: {
+        clientID: process.env.AUTH0_CLIENT_ID_DEV,
+        domain: process.env.AUTH0_DOMAIN_DEV,
+        redirectURI: '/'
+      }
+    };
+    ENV.APP.API_HOST = process.env.API_HOST_DEV;
+    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE_DEV;
   }
 
   if (environment === 'test') {
@@ -94,6 +90,18 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'index',
+      routeAfterAuthentication: 'index',
+      routeIfAlreadyAuthenticated: 'index',
+      auth0: {
+        clientID: process.env.AUTH0_CLIENT_ID,
+        domain: process.env.AUTH0_DOMAIN,
+        redirectURI: '/'
+      }
+    };
+    ENV.APP.API_HOST = process.env.API_HOST;
+    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
   }
   return ENV;
 };

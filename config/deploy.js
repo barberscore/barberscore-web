@@ -6,15 +6,6 @@ module.exports = function(deployTarget) {
     pipeline: {
       activateOnDeploy: true
     },
-    s3: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-      filePattern: "*"
-    },
-    cloudfront: {
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
   };
 
   if (deployTarget === 'development') {
@@ -29,9 +20,19 @@ module.exports = function(deployTarget) {
 
   if (deployTarget === 'production') {
     ENV.build.environment = 'production';
-    ENV.s3.bucket = process.env.AWS_BUCKET;
-    ENV.s3.region = process.env.AWS_DEFAULT_REGION;
-    ENV.cloudfront.distribution = process.env.AWS_CLOUDFRONT_DISTRIBUTION;
+    ENV.s3 = {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      bucket: process.env.AWS_BUCKET,
+      region: process.env.AWS_DEFAULT_REGION,
+      filePattern: '**/*.{js,css,png,gif,html,ico,jpg,map,xml,txt,svg,swf,eot,ttf,woff,woff2,otf}'
+    };
+    ENV.cloudfront = {
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      region: process.env.AWS_DEFAULT_REGION,
+      distribution: process.env.AWS_CLOUDFRONT_DISTRIBUTION
+    };
     ENV.slack = {
       webhookURL: 'https://hooks.slack.com/services/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'
     };
