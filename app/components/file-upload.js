@@ -20,7 +20,7 @@ export default EmberUploader.FileField.extend({
         console.log('success');
       }).catch(() => {
         console.log('failure');
-      })
+      });
     }
   }
 });
