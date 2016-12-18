@@ -19,6 +19,7 @@ module.exports = function(environment) {
       ].join(' '),
       'script-src': [
         '\'unsafe-eval\'',
+        'http://localhost:4200',
         'https://*.auth0.com',
         'https://widget.intercom.io',
         'https://js.intercomcdn.com',
@@ -30,10 +31,13 @@ module.exports = function(environment) {
         'data:',
         '*.gravatar.com',
         '*.wp.com',
+        'https://*.auth0.com',
         'https://static.intercomcdn.com',
         'https://js.intercomcdn.com',
       ].join(' '),
       'connect-src': [
+        'http://localhost:4200',
+        'https://barberscore-dev.auth0.com',
         'https://api-iam.intercom.io',
         'https://api-ping.intercom.io',
         'https://nexus-websocket-a.intercom.io',
@@ -42,10 +46,6 @@ module.exports = function(environment) {
         'wss://nexus-websocket-b.intercom.io',
       ].join(' ')
     },
-    // intercom: {
-    //   appId: 'hb6rvkui',
-    //   deferReadinessUntilLoaded: false
-    // },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -58,24 +58,30 @@ module.exports = function(environment) {
       // when it is created
     },
   };
+  ENV['ember-simple-auth'] = {
+    authenticationRoute: 'index',
+    routeAfterAuthentication: 'dashboard',
+    routeIfAlreadyAuthenticated: 'dashboard',
+    auth0: {
+      clientID: process.env.AUTH0_CLIENT_ID,
+      domain: process.env.AUTH0_DOMAIN,
+      redirectURI: '/',
+    }
+  };
+
+  ENV['intercom'] = {
+    appId: process.env.INTERCOM_APP_ID
+  };
+
+  ENV.APP.API_HOST = process.env.API_HOST;
+  ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'index',
-      routeAfterAuthentication: 'index',
-      routeIfAlreadyAuthenticated: 'index',
-      auth0: {
-        clientID: process.env.AUTH0_CLIENT_ID_DEV,
-        domain: process.env.AUTH0_DOMAIN_DEV,
-        redirectURI: '/'
-      }
-    };
-    ENV.APP.API_HOST = process.env.API_HOST_DEV;
-    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE_DEV;
   }
 
   if (environment === 'test') {
@@ -90,18 +96,6 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'index',
-      routeAfterAuthentication: 'index',
-      routeIfAlreadyAuthenticated: 'index',
-      auth0: {
-        clientID: process.env.AUTH0_CLIENT_ID,
-        domain: process.env.AUTH0_DOMAIN,
-        redirectURI: '/'
-      }
-    };
-    ENV.APP.API_HOST = process.env.API_HOST;
-    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
   }
   return ENV;
 };
