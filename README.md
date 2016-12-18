@@ -1,3 +1,3 @@
 # Barberscore-ember
 
-Front-end for barberscore.com
+Front-end for barberscore.com.
