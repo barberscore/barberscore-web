@@ -6,6 +6,7 @@
     "bootstrap": "~3.3.5",
     "font-awesome": "~4.5.0",
     "auth0-lock": "^10.7.3",
-    "auth0.js": "^7.6.0"
+    "auth0.js": "^7.6.0",
+    "bootstrap-datepicker": "^1.6.4"
   }
 }
