@@ -17,47 +17,26 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
     login () {
       var lockOptions = {
+        allowedConnections: [
+          'google-oauth2',
+          'Username-Password-Authentication',
+        ],
         autoclose: true,
-        languageDictionary: {
-          emailInputPlaceholder: "your email",
-          title: ""
-        },
+        allowLogin: true,
+        allowSignUp: false,
+        rememberLastLogin: true,
         theme: {
           logo: 'https://s3-us-west-1.amazonaws.com/barberscore/static/images/bhs_logo.png',
           primaryColor: '#337ab7'
         },
         auth: {
           redirect: false,
-          // I think this may be the key to DRF
-          // redirect: true,
-          // redirectUrl: 'api',
-          // responseMode: 'form_post',
-          // responseType: 'code',
-
           params: {
-            scope: 'openid email name user_metadata app_metadata picture offline_access',
-            prompt: 'consent'
+            scope: 'openid profile',
           }
-        },
-        additionalSignUpFields: [{
-          name: 'name',
-          placeholder: 'Full Name',
-        }]
+        }
       };
 
-      // var lockOptions = {
-      //   authParams:{
-      //     scope: 'openid email name user_metadata app_metadata picture',
-      //     connections: ['google-oauth2', 'Username-Password-Authentication'],
-      //     connection_scopes: {
-      //       'google-oauth2': [
-      //         'profile',
-      //         'https://www.googleapis.com/auth/drive.photos.readonly',
-      //       ]
-      //     },
-      //     access_type: 'offline',
-      //   },
-      // };
       this.get('session').authenticate('authenticator:auth0-lock', lockOptions);
     },
 

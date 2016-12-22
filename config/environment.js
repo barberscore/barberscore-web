@@ -37,7 +37,7 @@ module.exports = function(environment) {
       ].join(' '),
       'connect-src': [
         'http://localhost:4200',
-        'https://barberscore-dev.auth0.com',
+        'https://*.auth0.com',
         'https://api-iam.intercom.io',
         'https://api-ping.intercom.io',
         'https://nexus-websocket-a.intercom.io',
