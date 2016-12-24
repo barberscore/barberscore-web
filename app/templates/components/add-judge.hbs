@@ -11,6 +11,8 @@
     }}
       {{person.name}}
     {{/power-select}}
+  {{/bs-form-group}}
+  {{#bs-form-group}}
     {{#power-select
           options=judgeCategory
           selected=category
@@ -21,6 +23,8 @@
     }}
       {{category}}
     {{/power-select}}
+  {{/bs-form-group}}
+  {{#bs-form-group}}
     {{#power-select
           options=judgeKind
           selected=kind

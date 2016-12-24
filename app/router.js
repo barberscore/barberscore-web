@@ -49,6 +49,7 @@ Router.map(function() {
       });
     });
     this.route('judge-manager', {path: '/judge-manager'}, function() {
+      this.route('new', { path: '/new'});
       this.route('judge', { path: '/judge/:judge_id'});
     });
     this.route('quartet-manager', {path: '/quartet-manager'}, function() {

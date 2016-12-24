@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
     'Presentation',
     'Singing',
   ],
-  isEditing: false,
+  isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
@@ -26,37 +26,17 @@ export default Ember.Controller.extend({
       .then(data => resolve(data), reject);
   },
   actions: {
-    newJudge() {
-      let newJudge = this.store.createRecord(
-        'judge'
-      );
-      this.set('model', newJudge);
-      this.set('isEditing', true);
-    },
-    editJudge() {
-      this.set('isEditing', true);
-    },
     cancelJudge() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    deleteJudge() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.destroyRecord()
-      .then(() => {
-        flashMessages.warning('Deleted');
-        this.transitionToRoute('admin.judge-manager');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
+      flashMessages.warning('Cancelled');
+      this.transitionToRoute('admin.judge-manager');
     },
     saveJudge() {
       const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        this.set('isEditing', false);
         flashMessages.success('Saved');
+        this.transitionToRoute('admin.judge-manager');
       })
       .catch(() => {
         flashMessages.danger('Error');
