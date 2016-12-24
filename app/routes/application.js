@@ -18,7 +18,6 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
     login () {
       var lockOptions = {
         allowedConnections: [
-          'google-oauth2',
           'Username-Password-Authentication',
         ],
         autoclose: true,

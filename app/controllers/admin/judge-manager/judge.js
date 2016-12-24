@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
       this.model.destroyRecord()
       .then(() => {
         flashMessages.warning('Deleted');
-        this.transitionToRoute('admin');
+        this.transitionToRoute('admin.judge-manager');
       })
       .catch(() => {
         flashMessages.danger('Error');

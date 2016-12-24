@@ -8,7 +8,7 @@ export default Ember.Component.extend({
         person: this.get('person'),
         category: this.get('category'),
         kind: this.get('kind'),
-        status: this.get('status'),
+        status: 'Active',
       });
       const flashMessages = Ember.get(this, 'flashMessages');
       judge.save()
@@ -16,9 +16,11 @@ export default Ember.Component.extend({
         this.set('person', null);
         this.set('category', null);
         this.set('kind', null);
-        this.set('status', null);
+        this.get('router').transitionTo('admin.judge-manager.judge', judge);
+        flashMessages.success("Saved");
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         flashMessages.danger('Error');
       });
     },

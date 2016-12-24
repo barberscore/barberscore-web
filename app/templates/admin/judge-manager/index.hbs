@@ -22,7 +22,7 @@
                 {{model-picture picture=judge.person.picture}}
               </td>
               <td>
-                {{#link-to 'admin.judge-manager.judge' judge}}{{judge.person.name}}{{/link-to}}
+                {{#link-to 'admin.judge-manager.judge' judge}}{{judge.person.common_name}}{{/link-to}}
               </td>
               <td>
                 {{judge.category}}
@@ -49,7 +49,7 @@
     </div>
 </section>
 <section>
-    {{#if currentUser.user.person.member.is_cj}}
+    {{#if (or currentUser.user.person.member.is_cj currentUser.user.is_staff)}}
       <div>
         {{add-judge}}
       </div>

@@ -1,4 +1,4 @@
-{{#bs-form formLayout="inline" action="saveJudge"}}
+{{#bs-form action="saveJudge"}}
   {{#bs-form-group}}
     {{#power-select
           search=(action "searchPerson")
@@ -30,16 +30,6 @@
           as |kind|
     }}
       {{kind}}
-    {{/power-select}}
-    {{#power-select
-          options=judgeStatus
-          selected=status
-          placeholder="Select Status"
-          onchange=(action (mut status))
-          allowClear=true
-          as |status|
-    }}
-      {{status}}
     {{/power-select}}
   {{/bs-form-group}}
   {{bs-button defaultText="Add Judge" type="primary" buttonType="submit"}}

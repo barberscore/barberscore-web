@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  currentUser: Ember.inject.service('current-user'),
   collapseChorus: false,
   judgeSortProperties: [
     'person.name:asc',
