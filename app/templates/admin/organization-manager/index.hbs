@@ -7,11 +7,14 @@
               <th class='col-md-1'>Picture</th>
               <th>Name</th>
               <th>Status</th>
+              <th>Short Name</th>
+              <th>Code</th>
+              <th>Kind</th>
               {{!-- <th>Actions</th> --}}
             </tr>
           </thead>
           <tbody>
-            {{#each model as |organization|}}
+            {{#each sortedOrganizations as |organization|}}
               <tr>
                 <td>
                   {{model-picture picture=organization.picture}}
@@ -21,6 +24,15 @@
                 </td>
                 <td>
                   {{organization.status}}
+                </td>
+                <td>
+                  {{organization.short_nane}}
+                </td>
+                <td>
+                  {{organization.code}}
+                </td>
+                <td>
+                  {{organization.kind}}
                 </td>
               </tr>
             {{/each}}

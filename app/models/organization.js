@@ -19,6 +19,7 @@ export default Model.extend({
   phone: attr('string'),
   picture: attr('string'),
   description: attr('string'),
+  code: attr('string'),
   short_name: attr('string'),
   long_name: attr('string'),
   lft: attr('number'),
