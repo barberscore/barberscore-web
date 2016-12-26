@@ -69,7 +69,6 @@ module.exports = function(environment) {
     auth0: {
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,
-      redirectURI: '/',
     }
   };
 
