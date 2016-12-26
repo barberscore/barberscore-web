@@ -33,12 +33,22 @@ export default Ember.Controller.extend({
     },
     saveJudge() {
       const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      let judge = this.store.createRecord('judge', {
+        person: this.person,
+        status: this.status,
+        kind: this.kind,
+        category: this.category,
+        start_date: this.start_date,
+        end_date: this.end_date,
+      });
+      judge.save()
+      // this.model.save()
       .then(() => {
         flashMessages.success('Saved');
-        this.transitionToRoute('admin.judge-manager');
+        this.transitionToRoute('admin.judge-manager.judge', judge);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         flashMessages.danger('Error');
       });
     },

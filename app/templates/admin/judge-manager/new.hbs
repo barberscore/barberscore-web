@@ -1,19 +1,19 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
+    {{!-- <div class='panel-heading'>
       {{model-picture picture=model.person.picture}}
       <h4>
         {{model.name}}
       </h4>
-    </div>
+    </div> --}}
     <div class='panel-body'>
-      {{#bs-form formLayout='vertical' model=model}}
+      {{#bs-form formLayout='vertical'}}
         {{#bs-form-group}}
           {{#power-select
                 search=(action "searchPerson")
-                selected=model.person
-                onchange=(action (mut model.person))
+                selected=person
+                onchange=(action (mut person))
                 placeholder="Enter Person Name"
                 class='assignment-width'
                 disabled=isDisabled
@@ -29,8 +29,8 @@
             placeholder='Status'
             disabled=isDisabled
             allowClear=true
-            selected=model.status
-            onchange=(action (mut model.status))
+            selected=status
+            onchange=(action (mut status))
             as |status|
           }}
             {{status}}
@@ -42,8 +42,8 @@
             placeholder='Kind'
             disabled=isDisabled
             allowClear=true
-            selected=model.kind
-            onchange=(action (mut model.kind))
+            selected=kind
+            onchange=(action (mut kind))
             as |kind|
           }}
             {{kind}}
@@ -55,18 +55,18 @@
             placeholder='Category'
             disabled=isDisabled
             allowClear=true
-            selected=model.category
-            onchange=(action (mut model.category))
+            selected=category
+            onchange=(action (mut category))
             as |kind|
           }}
             {{kind}}
           {{/power-select}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{bootstrap-datepicker disabled=isDisabled placeholder="Start Date" class="form-control" value=model.start_date format='yyyy-mm-dd'}}
+          {{bootstrap-datepicker disabled=isDisabled placeholder="Start Date" class="form-control" value=start_date format='yyyy-mm-dd'}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-        {{bootstrap-datepicker disabled=isDisabled placeholder="End Date" class="form-control" value=model.end_date format='yyyy-mm-dd'}}
+        {{bootstrap-datepicker disabled=isDisabled placeholder="End Date" class="form-control" value=end_date format='yyyy-mm-dd'}}
         {{/bs-form-group}}
       {{/bs-form}}
     </div>
