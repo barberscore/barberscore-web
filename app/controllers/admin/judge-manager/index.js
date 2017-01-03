@@ -13,14 +13,25 @@ export default Ember.Controller.extend({
   ),
   actions: {
     newJudge() {
-      let newJudge = this.store.createRecord(
+      this.store.createRecord(
         'judge'
       );
-      console.log(this.model);
       this.set('isEditing', true);
     },
     toggleEdit() {
       this.toggleProperty('isEditing');
+    },
+    saveDirty() {
+      const flashMessages = Ember.get(this, 'flashMessages');
+      this.get('model').save()
+      .then(() => {
+        flashMessages.success('Success');
+        this.toggleProperty('isEditing');
+      })
+      .catch((error) => {
+        console.log(error);
+        flashMessages.danger('Failure');
+      });
     },
     sortBy(judgeSortProperties) {
       this.set('judgeSortProperties', [judgeSortProperties]);
