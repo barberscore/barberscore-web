@@ -1,7 +1,8 @@
-{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+{{!-- {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}} --}}
 <section>
   <div>
-  {{#link-to 'admin.judge-manager.new'  class='btn btn-primary' }}New{{/link-to}}
+  {{#bs-button action=(action 'toggleEdit') class='btn btn-default' }}Edit{{/bs-button}}
+  {{#bs-button action=(action 'newJudge') class='btn btn-primary' }}New{{/bs-button}}
   </div>
   <div class='table-responsive'>
       <table class='table'>
@@ -17,35 +18,11 @@
         </thead>
         <tbody>
           {{#each sortedJudges as |judge|}}
-            <tr>
-              {{!-- <td>
-                {{person-picture person=assignment.judge.person}}
-              </td> --}}
-              <td>
-                {{model-picture picture=judge.person.picture}}
-              </td>
-              <td>
-                {{#link-to 'admin.judge-manager.judge' judge}}{{judge.person.common_name}}{{/link-to}}
-              </td>
-              <td>
-                {{judge.category}}
-              </td>
-              <td>
-                {{judge.kind}}
-              </td>
-              <td>
-                {{judge.status}}
-              </td>
-              {{!-- <td>
-                {{#bs-dropdown}}
-                  {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                  {{#bs-dropdown-menu}}
-                    <li><a href='#' {{action 'scratchAssignment' assignment}}>Scratch</a></li>
-                    <li><a href='#' {{action 'deleteAssignment' assignment}}>Delete</a></li>
-                  {{/bs-dropdown-menu}}
-                {{/bs-dropdown}}
-              </td> --}}
-            </tr>
+              {{#if isEditing}}
+                {{judge-edit judge=judge}}
+              {{else}}
+                {{judge-item judge=judge}}
+              {{/if}}
           {{/each}}
         </tbody>
       </table>
