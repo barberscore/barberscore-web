@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'tr',
+  classNameBindings: ['judge.isError:danger', 'judge.hasDirtyAttributes:warning'],
   statusOptions: [
     'Active',
     'Inactive',
