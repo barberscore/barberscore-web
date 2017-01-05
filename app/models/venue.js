@@ -3,6 +3,7 @@ import attr from 'ember-data/attr';
 import {hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
+  nomen: attr('string'),
   name: attr('string'),
   location: attr('string'),
   city: attr('string'),

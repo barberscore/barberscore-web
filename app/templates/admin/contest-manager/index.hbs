@@ -4,7 +4,7 @@
     <table class='table'>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'name:asc'}}>Name</th>
+          <th {{action 'sortBy' 'nomen:asc'}}>Nomen</th>
           <th {{action 'sortBy' 'status:asc'}}>Status</th>
           <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
           <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
@@ -13,7 +13,7 @@
       <tbody>
         {{#each sortedSessions as |session|}}
           <tr>
-            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.name}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
             <td>{{session.status}}</td>
             <td>{{session.convention.name}}</td>
             <td>{{moment-format session.convention.start_date 'LL'}}</td>

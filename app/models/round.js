@@ -6,7 +6,7 @@ import {memberAction} from 'ember-api-actions';
 const {computed} = Ember;
 
 export default Model.extend({
-  name: attr('string'),
+  nomen: attr('string'),
   status: attr('round-status'),
   kind: attr('round-kind'),
   start_date: attr('isodate'),

@@ -3,7 +3,7 @@ import attr from 'ember-data/attr';
 import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
-  name: attr('string'),
+  nomen: attr('string'),
   status: attr('contestant-status'),
   contestscore: belongsTo('contestantscore', {async: true}),
   contest: belongsTo('contest', {async: true}),

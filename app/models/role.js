@@ -5,7 +5,7 @@ import {belongsTo} from 'ember-data/relationships';
 const {computed} = Ember;
 
 export default Model.extend({
-  name: attr('string'),
+  nomen: attr('string'),
   status: attr('role-status'),
   part: attr('role-part'),
   person: belongsTo('person', {async: true}),

@@ -5,7 +5,7 @@ import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
-  name: attr('string'),
+  nomen: attr('string'),
   status: attr('contest-status'),
   cycle: attr('number'),
   is_qualifier: attr('boolean'),

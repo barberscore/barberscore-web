@@ -3,7 +3,7 @@ import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
-  name: attr('string'),
+  nomen: attr('string'),
   status: attr('submission-status'),
   title: attr('string'),
   arranger: attr('string', {defaultValue:''}),

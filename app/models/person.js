@@ -3,6 +3,7 @@ import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
+  nomen: attr('string'),
   name: attr('string'),
   kind: attr('person-kind'),
   status: attr('person-status'),
@@ -16,7 +17,6 @@ export default Model.extend({
   phone: attr('string', {defaultValue:''}),
   picture: attr('string', {defaultValue:''}),
   description: attr('string', {defaultValue:''}),
-  nomen: attr('string'),
   common_name: attr('string'),
   full_name: attr('string'),
   formal_name: attr('string'),

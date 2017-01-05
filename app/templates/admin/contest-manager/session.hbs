@@ -3,7 +3,7 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.name}}: {{model.status}}
+        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
       </h4>
       <ul class='list-inline'>
         <li>{{#link-to 'admin.contest-manager.session.assignments' model}}Assignments{{/link-to}}</li>
