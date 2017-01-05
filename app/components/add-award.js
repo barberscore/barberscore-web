@@ -14,16 +14,15 @@ export default Ember.Component.extend({
         flashMessages.success('Contest Added');
         this.set('award', null);
       })
-      .catch((failure) => {
+      .catch((error) => {
         contest.deleteRecord();
-        flashMessages.danger(failure);
+        console.log(error);
+        flashMessages.danger("Error");
       });
     }
   },
   allAwards: Ember.computed(function(){
     return this.get('store').findAll('award');
-    // var awards = this.get('
-
   }),
   filteredAwards: Ember.computed.filterBy(
     'allAwards',
@@ -35,5 +34,9 @@ export default Ember.Component.extend({
     'allAwards',
     'sortAwards'
   ),
+  hosts: Ember.computed(
+    'session',
+    function() {
+      return this.get('session.convention.hosts');
+  }),
 });
-

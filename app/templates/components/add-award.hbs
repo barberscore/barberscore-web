@@ -3,14 +3,15 @@
     {{#power-select
       options=availableAwards
       placeholder='Search by Award Name (if qualifier, search for parent award)'
-      searchField='name'
+      searchField='nomen'
       allowClear=true
       selected=award
       onchange=(action (mut award))
       as |award|
     }}
-      {{award.name}}
+      {{award.nomen}}
     {{/power-select}}
   {{/bs-form-group}}
   {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
 {{/bs-form}}
+{{hosts}}

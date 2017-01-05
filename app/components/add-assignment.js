@@ -4,21 +4,22 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveAssignment() {
+      const flashMessages = Ember.get(this, 'flashMessages');
       var assignment = this.get('store').createRecord('assignment', {
         session: this.get('model'),
         judge: this.get('judge'),
         kind: "Official",
         category: this.get('judge.category'),
       });
-      const flashMessages = Ember.get(this, 'flashMessages');
       assignment.save()
       .then(() => {
         this.set('judge', null);
         flashMessages.success("Saved");
       })
-      .catch((failure) => {
+      .catch((error) => {
         assignment.deleteRecord();
-        flashMessages.danger(failure);
+        console.log(error);
+        flashMessages.danger("Error");
       });
     },
     searchAssignment(term) {
@@ -39,7 +40,7 @@ export default Ember.Component.extend({
   ],
   _performSearch(term, resolve, reject) {
     if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('judge', {'name__icontains': term})
+    this.get('store').query('judge', {'nomen__icontains': term})
       .then(data => resolve(data), reject);
   }
 });
