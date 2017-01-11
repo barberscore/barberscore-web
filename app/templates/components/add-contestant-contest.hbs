@@ -1,15 +1,18 @@
-
-{{#bs-form formLayout="inline" action="saveRecord" class='form-block'}}
-  {{#bs-form-group}}
+<div class='row'>
+  <div class='col-xs-6'>
     {{#power-select
       options=sortedContests
-      placeholder='Search by Contest Name (add Performer from Session if necessary)'
+      placeholder='Search by Contest Name'
       selected=contest
       onchange=(action (mut contest))
+      class='assignment-width'
+      allowClear=true
       as |contest|
     }}
       {{contest.award.name}}
     {{/power-select}}
-  {{/bs-form-group}}
-  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
-{{/bs-form}}
+  </div>
+  <div class='col-xs-2'>
+    {{bs-button defaultText="Add" type="primary" action=(action 'saveRecord')}}
+  </div>
+</div>

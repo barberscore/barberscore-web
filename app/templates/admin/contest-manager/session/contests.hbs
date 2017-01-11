@@ -13,8 +13,8 @@
             <th class='col-md-4'>Name</th>
             {{!-- <th class='col-md-1'>Qualifier</th> --}}
             {{!-- <th class='col-md-5'>Champion</th> --}}
-            <th class='col-md-1'>Count</th>
-            {{!-- <th class='col-md-1'>Actions</th> --}}
+            <th class='col-md-1'>Contestants</th>
+            <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -41,6 +41,9 @@
                   {{/bs-dropdown-menu}}
                 {{/bs-dropdown}}
               </td> --}}
+              <td>
+              {{fa-icon 'trash-o' click=(action 'deleteContest' contest)}}
+              </td>
             </tr>
           {{/each}}
         </tbody>

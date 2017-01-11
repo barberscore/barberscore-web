@@ -1,7 +1,7 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
     <h4 {{action "toggleDetails"}}>
-        {{#if isDetailsCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Details</span>
+        {{#if isDetailsCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Entrant Details: {{model.nomen}}</span>
     </h4>
   </div>
   {{#bs-collapse collapsed=isDetailsCollapsed}}
@@ -9,10 +9,10 @@
       <p>{{model.name}}</p>
       {{#if isEditing}}
         {{#bs-form action='savePerformer'}}
-          {{#bs-form-group}}
+{{!--           {{#bs-form-group}}
             {{performer-status status=model.status}}
           {{/bs-form-group}}
-          {{#bs-form-group}}
+ --}}          {{#bs-form-group}}
             {{select-representing representing=model.representing}}
           {{/bs-form-group}}
           {{#bs-form-group}}
@@ -58,9 +58,9 @@
             {{#link-to 'admin.quartet-manager.quartet' model.group}}{{model.group.name}}{{/link-to}}
           {{/if}}
         </p>
-        <p>
+        {{!-- <p>
           <strong>Status: </strong>{{model.status}}
-        </p>
+        </p> --}}
         <p>
           <strong>Representing: </strong>{{model.representing.name}}
         </p>

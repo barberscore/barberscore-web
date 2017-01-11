@@ -1,7 +1,7 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
     <h3>
-      Assignment Details
+      Assignment Details: {{model.nomen}}
     </h3>
   </div>
   <div class='panel-body'>
@@ -21,7 +21,7 @@
         {{/bs-form-group}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
         {{#bs-button action=(action 'cancelAssignment')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{!-- {{#bs-button action=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
       {{/bs-form}}
     {{else}}
       {{!-- <p>
@@ -40,7 +40,7 @@
       <strong>Kind: </strong>{{model.kind}}
       </p>
       {{#bs-button action=(action 'editAssignment')}}Edit{{/bs-button}}
-      {{#bs-button action=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}}
+      {{!-- {{#bs-button action=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}} --}}
     {{/if}}
   </div>
 </div>

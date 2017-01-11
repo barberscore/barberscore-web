@@ -14,9 +14,10 @@ export default Ember.Component.extend({
         this.set('group', null);
         flashMessages.success('Success');
       })
-      .catch((failure) => {
+      .catch((error) => {
         performer.deleteRecord();
-        flashMessages.danger(failure);
+        console.log(error);
+        flashMessages.danger('Error');
       });
     },
     searchGroup(term) {

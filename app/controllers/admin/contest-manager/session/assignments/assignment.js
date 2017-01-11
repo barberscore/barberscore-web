@@ -19,11 +19,16 @@ export default Ember.Controller.extend({
     },
     deleteAssignment() {
       const flashMessages = Ember.get(this, 'flashMessages');
+      let session = this.model;
       this.model.destroyRecord()
       .then(() => {
+        console.log(session);
+        this.set('isEditing', false);
+        this.transitionToRoute('admin.contest-manager.session', session);
         flashMessages.warning('Deleted');
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         flashMessages.danger('Error');
       });
     },
