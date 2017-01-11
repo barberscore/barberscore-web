@@ -24,19 +24,11 @@ export default Ember.Component.extend({
   allAwards: Ember.computed(function(){
     return this.get('store').findAll('award');
   }),
-  filteredAwards: Ember.computed.filterBy(
-    'allAwards',
-    'kind',
-    'session.kind'
-  ),
-  sortAwards: ['name:asc'],
+  awardSort: [
+    'organization.lft',
+  ],
   availableAwards: Ember.computed.sort(
     'allAwards',
-    'sortAwards'
+    'awardSort'
   ),
-  hosts: Ember.computed(
-    'session',
-    function() {
-      return this.get('session.convention.hosts');
-  }),
 });

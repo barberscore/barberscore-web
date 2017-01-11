@@ -21,7 +21,7 @@
           {{#each model.sortedContests as |contest|}}
             <tr>
               <td>
-                {{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.name}}{{/link-to}}
+                {{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/link-to}}
               </td>
               {{!-- <td>
                 {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}

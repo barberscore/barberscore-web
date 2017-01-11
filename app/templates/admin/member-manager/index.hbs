@@ -1,4 +1,7 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+<div>
+Pagination: {{page-numbers content=content}}
+</div>
 <section>
   <div class='table-responsive'>
         <table class='table'>
@@ -11,7 +14,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedPersons as |person|}}
+            {{#each model as |person|}}
               <tr>
                 <td>
                   {{model-picture picture=person.picture}}
