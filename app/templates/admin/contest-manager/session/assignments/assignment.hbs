@@ -24,11 +24,11 @@
         {{#bs-button action=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{/bs-form}}
     {{else}}
-      <p>
+      {{!-- <p>
         {{person-picture person=model.judge.person}}
-      </p>
+      </p> --}}
       <p>
-        <strong>Person: </strong>{{#link-to 'admin.member-manager.member' model.judge.person}}{{model.judge.person.name}}{{/link-to}}
+        <strong>Person: </strong>{{#link-to 'admin.member-manager.member' model.judge.person}}{{model.judge.person.common_name}}{{/link-to}}
       </p>
       <p>
       <strong>Status: </strong>{{model.status}}
