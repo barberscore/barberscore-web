@@ -1,0 +1,16 @@
+<td>
+  {{model.nomen}}
+</td>
+<td>
+  {{#power-select
+        search=(action "searchAssignment")
+        placeholder="Enter Assignment Name"
+        class='assignment-width'
+        allowClear=true
+        selected=model.judge
+        onchange=(action (mut model.judge))
+        as |judge|
+  }}
+      {{judge.nomen}}
+  {{/power-select}}
+</td>

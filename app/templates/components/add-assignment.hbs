@@ -1,16 +1,11 @@
-{{#bs-form formLayout="inline" action="saveAssignment"}}
-  {{#bs-form-group}}
-    {{#power-select
-          search=(action "searchAssignment")
-          placeholder="Enter Assignment Name"
-          class='assignment-width'
-          allowClear=true
-          selected=judge
-          onchange=(action (mut judge))
-          as |judge|
-    }}
-        {{judge.nomen}}
-    {{/power-select}}
-  {{/bs-form-group}}
-  {{bs-button defaultText="Add Assignment" type="primary" buttonType="submit"}}
-{{/bs-form}}
+{{#power-select
+      search=(action "searchAssignment")
+      placeholder="Enter Assignment Name"
+      class='assignment-width'
+      allowClear=true
+      selected=judge
+      onchange=(action (mut judge))
+      as |judge|
+}}
+    {{judge.nomen}}
+{{/power-select}}

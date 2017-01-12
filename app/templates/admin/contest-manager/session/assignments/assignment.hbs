@@ -7,7 +7,7 @@
   <div class='panel-body'>
   {{#if isEditing}}
       {{#bs-form-group}}
-        {{model.judge.person.name}}
+        {{model.nomen}}
       {{/bs-form-group}}
       {{#bs-form action='saveAssignment'}}
         {{#bs-form-group}}
@@ -28,7 +28,7 @@
         {{person-picture person=model.judge.person}}
       </p> --}}
       <p>
-        <strong>Person: </strong>{{#link-to 'admin.member-manager.member' model.judge.person}}{{model.judge.person.common_name}}{{/link-to}}
+        {{model.nomen}}
       </p>
       <p>
       <strong>Status: </strong>{{model.status}}
