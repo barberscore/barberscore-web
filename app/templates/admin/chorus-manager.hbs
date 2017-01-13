@@ -1,0 +1,16 @@
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+<section>
+  {{#power-select
+        search=(action "searchGroup")
+        selected=group
+        onchange=(action "transitionGroup")
+        placeholder="Enter Group Name"
+        allowClear=true
+        as |group|
+  }}
+    {{group.name}}
+  {{/power-select}}
+</section>
+<section>
+  {{outlet}}
+</section>
