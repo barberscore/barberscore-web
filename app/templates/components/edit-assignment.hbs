@@ -14,3 +14,15 @@
       {{judge.nomen}}
   {{/power-select}}
 </td>
+<td>
+  {{#power-select
+    options=statusOptions
+    placeholder='Status'
+    allowClear=true
+    selected=model.status
+    onchange=(action (mut model.status))
+    as |status|
+  }}
+    {{status}}
+  {{/power-select}}
+</td>

@@ -3,26 +3,14 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   tagName: 'tr',
   store: Ember.inject.service(),
+  statusOptions: [
+      'New',
+      'Scheduled',
+      'Confirmed',
+      'Validated',
+      'Final',
+  ],
   actions: {
-    // saveAssignment() {
-    //   const flashMessages = Ember.get(this, 'flashMessages');
-    //   var assignment = this.get('store').createRecord('assignment', {
-    //     session: this.get('model'),
-    //     judge: this.get('judge'),
-    //     kind: "Official",
-    //     category: this.get('judge.category'),
-    //   });
-    //   assignment.save()
-    //   .then(() => {
-    //     this.set('judge', null);
-    //     flashMessages.success("Saved");
-    //   })
-    //   .catch((error) => {
-    //     assignment.deleteRecord();
-    //     console.log(error);
-    //     flashMessages.danger("Error");
-    //   });
-    // },
     searchAssignment(term) {
       return new Ember.RSVP.Promise((resolve, reject) => {
         Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);

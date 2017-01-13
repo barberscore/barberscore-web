@@ -2,7 +2,7 @@
   {{model.nomen}}
 </td>
 <td>
-  {{model.judge.person.common_name}}
+  {{if model.judge.person.common_name model.judge.person.common_name "(Not Selected)"}}
 </td>
 <td>
   {{model.status}}
