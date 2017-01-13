@@ -11,13 +11,13 @@
         {{#bs-form formLayout='vertical' model=model action='saveChorus'}}
           {{#bs-form-group}}
             {{#if isEditing}}
-              {{file-upload target=model.id}}
+              {{file-upload target=model.id resource='person'}}
             {{else}}
               {{model-picture picture=model.picture}}
             {{/if}}
           {{/bs-form-group}}
           {{bs-form-element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
-          {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}}
+          {{!-- {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}} --}}
           {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
           {{bs-form-element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
           {{bs-form-element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
