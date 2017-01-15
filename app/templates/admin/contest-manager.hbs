@@ -3,8 +3,9 @@
 
 <section>
   {{#power-select
-        search=(action "searchSession")
+        search=(perform searchTask)
         selected=session
+        options=contestAssignments
         onchange=(action "transitionSession")
         placeholder="Enter Contest Name"
         allowClear=true
@@ -13,39 +14,6 @@
     {{session.nomen}}
   {{/power-select}}
 </section>
-
-{{#if model}}
-  <section>
-    <div>
-      <table class='table'>
-        <caption>Current Assignments</caption>
-        <thead>
-          <tr>
-            <th {{action 'sortBy' 'nomen:asc'}}>Nomen</th>
-            <th {{action 'sortBy' 'status:asc'}}>Status</th>
-            <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
-            <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedSessions as |session|}}
-            <tr>
-              <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
-              <td>{{session.status}}</td>
-              <td>{{session.convention.name}}</td>
-              <td>{{moment-format session.convention.start_date 'LL'}}</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </section>
-{{else}}
-  <h3>
-    (No current assignments)
-  </h3>
-{{/if}}
-
 
 <section>
   {{outlet}}
