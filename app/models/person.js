@@ -29,6 +29,7 @@ export default Model.extend({
   judges: hasMany('judge', {async: true}),
   roles: hasMany('role', {async: true}),
   panels: hasMany('assignment', {async: true}),
+  conventions: hasMany('convention', {inverse:'drcj', async: true}),
   user: belongsTo('user', {async: true}),
   permissions: attr(),
 });
