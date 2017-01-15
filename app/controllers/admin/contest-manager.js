@@ -15,9 +15,8 @@ export default Ember.Controller.extend({
   contestAssignments: Ember.computed(
     function() {
       let user = this.get('currentUser.user.id');
-      console.log(user);
       return this.get('store').query('session', {
-        'assignments__judge__person__user': user
+        'assignments__judge__user': user
       });
     }
   ),
