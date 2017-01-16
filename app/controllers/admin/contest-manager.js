@@ -16,7 +16,7 @@ export default Ember.Controller.extend({
     function() {
       let user = this.get('currentUser.user.id');
       return this.get('store').query('session', {
-        'assignments__judge__user': user
+        'assignments__person__user': user
       });
     }
   ),

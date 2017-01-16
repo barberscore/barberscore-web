@@ -11,8 +11,7 @@ export default Model.extend({
   kind: attr('assignment-kind'),
   slot: attr('number'),
   session: belongsTo('session', {async: true}),
-  judge: belongsTo('judge', {async: true}),
-  scores: hasMany('score', {async: true}),
+  person: belongsTo('person', {async: true}),
   permissions: attr(),
 
   rowClass: Ember.computed(

@@ -15,7 +15,7 @@ export default Model.extend({
   penalty: attr('number'),
   is_flagged: attr('boolean'),
   song: belongsTo('song', {async: true}),
-  assignment: belongsTo('assignment', {async: true}),
+  person: belongsTo('person', {async: true}),
   permissions: attr(),
 
   lowReview: computed(
