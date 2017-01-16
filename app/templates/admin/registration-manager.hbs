@@ -2,7 +2,7 @@
 
 {{#if currentUser.user.is_staff}}
   <section>
-    {{#power-select
+    {{!-- {{#power-select
           search=(perform searchTask)
           selected=session
           onchange=(action "transitionSession")
@@ -11,35 +11,35 @@
           as |session|
     }}
       {{session.nomen}}
-    {{/power-select}}
+    {{/power-select}} --}}
   </section>
 {{/if}}
 
 <section>
   <div>
     <table class='table'>
-      <caption>Current Assignments</caption>
+      <caption>Current Registrations</caption>
       <thead>
         <tr>
           <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
           <th {{action 'sortBy' 'status:asc'}}>Status</th>
-          <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
-          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
+          {{!-- <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th> --}}
+          {{!-- <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th> --}}
         </tr>
       </thead>
       <tbody>
         {{#if model}}
-          {{#each model as |session|}}
+          {{#each model as |performer|}}
             <tr>
-              <td>{{#link-to 'admin.scoring-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
-              <td>{{session.status}}</td>
-              <td>{{session.convention.name}}</td>
-              <td>{{moment-format session.convention.start_date 'LL'}}</td>
+              <td>{{#link-to 'admin.registration-manager.performer' performer}}{{performer.nomen}}{{/link-to}}</td>
+              <td>{{performer.status}}</td>
+              {{!-- <td>{{performer.convention.name}}</td> --}}
+              {{!-- <td>{{moment-format performer.convention.start_date 'LL'}}</td> --}}
             </tr>
           {{/each}}
         {{else}}
           <tr>
-            <td>(No current assignments.)</td>
+            <td>(No current registrations.)</td>
           </tr>
         {{/if}}
       </tbody>

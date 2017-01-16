@@ -29,7 +29,7 @@
       </thead>
       <tbody>
         {{#if model}}
-          {{#each sortedSessions as |session|}}
+          {{#each model as |session|}}
             <tr>
               <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
               <td>{{session.status}}</td>

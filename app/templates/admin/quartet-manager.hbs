@@ -3,6 +3,7 @@
   <section>
     <div class='table-responsive'>
       <table class='table'>
+        <caption>Current Quartets</caption>
         <thead>
           <tr>
             <th class='col-md-1'>Picture</th>
@@ -36,3 +37,59 @@
     I'm sorry, you don't have permissions to manage any quartets.
   </h3>
 {{/if}}
+
+
+
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+
+{{#if currentUser.user.is_staff}}
+  <section>
+    {{#power-select
+          search=(perform searchTask)
+          selected=quartet
+          onchange=(action "transitionQuartet")
+          placeholder="Search by Quartet Name"
+          allowClear=true
+          as |quartet|
+    }}
+      {{quartet.nomen}}
+    {{/power-select}}
+  </section>
+{{/if}}
+
+<section>
+  <div>
+    <table class='table'>
+      <caption>Current Assignments</caption>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
+          <th {{action 'sortBy' 'status:asc'}}>Status</th>
+          <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
+          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if model}}
+          {{#each model as |session|}}
+            <tr>
+              <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
+              <td>{{session.status}}</td>
+              <td>{{session.convention.name}}</td>
+              <td>{{moment-format session.convention.start_date 'LL'}}</td>
+            </tr>
+          {{/each}}
+        {{else}}
+          <tr>
+            <td>(No current assignments.)</td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  {{outlet}}
+</section>
+

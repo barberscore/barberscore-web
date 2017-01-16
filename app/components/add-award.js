@@ -1,7 +1,13 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('award', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
   actions: {
     saveAward() {
       const flashMessages = Ember.get(this, 'flashMessages');
@@ -21,14 +27,4 @@ export default Ember.Component.extend({
       });
     }
   },
-  allAwards: Ember.computed(function(){
-    return this.get('store').findAll('award');
-  }),
-  awardSort: [
-    'organization.lft',
-  ],
-  availableAwards: Ember.computed.sort(
-    'allAwards',
-    'awardSort'
-  ),
 });

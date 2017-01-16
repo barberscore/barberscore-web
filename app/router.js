@@ -64,6 +64,9 @@ Router.map(function() {
     this.route('member-manager', {path: '/member-manager'}, function() {
       this.route('member', { path: '/member/:person_id'});
     });
+    this.route('registration-manager', {path: '/registration-manager'}, function() {
+      this.route('performer', { path: '/performer/:performer_id' });
+    });
   });
 
   this.route('public', { path: '/' }, function() {

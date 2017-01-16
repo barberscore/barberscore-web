@@ -1,16 +1,11 @@
-{{#bs-form formLayout="inline" action="saveAward" class='form-block'}}
-  {{#bs-form-group}}
-    {{#power-select
-      options=availableAwards
-      placeholder='Search by Award Name (if qualifier, search for parent award)'
-      searchField='nomen'
-      allowClear=true
+{{#power-select
+      search=(perform searchTask)
       selected=award
       onchange=(action (mut award))
+      placeholder="Search by Award Name"
+      allowClear=true
       as |award|
-    }}
-      {{award.nomen}}
-    {{/power-select}}
-  {{/bs-form-group}}
-  {{bs-button defaultText="Add" type="primary" buttonType="submit"}}
-{{/bs-form}}
+}}
+  {{award.nomen}}
+{{/power-select}}
+{{#bs-button action=(action 'saveAward') class='btn btn-primary'}}Add{{/bs-button}}
