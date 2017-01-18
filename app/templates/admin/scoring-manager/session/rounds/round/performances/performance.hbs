@@ -3,8 +3,8 @@
     <div class='panel-heading'>
       <h4>Appearance: {{model.status}}</h4>
       <ul class='list-inline'>
-        <li>{{#bs-button action=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button action=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+        <li>{{#bs-button onClick=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button onClick=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
       </ul>
     </div>
     <div class='panel-body'>
@@ -141,7 +141,7 @@
           </tbody>
         </table>
       </div>
-      {{#bs-button action='savePerformance'}}Save{{/bs-button}}
+      {{#bs-button onClick='savePerformance'}}Save{{/bs-button}}
     </div>
   </div>
 </section>

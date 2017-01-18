@@ -5,10 +5,10 @@
         Assignments
       </h4>
       {{#if isEditing}}
-        {{#bs-button action=(action 'cancelEdits')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'saveEdits')}}Save{{/bs-button}}
+        {{#bs-button onClick=(action 'cancelEdits')}}Cancel{{/bs-button}}
+        {{#bs-button onClick=(action 'saveEdits')}}Save{{/bs-button}}
       {{else}}
-        {{#bs-button action=(action 'setEditing')}}Edit{{/bs-button}}
+        {{#bs-button onClick=(action 'setEditing')}}Edit{{/bs-button}}
       {{/if}}
     </div>
       <div class='panel-body'>

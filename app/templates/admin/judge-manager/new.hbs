@@ -72,8 +72,8 @@
     </div>
     <div class='panel-footer'>
       {{#bs-form}}
-        {{#bs-button type="primary" action=(action 'saveJudge')}}Save{{/bs-button}}
-        {{#bs-button type="default" action=(action 'cancelJudge')}}Cancel{{/bs-button}}
+        {{#bs-button onClick=(action 'saveJudge') type="primary" }}Save{{/bs-button}}
+        {{#bs-button onClick=(action 'cancelJudge') type="default"}}Cancel{{/bs-button}}
       {{/bs-form}}
     </div>
   </div>

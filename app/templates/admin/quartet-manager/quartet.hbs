@@ -31,10 +31,10 @@
         {{#bs-form-group}}
 
         {{#if isEditing}}
-          {{#bs-button icon='fa fa-undo' type='default' action=(action 'undoEditing')}}Cancel{{/bs-button}}
-          {{#bs-button icon='fa fa-save' type='primary' action=(action 'saveEditing')}}Save{{/bs-button}}
+          {{#bs-button icon='fa fa-undo' type='default' onClick=(action 'undoEditing')}}Cancel{{/bs-button}}
+          {{#bs-button icon='fa fa-save' type='primary' onClick=(action 'saveEditing')}}Save{{/bs-button}}
         {{else}}
-          {{#bs-button icon='fa fa-edit' type='default' action=(action 'setEditing')}}Edit{{/bs-button}}
+          {{#bs-button icon='fa fa-edit' type='default' onClick=(action 'setEditing')}}Edit{{/bs-button}}
         {{/if}}
         {{/bs-form-group}}
       </div>

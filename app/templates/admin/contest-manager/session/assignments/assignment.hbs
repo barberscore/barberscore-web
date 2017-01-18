@@ -20,8 +20,8 @@
           {{assignment-kind kind=model.kind}}
         {{/bs-form-group}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-        {{#bs-button action=(action 'cancelAssignment')}}Cancel{{/bs-button}}
-        {{!-- {{#bs-button action=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
+        {{#bs-button onClick=(action 'cancelAssignment')}}Cancel{{/bs-button}}
+        {{!-- {{#bs-button onClick=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
       {{/bs-form}}
     {{else}}
       {{!-- <p>
@@ -39,8 +39,8 @@
       <p>
       <strong>Kind: </strong>{{model.kind}}
       </p>
-      {{#bs-button action=(action 'editAssignment')}}Edit{{/bs-button}}
-      {{!-- {{#bs-button action=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}} --}}
+      {{#bs-button onClick=(action 'editAssignment')}}Edit{{/bs-button}}
+      {{!-- {{#bs-button onClick=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}} --}}
     {{/if}}
   </div>
 </div>

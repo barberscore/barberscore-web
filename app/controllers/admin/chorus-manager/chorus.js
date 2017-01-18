@@ -5,11 +5,12 @@ export default Ember.Controller.extend({
   isRoleEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   isRoleDisabled: Ember.computed.not('isRoleEditing'),
-  collapseChorus: false,
+  collapsed: false,
+  notCollapsed: Ember.computed.not('collapsed'),
   isRoleCollapsed: false,
   actions: {
-    collapseHeader() {
-      this.toggleProperty('collapseChorus');
+    toggleCollapsed() {
+      this.toggleProperty('collapsed');
     },
     collapseRole() {
       this.toggleProperty('collapseRole');
@@ -50,42 +51,42 @@ export default Ember.Controller.extend({
         flashMessages.danger('Error');
       });
     },
-    newRole() {
-      let newRole = this.store.createRecord(
-        'chorus'
-      );
-      this.set('model', newRole);
-      this.set('isRoleEditing', true);
-    },
-    editRole() {
-      this.set('isRoleEditing', true);
-    },
-    cancelRole() {
-      this.model.rollbackAttributes();
-      this.set('isRoleEditing', false);
-    },
-    deleteRole() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.destroyRecord()
-      .then(() => {
-        flashMessages.warning('Deleted');
-        this.transitionToRoute('admin');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
-    saveRoles() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
-      .then(response => {
-        response.get('roles').invoke('save');
-        this.set('isRoleEditing', false);
-        flashMessages.success('Saved');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
+    // newRole() {
+    //   let newRole = this.store.createRecord(
+    //     'chorus'
+    //   );
+    //   this.set('model', newRole);
+    //   this.set('isRoleEditing', true);
+    // },
+    // editRole() {
+    //   this.set('isRoleEditing', true);
+    // },
+    // cancelRole() {
+    //   this.model.rollbackAttributes();
+    //   this.set('isRoleEditing', false);
+    // },
+    // deleteRole() {
+    //   const flashMessages = Ember.get(this, 'flashMessages');
+    //   this.model.destroyRecord()
+    //   .then(() => {
+    //     flashMessages.warning('Deleted');
+    //     this.transitionToRoute('admin');
+    //   })
+    //   .catch(() => {
+    //     flashMessages.danger('Error');
+    //   });
+    // },
+    // saveRoles() {
+    //   const flashMessages = Ember.get(this, 'flashMessages');
+    //   this.model.save()
+    //   .then(response => {
+    //     response.get('roles').invoke('save');
+    //     this.set('isRoleEditing', false);
+    //     flashMessages.success('Saved');
+    //   })
+    //   .catch(() => {
+    //     flashMessages.danger('Error');
+    //   });
+    // },
   },
 });

@@ -106,10 +106,10 @@
         {{#bs-form action='saveJudge'}}
           {{#if isEditing}}
               {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button action=(action 'cancelJudge')}}Cancel{{/bs-button}}
-              {{#bs-button action=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
+              {{#bs-button onClick=(action 'cancelJudge')}}Cancel{{/bs-button}}
+              {{#bs-button onClick=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button action=(action 'editJudge')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editJudge')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>

@@ -13,10 +13,10 @@
       <div class='panel-body'>
         {{#bs-form-group}}
           {{#bs-button-group}}
-            {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}
+            {{#bs-button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
+            {{#bs-button onClick=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
+            {{#bs-button onClick=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
+            {{#bs-button onClick=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}
           {{/bs-button-group}}
         {{/bs-form-group}}
         {{#bs-form-group}}

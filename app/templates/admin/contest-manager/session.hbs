@@ -14,9 +14,9 @@
       <div class='panel-body'>
         {{#bs-form-group}}
           {{#bs-button-group}}
-            {{#bs-button action=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button action=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
+            {{#bs-button onClick=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bs-button}}
+            {{#bs-button onClick=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bs-button}}
+            {{#bs-button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
           {{/bs-button-group}}
         {{/bs-form-group}}
         {{#bs-form-group}}
