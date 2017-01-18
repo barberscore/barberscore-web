@@ -1,29 +1,15 @@
-
-{{#if currentUser.user.is_staff}}
-  <section>
-    {{#power-select
-          search=(perform searchTask)
-          selected=convention
-          onchange=(action "transitionSession")
-          placeholder="Search by Session Name"
-          allowClear=true
-          as |convention|
-    }}
-      {{convention.nomen}}
-    {{/power-select}}
-  </section>
-{{/if}}
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 
 <section>
-  <div>
+  <div class='table-responsive'>
     <table class='table'>
       <caption>Current Conventions</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
-          <th {{action 'sortBy' 'venue:asc'}}>Venue</th>
-          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
-          <th {{action 'sortBy' 'status:asc'}}>Status</th>
+          <th>Name</th>
+          <th>Venue</th>
+          <th>Date</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -34,25 +20,14 @@
             <td>{{moment-format convention.start_date 'LL'}}</td>
             <td>{{convention.status}}</td>
           </tr>
+        {{else}}
+          <tr>
+            <td>No current conventions</td>
+          </tr>
         {{/each}}
       </tbody>
       <tfoot>
         <tr>
-          {{!-- <td>
-            {{#power-select
-              search=(perform searchTask)
-              selected=award
-              onchange=(action (mut award))
-              placeholder="Search Awards"
-              allowClear=true
-              as |award|
-            }}
-              {{award.nomen}}
-            {{/power-select}}
-          </td>
-          <td>
-            {{#bs-button action=(action 'saveAward') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
-          </td> --}}
         </tr>
       </tfoot>
     </table>

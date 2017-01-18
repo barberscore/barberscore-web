@@ -1,47 +1,30 @@
-{{!-- {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}} --}}
-
-{{#if currentUser.user.is_staff}}
-  <section>
-    {{#power-select
-          search=(perform searchTask)
-          selected=session
-          onchange=(action "transitionSession")
-          placeholder="Search by Session Name"
-          allowClear=true
-          as |session|
-    }}
-      {{session.nomen}}
-    {{/power-select}}
-  </section>
-{{/if}}
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 
 <section>
-  <div>
+  <div class='table-responsive'>
     <table class='table'>
       <caption>Current Assignments</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
-          <th {{action 'sortBy' 'status:asc'}}>Status</th>
-          <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th>
-          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
+          <th>Name</th>
+          <th>Convention</th>
+          <th>Date</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#if model}}
-          {{#each model as |session|}}
-            <tr>
-              <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
-              <td>{{session.status}}</td>
-              <td>{{session.convention.name}}</td>
-              <td>{{moment-format session.convention.start_date 'LL'}}</td>
-            </tr>
-          {{/each}}
+        {{#each model as |session|}}
+          <tr>
+            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
+            <td>{{session.convention.name}}</td>
+            <td>{{moment-format session.convention.start_date 'LL'}}</td>
+            <td>{{session.status}}</td>
+          </tr>
         {{else}}
           <tr>
             <td>(No current assignments.)</td>
           </tr>
-        {{/if}}
+        {{/each}}
       </tbody>
     </table>
   </div>

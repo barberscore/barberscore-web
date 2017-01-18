@@ -1,38 +1,9 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-{{#if model}}
-  <section>
-    <div class='table-responsive'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th class='col-md-1'>Picture</th>
-            <th>Name</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model as |person|}}
-            <tr>
-              <td>
-                {{model-picture picture=person.picture}}
-              </td>
-              <td>
-                {{#link-to 'admin.person-manager.person' person}}{{person.name}}{{/link-to}}
-              </td>
-              <td>
-                {{person.status}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section>
-    {{outlet}}
-  </section>
-{{else}}
-  <h3>
-    I'm sorry, we don't recognize your account.
-  </h3>
-{{/if}}
+
+{{#each model as |person|}}
+  {{person.common_name}}
+{{/each}}
+
+<section>
+  {{outlet}}
+</section>

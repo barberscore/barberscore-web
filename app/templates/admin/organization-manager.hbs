@@ -4,40 +4,23 @@
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-1'>Picture</th>
               <th>Name</th>
               <th>Status</th>
-              <th>Short Name</th>
-              <th>Code</th>
-              <th>Kind</th>
             </tr>
           </thead>
           <tbody>
-            {{#each sortedOrganizations as |organization|}}
+            {{#each model as |organization|}}
               <tr>
-                <td>
-                  {{model-picture picture=organization.picture}}
-                </td>
                 <td>
                   {{#link-to 'admin.organization-manager.organization' organization}}{{organization.name}}{{/link-to}}
                 </td>
                 <td>
                   {{organization.status}}
                 </td>
-                <td>
-                  {{organization.short_nane}}
-                </td>
-                <td>
-                  {{organization.code}}
-                </td>
-                <td>
-                  {{organization.kind}}
-                </td>
               </tr>
             {{/each}}
           </tbody>
         </table>
-        {{!-- {{add-assignment model=model}} --}}
       </div>
   </section>
 <section>

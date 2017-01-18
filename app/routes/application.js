@@ -28,6 +28,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
           logo: 'https://s3-us-west-1.amazonaws.com/barberscore/static/images/bhs_logo.png',
           primaryColor: '#337ab7'
         },
+        languageDictionary: {
+          title: "Barberscore"
+        },
         auth: {
           redirect: false,
           params: {
