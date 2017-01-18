@@ -1,67 +1,29 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-
-{{#if currentUser.user.is_staff}}
-  <section>
-    {{!-- {{#power-select
-          search=(perform searchTask)
-          selected=session
-          onchange=(action "transitionSession")
-          placeholder="Search by Session Name"
-          allowClear=true
-          as |session|
-    }}
-      {{session.nomen}}
-    {{/power-select}} --}}
-  </section>
-{{/if}}
-
 <section>
-  <div>
+  <div class='table-responsive'>
     <table class='table'>
       <caption>Current Registrations</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
-          <th {{action 'sortBy' 'status:asc'}}>Status</th>
-          {{!-- <th {{action 'sortBy' 'convention.name:asc'}}>Convention</th> --}}
-          {{!-- <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th> --}}
+          <th>Name</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |performer|}}
+        {{#each model as |registration|}}
           <tr>
-            <td>{{#link-to 'admin.registration-manager.performer' performer}}{{performer.nomen}}{{/link-to}}</td>
-            <td>{{performer.status}}</td>
-            {{!-- <td>{{performer.convention.name}}</td> --}}
-            {{!-- <td>{{moment-format performer.convention.start_date 'LL'}}</td> --}}
+            <td>{{#link-to 'admin.registration-manager.registration' registration}}{{registration.name}}{{/link-to}}</td>
+            <td>{{registration.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(None)</td>
           </tr>
         {{/each}}
       </tbody>
-      <tfoot>
-        <tr>
-          <td>
-            {{#power-select
-              search=(perform searchTask)
-              options=optionsSession
-              selected=session
-              onchange=(action (mut session))
-              placeholder="Search by Session Name"
-              allowClear=true
-              as |session|
-            }}
-              {{session.nomen}}
-            {{/power-select}}
-          </td>
-          <td>
-            {{#bs-button action=(action 'addPerformer') class='btn btn-sm btn-primary'}}Add{{/bs-button}}
-          </td>
-        </tr>
-      </tfoot>
     </table>
   </div>
 </section>
-
 <section>
   {{outlet}}
 </section>
-
