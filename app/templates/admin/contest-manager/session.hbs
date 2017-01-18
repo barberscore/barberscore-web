@@ -1,25 +1,26 @@
-<section>
+{{!-- <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
-      </h4>
+      {{#bs-button
+        active=notCollapsed
+        onClick=(action "toggleCollapsed")
+        type='link'
+      }}
+        {{#if collapsed}}{{fa-icon 'caret-right'  size='lg' }}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Details
+      {{/bs-button}}
       <ul class='list-inline'>
         <li>{{#link-to 'admin.contest-manager.session.assignments' model}}Assignments{{/link-to}}</li>
         <li>{{#link-to 'admin.contest-manager.session.contests' model}}Contests{{/link-to}}</li>
         <li>{{#link-to 'admin.contest-manager.session.performers' model}}Entrants{{/link-to}}</li>
       </ul>
     </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
+    {{#bs-collapse collapsed=collapsed}}
       <div class='panel-body'>
-        {{#bs-form-group}}
-          {{#bs-button-group}}
-            {{#bs-button onClick=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button onClick=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
+          {{#bs-button-group as |bg|}}
+            {{#bg.button onClick=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
+            {{#bg.button onClick=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
+            {{#bg.button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
           {{/bs-button-group}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
           {{#power-select
                 options=model.contests
                 selected=model.primary
@@ -30,11 +31,19 @@
           }}
             {{primary.nomen}}
           {{/power-select}}
-        {{/bs-form-group}}
       </div>
     {{/bs-collapse}}
   </div>
 </section>
 <section>
   {{outlet}}
-</section>
+</section> --}}
+<div>
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}{{#link-to "admin.contest-manager.session.details"}}Details{{/link-to}}{{/nav.item}}
+    {{#nav.item}}{{#link-to "admin.contest-manager.session.assignments"}}Administrators{{/link-to}}{{/nav.item}}
+    {{#nav.item}}{{#link-to "admin.contest-manager.session.contests"}}Contests{{/link-to}}{{/nav.item}}
+    {{#nav.item}}{{#link-to "admin.contest-manager.session.performers"}}Entrants{{/link-to}}{{/nav.item}}
+  {{/bs-nav}}
+  {{outlet}}
+</div>

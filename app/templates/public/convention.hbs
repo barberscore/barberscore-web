@@ -2,7 +2,7 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}
+        {{#if isCollapsed}}
           {{fa-icon 'caret-right'}}
         {{else}}
           {{fa-icon 'caret-down'}}
@@ -15,7 +15,7 @@
         {{/each}}
       </ul>
     </div>
-      {{#bs-collapse collapsed=isHeaderCollapsed}}
+      {{#bs-collapse collapsed=isCollapsed}}
         <div class='panel-body'>
           <p>
             <strong>Venue</strong>: {{model.venue.name}}

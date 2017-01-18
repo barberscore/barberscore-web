@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  isHeaderCollapsed: true,
+  isCollapsed: true,
   isRaw: false,
   performerSortProperties: [
     'performer.performerscore.total_points:desc',
@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   ),
   actions: {
     collapseHeader() {
-      this.toggleProperty('isHeaderCollapsed');
+      this.toggleProperty('isCollapsed');
     },
     sortBy(performerSortProperties) {
       this.set('performerSortProperties', [performerSortProperties]);

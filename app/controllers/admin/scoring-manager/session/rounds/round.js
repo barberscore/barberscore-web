@@ -9,10 +9,10 @@ export default Ember.Controller.extend({
   ),
   isEditing: false,
   isRaw: false,
-  isHeaderCollapsed: false,
+  isCollapsed: false,
   actions: {
     collapseHeader() {
-      this.toggleProperty('isHeaderCollapsed');
+      this.toggleProperty('isCollapsed');
     },
     sortBy(performanceSortProperties) {
       this.set('performanceSortProperties', [performanceSortProperties]);

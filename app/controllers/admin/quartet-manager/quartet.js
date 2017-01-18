@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isEditing: false,
-  isHeaderCollapsed: true,
+  isCollapsed: true,
   isRoleEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   isRoleDisabled: Ember.computed.not('isRoleEditing'),
@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
   }),
   actions: {
     collapseHeader() {
-      this.toggleProperty('isHeaderCollapsed');
+      this.toggleProperty('isCollapsed');
     },
     setEditing() {
       this.set('isEditing', true);

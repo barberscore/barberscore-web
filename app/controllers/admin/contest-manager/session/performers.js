@@ -8,9 +8,13 @@ export default Ember.Controller.extend({
     return this.get('store').query('group', {'nomen__icontains': term, 'kind': kind, 'status': 10})
       .then((data) => data);
   }),
+  isEditing: false,
+  isDisabled: Ember.computed.not('isEditing'),
+  isCollapsed: false,
+  isExpanded: Ember.computed.not('isCollapsed'),
   actions: {
-    collapseHeader() {
-      this.toggleProperty('isHeaderCollapsed');
+    toggleCollapsed() {
+      this.toggleProperty('isCollapsed');
     },
     sortPerformersBy(performerSortProperties) {
       this.set('performerSortProperties', [performerSortProperties]);
@@ -36,7 +40,6 @@ export default Ember.Controller.extend({
       });
     },
   },
-  isHeaderCollapsed: false,
   performerSortProperties: [
     'performer.performerscore.rank:asc',
     'group.nomen:asc',

@@ -2,14 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isEditing: false,
-  isRoleEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  isCollapsed: false,
+  isExpanded: Ember.computed.not('isCollapsed'),
+  isRoleEditing: false,
   isRoleDisabled: Ember.computed.not('isRoleEditing'),
-  collapseChorus: false,
-  isRoleCollapsed: false,
   actions: {
-    collapseHeader() {
-      this.toggleProperty('collapseChorus');
+    toggleCollapsed() {
+      this.toggleProperty('isCollapsed');
     },
     collapseRole() {
       this.toggleProperty('collapseRole');

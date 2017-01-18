@@ -10,6 +10,7 @@ Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
     this.route('contest-manager', {path: '/contest-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
+        this.route('details', {path: 'details'});
         this.route('assignments', { path: '/panel'}, function() {
           this.route('assignment', { path: '/:assignment_id'});
         });
