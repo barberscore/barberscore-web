@@ -53,7 +53,10 @@ Router.map(function() {
       this.route('judge', { path: '/judge/:judge_id'});
     });
     this.route('quartet-manager', {path: '/quartet-manager'}, function() {
-      this.route('quartet', { path: '/:group_id'});
+      this.route('quartet', { path: '/:group_id'}, function() {
+        this.route('members', { path: '/members'});
+        this.route('contests', { path: '/contests'});
+      });
     });
     this.route('chorus-manager', {path: '/chorus-manager'}, function() {
       this.route('chorus', { path: '/:group_id'});
@@ -66,6 +69,12 @@ Router.map(function() {
     });
     this.route('registration-manager', {path: '/registration-manager'}, function() {
       this.route('performer', { path: '/performer/:performer_id' });
+    });
+    this.route('convention-manager', {path: '/convention-manager'}, function() {
+      this.route('convention', { path: '/convention/:convention_id' });
+    });
+    this.route('venue-manager', {path: '/venue-manager'}, function() {
+      this.route('venue', { path: '/venue/:venue_id' });
     });
   });
 

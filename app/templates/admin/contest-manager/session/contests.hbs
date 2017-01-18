@@ -1,11 +1,10 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Contests
+      <h4>
+        Contests
       </h4>
     </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
     <div class='panel-body'>
       <table class='table'>
         <thead>
@@ -31,7 +30,7 @@
                 {{contest.contestscore.champion model=contest.contestscore.champion=contest.contestscore.champion class='form-group'}}
               </td> --}}
               <td>
-                {{contest.contestants.length}}
+                {{!-- {{contest.contestants.length}} --}}
               </td>
               {{!-- <td>
                 {{#bs-dropdown}}
@@ -47,10 +46,27 @@
             </tr>
           {{/each}}
         </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              {{#power-select
+                search=(perform searchTask)
+                selected=award
+                onchange=(action (mut award))
+                placeholder="Search Awards"
+                allowClear=true
+                as |award|
+              }}
+                {{award.nomen}}
+              {{/power-select}}
+            </td>
+            <td>
+              {{#bs-button action=(action 'saveAward') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
+            </td>
+          </tr>
+        </tfoot>
       </table>
-      {{add-award session=model}}
     </div>
-    {{/bs-collapse}}
   </div>
 </section>
 <section>

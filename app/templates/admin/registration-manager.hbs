@@ -28,21 +28,35 @@
         </tr>
       </thead>
       <tbody>
-        {{#if model}}
-          {{#each model as |performer|}}
-            <tr>
-              <td>{{#link-to 'admin.registration-manager.performer' performer}}{{performer.nomen}}{{/link-to}}</td>
-              <td>{{performer.status}}</td>
-              {{!-- <td>{{performer.convention.name}}</td> --}}
-              {{!-- <td>{{moment-format performer.convention.start_date 'LL'}}</td> --}}
-            </tr>
-          {{/each}}
-        {{else}}
+        {{#each model as |performer|}}
           <tr>
-            <td>(No current registrations.)</td>
+            <td>{{#link-to 'admin.registration-manager.performer' performer}}{{performer.nomen}}{{/link-to}}</td>
+            <td>{{performer.status}}</td>
+            {{!-- <td>{{performer.convention.name}}</td> --}}
+            {{!-- <td>{{moment-format performer.convention.start_date 'LL'}}</td> --}}
           </tr>
-        {{/if}}
+        {{/each}}
       </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            {{#power-select
+              search=(perform searchTask)
+              options=optionsSession
+              selected=session
+              onchange=(action (mut session))
+              placeholder="Search by Session Name"
+              allowClear=true
+              as |session|
+            }}
+              {{session.nomen}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#bs-button action=(action 'addPerformer') class='btn btn-sm btn-primary'}}Add{{/bs-button}}
+          </td>
+        </tr>
+      </tfoot>
     </table>
   </div>
 </section>

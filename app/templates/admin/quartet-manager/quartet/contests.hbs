@@ -1,0 +1,76 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-6'>Contest</th>
+        <th class='col-md-4'>Convention</th>
+        <th class='col-md-2'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model.performers as |performer|}}
+        <tr>
+          <td>
+            {{performer.session.nomen}}
+          </td>
+          <td>
+            {{performer.session.convention.nomen}}
+          </td>
+          <td>
+            {{performer.session.convention.status}}
+          </td>
+          <td>
+          </td>
+          {{!-- <td>
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=performer.nomen
+                  disabled=isDisabled
+                  onchange=(action (mut role.person))
+                  placeholder="Search by Person Name"
+                  allowClear=true
+                  as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#power-select
+                  options=partOptions
+                  selected=role.part
+                  disabled=isDisabled
+                  onchange=(action (mut role.part))
+                  placeholder="Choose Part"
+                  allowClear=true
+                  as |part|
+            }}
+              {{part}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#power-select
+                  options=statusOptions
+                  selected=role.status
+                  disabled=isDisabled
+                  onchange=(action (mut role.status))
+                  placeholder="Choose Status"
+                  allowClear=true
+                  as |status|
+            }}
+              {{status}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{moment-format role.start_date 'LL'}}
+          </td>
+          <td>
+            {{moment-format role.end_date 'LL'}}
+          </td> --}}
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div>
+  {{outlet}}
+</div>

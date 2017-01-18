@@ -8,8 +8,6 @@ export default Ember.Controller.extend({
   page: Ember.computed.alias("content.page"),
   perPage: Ember.computed.alias("content.perPage"),
   totalPages: Ember.computed.alias("content.totalPages"),
-  page: 1,
-  perPage: 10,
   personSortProperties: [
     'nomen:asc',
   ],

@@ -1,0 +1,65 @@
+
+{{#if currentUser.user.is_staff}}
+  <section>
+    {{#power-select
+          search=(perform searchTask)
+          selected=convention
+          onchange=(action "transitionSession")
+          placeholder="Search by Session Name"
+          allowClear=true
+          as |convention|
+    }}
+      {{convention.nomen}}
+    {{/power-select}}
+  </section>
+{{/if}}
+
+<section>
+  <div>
+    <table class='table'>
+      <caption>Current Conventions</caption>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'nomen:asc'}}>Name</th>
+          <th {{action 'sortBy' 'venue:asc'}}>Venue</th>
+          <th {{action 'sortBy' 'convention.start_date:asc'}}>Date</th>
+          <th {{action 'sortBy' 'status:asc'}}>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |convention|}}
+          <tr>
+            <td>{{#link-to 'admin.convention-manager.convention' convention}}{{convention.nomen}}{{/link-to}}</td>
+            <td>{{convention.venue.nomen}}</td>
+            <td>{{moment-format convention.start_date 'LL'}}</td>
+            <td>{{convention.status}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+      <tfoot>
+        <tr>
+          {{!-- <td>
+            {{#power-select
+              search=(perform searchTask)
+              selected=award
+              onchange=(action (mut award))
+              placeholder="Search Awards"
+              allowClear=true
+              as |award|
+            }}
+              {{award.nomen}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#bs-button action=(action 'saveAward') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
+          </td> --}}
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>
+
+<section>
+  {{outlet}}
+</section>
+

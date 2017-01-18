@@ -1,98 +1,46 @@
-{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4>
-        {{model.name}}
+      <h4 {{action 'collapseHeader'}}>
+        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
       </h4>
+      <ul class='list-inline'>
+        <li>{{#link-to 'admin.quartet-manager.quartet.members' model}}Assignments{{/link-to}}</li>
+        <li>{{#link-to 'admin.quartet-manager.quartet.contests' model}}Contests{{/link-to}}</li>
+      </ul>
     </div>
+    {{#bs-collapse collapsed=isHeaderCollapsed}}
       <div class='panel-body'>
         {{#bs-form-group}}
           {{#if isEditing}}
+            {{model-picture picture=model.picture}}
             {{file-upload target=model.id resource='group'}}
           {{else}}
             {{model-picture picture=model.picture}}
           {{/if}}
         {{/bs-form-group}}
-        {{bs-form-element controlType='text' disabled=true placeholder='Quartet Name' property='name'}}
+        {{bs-form-element controlType='text' disabled=true placeholder='Quartet Name' property=model.name}}
         {{!-- {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}} --}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
-        {{bs-form-element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
-        {{bs-form-element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
-        {{bs-form-element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
-        {{bs-form-element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
+        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property=model.location}}
+        {{bs-form-element controlType='url' disabled=isDisabled placeholder='Website' property=model.website}}
+        {{bs-form-element controlType='email' disabled=isDisabled placeholder='Email' property=model.email}}
+        {{bs-form-element controlType='phone' disabled=isDisabled placeholder='Phone' property=model.phone}}
+        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Facebook' property=model.facebook}}
+        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Twitter' property=model.twitter}}
+        {{bs-form-element controlType='textarea' disabled=isDisabled placeholder='Description' property=model.description}}
+        {{#bs-form-group}}
+
         {{#if isEditing}}
-          {{#bs-button action=(action 'saveChorus') class='btn btn-primary'}}Save{{/bs-button}}
-          {{#bs-button action=(action 'cancelChorus') class='btn btn-default'}}Cancel{{/bs-button}}
-          {{#bs-button action=(action 'deleteChorus') class='pull-right btn btn-danger'}}Delete{{/bs-button}}
+          {{#bs-button icon='fa fa-undo' type='default' action=(action 'undoEditing')}}Cancel{{/bs-button}}
+          {{#bs-button icon='fa fa-save' type='primary' action=(action 'saveEditing')}}Save{{/bs-button}}
         {{else}}
-          {{#bs-button action=(action 'editChorus')}}Edit{{/bs-button}}
+          {{#bs-button icon='fa fa-edit' type='default' action=(action 'setEditing')}}Edit{{/bs-button}}
         {{/if}}
+        {{/bs-form-group}}
       </div>
+    {{/bs-collapse}}
   </div>
 </section>
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 {{action 'collapseRole'}}>
-        {{#if isRoleCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Role
-      </h4>
-    </div>
-    {{#bs-collapse collapsed=isRoleCollapsed}}
-      <div class='panel-body'>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                {{!-- <th class='col-md-1'>Picture</th> --}}
-                <th>Person</th>
-                <th>Kind</th>
-                <th>Status</th>
-                <th>Start</th>
-                <th>End</th>
-                {{!-- <th>Actions</th> --}}
-              </tr>
-            </thead>
-            <tbody>
-              {{#each model.roles as |role|}}
-                <tr>
-                  {{!-- <td>
-                    {{person-picture person=assignment.judge.person}}
-                  </td> --}}
-                  <td>
-                    {{bs-input type='text' disabled=isRoleDisabled placeholder='Role' value=role.person.common_name}}
-                  </td>
-                  <td>
-                    {{bs-input type='text' disabled=isRoleDisabled placeholder='Role' value=role.part}}
-                  </td>
-                  <td>
-                    {{bs-input type='text' disabled=isRoleDisabled placeholder='Role' value=role.status}}
-                  </td>
-                  <td>
-                    {{moment-format role.start_date 'LL'}}
-                  </td>
-                  <td>
-                    {{moment-format role.end_date 'LL'}}
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class='panel-footer'>
-        {{#bs-form formLayout='inline' model=model action='saveRoles'}}
-          {{#if isRoleEditing}}
-            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-            {{#bs-button action=(action 'cancelRole')}}Cancel{{/bs-button}}
-            {{#bs-button action=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button action=(action 'editRole')}}Edit{{/bs-button}}
-          {{/if}}
-        {{/bs-form}}
-      </div>
-    {{/bs-collapse}}
-    </div>
+  {{outlet}}
 </section>

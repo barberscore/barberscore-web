@@ -22,11 +22,11 @@
           </thead>
           <tbody>
             {{#each model.sortedAssignments as |assignment|}}
-              {{#if isEditing}}
-                {{edit-assignment model=assignment}}
-              {{else}}
-                {{show-assignment model=assignment}}
-              {{/if}}
+              <tr>
+                <td>
+                  {{assignment.nomen}}
+                </td>
+              </tr>
             {{/each}}
           </tbody>
         </table>

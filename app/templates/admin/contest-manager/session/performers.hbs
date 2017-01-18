@@ -19,7 +19,7 @@
             {{#each sortedPerformers as |performer|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.group.name}}{{/link-to}}&nbsp;({{performer.representing.short_name}})
+                  {{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.group.name}}{{/link-to}}{{#if performer.representing.short_name}}&nbsp;({{performer.representing.short_name}}){{/if}}
                 </td>
                 <td>
                   {{performer.status}}
@@ -39,9 +39,26 @@
               </tr>
             {{/each}}
           </tbody>
+          <tfoot>
+            <tr>
+            <td>
+            {{#power-select
+              search=(perform searchTask)
+              placeholder='Enter a Group into this Session.'
+              selected=group
+              onchange=(action (mut group))
+              as |group|
+            }}
+              {{group.name}}
+            {{/power-select}}
+            </td>
+            <td>
+            {{#bs-button action=(action 'addPerformer') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
+              </td>
+            </tr>
+          </tfoot>
         </table>
       </div>
-      {{add-performer session=model class='form-group'}}
     </div>
     {{/bs-collapse}}
   </div>
