@@ -89,7 +89,6 @@
               <th class='col-md-9'>Assignment</th>
               <th>Variance</th>
               <th class='col-md-1'>Score</th>
-              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -112,26 +111,6 @@
                         <div class={{score.hasVarianceClass}}>
                           {{score-edit model=score points=score.points}}
                         </div>
-                      {{/if}}
-                    {{/each}}
-                  </td>
-                  <td>
-                    {{#each assignment.scores as |score|}}
-                      {{#if (eq score.song.performance.id model.id)}}
-                        {{#bs-dropdown class='form-group'}}
-                          {{#bs-dropdown-button}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                          {{#bs-dropdown-menu}}
-                            {{#if (eq score.category 'Music')}}
-                              <li><a href='#' {{action 'penalizeRepetition' performance}}>Penalty - Repetition</a></li>
-                              <li><a href='#' {{action 'penalizeAccompaniment' performance}}>Penalty - Accompaniment</a></li>
-                            {{else if (eq score.category 'Presentation')}}
-                              <li><a href='#' {{action 'penalizeContent' performance}}>Penalty - Patriotic/Religious</a></li>
-                            {{else if (eq score.category 'Singing')}}
-                              <li><a href='#' {{action 'penalizeEnhancement' performance}}>Penalty - Sound Enhancement</a></li>
-                            {{/if}}
-                          {{/bs-dropdown-menu}}
-                        {{/bs-dropdown}}
-                        <br>
                       {{/if}}
                     {{/each}}
                   </td>

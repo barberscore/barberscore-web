@@ -106,14 +106,12 @@
                   <th>Award</th>
                   <th>Qualifier</th>
                   <th>Status</th>
-                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {{#each model.contestants as |contestant|}}
                   <tr>
                     <td>
-                      {{!-- {{#link-to 'admin.contest-manager.session.contests.contest' contestant.contest}}{{contestant.contest.award.name}}{{/link-to}} --}}
                       {{contestant.contest.award.name}}
                     </td>
                     <td>
@@ -121,14 +119,6 @@
                     </td>
                     <td>
                       {{contestant.status}}
-                    </td>
-                    <td>
-                      {{#bs-dropdown}}
-                        {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                        {{#bs-dropdown-menu}}
-                          <li><a href='#' {{action 'deleteContestant' contestant}}>Delete</a></li>
-                        {{/bs-dropdown-menu}}
-                      {{/bs-dropdown}}
                     </td>
                   </tr>
                 {{/each}}
@@ -166,14 +156,6 @@
                 </td>
                 <td>
                   {{submission.status}}
-                </td>
-                <td>
-                  {{#bs-dropdown}}
-                    {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                    {{#bs-dropdown-menu}}
-                      <li><a href='#' {{action 'deleteSubmission' submission}}>Delete</a></li>
-                    {{/bs-dropdown-menu}}
-                  {{/bs-dropdown}}
                 </td>
               </tr>
             {{/each}}

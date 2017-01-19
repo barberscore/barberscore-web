@@ -12,11 +12,11 @@
     {{#bs-collapse collapsed=isCollapsed}}
       <div class='panel-body'>
         {{#bs-form-group}}
-          {{#bs-button-group}}
-            {{#bs-button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
-            {{#bs-button onClick=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
-            {{#bs-button onClick=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
-            {{#bs-button onClick=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}
+          {{#bs-button-group as |bg|}}
+            {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
+            {{#bg.button onChange=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bg.button}}
+            {{#bg.button onChange=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bg.button}}
+            {{#bg.button onChange=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bg.button}}
           {{/bs-button-group}}
         {{/bs-form-group}}
         {{#bs-form-group}}

@@ -11,7 +11,7 @@
       {{#bs-form formLayout='vertical'}}
         {{#bs-form-group}}
           {{#power-select
-                search=(action "searchPerson")
+                search=(perform searchTask)
                 selected=person
                 onchange=(action (mut person))
                 placeholder="Enter Person Name"

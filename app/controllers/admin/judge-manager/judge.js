@@ -1,13 +1,14 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  _performSearch(term, resolve, reject) {
-    if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('person', {'name__icontains': term})
-      .then(data => resolve(data), reject);
-  },
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
   actions: {
     newJudge() {
       let newJudge = this.store.createRecord(
@@ -43,11 +44,6 @@ export default Ember.Controller.extend({
       })
       .catch(() => {
         flashMessages.danger('Error');
-      });
-    },
-    searchPerson(term) {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
       });
     },
   },

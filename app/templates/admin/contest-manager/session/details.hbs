@@ -1,7 +1,7 @@
 {{#bs-button-group as |bg|}}
-  {{#bg.button onClick=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
-  {{#bg.button onClick=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
-  {{#bg.button onClick=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
+  {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
+  {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
+  {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
 {{/bs-button-group}}
           {{#power-select
                 options=model.contests
