@@ -24,7 +24,7 @@
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{#power-select
-            options=statusOptions
+            options=model.statusOptions
             placeholder='Status'
             disabled=isDisabled
             allowClear=true
@@ -37,7 +37,7 @@
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{#power-select
-            options=kindOptions
+            options=model.kindOptions
             placeholder='Kind'
             disabled=isDisabled
             allowClear=true
@@ -50,7 +50,7 @@
         {{/bs-form-group}}
         {{#bs-form-group}}
           {{#power-select
-            options=categoryOptions
+            options=model.categoryOptions
             placeholder='Category'
             disabled=isDisabled
             allowClear=true

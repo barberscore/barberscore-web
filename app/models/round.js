@@ -1,9 +1,7 @@
-import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
 import {memberAction} from 'ember-api-actions';
-const {computed} = Ember;
 
 export default Model.extend({
   nomen: attr('string'),
@@ -17,38 +15,26 @@ export default Model.extend({
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
   slots: hasMany('slot', {async: true}),
+  permissions: attr(),
+
   draw: memberAction({path: 'draw'}),
   resort: memberAction({path: 'resort'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
-  permissions: attr(),
 
-  kindSort: computed(
-    'kind',
-    function(){
-      if (this.get('kind') === 'Quarter-Finals') {
-        return 1;
-      } else if (this.get('kind') === 'Semi-Finals') {
-        return 2;
-      } else if (this.get('kind') === 'Finals') {
-        return 3;
-      } else {
-        return 0;
-      }
-    }
-  ),
-  performanceSort: [
-    'num',
-    'name',
+  statusOptions: [
+    'New',
+    'Drawn',
+    'Validated',
+    'Started',
+    'Finished',
+    'Published',
   ],
-  sortedPerformances: Ember.computed.sort(
-    'performances',
-    'performanceSort'
-  ),
-  opener: Ember.computed(
-    function() {
-      return this.get('sortedPerformances')[0];
-    }
-  )
+  kindOptions: [
+    'Finals',
+    'Semi-Finals',
+    'Quarter-Finals',
+  ],
+
 });

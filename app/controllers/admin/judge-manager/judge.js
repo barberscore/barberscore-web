@@ -1,23 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  statusOptions: [
-    'Active',
-    'Inactive',
-  ],
-  kindOptions: [
-    'Chair',
-    'Past Chair',
-    'Specialist',
-    'Certified',
-    'Candidate',
-  ],
-  categoryOptions: [
-    'Admin',
-    'Music',
-    'Presentation',
-    'Singing',
-  ],
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   _performSearch(term, resolve, reject) {

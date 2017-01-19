@@ -10,7 +10,7 @@
         &nbsp;{{model.name}}
       </h4>
       <ul class='list-inline'>
-        {{#each model.sortedSessions as |session|}}
+        {{#each model.sessions as |session|}}
             <li><h4>{{#link-to 'public.convention.session' session}}{{session.kind}}{{/link-to}}</h4></li>
         {{/each}}
       </ul>

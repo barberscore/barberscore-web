@@ -9,4 +9,18 @@ export default Model.extend({
   contest: belongsTo('contest', {async: true}),
   performer: belongsTo('performer', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Eligible',
+    'Ineligible',
+    'District Representative',
+    'Qualified',
+    'Validated',
+    'Finished',
+    'Scratched',
+    'Disqualified',
+    'Published',
+  ],
+
 });

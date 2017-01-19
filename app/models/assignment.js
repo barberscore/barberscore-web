@@ -12,4 +12,24 @@ export default Model.extend({
   session: belongsTo('session', {async: true}),
   person: belongsTo('person', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Scheduled',
+    'Confirmed',
+    'Validated',
+    'Final',
+  ],
+  categoryOptions: [
+    'Admin',
+    'Music',
+    'Presentation',
+    'Singing',
+  ],
+  kindOptions: [
+    'Official',
+    'Practice',
+    'Composite',
+  ],
+
 });

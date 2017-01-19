@@ -16,7 +16,7 @@ export default Ember.Component.extend({
     },
   },
   contestantSortProperties: ['name:asc',],
-  sortedContestants: Ember.computed.sort(
+  fooContestants: Ember.computed.sort(
     'model.contestants',
     'contestantSortProperties'
   ),

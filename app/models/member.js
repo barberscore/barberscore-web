@@ -8,4 +8,9 @@ export default Model.extend({
   person: belongsTo('person', {async: true}),
   chapter: belongsTo('chapter', {async: true}),
   permissions: attr(),
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
 });

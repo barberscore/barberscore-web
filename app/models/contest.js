@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -16,15 +15,15 @@ export default Model.extend({
   contestscore: belongsTo('contestscore', {async: true}),
   permissions: attr(),
 
-
   build: memberAction({path: 'build'}),
 
-  contestantSort: [
-    'rank:asc',
-    'name:asc',
+  statusOptions: [
+    'New',
+    'Opened',
+    'Closed',
+    'Validated',
+    'Finished',
+    'Published',
   ],
-  sortedContestants: Ember.computed.sort(
-    'contestants',
-    'contestantSort'
-  ),
+
 });

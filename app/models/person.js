@@ -32,4 +32,22 @@ export default Model.extend({
   conventions: hasMany('convention', {inverse:'drcj', async: true}),
   user: belongsTo('user', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+    'Retired',
+    'Deceased',
+    '(Six)',
+    '(Nine)',
+  ],
+
+  kindOptions: [
+    'New',
+    'Member',
+    'Non-Member',
+    'Associate',
+  ],
+
 });

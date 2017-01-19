@@ -30,30 +30,23 @@ export default Model.extend({
   performerscore: belongsTo('performerscore', {async: true}),
   scratch: memberAction({path: 'scratch'}),
   permissions: attr(),
+
   penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
 
-  contestantSort: [
-    'contest.is_qualifier:asc',
-    'contest.award.level:desc',
-    'contest.award.organization.name:asc',
-    'contest.award.is_primary:desc',
-    'contest.award.kind:asc',
-    'contest.award.is_improved:asc',
-    'contest.award.size:asc',
-    'contest.award.scope:asc',
+  statusOptions: [
+    'New',
+    'Registered',
+    'Accepted',
+    'Declined',
+    'Dropped',
+    'Validated',
+    'Scratched',
+    'Disqualified',
+    'Started',
+    'Finished',
+    'Published',
   ],
-  sortedContestants: Ember.computed.sort(
-    'contestants',
-    'contestantSort'
-  ),
 
-  performanceSort: [
-    'round.kindSort:desc',
-  ],
-  sortedPerformances: Ember.computed.sort(
-    'performances',
-    'performanceSort'
-  ),
 
   tp: computed.mapBy(
     'performances',

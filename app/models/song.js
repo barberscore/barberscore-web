@@ -15,21 +15,26 @@ export default Model.extend({
   scores: hasMany('score', {async: true}),
   permissions: attr(),
 
+  statusOptions: [
+    'New',
+    'Validated',
+    'Finished',
+    'Confirmed',
+    'Final',
+    'Published',
+  ],
+
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(
     'scores',
     'ascSortProperties'
   ),
+
   descSortProperties: ['points:desc',],
   descSortedScores: Ember.computed.sort(
     'scores',
     'descSortProperties'
   ),
-
-  // lowReviews: computed.mapBy(
-  //   'scores',
-  //   'lowReview'
-  // ),
 
   noVariance: computed(
     'scores.@each.hasVariance',

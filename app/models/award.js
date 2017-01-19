@@ -21,11 +21,30 @@ export default Model.extend({
   contests: hasMany('contest', {inverse:'award', async: true}),
   permissions: attr(),
 
-
-  seasonChoices: [
-    'International',
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
+  kindOptions: [
+    'Quartet',
+    'Chorus',
+    'Seniors',
+    'Collegiate',
+    'Youth',
+  ],
+  seasonOptions: [
+    'Summer',
     'Midwinter',
-    'Spring',
     'Fall',
-  ]
+    'Spring',
+    'Video',
+  ],
+  sizeOptions: [
+    'Plateau 1',
+  ],
+  scopeOptions: [
+    'Plateau 1',
+  ],
+
 });

@@ -19,7 +19,7 @@
           </tr>
           </thead>
           <tbody>
-          {{#each model.sortedContestants as |contestant|}}
+          {{#each model.contestants as |contestant|}}
             <tr>
               <td>{{#link-to 'admin.contest-manager.session.performers.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}</td>
             </tr>

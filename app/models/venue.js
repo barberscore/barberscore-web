@@ -19,5 +19,10 @@ export default Model.extend({
     'US/Hawaii',
     'US/Mountain',
     'US/Pacific',
-  ]
+  ],
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
 });

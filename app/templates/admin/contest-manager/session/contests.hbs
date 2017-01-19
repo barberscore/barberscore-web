@@ -17,7 +17,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each model.sortedContests as |contest|}}
+          {{#each model.contests as |contest|}}
             <tr>
               <td>
                 {{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/link-to}}
