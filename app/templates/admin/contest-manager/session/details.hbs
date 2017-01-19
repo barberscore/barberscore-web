@@ -6,16 +6,25 @@
       </h4>
     </div>
     <div class='panel-body'>
+      <section>
+        {{#bs-button-group as |bg|}}
+          {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
+          {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
+          {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
+        {{/bs-button-group}}
+      </section>
+      <section>
       {{#power-select
             options=model.contests
             selected=model.primary
             placeholder="Select Primary Contest"
-            onchange=(action (mut model.primary))
+            onchange=(action "savePrimary")
             allowClear=true
             as |primary|
       }}
         {{primary.nomen}}
       {{/power-select}}
+      </section>
     </div>
   </div>
 </section>

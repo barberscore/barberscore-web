@@ -52,7 +52,7 @@
 {{outlet}} --}}
 
 
-<section>
+{{!-- <section>
   <ul class='list-inline'>
     {{#each model.performers as |performer|}}
       <li>{{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.name}}{{/link-to}}</li>
@@ -60,8 +60,26 @@
       <li>No performers entered</li>
     {{/each}}
   </ul>
+</section> --}}
+
+<section>
+  <div class='row'>
+    <div class='col-md-3'>
+  {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+    {{#each sortedPerformers as |performer|}}
+      {{#nav.item}}
+        {{#nav.link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.group.name}}{{/nav.link-to}}
+      {{/nav.item}}
+    {{/each}}
+  {{/bs-nav}}
+  </div>
+  <div class='col-md-9'>
+    {{outlet}}
+  </div>
+  </div>
 </section>
 
 
-{{outlet}}
+
+{{!-- {{outlet}} --}}
 

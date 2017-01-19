@@ -1,16 +1,25 @@
-<section>
-  {{#bs-button-group as |bg|}}
-    {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
-    {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
-    {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
-  {{/bs-button-group}}
-</section>
 <div>
   {{#bs-nav type='tabs' as |nav|}}
-    {{#nav.item}}{{#link-to "admin.contest-manager.session.details"}}Details{{/link-to}}{{/nav.item}}
-    {{#nav.item}}{{#link-to "admin.contest-manager.session.assignments"}}Administrators{{/link-to}}{{/nav.item}}
-    {{#nav.item}}{{#link-to "admin.contest-manager.session.contests"}}Contests{{/link-to}}{{/nav.item}}
-    {{#nav.item}}{{#link-to "admin.contest-manager.session.performers"}}Entrants{{/link-to}}{{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.details"}}Details{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.assignments"}}Administrators{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.contests"}}Contests{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.performers"}}Entrants{{/nav.link-to}}
+    {{/nav.item}}
+    {{!-- {{#bs-dropdown tagName='li' as |dd|}}
+      {{#dd.button}}Actions{{/dd.button}}
+      {{#dd.menu as |ddm|}}
+        {{#ddm.item}}
+          Foo
+        {{/ddm.item}}
+      {{/dd.menu}}
+    {{/bs-dropdown}} --}}
   {{/bs-nav}}
   {{outlet}}
 </div>
