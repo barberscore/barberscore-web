@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   actions: {
     saveRecord(person) {
       this.model.set('person', person);
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         // this.get('flashMessages').success('Success');
       })

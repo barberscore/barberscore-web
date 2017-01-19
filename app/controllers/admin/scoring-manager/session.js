@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteSession() {
-      isCollapsed:      this.model.destroyRecord()
+      this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
       });
     },
     saveSession() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
@@ -75,7 +75,7 @@ export default Ember.Controller.extend({
       contest.destroyRecord();
     },
     openSession() {
-      isCollapsed:      this.model.open()
+      this.model.open()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -84,7 +84,7 @@ export default Ember.Controller.extend({
       });
     },
     closeSession() {
-      isCollapsed:      this.model.close()
+      this.model.close()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -93,7 +93,7 @@ export default Ember.Controller.extend({
       });
     },
     validateSession() {
-      isCollapsed:      this.model.validate()
+      this.model.validate()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -102,7 +102,7 @@ export default Ember.Controller.extend({
       });
     },
     startSession() {
-      isCollapsed:      this.model.start()
+      this.model.start()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -111,7 +111,7 @@ export default Ember.Controller.extend({
       });
     },
     drawCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         current.draw()
         .then(response => {
           this.store.pushPayload('round', response);
@@ -122,7 +122,7 @@ export default Ember.Controller.extend({
       });
     },
     validateCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         current.validate()
         .then(response => {
           this.store.pushPayload('round', response);
@@ -133,7 +133,7 @@ export default Ember.Controller.extend({
       });
     },
     startCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         // this.model.cursor = current.get('opener');
         current.start()
         .then(response => {
@@ -145,7 +145,7 @@ export default Ember.Controller.extend({
       });
     },
     finishCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         current.finish()
         .then(response => {
           this.store.pushPayload('round', response);
@@ -156,7 +156,7 @@ export default Ember.Controller.extend({
       });
     },
     publishCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         current.publish()
         .then(response => {
           this.store.pushPayload('round', response);
@@ -167,7 +167,7 @@ export default Ember.Controller.extend({
       });
     },
     finishSession() {
-      isCollapsed:      this.model.finish()
+      this.model.finish()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -176,7 +176,7 @@ export default Ember.Controller.extend({
       });
     },
     draftSession() {
-      isCollapsed:      this.model.draft()
+      this.model.draft()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -185,7 +185,7 @@ export default Ember.Controller.extend({
       });
     },
     publishSession() {
-      isCollapsed:      this.model.publish()
+      this.model.publish()
       .then(response => {
         this.store.pushPayload('session', response);
       })

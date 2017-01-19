@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord() {
-      isCollapsed:      var performance = this.get('store').createRecord('performance', {
+var performance = this.get('store').createRecord('performance', {
         round: this.get('round'),
         performer: this.get('performer'),
         // slot: this.get('slot'),

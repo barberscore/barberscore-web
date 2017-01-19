@@ -10,7 +10,7 @@ export default Ember.Component.extend({
   }),
   actions: {
     saveAward() {
-      isCollapsed:      var contest = this.get('store').createRecord('contest', {
+var contest = this.get('store').createRecord('contest', {
         session: this.get('session'),
         award: this.get('award'),
       });

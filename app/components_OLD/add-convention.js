@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord() {
-      isCollapsed:      var convention = this.get('store').createRecord('convention', {
+var convention = this.get('store').createRecord('convention', {
         level: this.get('level'),
         year: this.get('year'),
       });

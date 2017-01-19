@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveSession() {
-      isCollapsed:      var session = this.get('store').createRecord('session', {
+var session = this.get('store').createRecord('session', {
         convention: this.get('convention'),
         kind: this.get('kind'),
       });

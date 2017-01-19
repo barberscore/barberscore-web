@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     saveAssignment() {
-      isCollapsed:      var assignment = this.get('store').createRecord('assignment', {
+var assignment = this.get('store').createRecord('assignment', {
         session: this.get('model'),
         judge: this.get('judge'),
         kind: "Official",

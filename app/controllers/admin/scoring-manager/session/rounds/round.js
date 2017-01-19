@@ -51,7 +51,7 @@ export default Ember.Controller.extend({
       performance.destroyRecord();
     },
     drawRound() {
-      isCollapsed:      this.model.draw()
+      this.model.draw()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -61,7 +61,7 @@ export default Ember.Controller.extend({
       this.model.reload();
     },
     resortRound() {
-      isCollapsed:      this.model.resort()
+      this.model.resort()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -71,7 +71,7 @@ export default Ember.Controller.extend({
       this.model.reload();
     },
     startRound() {
-      isCollapsed:      this.model.start()
+      this.model.start()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
@@ -80,7 +80,7 @@ export default Ember.Controller.extend({
       });
     },
     finishRound() {
-      isCollapsed:      this.model.finish()
+      this.model.finish()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
@@ -89,7 +89,7 @@ export default Ember.Controller.extend({
       });
     },
     publishRound() {
-      isCollapsed:      this.model.publish()
+      this.model.publish()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
@@ -98,7 +98,7 @@ export default Ember.Controller.extend({
       });
     },
     moveTop(performance) {
-      isCollapsed:      performance.move_top()
+      performance.move_top()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -110,7 +110,6 @@ export default Ember.Controller.extend({
       });
     },
     moveUp(performance) {
-      isCollapsed:
       performance.move_up()
       .then(() => {
         this.get('flashMessages').success('Success');
@@ -122,7 +121,7 @@ export default Ember.Controller.extend({
       });
     },
     moveDown(performance) {
-      isCollapsed:      performance.move_down()
+      performance.move_down()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -134,7 +133,7 @@ export default Ember.Controller.extend({
       });
     },
     moveBottom(performance) {
-      isCollapsed:      performance.move_bottom()
+      performance.move_bottom()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -144,7 +143,7 @@ export default Ember.Controller.extend({
       performance.reload();
     },
     scratch(performance) {
-      isCollapsed:      performance.scratch()
+      performance.scratch()
       .then(() => {
         this.get('flashMessages').success('Success');
       })

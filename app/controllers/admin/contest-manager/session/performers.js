@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       performer.penalizeEligibility();
     },
     addPerformer() {
-      isCollapsed:      var performer = this.get('store').createRecord('performer', {
+var performer = this.get('store').createRecord('performer', {
         session: this.get('model'),
         group: this.get('group'),
       });

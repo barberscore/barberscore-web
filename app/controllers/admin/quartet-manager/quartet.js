@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     saveEditing() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       });
     },
     addPerformer() {
-      isCollapsed:      var performer = this.get('store').createRecord('performer', {
+var performer = this.get('store').createRecord('performer', {
         session: this.get('session'),
         group: this.get('model'),
       });

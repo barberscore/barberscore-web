@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord() {
-      isCollapsed:      var contestant = this.get('store').createRecord('contestant', {
+var contestant = this.get('store').createRecord('contestant', {
         contest: this.get('contest'),
         performer: this.get('performer'),
       });

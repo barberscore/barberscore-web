@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     deleteContest(contest) {
-      isCollapsed:      contest.destroyRecord()
+contest.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.session.contests');
@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
       });
     },
     saveAward() {
-      isCollapsed:      var contest = this.get('store').createRecord('contest', {
+var contest = this.get('store').createRecord('contest', {
         session: this.get('model'),
         award: this.get('award'),
       });

@@ -13,11 +13,11 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     cancelJudge() {
-      isCollapsed:      this.get('flashMessages').warning('Cancelled');
+      this.get('flashMessages').warning('Cancelled');
       this.transitionToRoute('admin.judge-manager');
     },
     saveJudge() {
-      isCollapsed:      let judge = this.store.createRecord('judge', {
+let judge = this.store.createRecord('judge', {
         person: this.person,
         status: this.status,
         kind: this.kind,

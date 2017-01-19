@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteChorus() {
-      isCollapsed:      this.model.destroyRecord()
+      this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
       });
     },
     saveChorus() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
@@ -64,7 +64,7 @@ export default Ember.Controller.extend({
       this.set('isRoleEditing', false);
     },
     deleteRole() {
-      isCollapsed:      this.model.destroyRecord()
+      this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
@@ -74,7 +74,7 @@ export default Ember.Controller.extend({
       });
     },
     saveRoles() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(response => {
         response.get('roles').invoke('save');
         this.set('isRoleEditing', false);

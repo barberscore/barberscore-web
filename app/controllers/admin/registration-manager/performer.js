@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
     addSubmission() {
-      isCollapsed:      let submission = this.get('store').createRecord('submission', {
+let submission = this.get('store').createRecord('submission', {
         performer: this.get('model'),
         title: this.get('submission')
       });
@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       });
     },
     deleteSubmission(submission) {
-      isCollapsed:      submission.destroyRecord()
+submission.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.registration-manager.performer');

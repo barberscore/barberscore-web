@@ -20,7 +20,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     saveEdits() {
-      isCollapsed:      this.get('model').save()
+      this.get('model').save()
       .then(() => {
         this.get('flashMessages').success('Success');
         this.set('isEditing', false);

@@ -5,8 +5,22 @@
     </h3>
   </div>
   <div class='panel-body'>
-  {{#if isEditing}}
-      {{#bs-form-group}}
+    {{#bs-form formLayout='vertical' model=this onSubmit=(action 'saveAssignment') as |form|}}
+      {{#form.element property='person' useIcons=false as |el|}}
+          {{#power-select
+                search=(perform searchTask)
+                selected=model.person
+                onchange=(action (mut model.person))
+                placeholder="Enter Person Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+          }}
+            {{person.name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{!-- {{form.element controlType="email" label="Email" placeholder="Email" property="email"}} --}}
+      {{!-- {{#bs-form-group}}
         {{model.nomen}}
       {{/bs-form-group}}
       {{#bs-form action='saveAssignment'}}
@@ -20,27 +34,16 @@
           {{assignment-kind kind=model.kind}}
         {{/bs-form-group}}
         {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-        {{#bs-button onClick=(action 'cancelAssignment')}}Cancel{{/bs-button}}
+        {{#bs-button onClick=(action 'cancelAssignment')}}Cancel{{/bs-button}} --}}
         {{!-- {{#bs-button onClick=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
-      {{/bs-form}}
-    {{else}}
-      {{!-- <p>
-        {{person-picture person=model.judge.person}}
-      </p> --}}
-      <p>
-        {{model.nomen}}
-      </p>
-      <p>
-      <strong>Status: </strong>{{model.status}}
-      </p>
-      <p>
-      <strong>Category: </strong>{{model.category}}
-      </p>
-      <p>
-      <strong>Kind: </strong>{{model.kind}}
-      </p>
-      {{#bs-button onClick=(action 'editAssignment')}}Edit{{/bs-button}}
+  {{#if isEditing}}
+    {{#bs-button onClick=(action 'cancelAssignment')}}Cancel{{/bs-button}}
+    {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+    {{!-- {{#bs-button onClick=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
+  {{else}}
+    {{#bs-button onClick=(action 'editAssignment')}}Edit{{/bs-button}}
       {{!-- {{#bs-button onClick=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}} --}}
-    {{/if}}
+  {{/if}}
+    {{/bs-form}}
   </div>
 </div>

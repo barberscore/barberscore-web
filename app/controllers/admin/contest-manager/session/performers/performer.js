@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deletePerformer() {
-      isCollapsed:      let session = this.model.session;
+let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
@@ -46,7 +46,7 @@ export default Ember.Controller.extend({
       });
     },
     savePerformer() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
@@ -65,7 +65,7 @@ export default Ember.Controller.extend({
       this.model.disqualify();
     },
     deleteContestant(contestant) {
-      isCollapsed:      contestant.destroyRecord()
+contestant.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
@@ -74,7 +74,7 @@ export default Ember.Controller.extend({
       });
     },
     deleteSubmission(submission) {
-      isCollapsed:      submission.destroyRecord()
+submission.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteOrganization() {
-      isCollapsed:      this.model.destroyRecord()
+      this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
       });
     },
     saveOrganization() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');

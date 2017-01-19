@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveVenue() {
-      isCollapsed:      var venue = this.get('store').createRecord('venue', {
+var venue = this.get('store').createRecord('venue', {
         name: this.get('name'),
         city: this.get('city'),
         state: this.get('state'),

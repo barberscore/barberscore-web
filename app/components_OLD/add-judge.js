@@ -10,7 +10,7 @@ export default Ember.Component.extend({
         kind: this.get('kind'),
         status: 'Active',
       });
-      isCollapsed:      judge.save()
+judge.save()
       .then(() => {
         this.set('person', null);
         this.set('category', null);

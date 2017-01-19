@@ -4,7 +4,7 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRole() {
-      isCollapsed:      var role = this.get('store').createRecord('role', {
+var role = this.get('store').createRecord('role', {
         group: this.get('group'),
         person: this.get('person'),
         part: this.get('part'),

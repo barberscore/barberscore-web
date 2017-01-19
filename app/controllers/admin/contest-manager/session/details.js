@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
       });
     },
     openSession() {
-      isCollapsed:      this.model.open()
+      this.model.open()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
       });
     },
     closeSession() {
-      isCollapsed:      this.model.close()
+      this.model.close()
       .then(response => {
         this.store.pushPayload('session', response);
       })
@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
       });
     },
     validateCurrent() {
-      isCollapsed:      this.model.get('current').then(current => {
+      this.model.get('current').then(current => {
         current.validate()
         .then(response => {
           this.store.pushPayload('round', response);

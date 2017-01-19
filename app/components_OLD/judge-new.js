@@ -30,7 +30,7 @@ export default Ember.Component.extend({
       this.set('isEditing', false);
     },
     deleteJudge() {
-      isCollapsed:      this.model.destroyRecord()
+      this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.judge-manager');
@@ -40,7 +40,7 @@ export default Ember.Component.extend({
       });
     },
     saveJudge() {
-      isCollapsed:      this.model.save()
+      this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');

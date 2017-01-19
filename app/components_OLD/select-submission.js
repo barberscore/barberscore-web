@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   ),
   actions: {
    saveSubmission(submission) {
-      isCollapsed:      this.model.set('submission', submission);
+      this.model.set('submission', submission);
       this.model.save()
       .then(() => {
         // this.get('flashMessages').success('Success');
