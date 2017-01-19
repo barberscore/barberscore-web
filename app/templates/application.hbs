@@ -21,7 +21,7 @@
 
 <div class='container'>
   <div class='alerts'>
-    {{#each flashMessages.queue as |flash|}}
+    {{#each this.get('flashMessages').queue as |flash|}}
       {{flash-message flash=flash}}
     {{/each}}
   </div>

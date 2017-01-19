@@ -8,12 +8,12 @@ export default Ember.Controller.extend({
     return this.get('store').query('award', {'nomen__icontains': term})
       .then((data) => data);
   }),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     deleteContest(contest) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      contest.destroyRecord()
+      isCollapsed:      contest.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.session.contests');
       })
       .catch((error) => {
@@ -21,20 +21,19 @@ export default Ember.Controller.extend({
       });
     },
     saveAward() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var contest = this.get('store').createRecord('contest', {
+      isCollapsed:      var contest = this.get('store').createRecord('contest', {
         session: this.get('model'),
         award: this.get('award'),
       });
       contest.save()
       .then(() => {
-        flashMessages.success('Contest Added');
+        this.get('flashMessages').success('Contest Added');
         this.set('award', null);
       })
       .catch((error) => {
         contest.deleteRecord();
         console.log(error);
-        flashMessages.danger("Error");
+        this.get('flashMessages').danger("Error");
       });
     }
   }

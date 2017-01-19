@@ -5,13 +5,12 @@ export default Ember.Component.extend({
   actions: {
     saveRecord(contestant) {
       this.model.set('champion', contestant.get('performer.group.name'));
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      isCollapsed:      this.model.save()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

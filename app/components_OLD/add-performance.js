@@ -5,18 +5,17 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var performance = this.get('store').createRecord('performance', {
+      isCollapsed:      var performance = this.get('store').createRecord('performance', {
         round: this.get('round'),
         performer: this.get('performer'),
         // slot: this.get('slot'),
       });
       performance.save()
       .then(() => {
-        // flashMessages.success('Success');
+        // this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

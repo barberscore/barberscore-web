@@ -11,14 +11,13 @@ export default Ember.Component.extend({
   ),
   actions: {
    saveSubmission(submission) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.set('submission', submission);
+      isCollapsed:      this.model.set('submission', submission);
       this.model.save()
       .then(() => {
-        // flashMessages.success('Success');
+        // this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

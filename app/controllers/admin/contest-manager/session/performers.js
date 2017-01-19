@@ -12,6 +12,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   isCollapsed: false,
   isExpanded: Ember.computed.not('isCollapsed'),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     toggleCollapsed() {
       this.toggleProperty('isCollapsed');
@@ -23,20 +24,19 @@ export default Ember.Controller.extend({
       performer.penalizeEligibility();
     },
     addPerformer() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var performer = this.get('store').createRecord('performer', {
+      isCollapsed:      var performer = this.get('store').createRecord('performer', {
         session: this.get('model'),
         group: this.get('group'),
       });
       performer.save()
       .then(() => {
         this.set('group', null);
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch((error) => {
         performer.deleteRecord();
         console.log(error);
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

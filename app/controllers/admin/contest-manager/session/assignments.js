@@ -3,6 +3,14 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  assignmentSortProperties: [
+    'nomen:asc',
+  ],
+  sortedAssignments: Ember.computed.sort(
+    'model.assignments',
+    'assignmentSortProperties'
+  ),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     setEditing() {
       this.set('isEditing', true);
@@ -12,15 +20,14 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     saveEdits() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.get('model').save()
+      isCollapsed:      this.get('model').save()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
         this.set('isEditing', false);
       })
       .catch((error) => {
         console.log(error);
-        flashMessages.danger('Failure');
+        this.get('flashMessages').danger('Failure');
       });
     }
   }

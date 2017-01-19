@@ -37,25 +37,23 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.destroyRecord()
+      isCollapsed:      this.model.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     saveSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      isCollapsed:      this.model.save()
       .then(() => {
         this.set('isEditing', false);
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     scratchPerformer(performer) {
@@ -77,134 +75,122 @@ export default Ember.Controller.extend({
       contest.destroyRecord();
     },
     openSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.open()
+      isCollapsed:      this.model.open()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     closeSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.close()
+      isCollapsed:      this.model.close()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     validateSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.validate()
+      isCollapsed:      this.model.validate()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     startSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.start()
+      isCollapsed:      this.model.start()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     drawCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         current.draw()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },
     validateCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         current.validate()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },
     startCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         // this.model.cursor = current.get('opener');
         current.start()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },
     finishCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         current.finish()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },
     publishCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         current.publish()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },
     finishSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.finish()
+      isCollapsed:      this.model.finish()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     draftSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.draft()
+      isCollapsed:      this.model.draft()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     publishSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.publish()
+      isCollapsed:      this.model.publish()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     letsGo() {

@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   isCollapsed: false,
   isExpanded: Ember.computed.not('isCollapsed'),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     toggleCollapsed() {
       return this.toggleProperty('isCollapsed');
@@ -34,26 +35,24 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deletePerformer() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      let session = this.model.session;
+      isCollapsed:      let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.session', session);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     savePerformer() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      isCollapsed:      this.model.save()
       .then(() => {
         this.set('isEditing', false);
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     buildPerformer() {
@@ -66,23 +65,21 @@ export default Ember.Controller.extend({
       this.model.disqualify();
     },
     deleteContestant(contestant) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      contestant.destroyRecord()
+      isCollapsed:      contestant.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     deleteSubmission(submission) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      submission.destroyRecord()
+      isCollapsed:      submission.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

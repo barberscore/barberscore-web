@@ -1,67 +1,3 @@
-{{!-- <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        Entrants
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <div class='table-responsive'>
-        <table class='table'>
-          <thead>
-          <tr>
-            <th{{action 'sortPerformersBy' 'group.name:asc'}}>Performer</th>
-            <th{{action 'sortPerformersBy' 'status:asc'}}>Status</th>
-          </tr>
-          </thead>
-          <tbody>
-            {{#each sortedPerformers as |performer|}}
-              <tr>
-                <td>
-                  {{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.group.name}}{{/link-to}}{{#if performer.representing.short_name}}&nbsp;({{performer.representing.short_name}}){{/if}}
-                </td>
-                <td>
-                  {{performer.status}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-          <tfoot>
-            <tr>
-            <td>
-            {{#power-select
-              search=(perform searchTask)
-              placeholder='Enter a Group into this Session.'
-              selected=group
-              onchange=(action (mut group))
-              as |group|
-            }}
-              {{group.name}}
-            {{/power-select}}
-            </td>
-            <td>
-            {{#bs-button onClick=(action 'addPerformer') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-{{outlet}} --}}
-
-
-{{!-- <section>
-  <ul class='list-inline'>
-    {{#each model.performers as |performer|}}
-      <li>{{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.name}}{{/link-to}}</li>
-    {{else}}
-      <li>No performers entered</li>
-    {{/each}}
-  </ul>
-</section> --}}
-
 <section>
   <div class='row'>
     <div class='col-md-3'>
@@ -78,8 +14,3 @@
   </div>
   </div>
 </section>
-
-
-
-{{!-- {{outlet}} --}}
-

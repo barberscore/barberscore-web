@@ -15,34 +15,31 @@ export default Ember.Controller.extend({
       });
     },
     openSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.open()
+      isCollapsed:      this.model.open()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     closeSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.close()
+      isCollapsed:      this.model.close()
       .then(response => {
         this.store.pushPayload('session', response);
       })
       .catch(() => {
-        flashMessages.danger("Error" );
+        this.get('flashMessages').danger("Error" );
       });
     },
     validateCurrent() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.get('current').then(current => {
+      isCollapsed:      this.model.get('current').then(current => {
         current.validate()
         .then(response => {
           this.store.pushPayload('round', response);
         })
         .catch(() => {
-          flashMessages.danger("Error" );
+          this.get('flashMessages').danger("Error" );
         });
       });
     },

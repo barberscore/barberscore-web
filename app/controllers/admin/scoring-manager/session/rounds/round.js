@@ -51,115 +51,105 @@ export default Ember.Controller.extend({
       performance.destroyRecord();
     },
     drawRound() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.draw()
+      isCollapsed:      this.model.draw()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
       this.model.reload();
     },
     resortRound() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.resort()
+      isCollapsed:      this.model.resort()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
       this.model.reload();
     },
     startRound() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.start()
+      isCollapsed:      this.model.start()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     finishRound() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.finish()
+      isCollapsed:      this.model.finish()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     publishRound() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.publish()
+      isCollapsed:      this.model.publish()
       .then((response) => {
         this.store.pushPayload('round', response);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     moveTop(performance) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      performance.move_top()
+      isCollapsed:      performance.move_top()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
         this.get('model.performances').sortBy('performance.num');
       });
     },
     moveUp(performance) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-
+      isCollapsed:
       performance.move_up()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
         let reloaded =  this.get('model.performances').map( performance => performance.reload() );
         return Ember.RSVP.all(reloaded);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     moveDown(performance) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      performance.move_down()
+      isCollapsed:      performance.move_down()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
         this.get('model.performances').sortBy('performance.num');
       });
     },
     moveBottom(performance) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      performance.move_bottom()
+      isCollapsed:      performance.move_bottom()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
       performance.reload();
     },
     scratch(performance) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      performance.scratch()
+      isCollapsed:      performance.scratch()
       .then(() => {
-        flashMessages.success('Success');
+        this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
         this.get('model.performances').removeObject(performance);

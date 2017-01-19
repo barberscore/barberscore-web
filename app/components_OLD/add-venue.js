@@ -4,18 +4,17 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveVenue() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var venue = this.get('store').createRecord('venue', {
+      isCollapsed:      var venue = this.get('store').createRecord('venue', {
         name: this.get('name'),
         city: this.get('city'),
         state: this.get('state'),
       });
       venue.save()
       .then(() => {
-        flashMessages.success('Venue Added');
+        this.get('flashMessages').success('Venue Added');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     }
   },

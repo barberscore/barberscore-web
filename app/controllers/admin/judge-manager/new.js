@@ -10,15 +10,14 @@ export default Ember.Controller.extend({
     return this.get('store').query('person', {'nomen__icontains': term})
       .then((data) => data);
   }),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     cancelJudge() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      flashMessages.warning('Cancelled');
+      isCollapsed:      this.get('flashMessages').warning('Cancelled');
       this.transitionToRoute('admin.judge-manager');
     },
     saveJudge() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      let judge = this.store.createRecord('judge', {
+      isCollapsed:      let judge = this.store.createRecord('judge', {
         person: this.person,
         status: this.status,
         kind: this.kind,
@@ -29,12 +28,12 @@ export default Ember.Controller.extend({
       judge.save()
       // this.model.save()
       .then(() => {
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
         this.transitionToRoute('admin.judge-manager.judge', judge);
       })
       .catch((error) => {
         console.log(error);
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

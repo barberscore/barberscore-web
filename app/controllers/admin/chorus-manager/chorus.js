@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   isCollapsed: false,
   isExpanded: Ember.computed.not('isCollapsed'),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     toggleCollapsed() {
       this.toggleProperty('isCollapsed');
@@ -24,25 +25,23 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteChorus() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.destroyRecord()
+      isCollapsed:      this.model.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     saveChorus() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.model.save()
+      isCollapsed:      this.model.save()
       .then(() => {
         this.set('isEditing', false);
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     // newRole() {
@@ -60,26 +59,24 @@ export default Ember.Controller.extend({
     //   this.set('isRoleEditing', false);
     // },
     // deleteRole() {
-    //   const flashMessages = Ember.get(this, 'flashMessages');
-    //   this.model.destroyRecord()
+    //   isCollapsed:    //   this.model.destroyRecord()
     //   .then(() => {
-    //     flashMessages.warning('Deleted');
+    //     this.get('flashMessages').warning('Deleted');
     //     this.transitionToRoute('admin');
     //   })
     //   .catch(() => {
-    //     flashMessages.danger('Error');
+    //     this.get('flashMessages').danger('Error');
     //   });
     // },
     // saveRoles() {
-    //   const flashMessages = Ember.get(this, 'flashMessages');
-    //   this.model.save()
+    //   isCollapsed:    //   this.model.save()
     //   .then(response => {
     //     response.get('roles').invoke('save');
     //     this.set('isRoleEditing', false);
-    //     flashMessages.success('Saved');
+    //     this.get('flashMessages').success('Saved');
     //   })
     //   .catch(() => {
-    //     flashMessages.danger('Error');
+    //     this.get('flashMessages').danger('Error');
     //   });
     // },
   },

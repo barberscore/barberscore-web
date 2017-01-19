@@ -4,17 +4,16 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRecord() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var convention = this.get('store').createRecord('convention', {
+      isCollapsed:      var convention = this.get('store').createRecord('convention', {
         level: this.get('level'),
         year: this.get('year'),
       });
       convention.save()
       .then(() => {
-        flashMessages.success('Convention Added');
+        this.get('flashMessages').success('Convention Added');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     }
   },

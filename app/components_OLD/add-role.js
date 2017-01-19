@@ -4,18 +4,17 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveRole() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var role = this.get('store').createRecord('role', {
+      isCollapsed:      var role = this.get('store').createRecord('role', {
         group: this.get('group'),
         person: this.get('person'),
         part: this.get('part'),
       });
       role.save()
       .then(() => {
-        // flashMessages.success('Success');
+        // this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     searchPerson(term) {

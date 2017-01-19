@@ -1,40 +1,16 @@
-{{!-- <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>
-        Contest Administrators
-      </caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model.assignments as |assignment|}}
-          <tr>
-            <td>
-              {{#link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.nomen}}{{/link-to}}
-            </td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>No awards</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-</section> --}}
-
 <section>
-  <ul class='list-inline'>
-    {{#each model.assignments as |assignment|}}
-      <li>{{#link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.nomen}}{{/link-to}}</li>
-    {{else}}
-      <li>No CAs assigned</li>
+  <div class='row'>
+    <div class='col-md-3'>
+  {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+    {{#each sortedAssignments as |assignment|}}
+      {{#nav.item}}
+        {{#nav.link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.nomen}}{{/nav.link-to}}
+      {{/nav.item}}
     {{/each}}
-  </ul>
+  {{/bs-nav}}
+  </div>
+  <div class='col-md-9'>
+    {{outlet}}
+  </div>
+  </div>
 </section>
-
-
-{{outlet}}
