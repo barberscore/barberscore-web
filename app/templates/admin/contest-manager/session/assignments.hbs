@@ -1,35 +1,40 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        Assignments
-      </h4>
-      {{#if isEditing}}
-        {{#bs-button onClick=(action 'cancelEdits')}}Cancel{{/bs-button}}
-        {{#bs-button onClick=(action 'saveEdits')}}Save{{/bs-button}}
-      {{else}}
-        {{#bs-button onClick=(action 'setEditing')}}Edit{{/bs-button}}
-      {{/if}}
-    </div>
-      <div class='panel-body'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Assignment</th>
-              <th>Judge</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.assignments as |assignment|}}
-              <tr>
-                <td>
-                  {{assignment.nomen}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+{{!-- <section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>
+        Contest Administrators
+      </caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.assignments as |assignment|}}
+          <tr>
+            <td>
+              {{#link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.nomen}}{{/link-to}}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>No awards</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   </div>
+</section> --}}
+
+<section>
+  <ul class='list-inline'>
+    {{#each model.assignments as |assignment|}}
+      <li>{{#link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.nomen}}{{/link-to}}</li>
+    {{else}}
+      <li>No CAs assigned</li>
+    {{/each}}
+  </ul>
 </section>
+
+
+{{outlet}}

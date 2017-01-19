@@ -1,11 +1,10 @@
-<section>
+{{!-- <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Entrants
+      <h4>
+        Entrants
       </h4>
     </div>
-    {{#bs-collapse collapsed=isCollapsed}}
     <div class='panel-body'>
       <div class='table-responsive'>
         <table class='table'>
@@ -48,9 +47,21 @@
         </table>
       </div>
     </div>
-    {{/bs-collapse}}
   </div>
 </section>
+{{outlet}} --}}
+
+
 <section>
-  {{outlet}}
+  <ul class='list-inline'>
+    {{#each model.performers as |performer|}}
+      <li>{{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.name}}{{/link-to}}</li>
+    {{else}}
+      <li>No performers entered</li>
+    {{/each}}
+  </ul>
 </section>
+
+
+{{outlet}}
+

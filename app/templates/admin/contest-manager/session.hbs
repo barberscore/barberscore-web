@@ -1,43 +1,10 @@
-{{!-- <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      {{#bs-button
-        active=notCollapsed
-        onClick=(action "toggleCollapsed")
-        type='link'
-      }}
-        {{#if collapsed}}{{fa-icon 'caret-right'  size='lg' }}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Details
-      {{/bs-button}}
-      <ul class='list-inline'>
-        <li>{{#link-to 'admin.contest-manager.session.assignments' model}}Assignments{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.contests' model}}Contests{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.performers' model}}Entrants{{/link-to}}</li>
-      </ul>
-    </div>
-    {{#bs-collapse collapsed=collapsed}}
-      <div class='panel-body'>
-          {{#bs-button-group as |bg|}}
-            {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
-            {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
-            {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
-          {{/bs-button-group}}
-          {{#power-select
-                options=model.contests
-                selected=model.primary
-                placeholder="Select Primary Contest"
-                onchange=(action (mut model.primary))
-                allowClear=true
-                as |primary|
-          }}
-            {{primary.nomen}}
-          {{/power-select}}
-      </div>
-    {{/bs-collapse}}
-  </div>
-</section>
 <section>
-  {{outlet}}
-</section> --}}
+  {{#bs-button-group as |bg|}}
+    {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
+    {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
+    {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
+  {{/bs-button-group}}
+</section>
 <div>
   {{#bs-nav type='tabs' as |nav|}}
     {{#nav.item}}{{#link-to "admin.contest-manager.session.details"}}Details{{/link-to}}{{/nav.item}}

@@ -1,15 +1,21 @@
-{{#bs-button-group as |bg|}}
-  {{#bg.button onChange=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bg.button}}
-  {{#bg.button onChange=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bg.button}}
-  {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
-{{/bs-button-group}}
-          {{#power-select
-                options=model.contests
-                selected=model.primary
-                placeholder="Select Primary Contest"
-                onchange=(action (mut model.primary))
-                allowClear=true
-                as |primary|
-          }}
-            {{primary.nomen}}
-          {{/power-select}}
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#power-select
+            options=model.contests
+            selected=model.primary
+            placeholder="Select Primary Contest"
+            onchange=(action (mut model.primary))
+            allowClear=true
+            as |primary|
+      }}
+        {{primary.nomen}}
+      {{/power-select}}
+    </div>
+  </div>
+</section>

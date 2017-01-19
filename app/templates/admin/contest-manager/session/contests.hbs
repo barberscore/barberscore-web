@@ -1,4 +1,4 @@
-<section>
+{{!-- <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4>
@@ -58,4 +58,20 @@
 </section>
 <section>
   {{outlet}}
+</section> --}}
+
+
+
+<section>
+  <ul class='list-inline'>
+    {{#each model.contests as |contest|}}
+      <li>{{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/link-to}}</li>
+    {{else}}
+      <li>No contests entered</li>
+    {{/each}}
+  </ul>
 </section>
+
+
+{{outlet}}
+

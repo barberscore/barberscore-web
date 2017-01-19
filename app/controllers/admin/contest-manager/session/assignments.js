@@ -3,12 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  isCollapsed: false,
-  isExpanded: Ember.computed.not('isCollapsed'),
   actions: {
-    toggleCollapsed() {
-      return this.toggleProperty('isCollapsed');
-    },
     setEditing() {
       this.set('isEditing', true);
     },
