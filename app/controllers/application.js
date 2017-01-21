@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     login () {
       var lockOptions = {
         allowedConnections: [
-          'Username-Password-Authentication',
+          'Default',
         ],
         autoclose: true,
         allowLogin: true,
