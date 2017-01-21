@@ -1,7 +1,7 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-body'>
-      {{#bs-form formLayout='vertical' model=this onSubmit=(action 'saveOrganization') as |form|}}
+      {{#bs-form formLayout='vertical' model=model onSubmit=(action 'saveOrganization') as |form|}}
         {{form.element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
         {{form.element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}}
         {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}

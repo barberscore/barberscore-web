@@ -5,12 +5,12 @@
     </h3>
   </div>
   <div class='panel-body'>
-    {{#bs-form formLayout='vertical' model=this onSubmit=(action 'saveAssignment') as |form|}}
+    {{#bs-form formLayout='vertical' model=model onSubmit=(action 'saveAssignment') as |form|}}
       {{#form.element property='person' useIcons=false as |el|}}
           {{#power-select
                 search=(perform searchTask)
-                selected=model.person
-                onchange=(action (mut model.person))
+                selected=el.value
+                onchange=(action (mut el.value))
                 placeholder="Enter Person Name"
                 disabled=isDisabled
                 allowClear=true

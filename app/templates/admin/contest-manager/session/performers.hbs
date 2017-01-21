@@ -8,6 +8,26 @@
       {{/nav.item}}
     {{/each}}
   {{/bs-nav}}
+  <section>
+    <div class='row'>
+      <div class='col-md-10'>
+        {{#power-select
+          search=(perform searchTask)
+          selected=group
+          onchange=(action (mut group))
+          placeholder="Enter Group into Session"
+          disabled=isDisabled
+          allowClear=true
+          as |group|
+        }}
+          {{group.name}}
+        {{/power-select}}
+      </div>
+      <div class='col-md-2'>
+        {{#bs-button onClick=(action 'addPerformer') type='primary' size='sm'}}Add{{/bs-button}}
+      </div>
+    </div>
+  </section>
   </div>
   <div class='col-md-9'>
     {{outlet}}

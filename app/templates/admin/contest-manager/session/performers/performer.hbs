@@ -1,19 +1,27 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <h4 {{action "toggleDetails"}}>
-        {{#if isDetailsCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;<span>Entrant Details: {{model.nomen}}</span>
+    <h4>
+        Entrant Details: {{model.nomen}}
     </h4>
   </div>
-  {{#bs-collapse collapsed=isDetailsCollapsed}}
-    <div class='panel-body'>
-      <p>{{model.name}}</p>
-      {{#if isEditing}}
+  <div class='panel-body'>
+    <div>
+      {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
+        {{form.element controlType="checkbox" property="is_evaluation"}}
+        {{#if isEditing}}
+            {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button onClick=(action 'deletePerformer') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{else}}
+          {{#bs-button onClick=(action 'editPerformer')}}Edit{{/bs-button}}
+        {{/if}}
+      {{/bs-form}}
+    </div>
+  </div>
+</div>
+{{!--
+           {{#if isEditing}}
         {{#bs-form action='savePerformer'}}
-{{!--           {{#bs-form-group}}
-            {{performer-status status=model.status}}
-          {{/bs-form-group}}
- --}}          {{#bs-form-group}}
-            {{select-representing representing=model.representing}}
           {{/bs-form-group}}
           {{#bs-form-group}}
             {{x-toggle showLabels=true onLabel='Eval::true' offLabel='No Eval::false' value=model.is_evaluation onToggle=(mut model.is_evaluation)}}
@@ -58,9 +66,6 @@
             {{#link-to 'admin.quartet-manager.quartet' model.group}}{{model.group.name}}{{/link-to}}
           {{/if}}
         </p>
-        {{!-- <p>
-          <strong>Status: </strong>{{model.status}}
-        </p> --}}
         <p>
           <strong>Representing: </strong>{{model.representing.name}}
         </p>
@@ -82,15 +87,14 @@
         {{#bs-button onClick=(action 'newPerformer') class='btn-primary pull-right'}}New{{/bs-button}}
       {{/if}}
     </div>
-  {{/bs-collapse}}
-</div>
+</div> --}}
 <!-- <section>
   <ul class='list-inline'>
     <li>{{#bs-button onClick=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
     <li>{{#bs-button onClick=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
   </ul>
 </section> -->
-<section>
+{{!-- <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4 {{action "toggleContesting"}}>
@@ -125,7 +129,6 @@
               </tbody>
             </table>
           </div>
-        {{!-- {{add-contestant-contest performer=model}} --}}
       </div>
     {{/bs-collapse}}
   </div>
@@ -162,8 +165,7 @@
           </tbody>
         </table>
       </div>
-      {{!-- {{add-submission-performer performer=model}} --}}
     </div>
   {{/bs-collapse}}
   </div>
-</section>
+</section> --}}

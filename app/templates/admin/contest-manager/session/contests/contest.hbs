@@ -1,33 +1,38 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <h3>
-      Contest Details: {{model.nomen}}
-    </h3>
+    <h4>
+      {{model.nomen}}
+    </h4>
   </div>
   <div class='panel-body'>
-      {{#if isEditing}}
-
-      {{else}}
-      <h4>
-        {{model.name}}
-      </h4>
-        <div class='table-responsive'>
-        <table class='table'>
-          <thead>
-          <tr>
-            <th>Entrant</th>
-          </tr>
-          </thead>
-          <tbody>
-          {{#each model.contestants as |contestant|}}
-            <tr>
-              <td>{{#link-to 'admin.contest-manager.session.performers.performer' contestant.performer}}{{contestant.performer.group.name}}{{/link-to}}</td>
-            </tr>
-          {{/each}}
-          </tbody>
-        </table>
-          {{add-contestant-performer contest=model}}
+    <div>
+      <ul class='list-style'>
+        {{#each sortedContestants as |contestant|}}
+          <li>{{contestant.performer.group.name}}</li>
+        {{else}}
+          <li>(No contestants for this contest.)</li>
+        {{/each}}
+      </ul>
+    </div>
+    <section>
+      <div class='row'>
+        <div class='col-md-10'>
+          {{#power-select
+            options=model.session.performers
+            selected=performer
+            onchange=(action (mut performer))
+            placeholder="Enter Peformer for Contest"
+            disabled=isDisabled
+            allowClear=true
+            as |performer|
+          }}
+            {{performer.nomen}}
+          {{/power-select}}
         </div>
-    {{/if}}
+        <div class='col-md-2'>
+          {{#bs-button onClick=(action 'addContestant') type='primary' size='sm'}}Add{{/bs-button}}
+        </div>
+      </div>
+    </section>
   </div>
 </div>

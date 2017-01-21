@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deletePerformer() {
-let session = this.model.session;
+      let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');

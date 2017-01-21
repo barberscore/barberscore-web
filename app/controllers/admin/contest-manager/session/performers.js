@@ -8,10 +8,6 @@ export default Ember.Controller.extend({
     return this.get('store').query('group', {'nomen__icontains': term, 'kind': kind, 'status': 10})
       .then((data) => data);
   }),
-  isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
-  isCollapsed: false,
-  isExpanded: Ember.computed.not('isCollapsed'),
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     toggleCollapsed() {
@@ -24,7 +20,7 @@ export default Ember.Controller.extend({
       performer.penalizeEligibility();
     },
     addPerformer() {
-var performer = this.get('store').createRecord('performer', {
+      let performer = this.get('store').createRecord('performer', {
         session: this.get('model'),
         group: this.get('group'),
       });
