@@ -14,7 +14,7 @@
       <tbody>
         {{#each model as |session|}}
           <tr>
-            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.scoring-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
             <td>{{session.convention.name}}</td>
             <td>{{moment-format session.convention.start_date 'LL'}}</td>
             <td>{{session.status}}</td>
