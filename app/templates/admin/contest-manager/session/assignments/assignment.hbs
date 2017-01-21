@@ -5,9 +5,10 @@
     </h3>
   </div>
   <div class='panel-body'>
-    {{#bs-form formLayout='vertical' model=model onSubmit=(action 'saveAssignment') as |form|}}
+    {{#bs-form formLayout='vertical' model=model options=adminOptions onSubmit=(action 'saveAssignment') as |form|}}
       {{#form.element property='person' useIcons=false as |el|}}
           {{#power-select
+                options=adminOptions
                 search=(perform searchTask)
                 selected=el.value
                 onchange=(action (mut el.value))
@@ -16,7 +17,7 @@
                 allowClear=true
                 as |person|
           }}
-            {{person.name}}
+            {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{!-- {{form.element controlType="email" label="Email" placeholder="Email" property="email"}} --}}
@@ -39,7 +40,7 @@
   {{#if isEditing}}
     {{#bs-button onClick=(action 'cancelAssignment')}}Cancel{{/bs-button}}
     {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-    {{!-- {{#bs-button onClick=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
+    {{#bs-button onClick=(action 'deleteAssignment') class='pull-right btn-danger'}}Delete{{/bs-button}}
   {{else}}
     {{#bs-button onClick=(action 'editAssignment')}}Edit{{/bs-button}}
       {{!-- {{#bs-button onClick=(action 'newAssignment') class='btn-primary pull-right'}}New{{/bs-button}} --}}

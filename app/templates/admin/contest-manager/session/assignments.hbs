@@ -4,10 +4,31 @@
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each sortedAssignments as |assignment|}}
           {{#nav.item}}
-            {{#nav.link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.slot}} - {{assignment.person.common_name}}{{/nav.link-to}}
+            {{#nav.link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.person.common_name}}{{/nav.link-to}}
           {{/nav.item}}
         {{/each}}
       {{/bs-nav}}
+      <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              options=adminOptions
+              search=(perform searchTask)
+              selected=person
+              onchange=(action (mut person))
+              placeholder="Enter Administrator by Name"
+              disabled=isDisabled
+              allowClear=true
+              as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addAssignment') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section>
     </div>
     <div class='col-md-9'>
       {{outlet}}

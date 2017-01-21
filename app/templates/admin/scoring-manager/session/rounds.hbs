@@ -1,8 +1,8 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Rounds
+      <h4>
+        Rounds
       </h4>
       <ul class='list-inline'>
         {{#each model.rounds as |round|}}
@@ -10,13 +10,11 @@
         {{/each}}
       </ul>
     </div>
-    {{#bs-collapse collapsed=isCollapsed}}
       <div class='panel-body'>
         <p>
-          (No additional content.s)
+          (No additional content)
         </p>
       </div>
-    {{/bs-collapse}}
   </div>
 </section>
 <section>

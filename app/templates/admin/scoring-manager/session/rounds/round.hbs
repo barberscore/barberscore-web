@@ -1,11 +1,10 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.current.kind}} Appearances
+      <h4>
+        Appearances
       </h4>
     </div>
-    {{#bs-collapse collapsed=isCollapsed}}
       <div class='panel-body'>
         <table class='table'>
           <thead>
@@ -63,7 +62,6 @@
           </tbody>
         </table>
       </div>
-    {{/bs-collapse}}
   </div>
 </section>
 <section>

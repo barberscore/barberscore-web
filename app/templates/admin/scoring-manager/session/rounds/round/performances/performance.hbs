@@ -22,8 +22,8 @@
           Scheduled: {{moment-format model.slot.onstage 'HH:mm'}}
         </h4>
         <ul class='list-inline form-group'>
-          <li>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='HH:mm' placeholder='Start' updateDate=(action "saveActualStart")}}</li>
-          <li>{{bs-datetimepicker date=model.actual_finish forceDateOutput=true format='HH:mm' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li>
+          {{!-- <li>{{bs-datetimepicker date=model.actual_start forceDateOutput=true format='HH:mm' placeholder='Start' updateDate=(action "saveActualStart")}}</li> --}}
+          {{!-- <li>{{bs-datetimepicker date=model.actual_finish forceDateOutput=true format='HH:mm' placeholder='Finish' updateDate=(action "saveActualFinish")}}</li> --}}
           {{#if model.performer.group.chapter}}
             <li>{{mens-edit model=model men=model.performer.men}}</li>
           {{/if}}
@@ -44,7 +44,7 @@
             {{#each sortedSongs as |song|}}
               <tr>
                 <td>
-                  {{select-submission model=song submission=song.submission}}
+                  {{song.submission.title}}
                 </td>
                 <td class='text-right'>
                   {{song.songscore.mus_points}}
@@ -97,7 +97,7 @@
                 <tr class={{assignment.rowClass}}>
                   <td>
                     {{assignment.kind}} {{assignment.category}}<br>
-                    {{assignment.judge.person.name}}
+                    {{assignment.person.name}}
                   </td>
                   <td>
                     {{#each assignment.scores as |score|}}

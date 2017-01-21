@@ -10,6 +10,17 @@ export default Ember.Controller.extend({
     return this.get('store').query('person', {'nomen__icontains': term})
       .then((data) => data);
   }),
+  adminCall: Ember.computed(function() {
+    return this.get('store').query('person', {
+      'judges__category': 0, //TODO Hardcoded
+      'judges__status': 1,
+      'judges__kind': 40,
+      'page_size': 1000,
+    });
+  }),
+  adminOptions: Ember.computed.uniq(
+    'adminCall'
+  ),
   actions: {
     newAssignment() {
       let newAssignment = this.store.createRecord(
@@ -26,17 +37,13 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteAssignment() {
-      let session = this.model;
       this.model.destroyRecord()
       .then(() => {
-        console.log(session);
-        this.set('isEditing', false);
-        this.transitionToRoute('admin.contest-manager.session', session);
         this.get('flashMessages').warning('Deleted');
+        this.transitionToRoute('admin.contest-manager.session.assignments');
       })
       .catch((error) => {
         console.log(error);
-        this.get('flashMessages').danger('Error');
       });
     },
     saveAssignment() {
