@@ -1,38 +1,24 @@
-{{!-- {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}} --}}
+{{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+
+{{#if currentUser.user.person.judges}}
 <section>
-  <div>
-  {{#bs-button action=(action 'toggleEdit') class='btn btn-default' }}Edit{{/bs-button}}
-  {{#bs-button action=(action 'newJudge') class='btn btn-primary' }}New{{/bs-button}}
-  </div>
-  <div class='table-responsive'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th class='col-md-1'>Picture</th>
-            <th {{action 'sortBy' 'person.name:asc'}}>Name</th>
-            <th {{action 'sortBy' 'category:asc'}}>Category</th>
-            <th {{action 'sortBy' 'kind:asc'}}>Kind</th>
-            <th {{action 'sortBy' 'status:asc'}}>Status</th>
-            {{!-- <th>Actions</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedJudges as |judge|}}
-              {{#if isEditing}}
-                {{judge-edit judge=judge}}
-              {{else}}
-                {{judge-item judge=judge}}
-              {{/if}}
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
+  {{#power-select
+        search=(perform searchTask)
+        selected=judge
+        onchange=(action "transitionJudge")
+        placeholder="Search by Judge Name"
+        allowClear=true
+        as |judge|
+  }}
+    {{judge.person.common_name}}
+  {{/power-select}}
 </section>
+{{else}}
+  <h4>
+    You do not have permissions to access the Judge Manager.
+  </h4>
+{{/if}}
+
 <section>
-    {{#if (or currentUser.user.person.member.is_cj currentUser.user.is_staff)}}
-      <div>
-        {{add-judge}}
-      </div>
-    {{/if}}
+  {{outlet}}
 </section>
-{{outlet}}

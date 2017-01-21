@@ -72,9 +72,9 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['intercom'] = {
-    appId: process.env.INTERCOM_APP_ID
-  };
+  // ENV['intercom'] = {
+  //   appId: process.env.INTERCOM_APP_ID
+  // };
 
   ENV.APP.API_HOST = process.env.API_HOST;
   ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;

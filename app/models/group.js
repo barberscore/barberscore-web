@@ -1,8 +1,6 @@
-import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
-const {computed} = Ember;
 
 export default Model.extend({
   name: attr('string'),
@@ -27,12 +25,22 @@ export default Model.extend({
   roles: hasMany('role', {async: true}),
   permissions: attr(),
 
-  roleSort: [
-    'partSort',
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+    'Duplicate',
   ],
 
-  sortedRoles: computed.sort(
-    'roles',
-    'roleSort'
-  ),
+  kindOptions: [
+    'Quartet',
+    'Chorus',
+  ],
+
+  ageOptions: [
+    'Seniors',
+    'Collegiate',
+    'Youth',
+  ],
+
 });

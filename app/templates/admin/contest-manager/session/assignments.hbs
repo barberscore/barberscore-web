@@ -1,35 +1,16 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        Assignments
-      </h4>
-      {{#if isEditing}}
-        {{#bs-button action=(action 'cancelEdits')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'saveEdits')}}Save{{/bs-button}}
-      {{else}}
-        {{#bs-button action=(action 'setEditing')}}Edit{{/bs-button}}
-      {{/if}}
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#each sortedAssignments as |assignment|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.slot}} - {{assignment.person.common_name}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
+      {{/bs-nav}}
     </div>
-      <div class='panel-body'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Assignment</th>
-              <th>Judge</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.sortedAssignments as |assignment|}}
-              {{#if isEditing}}
-                {{edit-assignment model=assignment}}
-              {{else}}
-                {{show-assignment model=assignment}}
-              {{/if}}
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
   </div>
 </section>

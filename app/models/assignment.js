@@ -1,7 +1,6 @@
-import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import { belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
@@ -14,18 +13,23 @@ export default Model.extend({
   person: belongsTo('person', {async: true}),
   permissions: attr(),
 
-  rowClass: Ember.computed(
-    'category',
-    function() {
-      if (this.get('category') === 'Music') {
-        return 'warning';
-      } else if (this.get('category') === 'Presentation') {
-        return 'success';
-      } else if (this.get('category') === 'Singing') {
-        return 'info';
-      } else {
-        return 'foobar';
-      }
-    }
-  )
+  statusOptions: [
+    'New',
+    'Scheduled',
+    'Confirmed',
+    'Validated',
+    'Final',
+  ],
+  categoryOptions: [
+    'Admin',
+    'Music',
+    'Presentation',
+    'Singing',
+  ],
+  kindOptions: [
+    'Official',
+    'Practice',
+    'Composite',
+  ],
+
 });

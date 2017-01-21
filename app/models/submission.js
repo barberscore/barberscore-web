@@ -13,4 +13,12 @@ export default Model.extend({
   performer: belongsTo('performer', {async: true}),
   songs: hasMany('songs', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Pre-Submitted',
+    'Post-Submitted',
+    'Validated',
+  ],
+
 });

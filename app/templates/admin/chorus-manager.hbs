@@ -1,38 +1,29 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-{{#if model}}
-  <section>
-    <div class='table-responsive'>
-      <table class='table'>
-        <thead>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Current Choruses</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |chorus|}}
           <tr>
-            <th class='col-md-1'>Picture</th>
-            <th>Name</th>
-            <th>Status</th>
+            <td>{{#link-to 'admin.chorus-manager.chorus' chorus}}{{chorus.name}}{{/link-to}}</td>
+            <td>{{chorus.status}}</td>
           </tr>
-        </thead>
-        <tbody>
-          {{#each model as |chorus|}}
-            <tr>
-              <td>
-                {{model-picture picture=chorus.picture}}
-              </td>
-              <td>
-                {{#link-to 'admin.chorus-manager.chorus' chorus}}{{chorus.name}}{{/link-to}}
-              </td>
-              <td>
-                {{chorus.status}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section>
-    {{outlet}}
-  </section>
-{{else}}
-  <h3>
-    I'm sorry, you don't have permissions to manage any choruses.
-  </h3>
-{{/if}}
+        {{else}}
+          <tr>
+            <td>(None)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+<section>
+  {{outlet}}
+</section>

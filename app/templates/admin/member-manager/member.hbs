@@ -27,10 +27,10 @@
           {{bs-form-element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
           {{#if isEditing}}
               {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button action=(action 'cancelChorus')}}Cancel{{/bs-button}}
-              {{#bs-button action=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}}
+              {{#bs-button onClick=(action 'cancelChorus')}}Cancel{{/bs-button}}
+              {{#bs-button onClick=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button action=(action 'editChorus')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editChorus')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>
@@ -78,10 +78,10 @@
         {{#bs-form formLayout='inline' model=model action='saveRoles'}}
           {{#if isRoleEditing}}
             {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-            {{#bs-button action=(action 'cancelRole')}}Cancel{{/bs-button}}
-            {{#bs-button action=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
+            {{#bs-button onClick=(action 'cancelRole')}}Cancel{{/bs-button}}
+            {{#bs-button onClick=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button action=(action 'editRole')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editRole')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>
@@ -132,10 +132,10 @@
         {{#bs-form formLayout='inline' model=model action='saveRoles'}}
           {{#if isRoleEditing}}
             {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-            {{#bs-button action=(action 'cancelRole')}}Cancel{{/bs-button}}
-            {{#bs-button action=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
+            {{#bs-button onClick=(action 'cancelRole')}}Cancel{{/bs-button}}
+            {{#bs-button onClick=(action 'deleteRole') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button action=(action 'editRole')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editRole')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>

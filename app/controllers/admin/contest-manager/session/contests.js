@@ -1,21 +1,47 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isHeaderCollapsed: false,
+  store: Ember.inject.service(),
+  contestSortProperties: [
+    'nomen:asc',
+  ],
+  sortedContests: Ember.computed.sort(
+    'model.contests',
+    'contestSortProperties'
+  ),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('award', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
-    collapseHeader() {
-      this.toggleProperty('isHeaderCollapsed');
-    },
     deleteContest(contest) {
-      const flashMessages = Ember.get(this, 'flashMessages');
       contest.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.session.contests');
       })
       .catch((error) => {
         console.log(error);
       });
-    }
+    },
+    addContest(){
+      let contest = this.get('store').createRecord('contest', {
+        session: this.get('model'),
+        award: this.get('award'),
+      });
+      contest.save()
+      .then(() => {
+        this.set('award', null);
+        this.get('flashMessages').success('Success');
+      })
+      .catch((error) => {
+        contest.deleteRecord();
+        console.log(error);
+        this.get('flashMessages').danger('Error');
+      });
+    },
   }
 });

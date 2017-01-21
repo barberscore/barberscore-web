@@ -1,0 +1,24 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-body'>
+      {{#bs-form formLayout='vertical' model=model onSubmit=(action 'saveOrganization') as |form|}}
+        {{form.element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
+        {{form.element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}}
+        {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
+        {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
+        {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
+        {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
+        {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
+        {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
+        {{form.element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
+        {{#if isEditing}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button onClick=(action 'cancelOrganization')}}Cancel{{/bs-button}}
+            {{#bs-button onClick=(action 'deleteOrganization') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{else}}
+          {{#bs-button onClick=(action 'editOrganization')}}Edit{{/bs-button}}
+        {{/if}}
+      {{/bs-form}}
+    </div>
+  </div>
+</section>

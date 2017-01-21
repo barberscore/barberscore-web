@@ -27,13 +27,17 @@ export default Model.extend({
   complete: memberAction({path: 'complete', type: 'post'}),
   permissions: attr(),
 
-  songSort: [
-    'num',
+  statusOptions: [
+    'New',
+    'Validated',
+    'Started',
+    'Finished',
+    'Entered',
+    'Flagged',
+    'Cleared',
+    'Published',
   ],
-  sortedSongs: Ember.computed.sort(
-    'songs',
-    'songSort'
-  ),
+
 
   // totSongsPoints: computed.mapBy(
   //   'songs',

@@ -1,40 +1,16 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  currentUser: Ember.inject.service('current-user'),
-  isEditing: false,
-  collapseChorus: false,
-  judgeSortProperties: [
-    'person.name:asc',
-  ],
-  sortedJudges: Ember.computed.sort(
-    'model',
-    'judgeSortProperties'
-  ),
+  store: Ember.inject.service(),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('judge', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
   actions: {
-    newJudge() {
-      this.store.createRecord(
-        'judge'
-      );
-      this.set('isEditing', true);
-    },
-    toggleEdit() {
-      this.toggleProperty('isEditing');
-    },
-    saveDirty() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.get('model').save()
-      .then(() => {
-        flashMessages.success('Success');
-        this.toggleProperty('isEditing');
-      })
-      .catch((error) => {
-        console.log(error);
-        flashMessages.danger('Failure');
-      });
-    },
-    sortBy(judgeSortProperties) {
-      this.set('judgeSortProperties', [judgeSortProperties]);
+    transitionJudge(judge) {
+      this.transitionToRoute('admin.judge-manager.judge', judge);
     },
   }
 });

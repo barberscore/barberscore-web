@@ -1,0 +1,64 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-6'>Person</th>
+        <th class='col-md-2'>Kind</th>
+        <th class='col-md-2'>Status</th>
+        <th class='col-md-2'>Start</th>
+        <th class='col-md-2'>End</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model.roles as |role|}}
+        <tr>
+          <td>
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=role.person
+                  disabled=isDisabled
+                  onchange=(action (mut role.person))
+                  placeholder="Search by Person Name"
+                  allowClear=true
+                  as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#power-select
+                  options=role.partOptions
+                  selected=role.part
+                  disabled=isDisabled
+                  onchange=(action (mut role.part))
+                  placeholder="Choose Part"
+                  allowClear=true
+                  as |part|
+            }}
+              {{part}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{#power-select
+                  options=role.statusOptions
+                  selected=role.status
+                  disabled=isDisabled
+                  onchange=(action (mut role.status))
+                  placeholder="Choose Status"
+                  allowClear=true
+                  as |status|
+            }}
+              {{status}}
+            {{/power-select}}
+          </td>
+          <td>
+            {{moment-format role.start_date 'LL'}}
+          </td>
+          <td>
+            {{moment-format role.end_date 'LL'}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

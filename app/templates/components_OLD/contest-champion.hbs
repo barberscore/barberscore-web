@@ -1,0 +1,10 @@
+{{#power-select
+      options=fooContestants
+      selected=champion
+      allowClear=true
+      placeholder='Champion'
+      onchange=(action "saveRecord")
+      as |champion|
+}}
+  {{champion}}
+{{/power-select}}

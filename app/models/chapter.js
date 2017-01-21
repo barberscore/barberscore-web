@@ -11,4 +11,13 @@ export default Model.extend({
   groups: hasMany('group', {async: true}),
   members: hasMany('member', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+    'Affiliate',
+    'Duplicate',
+  ],
+
 });

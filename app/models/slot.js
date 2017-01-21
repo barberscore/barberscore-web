@@ -10,4 +10,9 @@ export default Model.extend({
   num: attr('number'),
   onstage: attr('date'),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+  ],
+
 });
