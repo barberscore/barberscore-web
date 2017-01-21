@@ -7,7 +7,10 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   searchTask: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('person', {'nomen__icontains': term})
+    return this.get('store').query('person', {
+      'nomen__icontains': term,
+      'page_size': 1000
+      })
       .then((data) => data);
   }),
   performerSortProperties: [

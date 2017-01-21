@@ -5,7 +5,12 @@ export default Ember.Controller.extend({
   searchTask: task(function* (term){
     yield timeout(600);
     let kind = (this.get('model.kind') === 'Chorus') ? 2 : 1;
-    return this.get('store').query('group', {'nomen__icontains': term, 'kind': kind, 'status': 10})
+    return this.get('store').query('group', {
+        'nomen__icontains': term,
+        'kind': kind,
+        'status': 10,
+        'page_size': 1000,
+      })
       .then((data) => data);
   }),
   flashMessage: Ember.get(this, 'flashMessages'),
