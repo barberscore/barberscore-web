@@ -1,31 +1,39 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  isCollapsed: false,
-  isExpanded: Ember.computed.not('isCollapsed'),
   flashMessage: Ember.get(this, 'flashMessages'),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
+  performerSortProperties: [
+    'nomen',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.session.performers',
+    'performerSortProperties'
+  ),
+  submissionSortProperties: [
+    'title',
+  ],
+  sortedSubmissions: Ember.computed.sort(
+    'model.submissions',
+    'submissionSortProperties'
+  ),
   actions: {
-    toggleCollapsed() {
-      return this.toggleProperty('isCollapsed');
+    previousItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
-    previousItem(sortedItems, cursor) {
-      let nowCur = sortedItems.indexOf(cursor);
-      let newCur = sortedItems.objectAt(nowCur-1);
-      this.transitionToRoute('admin.contest-manager.session.performer', newCur);
-    },
-    nextItem(sortedItems, cursor) {
-      let nowCur = sortedItems.indexOf(cursor);
-      let newCur = sortedItems.objectAt(nowCur+1);
-      this.transitionToRoute('admin.contest-manager.session.performer', newCur);
-    },
-    newPerformer() {
-      let newPerformer = this.store.createRecord(
-        'performer'
-      );
-      this.set('model', newPerformer);
-      this.set('isEditing', true);
+    nextItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
     editPerformer() {
       this.set('isEditing', true);
@@ -64,17 +72,8 @@ export default Ember.Controller.extend({
     disqualifyPerformer() {
       this.model.disqualify();
     },
-    deleteContestant(contestant) {
-contestant.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
-      });
-    },
     deleteSubmission(submission) {
-submission.destroyRecord()
+      submission.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

@@ -3,11 +3,86 @@
     <h4>
         Entrant Details: {{model.nomen}}
     </h4>
+    <ul class='list-inline'>
+      <li>{{#bs-button onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+      <li>{{#bs-button onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+    </ul>
   </div>
   <div class='panel-body'>
     <div>
       {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
-        {{form.element controlType="checkbox" property="is_evaluation"}}
+        {{#form.element property='is_evaluation' useIcons=false as |el|}}
+            {{x-toggle
+              showLabels=true
+              onLabel='Yes Evaluation::true'
+              offLabel='No Evaluation::false'
+              value=el.value
+              onToggle=(mut el.value)
+              disabled=isDisabled
+            }}
+        {{/form.element}}
+        {{#form.element property='is_private' useIcons=false as |el|}}
+            {{x-toggle
+              showLabels=true
+              onLabel='Keep Scores Private::true'
+              offLabel='Make Scores Public::false'
+              value=el.value
+              onToggle=(mut el.value)
+              disabled=isDisabled
+            }}
+        {{/form.element}}
+        {{#form.element property='tenor' useIcons=false as |el|}}
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Enter Person Name"
+                  disabled=isDisabled
+                  allowClear=true
+                  as |person|
+            }}
+              Tenor: {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='lead' useIcons=false as |el|}}
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Enter Person Name"
+                  disabled=isDisabled
+                  allowClear=true
+                  as |person|
+            }}
+              Lead: {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='baritone' useIcons=false as |el|}}
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Enter Person Name"
+                  disabled=isDisabled
+                  allowClear=true
+                  as |person|
+            }}
+              Baritone: {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='bass' useIcons=false as |el|}}
+            {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Enter Person Name"
+                  disabled=isDisabled
+                  allowClear=true
+                  as |person|
+            }}
+              Bass: {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
         {{#if isEditing}}
             {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
             {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
@@ -19,6 +94,25 @@
     </div>
   </div>
 </div>
+        <div class='table-responsive'>
+          <table class='table'>
+            <caption>Song Submissions</caption>
+            <thead>
+              <tr>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedSubmissions as |submission|}}
+                <tr>
+                  <td>
+                    {{input value=submission.title class='form-control' type='text' disabled=false}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
 {{!--
            {{#if isEditing}}
         {{#bs-form action='savePerformer'}}
