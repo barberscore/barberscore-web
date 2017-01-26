@@ -24,8 +24,6 @@ Router.map(function() {
           this.route('round', { path: '/:round_id'});
         });
         this.route('schedules', { path: '/schedule'});
-        this.route('reports', { path: '/report'});
-        this.route('sa', { path: '/sa'});
         this.route('announcement', { path: '/announcement'});
         this.route('oss', { path: '/oss'});
         this.route('csa', { path: '/csa/:performer_id'});
@@ -33,21 +31,31 @@ Router.map(function() {
     });
     this.route('scoring-manager', {path: '/scoring-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
-        this.route('details', {path: 'details'});
-        this.route('rounds', { path: '/round'}, function() {
-          this.route('round', { path: '/:round_id'}, function() {
-            this.route('performances', { path: '/performance'}, function() {
-              this.route('performance', { path: '/:performance_id'});
-            });
-          });
+        this.route('round', {path: '/round/:round_id'}, function() {
+          this.route('oa', { path: '/oa'});
         });
-        this.route('schedules', { path: '/schedule'});
-        this.route('reports', { path: '/report'});
-        this.route('sa', { path: '/sa'});
-        this.route('announcement', { path: '/announcement'});
-        this.route('oss', { path: '/oss'});
-        this.route('cursor', { path: '/cursor/'});
-        this.route('csa', { path: '/csa/:performer_id'});
+        // this.route('oas', { path: '/oas'}, function() {
+        //   this.route('round', { path: '/:round_id'});
+        // });
+        // this.route('score', { path: '/score'}, function() {
+        //   this.route('round', { path: '/:round_id'});
+        // });
+        // this.route('rounds', { path: '/round'}, function() {
+        //   this.route('oa', { path: '/:round_id'}, function() {
+            // this.route('ao', { path: '/oa'});
+            // this.route('performances', { path: '/performance'}, function() {
+            //   this.route('performance', { path: '/:performance_id'});
+            // });
+          // });
+        // });
+        // this.route('schedules', { path: '/schedule'});
+        // this.route('cursor', { path: '/cursor/'});
+        // this.route('reports', { path: '/report'}, function() {
+        //   this.route('sa', { path: '/sa'});
+        //   this.route('announcement', { path: '/announcement'});
+        //   this.route('oss', { path: '/oss'});
+        //   this.route('csa', { path: '/csa/:performer_id'});
+        // });
       });
     });
     this.route('judge-manager', {path: '/judge-manager'}, function() {

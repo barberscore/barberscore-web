@@ -2,9 +2,18 @@
   <div class='row'>
     <div class='col-md-3'>
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to 'admin.scoring-manager.session.rounds.round' round}}OAs{{/nav.link-to}}
-        {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.round.oa' model}}OA{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'admin.scoring-manager.session.reports.announcement' model}}Announcements{{/nav.link-to}} --}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'admin.scoring-manager.session.reports.oss' model}}Official Scoring Summary{{/nav.link-to}} --}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'admin.scoring-manager.session.reports.csa' model}}Candidate Scoring Analysis{{/nav.link-to}} --}}
+          {{/nav.item}}
       {{/bs-nav}}
       {{!-- <section>
         <div class='row'>

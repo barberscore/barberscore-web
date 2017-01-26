@@ -2,9 +2,11 @@
   <div class='row'>
     <div class='col-md-3'>
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to 'admin.scoring-manager.session.rounds.round' round}}OAs{{/nav.link-to}}
-        {{/nav.item}}
+        {{#each sortedRounds as |round|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.score.round' round}}{{round.kind}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
       {{/bs-nav}}
       {{!-- <section>
         <div class='row'>
