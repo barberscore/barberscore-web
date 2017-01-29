@@ -9,10 +9,14 @@ export function initialize(/* application */) {
   inflector.uncountable('contestscore');
   inflector.uncountable('contestant');
   inflector.uncountable('convention');
+  inflector.uncountable('entity');
   inflector.uncountable('group');
   inflector.uncountable('host');
   inflector.uncountable('assignment');
   inflector.uncountable('member');
+  inflector.uncountable('membership');
+  inflector.uncountable('office');
+  inflector.uncountable('officer');
   inflector.uncountable('organization');
   inflector.uncountable('performance');
   inflector.uncountable('performancescore');
