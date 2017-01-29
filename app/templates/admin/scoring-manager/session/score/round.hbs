@@ -1,0 +1,69 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        Appearances
+      </h4>
+    </div>
+      <div class='panel-body'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>OA</th>
+              <th>Name</th>
+              <th>Songs</th>
+              <th>MUS</th>
+              <th>PRS</th>
+              <th>SNG</th>
+              <th>TOT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedPerformances as |performance|}}
+              <tr>
+                <td>
+                  {{performance.num}}
+                </td>
+                <td>
+                  {{#link-to 'admin.scoring-manager.session.rounds.round.performances.performance' performance}}{{performance.performer.group.name}}{{/link-to}}<br>
+                  {{performance.performer.group.chapter.name}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.submission.title}}<br>
+                  {{/each}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.songscore.mus_points}}<br>
+                  {{/each}}
+                  {{performance.performancescore.mus_points}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.songscore.prs_points}}<br>
+                  {{/each}}
+                  {{performance.performancescore.prs_points}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.songscore.sng_points}}<br>
+                  {{/each}}
+                  {{performance.performancescore.sng_points}}
+                </td>
+                <td>
+                  {{#each performance.songs as |song|}}
+                    {{song.songscore.total_points}}<br>
+                  {{/each}}
+                  {{performance.performancescore.total_points}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+  </div>
+</section>
+<section>
+  {{outlet}}
+</section>

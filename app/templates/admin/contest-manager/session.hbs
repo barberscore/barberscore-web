@@ -1,40 +1,25 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
-      </h4>
-      <ul class='list-inline'>
-        <li>{{#link-to 'admin.contest-manager.session.assignments' model}}Assignments{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.contests' model}}Contests{{/link-to}}</li>
-        <li>{{#link-to 'admin.contest-manager.session.performers' model}}Entrants{{/link-to}}</li>
-      </ul>
-    </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
-      <div class='panel-body'>
-        {{#bs-form-group}}
-          {{#bs-button-group}}
-            {{#bs-button action=(action 'openSession') class='form-group'}}Open {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button action=(action 'closeSession') class='form-group'}}Close {{model.kind}} Registration{{/bs-button}}
-            {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
-          {{/bs-button-group}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{#power-select
-                options=model.contests
-                selected=model.primary
-                placeholder="Select Primary Contest"
-                onchange=(action (mut model.primary))
-                allowClear=true
-                as |primary|
-          }}
-            {{primary.nomen}}
-          {{/power-select}}
-        {{/bs-form-group}}
-      </div>
-    {{/bs-collapse}}
-  </div>
-</section>
-<section>
+<div>
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.details"}}Details{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.assignments"}}Administrators{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.contests"}}Awards{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.contest-manager.session.performers"}}Entrants{{/nav.link-to}}
+    {{/nav.item}}
+    {{!-- {{#bs-dropdown tagName='li' as |dd|}}
+      {{#dd.button}}Actions{{/dd.button}}
+      {{#dd.menu as |ddm|}}
+        {{#ddm.item}}
+          Foo
+        {{/ddm.item}}
+      {{/dd.menu}}
+    {{/bs-dropdown}} --}}
+  {{/bs-nav}}
   {{outlet}}
-</section>
+</div>

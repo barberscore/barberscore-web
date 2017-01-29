@@ -4,18 +4,17 @@ export default Ember.Component.extend({
   store: Ember.inject.service(),
   actions: {
     saveSession() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var session = this.get('store').createRecord('session', {
+var session = this.get('store').createRecord('session', {
         convention: this.get('convention'),
         kind: this.get('kind'),
       });
       session.save()
       .then(() => {
         this.set('kind', null);
-        // flashMessages.success('Success');
+        // this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

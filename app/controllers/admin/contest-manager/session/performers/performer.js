@@ -1,40 +1,42 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   isEditing: false,
-  isDetailsCollapsed: false,
-  isContestingCollapsed: false,
-  isSubmissionsCollapsed: false,
-  isRolesCollapsed: false,
+  isDisabled: Ember.computed.not('isEditing'),
+  flashMessage: Ember.get(this, 'flashMessages'),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {
+      'nomen__icontains': term,
+      'page_size': 1000
+      })
+      .then((data) => data);
+  }),
+  performerSortProperties: [
+    'nomen',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.session.performers',
+    'performerSortProperties'
+  ),
+  submissionSortProperties: [
+    'title',
+  ],
+  sortedSubmissions: Ember.computed.sort(
+    'model.submissions',
+    'submissionSortProperties'
+  ),
   actions: {
-    toggleDetails() {
-      return this.toggleProperty('isDetailsCollapsed');
+    previousItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
-    toggleContesting() {
-      return this.toggleProperty('isContestingCollapsed');
-    },
-    toggleSubmissions() {
-      return this.toggleProperty('isSubmissionsCollapsed');
-    },
-    toggleRoles() {
-      return this.toggleProperty('isRolesCollapsed');
-    },
-    previousItem(sortedItems, cursor) {
-      let nowCur = sortedItems.indexOf(cursor);
-      let newCur = sortedItems.objectAt(nowCur-1);
-      this.transitionToRoute('admin.contest-manager.session.performer', newCur);
-    },
-    nextItem(sortedItems, cursor) {
-      let nowCur = sortedItems.indexOf(cursor);
-      let newCur = sortedItems.objectAt(nowCur+1);
-      this.transitionToRoute('admin.contest-manager.session.performer', newCur);
-    },
-    newPerformer() {
-      let newPerformer = this.store.createRecord(
-        'performer'
-      );
-      this.set('model', newPerformer);
-      this.set('isEditing', true);
+    nextItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
     editPerformer() {
       this.set('isEditing', true);
@@ -44,26 +46,24 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deletePerformer() {
-      const flashMessages = Ember.get(this, 'flashMessages');
       let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.session', session);
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     savePerformer() {
-      const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
         this.set('isEditing', false);
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
     buildPerformer() {
@@ -75,24 +75,13 @@ export default Ember.Controller.extend({
     disqualifyPerformer() {
       this.model.disqualify();
     },
-    deleteContestant(contestant) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      contestant.destroyRecord()
-      .then(() => {
-        flashMessages.warning('Deleted');
-      })
-      .catch(() => {
-        flashMessages.danger('Error');
-      });
-    },
     deleteSubmission(submission) {
-      const flashMessages = Ember.get(this, 'flashMessages');
       submission.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

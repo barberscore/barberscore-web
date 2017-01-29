@@ -1,4 +1,4 @@
-<section>
+{{!-- <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4>Reports</h4>
@@ -15,6 +15,49 @@
           {{/each}}
         </ul>
       </ul>
+    </div>
+  </div>
+</section> --}}
+<section>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.reports.sa' model}}Judging Scoring Analysis{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.reports.announcement' model}}Announcements{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.reports.oss' model}}Official Scoring Summary{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.scoring-manager.session.reports.csa' model}}Candidate Scoring Analysis{{/nav.link-to}}
+          {{/nav.item}}
+      {{/bs-nav}}
+      {{!-- <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              search=(perform searchTask)
+              selected=award
+              onchange=(action (mut award))
+              placeholder="Enter Award for Contest"
+              disabled=isDisabled
+              allowClear=true
+              as |award|
+            }}
+              {{award.name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addContest') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section> --}}
+    </div>
+    <div class='col-md-9'>
+      {{outlet}}
     </div>
   </div>
 </section>

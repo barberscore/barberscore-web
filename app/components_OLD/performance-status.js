@@ -5,13 +5,12 @@ export default Ember.Component.extend({
   actions: {
     saveRecord(status) {
       this.model.set('status', status);
-      const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
-        // flashMessages.success('Success');
+        // this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     },
   },

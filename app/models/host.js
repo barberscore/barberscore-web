@@ -8,4 +8,11 @@ export default Model.extend({
   convention: belongsTo('convention', {async: true}),
   organization: belongsTo('organization', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
+
 });

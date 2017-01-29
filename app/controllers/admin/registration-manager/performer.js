@@ -4,27 +4,25 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   actions: {
     addSubmission() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      let submission = this.get('store').createRecord('submission', {
+let submission = this.get('store').createRecord('submission', {
         performer: this.get('model'),
         title: this.get('submission')
       });
       submission.save()
       .then(() => {
         this.set('submission', null);
-        flashMessages.success("Added");
+        this.get('flashMessages').success("Added");
       })
       .catch((error) => {
         submission.deleteRecord();
         console.log(error);
-        flashMessages.danger("Error");
+        this.get('flashMessages').danger("Error");
       });
     },
     deleteSubmission(submission) {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      submission.destroyRecord()
+submission.destroyRecord()
       .then(() => {
-        flashMessages.warning('Deleted');
+        this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.registration-manager.performer');
       })
       .catch((error) => {

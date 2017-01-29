@@ -2,14 +2,14 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
+        {{#if isCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
       </h4>
       <ul class='list-inline'>
         <li>{{#link-to 'admin.quartet-manager.quartet.members' model}}Assignments{{/link-to}}</li>
         <li>{{#link-to 'admin.quartet-manager.quartet.contests' model}}Contests{{/link-to}}</li>
       </ul>
     </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
+    {{#bs-collapse collapsed=isCollapsed}}
       <div class='panel-body'>
         {{#bs-form-group}}
           {{#if isEditing}}
@@ -31,10 +31,10 @@
         {{#bs-form-group}}
 
         {{#if isEditing}}
-          {{#bs-button icon='fa fa-undo' type='default' action=(action 'undoEditing')}}Cancel{{/bs-button}}
-          {{#bs-button icon='fa fa-save' type='primary' action=(action 'saveEditing')}}Save{{/bs-button}}
+          {{#bs-button icon='fa fa-undo' type='default' onClick=(action 'undoEditing')}}Cancel{{/bs-button}}
+          {{#bs-button icon='fa fa-save' type='primary' onClick=(action 'saveEditing')}}Save{{/bs-button}}
         {{else}}
-          {{#bs-button icon='fa fa-edit' type='default' action=(action 'setEditing')}}Edit{{/bs-button}}
+          {{#bs-button icon='fa fa-edit' type='default' onClick=(action 'setEditing')}}Edit{{/bs-button}}
         {{/if}}
         {{/bs-form-group}}
       </div>

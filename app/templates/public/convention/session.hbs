@@ -33,14 +33,14 @@
                     {{single-fixed performance.performer.prelim}}
                   </td>
                   <td>
-                    {{group-modal model=performance.performer.group}}
+                    {{!-- {{group-modal model=performance.performer.group}} --}}
                     {{#if (eq performance.performer.group.kind 'Chorus')}}{{performance.performer.group.chapter.name}}{{/if}}
                   </td>
                   {{!-- <td>
                     {{#link-to 'public.organizations.organization' performance.performer.representing}}{{performance.performer.representing.name}}{{/link-to}}
                   </td> --}}
                   <td>
-                    {{#each performance.sortedSongs as |song|}}
+                    {{#each performance.songs as |song|}}
                       {{truncate-text song.submission.title limit=50}}<br>
                     {{/each}}
                   </td>
@@ -137,7 +137,7 @@
     </td>
     </tr>
   {{/each}}
-  {{#each model.sortedSecondaryPerformers as |performer|}}
+  {{#each model.performers as |performer|}}
     <tr>
     <td>
       {{performer.performerscore.rank}}
@@ -201,7 +201,7 @@
 {{!-- <section>
   <h4>Contests</h4>
     <ul class='list-unstyled'>
-      {{#each model.sortedChampionshipContests as |contest|}}
+      {{#each model.contests as |contest|}}
         <li>{{contest.award.name}} Champion: {{contest.contestscore.champion}}</li>
       {{/each}}
     </ul>
@@ -218,7 +218,7 @@
 {{!-- <section>
   <h4>Judging Panel</h4>
   <ul class='list-unstyled'>
-    {{#each-in (group-by "category" model.sortedOfficialAssignments) as |category officialAssignments|}}
+    {{#each-in (group-by "category" model.assignments) as |category officialAssignments|}}
       <li><strong>{{category}}</strong>
         {{#each officialAssignments as |assignment|}}
           {{assignment.judge.person.common_name}}{{#unless (eq officialAssignments.lastObject assignment)}},{{/unless}}

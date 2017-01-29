@@ -12,4 +12,29 @@ export default Model.extend({
   person: belongsTo('person', {async: true}),
   assignments: hasMany('assignment', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
+
+  categoryOptions: [
+    'Admin',
+    'Music',
+    'Presentation',
+    'Singing',
+  ],
+
+  kindOptions: [
+    'Chair',
+    'Chair',
+    'Specialist',
+    'DRCJ',
+    'Certified',
+    'Candidate',
+    'Retired',
+    'Lapsed',
+  ],
+
 });

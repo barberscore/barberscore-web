@@ -1,74 +1,36 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        Contests
-      </h4>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#each sortedContests as |contest|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
+      {{/bs-nav}}
+      <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              search=(perform searchTask)
+              selected=award
+              onchange=(action (mut award))
+              placeholder="Enter Award for Contest"
+              disabled=isDisabled
+              allowClear=true
+              as |award|
+            }}
+              {{award.name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addContest') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section>
     </div>
-    <div class='panel-body'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th class='col-md-4'>Name</th>
-            {{!-- <th class='col-md-1'>Qualifier</th> --}}
-            {{!-- <th class='col-md-5'>Champion</th> --}}
-            <th class='col-md-1'>Contestants</th>
-            <th class='col-md-1'>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model.sortedContests as |contest|}}
-            <tr>
-              <td>
-                {{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/link-to}}
-              </td>
-              {{!-- <td>
-                {{#if contest.is_qualifier}}{{fa-icon 'check-circle'}}{{/if}}
-              </td> --}}
-              {{!-- <td>
-                {{contest.contestscore.champion}}
-                {{contest.contestscore.champion model=contest.contestscore.champion=contest.contestscore.champion class='form-group'}}
-              </td> --}}
-              <td>
-                {{!-- {{contest.contestants.length}} --}}
-              </td>
-              {{!-- <td>
-                {{#bs-dropdown}}
-                  {{#bs-dropdown-button size='sm'}}Actions <span class="caret"></span>{{/bs-dropdown-button}}
-                  {{#bs-dropdown-menu}}
-                    <li><a href='#' {{action 'deleteContest' contest}}>Delete</a></li>
-                  {{/bs-dropdown-menu}}
-                {{/bs-dropdown}}
-              </td> --}}
-              <td>
-              {{fa-icon 'trash-o' click=(action 'deleteContest' contest)}}
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-        <tfoot>
-          <tr>
-            <td>
-              {{#power-select
-                search=(perform searchTask)
-                selected=award
-                onchange=(action (mut award))
-                placeholder="Search Awards"
-                allowClear=true
-                as |award|
-              }}
-                {{award.nomen}}
-              {{/power-select}}
-            </td>
-            <td>
-              {{#bs-button action=(action 'saveAward') class='btn btn-primary btn-sm'}}Add{{/bs-button}}
-            </td>
-          </tr>
-        </tfoot>
-      </table>
+    <div class='col-md-9'>
+      {{outlet}}
     </div>
   </div>
-</section>
-<section>
-  {{outlet}}
 </section>

@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     saveAssignment() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      var assignment = this.get('store').createRecord('assignment', {
+var assignment = this.get('store').createRecord('assignment', {
         session: this.get('model'),
         judge: this.get('judge'),
         kind: "Official",
@@ -14,12 +14,12 @@ export default Ember.Component.extend({
       assignment.save()
       .then(() => {
         this.set('judge', null);
-        flashMessages.success("Saved");
+        this.get('flashMessages').success("Saved");
       })
       .catch((error) => {
         assignment.deleteRecord();
         console.log(error);
-        flashMessages.danger("Error");
+        this.get('flashMessages').danger("Error");
       });
     },
     searchAssignment(term) {

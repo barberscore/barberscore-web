@@ -18,6 +18,29 @@ export default Model.extend({
   person: belongsTo('person', {async: true}),
   permissions: attr(),
 
+  statusOptions: [
+    'New',
+    'Validated',
+    'Cleared',
+    'Flagged',
+    'Revised',
+    'Confirmed',
+  ],
+  categoryOptions: [
+    'Music',
+    'Presentation',
+    'Singing',
+  ],
+  kindOptions: [
+    'Official',
+    'Practice',
+    'Composite',
+  ],
+
+  violationOptions: [
+    'General',
+  ],
+
   lowReview: computed(
     'song.ascSortedScores',
     function() {

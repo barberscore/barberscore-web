@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -35,18 +34,28 @@ export default Model.extend({
   sessions: hasMany('session', {async: true}),
   hosts: hasMany('host', {async: true}),
   permissions: attr(),
-  awardSort: [
-    'organization',
-    'is_primary:desc',
-    'is_novice:desc',
-    'is_improved:asc',
-    'name',
-    'kind',
-    'size',
-    'scope'
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
   ],
-  sortedAwards: Ember.computed.sort(
-    'awards',
-    'awardSort'
-  )
+
+  levelOptions: [
+    'International',
+    'District/Affiliates',
+    'Division',
+    'Chapter',
+  ],
+
+  kindOptions: [
+    'International',
+    'Harmony Incorporated',
+    'District',
+    'Noncompetitive',
+    'Affiliate',
+    'Division',
+    'Chapter',
+  ],
+
 });

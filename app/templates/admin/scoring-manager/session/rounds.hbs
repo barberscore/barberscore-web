@@ -1,24 +1,34 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;Rounds
-      </h4>
-      <ul class='list-inline'>
-        {{#each model.sortedRounds as |round|}}
-          <li>{{#link-to 'admin.scoring-manager.session.rounds.round' round}}{{round.kind}}{{/link-to}}</li>
-        {{/each}}
-      </ul>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to 'admin.scoring-manager.session.rounds.round' round}}OAs{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{!-- <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              search=(perform searchTask)
+              selected=award
+              onchange=(action (mut award))
+              placeholder="Enter Award for Contest"
+              disabled=isDisabled
+              allowClear=true
+              as |award|
+            }}
+              {{award.name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addContest') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section> --}}
     </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
-      <div class='panel-body'>
-        <p>
-          (No additional content.s)
-        </p>
-      </div>
-    {{/bs-collapse}}
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
   </div>
-</section>
-<section>
-  {{outlet}}
 </section>

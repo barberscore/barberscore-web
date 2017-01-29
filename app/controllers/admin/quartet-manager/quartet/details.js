@@ -12,14 +12,13 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     saveEditing() {
-      const flashMessages = Ember.get(this, 'flashMessages');
       this.model.save()
       .then(() => {
         this.set('isEditing', false);
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
       })
       .catch(() => {
-        flashMessages.danger('Error');
+        this.get('flashMessages').danger('Error');
       });
     }
   },

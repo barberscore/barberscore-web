@@ -5,8 +5,22 @@ import {belongsTo} from 'ember-data/relationships';
 export default Model.extend({
   nomen: attr('string'),
   status: attr('contestant-status'),
-  contestscore: belongsTo('contestantscore', {async: true}),
+  contestantscore: belongsTo('contestantscore', {async: true}),
   contest: belongsTo('contest', {async: true}),
   performer: belongsTo('performer', {async: true}),
   permissions: attr(),
+
+  statusOptions: [
+    'New',
+    'Eligible',
+    'Ineligible',
+    'District Representative',
+    'Qualified',
+    'Validated',
+    'Finished',
+    'Scratched',
+    'Disqualified',
+    'Published',
+  ],
+
 });

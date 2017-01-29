@@ -9,16 +9,16 @@ export default Model.extend({
   nomen: attr('string'),
   status: attr('performer-status'),
   picture: attr('string'),
-  tenor: belongsTo('role', {async: true}),
-  lead: belongsTo('role', {async: true}),
-  baritone: belongsTo('role', {async: true}),
-  bass: belongsTo('role', {async: true}),
+  tenor: belongsTo('person', {async: true}),
+  lead: belongsTo('person', {async: true}),
+  baritone: belongsTo('person', {async: true}),
+  bass: belongsTo('person', {async: true}),
   men: attr('number'),
   risers: attr('number'),
   is_evaluation: attr('boolean'),
   is_private: attr('boolean'),
-  director: belongsTo('role', {async: true}),
-  codirector: belongsTo('role', {async: true}),
+  director: belongsTo('person', {async: true}),
+  codirector: belongsTo('person', {async: true}),
   representing: belongsTo('organization', {async: true}),
   seed: attr('number'),
   prelim: attr('number'),
@@ -30,30 +30,23 @@ export default Model.extend({
   performerscore: belongsTo('performerscore', {async: true}),
   scratch: memberAction({path: 'scratch'}),
   permissions: attr(),
+
   penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
 
-  contestantSort: [
-    'contest.is_qualifier:asc',
-    'contest.award.level:desc',
-    'contest.award.organization.name:asc',
-    'contest.award.is_primary:desc',
-    'contest.award.kind:asc',
-    'contest.award.is_improved:asc',
-    'contest.award.size:asc',
-    'contest.award.scope:asc',
+  statusOptions: [
+    'New',
+    'Registered',
+    'Accepted',
+    'Declined',
+    'Dropped',
+    'Validated',
+    'Scratched',
+    'Disqualified',
+    'Started',
+    'Finished',
+    'Published',
   ],
-  sortedContestants: Ember.computed.sort(
-    'contestants',
-    'contestantSort'
-  ),
 
-  performanceSort: [
-    'round.kindSort:desc',
-  ],
-  sortedPerformances: Ember.computed.sort(
-    'performances',
-    'performanceSort'
-  ),
 
   tp: computed.mapBy(
     'performances',

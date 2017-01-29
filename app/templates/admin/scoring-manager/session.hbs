@@ -1,31 +1,32 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isHeaderCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
-      </h4>
-      <ul class='list-inline'>
-        <li>{{#link-to 'admin.scoring-manager.session.rounds' model}}Rounds{{/link-to}}</li>
-        <li>{{#link-to 'admin.scoring-manager.session.reports' model}}Reports{{/link-to}}</li>
-      </ul>
-    </div>
-    {{#bs-collapse collapsed=isHeaderCollapsed}}
-      <div class='panel-body'>
-        {{#bs-form-group}}
-          {{#bs-button-group}}
-            {{#bs-button action=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'startCurrent') class='form-group'}}Start {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'finishCurrent') class='form-group'}}Finish {{model.current.kind}}{{/bs-button}}
-            {{#bs-button action=(action 'publishCurrent') class='form-group'}}Publish {{model.current.kind}}{{/bs-button}}
-          {{/bs-button-group}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{select-round rounds=model.rounds current=model.current model=model}}
-        {{/bs-form-group}}
-      </div>
-    {{/bs-collapse}}
-  </div>
-</section>
-<section>
+<div>
+    {{!-- {{#nav.item}}
+      {{#nav.link-to "admin.scoring-manager.session.details"}}Details{{/nav.link-to}}
+    {{/nav.item}} --}}
+  {{!--   {{#nav.item}}
+      {{#nav.link-to "admin.scoring-manager.session.oas"}}OAs{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.scoring-manager.session.score"}}Scores{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.scoring-manager.session.reports"}}Reports{{/nav.link-to}}
+    {{/nav.item}} --}}
+    {{!-- {{#bs-dropdown tagName='li' as |dd|}}
+      {{#dd.button}}Actions{{/dd.button}}
+      {{#dd.menu as |ddm|}}
+        {{#ddm.item}}
+          Foo
+        {{/ddm.item}}
+      {{/dd.menu}}
+    {{/bs-dropdown}} --}}
+  {{!-- {{/bs-nav}} --}}
+
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#each sortedRounds as |round|}}
+      {{#nav.item}}
+        {{#nav.link-to 'admin.scoring-manager.session.round' round}}{{round.kind}}{{/nav.link-to}}
+      {{/nav.item}}
+    {{/each}}
+  {{/bs-nav}}
   {{outlet}}
-</section>
+</div>

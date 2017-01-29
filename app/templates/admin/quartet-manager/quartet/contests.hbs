@@ -36,7 +36,7 @@
           </td>
           <td>
             {{#power-select
-                  options=partOptions
+                  options=role.partOptions
                   selected=role.part
                   disabled=isDisabled
                   onchange=(action (mut role.part))
@@ -49,7 +49,7 @@
           </td>
           <td>
             {{#power-select
-                  options=statusOptions
+                  options=role.statusOptions
                   selected=role.status
                   disabled=isDisabled
                   onchange=(action (mut role.status))

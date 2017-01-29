@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "ember-api-actions": "0.1.6",
-    "ember-bootstrap": "0.11.3",
+    "ember-bootstrap": "1.0.0-alpha.2",
     "ember-bootstrap-datetimepicker": "1.0.4",
     "ember-cli-bootstrap-datepicker": "0.5.6",
     "ember-cli-bugsnag": "1.1.1",

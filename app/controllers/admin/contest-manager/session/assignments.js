@@ -1,27 +1,49 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isHeaderCollapsed: false,
-  isEditing: false,
+  assignmentSortProperties: [
+    'slot:asc',
+  ],
+  sortedAssignments: Ember.computed.sort(
+    'model.assignments',
+    'assignmentSortProperties'
+  ),
+  flashMessage: Ember.get(this, 'flashMessages'),
+  adminCall: Ember.computed(function() {
+    return this.get('store').query('person', {
+      'judges__category': 0, //TODO Hardcoded
+      'judges__status': 1,
+      'judges__kind': 40,
+      'page_size': 1000,
+    });
+  }),
+  adminOptions: Ember.computed.uniq(
+    'adminCall'
+  ),
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
   actions: {
-    setEditing() {
-      this.set('isEditing', true);
-    },
-    cancelEdits() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    saveEdits() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      this.get('model').save()
+    addAssignment(){
+      let assignment = this.get('store').createRecord('assignment', {
+        category: 'Admin',
+        kind: 'Official',
+        session: this.get('model'),
+        person: this.get('person'),
+      });
+      assignment.save()
       .then(() => {
-        flashMessages.success('Success');
-        this.set('isEditing', false);
+        this.set('person', null);
+        this.get('flashMessages').success('Success');
       })
       .catch((error) => {
+        assignment.deleteRecord();
         console.log(error);
-        flashMessages.danger('Failure');
+        this.get('flashMessages').danger('Error');
       });
-    }
+    },
   }
 });

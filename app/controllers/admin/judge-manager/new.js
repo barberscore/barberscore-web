@@ -1,39 +1,23 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  statusOptions: [
-    'Active',
-    'Inactive',
-  ],
-  kindOptions: [
-    'Chair',
-    'Past Chair',
-    'Specialist',
-    'Certified',
-    'Candidate',
-  ],
-  categoryOptions: [
-    'Admin',
-    'Music',
-    'Presentation',
-    'Singing',
-  ],
+  store: Ember.inject.service(),
   isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
-  _performSearch(term, resolve, reject) {
-    if (Ember.isBlank(term)) { return resolve([]); }
-    this.get('store').query('person', {'name__icontains': term})
-      .then(data => resolve(data), reject);
-  },
+  searchTask: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {'nomen__icontains': term})
+      .then((data) => data);
+  }),
+  flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     cancelJudge() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      flashMessages.warning('Cancelled');
+      this.get('flashMessages').warning('Cancelled');
       this.transitionToRoute('admin.judge-manager');
     },
     saveJudge() {
-      const flashMessages = Ember.get(this, 'flashMessages');
-      let judge = this.store.createRecord('judge', {
+let judge = this.store.createRecord('judge', {
         person: this.person,
         status: this.status,
         kind: this.kind,
@@ -44,17 +28,12 @@ export default Ember.Controller.extend({
       judge.save()
       // this.model.save()
       .then(() => {
-        flashMessages.success('Saved');
+        this.get('flashMessages').success('Saved');
         this.transitionToRoute('admin.judge-manager.judge', judge);
       })
       .catch((error) => {
         console.log(error);
-        flashMessages.danger('Error');
-      });
-    },
-    searchPerson(term) {
-      return new Ember.RSVP.Promise((resolve, reject) => {
-        Ember.run.debounce(this, this._performSearch, term, resolve, reject, 600);
+        this.get('flashMessages').danger('Error');
       });
     },
   },

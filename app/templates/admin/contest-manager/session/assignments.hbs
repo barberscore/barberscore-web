@@ -1,35 +1,37 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        Assignments
-      </h4>
-      {{#if isEditing}}
-        {{#bs-button action=(action 'cancelEdits')}}Cancel{{/bs-button}}
-        {{#bs-button action=(action 'saveEdits')}}Save{{/bs-button}}
-      {{else}}
-        {{#bs-button action=(action 'setEditing')}}Edit{{/bs-button}}
-      {{/if}}
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#each sortedAssignments as |assignment|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.contest-manager.session.assignments.assignment' assignment}}{{assignment.person.common_name}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
+      {{/bs-nav}}
+      <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              options=adminOptions
+              search=(perform searchTask)
+              selected=person
+              onchange=(action (mut person))
+              placeholder="Enter Administrator by Name"
+              disabled=isDisabled
+              allowClear=true
+              as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addAssignment') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section>
     </div>
-      <div class='panel-body'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Assignment</th>
-              <th>Judge</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.sortedAssignments as |assignment|}}
-              <tr>
-                <td>
-                  {{assignment.nomen}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
   </div>
 </section>

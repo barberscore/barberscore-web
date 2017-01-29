@@ -1,0 +1,24 @@
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Awards</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model.awards as |award|}}
+          <tr>
+            <td>{{award.nomen}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>No awards</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+{{outlet}}

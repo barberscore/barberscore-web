@@ -1,28 +1,27 @@
 {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 <section>
   <div class='table-responsive'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model as |organization|}}
-              <tr>
-                <td>
-                  {{#link-to 'admin.organization-manager.organization' organization}}{{organization.name}}{{/link-to}}
-                </td>
-                <td>
-                  {{organization.status}}
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-  </section>
-<section>
-  {{outlet}}
+    <table class='table'>
+      <caption>Current Organization</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |organization|}}
+          <tr>
+            <td>{{#link-to 'admin.organization-manager.organization' organization}}{{organization.name}}{{/link-to}}</td>
+            <td>{{organization.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(None)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>
+{{outlet}}

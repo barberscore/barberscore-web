@@ -2,10 +2,9 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Your Choruses</caption>
+      <caption>Current Choruses</caption>
       <thead>
         <tr>
-          <th class='col-md-1'>Picture</th>
           <th>Name</th>
           <th>Status</th>
         </tr>
@@ -13,15 +12,8 @@
       <tbody>
         {{#each model as |chorus|}}
           <tr>
-            <td>
-              {{model-picture picture=chorus.picture}}
-            </td>
-            <td>
-              {{#link-to 'admin.chorus-manager.chorus' chorus}}{{chorus.name}}{{/link-to}}
-            </td>
-            <td>
-              {{chorus.status}}
-            </td>
+            <td>{{#link-to 'admin.chorus-manager.chorus' chorus}}{{chorus.name}}{{/link-to}}</td>
+            <td>{{chorus.status}}</td>
           </tr>
         {{else}}
           <tr>
