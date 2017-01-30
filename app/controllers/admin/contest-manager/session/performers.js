@@ -4,8 +4,8 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   searchTask: task(function* (term){
     yield timeout(600);
-    let kind = (this.get('model.kind') === 'Chorus') ? 2 : 1;
-    return this.get('store').query('group', {
+    let kind = (this.get('model.kind') === 'Chorus') ? 32 : 31;
+    return this.get('store').query('entity', {
         'nomen__icontains': term,
         'kind': kind,
         'status': 10,
@@ -27,11 +27,11 @@ export default Ember.Controller.extend({
     addPerformer() {
       let performer = this.get('store').createRecord('performer', {
         session: this.get('model'),
-        group: this.get('group'),
+        entity: this.get('entity'),
       });
       performer.save()
       .then(() => {
-        this.set('group', null);
+        this.set('entity', null);
         this.get('flashMessages').success('Success');
       })
       .catch((error) => {

@@ -4,15 +4,23 @@ import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('host-status'),
-  convention: belongsTo('convention', {async: true}),
+  status: attr('membership-status'),
+  part: attr('membership-part'),
+  start_date: attr('isodate'),
+  end_date: attr('isodate'),
   entity: belongsTo('entity', {async: true}),
+  person: belongsTo('person', {async: true}),
   permissions: attr(),
-
   statusOptions: [
     'New',
     'Active',
     'Inactive',
   ],
-
+  partOptions: [
+    'Tenor',
+    'Lead',
+    'Baritone',
+    'Bass',
+    'Director',
+  ],
 });

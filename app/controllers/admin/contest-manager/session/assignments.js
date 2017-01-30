@@ -12,9 +12,9 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   adminCall: Ember.computed(function() {
     return this.get('store').query('person', {
-      'judges__category': 0, //TODO Hardcoded
-      'judges__status': 1,
-      'judges__kind': 40,
+      'memberships__officers__office__kind': 30, //TODO Hardcoded
+      // 'judges__status': 1,
+      // 'judges__kind': 40,
       'page_size': 1000,
     });
   }),

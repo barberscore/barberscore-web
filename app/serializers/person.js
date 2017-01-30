@@ -2,13 +2,7 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     attrs: {
-      judges: {
-        serialize: true
-      },
       conventions: {
-        serialize: true
-      },
-      roles: {
         serialize: true
       },
       panels: {

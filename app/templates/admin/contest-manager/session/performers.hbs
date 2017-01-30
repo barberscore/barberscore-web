@@ -4,7 +4,7 @@
   {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
     {{#each sortedPerformers as |performer|}}
       {{#nav.item}}
-        {{#nav.link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.group.name}}{{/nav.link-to}}
+        {{#nav.link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.entity.nomen}}{{/nav.link-to}}
       {{/nav.item}}
     {{/each}}
   {{/bs-nav}}
@@ -13,14 +13,14 @@
       <div class='col-md-10'>
         {{#power-select
           search=(perform searchTask)
-          selected=group
-          onchange=(action (mut group))
+          selected=entity
+          onchange=(action (mut entity))
           placeholder="Enter Group into Session"
           disabled=isDisabled
           allowClear=true
-          as |group|
+          as |entity|
         }}
-          {{group.name}}
+          {{entity.name}}
         {{/power-select}}
       </div>
       <div class='col-md-2'>

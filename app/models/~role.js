@@ -7,7 +7,7 @@ export default Model.extend({
   status: attr('role-status'),
   part: attr('role-part'),
   person: belongsTo('person', {async: true}),
-  group: belongsTo('group', {async: true}),
+  entity: belongsTo('entity', {async: true}),
   start_date: attr('isodate'),
   finish_date: attr('isodate'),
   permissions: attr(),

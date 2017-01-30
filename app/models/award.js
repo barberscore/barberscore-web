@@ -17,7 +17,7 @@ export default Model.extend({
   idiom: attr('string'),
   threshold: attr('number'),
   level: attr('award-level'),
-  organization: belongsTo('organization', {async: true}),
+  entity: belongsTo('entity', {async: true}),
   contests: hasMany('contest', {inverse:'award', async: true}),
   permissions: attr(),
 

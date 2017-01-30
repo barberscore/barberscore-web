@@ -4,9 +4,11 @@ import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('host-status'),
-  convention: belongsTo('convention', {async: true}),
-  entity: belongsTo('entity', {async: true}),
+  status: attr('officer-status'),
+  start_date: attr('isodate'),
+  finish_date: attr('isodate'),
+  office: belongsTo('office', {async: true}),
+  membership: belongsTo('membership', {async: true}),
   permissions: attr(),
 
   statusOptions: [
