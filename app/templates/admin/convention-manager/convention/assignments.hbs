@@ -1,0 +1,88 @@
+<section>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#each sortedAssignments as |assignment|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.convention-manager.convention.assignments.assignment' assignment}}{{assignment.person.common_name}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
+      {{/bs-nav}}
+      <section>
+
+
+        {{#bs-form
+          model=this
+          formLayout='vertical'
+          onSubmit=(action 'addAssignment')
+          as |form|
+        }}
+          {{#form.element property='person' useIcons=false as |el|}}
+            {{#power-select
+              options=adminOptions
+              search=(perform searchTask)
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Judge by Name"
+              disabled=isDisabled
+              allowClear=true
+              as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='kind' useIcons=false as |el|}}
+              {{#power-select
+                    options=this.kindOptions
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                    placeholder="Choose Kind"
+                    disabled=isDisabled
+                    allowClear=true
+                    as |kind|
+              }}
+                Kind: {{kind}}
+              {{/power-select}}
+          {{/form.element}}
+          {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
+        {{/bs-form}}
+
+
+
+
+
+        {{!-- <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              options=adminOptions
+              search=(perform searchTask)
+              selected=person
+              onchange=(action (mut person))
+              placeholder="Enter Judge by Name"
+              disabled=isDisabled
+              allowClear=true
+              as |person|
+            }}
+              {{person.common_name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addAssignment') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div> --}}
+
+
+
+
+
+
+
+
+
+      </section>
+    </div>
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
+  </div>
+</section>

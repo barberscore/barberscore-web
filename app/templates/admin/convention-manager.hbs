@@ -5,21 +5,21 @@
       <caption>Current Conventions</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'start_date'}}>Start</th>
-          <th>End</th>
           <th {{action 'sortBy' 'name'}}>Name</th>
-          <th>Location</th>
-          <th>Panel</th>
+          <th {{action 'sortBy' 'start_date'}}>Start</th>
+          <th {{action 'sortBy' 'end_date'}}>End</th>
+          <th {{action 'sortBy' 'location'}}>Location</th>
+          <th {{action 'sortBy' 'panel'}}>Panel</th>
           <th>Risers</th>
-          <th>Status</th>
+          <th {{action 'sortBy' 'status'}}>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedConventions as |convention|}}
           <tr>
+            <td>{{#link-to 'admin.convention-manager.convention' convention}}{{convention.name}}{{/link-to}}</td>
             <td>{{moment-format convention.start_date 'LL'}}</td>
             <td>{{moment-format convention.end_date 'LL'}}</td>
-            <td>{{#link-to 'admin.convention-manager.convention' convention}}{{convention.name}}{{/link-to}}</td>
             <td>{{convention.location}}</td>
             <td>{{convention.panel}}</td>
             <td>{{convention.risers}}</td>

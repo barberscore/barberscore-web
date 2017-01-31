@@ -98,6 +98,9 @@ Router.map(function() {
     this.route('convention-manager', {path: '/convention-manager'}, function() {
       this.route('convention', { path: '/convention/:convention_id' }, function() {
         this.route('details', {path: 'details'});
+        this.route('assignments', { path: '/assignments'}, function() {
+          this.route('assignment', { path: '/:assignment_id'});
+        });
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {

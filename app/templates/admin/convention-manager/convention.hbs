@@ -1,63 +1,11 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        {{model.nomen}}
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <div>
-        {{#power-select
-              options=model.kindOptions
-              selected=model.level
-              onchange=(action (mut model.level))
-              placeholder="Select Convention Level"
-              allowClear=true
-              as |level|
-        }}
-          {{level}}
-        {{/power-select}}
-      </div>
-      <div>
-        <table class='table'>
-          <caption>Sessions</caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each model.sessions as |session|}}
-              <tr>
-                <td>{{session.nomen}}</td>
-                {{!-- <td>{{fa-icon 'trash-o' click=(action 'deleteSession' submission)}}</td> --}}
-              </tr>
-            {{/each}}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td>
-                {{!-- {{#power-select
-                      search=(perform searchTask)
-                      selected=submission
-                      onchange=(action (mut submission))
-                      placeholder="Search by Session Name"
-                      allowClear=true
-                      as |session|
-                }}
-                  {{session.nomen}}
-                {{/power-select}} --}}
-                {{bs-input type='text' disabled=false placeholder='Song Title' value=submission}}
-              </td>
-              <td>
-                {{!-- {{#bs-button onClick=(action 'addSubmission') class='btn btn-primary'}}Add{{/bs-button}} --}}
-              </td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
+<div>
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.convention-manager.convention.details"}}Details{{/nav.link-to}}
+    {{/nav.item}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.convention-manager.convention.assignments"}}Assignments{{/nav.link-to}}
+    {{/nav.item}}
+  {{/bs-nav}}
+  {{outlet}}
+</div>

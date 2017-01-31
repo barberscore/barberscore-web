@@ -6,10 +6,10 @@ export default Model.extend({
   nomen: attr('string'),
   status: attr('assignment-status'),
   category: attr('assignment-category'),
-  designation: attr('string'),
+  // designation: attr('string'),
   kind: attr('assignment-kind'),
   slot: attr('number'),
-  session: belongsTo('session', {async: true}),
+  convention: belongsTo('convention', {async: true}),
   person: belongsTo('person', {async: true}),
   permissions: attr(),
 
@@ -27,9 +27,11 @@ export default Model.extend({
     'Singing',
   ],
   kindOptions: [
-    'Official',
-    'Practice',
-    'Composite',
+    'DRCJ',
+    'CA',
+    'ACA',
+    'Music',
+    'Presentation',
+    'Singing',
   ],
-
 });
