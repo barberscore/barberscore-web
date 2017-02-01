@@ -93,6 +93,7 @@ Router.map(function() {
     this.route('registration-manager', {path: '/registration-manager'}, function() {
       this.route('performer', { path: '/performer/:performer_id' }, function() {
         this.route('details', {path: 'details'});
+        this.route('contests', {path: 'contests'});
       });
     });
     this.route('convention-manager', {path: '/convention-manager'}, function() {

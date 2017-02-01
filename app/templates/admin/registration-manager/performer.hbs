@@ -1,118 +1,17 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        {{model.nomen}}
-      </h4>
-    </div>
-    <div class='panel-body'>
-      {{#if (eq model.group.kind 'Quartet')}}
-        <ul class='list-unstyled'>
-          <li>Tenor:  {{model.tenor.person.name}}</li>
-          <li>Lead:  {{model.lead.person.name}}</li>
-          <li>Baritone:  {{model.baritone.person.name}}</li>
-          <li>Bass:  {{model.bass.person.name}}</li>
-          <li>Evaluation?:  {{model.is_evaluation}}</li>
-          <li>Keep Private?:  {{model.is_private}}</li>
-        </ul>
-      {{else}}
-        {{model.director}}
-      {{/if}}
-    </div>
-  </div>
-</section>
-<section>
-  <div>
-    <table class='table'>
-      <caption>Song Submissions</caption>
-      <thead>
-        <tr>
-          <th {{action 'sortBy' 'title:asc'}}>Title</th>
-          <th {{action 'sortBy' 'arranger:asc'}}>Arranger</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model.submissions as |submission|}}
-          <tr>
-            <td>{{submission.title}}</td>
-            <td>{{submission.arranger}}</td>
-            <td>{{fa-icon 'trash-o' click=(action 'deleteSubmission' submission)}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <td>
-            {{!-- {{#power-select
-                  search=(perform searchTask)
-                  selected=submission
-                  onchange=(action (mut submission))
-                  placeholder="Search by Session Name"
-                  allowClear=true
-                  as |session|
-            }}
-              {{session.nomen}}
-            {{/power-select}} --}}
-            {{bs-input type='text' disabled=false placeholder='Song Title' value=submission}}
-          </td>
-          <td>
-            {{#bs-button onClick=(action 'addSubmission') class='btn btn-primary'}}Add{{/bs-button}}
-          </td>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</section>
-<section>
-  <div>
-    <table class='table'>
-      <caption>Contesting</caption>
-      <thead>
-        <tr>
-          <th {{action 'sortBy' 'name:asc'}}>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model.contestants as |contestant|}}
-          <tr>
-            <td>{{contestant.nomen}}</td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>(No current awards.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-      <tfoot>
-        {{#bs-button onClick=(action 'addContestant') class='btn btn-xs btn-primary'}}Add{{/bs-button}}
-      </tfoot>
-    </table>
-  </div>
-</section>
-<section>
-  <div>
-    <table class='table'>
-      <caption>Appearances</caption>
-      <thead>
-        <tr>
-          <th {{action 'sortBy' 'nomen:asc'}}>Nomen</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#if model.performances}}
-          {{#each model.performances as |performance|}}
-            <tr>
-              <td>{{performance.nomen}}</td>
-            </tr>
-          {{/each}}
-        {{else}}
-          <tr>
-            <td>(No current appearances.)</td>
-          </tr>
-        {{/if}}
-      </tbody>
-    </table>
-  </div>
-</section>
+<div>
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.registration-manager.performer.details"}}Details{{/nav.link-to}}
+    {{/nav.item}}
+    {{!-- {{#nav.item}}
+      {{#nav.link-to "admin.registration-manager.performer.assignments"}}Administrators{{/nav.link-to}}
+    {{/nav.item}} --}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.registration-manager.performer.contests"}}Awards{{/nav.link-to}}
+    {{/nav.item}}
+    {{!-- {{#nav.item}}
+      {{#nav.link-to "admin.registration-manager.performer.performers"}}Entrants{{/nav.link-to}}
+    {{/nav.item}} --}}
+  {{/bs-nav}}
+  {{outlet}}
+</div>
