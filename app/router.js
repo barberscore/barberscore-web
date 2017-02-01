@@ -93,8 +93,12 @@ Router.map(function() {
     this.route('registration-manager', {path: '/registration-manager'}, function() {
       this.route('performer', { path: '/performer/:performer_id' }, function() {
         this.route('details', {path: 'details'});
-        this.route('contestants', {path: 'contestants'});
-        this.route('submissions', {path: 'submissions'});
+        this.route('submissions', {path: 'submissions'}, function() {
+          this.route('submission', {path: '/:submission_id'});
+        });
+        this.route('contestants', {path: 'contestants'}, function() {
+          this.route('contestant', {path: '/:contestant_id'});
+        });
       });
     });
     this.route('convention-manager', {path: '/convention-manager'}, function() {

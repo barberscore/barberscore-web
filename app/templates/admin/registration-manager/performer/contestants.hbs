@@ -1,4 +1,20 @@
 <section>
+  {{#power-select
+    options=model.session.contests
+    selected=contest
+    onchange=(action (mut contest))
+    placeholder="Search for Award Name"
+    disabled=false
+    allowClear=true
+    as |contest|
+  }}
+    {{contest.award.name}}
+  {{/power-select}}
+  {{#bs-button onClick=(action 'addContestant')}}
+    Add
+  {{/bs-button}}
+</section>
+<section>
   <div class='table-responsive'>
     <table class='table'>
       <caption>Awards Contesting</caption>
