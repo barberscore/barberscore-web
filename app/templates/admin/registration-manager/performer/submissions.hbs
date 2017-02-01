@@ -1,0 +1,21 @@
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Song Submissions</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedItems as |submission|}}
+          <tr>
+            <td>
+              {{submission.title}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -5,15 +5,15 @@
       <caption>Current Registrations</caption>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Status</th>
+          <th {{action "sortBy" "name"}}>Name</th>
+          <th {{action "sortBy" "status"}}>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |registration|}}
+        {{#each sortedItems as |performer|}}
           <tr>
-            <td>{{#link-to 'admin.registration-manager.performer' registration}}{{registration.nomen}}{{/link-to}}</td>
-            <td>{{registration.status}}</td>
+            <td>{{#link-to 'admin.registration-manager.performer' performer}}{{performer.nomen}}{{/link-to}}</td>
+            <td>{{performer.status}}</td>
           </tr>
         {{else}}
           <tr>

@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
     'status',
   ],
   sortedItems: Ember.computed.sort(
-    'model',
+    'model.submissions',
     'sortProperties'
   ),
   actions: {
