@@ -13,18 +13,6 @@
           {{#bg.button onChange=(action 'validateCurrent') class='form-group'}}Validate {{model.current.kind}}{{/bg.button}}
         {{/bs-button-group}}
       </section>
-      <section>
-      {{#power-select
-            options=model.contests
-            selected=model.primary
-            placeholder="Select Primary Contest"
-            onchange=(action "savePrimary")
-            allowClear=true
-            as |primary|
-      }}
-        {{primary.nomen}}
-      {{/power-select}}
-      </section>
     </div>
   </div>
 </section>

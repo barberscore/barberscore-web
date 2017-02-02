@@ -1,0 +1,23 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+      {{#power-select
+            options=model.contests
+            selected=model.primary
+            placeholder="Select Primary Contest"
+            onchange=(action "savePrimary")
+            allowClear=true
+            as |primary|
+      }}
+        {{primary.nomen}}
+      {{/power-select}}
+      </section>
+    </div>
+  </div>
+</section>

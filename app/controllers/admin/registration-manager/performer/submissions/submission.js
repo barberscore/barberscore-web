@@ -31,12 +31,12 @@ export default Ember.Controller.extend({
     // previousItem(cursor) {
     //   let nowCur = this.get('sortedItems').indexOf(cursor);
     //   let newCur = this.get('sortedItems').objectAt(nowCur-1);
-    //   this.transitionToRoute('admin.contest-manager.session.Submissions.Submission', newCur);
+    //   this.transitionToRoute('admin.contest-manager.convention.sessions.session.Submissions.Submission', newCur);
     // },
     // nextItem(cursor) {
     //   let nowCur = this.get('sortedItems').indexOf(cursor);
     //   let newCur = this.get('sortedItems').objectAt(nowCur+1);
-    //   this.transitionToRoute('admin.contest-manager.session.Submissions.Submission', newCur);
+    //   this.transitionToRoute('admin.contest-manager.convention.sessions.session.Submissions.Submission', newCur);
     // },
     editSubmission() {
       this.set('isEditing', true);

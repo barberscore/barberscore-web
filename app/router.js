@@ -9,24 +9,32 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
     this.route('contest-manager', {path: '/contest-manager'}, function() {
-      this.route('session', { path: '/session/:session_id' }, function() {
+      this.route('convention', { path: '/convention/:convention_id' }, function() {
         this.route('details', {path: 'details'});
-        this.route('assignments', { path: '/panel'}, function() {
+        this.route('assignments', { path: '/assignments'}, function() {
           this.route('assignment', { path: '/:assignment_id'});
         });
-        this.route('contests', { path: '/contest'}, function() {
-          this.route('contest', { path: '/:contest_id'});
+        this.route('sessions', { path: '/sessions'}, function() {
+          this.route('new', {path: 'new'});
+          this.route('session', { path: '/session/:session_id' }, function() {
+            this.route('details', {path: 'details'});
+            this.route('actions', {path: 'actions'});
+            this.route('contests', { path: '/contest'}, function() {
+              this.route('contest', { path: '/:contest_id'});
+            });
+            this.route('performers', { path: '/entrant'}, function() {
+              this.route('performer', { path: '/:performer_id'});
+            });
+            this.route('rounds', { path: '/round'}, function() {
+              this.route('round', { path: '/:round_id'});
+            });
+            this.route('schedules', { path: '/schedule'});
+            this.route('announcement', { path: '/announcement'});
+            this.route('oss', { path: '/oss'});
+            this.route('csa', { path: '/csa/:performer_id'});
+          });
         });
-        this.route('performers', { path: '/entrant'}, function() {
-          this.route('performer', { path: '/:performer_id'});
-        });
-        this.route('rounds', { path: '/round'}, function() {
-          this.route('round', { path: '/:round_id'});
-        });
-        this.route('schedules', { path: '/schedule'});
-        this.route('announcement', { path: '/announcement'});
-        this.route('oss', { path: '/oss'});
-        this.route('csa', { path: '/csa/:performer_id'});
+        this.route('actions', {path: 'actions'});
       });
     });
     this.route('scoring-manager', {path: '/scoring-manager'}, function() {

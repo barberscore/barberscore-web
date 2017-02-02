@@ -1,0 +1,19 @@
+<section>
+  <div>
+    {{#bs-nav type='tabs' as |nav|}}
+      {{#each sortedItems as |session|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.contest-manager.convention.sessions.session" session}}
+            {{session.kind}}
+          {{/nav.link-to}}
+        {{/nav.item}}
+      {{/each}}
+      {{#nav.item}}
+        {{#nav.link-to "admin.contest-manager.convention.sessions.new"}}
+          Add Session
+        {{/nav.link-to}}
+      {{/nav.item}}
+    {{/bs-nav}}
+  </div>
+</section>
+{{outlet}}

@@ -40,7 +40,7 @@ export default Ember.Controller.extend({
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.contest-manager.session.assignments');
+        this.transitionToRoute('admin.contest-manager.convention.sessions.session.assignments');
       })
       .catch((error) => {
         console.log(error);

@@ -4,7 +4,7 @@
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each sortedContests as |contest|}}
           {{#nav.item}}
-            {{#nav.link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.nomen}}{{/nav.link-to}}
+            {{#nav.link-to 'admin.contest-manager.convention.sessions.session.contests.contest' contest}}{{contest.nomen}}{{/nav.link-to}}
           {{/nav.item}}
         {{/each}}
       {{/bs-nav}}

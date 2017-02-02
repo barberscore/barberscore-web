@@ -12,12 +12,12 @@
         </tr>
       </thead>
       <tbody>
-        {{#each model as |session|}}
+        {{#each model as |convention|}}
           <tr>
-            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
-            <td>{{session.convention.name}}</td>
-            <td>{{moment-format session.convention.start_date 'LL'}}</td>
-            <td>{{session.status}}</td>
+            <td>{{#link-to 'admin.contest-manager.convention' convention}}{{convention.nomen}}{{/link-to}}</td>
+            <td>{{convention.name}}</td>
+            <td>{{moment-format convention.start_date 'LL'}}</td>
+            <td>{{convention.status}}</td>
           </tr>
         {{else}}
           <tr>
@@ -28,6 +28,4 @@
     </table>
   </div>
 </section>
-<section>
-  {{outlet}}
-</section>
+{{outlet}}

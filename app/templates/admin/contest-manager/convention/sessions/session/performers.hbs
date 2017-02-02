@@ -4,7 +4,7 @@
   {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
     {{#each sortedPerformers as |performer|}}
       {{#nav.item}}
-        {{#nav.link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.entity.nomen}}{{/nav.link-to}}
+        {{#nav.link-to 'admin.contest-manager.convention.sessions.session.performers.performer' performer}}{{performer.entity.nomen}}{{/nav.link-to}}
       {{/nav.item}}
     {{/each}}
   {{/bs-nav}}
