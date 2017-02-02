@@ -1,0 +1,54 @@
+<section>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+        {{#each model.sessions as |session|}}
+          {{#nav.item}}
+            {{#nav.link-to 'admin.convention-manager.convention.sessions.session' session}}{{session.kind}}{{/nav.link-to}}
+          {{/nav.item}}
+        {{/each}}
+      {{/bs-nav}}
+      <section>
+        {{#bs-form
+          model=this
+          formLayout='vertical'
+          onSubmit=(action 'addSession')
+          as |form|
+        }}
+          {{#form.element property='num_rounds' useIcons=false as |el|}}
+            {{#power-select
+              options=this.numOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Number Rounds"
+              disabled=isDisabled
+              allowClear=true
+              as |num_rounds|
+            }}
+              {{num_rounds}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='kind' useIcons=false as |el|}}
+            {{#power-select
+                  options=this.kindOptions
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Choose Kind"
+                  disabled=isDisabled
+                  allowClear=true
+                  as |kind|
+            }}
+              Kind: {{kind}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#bs-button type="primary" buttonType="submit"}}
+            Add
+          {{/bs-button}}
+        {{/bs-form}}
+      </section>
+    </div>
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
+  </div>
+</section>

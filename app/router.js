@@ -107,6 +107,9 @@ Router.map(function() {
         this.route('assignments', { path: '/assignments'}, function() {
           this.route('assignment', { path: '/:assignment_id'});
         });
+        this.route('sessions', { path: '/sessions'}, function() {
+          this.route('session', { path: '/:session_id'});
+        });
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {

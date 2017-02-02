@@ -1,6 +1,6 @@
 <section>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-6'>
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each sortedItems as |submission|}}
           {{#nav.item}}
@@ -14,7 +14,7 @@
       {{/bs-button}}
       </section>
     </div>
-    <div class='col-md-9'>
+    <div class='col-md-6'>
       {{outlet}}
     </div>
   </div>
