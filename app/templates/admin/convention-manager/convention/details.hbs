@@ -7,12 +7,6 @@
     </div>
     <div class='panel-body'>
       <section>
-        {{#bs-button-group as |bg|}}
-          {{#bg.button onChange=(action 'startConvention') class='form-group'}}Start{{/bg.button}}
-          {{#bg.button onChange=(action 'endConvention') class='form-group'}}End{{/bg.button}}
-        {{/bs-button-group}}
-      </section>
-      <section>
         {{#bs-form
           model=model
           formLayout='vertical'
