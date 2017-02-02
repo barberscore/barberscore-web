@@ -1,25 +1,35 @@
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Awards Contesting</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class='row'>
+    <div class='col-md-6'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each model.contestants as |contestant|}}
-          <tr>
-            <td>
-              {{contestant.contest.award.nomen}}
-            </td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>(None)</td>
-          </tr>
+          {{#nav.item}}
+            {{#nav.link-to 'admin.registration-manager.performer.contestants.contestant' contestant}}{{contestant.contest.award.name}}{{/nav.link-to}}
+          {{/nav.item}}
         {{/each}}
-      </tbody>
-    </table>
+      {{/bs-nav}}
+      <section>
+        {{#bs-form formLayout="vertical" model=this onSubmit=(action "addContestant") as |form|}}
+          {{#form.element property='contest' useIcons=false as |el|}}
+            {{#power-select
+                  options=model.session.contests
+                  selected=el.value
+                  onchange=(action (mut el.value))
+                  placeholder="Choose award"
+                  allowClear=true
+                  as |contest|
+            }}
+              {{contest.award.name}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#bs-button type='primary' size='sm' buttonType='Submit'}}
+            Add
+          {{/bs-button}}
+        {{/bs-form}}
+      </section>
+    </div>
+    <div class='col-md-6'>
+      {{outlet}}
+    </div>
   </div>
 </section>

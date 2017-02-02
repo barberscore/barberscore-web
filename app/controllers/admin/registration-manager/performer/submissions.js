@@ -12,5 +12,8 @@ export default Ember.Controller.extend({
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
     },
+    newSubmission() {
+      this.transitionToRoute('admin.registration-manager.performer.submissions.submission.new');
+    },
   }
 });

@@ -1,21 +1,21 @@
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Song Submissions</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class='row'>
+    <div class='col-md-6'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each sortedItems as |submission|}}
-          <tr>
-            <td>
-              {{submission.title}}
-            </td>
-          </tr>
+          {{#nav.item}}
+            {{#nav.link-to 'admin.registration-manager.performer.submissions.submission' submission}}{{submission.title}}{{/nav.link-to}}
+          {{/nav.item}}
         {{/each}}
-      </tbody>
-    </table>
+      {{/bs-nav}}
+      <section>
+      {{#bs-button type='primary' onClick=(action 'newSubmission')}}
+        Add Submission
+      {{/bs-button}}
+      </section>
+    </div>
+    <div class='col-md-6'>
+      {{outlet}}
+    </div>
   </div>
 </section>

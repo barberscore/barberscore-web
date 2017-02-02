@@ -8,25 +8,27 @@
     <div class='panel-body'>
       <div>
         {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
-          {{#form.element property='is_evaluation' useIcons=false as |el|}}
-              {{x-toggle
-                showLabels=true
-                onLabel='Yes Evaluation::true'
-                offLabel='No Evaluation::false'
-                value=el.value
-                onToggle=(mut el.value)
-                disabled=isDisabled
-              }}
+          {{#form.element property='is_private' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(action (mut el.value))
+              as |bg|
+            }}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Public Scores{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Private Scores{{/bg.button}}
+            {{/bs-button-group}}
           {{/form.element}}
-          {{#form.element property='is_private' useIcons=false as |el|}}
-              {{x-toggle
-                showLabels=true
-                onLabel='Keep Scores Private::true'
-                offLabel='Make Scores Public::false'
-                value=el.value
-                onToggle=(mut el.value)
-                disabled=isDisabled
-              }}
+          {{#form.element property='is_evaluation' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(action (mut el.value))
+              as |bg|
+            }}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Yes Evaluation{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=isDisabled}}No Evaluation{{/bg.button}}
+            {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='tenor' useIcons=false as |el|}}
               {{#power-select
