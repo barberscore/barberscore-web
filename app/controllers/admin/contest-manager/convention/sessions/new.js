@@ -3,14 +3,23 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessage: Ember.get(this, 'flashMessages'),
+  isEditing: true,
+  isDisabled: Ember.computed.not('isEditing'),
   actions: {
-    savePrimary(primary) {
-      this.get('model').set('primary', primary);
+    cancelSession() {
+      this.model.deleteRecord();
+      this.transitionToRoute('admin.contest-manager.convention.sessions');
+    },
+    saveSession() {
       this.model.save()
-      .then(() => {
-        this.get('flashMessages').success('Success');
+      .then((saved) => {
+        this.set('isEditing', false);
+        this.get('flashMessages').success('Saved');
+        this.transitionToRoute('admin.contest-manager.convention.sessions.session.details', saved);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
+        this.model.rollbackAttributes();
         this.get('flashMessages').danger('Error');
       });
     },

@@ -8,8 +8,6 @@ export default Model.extend({
   nomen: attr('string'),
   status: attr('session-status'),
   kind: attr('session-kind'),
-  start_date: attr('isodate'),
-  finish_date: attr('isodate'),
   num_rounds: attr('number'),
   current: belongsTo('round', {async: true, inverse: 'current_session'}),
   primary: belongsTo('contest', {async: true, inverse: 'primary_contest'}),
@@ -43,6 +41,12 @@ export default Model.extend({
     'Seniors',
     'Collegiate',
     'Youth',
+  ],
+
+  numOptions: [
+    1,
+    2,
+    3,
   ],
 
   ranks: Ember.computed('performers.@each.totPoints', function() {

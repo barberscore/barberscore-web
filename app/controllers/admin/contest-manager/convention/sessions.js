@@ -13,11 +13,22 @@ export default Ember.Controller.extend({
     'Collegiate',
     'Youth',
   ],
+  // filteredSessions: Ember.computed.filter(
+  //   'model.sessions',
+  //   function(session) {
+  //     return Boolean(session.id);
+  //   }
+  // ),
+  filteredSessions: Ember.computed.filterBy(
+    'model.sessions',
+    'isNew',
+    false
+  ),
   sortProperties: [
     'kind:asc',
   ],
   sortedItems: Ember.computed.sort(
-    'model.sessions',
+    'filteredSessions',
     'sortProperties'
   ),
   actions: {
