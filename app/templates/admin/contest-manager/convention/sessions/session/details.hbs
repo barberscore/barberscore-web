@@ -13,6 +13,17 @@
           onSubmit=(action 'saveSession')
           as |form|
         }}
+          {{#form.element property='is_prelims' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(action (mut el.value))
+              as |bg|
+            }}
+              {{#bg.button type='default' value=false disabled=isDisabled}}No Prelims{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Yes Prelims{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
           {{#form.element property='kind' useIcons=false as |el|}}
             {{#power-select
                   options=model.kindOptions

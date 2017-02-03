@@ -13,7 +13,6 @@ export default Ember.Controller.extend({
     saveSession() {
       this.model.save()
       .then((saved) => {
-        this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
         this.transitionToRoute('admin.contest-manager.convention.sessions.session.details', saved);
       })

@@ -9,6 +9,7 @@ export default Model.extend({
   status: attr('session-status'),
   kind: attr('session-kind'),
   num_rounds: attr('number'),
+  is_prelims: attr('boolean'),
   current: belongsTo('round', {async: true, inverse: 'current_session'}),
   primary: belongsTo('contest', {async: true, inverse: 'primary_contest'}),
   convention: belongsTo('convention', {async: true}),
