@@ -10,6 +10,19 @@ export default Ember.Controller.extend({
     'model.contests',
     'contestSortProperties'
   ),
+  awardCall: Ember.computed(function() {
+    let convention = this.get('model.convention.id');
+    return this.get('store').query('award', {
+      'entity__hosts__convention': convention,
+      'page_size': 1000,
+    });
+  }),
+  awardOptions: Ember.computed.filter(
+    'awardCall',
+    function(award) {
+      return award.get('kind') === this.get('model.kind');
+    }
+  ),
   searchTask: task(function* (term){
     yield timeout(600);
     return this.get('store').query('award', {'nomen__icontains': term})
