@@ -1,24 +1,28 @@
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Awards</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each model.awards as |award|}}
+  <div class='row'>
+    <div class='col-md-4'>
+      <table class='table'>
+        <caption>Awards</caption>
+        <thead>
           <tr>
-            <td>{{award.nomen}}</td>
+            <th>Name</th>
           </tr>
-        {{else}}
-          <tr>
-            <td>No awards</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {{#each model.awards as |award|}}
+            <tr>
+              <td>{{#link-to 'admin.organization-manager.organization.awards.award' award}}{{award.nomen}}{{/link-to}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No awards</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class='col-md-8'>
+      {{outlet}}
+    </div>
   </div>
 </section>
-{{outlet}}
