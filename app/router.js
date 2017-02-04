@@ -42,28 +42,6 @@ Router.map(function() {
         this.route('round', {path: '/round/:round_id'}, function() {
           this.route('oa', { path: '/oa'});
         });
-        // this.route('oas', { path: '/oas'}, function() {
-        //   this.route('round', { path: '/:round_id'});
-        // });
-        // this.route('score', { path: '/score'}, function() {
-        //   this.route('round', { path: '/:round_id'});
-        // });
-        // this.route('rounds', { path: '/round'}, function() {
-        //   this.route('oa', { path: '/:round_id'}, function() {
-            // this.route('ao', { path: '/oa'});
-            // this.route('performances', { path: '/performance'}, function() {
-            //   this.route('performance', { path: '/:performance_id'});
-            // });
-          // });
-        // });
-        // this.route('schedules', { path: '/schedule'});
-        // this.route('cursor', { path: '/cursor/'});
-        // this.route('reports', { path: '/report'}, function() {
-        //   this.route('sa', { path: '/sa'});
-        //   this.route('announcement', { path: '/announcement'});
-        //   this.route('oss', { path: '/oss'});
-        //   this.route('csa', { path: '/csa/:performer_id'});
-        // });
       });
     });
     this.route('judge-manager', {path: '/judge-manager'}, function() {
@@ -85,7 +63,7 @@ Router.map(function() {
       });
     });
     this.route('organization-manager', {path: '/organization-manager'}, function() {
-      this.route('organization', { path: '/organization/:organization_id'}, function () {
+      this.route('organization', { path: '/organization/:entity_id'}, function () {
         this.route('details', {path: 'details'});
         this.route('awards', {path: 'awards'}, function() {
           this.route('award', { path: '/:award_id'});
@@ -132,42 +110,10 @@ Router.map(function() {
       });
     });
   });
-
   this.route('public', { path: '/' }, function() {
     this.route('about');
     this.route('faq');
-  //   this.route('conventions', { path: '/convention/' }, function() {
-  //   });
-  //   this.route('convention', { path: '/convention/:convention_id' }, function() {
-  //     this.route('oss', { path: '/oss/:session_id'}, function() {
-  //     });
-  //     this.route('session', { path: '/session/:session_id' }, function() {
-  //       this.route('assignment', { path: '/assignment/:assignment_id'}, function() {
-  //       });
-  //       this.route('performer', { path: '/performer/:performer_id'}, function() {
-  //       });
-  //       this.route('round', { path: '/round/:round_id'}, function() {
-  //       });
-  //       this.route('current', { path: '/current/:performance_id'}, function() {
-  //       });
-  //       this.route('contest', { path: '/contest/:contest_id'}, function() {
-  //       });
-  //     });
-  //   });
-  //   this.route('groups', { path: '/group/' }, function() {
-  //     this.route('group', { path: '/:group_id' }, function () {
-  //     });
-  //   });
-  //   this.route('organizations', { path: '/organization/' }, function() {
-  //     this.route('organization', { path: '/:organization_id' }, function() {
-  //     });
-  //   });
-  //   this.route('persons', { path: '/person/' }, function() {
-  //     this.route('person', { path: '/:person_id' }, function() {
-  //     });
-  //   });
   });
-
   this.route('404', { path: '/*wildcard' });
 });
 

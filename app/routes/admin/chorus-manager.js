@@ -5,6 +5,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
   model: function() {
     let user = this.get('currentUser.user.id');
-    return this.get('store').query('group', {'kind': 2, 'roles__person__user': user});
+    return this.get('store').query('entity', {
+      'kind__in': '32,33',
+      'memberships__person__user': user
+    });
   },
 });
