@@ -8,5 +8,8 @@ export default DS.JSONAPISerializer.extend({
       hosts: {
         serialize: true
       },
+      assignments: {
+        serialize: true
+      },
     }
 });
