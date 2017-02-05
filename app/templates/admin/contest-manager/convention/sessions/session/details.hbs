@@ -37,6 +37,19 @@
               {{kind}}
             {{/power-select}}
           {{/form.element}}
+          {{#form.element property='num_rounds' useIcons=false as |el|}}
+            {{#power-select
+              options=model.numOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Number Rounds"
+              disabled=isDisabled
+              allowClear=true
+              as |num_rounds|
+            }}
+              {{num_rounds}}
+            {{/power-select}}
+          {{/form.element}}
           {{#form.element property='primary' useIcons=false as |el|}}
             {{#power-select
                   options=model.contests
