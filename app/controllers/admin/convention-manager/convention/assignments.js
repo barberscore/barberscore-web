@@ -3,7 +3,8 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   assignmentSortProperties: [
-    'kind:asc',
+    'kindSort:asc',
+    'person.name:asc',
   ],
   sortedAssignments: Ember.computed.sort(
     'model.assignments',

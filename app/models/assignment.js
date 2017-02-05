@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import { belongsTo } from 'ember-data/relationships';
@@ -12,7 +13,13 @@ export default Model.extend({
   convention: belongsTo('convention', {async: true}),
   person: belongsTo('person', {async: true}),
   permissions: attr(),
-
+  kindSort: Ember.computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
   statusOptions: [
     'New',
     'Scheduled',

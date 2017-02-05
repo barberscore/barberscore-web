@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  isWrite: Ember.computed.not('model.permissions.write'),
   actions: {
     editConvention() {
       this.set('isEditing', true);

@@ -1,6 +1,6 @@
-<section>
+{{!-- <section>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-6'>
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
         {{#each sortedAssignments as |assignment|}}
           {{#nav.item}}
@@ -46,7 +46,38 @@
         {{/bs-form}}
       </section>
     </div>
-    <div class='col-md-9'>
+    <div class='col-md-6'>
+      {{outlet}}
+    </div>
+  </div>
+</section> --}}
+
+<section>
+  <div class='row'>
+    <div class='col-md-4'>
+      <table class='table'>
+        {{!-- <caption>Awards</caption> --}}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAssignments as |assignment|}}
+            <tr>
+              <td>{{#link-to 'admin.convention-manager.convention.assignments.assignment' assignment}}{{assignment.person.common_name}}{{/link-to}}</td>
+              <td>{{assignment.kind}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No assignments</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class='col-md-8'>
       {{outlet}}
     </div>
   </div>
