@@ -89,12 +89,18 @@
             property='advance'
             disabled=isDisabled
           }}
+          {{form.element
+            controlType='text'
+            placeholder='Description'
+            property='description'
+            disabled=isDisabled
+          }}
           {{#if isEditing}}
             {{#bs-button type='primary' buttonType="submit"}}Save{{/bs-button}}
             {{#bs-button type='default' onClick=(action 'cancelAward')}}Cancel{{/bs-button}}
             {{#bs-button type='danger' onClick=(action 'deleteAward') class='pull-right'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button onClick=(action 'editAward')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editAward') disabled=isWrite}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </section>
