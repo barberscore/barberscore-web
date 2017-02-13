@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
         allowSignUp: false,
         rememberLastLogin: true,
         theme: {
-          logo: 'https://s3-us-west-1.amazonaws.com/barberscore/static/images/bhs_logo.png',
+          logo: 'https://s3-us-west-1.amazonaws.com/barberscore/static/app/bhs_logo.png',
           primaryColor: '#337ab7'
         },
         languageDictionary: {
