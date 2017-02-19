@@ -2,7 +2,7 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4>
-        {{model.nomen}}
+        {{model.name}}
       </h4>
     </div>
     <div class='panel-body'>
@@ -43,7 +43,7 @@
               disabled=isDisabled
             }}
           {{/form.element}}
-          {{#form.element property='status' useIcons=false as |el|}}
+          {{!-- {{#form.element property='status' useIcons=false as |el|}}
               {{#power-select
                     options=model.statusOptions
                     selected=el.value
@@ -55,7 +55,7 @@
               }}
                 Status: {{status}}
               {{/power-select}}
-          {{/form.element}}
+          {{/form.element}} --}}
           {{#form.element property='kind' useIcons=false as |el|}}
               {{#power-select
                     options=model.kindOptions

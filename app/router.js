@@ -90,18 +90,13 @@ Router.map(function() {
       });
     });
     this.route('convention-manager', {path: '/convention-manager'}, function() {
+      this.route('new', {path: 'new'});
       this.route('convention', { path: '/convention/:convention_id' }, function() {
         this.route('details', {path: 'details'});
-        this.route('hosts', {path: 'hosts'}, function() {
-          this.route('host', { path: '/:host_id'});
-        });
+        this.route('hosts', {path: 'hosts'});
         this.route('actions', {path: 'actions'});
-        this.route('assignments', { path: '/assignments'}, function() {
-          this.route('assignment', { path: '/:assignment_id'});
-        });
-        this.route('sessions', { path: '/sessions'}, function() {
-          this.route('session', { path: '/:session_id'});
-        });
+        this.route('assignments', { path: 'assignments'});
+        this.route('sessions', { path: 'sessions'});
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {

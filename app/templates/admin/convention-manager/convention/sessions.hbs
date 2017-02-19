@@ -2,9 +2,9 @@
   <div class='row'>
     <div class='col-md-3'>
       {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-        {{#each model.hosts as |host|}}
+        {{#each model.sessions as |session|}}
           {{#nav.item}}
-            {{#nav.link-to 'admin.convention-manager.convention.hosts.host' host}}{{host.entity.name}}{{/nav.link-to}}
+            {{#nav.link-to 'admin.convention-manager.convention.sessions.session' session}}{{session.entity.name}}{{/nav.link-to}}
           {{/nav.item}}
         {{/each}}
       {{/bs-nav}}
@@ -12,7 +12,7 @@
         {{#bs-form
           model=this
           formLayout='vertical'
-          onSubmit=(action 'addHost')
+          onSubmit=(action 'addSession')
           as |form|
         }}
           {{#form.element property='entity' useIcons=false as |el|}}
@@ -20,7 +20,7 @@
               options=entityOptions
               selected=el.value
               onchange=(action (mut el.value))
-              placeholder="Enter Host"
+              placeholder="Enter Session"
               disabled=isDisabled
               allowClear=true
               as |entity|
@@ -51,34 +51,51 @@
             <thead>
               <tr>
                 <th class='col-md-4'>Name</th>
+                <th class='col-md-2'>Rounds</th>
                 <th class='col-md-1'>Delete</th>
               </tr>
             </thead>
             <tbody>
-              {{#each sortedHosts as |host|}}
-                <tr class="{{if host.isDeleted 'danger' 'default'}}">
+              {{#each sortedSessions as |session|}}
+                <tr class="{{if session.isDeleted 'danger' 'default'}}">
                   <td>
-                    {{#if host.isNew}}
+                    {{#if session.isNew}}
                       {{#power-select
-                        options=entityOptions
+                        options=kindOptions
                         search=(perform searchTask)
-                        selected=host.entity
-                        onchange=(action (mut host.entity))
-                        placeholder="Enter Host by Name"
+                        selected=session.kind
+                        onchange=(action (mut session.kind))
+                        placeholder="Choose Session Kind"
                         allowClear=true
-                        as |entity|
+                        as |kind|
                       }}
-                        {{entity.name}}
+                        {{kind}}
                       {{/power-select}}
                     {{else}}
-                      {{host.entity.name}}
+                      {{session.kind}}
                     {{/if}}
                   </td>
-                  <td>{{#if host.isDeleted}}{{fa-icon 'undo' click=(action 'undoHost' host)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteHost' host)}}{{/if}}</td>
+                  <td>
+                    {{#if session.isNew}}
+                      {{#power-select
+                        options=numOptions
+                        selected=session.num_rounds
+                        onchange=(action (mut session.num_rounds))
+                        placeholder="Number Rounds"
+                        allowClear=true
+                        as |num_rounds|
+                      }}
+                        {{num_rounds}}
+                      {{/power-select}}
+                    {{else}}
+                      {{session.num_rounds}}
+                    {{/if}}
+                  </td>
+                  <td>{{#if session.isDeleted}}{{fa-icon 'undo' click=(action 'undoSession' session)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteSession' session)}}{{/if}}</td>
                 </tr>
               {{else}}
                 <tr>
-                  <td>No hosts</td>
+                  <td>No Sessions</td>
                 </tr>
               {{/each}}
             </tbody>
@@ -87,7 +104,7 @@
       </div>
     </div>
   </div>
-  {{#bs-button type='primary' onClick=(action 'saveHosts')}}Save{{/bs-button}}
-  {{#bs-button type='default' onClick=(action 'cancelHosts')}}Cancel{{/bs-button}}
-  {{#bs-button type='success' onClick=(action 'newHost')}}New{{/bs-button}}
+  {{#bs-button type='primary' onClick=(action 'saveSessions')}}Save{{/bs-button}}
+  {{#bs-button type='default' onClick=(action 'cancelSessions')}}Cancel{{/bs-button}}
+  {{#bs-button type='success' onClick=(action 'newSession')}}New{{/bs-button}}
 </section>
