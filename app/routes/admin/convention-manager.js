@@ -5,8 +5,11 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
   model: function() {
     let user = this.get('currentUser.user.id');
-    return this.get('store').query('convention', {
-      'assignments__person__user': user,
+    let convention = this.get('store').query('convention', {
+      // 'entity__memberships__person__user': user,
+      'entity__memberships__officers__office__short_name': 'DRCJ',
     });
+    return convention;
+    // return convention.filterBy('entity__memberships__person__user', user);
   },
 });

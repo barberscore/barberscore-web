@@ -25,6 +25,12 @@
             property='location'
             disabled=isDisabled
           }}
+          {{!-- {{form.element
+            controlType='tel'
+            placeholder='Year'
+            property='year'
+            disabled=isDisabled
+          }} --}}
           {{#form.element property='start_date' useIcons=false as |el|}}
             {{bs-datetimepicker
               date=el.value

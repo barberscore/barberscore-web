@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import {belongsTo} from 'ember-data/relationships';
+import {belongsTo, hasMany} from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
@@ -10,6 +10,7 @@ export default Model.extend({
   end_date: attr('isodate'),
   entity: belongsTo('entity', {async: true}),
   person: belongsTo('person', {async: true}),
+  officers: hasMany('officer', {async: true}),
   permissions: attr(),
   statusOptions: [
     'New',

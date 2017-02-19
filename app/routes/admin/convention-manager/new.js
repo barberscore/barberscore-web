@@ -5,8 +5,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   store: Ember.inject.service(),
   controllerName: 'admin/convention-manager/convention/details',
   templateName: 'admin/convention-manager/convention/details',
+  currentUser: Ember.inject.service('current-user'),
+  // memberships: Ember.computed.filterBy(
+  //   'currentUser.user.person'
+  // ),
   model: function() {
-    return this.get('store').createRecord('convention');
+    return this.get('store').createRecord('convention', {
+    });
   },
   setupController(controller, model) {
     // Call _super for default behavior
@@ -21,4 +26,3 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       }
   }.on('deactivate')
 });
-
