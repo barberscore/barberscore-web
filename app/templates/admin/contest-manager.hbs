@@ -2,30 +2,28 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Current Assignments</caption>
+      <caption>Current Sessions</caption>
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Kind</th>
           <th>Convention</th>
-          <th>Date</th>
-          <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |convention|}}
+        {{#each sortedSessions as |session|}}
           <tr>
-            <td>{{#link-to 'admin.contest-manager.convention' convention}}{{convention.nomen}}{{/link-to}}</td>
-            <td>{{convention.name}}</td>
-            <td>{{moment-format convention.start_date 'LL'}}</td>
-            <td>{{convention.status}}</td>
+            <td>{{#link-to 'admin.contest-manager.session' session}}{{session.kind}}{{/link-to}}</td>
+            <td>{{session.convention.name}}</td>
           </tr>
         {{else}}
           <tr>
-            <td>(No current assignments.)</td>
+            <td>No current sessions</td>
           </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
 </section>
-{{outlet}}
+<section>
+  {{outlet}}
+</section>
