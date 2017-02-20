@@ -3,15 +3,13 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   store: Ember.inject.service(),
+  currentUser: Ember.inject.service('current-user'),
   controllerName: 'admin/convention-manager/convention/details',
   templateName: 'admin/convention-manager/convention/details',
-  currentUser: Ember.inject.service('current-user'),
-  // memberships: Ember.computed.filterBy(
-  //   'currentUser.user.person'
-  // ),
   model: function() {
-    return this.get('store').createRecord('convention', {
+    let convention = this.get('store').createRecord('convention', {
     });
+    return convention;
   },
   setupController(controller, model) {
     // Call _super for default behavior
