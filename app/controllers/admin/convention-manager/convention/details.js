@@ -31,7 +31,8 @@ export default Ember.Controller.extend({
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.convention-manager.conventions');
+        this.set('isEditing', false);
+        this.transitionToRoute('admin.convention-manager');
       })
       .catch((error) => {
         console.log(error);
@@ -40,7 +41,7 @@ export default Ember.Controller.extend({
     },
     saveConvention() {
       // TODO this seems pretty damn hacky.
-      if (true) {
+      if (this.get('model.isNew')) {
         let person = this.get('currentUser.user.person');
         this.model.save()
         .then((response) => {
@@ -64,7 +65,6 @@ export default Ember.Controller.extend({
         .then(() => {
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
-          this.transitionToRoute('admin.convention-manager');
         })
         .catch((error) => {
           console.log(error);

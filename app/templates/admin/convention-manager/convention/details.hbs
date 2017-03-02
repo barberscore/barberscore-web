@@ -106,13 +106,14 @@
           Risers: {{risers}}
         {{/power-select-multiple}}
     {{/form.element}}
-    {{#if isEditing}}
-      {{#bs-button onClick=(action 'cancelConvention')}}Cancel{{/bs-button}}
-      {{bs-button defaultText="Save" type="primary" buttonType="submit"}}
-      {{#bs-button onClick=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
-    {{else}}
-      {{#bs-button onClick=(action 'editConvention')}}Edit{{/bs-button}}
-        {{!-- {{#bs-button onClick=(action 'newConvention') class='btn-primary pull-right'}}New{{/bs-button}} --}}
-    {{/if}}
+    {{#form.element}}
+      {{#if isEditing}}
+        {{#bs-button onClick=(action 'cancelConvention')}}Cancel{{/bs-button}}
+        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+        {{#bs-button onClick=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+      {{else}}
+        {{#bs-button onClick=(action 'editConvention')}}Edit{{/bs-button}}
+      {{/if}}
+    {{/form.element}}
   {{/bs-form}}
 </section>
