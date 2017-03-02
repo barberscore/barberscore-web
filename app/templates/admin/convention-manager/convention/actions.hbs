@@ -1,17 +1,6 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        {{model.name}}
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <section>
-        <ul class='list-unstyled'>
-          <li class='person-text'>{{#bs-button onChange=(action 'startConvention') class='form-group' disabled=true}}Start Convention{{/bs-button}}</li>
-          <li class='person-text'>{{#bs-button onChange=(action 'endConvention') class='form-group' disabled=true}}End Convention{{/bs-button}}</li>
-        </ul>
-      </section>
-    </div>
-  </div>
+  <ul class='list-unstyled'>
+    <li class='person-text'>{{#bs-button onChange=(action 'startConvention') class='form-group' disabled=true}}Start Convention{{/bs-button}}</li>
+    <li class='person-text'>{{#bs-button onChange=(action 'endConvention') class='form-group' disabled=true}}End Convention{{/bs-button}}</li>
+  </ul>
 </section>

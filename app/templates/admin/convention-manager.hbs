@@ -17,7 +17,7 @@
       <tbody>
         {{#each sortedConventions as |convention|}}
           <tr>
-            <td>{{#link-to 'admin.convention-manager.convention' convention}}{{convention.name}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
             <td>{{moment-format convention.start_date 'LL'}}</td>
             <td>{{moment-format convention.end_date 'LL'}}</td>
             <td>{{convention.location}}</td>
@@ -41,6 +41,4 @@
     </table>
   </div>
 </section>
-<section>
-  {{outlet}}
-</section>
+{{outlet}}

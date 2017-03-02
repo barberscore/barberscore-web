@@ -1,107 +1,59 @@
-{{!-- <section>
-  <div class='row'>
-    <div class='col-md-3'>
-      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-        {{#each model.sessions as |session|}}
-          {{#nav.item}}
-            {{#nav.link-to 'admin.convention-manager.convention.sessions.session' session}}{{session.entity.name}}{{/nav.link-to}}
-          {{/nav.item}}
-        {{/each}}
-      {{/bs-nav}}
-      <section>
-        {{#bs-form
-          model=this
-          formLayout='vertical'
-          onSubmit=(action 'addSession')
-          as |form|
-        }}
-          {{#form.element property='entity' useIcons=false as |el|}}
-            {{#power-select
-              options=entityOptions
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Session"
-              disabled=isDisabled
-              allowClear=true
-              as |entity|
-            }}
-              {{entity.name}}
-            {{/power-select}}
-          {{/form.element}}
-          {{#bs-button type="primary" buttonType="submit"}}Add{{/bs-button}}
-        {{/bs-form}}
-      </section>
-    </div>
-    <div class='col-md-9'>
-      {{outlet}}
-    </div>
-  </div>
-</section> --}}
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
-        {{model.name}}
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <div class='row'>
-        <div class='col-md-6'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-4'>Name</th>
-                <th class='col-md-2'>Rounds</th>
-                <th class='col-md-1'>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedSessions as |session|}}
-                <tr class="{{if session.isDeleted 'danger' 'default'}}">
-                  <td>
-                    {{#if session.isNew}}
-                      {{#power-select
-                        options=kindOptions
-                        search=(perform searchTask)
-                        selected=session.kind
-                        onchange=(action (mut session.kind))
-                        placeholder="Choose Session Kind"
-                        allowClear=true
-                        as |kind|
-                      }}
-                        {{kind}}
-                      {{/power-select}}
-                    {{else}}
-                      {{session.kind}}
-                    {{/if}}
-                  </td>
-                  <td>
-                    {{#if session.isNew}}
-                      {{#power-select
-                        options=numOptions
-                        selected=session.num_rounds
-                        onchange=(action (mut session.num_rounds))
-                        placeholder="Number Rounds"
-                        allowClear=true
-                        as |num_rounds|
-                      }}
-                        {{num_rounds}}
-                      {{/power-select}}
-                    {{else}}
-                      {{session.num_rounds}}
-                    {{/if}}
-                  </td>
-                  <td>{{#if session.isDeleted}}{{fa-icon 'undo' click=(action 'undoSession' session)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteSession' session)}}{{/if}}</td>
-                </tr>
-              {{else}}
-                <tr>
-                  <td>No Sessions</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
-      </div>
+  <div class='row'>
+    <div class='col-md-6'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-2'>Rounds</th>
+            <th class='col-md-1'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedSessions as |session|}}
+            <tr class="{{if session.isDeleted 'danger' 'default'}}">
+              <td>
+                {{#if session.isNew}}
+                  {{#power-select
+                    options=kindOptions
+                    search=(perform searchTask)
+                    selected=session.kind
+                    onchange=(action (mut session.kind))
+                    placeholder="Choose Session Kind"
+                    allowClear=true
+                    as |kind|
+                  }}
+                    {{kind}}
+                  {{/power-select}}
+                {{else}}
+                  {{session.kind}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if session.isNew}}
+                  {{#power-select
+                    options=numOptions
+                    selected=session.num_rounds
+                    onchange=(action (mut session.num_rounds))
+                    placeholder="Number Rounds"
+                    allowClear=true
+                    as |num_rounds|
+                  }}
+                    {{num_rounds}}
+                  {{/power-select}}
+                {{else}}
+                  {{session.num_rounds}}
+                {{/if}}
+              </td>
+              <td>{{#if session.isDeleted}}{{fa-icon 'undo' click=(action 'undoSession' session)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteSession' session)}}{{/if}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No Sessions</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
   </div>
   {{#bs-button type='primary' onClick=(action 'saveSessions')}}Save{{/bs-button}}

@@ -1,20 +1,29 @@
-<div>
-  {{#bs-nav type='tabs' as |nav|}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.convention-manager.convention.details"}}Details{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.convention-manager.convention.assignments"}}Assignments{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.convention-manager.convention.hosts"}}Hosts{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.convention-manager.convention.sessions"}}Sessions{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.convention-manager.convention.actions"}}Actions{{/nav.link-to}}
-    {{/nav.item}}
-  {{/bs-nav}}
-  {{outlet}}
-</div>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.convention-manager.convention.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.convention-manager.convention.assignments"}}Assignments{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.convention-manager.convention.hosts"}}Hosts{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.convention-manager.convention.sessions"}}Sessions{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.convention-manager.convention.actions"}}Actions{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+  </div>
+</section>
