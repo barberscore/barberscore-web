@@ -20,8 +20,15 @@ export default Ember.Controller.extend({
       'page_size': 1000,
     });
   }),
-  adminOptions: Ember.computed.uniq(
+  adminUniques: Ember.computed.uniq(
     'adminCall'
+  ),
+  adminSortProperties: [
+    'last_name:asc',
+  ],
+  adminOptions: Ember.computed.sort(
+    'adminUniques',
+    'adminSortProperties'
   ),
   searchTask: task(function* (term){
     yield timeout(600);

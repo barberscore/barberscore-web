@@ -2,7 +2,7 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Conventions&nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}}</caption>
+      <caption>{{#link-to 'admin.convention-manager'}}Conventions{{/link-to}}&nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}}</caption>
       <thead>
         <tr>
           <th {{action 'sortBy' 'name'}}>Name</th>
