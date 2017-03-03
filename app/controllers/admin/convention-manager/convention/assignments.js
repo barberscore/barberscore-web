@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
     'Singing',
   ],
   actions: {
-    addAssignment(){
+    createAssignment(){
       let assignment = this.get('store').createRecord('assignment', {
         convention: this.get('model'),
         person: this.get('person'),
@@ -56,28 +56,13 @@ export default Ember.Controller.extend({
       });
     },
     deleteAssignment(assignment){
-      assignment.deleteRecord();
-    },
-    undoAssignment(assignment){
-      assignment.rollbackAttributes();
-    },
-    cancelAssignments(){
-      this.get('model').rollbackAttributes();
-    },
-    saveAssignments(){
-      let deletedAssignments = this.get('model.assignments').filterBy('isDeleted');
-      deletedAssignments.forEach(function(item) {
-        item.destroyRecord();
-      });
-      let newAssignments = this.get('model.assignments').filterBy('isNew');
-      newAssignments.forEach(function(item) {
-        item.save();
-      });
-      this.get('flashMessages').success('Success');
-    },
-    newAssignment(){
-      this.get('store').createRecord('assignment', {
-        convention: this.get('model'),
+      assignment.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.get('flashMessages').danger('Error');
       });
     },
   }

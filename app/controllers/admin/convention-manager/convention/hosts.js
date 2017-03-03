@@ -3,8 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   hostSortProperties: [
-    'isNew',
-    'lft:asc',
+    'nomen:asc',
   ],
   sortedHosts: Ember.computed.sort(
     'model.hosts',
@@ -12,7 +11,7 @@ export default Ember.Controller.extend({
   ),
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
-      'kind__in': '1,11,21',
+      'kind__in': '1,11,21', //TODO hardcoded
       'page_size': 100
     });
   }),
@@ -21,13 +20,15 @@ export default Ember.Controller.extend({
     'status',
     'Active'
   ),
-  entitySortProperties: ['lft:asc',],
+  entitySortProperties: [
+    'lft:asc',
+  ],
   entityOptions: Ember.computed.sort(
     'entityFilter',
     'entitySortProperties'
   ),
   actions: {
-    addHost(){
+    createHost(){
       let host = this.get('store').createRecord('host', {
         convention: this.get('model'),
         entity: this.get('entity'),
@@ -44,28 +45,13 @@ export default Ember.Controller.extend({
       });
     },
     deleteHost(host){
-      host.deleteRecord();
-    },
-    undoHost(host){
-      host.rollbackAttributes();
-    },
-    cancelHosts(){
-      this.get('model').rollbackAttributes();
-    },
-    saveHosts(){
-      let deletedHosts = this.get('model.hosts').filterBy('isDeleted');
-      deletedHosts.forEach(function(item) {
-        item.destroyRecord();
-      });
-      let newHosts = this.get('model.hosts').filterBy('isNew');
-      newHosts.forEach(function(item) {
-        item.save();
-      });
-      this.get('flashMessages').success('Success');
-    },
-    newHost(){
-      this.get('store').createRecord('host', {
-        convention: this.get('model'),
+      host.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.get('flashMessages').danger('Error');
       });
     },
   }

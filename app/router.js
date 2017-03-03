@@ -8,6 +8,16 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
+    this.route('convention-manager', {path: '/convention-manager'}, function() {
+      this.route('new', {path: 'new'});
+      this.route('convention', { path: '/convention/:convention_id' }, function() {
+        this.route('details', {path: 'details'});
+        this.route('hosts', {path: 'hosts'});
+        this.route('actions', {path: 'actions'});
+        this.route('assignments', { path: 'assignments'});
+        this.route('sessions', { path: 'sessions'});
+      });
+    });
     this.route('contest-manager', {path: '/contest-manager'}, function() {
       this.route('session', { path: '/session/:session_id' }, function() {
         this.route('details', {path: 'details'});
@@ -77,16 +87,6 @@ Router.map(function() {
         this.route('contestants', {path: 'contestants'}, function() {
           this.route('contestant', {path: '/:contestant_id'});
         });
-      });
-    });
-    this.route('convention-manager', {path: '/convention-manager'}, function() {
-      this.route('new', {path: 'new'});
-      this.route('convention', { path: '/convention/:convention_id' }, function() {
-        this.route('details', {path: 'details'});
-        this.route('hosts', {path: 'hosts'});
-        this.route('actions', {path: 'actions'});
-        this.route('assignments', { path: 'assignments'});
-        this.route('sessions', { path: 'sessions'});
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {

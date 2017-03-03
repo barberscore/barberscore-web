@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   sessionSortProperties: [
-    'isNew',
     'name:asc',
   ],
   sortedSessions: Ember.computed.sort(
@@ -22,7 +21,7 @@ export default Ember.Controller.extend({
     3,
   ],
   actions: {
-    addSession(){
+    createSession(){
       let session = this.get('store').createRecord('session', {
         convention: this.get('model'),
         kind: this.get('kind'),
@@ -40,28 +39,13 @@ export default Ember.Controller.extend({
       });
     },
     deleteSession(session){
-      session.deleteRecord();
-    },
-    undoSession(session){
-      session.rollbackAttributes();
-    },
-    cancelSessions(){
-      this.get('model').rollbackAttributes();
-    },
-    saveSessions(){
-      let deletedSessions = this.get('model.sessions').filterBy('isDeleted');
-      deletedSessions.forEach(function(item) {
-        item.destroyRecord();
-      });
-      let newSessions = this.get('model.sessions').filterBy('isNew');
-      newSessions.forEach(function(item) {
-        item.save();
-      });
-      this.get('flashMessages').success('Success');
-    },
-    newSession(){
-      this.get('store').createRecord('session', {
-        convention: this.get('model'),
+      session.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+      })
+      .catch((error) => {
+        console.log(error);
+        this.get('flashMessages').danger('Error');
       });
     },
   }

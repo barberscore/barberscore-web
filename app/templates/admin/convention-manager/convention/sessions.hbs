@@ -11,41 +11,10 @@
         </thead>
         <tbody>
           {{#each sortedSessions as |session|}}
-            <tr class="{{if session.isDeleted 'danger' 'default'}}">
-              <td>
-                {{#if session.isNew}}
-                  {{#power-select
-                    options=kindOptions
-                    search=(perform searchTask)
-                    selected=session.kind
-                    onchange=(action (mut session.kind))
-                    placeholder="Choose Session Kind"
-                    allowClear=true
-                    as |kind|
-                  }}
-                    {{kind}}
-                  {{/power-select}}
-                {{else}}
-                  {{session.kind}}
-                {{/if}}
-              </td>
-              <td>
-                {{#if session.isNew}}
-                  {{#power-select
-                    options=numOptions
-                    selected=session.num_rounds
-                    onchange=(action (mut session.num_rounds))
-                    placeholder="Number Rounds"
-                    allowClear=true
-                    as |num_rounds|
-                  }}
-                    {{num_rounds}}
-                  {{/power-select}}
-                {{else}}
-                  {{session.num_rounds}}
-                {{/if}}
-              </td>
-              <td>{{#if session.isDeleted}}{{fa-icon 'undo' click=(action 'undoSession' session)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteSession' session)}}{{/if}}</td>
+            <tr>
+              <td>{{session.kind}}</td>
+              <td>{{session.num_rounds}}</td>
+              <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
           {{else}}
             <tr>
@@ -53,10 +22,37 @@
             </tr>
           {{/each}}
         </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              {{#power-select
+                options=kindOptions
+                search=(perform searchTask)
+                selected=kind
+                onchange=(action (mut kind))
+                placeholder="Choose Session Kind"
+                allowClear=true
+                as |kind|
+              }}
+                {{kind}}
+              {{/power-select}}
+            </td>
+            <td>
+              {{#power-select
+                options=numOptions
+                selected=num_rounds
+                onchange=(action (mut num_rounds))
+                placeholder="Number Rounds"
+                allowClear=true
+                as |num_rounds|
+              }}
+                {{num_rounds}}
+              {{/power-select}}
+            </td>
+            <td>{{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}</td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
-  {{#bs-button type='primary' onClick=(action 'saveSessions')}}Save{{/bs-button}}
-  {{#bs-button type='default' onClick=(action 'cancelSessions')}}Cancel{{/bs-button}}
-  {{#bs-button type='success' onClick=(action 'newSession')}}New{{/bs-button}}
 </section>

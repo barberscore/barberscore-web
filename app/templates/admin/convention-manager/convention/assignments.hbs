@@ -6,57 +6,55 @@
           <tr>
             <th class='col-md-4'>Name</th>
             <th class='col-md-2'>Category</th>
-            <th class='col-md-1'>Delete</th>
+            <th class='col-md-1'>Action</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedAssignments as |assignment|}}
-              <tr class="{{if assignment.isDeleted 'danger' 'default'}}">
-              <td>
-                {{#if assignment.isNew}}
-                  {{#power-select
-                    options=adminOptions
-                    search=(perform searchTask)
-                    selected=assignment.person
-                    onchange=(action (mut assignment.person))
-                    placeholder="Enter Assignment by Name"
-                    allowClear=true
-                    as |person|
-                  }}
-                    {{person.common_name}}
-                  {{/power-select}}
-                {{else}}
-                  {{assignment.person.common_name}}
-                {{/if}}
-              </td>
-              <td>
-                {{#if assignment.isNew}}
-                  {{#power-select
-                        options=assignment.kindOptions
-                        selected=assignment.kind
-                        onchange=(action (mut assignment.kind))
-                        placeholder="Choose Kind"
-                        allowClear=true
-                        as |kind|
-                  }}
-                    {{kind}}
-                  {{/power-select}}
-                {{else}}
-                  {{assignment.kind}}
-                {{/if}}
-              </td>
-              <td>{{#if assignment.isDeleted}}{{fa-icon 'undo' click=(action 'undoAssignment' assignment)}}{{else}}{{fa-icon 'times-circle' click=(action 'deleteAssignment' assignment)}}{{/if}}</td>
+            <tr>
+              <td>{{assignment.person.common_name}}</td>
+              <td>{{assignment.kind}}</td>
+              <td>{{fa-icon 'times-circle' click=(action 'deleteAssignment' assignment) class='text-danger'}}</td>
             </tr>
           {{else}}
             <tr>
-              <td>No assignments</td>
+              <td colspan=3>No assignments</td>
             </tr>
           {{/each}}
         </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              {{#power-select
+                options=adminOptions
+                search=(perform searchTask)
+                selected=person
+                onchange=(action (mut person))
+                placeholder="Enter New Assignment"
+                allowClear=true
+                as |person|
+              }}
+                {{person.common_name}}
+              {{/power-select}}
+            </td>
+            <td>
+              {{#power-select
+                options=kindOptions
+                selected=kind
+                onchange=(action (mut kind))
+                placeholder="Choose Kind"
+                allowClear=true
+                as |kind|
+              }}
+                {{kind}}
+              {{/power-select}}
+            </td>
+            <td>
+             {{fa-icon 'plus-circle' click=(action 'createAssignment' assignment) class='text-success'}}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
   </div>
-  {{#bs-button type='primary' onClick=(action 'saveAssignments')}}Save{{/bs-button}}
-  {{#bs-button type='default' onClick=(action 'cancelAssignments')}}Cancel{{/bs-button}}
-  {{#bs-button type='success' onClick=(action 'newAssignment')}}New{{/bs-button}}
 </section>
