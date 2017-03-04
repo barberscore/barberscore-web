@@ -1,38 +1,32 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
+    <ul class='list-inline pull-right'>
+      <li>{{#bs-button onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+      <li>{{#bs-button onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+    </ul>
     <h4>
-      {{model.nomen}}
+      {{model.award.name}}
     </h4>
   </div>
   <div class='panel-body'>
-    <div>
-      <ul class='list-style'>
-        {{#each sortedContestants as |contestant|}}
-          <li>{{contestant.performer.entity.name}}</li>
-        {{else}}
-          <li>(No contestants for this contest.)</li>
-        {{/each}}
-      </ul>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>Contestants</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedContestants as |contestant|}}
+            <tr>
+              <td>
+                {{contestant.performer.entity.name}}
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
-    <section>
-      <div class='row'>
-        <div class='col-md-10'>
-          {{#power-select
-            options=model.session.performers
-            selected=performer
-            onchange=(action (mut performer))
-            placeholder="Enter Peformer for Contest"
-            disabled=isDisabled
-            allowClear=true
-            as |performer|
-          }}
-            {{performer.nomen}}
-          {{/power-select}}
-        </div>
-        <div class='col-md-2'>
-          {{#bs-button onClick=(action 'addContestant') type='primary' size='sm'}}Add{{/bs-button}}
-        </div>
-      </div>
-    </section>
   </div>
 </div>

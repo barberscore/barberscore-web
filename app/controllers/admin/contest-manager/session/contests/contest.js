@@ -9,6 +9,13 @@ export default Ember.Controller.extend({
     'model.contestants',
     'contestantSortProperties'
   ),
+  contestSortProperties: [
+    'nomen',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.session.contests',
+    'contestSortProperties'
+  ),
   performerSortProperties: [
     'nomen:asc',
   ],
@@ -22,6 +29,16 @@ export default Ember.Controller.extend({
       .then((data) => data);
   }),
   actions: {
+    previousItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      this.transitionToRoute('admin.contest-manager.session.contests.contest', newCur);
+    },
+    nextItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      this.transitionToRoute('admin.contest-manager.session.contests.contest', newCur);
+    },
     deleteContestant(contestant) {
       contestant.destroyRecord();
     },

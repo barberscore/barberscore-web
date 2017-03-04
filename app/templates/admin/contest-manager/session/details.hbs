@@ -1,4 +1,12 @@
 <section>
+  <ul class='list-unstyled'>
+    <li>Prelims: {{model.is_prelims}}</li>
+    <li>Number Rounds: {{model.num_rounds}}</li>
+    <li>Primary Award: {{model.primary.nomen}}</li>
+  </ul>
+</section>
+
+{{!-- <section>
   {{#bs-form
     model=model
     formLayout='vertical'
@@ -16,19 +24,6 @@
         {{#bg.button type='default' value=true disabled=isDisabled}}Yes Prelims{{/bg.button}}
       {{/bs-button-group}}
     {{/form.element}}
-    {{!-- {{#form.element property='kind' useIcons=false as |el|}}
-      {{#power-select
-            options=model.kindOptions
-            selected=el.value
-            placeholder="Select Session Kind"
-            onchange=(action (mut el.value))
-            disabled=isDisabled
-            allowClear=true
-            as |kind|
-      }}
-        {{kind}}
-      {{/power-select}}
-    {{/form.element}} --}}
     {{#form.element property='num_rounds' useIcons=false as |el|}}
       {{#power-select
         options=model.numOptions
@@ -64,3 +59,4 @@
     {{/if}}
   {{/bs-form}}
 </section>
+ --}}

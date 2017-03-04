@@ -40,6 +40,15 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
+    deletePerformer(performer) {
+      performer.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    },
   },
   performerSortProperties: [
     'nomen:asc',

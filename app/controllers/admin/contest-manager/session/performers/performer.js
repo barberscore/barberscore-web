@@ -31,12 +31,12 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('admin.contest-manager.convention.sessions.session.performers.performer', newCur);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('admin.contest-manager.convention.sessions.session.performers.performer', newCur);
+      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
     },
     editPerformer() {
       this.set('isEditing', true);
@@ -81,6 +81,21 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
       })
       .catch(() => {
+        this.get('flashMessages').danger('Error');
+      });
+    },
+    createSubmission() {
+      let submission = this.get('store').createRecord('submission', {
+        performer: this.get('model'),
+        title: this.get('title'),
+      });
+      submission.save()
+      .then(() => {
+        this.set('title', null);
+        this.get('flashMessages').success('Saved');
+      })
+      .catch((error) => {
+        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },

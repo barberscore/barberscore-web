@@ -10,7 +10,6 @@ export default Model.extend({
   num: attr('number'),
   arranger: attr('string'),
   songscore: belongsTo('songscore', {async: true}),
-  submission: belongsTo('submission', {async: true}),
   performance: belongsTo('performance', {async: true}),
   scores: hasMany('score', {async: true}),
   permissions: attr(),

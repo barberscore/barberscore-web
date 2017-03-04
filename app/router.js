@@ -9,7 +9,6 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('admin', { path: '/admin' }, function() {
     this.route('convention-manager', {path: '/convention-manager'}, function() {
-      this.route('new', {path: 'new'});
       this.route('convention', { path: '/convention/:convention_id' }, function() {
         this.route('details', {path: 'details'});
         this.route('hosts', {path: 'hosts'});
@@ -27,13 +26,6 @@ Router.map(function() {
         this.route('performers', { path: '/entrant'}, function() {
           this.route('performer', { path: '/:performer_id'});
         });
-        // this.route('rounds', { path: '/round'}, function() {
-        //   this.route('round', { path: '/:round_id'});
-        // });
-        // this.route('schedules', { path: '/schedule'});
-        // this.route('announcement', { path: '/announcement'});
-        // this.route('oss', { path: '/oss'});
-        // this.route('csa', { path: '/csa/:performer_id'});
         this.route('actions', {path: 'actions'});
       });
     });

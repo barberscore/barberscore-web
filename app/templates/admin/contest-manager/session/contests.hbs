@@ -1,36 +1,46 @@
 <section>
   <div class='row'>
-    <div class='col-md-3'>
-      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-        {{#each sortedContests as |contest|}}
-          {{#nav.item}}
-            {{#nav.link-to 'admin.contest-manager.convention.sessions.session.contests.contest' contest}}{{contest.nomen}}{{/nav.link-to}}
-          {{/nav.item}}
-        {{/each}}
-      {{/bs-nav}}
-      <section>
-        <div class='row'>
-          <div class='col-md-10'>
-            {{#power-select
-              options=awardOptions
-              search=(perform searchTask)
-              selected=award
-              onchange=(action (mut award))
-              placeholder="Enter Award for Contest"
-              disabled=isDisabled
-              allowClear=true
-              as |award|
-            }}
-              {{award.name}}
-            {{/power-select}}
-          </div>
-          <div class='col-md-2'>
-            {{#bs-button onClick=(action 'addContest') type='primary' size='sm'}}Add{{/bs-button}}
-          </div>
-        </div>
-      </section>
+    <div class='col-md-4'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-1'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedContests as |contest|}}
+            <tr>
+              <td>{{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+              <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No contests.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td>
+              {{#power-select
+                options=awardOptions
+                search=(perform searchTask)
+                selected=award
+                onchange=(action (mut award))
+                placeholder="Enter Award for Contest"
+                allowClear=true
+                as |award|
+              }}
+                {{award.name}}
+              {{/power-select}}
+            </td>
+            <td>{{fa-icon 'plus-circle' click=(action 'addContest') class='text-success'}}</td>
+          </tr>
+        </tfoot>
+      </table>
     </div>
-    <div class='col-md-9'>
+    <div class='col-md-8'>
       {{outlet}}
     </div>
   </div>
