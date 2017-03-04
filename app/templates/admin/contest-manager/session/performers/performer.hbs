@@ -11,78 +11,110 @@
   <div class='panel-body'>
     <div>
       {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
-        {{#form.element property='is_evaluation' useIcons=false as |el|}}
-            {{x-toggle
-              showLabels=true
-              onLabel='Yes Evaluation::true'
-              offLabel='No Evaluation::false'
-              value=el.value
-              onToggle=(mut el.value)
-              disabled=isDisabled
-            }}
+        {{#form.element property='is_evaluation' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            disabled=isDisabled
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
+            {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+          {{/bs-button-group}}
         {{/form.element}}
-        {{#form.element property='is_private' useIcons=false as |el|}}
-            {{x-toggle
-              showLabels=true
-              onLabel='Keep Scores Private::true'
-              offLabel='Make Scores Public::false'
-              value=el.value
-              onToggle=(mut el.value)
-              disabled=isDisabled
-            }}
+        {{#form.element property='is_private' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
+            {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+          {{/bs-button-group}}
         {{/form.element}}
-        {{#form.element property='tenor' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Person Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Tenor: {{person.common_name}}
-            {{/power-select}}
-        {{/form.element}}
-        {{#form.element property='lead' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Person Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Lead: {{person.common_name}}
-            {{/power-select}}
-        {{/form.element}}
-        {{#form.element property='baritone' useIcons=false as |el|}}
-            {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(action (mut el.value))
-                  placeholder="Enter Person Name"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-            }}
-              Baritone: {{person.common_name}}
-            {{/power-select}}
-        {{/form.element}}
-        {{#form.element property='bass' useIcons=false as |el|}}
-            {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(action (mut el.value))
-                  placeholder="Enter Person Name"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-            }}
-              Bass: {{person.common_name}}
-            {{/power-select}}
-        {{/form.element}}
+        {{#unless (eq model.session.kind 'Chorus')}}
+          {{#form.element property='tenor' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Tenor Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Tenor: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='lead' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Lead Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Lead: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='baritone' useIcons=false as |el|}}
+              {{#power-select
+                    search=(perform searchTask)
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                    placeholder="Enter Baritone Name"
+                    disabled=isDisabled
+                    allowClear=true
+                    as |person|
+              }}
+                Baritone: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='bass' useIcons=false as |el|}}
+              {{#power-select
+                    search=(perform searchTask)
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                    placeholder="Enter Bass Name"
+                    disabled=isDisabled
+                    allowClear=true
+                    as |person|
+              }}
+                Bass: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+        {{else}}
+          {{#form.element property='director' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Director Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='codirector' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Co-Director Name (if applicable)"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Co-Director: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+        {{/unless}}
         {{#if isEditing}}
             {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
             {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
@@ -115,7 +147,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>{{input type="text" value=title}}</td>
+        <td>{{input type="text" value=title class='form-control' placeholder='Enter Song Title'}}</td>
         <td></td>
         <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td>
       </tr>
