@@ -1,17 +1,26 @@
-<div>
-  {{#bs-nav type='tabs' as |nav|}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.contest-manager.session.details"}}Details{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.contest-manager.session.contests"}}Awards{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.contest-manager.session.performers"}}Entrants{{/nav.link-to}}
-    {{/nav.item}}
-    {{#nav.item}}
-      {{#nav.link-to "admin.contest-manager.session.actions"}}Actions{{/nav.link-to}}
-    {{/nav.item}}
-  {{/bs-nav}}
-  {{outlet}}
-</div>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.kind}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.contest-manager.session.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.contest-manager.session.contests"}}Awards{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.contest-manager.session.performers"}}Entrants{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.contest-manager.session.actions"}}Actions{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+  </div>
+</section>
