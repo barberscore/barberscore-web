@@ -77,8 +77,7 @@ export default Ember.Controller.extend({
         this.set('openModal', false);
         this.transitionToRoute('admin.convention-manager.convention.details', convention);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },

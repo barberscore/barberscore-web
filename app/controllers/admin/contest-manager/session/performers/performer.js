@@ -94,8 +94,7 @@ export default Ember.Controller.extend({
         this.set('title', null);
         this.get('flashMessages').success('Saved');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },

@@ -31,8 +31,7 @@ let judge = this.store.createRecord('judge', {
         this.get('flashMessages').success('Saved');
         this.transitionToRoute('admin.judge-manager.judge', judge);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },

@@ -43,9 +43,8 @@ var performer = this.get('store').createRecord('performer', {
         this.set('group', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         performer.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },

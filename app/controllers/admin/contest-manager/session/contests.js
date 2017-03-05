@@ -35,8 +35,8 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
     addContest(){
@@ -49,9 +49,8 @@ export default Ember.Controller.extend({
         this.set('award', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         contest.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },

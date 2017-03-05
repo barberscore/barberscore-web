@@ -19,8 +19,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.convention.sessions');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error!');
       });
     },
@@ -30,8 +29,7 @@ export default Ember.Controller.extend({
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.model.rollbackAttributes();
         this.get('flashMessages').danger('Error');
       });

@@ -14,11 +14,7 @@ export default EmberUploader.FileField.extend({
     });
 
     if (!Ember.isEmpty(files)) {
-      uploader.upload(files[0])
-      .then(() => {})
-      .catch((error) => {
-        console.log(error);
-      });
+      uploader.upload(files[0]);
     }
   }
 });

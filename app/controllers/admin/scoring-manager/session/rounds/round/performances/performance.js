@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   assignmentSortProperties: ['kind', 'category','slot',],
+  flashMessage: Ember.get(this, 'flashMessages'),
   scoringAssignments: Ember.computed.filter('model.round.session.assignments',
     function(item) {
       return item.get('category') !== 'Admin';
@@ -50,25 +51,9 @@ export default Ember.Controller.extend({
         .then(() => {
           this.get('target.router').refresh();
         });
-        // .then(rs => {
-        //   this.store.pushPayload('performance', rs);
-        //   console.log(rs.data.id);
-        //   this.store.findRecord('performance', rs.data.id).then(bat => {
-        //     let baz = bat.get('songs');
-        //     baz.forEach(function(song) {
-        //       song.reload()
-        //       .then(ps => {
-        //         ns.push(ns.normalize('song', ps));
-        //       });
-        //     });
-        //   })
-        // })
-        // .catch(rs => {
-        //   console.log(rs);
-        // });
       })
-      .catch(response => {
-        console.log(response);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
     startPerformance() {
@@ -76,8 +61,8 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('performance', response);
       })
-      .catch(response => {
-        console.log(response);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
     finishPerformance() {
@@ -85,17 +70,16 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('performance', response);
       })
-      .catch(response => {
-        console.log(response);
+      .catch(() => {
       });
     },
     completePerformance() {
       this.model.complete()
-      .then(response => {
+      .then((response) => {
         this.store.pushPayload('performance', response);
       })
-      .catch(response => {
-        console.log(response);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
     saveActualStart(date) {

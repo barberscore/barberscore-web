@@ -56,9 +56,8 @@ export default Ember.Controller.extend({
         this.set('kind', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         assignment.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },
@@ -67,8 +66,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },

@@ -34,8 +34,7 @@ export default Ember.Controller.extend({
         this.set('isEditing', false);
         this.transitionToRoute('admin.convention-manager');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error!');
       });
     },
@@ -55,8 +54,7 @@ export default Ember.Controller.extend({
           this.get('flashMessages').success('Saved');
           this.transitionToRoute('admin.convention-manager');
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
           this.model.rollbackAttributes();
           this.get('flashMessages').danger('Error');
         });
@@ -66,8 +64,7 @@ export default Ember.Controller.extend({
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
           this.model.rollbackAttributes();
           this.get('flashMessages').danger('Error');
         });
@@ -78,8 +75,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('convention', response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger("Error" );
       });
     },
@@ -88,8 +84,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('convention', response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger("Error" );
       });
     },

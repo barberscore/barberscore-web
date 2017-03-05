@@ -33,8 +33,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.organization-manager.organization.awards.award');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error!');
       });
     },

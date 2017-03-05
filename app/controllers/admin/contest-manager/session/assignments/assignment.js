@@ -42,8 +42,8 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('admin.contest-manager.convention.sessions.session.assignments');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
     saveAssignment() {

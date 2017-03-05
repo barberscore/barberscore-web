@@ -34,9 +34,8 @@ export default Ember.Controller.extend({
         this.set('entity', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         performer.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },
@@ -45,8 +44,8 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
       });
     },
   },

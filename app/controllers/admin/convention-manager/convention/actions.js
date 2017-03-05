@@ -8,8 +8,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('convention', response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger("Error" );
       });
     },
@@ -18,8 +17,7 @@ export default Ember.Controller.extend({
       .then(response => {
         this.store.pushPayload('convention', response);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger("Error" );
       });
     },

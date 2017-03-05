@@ -14,9 +14,8 @@ export default Ember.Controller.extend({
         this.set('contest', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         contestant.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },

@@ -39,9 +39,8 @@ export default Ember.Controller.extend({
         this.set('person', null);
         this.get('flashMessages').success('Success');
       })
-      .catch((error) => {
+      .catch(() => {
         assignment.deleteRecord();
-        console.log(error);
         this.get('flashMessages').danger('Error');
       });
     },

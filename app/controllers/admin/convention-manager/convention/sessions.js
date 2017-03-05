@@ -43,8 +43,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },
