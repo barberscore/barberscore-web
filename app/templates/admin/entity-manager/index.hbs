@@ -1,0 +1,27 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |entity|}}
+          <tr>
+            <td>
+              {{#link-to 'admin.entity-manager.entity' entity}}{{entity.name}}{{/link-to}}
+            </td>
+            <td>
+              {{entity.status}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

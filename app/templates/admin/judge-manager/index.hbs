@@ -1,0 +1,21 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  {{#if currentUser.user.person.judges}}
+    {{#power-select
+          search=(perform searchTask)
+          selected=judge
+          onchange=(action "transitionJudge")
+          placeholder="Search by Judge Name"
+          allowClear=true
+          as |judge|
+    }}
+      {{judge.person.common_name}}
+    {{/power-select}}
+  {{else}}
+    <h4>
+      You do not have permissions to access the Judge Manager.
+    </h4>
+  {{/if}}
+</section>
