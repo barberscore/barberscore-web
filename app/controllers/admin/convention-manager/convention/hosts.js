@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
     'Active'
   ),
   entitySortProperties: [
-    'lft:asc',
+    'nomen:asc',
   ],
   entityOptions: Ember.computed.sort(
     'entityFilter',
