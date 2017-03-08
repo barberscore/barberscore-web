@@ -6,7 +6,7 @@
           <tr>
             <th class='col-md-4'>Name</th>
             <th class='col-md-2'>Rounds</th>
-            <th class='col-md-2'>Prelims?</th>
+            <th class='col-md-2'>Prelims</th>
             <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
@@ -15,7 +15,8 @@
             <tr>
               <td>{{session.kind}}</td>
               <td>{{session.num_rounds}}</td>
-              <td>{{session.is_prelims}}</td>
+              {{!-- <td>{{#if session.is_prelims}}{{fa-icon 'check-circle' class='text-success'}}{{/if}}</td> --}}
+              <td>{{if session.is_prelims "Yes" "No"}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
           {{else}}
@@ -52,15 +53,16 @@
               {{/power-select}}
             </td>
             <td>
-              {{#bs-button-group
-                value=is_prelims
-                type='radio'
-                onChange=(action (mut is_prelims))
-                as |bg|
+              {{#power-select
+                options=booleanOptions
+                selected=is_prelims
+                onchange=(action (mut is_prelims))
+                placeholder="Prelims"
+                allowClear=true
+                as |is_prelims|
               }}
-                {{#bg.button type='default' value=false}}No Prelims{{/bg.button}}
-                {{#bg.button type='default' value=true}}Yes Prelims{{/bg.button}}
-              {{/bs-button-group}}
+                {{if is_prelims 'Yes' 'No'}}
+              {{/power-select}}
             </td>
             <td>{{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}</td>
           </tr>

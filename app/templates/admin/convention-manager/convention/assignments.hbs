@@ -34,7 +34,7 @@
                 allowClear=true
                 as |person|
               }}
-                {{person.common_name}}
+                {{person.common_name}}&nbsp;{{#if person.certifications}}{{person.certifications}}{{/if}}
               {{/power-select}}
             </td>
             <td>

@@ -24,8 +24,9 @@
           <tr>
             <td>
               {{#power-select
-                options=entityOptions
-                search=(perform searchTask)
+                options=entityCall
+                loadingMessage="Waiting for the server...."
+                searchField="name"
                 selected=entity
                 onchange=(action (mut entity))
                 placeholder="Enter Host by Name"

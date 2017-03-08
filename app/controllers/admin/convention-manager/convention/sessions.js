@@ -20,17 +20,23 @@ export default Ember.Controller.extend({
     2,
     3,
   ],
+  booleanOptions: [
+    true,
+    false,
+  ],
   actions: {
     createSession(){
       let session = this.get('store').createRecord('session', {
         convention: this.get('model'),
         kind: this.get('kind'),
         num_rounds: this.get('num_rounds'),
+        is_prelims: this.get('is_prelims'),
       });
       session.save()
       .then(() => {
         this.set('kind', null);
         this.set('num_rounds', null);
+        this.set('is_prelims', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {

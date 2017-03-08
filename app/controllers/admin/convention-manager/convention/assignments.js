@@ -25,6 +25,7 @@ export default Ember.Controller.extend({
   ),
   adminSortProperties: [
     'last_name:asc',
+    'first_name:asc',
   ],
   adminOptions: Ember.computed.sort(
     'adminUniques',
@@ -32,7 +33,10 @@ export default Ember.Controller.extend({
   ),
   searchTask: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('person', {'nomen__icontains': term})
+    return this.get('store').query('person', {
+      'nomen__icontains': term,
+      'page_size': 1000,
+    })
       .then((data) => data);
   }),
   kindOptions: [

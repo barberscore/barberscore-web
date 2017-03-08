@@ -12,19 +12,15 @@ export default Ember.Controller.extend({
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
       'kind__in': '1,11,21', //TODO hardcoded
+      'status': 10, //TODO hardcoded
       'page_size': 100
     });
   }),
-  entityFilter: Ember.computed.filterBy(
-    'entityCall',
-    'status',
-    'Active'
-  ),
   entitySortProperties: [
     'nomen:asc',
   ],
   entityOptions: Ember.computed.sort(
-    'entityFilter',
+    'entityCall',
     'entitySortProperties'
   ),
   actions: {
