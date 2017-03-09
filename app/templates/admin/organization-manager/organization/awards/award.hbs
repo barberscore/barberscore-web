@@ -1,6 +1,10 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
       <h4>
         {{model.nomen}}
       </h4>
@@ -13,26 +17,36 @@
           onSubmit=(action 'saveAward')
           as |form|
         }}
-          {{#form.element}}
-            {{#bs-button disabled=isDisabled active=model.is_primary onClick=(action (toggle 'is_primary' model))}}
-              Primary
-            {{/bs-button}}
-          {{/form.element}}
-          {{#form.element}}
-            {{#bs-button disabled=isDisabled active=model.is_novice onClick=(action (toggle 'is_novice' model))}}
-              Novice
-            {{/bs-button}}
-          {{/form.element}}
-          {{#form.element}}
-            {{#bs-button disabled=isDisabled active=model.is_improved onClick=(action (toggle 'is_improved' model))}}
-              Most-Improved
-            {{/bs-button}}
-          {{/form.element}}
-          {{#form.element}}
-            {{#bs-button disabled=isDisabled active=model.is_manual onClick=(action (toggle 'is_manual' model))}}
-              Manual
-            {{/bs-button}}
-          {{/form.element}}
+          <ul class='list-inline'>
+            <li>
+              {{#form.element}}
+                {{#bs-button disabled=isDisabled active=model.is_primary onClick=(action (toggle 'is_primary' model))}}
+                  Primary
+                {{/bs-button}}
+              {{/form.element}}
+            </li>
+            <li>
+              {{#form.element}}
+                {{#bs-button disabled=isDisabled active=model.is_novice onClick=(action (toggle 'is_novice' model))}}
+                  Novice
+                {{/bs-button}}
+              {{/form.element}}
+            </li>
+            <li>
+              {{#form.element}}
+                {{#bs-button disabled=isDisabled active=model.is_improved onClick=(action (toggle 'is_improved' model))}}
+                  Most-Improved
+                {{/bs-button}}
+              {{/form.element}}
+            </li>
+            <li>
+              {{#form.element}}
+                {{#bs-button disabled=isDisabled active=model.is_manual onClick=(action (toggle 'is_manual' model))}}
+                  Manual
+                {{/bs-button}}
+              {{/form.element}}
+            </li>
+          </ul>
           {{#form.element property='kind' useIcons=false as |el|}}
             {{#power-select
                   options=model.kindOptions

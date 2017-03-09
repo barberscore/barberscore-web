@@ -14,7 +14,7 @@
       <tbody>
         {{#each model as |organization|}}
           <tr>
-            <td>{{#link-to 'admin.organization-manager.organization' organization}}{{organization.name}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.organization-manager.organization.details' organization}}{{organization.name}}{{/link-to}}</td>
             <td>{{organization.status}}</td>
           </tr>
         {{else}}

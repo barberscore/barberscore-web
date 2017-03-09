@@ -62,9 +62,6 @@ Router.map(function() {
         });
       });
     });
-    this.route('entity-manager', {path: '/entity-manager'}, function() {
-      this.route('entity', { path: '/entity/:entity_id'});
-    });
     this.route('member-manager', {path: '/member-manager'}, function() {
       this.route('member', { path: '/member/:person_id'}, function() {
         this.route('details', {path: 'details'});

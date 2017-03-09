@@ -2,9 +2,22 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  {{#bs-nav type='tabs' as |nav|}}
-    {{#nav.item}}{{#link-to "admin.organization-manager.organization.details"}}Details{{/link-to}}{{/nav.item}}
-    {{#nav.item}}{{#link-to "admin.organization-manager.organization.awards"}}Awards{{/link-to}}{{/nav.item}}
-  {{/bs-nav}}
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.organization-manager.organization.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.organization-manager.organization.awards"}}Awards{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+  </div>
 </section>
-{{outlet}}

@@ -12,7 +12,26 @@ export default Ember.Controller.extend({
   //   return this.get('store').query('person', {'nomen__icontains': term})
   //     .then((data) => data);
   // }),
+  awardSortProperties: [
+    'is_primary:desc',
+    'name:asc',
+    'kindOptions',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.entity.awards',
+    'awardSortProperties'
+  ),
   actions: {
+    previousItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      this.transitionToRoute('admin.organization-manager.organization.awards.award', newCur);
+    },
+    nextItem(cursor) {
+      let nowCur = this.get('sortedItems').indexOf(cursor);
+      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      this.transitionToRoute('admin.organization-manager.organization.awards.award', newCur);
+    },
     newAward() {
       let newAward = this.store.createRecord(
         'award'

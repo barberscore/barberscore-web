@@ -1,32 +1,34 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
-    <ul class='list-inline pull-right'>
-      <li>{{#bs-button onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-      <li>{{#bs-button onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-    </ul>
-    <h4>
-      {{model.award.name}}
-    </h4>
-  </div>
-  <div class='panel-body'>
-    <div class='table-responsive'>
-      <table class='table'>
-        <caption>Contestants</caption>
-        <thead>
-          <tr>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedContestants as |contestant|}}
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
+      <h4>
+        {{model.award.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>Contestants</caption>
+          <thead>
             <tr>
-              <td>
-                {{contestant.performer.entity.name}}
-              </td>
+              <th>Name</th>
             </tr>
-          {{/each}}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {{#each sortedContestants as |contestant|}}
+              <tr>
+                <td>
+                  {{contestant.performer.entity.name}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+</section>
