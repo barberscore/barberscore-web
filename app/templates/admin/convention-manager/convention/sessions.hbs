@@ -13,7 +13,7 @@
         <tbody>
           {{#each sortedSessions as |session|}}
             <tr>
-              <td>{{session.kind}}</td>
+              <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
               <td>{{session.num_rounds}}</td>
               {{!-- <td>{{#if session.is_prelims}}{{fa-icon 'check-circle' class='text-success'}}{{/if}}</td> --}}
               <td>{{if session.is_prelims "Yes" "No"}}</td>
@@ -61,7 +61,7 @@
                 allowClear=true
                 as |is_prelims|
               }}
-                {{if is_prelims 'Yes' 'No'}}
+                {{if is_prelims "Yes"}}
               {{/power-select}}
             </td>
             <td>{{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}</td>

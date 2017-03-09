@@ -22,7 +22,6 @@ export default Ember.Controller.extend({
   ],
   booleanOptions: [
     true,
-    false,
   ],
   actions: {
     createSession(){
@@ -36,7 +35,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('kind', null);
         this.set('num_rounds', null);
-        this.set('is_prelims', null);
+        this.set('is_prelims', false);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {

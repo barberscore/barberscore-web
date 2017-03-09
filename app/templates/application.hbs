@@ -11,7 +11,7 @@
         {{#nav.item}}{{#nav.link-to "admin"}}{{fa-icon 'dashboard' fixedWidth=true}}Administrator{{/nav.link-to}}{{/nav.item}}
       {{/if}}
       {{#if session.isAuthenticated}}
-        {{#nav.item}}{{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>Logout {{/bs-button}}{{/nav.item}}
+        {{#nav.item}}{{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{/bs-button}}{{/nav.item}}
       {{else}}
         {{!-- {{#nav.item}}{{#bs-button onClick=(action "login") class='btn-primary navcenter'}}Login{{/bs-button}}{{/nav.item}} --}}
         {{#nav.item}}{{#link-to 'login'}}Login{{/link-to}}{{/nav.item}}
