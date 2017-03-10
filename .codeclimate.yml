@@ -8,7 +8,7 @@ engines:
       languages:
       - javascript
   eslint:
-    enabled: false
+    enabled: true
   fixme:
     enabled: true
   watson:
