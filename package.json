@@ -63,7 +63,7 @@
     "eonasdan-bootstrap-datetimepicker": "4.17.47"
   },
   "engines": {
-    "node": ">= 0.12.0"
+    "node": "6.10.0"
   },
   "private": true
 }
