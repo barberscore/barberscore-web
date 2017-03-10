@@ -9,6 +9,9 @@ module.exports = function(defaults) {
     //   "importBootstrapJS": true,
     //   "importBootstrapTheme": true
     // },
+    'ember-bootstrap': {
+      'importBootstrapFont': false
+    },
     'ember-power-select': {
       theme: 'bootstrap'
     },
