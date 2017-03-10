@@ -1,14 +1,9 @@
-/*jshint node:true*/
+/*eslint node:true*/
 /* global require, module */
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // 'ember-bootstrap-datetimepicker': {
-    //   "importBootstrapCSS": true,
-    //   "importBootstrapJS": true,
-    //   "importBootstrapTheme": true
-    // },
     'ember-bootstrap': {
       'importBootstrapFont': false
     },

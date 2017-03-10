@@ -1,4 +1,4 @@
-/* jshint node: true */
+/* eslint node: true */
 
 module.exports = function(environment) {
   var ENV = {
@@ -72,10 +72,6 @@ module.exports = function(environment) {
       domain: process.env.AUTH0_DOMAIN,
     }
   };
-
-  // ENV['intercom'] = {
-  //   appId: process.env.INTERCOM_APP_ID
-  // };
 
   ENV.APP.API_HOST = process.env.API_HOST;
   ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
