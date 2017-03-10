@@ -8,6 +8,7 @@ module.exports = function(environment) {
     locationType: 'auto',
     moment: {
       allowEmpty: true, // default: false
+      includeTimezone: '2010-2020'
     },
     contentSecurityPolicy: {
       'font-src': [
