@@ -1,5 +1,3 @@
-/* eslint node: true */
-
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'barberscore-ember',
