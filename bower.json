@@ -7,7 +7,6 @@
     "font-awesome": "~4.5.0",
     "auth0-lock": "^10.12.2",
     "auth0.js": "^7.6.1",
-    "bootstrap-datepicker": "^1.6.4",
     "auth0-lock-passwordless": "^2.2.3"
   }
 }

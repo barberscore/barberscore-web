@@ -65,10 +65,22 @@
           {{/power-select}}
         {{/bs-form-group}}
         {{#bs-form-group}}
-          {{bootstrap-datepicker disabled=isDisabled placeholder="Start Date" class="form-control" value=start_date format='yyyy-mm-dd'}}
+          {{bs-datetimepicker
+            date=start_date
+            format='YYYY-MM-DD'
+            updateDate=(action (mut start_date))
+            placeholder="Start Date"
+            disabled=isDisabled
+          }}
         {{/bs-form-group}}
         {{#bs-form-group}}
-        {{bootstrap-datepicker disabled=isDisabled placeholder="End Date" class="form-control" value=end_date format='yyyy-mm-dd'}}
+          {{bs-datetimepicker
+            date=end_date
+            format='YYYY-MM-DD'
+            updateDate=(action (mut end_date))
+            placeholder="End Date"
+            disabled=isDisabled
+          }}
         {{/bs-form-group}}
       {{/bs-form}}
     </div>
