@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -31,4 +32,30 @@ export default Model.extend({
   sessions: hasMany('session', {async: true}),
   hosts: hasMany('host', {async: true}),
   permissions: attr(),
+
+  kindOptions: [
+    'Organization',
+    'Harmony Incorporated',
+    'District',
+    'Noncompetitive',
+    'Affiliate',
+    'Division',
+    'Quartet',
+    'Chorus',
+    'Very Large Quartet',
+  ],
+
+  ageOptions: [
+    'Seniors',
+    'Youth',
+    // 'Collegiate',
+  ],
+
+  kindSort: Ember.computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
 });

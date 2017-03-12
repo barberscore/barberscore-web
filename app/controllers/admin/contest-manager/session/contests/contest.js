@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     'contestantSortProperties'
   ),
   contestSortProperties: [
-    'nomen',
+    'orgSort',
   ],
   sortedItems: Ember.computed.sort(
     'model.session.contests',

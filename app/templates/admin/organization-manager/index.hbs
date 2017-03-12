@@ -7,14 +7,16 @@
       <caption>Current Organization</caption>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Status</th>
+          <th {{action 'sortBy' 'name'}}>Name</th>
+          <th {{action 'sortBy' 'kindSort'}}>Kind</th>
+          <th {{action 'sortBy' 'status'}}>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |organization|}}
+        {{#each sortedOrganizations as |organization|}}
           <tr>
             <td>{{#link-to 'admin.organization-manager.organization.details' organization}}{{organization.name}}{{/link-to}}</td>
+            <td>{{organization.kind}}</td>
             <td>{{organization.status}}</td>
           </tr>
         {{else}}

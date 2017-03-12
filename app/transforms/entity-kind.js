@@ -3,8 +3,7 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
-      1: 'Barbershop Harmony Society',
-      2: 'Harmony Incorporated',
+      1: 'Organization',
       11: 'District',
       12: 'Noncompetitive',
       13: 'Affiliate',
@@ -18,9 +17,8 @@ export default DS.Transform.extend({
 
   serialize: function(deserialized) {
     var map = {
-      'Barbershop Harmony Society': 1,
-      'Harmony Incorporated': 2,
-      'District': 12,
+      'Organization': 1,
+      'District': 11,
       'Noncompetitive': 12,
       'Affiliate': 13,
       'Division': 21,

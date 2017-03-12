@@ -4,7 +4,8 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   contestSortProperties: [
-    'nomen:asc',
+    'orgSort:asc',
+    'kind:asc',
   ],
   sortedContests: Ember.computed.sort(
     'model.contests',
@@ -17,12 +18,24 @@ export default Ember.Controller.extend({
       'page_size': 1000,
     });
   }),
-  awardOptions: Ember.computed.filter(
+  awardFiltered: Ember.computed.filter(
     'awardCall',
     function(award) {
       return award.get('kind') === this.get('model.kind');
     }
   ),
+  awardSortProperties: [
+    'name:asc',
+  ],
+  awardOptions: Ember.computed.sort(
+    'awardFiltered',
+    'awardSortProperties'
+  ),
+  kindOptions: [
+    'New',
+    'Championship',
+    'Qualifier',
+  ],
   searchTask: task(function* (term){
     yield timeout(600);
     return this.get('store').query('award', {'nomen__icontains': term})
@@ -30,6 +43,9 @@ export default Ember.Controller.extend({
   }),
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
+    sortBy(contestSortProperties) {
+      this.set('contestSortProperties', [contestSortProperties]);
+    },
     deleteContest(contest) {
       contest.destroyRecord()
       .then(() => {
@@ -43,10 +59,12 @@ export default Ember.Controller.extend({
       let contest = this.get('store').createRecord('contest', {
         session: this.get('model'),
         award: this.get('award'),
+        kind: this.get('kind'),
       });
       contest.save()
       .then(() => {
         this.set('award', null);
+        this.set('kind', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {

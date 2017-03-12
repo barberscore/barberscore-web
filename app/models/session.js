@@ -8,6 +8,7 @@ export default Model.extend({
   nomen: attr('string'),
   status: attr('session-status'),
   kind: attr('session-kind'),
+  age: attr('session-age'),
   num_rounds: attr('number'),
   is_prelims: attr('boolean'),
   current: belongsTo('round', {async: true, inverse: 'current_session'}),
@@ -70,5 +71,11 @@ export default Model.extend({
   currentPerformances: Ember.computed.sort(
     'current.performances',
     'currentPerformancesSort'
+  ),
+  conventionName: Ember.computed(
+    'convention.name',
+    function() {
+      return this.get('convention.name');
+    }
   ),
 });

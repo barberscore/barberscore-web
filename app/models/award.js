@@ -7,6 +7,7 @@ export default Model.extend({
   name: attr('string'),
   status: attr('award-status'),
   kind: attr('award-kind'),
+  age: attr('award-age'),
   championship_season: attr('award-season'),
   qualifier_season: attr('award-season'),
   championship_rounds: attr('number'),

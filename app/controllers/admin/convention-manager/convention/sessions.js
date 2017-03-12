@@ -29,13 +29,13 @@ export default Ember.Controller.extend({
         convention: this.get('model'),
         kind: this.get('kind'),
         num_rounds: this.get('num_rounds'),
-        is_prelims: this.get('is_prelims'),
+        // is_prelims: this.get('is_prelims'),
       });
       session.save()
       .then(() => {
         this.set('kind', null);
         this.set('num_rounds', null);
-        this.set('is_prelims', false);
+        // this.set('is_prelims', false);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
