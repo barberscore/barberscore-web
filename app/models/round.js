@@ -10,7 +10,7 @@ export default Model.extend({
   start_date: attr('isodate'),
   finish_date: attr('isodate'),
   num: attr('number'),
-  mt: belongsTo('group', {async: true}),
+  // mt: belongsTo('group', {async: true}),
   current_session: belongsTo('session', {async: true, inverse: 'current'}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),

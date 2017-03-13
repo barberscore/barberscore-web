@@ -4,10 +4,11 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>{{#link-to 'admin.convention-manager'}}Conventions{{/link-to}}{{!-- &nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
+      <caption>Your Assigned Conventions&nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}}</caption>
       <thead>
         <tr>
           <th {{action 'sortBy' 'name'}}>Name</th>
+          <th {{action 'sortBy' 'entity'}}>Entity</th>
           <th {{action 'sortBy' 'location'}}>Location</th>
           <th {{action 'sortBy' 'start_date'}}>Start</th>
           <th {{action 'sortBy' 'end_date'}}>End</th>
@@ -23,6 +24,7 @@
         {{#each sortedConventions as |convention|}}
           <tr>
             <td>{{#link-to 'admin.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
+            <td>{{convention.entity}}</td>
             <td>{{convention.location}}</td>
             <td>{{moment-format convention.start_date 'L'}}</td>
             <td>{{moment-format convention.end_date 'L'}}</td>
@@ -35,7 +37,7 @@
           </tr>
         {{else}}
           <tr>
-            <td>No current conventions</td>
+            <td>(No conventions currently assigned to you.)</td>
           </tr>
         {{/each}}
       </tbody>
@@ -71,6 +73,20 @@
       property='name'
       disabled=isDisabled
     }}
+    {{#form.element property='entity' useIcons=false as |el|}}
+      {{#power-select
+        renderInPlace=true
+        options=entityOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Convention Owner Entity"
+        disabled=isDisabled
+        allowClear=true
+        as |entity|
+      }}
+        Entity: {{entity.name}}
+      {{/power-select}}
+    {{/form.element}}
     {{form.element
       controlType='text'
       placeholder='Location'

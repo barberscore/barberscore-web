@@ -27,7 +27,7 @@ export default Model.extend({
   children: hasMany('entity', {inverse: 'parent', async: true}),
   awards: hasMany('award', {async: true}),
   assignments: hasMany('assignment', {async: true}),
-  groups: hasMany('group', {async: true}),
+  // groups: hasMany('group', {async: true}),
   // performers: hasMany('performer', {inverse: 'representing', async: true}),
   sessions: hasMany('session', {async: true}),
   hosts: hasMany('host', {async: true}),
