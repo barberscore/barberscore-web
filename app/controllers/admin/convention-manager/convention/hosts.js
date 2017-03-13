@@ -17,7 +17,8 @@ export default Ember.Controller.extend({
     });
   }),
   entitySortProperties: [
-    'nomen:asc',
+    'kindSort:asc',
+    'name:asc',
   ],
   entityOptions: Ember.computed.sort(
     'entityCall',

@@ -24,7 +24,7 @@
         {{#each sortedConventions as |convention|}}
           <tr>
             <td>{{#link-to 'admin.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
-            <td>{{convention.entity}}</td>
+            <td>{{convention.entity.short_name}}</td>
             <td>{{convention.location}}</td>
             <td>{{moment-format convention.start_date 'L'}}</td>
             <td>{{moment-format convention.end_date 'L'}}</td>

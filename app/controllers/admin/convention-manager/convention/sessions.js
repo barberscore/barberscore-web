@@ -12,6 +12,8 @@ export default Ember.Controller.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
+  ],
+  ageOptions: [
     'Seniors',
     'Youth',
   ],
