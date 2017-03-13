@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
   ),
   actions: {
     createAward() {
-      let award = this.get('store').createRecord('award', {
+      this.get('store').createRecord('award', {
         name: this.get('name')
       });
     }
