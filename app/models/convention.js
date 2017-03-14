@@ -12,7 +12,7 @@ export default Model.extend({
   season: attr('convention-season'),
   risers: attr(),
   year: attr('number', {defaultValue: 2017}),
-  location: attr('string'),
+  location: attr('string', {defaultValue: ''}),
   panel: attr('convention-panel'),
   start_date: attr('isodate'),
   end_date: attr('isodate'),
