@@ -10,7 +10,7 @@ export default Model.extend({
   status: attr('convention-status'),
   kind: attr('convention-kind'),
   season: attr('convention-season'),
-  risers: attr(),
+  risers: attr('convention-risers'),
   year: attr('number', {defaultValue: 2017}),
   location: attr('string', {defaultValue: ''}),
   panel: attr('convention-panel'),

@@ -11,36 +11,6 @@
       property='name'
       disabled=isDisabled
     }}
-    {{form.element
-      controlType='text'
-      placeholder='Location'
-      property='location'
-      disabled=isDisabled
-    }}
-    {{!-- {{form.element
-      controlType='tel'
-      placeholder='Year'
-      property='year'
-      disabled=isDisabled
-    }} --}}
-    {{#form.element property='start_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention Start Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
-    {{#form.element property='end_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention End Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
     {{!-- {{#form.element property='status' useIcons=false as |el|}}
         {{#power-select
               options=model.statusOptions
@@ -79,6 +49,36 @@
         }}
           Season: {{season}}
         {{/power-select}}
+    {{/form.element}}
+    {{form.element
+      controlType='text'
+      placeholder='Location'
+      property='location'
+      disabled=isDisabled
+    }}
+    {{!-- {{form.element
+      controlType='tel'
+      placeholder='Year'
+      property='year'
+      disabled=isDisabled
+    }} --}}
+    {{#form.element property='start_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Start Date"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='end_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention End Date"
+        disabled=isDisabled
+      }}
     {{/form.element}}
     {{#form.element property='panel' useIcons=false as |el|}}
         {{#power-select
