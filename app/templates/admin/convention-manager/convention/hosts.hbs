@@ -11,12 +11,13 @@
         <tbody>
           {{#each sortedHosts as |host|}}
             <tr>
+              {{!-- <td>{{#link-to 'admin.convention-manager.convention.hosts.host' host}}{{host.entity.name}}{{/link-to}}</td> --}}
               <td>{{host.entity.name}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteHost' host) class='text-danger'}}</td>
             </tr>
           {{else}}
             <tr>
-              <td>No hosts</td>
+              <td>No participating districts/divisions.  Add some.</td>
             </tr>
           {{/each}}
         </tbody>
@@ -29,7 +30,7 @@
                 searchField="name"
                 selected=entity
                 onchange=(action (mut entity))
-                placeholder="Enter Host by Name"
+                placeholder="Enter Participating District/Division by Name"
                 allowClear=true
                 as |entity|
               }}
@@ -40,6 +41,9 @@
           </tr>
         </tfoot>
       </table>
+    </div>
+    <div class='col-md-6'>
+      {{outlet}}
     </div>
   </div>
 </section>
