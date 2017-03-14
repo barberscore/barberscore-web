@@ -20,7 +20,6 @@ export default Model.extend({
   entity: belongsTo('entity', {async: true}),
   assignments: hasMany('assignment', {async: true}),
   sessions: hasMany('session', {async: true}),
-  hosts: hasMany('host', {async: true}),
   permissions: attr(),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
