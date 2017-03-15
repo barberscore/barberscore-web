@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -11,6 +12,7 @@ export default Model.extend({
   kind: attr('convention-kind'),
   season: attr('convention-season'),
   risers: attr('convention-risers'),
+  participants: attr('convention-participants'),
   year: attr('number', {defaultValue: 2017}),
   location: attr('string', {defaultValue: ''}),
   panel: attr('convention-panel'),
@@ -69,5 +71,14 @@ export default Model.extend({
   riserOptions: [
     0,3,4,5,6,7,8,9,10,11,12,13
   ],
+
+  participantOptions: Ember.computed(
+    'entity',
+    function() {
+      let p = [];
+      p.addObject(this.get('entity'));
+      return p;
+    }
+  ),
 
 });
