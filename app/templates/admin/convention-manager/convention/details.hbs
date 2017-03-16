@@ -106,19 +106,6 @@
           Risers: {{risers}}
         {{/power-select-multiple}}
     {{/form.element}}
-    {{#form.element property='participants' useIcons=false as |el|}}
-      {{#power-select-multiple
-        options=participantOptions
-        selected=el.value
-        onchange=(action (mut el.value))
-        placeholder="Choose Participants Options"
-        disabled=isDisabled
-        allowClear=true
-        as |participants|
-      }}
-        Participants: {{participants.name}}
-      {{/power-select-multiple}}
-    {{/form.element}}
     {{#form.element}}
       {{#if isEditing}}
         {{#bs-button onClick=(action 'cancelConvention')}}Cancel{{/bs-button}}

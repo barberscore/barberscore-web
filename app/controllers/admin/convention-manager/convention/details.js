@@ -7,26 +7,6 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  participantCall: Ember.computed(function() {
-    let list = [];
-    let parent = this.get('model.entity');
-    list.addObject(parent);
-    this.get('store').query('entity', {
-      'kind': 21, // Hard-Coded
-      'parent': parent.get('id')
-    }).then((data) => {
-      list.addObjects(data);
-    });
-    return list;
-  }),
-  participantSortProperties: [
-    'kindSort:asc',
-    'name:asc',
-  ],
-  participantOptions: Ember.computed.sort(
-    'participantCall',
-    'participantSortProperties'
-  ),
   actions: {
     newConvention() {
       let newConvention = this.store.createRecord(

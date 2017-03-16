@@ -25,19 +25,39 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
+  participantCall: Ember.computed(function() {
+    let list = [];
+    let parent = this.get('model.entity');
+    list.addObject(parent);
+    this.get('store').query('entity', {
+      'kind': 21, // Hard-Coded
+      'parent': parent.get('id')
+    }).then((data) => {
+      list.addObjects(data);
+    });
+    return list;
+  }),
+  participantSortProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  participantOptions: Ember.computed.sort(
+    'participantCall',
+    'participantSortProperties'
+  ),
   actions: {
     createSession(){
       let session = this.get('store').createRecord('session', {
         convention: this.get('model'),
         kind: this.get('kind'),
         num_rounds: this.get('num_rounds'),
-        // is_prelims: this.get('is_prelims'),
+        participants: this.get('participants'),
       });
       session.save()
       .then(() => {
         this.set('kind', null);
         this.set('num_rounds', null);
-        // this.set('is_prelims', false);
+        this.set('participants', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {

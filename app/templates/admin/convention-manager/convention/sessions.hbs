@@ -1,12 +1,12 @@
 <section>
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-md-12'>
       <table class='table'>
         <thead>
           <tr>
-            <th class='col-md-4'>Name</th>
+            <th class='col-md-2'>Name</th>
             <th class='col-md-2'>Rounds</th>
-            {{!-- <th class='col-md-2'>Prelims</th> --}}
+            <th class='col-md-4'>Awards</th>
             <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
@@ -15,8 +15,7 @@
             <tr>
               <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
               <td>{{session.num_rounds}}</td>
-              {{!-- <td>{{#if session.is_prelims}}{{fa-icon 'check-circle' class='text-success'}}{{/if}}</td> --}}
-              {{!-- <td>{{if session.is_prelims "Yes" "No"}}</td> --}}
+              <td>{{participants-helper session.participants}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
           {{else}}
@@ -52,19 +51,22 @@
                 {{num_rounds}}
               {{/power-select}}
             </td>
-            {{!--<td>
-              {{#power-select
-                options=booleanOptions
-                selected=is_prelims
-                onchange=(action (mut is_prelims))
-                placeholder="Prelims"
+            <td>
+              {{#power-select-multiple
+                options=participantOptions
+                selected=participants
+                onchange=(action (mut participants))
+                placeholder="Choose Participants Options"
+                disabled=isDisabled
                 allowClear=true
-                as |is_prelims|
+                as |participants|
               }}
-                {{if is_prelims "Yes"}}
-              {{/power-select}}
-            </td> --}}
-            <td>{{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}</td>
+                {{participants.name}}
+              {{/power-select-multiple}}
+            </td>
+            <td>
+              {{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}
+            </td>
           </tr>
         </tfoot>
       </table>
