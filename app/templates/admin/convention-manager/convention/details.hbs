@@ -108,7 +108,7 @@
     {{/form.element}}
     {{#form.element property='participants' useIcons=false as |el|}}
       {{#power-select-multiple
-        options=model.participantOptions
+        options=participantOptions
         selected=el.value
         onchange=(action (mut el.value))
         placeholder="Choose Participants Options"
