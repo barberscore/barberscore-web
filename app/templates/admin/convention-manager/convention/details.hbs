@@ -24,6 +24,20 @@
           Status: {{status}}
         {{/power-select}}
     {{/form.element}} --}}
+    {{#form.element property='entity' useIcons=false as |el|}}
+      {{#power-select
+        renderInPlace=true
+        options=entityOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Convention Owner Entity"
+        disabled=isDisabled
+        allowClear=true
+        as |entity|
+      }}
+        Owner: {{entity.name}}
+      {{/power-select}}
+    {{/form.element}}
     {{#form.element property='kind' useIcons=false as |el|}}
         {{#power-select
               options=model.kindOptions

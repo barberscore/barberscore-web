@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
     'Chorus',
   ],
   ageOptions: [
+    'All',
     'Seniors',
     'Youth',
   ],
@@ -50,12 +51,14 @@ export default Ember.Controller.extend({
       let session = this.get('store').createRecord('session', {
         convention: this.get('model'),
         kind: this.get('kind'),
+        age: this.get('age'),
         num_rounds: this.get('num_rounds'),
         participants: this.get('participants'),
       });
       session.save()
       .then(() => {
         this.set('kind', null);
+        this.set('age', null);
         this.set('num_rounds', null);
         this.set('participants', null);
         this.get('flashMessages').success('Success');

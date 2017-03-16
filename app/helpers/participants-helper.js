@@ -1,12 +1,11 @@
 import Ember from 'ember';
 
-export function participantsHelper(params) {
-  if (params[0]) {
-    let formatted = params[0].mapBy('name');
+export default Ember.Helper.helper(function(params) {
+  let participants = params[0];
+  if (participants) {
+    let formatted = participants.mapBy('name');
     return formatted;
   } else {
     return null;
   }
-}
-
-export default Ember.Helper.helper(participantsHelper);
+});

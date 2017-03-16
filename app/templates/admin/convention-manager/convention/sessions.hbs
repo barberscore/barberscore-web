@@ -4,7 +4,8 @@
       <table class='table'>
         <thead>
           <tr>
-            <th class='col-md-2'>Name</th>
+            <th class='col-md-2'>Kind</th>
+            <th class='col-md-2'>Age</th>
             <th class='col-md-2'>Rounds</th>
             <th class='col-md-4'>Awards</th>
             <th class='col-md-1'>Delete</th>
@@ -14,6 +15,7 @@
           {{#each sortedSessions as |session|}}
             <tr>
               <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
+              <td>{{session.age}}</td>
               <td>{{session.num_rounds}}</td>
               <td>{{participants-helper session.participants}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
@@ -37,6 +39,19 @@
                 as |kind|
               }}
                 {{kind}}
+              {{/power-select}}
+            </td>
+            <td>
+              {{#power-select
+                options=ageOptions
+                search=(perform searchTask)
+                selected=age
+                onchange=(action (mut age))
+                placeholder="Choose Session Age"
+                allowClear=true
+                as |age|
+              }}
+                {{age}}
               {{/power-select}}
             </td>
             <td>

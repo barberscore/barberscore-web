@@ -7,6 +7,20 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  entityCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+      'kind__lt': 20, //TODO Hardcoded
+      'page_size': 100,
+    });
+  }),
+  entitySortProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  entityOptions: Ember.computed.sort(
+    'entityCall',
+    'entitySortProperties'
+  ),
   actions: {
     newConvention() {
       let newConvention = this.store.createRecord(
