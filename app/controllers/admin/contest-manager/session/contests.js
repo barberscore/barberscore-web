@@ -12,9 +12,7 @@ export default Ember.Controller.extend({
     'contestSortProperties'
   ),
   awardCall: Ember.computed(function() {
-    let convention = this.get('model.convention.id');
     return this.get('store').query('award', {
-      'entity__hosts__convention': convention,
       'page_size': 1000,
     });
   }),

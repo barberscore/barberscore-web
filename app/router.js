@@ -11,9 +11,6 @@ Router.map(function() {
     this.route('convention-manager', {path: '/convention-manager'}, function() {
       this.route('convention', { path: '/convention/:convention_id' }, function() {
         this.route('details', {path: 'details'});
-        this.route('hosts', {path: 'hosts'}, function() {
-          this.route('host', {path: '/:host_id'});
-        });
         this.route('actions', {path: 'actions'});
         this.route('assignments', { path: 'assignments'});
         this.route('sessions', { path: 'sessions'});
