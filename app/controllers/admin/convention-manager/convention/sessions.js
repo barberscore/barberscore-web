@@ -28,6 +28,12 @@ export default Ember.Controller.extend({
   ],
   participantCall: Ember.computed(function() {
     let list = [];
+    this.get('store').query('entity', {
+      'kind': 1, // Hard-Coded
+      'short_name': 'BHS'
+    }).then((data) => {
+      list.addObjects(data);
+    });
     let parent = this.get('model.entity');
     list.addObject(parent);
     this.get('store').query('entity', {

@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th  {{action 'sortBy' 'orgSort'}} class='col-md-6'>Name</th>
-            <th  {{action 'sortBy' 'kind'}}  class='col-md-2'>Kind</th>
+            {{!-- <th  {{action 'sortBy' 'kind'}}  class='col-md-2'>Kind</th> --}}
             <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
@@ -13,7 +13,7 @@
           {{#each sortedContests as |contest|}}
             <tr>
               <td>{{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
-              <td>{{contest.kind}}</td>
+              {{!-- <td>{{contest.kind}}</td> --}}
               <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td>
             </tr>
           {{else}}
@@ -37,7 +37,7 @@
                 {{award.name}}
               {{/power-select}}
             </td>
-            <td>
+            {{!-- <td>
               {{#power-select
                 options=kindOptions
                 selected=kind
@@ -48,7 +48,7 @@
               }}
                 {{kind}}
               {{/power-select}}
-            </td>
+            </td> --}}
             <td>
               {{fa-icon 'plus-circle' click=(action 'addContest') class='text-success'}}
             </td>

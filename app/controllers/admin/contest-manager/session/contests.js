@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   contestSortProperties: [
     'orgSort:asc',
     'kind:asc',
+    'nomen:asc',
   ],
   sortedContests: Ember.computed.sort(
     'model.contests',
