@@ -25,6 +25,7 @@
     "ember-cli-htmlbars": "^1.0.10",
     "ember-cli-htmlbars-inline-precompile": "^0.3.3",
     "ember-cli-inject-live-reload": "^1.4.1",
+    "ember-cli-jstree": "1.0.8",
     "ember-cli-qunit": "^3.0.1",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.0",
@@ -33,6 +34,7 @@
     "ember-data": "^2.10.0",
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
+    "ember-multiselect-checkboxes": "0.10.2",
     "ember-resolver": "^2.0.3",
     "loader.js": "^4.0.10"
   },

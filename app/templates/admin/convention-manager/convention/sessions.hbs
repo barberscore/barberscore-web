@@ -66,7 +66,7 @@
                 {{num_rounds}}
               {{/power-select}}
             </td>
-            <td>
+            {{!-- <td>
               {{#power-select-multiple
                 options=participantOptions
                 selected=participants
@@ -78,6 +78,20 @@
               }}
                 {{participants.name}}
               {{/power-select-multiple}}
+            </td> --}}
+            {{!-- <td>
+              {{multiselect-checkboxes
+                options=participantOptions
+                labelProperty='name'
+                selection=participants
+                onchange=(action (mut participants))
+              }}
+            </td> --}}
+            <td>
+            {{ember-jstree
+              data=participantOptions
+              plugins=plugins
+            }}
             </td>
             <td>
               {{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}

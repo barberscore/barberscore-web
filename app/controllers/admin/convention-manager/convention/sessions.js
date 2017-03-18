@@ -26,24 +26,62 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
+  plugins: 'checkbox',
+  participants :[],
   participantCall: Ember.computed(function() {
     let list = [];
+
+
+
+    let intAwardsList = [];
     this.get('store').query('entity', {
       'kind': 1, // Hard-Coded
       'short_name': 'BHS'
     }).then((data) => {
-      list.addObjects(data);
+      data.forEach(function(item) {
+        item.get('awards').then((intAwards)=>{
+          intAwards.forEach(function(intAwardsItem) {
+            let intAwardsHash = {
+              id: intAwardsItem.get('id'),
+              text: intAwardsItem.get('name')
+            };
+            intAwardsList.addObject(intAwardsHash);
+          });
+          let dataHash = {
+            id: item.get('id'),
+            text: item.get('name'),
+            children: intAwardsList
+          };
+        list.addObject(dataHash);
+        });
+      });
     });
-    let parent = this.get('model.entity');
-    list.addObject(parent);
-    this.get('store').query('entity', {
-      'kind': 21, // Hard-Coded
-      'parent': parent.get('id')
-    }).then((data) => {
-      list.addObjects(data);
-    });
+
+
+
+
+    // this.get('model.entity').then((data) => {
+    //   let parentHash = {
+    //     id: data.get('id'),
+    //     text: data.get('name')
+    //   };
+    //   list.addObject(parentHash);
+    // });
+    // this.get('store').query('entity', {
+    //   'kind': 21, // Hard-Coded
+    //   'parent': this.get('model.entity.id')
+    // }).then((data) => {
+    //   data.forEach(function(item) {
+    //     let childHash = {
+    //       id: item.get('id'),
+    //       text: item.get('name')
+    //     };
+    //     list.addObject(childHash);
+    //   });
+    // });
     return list;
   }),
+
   participantSortProperties: [
     'kindSort:asc',
     'name:asc',
