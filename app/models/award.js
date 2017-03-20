@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -12,6 +13,7 @@ export default Model.extend({
   qualifier_season: attr('award-season'),
   championship_rounds: attr('number'),
   qualifier_rounds: attr('number'),
+  is_qualifier: attr('boolean'),
   is_primary: attr('boolean'),
   is_improved: attr('boolean'),
   is_novice: attr('boolean'),
@@ -52,4 +54,10 @@ export default Model.extend({
     'Plateau 1',
   ],
 
+  kindSort: Ember.computed(
+    'entity.kindSort',
+    function() {
+      return this.get('entity.kindSort');
+    }
+  ),
 });

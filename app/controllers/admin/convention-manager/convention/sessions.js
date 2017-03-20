@@ -26,62 +26,26 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
-  plugins: 'checkbox',
   participants :[],
+
   participantCall: Ember.computed(function() {
     let list = [];
-
-
-
-    let intAwardsList = [];
     this.get('store').query('entity', {
       'kind': 1, // Hard-Coded
-      'short_name': 'BHS'
+      'name': 'International'
     }).then((data) => {
-      data.forEach(function(item) {
-        item.get('awards').then((intAwards)=>{
-          intAwards.forEach(function(intAwardsItem) {
-            let intAwardsHash = {
-              id: intAwardsItem.get('id'),
-              text: intAwardsItem.get('name')
-            };
-            intAwardsList.addObject(intAwardsHash);
-          });
-          let dataHash = {
-            id: item.get('id'),
-            text: item.get('name'),
-            children: intAwardsList
-          };
-        list.addObject(dataHash);
-        });
-      });
+      list.addObjects(data);
     });
-
-
-
-
-    // this.get('model.entity').then((data) => {
-    //   let parentHash = {
-    //     id: data.get('id'),
-    //     text: data.get('name')
-    //   };
-    //   list.addObject(parentHash);
-    // });
-    // this.get('store').query('entity', {
-    //   'kind': 21, // Hard-Coded
-    //   'parent': this.get('model.entity.id')
-    // }).then((data) => {
-    //   data.forEach(function(item) {
-    //     let childHash = {
-    //       id: item.get('id'),
-    //       text: item.get('name')
-    //     };
-    //     list.addObject(childHash);
-    //   });
-    // });
+    let parent = this.get('model.entity');
+    list.addObject(parent);
+    this.get('store').query('entity', {
+      'kind': 21, // Hard-Coded
+      'parent': parent.get('id')
+    }).then((data) => {
+      list.addObjects(data);
+    });
     return list;
   }),
-
   participantSortProperties: [
     'kindSort:asc',
     'name:asc',
@@ -90,6 +54,162 @@ export default Ember.Controller.extend({
     'participantCall',
     'participantSortProperties'
   ),
+
+
+
+  // awardCall: Ember.computed(function() {
+  //   let list = [];
+
+  //   let intAwardsList = [];
+  //   // this.get('store').query('entity', {
+  //   //   'name': 'International',
+  //   //   'kind': 1,
+  //   // }).then((data) => {
+  //   //   data.forEach(function(item) {
+  //   //     item.get('awards').then((intAwards)=>{
+  //   //       intAwards.forEach(function(intAwardsItem) {
+  //   //         let awardHash = {
+  //   //           id: intAwardsItem.get('id'),
+  //   //           text: intAwardsItem.get('name'),
+  //   //         };
+  //   //         if (intAwardsItem.get('is_qualifier')) {
+  //   //           intAwardsList.addObject(awardHash);
+  //   //         }
+  //   //       });
+  //   //       let dataHash = {
+  //   //         id: item.get('id'),
+  //   //         text: item.get('name'),
+  //   //         children: intAwardsList
+  //   //       };
+  //   //     list.addObject(dataHash);
+  //   //     });
+  //   //   });
+  //   // });
+  //   // this.get('store').query('entity', {
+  //   //   'id': this.get('model.entity.id')
+  //   // }).then((data) => {
+  //   //   data.forEach(function(item) {
+  //   //     item.get('awards').then((intAwards)=>{
+  //   //       intAwards.forEach(function(intAwardsItem) {
+  //   //         let awardHash = {
+  //   //           id: intAwardsItem.get('id'),
+  //   //           text: intAwardsItem.get('name'),
+  //   //         };
+  //   //         // if (intAwardsItem.get('is_qualifier')) {
+  //   //           intAwardsList.addObject(awardHash);
+  //   //         // }
+  //   //       });
+  //   //       let dataHash = {
+  //   //         id: item.get('id'),
+  //   //         text: item.get('name'),
+  //   //         children: intAwardsList
+  //   //       };
+  //   //     list.addObject(dataHash);
+  //   //     });
+  //   //   });
+  //   // });
+  //   this.get('store').query('entity', {
+  //     'id__in': this.get('model.entity.children.id')
+  //   }).then((data) => {
+  //     data.forEach(function(item) {
+  //       item.get('awards').then((intAwards)=>{
+  //         intAwards.forEach(function(intAwardsItem) {
+  //           let awardHash = {
+  //             id: intAwardsItem.get('id'),
+  //             text: intAwardsItem.get('name'),
+  //           };
+  //           // if (intAwardsItem.get('is_qualifier')) {
+  //             intAwardsList.addObject(awardHash);
+  //           // }
+  //         });
+  //         let dataHash = {
+  //           id: item.get('id'),
+  //           text: item.get('name'),
+  //           children: intAwardsList
+  //         };
+  //       list.addObject(dataHash);
+  //       });
+  //     });
+  //   });
+  //   // this.get('store').query('entity', {
+  //   //   'pk': this.get('model.entity')
+  //   // }).then((data) => {
+  //   //   data.forEach(function(item) {
+  //   //     item.get('awards').then((intAwards)=>{
+  //   //       intAwards.forEach(function(intAwardsItem) {
+  //   //         intAwardsList.addObject(intAwardsItem);
+  //   //       });
+  //   //       let dataHash = {
+  //   //         id: item.get('id'),
+  //   //         text: item.get('name'),
+  //   //         children: intAwardsList
+  //   //       };
+  //   //     list.addObject(dataHash);
+  //   //     });
+  //   //   });
+  //   // });
+
+
+
+
+  //   // this.get('model.entity').then((data) => {
+  //   //   let parentHash = {
+  //   //     id: data.get('id'),
+  //   //     text: data.get('name')
+  //   //   };
+  //   //   list.addObject(parentHash);
+  //   // });
+  //   // this.get('store').query('entity', {
+  //   //   'kind': 21, // Hard-Coded
+  //   //   'parent': this.get('model.entity.id')
+  //   // }).then((data) => {
+  //   //   data.forEach(function(item) {
+  //   //     let childHash = {
+  //   //       id: item.get('id'),
+  //   //       text: item.get('name')
+  //   //     };
+  //   //     list.addObject(childHash);
+  //   //   });
+  //   // });
+  //   return list;
+  // }),
+
+
+  // awardCall: Ember.computed(function() {
+  //   let awards = [];
+  //   this.get('store').query('award', {
+  //       'entity__name': 'International',
+  //       'entity__kind': 1,
+  //       'is_qualifier': 'true',
+  //       // 'kind': this.get('kind'),
+  //       // 'season': this.get('convention.season'),
+  //   }).then((data) => {
+  //     awards.addObjects(data);
+  //   });
+  //   this.get('store').query('award', {
+  //       'entity': this.get('model.entity.id')
+  //   }).then((data2) => {
+  //     awards.addObjects(data2);
+  //   });
+  //   this.get('store').query('award', {
+  //       'entity__parent': this.get('model.entity.id')
+  //   }).then((data3) => {
+  //     awards.addObjects(data3);
+  //   });
+  //   return awards;
+  // }),
+
+  // awardSortProperties: [
+  //   'kindSort:asc',
+  //   'name:asc',
+  // ],
+  // awardOptions: Ember.computed.sort(
+  //   'awardCall',
+  //   'awardSortProperties'
+  // ),
+
+
+
   actions: {
     createSession(){
       let session = this.get('store').createRecord('session', {

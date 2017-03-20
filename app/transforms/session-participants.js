@@ -17,7 +17,7 @@ export default DS.Transform.extend({
     let out = [];
     let ids = Ember.A(serialized);
     ids.forEach(function(item) {
-      let obj = _this.get('store').findRecord('entity', item);
+      let obj = _this.get('store').peekRecord('entity', item);
       out.addObject(obj);
     });
     return out;

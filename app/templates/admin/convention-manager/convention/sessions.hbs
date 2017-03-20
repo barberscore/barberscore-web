@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th class='col-md-2'>Kind</th>
-            <th class='col-md-2'>Age</th>
+            {{!-- <th class='col-md-2'>Age</th> --}}
             <th class='col-md-2'>Rounds</th>
             <th class='col-md-4'>Awards</th>
             <th class='col-md-1'>Delete</th>
@@ -14,8 +14,9 @@
         <tbody>
           {{#each sortedSessions as |session|}}
             <tr>
-              <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
-              <td>{{session.age}}</td>
+              <td>{{session.kind}}</td>
+              {{!-- <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td> --}}
+              {{!-- <td>{{session.age}}</td> --}}
               <td>{{session.num_rounds}}</td>
               <td>{{participants-helper session.participants}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
@@ -41,7 +42,7 @@
                 {{kind}}
               {{/power-select}}
             </td>
-            <td>
+            {{!-- <td>
               {{#power-select
                 options=ageOptions
                 search=(perform searchTask)
@@ -53,7 +54,7 @@
               }}
                 {{age}}
               {{/power-select}}
-            </td>
+            </td> --}}
             <td>
               {{#power-select
                 options=numOptions
@@ -66,7 +67,7 @@
                 {{num_rounds}}
               {{/power-select}}
             </td>
-            {{!-- <td>
+            <td>
               {{#power-select-multiple
                 options=participantOptions
                 selected=participants
@@ -76,23 +77,27 @@
                 allowClear=true
                 as |participants|
               }}
-                {{participants.name}}
+                {{#if (eq participants.name 'International')}}
+                  International Prelims
+                {{else}}
+                  {{participants.name}}
+                {{/if}}
               {{/power-select-multiple}}
-            </td> --}}
+            </td>
             {{!-- <td>
               {{multiselect-checkboxes
-                options=participantOptions
+                options=awardOptions
                 labelProperty='name'
-                selection=participants
-                onchange=(action (mut participants))
+                selection=awards
+                onchange=(action (mut awards))
               }}
             </td> --}}
-            <td>
+            {{!-- <td>
             {{ember-jstree
-              data=participantOptions
+              data=awardOptions
               plugins=plugins
             }}
-            </td>
+            </td> --}}
             <td>
               {{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}
             </td>
