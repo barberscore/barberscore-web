@@ -4,12 +4,12 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Your Assigned Conventions&nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}}</caption>
+      <caption>Your Assigned Conventions&nbsp;{{!-- {{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
       <thead>
         <tr>
           <th {{action 'sortBy' 'name'}}>Name</th>
           <th {{action 'sortBy' 'entity'}}>Entity</th>
-          <th {{action 'sortBy' 'kind'}}>Kind</th>
+          {{!-- <th {{action 'sortBy' 'kind'}}>Kind</th> --}}
           <th {{action 'sortBy' 'season'}}>Season</th>
           <th {{action 'sortBy' 'location'}}>Location</th>
           <th {{action 'sortBy' 'start_date'}}>Start</th>
@@ -25,7 +25,7 @@
           <tr>
             <td>{{#link-to 'admin.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
             <td>{{convention.entity.short_name}}</td>
-            <td>{{convention.kind}}</td>
+            {{!-- <td>{{convention.kind}}</td> --}}
             <td>{{convention.season}}</td>
             <td>{{convention.location}}</td>
             <td>{{moment-format convention.start_date 'L'}}</td>
@@ -85,19 +85,6 @@
         as |entity|
       }}
         Entity: {{entity.name}}
-      {{/power-select}}
-    {{/form.element}}
-    {{#form.element property='kind' as |el|}}
-      {{#power-select
-        renderInPlace=true
-        options=kindOptions
-        selected=el.value
-        onchange=(action (mut el.value))
-        placeholder="Choose Kind"
-        allowClear=true
-        as |kind|
-      }}
-        Kind: {{kind}}
       {{/power-select}}
     {{/form.element}}
     {{#form.element property='season' useIcons=false as |el|}}
