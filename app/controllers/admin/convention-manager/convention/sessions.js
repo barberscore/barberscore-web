@@ -26,34 +26,34 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
-  participants :[],
+  // participants :[],
 
-  participantCall: Ember.computed(function() {
-    let list = [];
-    this.get('store').query('entity', {
-      'kind': 1, // Hard-Coded
-      'name': 'International'
-    }).then((data) => {
-      list.addObjects(data);
-    });
-    let parent = this.get('model.entity');
-    list.addObject(parent);
-    this.get('store').query('entity', {
-      'kind': 21, // Hard-Coded
-      'parent': parent.get('id')
-    }).then((data) => {
-      list.addObjects(data);
-    });
-    return list;
-  }),
-  participantSortProperties: [
-    'kindSort:asc',
-    'name:asc',
-  ],
-  participantOptions: Ember.computed.sort(
-    'participantCall',
-    'participantSortProperties'
-  ),
+  // participantCall: Ember.computed(function() {
+  //   let list = [];
+  //   this.get('store').query('entity', {
+  //     'kind': 1, // Hard-Coded
+  //     'name': 'International'
+  //   }).then((data) => {
+  //     list.addObjects(data);
+  //   });
+  //   let parent = this.get('model.entity');
+  //   list.addObject(parent);
+  //   this.get('store').query('entity', {
+  //     'kind': 21, // Hard-Coded
+  //     'parent': parent.get('id')
+  //   }).then((data) => {
+  //     list.addObjects(data);
+  //   });
+  //   return list;
+  // }),
+  // participantSortProperties: [
+  //   'kindSort:asc',
+  //   'name:asc',
+  // ],
+  // participantOptions: Ember.computed.sort(
+  //   'participantCall',
+  //   'participantSortProperties'
+  // ),
 
 
 
@@ -175,41 +175,46 @@ export default Ember.Controller.extend({
   // }),
 
 
-  // awardCall: Ember.computed(function() {
-  //   let awards = [];
-  //   this.get('store').query('award', {
-  //       'entity__name': 'International',
-  //       'entity__kind': 1,
-  //       'is_qualifier': 'true',
-  //       // 'kind': this.get('kind'),
-  //       // 'season': this.get('convention.season'),
-  //   }).then((data) => {
-  //     awards.addObjects(data);
-  //   });
-  //   this.get('store').query('award', {
-  //       'entity': this.get('model.entity.id')
-  //   }).then((data2) => {
-  //     awards.addObjects(data2);
-  //   });
-  //   this.get('store').query('award', {
-  //       'entity__parent': this.get('model.entity.id')
-  //   }).then((data3) => {
-  //     awards.addObjects(data3);
-  //   });
-  //   return awards;
-  // }),
+  awards: Ember.A(),
+  awardCall: Ember.computed(function() {
+    let awards = [];
+    this.get('store').query('award', {
+        'entity__name': 'International',
+        'entity__kind': 1,
+        'is_qualifier': 'true',
+        // 'kind': this.get('kind'),
+        // 'season': this.get('convention.season'),
+    }).then((data) => {
+      awards.addObjects(data);
+    });
+    this.get('store').query('award', {
+        'entity': this.get('model.entity.id')
+    }).then((data2) => {
+      awards.addObjects(data2);
+    });
+    this.get('store').query('award', {
+        'entity__parent': this.get('model.entity.id')
+    }).then((data3) => {
+      awards.addObjects(data3);
+    });
+    return awards;
+  }),
 
-  // awardSortProperties: [
-  //   'kindSort:asc',
-  //   'name:asc',
-  // ],
-  // awardOptions: Ember.computed.sort(
+  // awardFilter: Ember.computed.filter(
   //   'awardCall',
-  //   'awardSortProperties'
+  //   function(award) {
+  //     return award.get('kind') === this.get('kind');
+  //   }
   // ),
-
-
-
+  awardSortProperties: [
+    'kind:desc',
+    'kindSort:asc',
+    'name:asc',
+  ],
+  awardOptions: Ember.computed.sort(
+    'awardCall',
+    'awardSortProperties'
+  ),
   actions: {
     createSession(){
       let session = this.get('store').createRecord('session', {
@@ -217,15 +222,19 @@ export default Ember.Controller.extend({
         kind: this.get('kind'),
         age: this.get('age'),
         num_rounds: this.get('num_rounds'),
-        participants: this.get('participants'),
       });
       session.save()
-      .then(() => {
+      .then((response) => {
+        this.get('awards').forEach(function(award) {
+          let contest = response.get('contests').createRecord({
+            award: award
+          });
+          contest.save();
+        });
+        this.get('flashMessages').success('Success');
         this.set('kind', null);
         this.set('age', null);
         this.set('num_rounds', null);
-        this.set('participants', null);
-        this.get('flashMessages').success('Success');
       })
       .catch(() => {
         session.deleteRecord();

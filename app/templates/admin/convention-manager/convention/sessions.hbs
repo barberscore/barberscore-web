@@ -18,7 +18,8 @@
               {{!-- <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td> --}}
               {{!-- <td>{{session.age}}</td> --}}
               <td>{{session.num_rounds}}</td>
-              <td>{{participants-helper session.participants}}</td>
+              {{!-- <td>{{participants-helper session.participants}}</td> --}}
+              <td>{{#each session.contests as |contest|}}{{contest.award.name}}<br>{{/each}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
           {{else}}
@@ -67,7 +68,7 @@
                 {{num_rounds}}
               {{/power-select}}
             </td>
-            <td>
+            {{!-- <td>
               {{#power-select-multiple
                 options=participantOptions
                 selected=participants
@@ -83,15 +84,16 @@
                   {{participants.name}}
                 {{/if}}
               {{/power-select-multiple}}
-            </td>
-            {{!-- <td>
+            </td> --}}
+            <td>
               {{multiselect-checkboxes
                 options=awardOptions
                 labelProperty='name'
                 selection=awards
+                updateSelectionValue=false
                 onchange=(action (mut awards))
               }}
-            </td> --}}
+            </td>
             {{!-- <td>
             {{ember-jstree
               data=awardOptions
