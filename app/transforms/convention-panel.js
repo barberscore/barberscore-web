@@ -2,8 +2,7 @@ import DS from 'ember-data';
 
 export default DS.Transform.extend({
   deserialize: function(serialized) {
-    var map = {
-      0: 'Unknown',
+    let map = {
       1: 'Single',
       2: 'Double',
       3: 'Triple',
@@ -14,13 +13,12 @@ export default DS.Transform.extend({
   },
 
   serialize: function(deserialized) {
-    var map = {
-      'Unknown': 0,
+    let map = {
       'Single': 1,
       'Double': 2,
       'Triple': 3,
-      'Quadruple': 3,
-      'Quintiple': 3,
+      'Quadruple': 4,
+      'Quintiple': 5,
     };
     return map[deserialized];
   }

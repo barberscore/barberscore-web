@@ -58,7 +58,6 @@ export default Model.extend({
   ],
 
   panelOptions: [
-    'Unknown',
     'Single',
     'Double',
     'Triple',

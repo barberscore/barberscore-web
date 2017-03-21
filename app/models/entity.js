@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import {hasMany } from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
@@ -23,7 +23,7 @@ export default Model.extend({
   code: attr('string'),
   short_name: attr('string'),
   long_name: attr('string'),
-  parent: belongsTo('entity', {async: true}),
+  // parent: belongsTo('entity', {async: true}),
   // parent: belongsTo('entity', {inverse: 'children', async: true}),
   // children: hasMany('entity', {inverse: 'parent', async: true}),
   awards: hasMany('award', {async: true}),
