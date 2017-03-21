@@ -15,10 +15,8 @@
           {{#each sortedSessions as |session|}}
             <tr>
               <td>{{session.kind}}</td>
-              {{!-- <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td> --}}
               {{!-- <td>{{session.age}}</td> --}}
               <td>{{session.num_rounds}}</td>
-              {{!-- <td>{{participants-helper session.participants}}</td> --}}
               <td>{{#each session.contests as |contest|}}{{contest.award.name}}<br>{{/each}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
@@ -68,23 +66,6 @@
                 {{num_rounds}}
               {{/power-select}}
             </td>
-            {{!-- <td>
-              {{#power-select-multiple
-                options=participantOptions
-                selected=participants
-                onchange=(action (mut participants))
-                placeholder="Choose Participants Options"
-                disabled=isDisabled
-                allowClear=true
-                as |participants|
-              }}
-                {{#if (eq participants.name 'International')}}
-                  International Prelims
-                {{else}}
-                  {{participants.name}}
-                {{/if}}
-              {{/power-select-multiple}}
-            </td> --}}
             <td>
               {{multiselect-checkboxes
                 options=awardOptions
@@ -94,12 +75,6 @@
                 onchange=(action (mut awards))
               }}
             </td>
-            {{!-- <td>
-            {{ember-jstree
-              data=awardOptions
-              plugins=plugins
-            }}
-            </td> --}}
             <td>
               {{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}
             </td>

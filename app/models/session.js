@@ -17,7 +17,6 @@ export default Model.extend({
   rounds: hasMany('round', {async: true}),
   performers: hasMany('performer', {async: true}),
   contests: hasMany('contest', {async: true}),
-  // participants: attr('session-participants'),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   validate: memberAction({path: 'validate', type: 'post'}),
