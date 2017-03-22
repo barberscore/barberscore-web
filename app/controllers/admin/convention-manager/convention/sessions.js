@@ -26,7 +26,6 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
-  awards: Ember.A(),
   awardCall: Ember.computed(function() {
     let awards = [];
     this.get('store').query('award', {
@@ -83,6 +82,7 @@ export default Ember.Controller.extend({
         this.set('kind', null);
         this.set('age', null);
         this.set('num_rounds', null);
+        this.set('awards', null);
       })
       .catch(() => {
         session.deleteRecord();

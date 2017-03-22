@@ -21,8 +21,10 @@ export default Model.extend({
   assignments: hasMany('assignment', {async: true}),
   sessions: hasMany('session', {async: true}),
   permissions: attr(),
-  start: memberAction({path: 'start', type: 'post'}),
-  finish: memberAction({path: 'finish', type: 'post'}),
+  list_fsm: memberAction({path: 'list_fsm', type: 'post'}),
+  open_fsm: memberAction({path: 'open_fsm', type: 'post'}),
+  start_fsm: memberAction({path: 'start_fsm', type: 'post'}),
+  finish_fsm: memberAction({path: 'finish_fsm', type: 'post'}),
 
   statusOptions: [
     'New',
