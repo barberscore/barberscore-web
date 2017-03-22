@@ -3,17 +3,13 @@
     "parserOptions": {
         "ecmaVersion": 6,
         "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
     },
     "rules": {
         "semi": 2,
         "no-extra-boolean-cast": "off"
     },
     "extends": "eslint:recommended",
-    "plugins": [
-        "standard",
-        "promise"
-    ]
+    "env": {
+      "browser": true
+    }
 }
