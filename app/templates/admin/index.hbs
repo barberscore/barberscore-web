@@ -13,7 +13,7 @@
     <p class='col-md-3 text-center spacing'>
       {{#link-to 'admin.contest-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'microphone' size=5}}<br>
-        Contest Manager
+        Session Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
@@ -23,13 +23,13 @@
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.quartet-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
+      {{#link-to 'admin.quartet-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'users' size=5}}<br>
         Quartet Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'admin.chorus-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
+      {{#link-to 'admin.chorus-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'cubes' size=5}}<br>
         Chorus Manager
       {{/link-to}}
