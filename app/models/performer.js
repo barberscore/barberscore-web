@@ -22,7 +22,7 @@ export default Model.extend({
   // representing: belongsTo('organization', {async: true}),
   seed: attr('number'),
   prelim: attr('number'),
-  quartet: belongsTo('quartet', {async: true}),
+  entity: belongsTo('entity', {async: true}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
   contestants: hasMany('contestant', {async: true}),
