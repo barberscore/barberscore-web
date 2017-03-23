@@ -23,14 +23,10 @@ export default Model.extend({
   code: attr('string'),
   short_name: attr('string'),
   long_name: attr('string'),
-  // parent: belongsTo('entity', {async: true}),
   // parent: belongsTo('entity', {inverse: 'children', async: true}),
   // children: hasMany('entity', {inverse: 'parent', async: true}),
-  awards: hasMany('award', {async: true}),
-  // assignments: hasMany('assignment', {async: true}),
-  // groups: hasMany('group', {async: true}),
-  // performers: hasMany('performer', {inverse: 'representing', async: true}),
-  // sessions: hasMany('session', {async: true}),
+  memberships: hasMany('membership', {async: true}),
+  performers: hasMany('performer', {async: true}),
   permissions: attr(),
 
   kindOptions: [

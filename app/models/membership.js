@@ -8,7 +8,7 @@ export default Model.extend({
   part: attr('membership-part'),
   start_date: attr('isodate'),
   end_date: attr('isodate'),
-  entity: belongsTo('entity', {async: true}),
+  quartet: belongsTo('quartet', {async: true}),
   person: belongsTo('person', {async: true}),
   officers: hasMany('officer', {async: true}),
   permissions: attr(),

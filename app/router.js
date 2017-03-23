@@ -42,7 +42,7 @@ Router.map(function() {
       });
     });
     this.route('quartet-manager', {path: '/quartet-manager'}, function() {
-      this.route('quartet', { path: '/:group_id'}, function() {
+      this.route('quartet', { path: '/:quartet_id'}, function() {
         this.route('details', { path: '/details'});
         this.route('members', { path: '/members'});
         this.route('contests', { path: '/contests'});
