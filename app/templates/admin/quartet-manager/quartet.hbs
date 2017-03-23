@@ -1,46 +1,23 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 {{action 'collapseHeader'}}>
-        {{#if isCollapsed}}{{fa-icon 'caret-right'}}{{else}}{{fa-icon 'caret-down'}}{{/if}}&nbsp;{{model.nomen}}: {{model.status}}
-      </h4>
-      <ul class='list-inline'>
-        <li>{{#link-to 'admin.quartet-manager.quartet.members' model}}Assignments{{/link-to}}</li>
-        <li>{{#link-to 'admin.quartet-manager.quartet.contests' model}}Contests{{/link-to}}</li>
-      </ul>
-    </div>
-    {{#bs-collapse collapsed=isCollapsed}}
-      <div class='panel-body'>
-        {{#bs-form-group}}
-          {{#if isEditing}}
-            {{model-picture picture=model.picture}}
-            {{file-upload target=model.id resource='group'}}
-          {{else}}
-            {{model-picture picture=model.picture}}
-          {{/if}}
-        {{/bs-form-group}}
-        {{bs-form-element controlType='text' disabled=true placeholder='Quartet Name' property=model.name}}
-        {{!-- {{bs-form-element controlType='tel' disabled=isDisabled placeholder='BHS ID' property='bhs_id'}} --}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Location' property=model.location}}
-        {{bs-form-element controlType='url' disabled=isDisabled placeholder='Website' property=model.website}}
-        {{bs-form-element controlType='email' disabled=isDisabled placeholder='Email' property=model.email}}
-        {{bs-form-element controlType='phone' disabled=isDisabled placeholder='Phone' property=model.phone}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Facebook' property=model.facebook}}
-        {{bs-form-element controlType='text' disabled=isDisabled placeholder='Twitter' property=model.twitter}}
-        {{bs-form-element controlType='textarea' disabled=isDisabled placeholder='Description' property=model.description}}
-        {{#bs-form-group}}
-
-        {{#if isEditing}}
-          {{#bs-button icon='fa fa-undo' type='default' onClick=(action 'undoEditing')}}Cancel{{/bs-button}}
-          {{#bs-button icon='fa fa-save' type='primary' onClick=(action 'saveEditing')}}Save{{/bs-button}}
-        {{else}}
-          {{#bs-button icon='fa fa-edit' type='default' onClick=(action 'setEditing')}}Edit{{/bs-button}}
-        {{/if}}
-        {{/bs-form-group}}
-      </div>
-    {{/bs-collapse}}
-  </div>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  {{outlet}}
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.quartet-manager.quartet.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+  </div>
 </section>
