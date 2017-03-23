@@ -54,7 +54,7 @@ Router.map(function() {
       });
     });
     this.route('organization-manager', {path: '/organization-manager'}, function() {
-      this.route('organization', { path: '/organization/:organization_id'}, function () {
+      this.route('organization', { path: '/organization/:entity_id'}, function () {
         this.route('details', {path: 'details'});
         this.route('awards', {path: 'awards'}, function() {
           this.route('award', { path: '/:award_id'});

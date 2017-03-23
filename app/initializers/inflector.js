@@ -13,7 +13,6 @@ export function initialize(/* application */) {
   inflector.uncountable('membership');
   inflector.uncountable('office');
   inflector.uncountable('officer');
-  inflector.uncountable('organization');
   inflector.uncountable('performance');
   inflector.uncountable('performanceprivate');
   inflector.uncountable('performer');
