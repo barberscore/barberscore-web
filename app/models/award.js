@@ -24,7 +24,7 @@ export default Model.extend({
   size: attr('award-size'),
   scope: attr('award-scope'),
   idiom: attr('string'),
-  entity: belongsTo('entity', {async: true}),
+  organization: belongsTo('organization', {async: true}),
   contests: hasMany('contest', {inverse:'award', async: true}),
   permissions: attr(),
 

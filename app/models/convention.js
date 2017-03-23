@@ -17,7 +17,7 @@ export default Model.extend({
   start_date: attr('isodate'),
   end_date: attr('isodate'),
   venue: belongsTo('venue', {async: true}),
-  entity: belongsTo('entity', {async: true}),
+  organization: belongsTo('organization', {async: true}),
   assignments: hasMany('assignment', {async: true}),
   sessions: hasMany('session', {async: true}),
   permissions: attr(),
