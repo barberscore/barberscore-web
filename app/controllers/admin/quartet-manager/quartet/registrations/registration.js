@@ -103,7 +103,7 @@ export default Ember.Controller.extend({
         .catch(() => {
           this.get('flashMessages').danger('Error');
         });
-      } else if (operation==='removed') {
+      } else { //operation === removed
         let contestant = this.get('model.contestants').findBy('contest.id', value.get('id'));
         contestant.destroyRecord()
         .then(() => {
@@ -112,8 +112,6 @@ export default Ember.Controller.extend({
         .catch(() => {
           this.get('flashMessages').danger('Error');
         });
-      } else {
-        console.log("Error!");
       }
     },
     deleteSubmission(submission) {
