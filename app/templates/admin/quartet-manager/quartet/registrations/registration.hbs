@@ -122,41 +122,15 @@
     </div>
   </div>
 </div>
-<div class='table-responsive'>
-  <table class='table'>
-    <caption>Award Submissions</caption>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Status</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each model.contestants as |contestant|}}
-        <tr>
-          <td>{{contestant.contest.award.name}}</td>
-          <td>{{contestant.status}}</td>
-          {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' contest) class='text-danger'}}</td> --}}
-        </tr>
-      {{/each}}
-    </tbody>
-    <tfoot>
-      <tr>
-        <td>
-          {{multiselect-checkboxes
-            options=sortedContests
-            labelProperty='nomen'
-            selection=selectedContests
-            updateSelectionValue=true
-            onchange=(action "updateSelection")
-          }}
-        </td>
-        {{!-- <td>{{#each model.session.contests as |f|}}{{f}}, {{/each}}</td> --}}
-        {{!-- <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td> --}}
-      </tr>
-    </tfoot>
-  </table>
+<div>
+<caption>Awards</caption>
+  {{multiselect-checkboxes
+    options=contestOptions
+    labelProperty='nomen'
+    selection=selectedContests
+    updateSelectionValue=true
+    onchange=(action "updateSelection")
+  }}
 </div>
 <div class='table-responsive'>
   <table class='table'>
@@ -179,7 +153,19 @@
     </tbody>
     <tfoot>
       <tr>
-        <td>{{input type="text" value=title class='form-control' placeholder='Enter Song Title'}}</td>
+        <td>
+        {{#power-select
+          search=(perform searchSong)
+          selected=catalog
+          onchange=(action (mut catalog))
+          placeholder="Enter BHS ID (preferred) or Song Title"
+          disabled=isDisabled
+          allowClear=true
+          as |catalog|
+        }}
+          Song: {{catalog.title}}
+        {{/power-select}}
+        </td>
         <td></td>
         <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td>
       </tr>

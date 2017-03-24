@@ -13,6 +13,14 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
+  searchSong: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('catalog', {
+      'nomen__icontains': term,
+      'page_size': 1000
+      })
+      .then((data) => data);
+  }),
   performerSortProperties: [
     'nomen',
   ],
@@ -30,15 +38,11 @@ export default Ember.Controller.extend({
   contestSortProperties: [
     'nomen',
   ],
-  sortedContests: Ember.computed.sort(
+  contestOptions: Ember.computed.sort(
     'model.session.contests',
     'contestSortProperties'
   ),
-  // selectedContests: Ember.computed(
-  //   'model.contestants',
-  //   function(){
-  //     return this.get('model.contestants');
-  // }),
+  selectedContests: Ember.A(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -124,11 +128,12 @@ export default Ember.Controller.extend({
     createSubmission() {
       let submission = this.get('store').createRecord('submission', {
         performer: this.get('model'),
-        title: this.get('title'),
+        catalog: this.get('catalog'),
+        title: this.get('catalog.title')
       });
       submission.save()
       .then(() => {
-        this.set('title', null);
+        this.set('catalog', null);
         this.get('flashMessages').success('Saved');
       })
       .catch(() => {

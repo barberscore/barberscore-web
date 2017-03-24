@@ -84,6 +84,11 @@ Router.map(function() {
         this.route('details', {path: 'details'});
       });
     });
+    this.route('catalog-manager', {path: '/catalog-manager'}, function() {
+      this.route('catalog', { path: '/catalog/:catalog_id' }, function() {
+        this.route('details', {path: 'details'});
+      });
+    });
   });
   this.route('about');
   this.route('faq');
