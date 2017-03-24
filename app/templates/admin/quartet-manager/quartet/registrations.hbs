@@ -1,0 +1,27 @@
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-12'>Registration</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.performers as |performer|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.quartet-manager.quartet.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      {{outlet}}
+    </div>
+  </div>
+</section>

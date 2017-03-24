@@ -1,0 +1,188 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h4>
+      {{model.session.nomen}}
+    </h4>
+  </div>
+  <div class='panel-body'>
+    <div>
+      {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
+        {{#form.element property='is_evaluation' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            disabled=isDisabled
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
+            {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#form.element property='is_private' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
+            {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#unless (eq model.session.kind 'Chorus')}}
+          {{#form.element property='tenor' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Tenor Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Tenor: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='lead' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Lead Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Lead: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='baritone' useIcons=false as |el|}}
+              {{#power-select
+                    search=(perform searchTask)
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                    placeholder="Enter Baritone Name"
+                    disabled=isDisabled
+                    allowClear=true
+                    as |person|
+              }}
+                Baritone: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='bass' useIcons=false as |el|}}
+              {{#power-select
+                    search=(perform searchTask)
+                    selected=el.value
+                    onchange=(action (mut el.value))
+                    placeholder="Enter Bass Name"
+                    disabled=isDisabled
+                    allowClear=true
+                    as |person|
+              }}
+                Bass: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+        {{else}}
+          {{#form.element property='director' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Director Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='codirector' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Co-Director Name (if applicable)"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Co-Director: {{person.common_name}}
+              {{/power-select}}
+          {{/form.element}}
+        {{/unless}}
+        {{#if isEditing}}
+            {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
+            {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+            {{#bs-button onClick=(action 'deletePerformer') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{else}}
+          {{#bs-button onClick=(action 'editPerformer')}}Edit{{/bs-button}}
+        {{/if}}
+      {{/bs-form}}
+    </div>
+  </div>
+</div>
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>Award Submissions</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model.contestants as |contestant|}}
+        <tr>
+          <td>{{contestant.contest.award.name}}</td>
+          <td>{{contestant.status}}</td>
+          {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' contest) class='text-danger'}}</td> --}}
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>
+          {{multiselect-checkboxes
+            options=sortedContests
+            labelProperty='nomen'
+            selection=selectedContests
+            updateSelectionValue=true
+            onchange=(action "updateSelection")
+          }}
+        </td>
+        {{!-- <td>{{#each model.session.contests as |f|}}{{f}}, {{/each}}</td> --}}
+        {{!-- <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td> --}}
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>Song Submissions</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedSubmissions as |submission|}}
+        <tr>
+          <td>{{submission.title}}</td>
+          <td>{{submission.status}}</td>
+          <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' submission) class='text-danger'}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>{{input type="text" value=title class='form-control' placeholder='Enter Song Title'}}</td>
+        <td></td>
+        <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

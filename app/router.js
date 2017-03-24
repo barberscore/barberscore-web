@@ -42,10 +42,12 @@ Router.map(function() {
       });
     });
     this.route('quartet-manager', {path: '/quartet-manager'}, function() {
-      this.route('quartet', { path: '/:group_id'}, function() {
+      this.route('quartet', { path: '/:entity_id'}, function() {
         this.route('details', { path: '/details'});
         this.route('members', { path: '/members'});
-        this.route('contests', { path: '/contests'});
+        this.route('registrations', { path: '/registrations'}, function() {
+          this.route('registration', { path: '/:performer_id'});
+        });
       });
     });
     this.route('chorus-manager', {path: '/chorus-manager'}, function() {
