@@ -2,20 +2,39 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  {{#if currentUser.user.person.judges}}
-    {{#power-select
-          search=(perform searchTask)
-          selected=judge
-          onchange=(action "transitionJudge")
-          placeholder="Search by Judge Name"
-          allowClear=true
-          as |judge|
-    }}
-      {{judge.person.common_name}}
-    {{/power-select}}
-  {{else}}
-    <h4>
-      You do not have permissions to access the Judge Manager.
-    </h4>
-  {{/if}}
+  {{#power-select
+    search=(perform searchTask)
+    selected=judge
+    onchange=(action "transitionJudge")
+    placeholder="Search by Judge Name"
+    allowClear=true
+    as |judge|
+  }}
+    {{judge.person.common_name}}
+  {{/power-select}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Judges List{{!-- &nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'name'}}>Name</th>
+          <th {{action 'sortBy' 'kind'}}>Kind</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedJudges as |judge|}}
+          <tr>
+            <td>{{#link-to 'admin.judge-manager.judge.details' judge}}{{judge.person.common_name}}{{/link-to}}</td>
+            <td>{{judge.office.name}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>No Judges in System.</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>

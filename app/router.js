@@ -37,8 +37,10 @@ Router.map(function() {
     });
     this.route('judge-manager', {path: '/judge-manager'}, function() {
       this.route('new', { path: '/new'});
-      this.route('judge', { path: '/judge/:judge_id'}, function () {
+      this.route('judge', { path: '/judge/:officer_id'}, function () {
         this.route('details', {path: 'details'});
+        this.route('assignments', {path: 'assignments'});
+        this.route('actions', {path: 'actions'});
       });
     });
     this.route('quartet-manager', {path: '/quartet-manager'}, function() {

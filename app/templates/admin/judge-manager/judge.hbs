@@ -1,98 +1,30 @@
 <section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      {{model-picture picture=model.person.picture}}
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
       <h4>
-        {{model.name}}
+        {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
-      {{#bs-form formLayout='vertical' model=model}}
-        {{#bs-form-group}}
-          {{#power-select
-                search=(perform searchTask)
-                selected=model.person
-                onchange=(action (mut model.person))
-                placeholder="Enter Person Name"
-                class='assignment-width'
-                disabled=isDisabled
-                allowClear=true
-                as |person|
-          }}
-            {{person.name}}
-          {{/power-select}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{#power-select
-            options=model.statusOptions
-            placeholder='Status'
-            disabled=isDisabled
-            allowClear=true
-            selected=model.status
-            onchange=(action (mut model.status))
-            as |status|
-          }}
-            {{status}}
-          {{/power-select}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{#power-select
-            options=model.kindOptions
-            placeholder='Kind'
-            disabled=isDisabled
-            allowClear=true
-            selected=model.kind
-            onchange=(action (mut model.kind))
-            as |kind|
-          }}
-            {{kind}}
-          {{/power-select}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{#power-select
-            options=model.categoryOptions
-            placeholder='Category'
-            disabled=isDisabled
-            allowClear=true
-            selected=model.category
-            onchange=(action (mut model.category))
-            as |kind|
-          }}
-            {{kind}}
-          {{/power-select}}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{bs-datetimepicker
-            date=model.start_date
-            format='YYYY-MM-DD'
-            updateDate=(action (mut model.start_date))
-            placeholder="Start Date"
-            disabled=isDisabled
-          }}
-        {{/bs-form-group}}
-        {{#bs-form-group}}
-          {{bs-datetimepicker
-            date=model.end_date
-            format='YYYY-MM-DD'
-            updateDate=(action (mut model.end_date))
-            placeholder="End Date"
-            disabled=isDisabled
-          }}
-        {{/bs-form-group}}
-      {{/bs-form}}
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.judge-manager.judge.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.judge-manager.judge.assignments"}}Assignments{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "admin.judge-manager.judge.actions"}}Actions{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
     </div>
-    {{#if model.permissions.write}}
-      <div class='panel-footer'>
-        {{#bs-form action='saveJudge'}}
-          {{#if isEditing}}
-              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'cancelJudge')}}Cancel{{/bs-button}}
-              {{#bs-button onClick=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action 'editJudge')}}Edit{{/bs-button}}
-          {{/if}}
-        {{/bs-form}}
-      </div>
-    {{/if}}
   </div>
 </section>
+
