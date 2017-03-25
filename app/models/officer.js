@@ -8,7 +8,7 @@ export default Model.extend({
   start_date: attr('isodate'),
   finish_date: attr('isodate'),
   office: belongsTo('office', {async: true}),
-  membership: belongsTo('membership', {async: true}),
+  person: belongsTo('person', {async: true}),
   permissions: attr(),
 
   statusOptions: [

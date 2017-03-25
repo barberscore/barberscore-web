@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   adminCall: Ember.computed(function() {
     return this.get('store').query('person', {
-      'memberships__officers__office__kind': 30, //TODO Hardcoded
+      'officers__office__kind': 30, //TODO Hardcoded
       // 'judges__status': 1,
       // 'judges__kind': 40,
       'page_size': 1000,
