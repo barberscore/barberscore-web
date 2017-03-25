@@ -70,15 +70,9 @@ Router.map(function() {
         this.route('details', {path: 'details'});
       });
     });
-    this.route('registration-manager', {path: '/registration-manager'}, function() {
-      this.route('performer', { path: '/performer/:performer_id' }, function() {
+    this.route('office-manager', {path: '/office-manager'}, function() {
+      this.route('office', { path: '/office/:office_id' }, function() {
         this.route('details', {path: 'details'});
-        this.route('submissions', {path: 'submissions'}, function() {
-          this.route('submission', {path: '/:submission_id'});
-        });
-        this.route('contestants', {path: 'contestants'}, function() {
-          this.route('contestant', {path: '/:contestant_id'});
-        });
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {

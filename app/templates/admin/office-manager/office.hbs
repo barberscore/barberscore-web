@@ -1,0 +1,8 @@
+<div>
+  {{#bs-nav type='tabs' as |nav|}}
+    {{#nav.item}}
+      {{#nav.link-to "admin.office-manager.office.details"}}Details{{/nav.link-to}}
+    {{/nav.item}}
+  {{/bs-nav}}
+  {{outlet}}
+</div>

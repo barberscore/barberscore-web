@@ -19,11 +19,14 @@ export default Model.extend({
   ],
 
   kindOptions: [
-    'New',
-    'One',
-    'Ten',
-    'Twenty',
-    'Thirty',
+    'Organization',
+    'District',
+    'Noncompetitive',
+    'Affiliate',
+    'Division',
+    'Quartet',
+    'Chorus',
+    'Very Large Quartet',
   ],
 
 });

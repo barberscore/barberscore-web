@@ -22,11 +22,11 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deletePerformer() {
-      let performer = this.model.performer;
+      let office = this.model.office;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.registration-manager.performer', performer);
+        this.transitionToRoute('admin.office-manager.office', office);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
