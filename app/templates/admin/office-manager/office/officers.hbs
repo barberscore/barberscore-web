@@ -1,26 +1,24 @@
 <section>
   <div class='row'>
-    <div class='col-md-12'>
+    <div class='col-md-6'>
       <table class='table'>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Convention</th>
-            <th>Action</th>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-2'>Category</th>
+            <th class='col-md-1'>Action</th>
           </tr>
         </thead>
         <tbody>
-          {{#each sortedAssignments as |assignment|}}
+          {{#each model.officers as |officer|}}
             <tr>
-              <td>{{assignment.person.common_name}}</td>
-              <td>{{assignment.kind}}</td>
-              <td>{{assignment.convention.name}}</td>
-              <td>{{fa-icon 'times-circle' click=(action 'deleteAssignment' assignment) class='text-danger'}}</td>
+              <td>{{officer.person.common_name}}</td>
+              <td>{{officer.kind}}</td>
+              <td>{{fa-icon 'times-circle' click=(action 'deleteOfficer' officer) class='text-danger'}}</td>
             </tr>
           {{else}}
             <tr>
-              <td colspan=3>No assignments</td>
+              <td colspan=3>No officers</td>
             </tr>
           {{/each}}
         </tbody>
@@ -32,7 +30,7 @@
                 search=(perform searchTask)
                 selected=person
                 onchange=(action (mut person))
-                placeholder="Enter New Assignment"
+                placeholder="Enter New Officer"
                 allowClear=true
                 as |person|
               }}
@@ -52,7 +50,7 @@
               {{/power-select}}
             </td>
             <td>
-             {{fa-icon 'plus-circle' click=(action 'createAssignment' assignment) class='text-success'}}
+             {{fa-icon 'plus-circle' click=(action 'createOfficer' officer) class='text-success'}}
             </td>
           </tr>
         </tfoot>

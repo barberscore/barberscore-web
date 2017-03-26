@@ -24,8 +24,7 @@ export default Model.extend({
   last_name: attr('string'),
   nick_name: attr('string'),
   memberships: hasMany('membership', {async: true}),
-  conventions: hasMany('convention', {async: true}),
-  panels: hasMany('assignment', {async: true}),
+  assignments: hasMany('assignment', {async: true}),
   user: belongsTo('user', {async: true}),
   permissions: attr(),
 

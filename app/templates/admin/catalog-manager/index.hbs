@@ -17,20 +17,18 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Current Offices</caption>
+      <caption>Current Catalog</caption>
       <thead>
         <tr>
-          <th {{action "sortBy" "name"}}>Name</th>
-          <th {{action "sortBy" "kind"}}>Kind</th>
+          <th {{action "sortBy" "title"}}>Title</th>
           <th {{action "sortBy" "status"}}>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each sortedItems as |office|}}
+        {{#each sortedItems as |catalog|}}
           <tr>
-            <td>{{#link-to 'admin.office-manager.office.details' office}}{{office.name}}{{/link-to}}</td>
-            <td>{{office.kind}}</td>
-            <td>{{office.status}}</td>
+            <td>{{#link-to 'admin.catalog-manager.catalog.details' catalog}}{{catalog.title}}{{/link-to}}</td>
+            <td>{{catalog.status}}</td>
           </tr>
         {{else}}
           <tr>

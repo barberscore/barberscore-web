@@ -8,16 +8,13 @@
         Status: <strong>{{model.status}}</strong>
       </h4>
       <h4>
-        {{model.name}}
+        {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
-          {{#nav.link-to "admin.office-manager.office.details"}}Details{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "admin.office-manager.office.officers"}}Officers{{/nav.link-to}}
+          {{#nav.link-to "admin.catalog-manager.catalog.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}

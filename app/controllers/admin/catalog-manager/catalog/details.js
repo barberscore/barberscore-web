@@ -14,25 +14,25 @@ export default Ember.Controller.extend({
       .then((data) => data);
   }),
   actions: {
-    editOffice() {
+    editCatalog() {
       this.set('isEditing', true);
     },
-    cancelOffice() {
+    cancelCatalog() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteOffice() {
-      let office = this.model.office;
+    deleteCatalog() {
+      let catalog = this.model.catalog;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.office-manager.office', office);
+        this.transitionToRoute('admin.catalog-manager.catalog', catalog);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },
-    saveOffice() {
+    saveCatalog() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);

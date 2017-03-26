@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
   ),
   actions: {
     transitionJudge(judge) {
-      this.transitionToRoute('admin.judge-manager.judge', judge);
+      this.transitionToRoute('admin.judge-manager.judge.details', judge);
     },
   }
 });

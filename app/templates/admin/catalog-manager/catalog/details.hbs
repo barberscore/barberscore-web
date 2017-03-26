@@ -1,0 +1,8 @@
+<section>
+  <div>
+    {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveCatalog") as |form|}}
+      {{form.element controlType='text' placeholder='Title' property='title'}}
+      {{form.element controlType='text' placeholder='Arrangers' property='arrangers'}}
+    {{/bs-form}}
+  </div>
+</section>

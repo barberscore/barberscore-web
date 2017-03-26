@@ -2,14 +2,14 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  assignmentSortProperties: [
+  officerSortProperties: [
     'isNew',
     'kindSort:asc',
     'person.name:asc',
   ],
-  sortedAssignments: Ember.computed.sort(
-    'model.person.assignments',
-    'assignmentSortProperties'
+  sortedOfficers: Ember.computed.sort(
+    'model.officers',
+    'officerSortProperties'
   ),
   flashMessage: Ember.get(this, 'flashMessages'),
   adminCall: Ember.computed(function() {
@@ -48,25 +48,25 @@ export default Ember.Controller.extend({
     'Singing',
   ],
   actions: {
-    createAssignment(){
-      let assignment = this.get('store').createRecord('assignment', {
+    createOfficer(){
+      let officer = this.get('store').createRecord('officer', {
         convention: this.get('model'),
         person: this.get('person'),
         kind: this.get('kind'),
       });
-      assignment.save()
+      officer.save()
       .then(() => {
         this.set('person', null);
         this.set('kind', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        assignment.deleteRecord();
+        officer.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    deleteAssignment(assignment){
-      assignment.destroyRecord()
+    deleteOfficer(officer){
+      officer.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

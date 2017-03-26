@@ -73,6 +73,7 @@ Router.map(function() {
     this.route('office-manager', {path: '/office-manager'}, function() {
       this.route('office', { path: '/office/:office_id' }, function() {
         this.route('details', {path: 'details'});
+        this.route('officers', {path: 'officers'});
       });
     });
     this.route('venue-manager', {path: '/venue-manager'}, function() {
