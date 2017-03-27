@@ -5,6 +5,18 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  sortedContestsProperties: [
+    'orgSort',
+    'awardName'
+  ],
+  sortedContests: Ember.computed.sort(
+    'model.contests',
+    'sortedContestsProperties'
+  ),
+  primaryCP: Ember.computed(
+    'sortedContests', function() {
+    return this.get('sortedContests.firstObject');
+  }),
   actions: {
     editSession() {
       this.set('isEditing', true);

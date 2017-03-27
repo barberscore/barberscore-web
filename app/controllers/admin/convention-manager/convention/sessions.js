@@ -47,19 +47,20 @@ export default Ember.Controller.extend({
     });
     return awards;
   }),
-  // awardFilter: Ember.computed.filter(
-  //   'awardCall',
-  //   function(award) {
-  //     return award.get('kind') === this.get('kind');
-  //   }
-  // ),
+  awardFilter: Ember.computed(
+    'awardCall',
+    'kind',
+    function() {
+      return this.get('awardCall').filterBy('kind', this.get('kind'));
+    }
+  ),
   awardSortProperties: [
     'kind:desc',
     'kindSort:asc',
     'name:asc',
   ],
   awardOptions: Ember.computed.sort(
-    'awardCall',
+    'awardFilter',
     'awardSortProperties'
   ),
   actions: {
