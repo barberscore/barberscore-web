@@ -12,6 +12,8 @@
           {{!-- <th {{action 'sortBy' 'kind'}}>Kind</th> --}}
           <th {{action 'sortBy' 'season'}}>Season</th>
           <th {{action 'sortBy' 'location'}}>Location</th>
+          <th {{action 'sortBy' 'open_date'}}>Open</th>
+          <th {{action 'sortBy' 'close_date'}}>Close</th>
           <th {{action 'sortBy' 'start_date'}}>Start</th>
           <th {{action 'sortBy' 'end_date'}}>End</th>
           <th {{action 'sortBy' 'panel'}}>Panel</th>
@@ -28,6 +30,8 @@
             {{!-- <td>{{convention.kind}}</td> --}}
             <td>{{convention.season}}</td>
             <td>{{convention.location}}</td>
+            <td>{{moment-format convention.open_date 'L'}}</td>
+            <td>{{moment-format convention.close_date 'L'}}</td>
             <td>{{moment-format convention.start_date 'L'}}</td>
             <td>{{moment-format convention.end_date 'L'}}</td>
             <td>{{convention.panel}}</td>
@@ -107,6 +111,24 @@
       property='location'
       disabled=isDisabled
     }}
+    {{#form.element property='open_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Registration OpenDate"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='close_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Registration Close Date"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
     {{#form.element property='start_date' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value

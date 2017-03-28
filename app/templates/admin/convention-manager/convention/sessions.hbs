@@ -7,7 +7,7 @@
             <th class='col-md-2'>Kind</th>
             {{!-- <th class='col-md-2'>Age</th> --}}
             <th class='col-md-2'>Rounds</th>
-            <th class='col-md-4'>Awards</th>
+            <th class='col-md-4'>Contests</th>
             <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
@@ -17,7 +17,7 @@
               <td>{{session.kind}}</td>
               {{!-- <td>{{session.age}}</td> --}}
               <td>{{session.num_rounds}}</td>
-              <td>{{#each session.contests as |contest|}}{{contest.award.name}}<br>{{/each}}</td>
+              <td>{{#if session.contests}}{{#each session.contests as |contest|}}{{contest.award.name}}<br>{{/each}}{{else}}(No contests selected.){{/if}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
           {{else}}
@@ -26,60 +26,6 @@
             </tr>
           {{/each}}
         </tbody>
-        <tfoot>
-          <tr>
-            <td>
-              {{#power-select
-                options=kindOptions
-                search=(perform searchTask)
-                selected=kind
-                onchange=(action (mut kind))
-                placeholder="Choose Session Kind"
-                allowClear=true
-                as |kind|
-              }}
-                {{kind}}
-              {{/power-select}}
-            </td>
-            {{!-- <td>
-              {{#power-select
-                options=ageOptions
-                search=(perform searchTask)
-                selected=age
-                onchange=(action (mut age))
-                placeholder="Choose Session Age"
-                allowClear=true
-                as |age|
-              }}
-                {{age}}
-              {{/power-select}}
-            </td> --}}
-            <td>
-              {{#power-select
-                options=numOptions
-                selected=num_rounds
-                onchange=(action (mut num_rounds))
-                placeholder="Number Rounds"
-                allowClear=true
-                as |num_rounds|
-              }}
-                {{num_rounds}}
-              {{/power-select}}
-            </td>
-            <td>
-              {{multiselect-checkboxes
-                options=awardOptions
-                labelProperty='name'
-                selection=awards
-                updateSelectionValue=false
-                onchange=(action (mut awards))
-              }}
-            </td>
-            <td>
-              {{fa-icon 'plus-circle' click=(action 'createSession') class='text-success'}}
-            </td>
-          </tr>
-        </tfoot>
       </table>
     </div>
   </div>

@@ -14,6 +14,8 @@ export default Model.extend({
   year: attr('number', {defaultValue: 2017}),
   location: attr('string', {defaultValue: ''}),
   panel: attr('convention-panel'),
+  open_date: attr('isodate'),
+  close_date: attr('isodate'),
   start_date: attr('isodate'),
   end_date: attr('isodate'),
   venue: belongsTo('venue', {async: true}),
