@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  flashMessage: Ember.get(this, 'flashMessages'),
   assignmentSortProperties: [
     'isNew',
     'kindSort:asc',
@@ -11,12 +12,10 @@ export default Ember.Controller.extend({
     'model.assignments',
     'assignmentSortProperties'
   ),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  openModal: false,
   adminCall: Ember.computed(function() {
     return this.get('store').query('person', {
       'officers__office__kind': 1, //TODO Hardcoded
-      // 'judges__status': 1,
-      // 'judges__kind': 40,
       'page_size': 1000,
     });
   }),
@@ -58,12 +57,18 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('person', null);
         this.set('kind', null);
+        this.set('openModal', false);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
         assignment.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
+    },
+    clearAssignment() {
+      this.set('person', null);
+      this.set('kind', null);
+      this.set('openModal', false);
     },
     deleteAssignment(assignment){
       assignment.destroyRecord()

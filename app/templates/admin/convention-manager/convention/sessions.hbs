@@ -1,12 +1,11 @@
 <section>
   <div class='row'>
-    <div class='col-md-12'>
+    <div class='col-md-7'>
       <table class='table'>
         <thead>
           <tr>
             <th class='col-md-2'>Kind</th>
             {{!-- <th class='col-md-2'>Age</th> --}}
-            <th class='col-md-2'>Rounds</th>
             <th class='col-md-4'>Contests</th>
             <th class='col-md-1'>Delete</th>
           </tr>
@@ -16,7 +15,7 @@
             <tr>
               <td>{{session.kind}}</td>
               {{!-- <td>{{session.age}}</td> --}}
-              <td>{{session.num_rounds}}</td>
+              {{!-- <td>{{session.num_rounds}}</td> --}}
               <td>{{#if session.contests}}{{#each session.contests as |contest|}}{{contest.award.name}}<br>{{/each}}{{else}}(No contests selected.){{/if}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
             </tr>
@@ -29,4 +28,61 @@
       </table>
     </div>
   </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Session{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearSession")
+    title="Create Session"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createSession')
+      as |form|
+    }}
+      {{#form.element property='kind' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=kindOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Session Kind"
+          allowClear=true
+          as |kind|
+        }}
+          Session Kind:{{kind}}
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='num_rounds' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=numOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Maximum Number of Rounds"
+          allowClear=true
+          as |num_rounds|
+        }}
+          Max Rounds:{{num_rounds}}
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='awards' useIcons=false as |el|}}
+        Choose Contests:
+        {{multiselect-checkboxes
+          options=awardOptions
+          labelProperty='name'
+          selection=el.value
+          updateSelectionValue=false
+          onchange=(action (mut el.value))
+        }}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
 </section>

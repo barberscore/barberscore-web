@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
+  openModal: false,
   sessionSortProperties: [
     'name:asc',
   ],
@@ -9,6 +10,7 @@ export default Ember.Controller.extend({
     'model.sessions',
     'sessionSortProperties'
   ),
+  // Sessions
   kindOptions: [
     'Quartet',
     'Chorus',
@@ -73,22 +75,53 @@ export default Ember.Controller.extend({
       });
       session.save()
       .then((response) => {
+        // TODO Recover from failure.
         this.get('awards').forEach(function(award) {
           let contest = response.get('contests').createRecord({
             award: award
           });
           contest.save();
         });
+        let i = 1;
+        let t = this.get('num_rounds');
+        while (i <= t) {
+          // TODO Transform before sending. MUST be a better way.
+          let map = {
+            1: 'Finals',
+            2: 'Semi-Finals',
+            3: 'Quarter-Finals',
+          };
+          let k = map[(t - i) + 1];
+          let round = response.get('rounds').createRecord({
+            num: i,
+            kind: k
+          });
+          round.save()
+          .then(() => {
+          })
+          .catch(() => {
+          });
+          i += 1;
+        }
         this.get('flashMessages').success('Success');
         this.set('kind', null);
         this.set('age', null);
         this.set('num_rounds', null);
         this.set('awards', null);
+        this.set('openModal', false);
+        this.transitionToRoute('admin.convention-manager.convention.sessions', this.get('model'));
       })
       .catch(() => {
         session.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
+    },
+    clearSession() {
+      this.set('kind', null);
+      this.set('age', null);
+      this.set('num_rounds', null);
+      this.set('awards', null);
+      this.set('openModal', false);
     },
     deleteSession(session){
       session.destroyRecord()
