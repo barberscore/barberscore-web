@@ -1,6 +1,6 @@
 <section>
   <div class='row'>
-    <div class='col-md-4'>
+    <div class='col-md-6'>
       <table class='table'>
         <thead>
           <tr>
@@ -16,68 +16,49 @@
             </tr>
           {{else}}
             <tr>
-              <td>No entrants.</td>
+              <td>(No groups currently registered for this session.)</td>
             </tr>
           {{/each}}
         </tbody>
-        <tfoot>
-          <tr>
-            <td>
-              {{#power-select
-                options=entityOptions
-                search=(perform searchTask)
-                selected=entity
-                onchange=(action (mut entity))
-                placeholder="Enter Group Name"
-                allowClear=true
-                as |entity|
-              }}
-                {{entity.name}}
-              {{/power-select}}
-            </td>
-            <td>{{fa-icon 'plus-circle' click=(action 'addPerformer') class='text-success'}}</td>
-          </tr>
-        </tfoot>
       </table>
+      <section>
+        {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Registration{{/bs-button}}
+      </section>
     </div>
-    <div class='col-md-8'>
+    <div class='col-md-6'>
       {{outlet}}
     </div>
   </div>
 </section>
-{{!-- <section>
-  <div class='row'>
-    <div class='col-md-3'>
-  {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
-    {{#each sortedPerformers as |performer|}}
-      {{#nav.item}}
-        {{#nav.link-to 'admin.contest-manager.convention.sessions.session.performers.performer' performer}}{{performer.entity.nomen}}{{/nav.link-to}}
-      {{/nav.item}}
-    {{/each}}
-  {{/bs-nav}}
-  <section>
-    <div class='row'>
-      <div class='col-md-10'>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearPerformer")
+    title="Create Registration"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createPerformer')
+      as |form|
+    }}
+      {{#form.element property='entity' useIcons=false as |el|}}
         {{#power-select
+          renderInPlace=true
+          options=entityOptions
           search=(perform searchTask)
-          selected=entity
-          onchange=(action (mut entity))
-          placeholder="Enter Group into Session"
-          disabled=isDisabled
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Enter Group Name"
           allowClear=true
           as |entity|
         }}
           {{entity.name}}
         {{/power-select}}
-      </div>
-      <div class='col-md-2'>
-        {{#bs-button onClick=(action 'addPerformer') type='primary' size='sm'}}Add{{/bs-button}}
-      </div>
-    </div>
-  </section>
-  </div>
-  <div class='col-md-9'>
-    {{outlet}}
-  </div>
-  </div>
-</section> --}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
+</section>

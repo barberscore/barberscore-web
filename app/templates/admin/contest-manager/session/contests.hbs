@@ -6,7 +6,7 @@
           <tr>
             <th  {{action 'sortBy' 'orgSort'}} class='col-md-6'>Name</th>
             {{!-- <th  {{action 'sortBy' 'kind'}}  class='col-md-2'>Kind</th> --}}
-            <th class='col-md-1'>Delete</th>
+            {{!-- <th class='col-md-1'>Delete</th> --}}
           </tr>
         </thead>
         <tbody>
@@ -14,7 +14,7 @@
             <tr>
               <td>{{#link-to 'admin.contest-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
               {{!-- <td>{{contest.kind}}</td> --}}
-              <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td>
+              {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td> --}}
             </tr>
           {{else}}
             <tr>
@@ -22,38 +22,6 @@
             </tr>
           {{/each}}
         </tbody>
-        <tfoot>
-          <tr>
-            <td>
-              {{#power-select
-                options=awardOptions
-                search=(perform searchTask)
-                selected=award
-                onchange=(action (mut award))
-                placeholder="Enter Award for Contest"
-                allowClear=true
-                as |award|
-              }}
-                {{award.name}}
-              {{/power-select}}
-            </td>
-            {{!-- <td>
-              {{#power-select
-                options=kindOptions
-                selected=kind
-                onchange=(action (mut kind))
-                placeholder="Prelims"
-                allowClear=true
-                as |kind|
-              }}
-                {{kind}}
-              {{/power-select}}
-            </td> --}}
-            <td>
-              {{fa-icon 'plus-circle' click=(action 'addContest') class='text-success'}}
-            </td>
-          </tr>
-        </tfoot>
       </table>
     </div>
     <div class='col-md-6'>

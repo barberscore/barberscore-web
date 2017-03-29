@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
     penalizeEligibility(performer) {
       performer.penalizeEligibility();
     },
-    addPerformer() {
+    createPerformer() {
       let performer = this.get('store').createRecord('performer', {
         session: this.get('model'),
         entity: this.get('entity'),
@@ -32,12 +32,17 @@ export default Ember.Controller.extend({
       performer.save()
       .then(() => {
         this.set('entity', null);
+        this.set('openModal', false);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
         performer.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
+    },
+    clearPerformer(){
+      this.set('entity', null);
+      this.set('openModal', false);
     },
     deletePerformer(performer) {
       performer.destroyRecord()

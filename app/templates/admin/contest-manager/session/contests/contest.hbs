@@ -25,6 +25,10 @@
                   {{contestant.performer.entity.name}}
                 </td>
               </tr>
+            {{else}}
+              <tr>
+                <td>(No contestants entered for this contest.)</td>
+              </tr>
             {{/each}}
           </tbody>
         </table>
