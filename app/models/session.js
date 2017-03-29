@@ -40,9 +40,8 @@ export default Model.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
-    'Seniors',
-    'Collegiate',
-    'Youth',
+    'Very Large Quartet',
+    'Mixed Group',
   ],
 
   numOptions: [
@@ -50,6 +49,14 @@ export default Model.extend({
     2,
     3,
   ],
+
+  kindSort: Ember.computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
 
   ranks: Ember.computed('performers.@each.totPoints', function() {
     let lastScore = null;

@@ -45,6 +45,7 @@ export default Model.extend({
     'Quartet',
     'Chorus',
     'Very Large Quartet',
+    'Mixed Group',
   ],
 
   ageOptions: [

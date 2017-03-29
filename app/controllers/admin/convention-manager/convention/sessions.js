@@ -4,7 +4,8 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   openModal: false,
   sessionSortProperties: [
-    'name:asc',
+    'kind',
+    'name:asc'
   ],
   sortedSessions: Ember.computed.sort(
     'model.sessions',

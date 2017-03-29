@@ -11,6 +11,7 @@ export function kindTransform(params) {
       31: 'Quartet',
       32: 'Chorus',
       33: 'Very Large Quartet',
+      34: 'Mixed Group',
     };
     return map[params[0]];
   } else {

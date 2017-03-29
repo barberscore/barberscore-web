@@ -6,6 +6,7 @@ export default DS.Transform.extend({
       31: 'Quartet',
       32: 'Chorus',
       33: 'Very Large Quartet',
+      34: 'Mixed Group',
     };
     return map[serialized];
   },
@@ -15,6 +16,7 @@ export default DS.Transform.extend({
       'Quartet': 31,
       'Chorus': 32,
       'Very Large Quartet': 33,
+      'Mixed Group': 34,
     };
     return map[deserialized];
   }
