@@ -115,8 +115,13 @@ export default Ember.Controller.extend({
         let i = 1;
         let t = this.get('num_rounds');
         while (i <= t) {
-          let k = ((t - i) + 1);
-          console(k);
+          // TODO Transform before sending. MUST be a better way.
+          let map = {
+            1: 'Finals',
+            2: 'Semi-Finals',
+            3: 'Quarter-Finals',
+          };
+          let k = map[(t - i) + 1];
           let round = response.get('rounds').createRecord({
             num: i,
             kind: k
