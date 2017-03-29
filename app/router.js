@@ -89,7 +89,6 @@ Router.map(function() {
   });
   this.route('about');
   this.route('faq');
-  this.route('login');
   this.route('404', { path: '/*wildcard' });
 });
 

@@ -3,6 +3,7 @@ import ApplicationRouteMixin from 'ember-simple-auth-auth0/mixins/application-ro
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
+  session: Ember.inject.service(),
   beforeModel() {
     this._super(...arguments);
     return this._loadCurrentUser();
