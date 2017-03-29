@@ -29,6 +29,11 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
+  allRounds: Ember.computed.mapBy(
+    'awards',
+    'rounds'
+  ),
+  num_rounds: Ember.computed.max('allRounds'),
   awardCall: Ember.computed(function() {
     let awards = [];
     this.get('store').query('award', {
@@ -107,7 +112,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success('Success');
         this.set('kind', null);
         this.set('age', null);
-        this.set('num_rounds', null);
         this.set('awards', null);
         this.set('openModal', false);
         this.transitionToRoute('admin.convention-manager.convention.sessions', this.get('model'));
@@ -120,7 +124,6 @@ export default Ember.Controller.extend({
     clearSession() {
       this.set('kind', null);
       this.set('age', null);
-      this.set('num_rounds', null);
       this.set('awards', null);
       this.set('openModal', false);
     },

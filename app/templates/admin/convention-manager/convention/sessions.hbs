@@ -62,7 +62,7 @@
           Session Kind:{{kind}}
         {{/power-select}}
       {{/form.element}}
-      {{#form.element property='num_rounds' useIcons=false as |el|}}
+      {{!-- {{#form.element property='num_rounds' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
           options=numOptions
@@ -74,7 +74,7 @@
         }}
           Max Rounds:{{num_rounds}}
         {{/power-select}}
-      {{/form.element}}
+      {{/form.element}} --}}
       {{#form.element property='awards' useIcons=false as |el|}}
         Choose Contests:
         {{multiselect-checkboxes
