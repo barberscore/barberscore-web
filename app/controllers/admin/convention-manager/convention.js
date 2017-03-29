@@ -99,18 +99,37 @@ export default Ember.Controller.extend({
     createSession(){
       let session = this.get('store').createRecord('session', {
         convention: this.get('model'),
-        kind: this.get('kind'),
+        kind: this.get('kindSession'),
         age: this.get('age'),
         num_rounds: this.get('num_rounds'),
       });
       session.save()
       .then((response) => {
+        // TODO Recover from failure.
         this.get('awards').forEach(function(award) {
           let contest = response.get('contests').createRecord({
             award: award
           });
           contest.save();
         });
+        let i = 1;
+        let t = this.get('num_rounds');
+        while (i <= t) {
+          let k = ((t - i) + 1);
+          console(k);
+          let round = response.get('rounds').createRecord({
+            num: i,
+            kind: k
+          });
+          round.save()
+          .then(() => {
+            this.get('flashMessages').success('Success');
+          })
+          .catch(() => {
+            this.get('flashMessages').danger('Error');
+          });
+          i += 1;
+        }
         this.get('flashMessages').success('Success');
         this.set('kindSession', null);
         this.set('age', null);

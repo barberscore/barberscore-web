@@ -11,7 +11,7 @@ export default Model.extend({
   finish_date: attr('isodate'),
   num: attr('number'),
   // mt: belongsTo('group', {async: true}),
-  current_session: belongsTo('session', {async: true, inverse: 'current'}),
+  // current_session: belongsTo('session', {async: true, inverse: 'current'}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
   slots: hasMany('slot', {async: true}),

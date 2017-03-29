@@ -11,7 +11,7 @@ export default Model.extend({
   age: attr('session-age'),
   num_rounds: attr('number'),
   is_prelims: attr('boolean'),
-  current: belongsTo('round', {async: true, inverse: 'current_session'}),
+  // current: belongsTo('round', {async: true, inverse: 'current_session'}),
   primary: belongsTo('contest', {async: true, inverse: 'primary_contest'}),
   convention: belongsTo('convention', {async: true}),
   rounds: hasMany('round', {async: true}),
