@@ -1,0 +1,7 @@
+<section>
+  <div>
+    {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveAward") as |form|}}
+      {{form.element controlType='text' placeholder='Name' property='title'}}
+    {{/bs-form}}
+  </div>
+</section>
