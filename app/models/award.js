@@ -52,10 +52,10 @@ export default Model.extend({
     'Plateau 1',
   ],
 
-  kindSort: Ember.computed(
-    'entity.kindSort',
+  entitySort: Ember.computed(
+    'entity.entitySort',
     function() {
-      return this.get('entity.kindSort');
+      return this.get('entity.entitySort');
     }
   ),
 });

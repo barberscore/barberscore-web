@@ -59,31 +59,22 @@
           allowClear=true
           as |kind|
         }}
-          Session Kind:{{kind}}
+          Kind: {{kind}}
         {{/power-select}}
       {{/form.element}}
-      {{!-- {{#form.element property='num_rounds' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=numOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Maximum Number of Rounds"
-          allowClear=true
-          as |num_rounds|
-        }}
-          Max Rounds:{{num_rounds}}
-        {{/power-select}}
-      {{/form.element}} --}}
       {{#form.element property='awards' useIcons=false as |el|}}
-        Choose Contests:
-        {{multiselect-checkboxes
-          options=awardOptions
-          labelProperty='name'
-          selection=el.value
-          updateSelectionValue=false
-          onchange=(action (mut el.value))
-        }}
+        {{#if awardOptions}}
+          Select Contests for this Session:<br><br>
+          {{multiselect-checkboxes
+            options=awardOptions
+            labelProperty='name'
+            selection=el.value
+            updateSelectionValue=false
+            onchange=(action (mut el.value))
+          }}
+          <br><br>
+          If you need to create new awards, you can do so in the {{#link-to 'admin.award-manager'}}Award Manager{{/link-to}}.
+        {{/if}}
       {{/form.element}}
     {{/bs-form}}
   {{/bs-modal-simple}}
