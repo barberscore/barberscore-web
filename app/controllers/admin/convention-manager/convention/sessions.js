@@ -35,6 +35,7 @@ export default Ember.Controller.extend({
   ),
   num_rounds: Ember.computed.max('allRounds'),
   awardCall: Ember.computed(function() {
+    // TODO This is hack-central
     let awards = [];
     let season = {
       'International': 1,
@@ -47,19 +48,22 @@ export default Ember.Controller.extend({
         'entity__name': 'International',
         'entity__kind': 1,
         'is_qualifier': 'true',
-        'season': season[this.get('model.season')]
+        'season': season[this.get('model.season')],
+        'page_size':100,
     }).then((data) => {
       awards.addObjects(data);
     });
     this.get('store').query('award', {
         'entity': this.get('model.entity.id'),
-        'season': season[this.get('model.season')]
+        'season': season[this.get('model.season')],
+        'page_size':100,
     }).then((data2) => {
       awards.addObjects(data2);
     });
     this.get('store').query('award', {
         'entity__parent': this.get('model.entity.id'),
-        'season': season[this.get('model.season')]
+        'season': season[this.get('model.season')],
+        'page_size':100,
     }).then((data3) => {
       awards.addObjects(data3);
     });
