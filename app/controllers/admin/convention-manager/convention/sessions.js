@@ -36,20 +36,30 @@ export default Ember.Controller.extend({
   num_rounds: Ember.computed.max('allRounds'),
   awardCall: Ember.computed(function() {
     let awards = [];
+    let season = {
+      'International': 1,
+      'Midwinter': 2,
+      'Fall': 3,
+      'Spring': 4,
+      'Video': 9,
+    };
     this.get('store').query('award', {
         'entity__name': 'International',
         'entity__kind': 1,
         'is_qualifier': 'true',
+        'season': season[this.get('model.season')]
     }).then((data) => {
       awards.addObjects(data);
     });
     this.get('store').query('award', {
-        'entity': this.get('model.entity.id')
+        'entity': this.get('model.entity.id'),
+        'season': season[this.get('model.season')]
     }).then((data2) => {
       awards.addObjects(data2);
     });
     this.get('store').query('award', {
-        'entity__parent': this.get('model.entity.id')
+        'entity__parent': this.get('model.entity.id'),
+        'season': season[this.get('model.season')]
     }).then((data3) => {
       awards.addObjects(data3);
     });
@@ -63,8 +73,7 @@ export default Ember.Controller.extend({
     }
   ),
   awardSortProperties: [
-    'kind:desc',
-    'kindSort:asc',
+    'entitySort',
     'name:asc',
   ],
   awardOptions: Ember.computed.sort(

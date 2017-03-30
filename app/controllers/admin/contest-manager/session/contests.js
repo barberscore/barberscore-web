@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   contestSortProperties: [
-    'orgSort:asc',
+    'entitySort:asc',
     'kind:asc',
     'nomen:asc',
   ],

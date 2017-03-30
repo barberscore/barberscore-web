@@ -34,10 +34,10 @@ export default Model.extend({
     'Qualifier',
   ],
 
-  orgSort: Ember.computed(
-    'award.entity.kindSort',
+  entitySort: Ember.computed(
+    'award.entity.entitySort',
     function() {
-      return this.get('award.entity.kindSort');
+      return this.get('award.entity.entitySort');
     }
   ),
   awardName: Ember.computed(
