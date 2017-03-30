@@ -1,18 +1,26 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
+// import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  store: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
   flashMessage: Ember.get(this, 'flashMessages'),
-  searchTask: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('person', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
+  isEditing: true,
+  isDisabled: Ember.computed.not('isEditing'),
+  entityCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+      'kind__lt': 20, //TODO Hardcoded
+      'page_size': 100,
+    });
   }),
+  entitySortProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  entityOptions: Ember.computed.sort(
+    'entityCall',
+    'entitySortProperties'
+  ),
   actions: {
     editAward() {
       this.set('isEditing', true);
@@ -22,14 +30,14 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteAward() {
-      let award = this.model.award;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.award-manager.award', award);
+        this.set('isEditing', false);
+        this.transitionToRoute('admin.award-manager');
       })
       .catch(() => {
-        this.get('flashMessages').danger('Error');
+        this.get('flashMessages').danger('Error!');
       });
     },
     saveAward() {
@@ -39,8 +47,27 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success('Saved');
       })
       .catch(() => {
+        this.model.rollbackAttributes();
         this.get('flashMessages').danger('Error');
       });
     },
-  },
+    startAward() {
+      this.model.start()
+      .then(response => {
+        this.store.pushPayload('award', response);
+      })
+      .catch(() => {
+        this.get('flashMessages').danger("Error" );
+      });
+    },
+    endAward() {
+      this.model.end()
+      .then(response => {
+        this.store.pushPayload('award', response);
+      })
+      .catch(() => {
+        this.get('flashMessages').danger("Error" );
+      });
+    },
+  }
 });
