@@ -76,42 +76,54 @@
       property='year'
       disabled=isDisabled
     }} --}}
-    {{#form.element property='open_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention Registration Open Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
-    {{#form.element property='close_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention Registration Close Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
-    {{#form.element property='start_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention Start Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
-    {{#form.element property='end_date' useIcons=false as |el|}}
-      {{bs-datetimepicker
-        date=el.value
-        format='YYYY-MM-DD'
-        updateDate=(action (mut el.value))
-        placeholder="Convention End Date"
-        disabled=isDisabled
-      }}
-    {{/form.element}}
+    <div class='row'>
+      <div class='col-md-3'>
+        {{#form.element property='open_date' useIcons=false as |el|}}
+          {{bs-datetimepicker
+            date=el.value
+            format='YYYY-MM-DD'
+            updateDate=(action (mut el.value))
+            placeholder="Convention Registration Open Date"
+            disabled=isDisabled
+          }}
+        {{/form.element}}
+      </div>
+      <div class='col-md-3'>
+        {{#form.element property='close_date' useIcons=false as |el|}}
+          {{bs-datetimepicker
+            date=el.value
+            format='YYYY-MM-DD'
+            updateDate=(action (mut el.value))
+            placeholder="Convention Registration Close Date"
+            disabled=isDisabled
+          }}
+        {{/form.element}}
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col-md-3'>
+        {{#form.element property='start_date' useIcons=false as |el|}}
+          {{bs-datetimepicker
+            date=el.value
+            format='YYYY-MM-DD'
+            updateDate=(action (mut el.value))
+            placeholder="Convention Start Date"
+            disabled=isDisabled
+          }}
+        {{/form.element}}
+      </div>
+      <div class='col-md-3'>
+        {{#form.element property='end_date' useIcons=false as |el|}}
+          {{bs-datetimepicker
+            date=el.value
+            format='YYYY-MM-DD'
+            updateDate=(action (mut el.value))
+            placeholder="Convention End Date"
+            disabled=isDisabled
+          }}
+        {{/form.element}}
+      </div>
+    </div>
     {{#form.element property='panel' useIcons=false as |el|}}
         {{#power-select
               options=model.panelOptions

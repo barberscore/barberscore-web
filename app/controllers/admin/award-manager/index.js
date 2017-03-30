@@ -3,6 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   sortProperties: [
     'entitySort:asc',
+    'name',
   ],
   sortedItems: Ember.computed.sort(
     'model',
@@ -68,7 +69,7 @@ export default Ember.Controller.extend({
         this.set('is_qualifier', null);
         this.set('entity', null);
         this.set('openModal', false);
-        this.transitionToRoute('admin.award-manager.award', this.get('model'));
+        this.transitionToRoute('admin.award-manager.award.details', award);
       })
       .catch(() => {
         award.deleteRecord();
