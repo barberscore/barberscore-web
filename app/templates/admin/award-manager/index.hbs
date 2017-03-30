@@ -73,6 +73,19 @@
         placeholder='Award Name'
         property='name'
       }}
+      {{#form.element property='entity' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=entityOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Entity"
+          allowClear=true
+          as |entity|
+        }}
+          Entity: {{entity.name}}
+        {{/power-select}}
+      {{/form.element}}
       {{#form.element property='kind' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
@@ -122,19 +135,6 @@
           {{#bg.button type='default' value=false}}Championship{{/bg.button}}
           {{#bg.button type='default' value=true}}Qualifier{{/bg.button}}
         {{/bs-button-group}}
-      {{/form.element}}
-      {{#form.element property='entity' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=entityOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Entity"
-          allowClear=true
-          as |entity|
-        }}
-          Entity: {{entity.name}}
-        {{/power-select}}
       {{/form.element}}
     {{/bs-form}}
   {{/bs-modal-simple}}
