@@ -9,6 +9,7 @@ export default Model.extend({
   finish_date: attr('isodate'),
   office: belongsTo('office', {async: true}),
   person: belongsTo('person', {async: true}),
+  entity: belongsTo('entity', {async: true}),
   permissions: attr(),
 
   statusOptions: [

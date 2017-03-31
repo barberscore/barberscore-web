@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo} from 'ember-data/relationships';
@@ -23,4 +24,11 @@ export default Model.extend({
     'Bass',
     'Director',
   ],
+  partSort: Ember.computed(
+    'part',
+    'partOptions',
+    function() {
+      return this.get('partOptions').indexOf(this.get('part'));
+    }
+  ),
 });

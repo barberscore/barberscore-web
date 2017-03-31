@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import {hasMany } from 'ember-data/relationships';
+import {hasMany, belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
@@ -23,16 +23,13 @@ export default Model.extend({
   code: attr('string'),
   short_name: attr('string'),
   long_name: attr('string'),
-  // parent: belongsTo('entity', {async: true}),
-  // parent: belongsTo('entity', {inverse: 'children', async: true}),
-  // children: hasMany('entity', {inverse: 'parent', async: true}),
+  parent: belongsTo('entity', {inverse: 'children', async: true}),
+  children: hasMany('entity', {inverse: 'parent', async: true}),
   awards: hasMany('award', {async: true}),
   memberships: hasMany('membership', {async: true}),
   performers: hasMany('performer', {async: true}),
-  // assignments: hasMany('assignment', {async: true}),
-  // groups: hasMany('group', {async: true}),
-  // performers: hasMany('performer', {inverse: 'representing', async: true}),
-  // sessions: hasMany('session', {async: true}),
+  conventions: hasMany('convention', {async: true}),
+  officers: hasMany('officer', {async: true}),
   permissions: attr(),
 
   kindOptions: [
