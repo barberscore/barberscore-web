@@ -7,7 +7,12 @@
     </div>
     <div class='panel-body'>
       <div>
-        {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          onSubmit=(action "savePerformer")
+          as |form|
+        }}
           {{#form.element property='representing' useIcons=false as |el|}}
             {{#power-select
               options=representingOptions

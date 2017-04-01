@@ -1,0 +1,152 @@
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-1'>Songs Submitted</th>
+            <th class='col-md-1'>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedPerformers as |performer|}}
+            <tr>
+              <td>{{#link-to 'admin.contest-manager.session.performers.performer' performer}}{{performer.entity.name}}{{/link-to}}</td>
+                <td>
+                  {{performer.numSubmissions}}
+                </td>
+              <td>{{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>(No groups currently registered for this session.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Registration{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearPerformer")
+    title="Create Registration"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createPerformer')
+      as |form|
+    }}
+      {{#form.element property='entity' useIcons=false as |el|}}
+          {{#power-select
+            search=(perform searchEntity)
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Quartet Name"
+            allowClear=true
+            renderInPlace=true
+            as |entity|
+          }}
+            Quartet: {{entity.name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='representing' useIcons=false as |el|}}
+          {{#power-select
+            options=representingOptions
+            selected=el.value
+            searchField='name'
+            onchange=(action (mut el.value))
+            placeholder="Enter District/Division/Affiliate Representation"
+            allowClear=true
+            renderInPlace=true
+            as |representing|
+          }}
+            Representing: {{representing.name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='is_evaluation' as |el|}}
+        {{#bs-button-group
+          value=el.value
+          type='radio'
+          onChange=(action (mut el.value))
+          as |bg|
+        }}
+          {{#bg.button type='default' value=false}}Skip Eval{{/bg.button}}
+          {{#bg.button type='default' value=true}}Include Eval{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+      {{#form.element property='is_private' as |el|}}
+        {{#bs-button-group
+          value=el.value
+          type='radio'
+          onChange=(action (mut el.value))
+          as |bg|
+        }}
+          {{#bg.button type='default' value=false}}Make Scores Public{{/bg.button}}
+          {{#bg.button type='default' value=true}}Keep Scores Private{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+      {{#form.element property='tenor' useIcons=false as |el|}}
+          {{#power-select
+            options=activeTenors
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Tenor Name"
+            allowClear=true
+            renderInPlace=true
+            as |membership|
+          }}
+            Tenor: {{membership.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='lead' useIcons=false as |el|}}
+          {{#power-select
+            options=activeLeads
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Lead Name"
+            allowClear=true
+            renderInPlace=true
+            as |membership|
+          }}
+            Lead: {{membership.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='baritone' useIcons=false as |el|}}
+          {{#power-select
+            options=activeBaritones
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Baritone Name"
+            allowClear=true
+            renderInPlace=true
+            as |membership|
+          }}
+            Baritone: {{membership.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='bass' useIcons=false as |el|}}
+          {{#power-select
+            options=activeBasses
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Bass Name"
+            allowClear=true
+            renderInPlace=true
+            as |membership|
+          }}
+            Bass: {{membership.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
+</section>
