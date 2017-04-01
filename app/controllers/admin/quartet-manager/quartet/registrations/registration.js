@@ -2,9 +2,10 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: false,
+  isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
   flashMessage: Ember.get(this, 'flashMessages'),
+  openModal: false,
   searchTask: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -13,7 +14,7 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
-  searchSong: task(function* (term){
+  searchCatalog: task(function* (term){
     yield timeout(600);
     return this.get('store').query('catalog', {
       'nomen__icontains': term,
@@ -42,8 +43,14 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
-  selectedContests: Ember.A(),
   actions: {
+    populateSubmission(catalog) {
+      this.set('submission', catalog);
+      this.set('title', catalog.get('title'));
+      this.set('composers', catalog.get('composers'));
+      this.set('arrangers', catalog.get('arrangers'));
+      this.set('holders', catalog.get('holders'));
+    },
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
@@ -98,7 +105,6 @@ export default Ember.Controller.extend({
         });
         contestant.save()
         .then(() => {
-          this.get('flashMessages').success('Saved');
         })
         .catch(() => {
           this.get('flashMessages').danger('Error');
@@ -107,7 +113,6 @@ export default Ember.Controller.extend({
         let contestant = this.get('model.contestants').findBy('contest.id', value.get('id'));
         contestant.destroyRecord()
         .then(() => {
-          this.get('flashMessages').warning('Deleted');
         })
         .catch(() => {
           this.get('flashMessages').danger('Error');
@@ -126,17 +131,32 @@ export default Ember.Controller.extend({
     createSubmission() {
       let submission = this.get('store').createRecord('submission', {
         performer: this.get('model'),
-        catalog: this.get('catalog'),
-        title: this.get('catalog.title')
+        title: this.get('title'),
+        composers: this.get('composers'),
+        arrangers: this.get('arrangers'),
+        holders: this.get('holders'),
       });
       submission.save()
       .then(() => {
-        this.set('catalog', null);
+        this.set('submission', null);
+        this.set('title', null);
+        this.set('composers', null);
+        this.set('arrangers', null);
+        this.set('holders', null);
+        this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },
+    clearSubmission() {
+      this.set('submission', null);
+      this.set('title', null);
+      this.set('composers', null);
+      this.set('arrangers', null);
+      this.set('holders', null);
+      this.set('openModal', false);
+    }
   },
 });

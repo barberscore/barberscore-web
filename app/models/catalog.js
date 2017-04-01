@@ -7,6 +7,9 @@ export default Model.extend({
   status: attr('catalog-status'),
   bhs_id: attr('number'),
   title: attr('string'),
+  composers: attr('string'),
+  arrangers: attr('string'),
+  holders: attr('string'),
   performer: hasMany('submissions', {async: true}),
   permissions: attr(),
 });

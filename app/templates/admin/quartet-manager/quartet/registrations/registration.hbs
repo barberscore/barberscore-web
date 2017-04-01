@@ -138,7 +138,10 @@
       <caption>Song Submissions</caption>
       <thead>
         <tr>
-          <th>Name</th>
+          <th>Title</th>
+          <th>Composer(s)</th>
+          <th>Arranger(s)</th>
+          <th>Copyright</th>
           <th>Status</th>
           <th>Delete</th>
         </tr>
@@ -147,30 +150,64 @@
         {{#each sortedSubmissions as |submission|}}
           <tr>
             <td>{{submission.title}}</td>
+            <td>{{submission.composers}}</td>
+            <td>{{submission.arrangers}}</td>
+            <td>{{submission.holders}}</td>
             <td>{{submission.status}}</td>
             <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' submission) class='text-danger'}}</td>
           </tr>
+        {{else}}
+          <tr>
+            <td>(No songs submitted.)</td>
+          </tr>
         {{/each}}
       </tbody>
-      <tfoot>
-        <tr>
-          <td>
-          {{#power-select
-            search=(perform searchSong)
-            selected=catalog
-            onchange=(action (mut catalog))
-            placeholder="Enter BHS ID (preferred) or Song Title"
-            disabled=isDisabled
-            allowClear=true
-            as |catalog|
-          }}
-            Song: {{catalog.title}}
-          {{/power-select}}
-          </td>
-          <td></td>
-          <td>{{fa-icon 'plus-circle' click=(action 'createSubmission') class='text-success'}}</td>
-        </tr>
-      </tfoot>
     </table>
   </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Song{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearSubmission")
+    title="Add Submission"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createSubmission')
+      as |form|
+    }}
+      {{#form.element property='submission' useIcons=false as |el|}}
+        {{#power-select
+          search=(perform searchCatalog)
+          selected=el.value
+          renderInPlace=true
+          onchange=(action 'populateSubmission')
+          placeholder="Search by Song Name"
+          allowClear=true
+          as |catalog|
+        }}
+          Song: {{catalog.title}}
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='title' useIcons=false as |el|}}
+        Title: {{el.value}}
+      {{/form.element}}
+      {{#form.element property='composers' useIcons=false as |el|}}
+        Composers: {{el.value}}
+      {{/form.element}}
+      {{#form.element property='arrangers' useIcons=false as |el|}}
+        Arrangers: {{el.value}}
+      {{/form.element}}
+      {{#form.element property='holders' useIcons=false as |el|}}
+        Copyright Holders: {{el.value}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
 </section>

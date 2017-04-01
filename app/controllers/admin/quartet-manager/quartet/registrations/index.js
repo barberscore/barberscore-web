@@ -104,15 +104,9 @@ export default Ember.Controller.extend({
       performer.save()
       .then(() => {
         this.set('session', null);
-        this.set('is_evaluation', null);
-        this.set('is_private', null);
-        this.set('tenor', null);
-        this.set('lead', null);
-        this.set('baritone', null);
-        this.set('bass', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('admin.quartet-manager.quartet.registrations', this.get('model'));
+        this.transitionToRoute('admin.quartet-manager.quartet.registrations.registration', performer);
       })
       .catch(() => {
         performer.deleteRecord();
@@ -121,12 +115,6 @@ export default Ember.Controller.extend({
     },
     clearPerformer() {
       this.set('session', null);
-      this.set('is_evaluation', null);
-      this.set('is_private', null);
-      this.set('tenor', null);
-      this.set('lead', null);
-      this.set('baritone', null);
-      this.set('bass', null);
       this.set('openModal', false);
     },
     deletePerformer(performer){

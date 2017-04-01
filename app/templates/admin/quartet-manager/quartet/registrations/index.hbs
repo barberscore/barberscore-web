@@ -13,7 +13,7 @@
             {{#each model.performers as |performer|}}
               <tr>
                 <td>
-                  {{#link-to 'admin.quartet-manager.quartet.registrations.registration' performer}}{{performer.entity.name}}{{/link-to}}
+                  {{#link-to 'admin.quartet-manager.quartet.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
                 </td>
                 <td>
                   {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
