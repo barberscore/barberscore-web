@@ -45,11 +45,12 @@ export default Ember.Controller.extend({
   ),
   actions: {
     populateSubmission(catalog) {
-      this.set('submission', catalog);
+      this.set('catalog', catalog);
       this.set('title', catalog.get('title'));
       this.set('composers', catalog.get('composers'));
       this.set('arrangers', catalog.get('arrangers'));
       this.set('holders', catalog.get('holders'));
+      this.set('bhs_id', catalog.get('bhs_id'));
     },
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -135,6 +136,8 @@ export default Ember.Controller.extend({
         composers: this.get('composers'),
         arrangers: this.get('arrangers'),
         holders: this.get('holders'),
+        bhs_id: this.get('bhs_id'),
+        catalog: this.get('catalog'),
       });
       submission.save()
       .then(() => {
@@ -143,6 +146,8 @@ export default Ember.Controller.extend({
         this.set('composers', null);
         this.set('arrangers', null);
         this.set('holders', null);
+        this.set('bhs_id', null);
+        this.set('catalog', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       })
@@ -156,6 +161,8 @@ export default Ember.Controller.extend({
       this.set('composers', null);
       this.set('arrangers', null);
       this.set('holders', null);
+      this.set('bhs_id', null);
+      this.set('catalog', null);
       this.set('openModal', false);
     }
   },

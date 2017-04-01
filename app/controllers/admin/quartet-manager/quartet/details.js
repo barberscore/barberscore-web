@@ -22,6 +22,34 @@ export default Ember.Controller.extend({
     'entityCall',
     'entitySortProperties'
   ),
+  parentCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+        'kind__lt': '30',
+        'page_size': 100,
+      });
+    // }).then((data) => {
+    //   sessions.addObjects(data);
+    // });
+    // return sessions;
+  }),
+  // parentFilter: Ember.computed.filterBy(
+  //   'parentCall',
+  //   'kind',
+  //   'Quartet'
+  // ),
+  parentSortProperties: [
+    'nomen:asc',
+  ],
+  parentOptions: Ember.computed.sort(
+    'parentCall',
+    'parentSortProperties'
+  ),
+  parent: Ember.computed(
+    'model.parent',
+    function() {
+      return this.get('model.parent');
+    }
+  ),
   actions: {
     newQuartet() {
       let newQuartet = this.store.createRecord(

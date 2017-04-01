@@ -8,6 +8,21 @@
     <div class='panel-body'>
       <div>
         {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
+          {{#form.element property='parent' useIcons=false as |el|}}
+              {{#power-select
+                options=parentOptions
+                selected=el.value
+                searchField='name'
+                onchange=(action (mut el.value))
+                placeholder="Enter District/Division/Affiliate Representation"
+                allowClear=true
+                renderInPlace=true
+                disabled=isDisabled
+                as |parent|
+              }}
+                Representing: {{parent.name}}
+              {{/power-select}}
+          {{/form.element}}
           {{#form.element property='is_evaluation' as |el|}}
             {{#bs-button-group
               value=el.value
@@ -142,6 +157,7 @@
           <th>Composer(s)</th>
           <th>Arranger(s)</th>
           <th>Copyright</th>
+          <th>Number</th>
           <th>Status</th>
           <th>Delete</th>
         </tr>
@@ -153,6 +169,7 @@
             <td>{{submission.composers}}</td>
             <td>{{submission.arrangers}}</td>
             <td>{{submission.holders}}</td>
+            <td>{{submission.bhs_id}}</td>
             <td>{{submission.status}}</td>
             <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' submission) class='text-danger'}}</td>
           </tr>
@@ -189,25 +206,24 @@
           selected=el.value
           renderInPlace=true
           onchange=(action 'populateSubmission')
-          placeholder="Search by Song Name"
+          placeholder="Search by Song Name or BHS Catalog Number"
           allowClear=true
           as |catalog|
         }}
-          Song: {{catalog.title}}
+          Song: {{catalog.title}} {{catalog.bhs_id}}
         {{/power-select}}
       {{/form.element}}
-      {{#form.element property='title' useIcons=false as |el|}}
-        Title: {{el.value}}
-      {{/form.element}}
-      {{#form.element property='composers' useIcons=false as |el|}}
-        Composers: {{el.value}}
-      {{/form.element}}
-      {{#form.element property='arrangers' useIcons=false as |el|}}
-        Arrangers: {{el.value}}
-      {{/form.element}}
-      {{#form.element property='holders' useIcons=false as |el|}}
-        Copyright Holders: {{el.value}}
-      {{/form.element}}
+      <div>
+        <hr>
+      </div>
+      <div>
+        <p>The search box above will populate these fields automatically;<br>if you can't find your song then enter details below</p>
+      </div>
+      {{form.element controlType='text' placeholder='Song Title' property='title'}}
+      {{form.element controlType='text' placeholder='Composer(s)/Lyricist(s)' property='composers'}}
+      {{form.element controlType='text' placeholder='Arranger(s)' property='arrangers'}}
+      {{form.element controlType='text' placeholder='Copyright Holders' property='holders'}}
+      {{form.element controlType='tel' placeholder='BHS ID (if known)' property='bhs_id'}}
     {{/bs-form}}
   {{/bs-modal-simple}}
 </section>

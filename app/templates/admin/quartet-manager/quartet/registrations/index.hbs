@@ -1,11 +1,12 @@
 <section>
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-md-12'>
       <div class='table-responsive'>
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-11'>Registration</th>
+              <th class='col-md-4'>Registration</th>
+              <th class='col-md-1'>Songs Submitted</th>
               <th class='col-md-1'>Delete</th>
             </tr>
           </thead>
@@ -14,6 +15,9 @@
               <tr>
                 <td>
                   {{#link-to 'admin.quartet-manager.quartet.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
+                </td>
+                <td>
+                  {{performer.numSubmissions}}
                 </td>
                 <td>
                   {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
@@ -55,6 +59,20 @@
             as |session|
           }}
             Session: {{session.nomen}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='parent' useIcons=false as |el|}}
+          {{#power-select
+            options=parentOptions
+            selected=el.value
+            searchField='name'
+            onchange=(action (mut el.value))
+            placeholder="Enter District/Division/Affiliate Representation"
+            allowClear=true
+            renderInPlace=true
+            as |parent|
+          }}
+            Representing: {{parent.name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='is_evaluation' as |el|}}

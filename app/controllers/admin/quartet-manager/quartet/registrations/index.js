@@ -30,6 +30,34 @@ export default Ember.Controller.extend({
     'sessionFilter',
     'sessionSortProperties'
   ),
+  parentCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+        'kind__lt': '30',
+        'page_size': 100,
+      });
+    // }).then((data) => {
+    //   sessions.addObjects(data);
+    // });
+    // return sessions;
+  }),
+  // parentFilter: Ember.computed.filterBy(
+  //   'parentCall',
+  //   'kind',
+  //   'Quartet'
+  // ),
+  parentSortProperties: [
+    'nomen:asc',
+  ],
+  parentOptions: Ember.computed.sort(
+    'parentCall',
+    'parentSortProperties'
+  ),
+  parent: Ember.computed(
+    'model.parent',
+    function() {
+      return this.get('model.parent');
+    }
+  ),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -94,6 +122,7 @@ export default Ember.Controller.extend({
       let performer = this.get('store').createRecord('performer', {
         entity: this.get('model'),
         session: this.get('session'),
+        parent: this.get('parent'),
         is_evaluation: this.get('is_evaluation'),
         is_private: this.get('is_private'),
         tenor: this.get('tenor.person'),
@@ -104,6 +133,7 @@ export default Ember.Controller.extend({
       performer.save()
       .then(() => {
         this.set('session', null);
+        this.set('parent', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.transitionToRoute('admin.quartet-manager.quartet.registrations.registration', performer);
@@ -115,6 +145,7 @@ export default Ember.Controller.extend({
     },
     clearPerformer() {
       this.set('session', null);
+      this.set('parent', null);
       this.set('openModal', false);
     },
     deletePerformer(performer){

@@ -5,7 +5,22 @@
     onSubmit=(action 'saveQuartet')
     as |form|
   }}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Name' property='name'}}
+    {{#form.element property='parent' useIcons=false as |el|}}
+        {{#power-select
+          options=parentOptions
+          selected=el.value
+          searchField='name'
+          onchange=(action (mut el.value))
+          placeholder="Enter 'Home' District/Division/Affiliate"
+          allowClear=true
+          renderInPlace=true
+          disabled=isDisabled
+          as |parent|
+        }}
+          Home: {{parent.name}}
+        {{/power-select}}
+    {{/form.element}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
     {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
     {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}

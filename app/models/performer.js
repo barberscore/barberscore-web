@@ -28,9 +28,9 @@ export default Model.extend({
   contestants: hasMany('contestant', {async: true}),
   submissions: hasMany('submission', {async: true}),
   performerscore: belongsTo('performerscore', {async: true}),
-  scratch: memberAction({path: 'scratch'}),
   permissions: attr(),
 
+  scratch: memberAction({path: 'scratch'}),
   penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
 
   statusOptions: [
@@ -139,4 +139,12 @@ export default Model.extend({
       return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
     }
   ),
+  selCons: computed(
+    'contestants.@each.contest', function() {
+      return this.get('contestants').mapBy('contest');
+  }),
+  numSubmissions: computed(
+    'contestants.length', function() {
+      return this.get('contestants.length')
+  })
 });

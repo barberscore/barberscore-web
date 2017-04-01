@@ -40,11 +40,6 @@ export default Model.extend({
       return this.get('award.entity.entitySort');
     }
   ),
-  awardName: Ember.computed(
-    'award.name',
-    function() {
-      return this.get('award.name');
-    }
-  ),
+  awardName: Ember.computed.alias('award.name'),
 
 });
