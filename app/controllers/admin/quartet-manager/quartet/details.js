@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
     'entityCall',
     'entitySortProperties'
   ),
-  parentCall: Ember.computed(function() {
+  representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
         'kind__lt': '30',
         'page_size': 100,
@@ -32,22 +32,22 @@ export default Ember.Controller.extend({
     // });
     // return sessions;
   }),
-  // parentFilter: Ember.computed.filterBy(
-  //   'parentCall',
+  // representingFilter: Ember.computed.filterBy(
+  //   'representingCall',
   //   'kind',
   //   'Quartet'
   // ),
-  parentSortProperties: [
+  representingSortProperties: [
     'nomen:asc',
   ],
-  parentOptions: Ember.computed.sort(
-    'parentCall',
-    'parentSortProperties'
+  representingOptions: Ember.computed.sort(
+    'representingCall',
+    'representingSortProperties'
   ),
-  parent: Ember.computed(
-    'model.parent',
+  representing: Ember.computed(
+    'model.representing',
     function() {
-      return this.get('model.parent');
+      return this.get('model.representing');
     }
   ),
   actions: {

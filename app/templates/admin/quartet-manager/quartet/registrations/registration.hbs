@@ -8,20 +8,20 @@
     <div class='panel-body'>
       <div>
         {{#bs-form formLayout="vertical" model=model onSubmit=(action "savePerformer") as |form|}}
-          {{#form.element property='parent' useIcons=false as |el|}}
-              {{#power-select
-                options=parentOptions
-                selected=el.value
-                searchField='name'
-                onchange=(action (mut el.value))
-                placeholder="Enter District/Division/Affiliate Representation"
-                allowClear=true
-                renderInPlace=true
-                disabled=isDisabled
-                as |parent|
-              }}
-                Representing: {{parent.name}}
-              {{/power-select}}
+          {{#form.element property='representing' useIcons=false as |el|}}
+            {{#power-select
+              options=representingOptions
+              selected=el.value
+              searchField='name'
+              onchange=(action (mut el.value))
+              placeholder="Enter District/Division/Affiliate Representation"
+              allowClear=true
+              renderInPlace=true
+              disabled=isDisabled
+              as |representing|
+            }}
+              Representing: {{representing.name}}
+            {{/power-select}}
           {{/form.element}}
           {{#form.element property='is_evaluation' as |el|}}
             {{#bs-button-group
@@ -48,56 +48,56 @@
           {{/form.element}}
           {{#unless (eq model.session.kind 'Chorus')}}
             {{#form.element property='tenor' useIcons=false as |el|}}
-                {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(action (mut el.value))
-                  placeholder="Enter Tenor Name"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-                }}
-                  Tenor: {{person.common_name}}
-                {{/power-select}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Tenor Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Tenor: {{person.common_name}}
+              {{/power-select}}
             {{/form.element}}
             {{#form.element property='lead' useIcons=false as |el|}}
-                {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(action (mut el.value))
-                  placeholder="Enter Lead Name"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-                }}
-                  Lead: {{person.common_name}}
-                {{/power-select}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Lead Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Lead: {{person.common_name}}
+              {{/power-select}}
             {{/form.element}}
             {{#form.element property='baritone' useIcons=false as |el|}}
-                {{#power-select
-                      search=(perform searchTask)
-                      selected=el.value
-                      onchange=(action (mut el.value))
-                      placeholder="Enter Baritone Name"
-                      disabled=isDisabled
-                      allowClear=true
-                      as |person|
-                }}
-                  Baritone: {{person.common_name}}
-                {{/power-select}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Baritone Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Baritone: {{person.common_name}}
+              {{/power-select}}
             {{/form.element}}
             {{#form.element property='bass' useIcons=false as |el|}}
-                {{#power-select
-                      search=(perform searchTask)
-                      selected=el.value
-                      onchange=(action (mut el.value))
-                      placeholder="Enter Bass Name"
-                      disabled=isDisabled
-                      allowClear=true
-                      as |person|
-                }}
-                  Bass: {{person.common_name}}
-                {{/power-select}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Bass Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Bass: {{person.common_name}}
+              {{/power-select}}
             {{/form.element}}
           {{else}}
             {{#form.element property='director' useIcons=false as |el|}}

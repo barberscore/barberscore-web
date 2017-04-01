@@ -61,18 +61,18 @@
             Session: {{session.nomen}}
           {{/power-select}}
       {{/form.element}}
-      {{#form.element property='parent' useIcons=false as |el|}}
+      {{#form.element property='representing' useIcons=false as |el|}}
           {{#power-select
-            options=parentOptions
+            options=representingOptions
             selected=el.value
             searchField='name'
             onchange=(action (mut el.value))
             placeholder="Enter District/Division/Affiliate Representation"
             allowClear=true
             renderInPlace=true
-            as |parent|
+            as |representing|
           }}
-            Representing: {{parent.name}}
+            Representing: {{representing.name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='is_evaluation' as |el|}}

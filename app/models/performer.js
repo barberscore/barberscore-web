@@ -19,10 +19,10 @@ export default Model.extend({
   is_private: attr('boolean'),
   director: belongsTo('person', {async: true}),
   codirector: belongsTo('person', {async: true}),
-  // representing: belongsTo('organization', {async: true}),
+  representing: belongsTo('entity', {async: true}),
   seed: attr('number'),
   prelim: attr('number'),
-  entity: belongsTo('entity', {async: true}),
+  entity: belongsTo('entity', {inverse: 'performers', async: true}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
   contestants: hasMany('contestant', {async: true}),
@@ -145,6 +145,6 @@ export default Model.extend({
   }),
   numSubmissions: computed(
     'contestants.length', function() {
-      return this.get('contestants.length')
+      return this.get('contestants.length');
   })
 });

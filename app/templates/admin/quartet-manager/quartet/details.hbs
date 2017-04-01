@@ -8,7 +8,7 @@
     {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Name' property='name'}}
     {{#form.element property='parent' useIcons=false as |el|}}
         {{#power-select
-          options=parentOptions
+          options=representingOptions
           selected=el.value
           searchField='name'
           onchange=(action (mut el.value))
