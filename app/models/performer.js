@@ -139,8 +139,4 @@ export default Model.extend({
       return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
     }
   ),
-  selectedContests: Ember.computed.mapBy(
-    'contestants',
-    'contest'
-  )
 });
