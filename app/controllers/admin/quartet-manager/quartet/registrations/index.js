@@ -1,8 +1,11 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
+  openModal: false,
+  flashMessage: Ember.get(this, 'flashMessages'),
   modelKind: Ember.computed(function() {
     return this.get('model.kind');
   }),
@@ -27,21 +30,104 @@ export default Ember.Controller.extend({
     'sessionFilter',
     'sessionSortProperties'
   ),
+  searchPerson: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('person', {
+      'nomen__icontains': term,
+      'page_size': 1000
+      })
+      .then((data) => data);
+  }),
+  activeMembers: Ember.computed.filterBy(
+    'model.memberships',
+    'status',
+    'Active'
+  ),
+  activeTenors: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Tenor'
+  ),
+  tenor: Ember.computed(
+    'activeTenors',
+    function() {
+      return this.get('activeTenors.firstObject');
+    }
+  ),
+  activeLeads: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Lead'
+  ),
+  lead: Ember.computed(
+    'activeLeads',
+    function() {
+      return this.get('activeLeads.firstObject');
+    }
+  ),
+  activeBaritones: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Baritone'
+  ),
+  baritone: Ember.computed(
+    'activeBaritones',
+    function() {
+      return this.get('activeBaritones.firstObject');
+    }
+  ),
+  activeBasses: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Bass'
+  ),
+  bass: Ember.computed(
+    'activeBasses',
+    function() {
+      return this.get('activeBasses.firstObject');
+    }
+  ),
+  is_evaluation: true,
+  is_private: false,
   actions: {
     createPerformer(){
       let performer = this.get('store').createRecord('performer', {
         entity: this.get('model'),
         session: this.get('session'),
+        is_evaluation: this.get('is_evaluation'),
+        is_private: this.get('is_private'),
+        tenor: this.get('tenor.person'),
+        lead: this.get('lead.person'),
+        baritone: this.get('baritone.person'),
+        bass: this.get('bass.person'),
       });
       performer.save()
       .then(() => {
         this.set('session', null);
+        this.set('is_evaluation', null);
+        this.set('is_private', null);
+        this.set('tenor', null);
+        this.set('lead', null);
+        this.set('baritone', null);
+        this.set('bass', null);
+        this.set('openModal', false);
         this.get('flashMessages').success('Success');
+        this.transitionToRoute('admin.quartet-manager.quartet.registrations', this.get('model'));
       })
       .catch(() => {
         performer.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
+    },
+    clearPerformer() {
+      this.set('session', null);
+      this.set('is_evaluation', null);
+      this.set('is_private', null);
+      this.set('tenor', null);
+      this.set('lead', null);
+      this.set('baritone', null);
+      this.set('bass', null);
+      this.set('openModal', false);
     },
     deletePerformer(performer){
       performer.destroyRecord()
