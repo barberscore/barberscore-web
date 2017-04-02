@@ -2,45 +2,49 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isEditing: false,
+  isCollapsed: true,
+  isRoleEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  isCollapsed: false,
-  isExpanded: Ember.computed.not('isCollapsed'),
+  isRoleDisabled: Ember.computed.not('isRoleEditing'),
+  collapseChorus: false,
+  isRoleCollapsed: false,
+  optionsSession: Ember.computed(function() {
+    return this.get('store').query('session', {'status': 4});
+  }),
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
-    toggleCollapsed() {
+    collapseHeader() {
       this.toggleProperty('isCollapsed');
     },
-    newChorus() {
-      let newChorus = this.store.createRecord(
-        'chorus'
-      );
-      this.set('model', newChorus);
+    setEditing() {
       this.set('isEditing', true);
     },
-    editChorus() {
-      this.set('isEditing', true);
-    },
-    cancelChorus() {
+    undoEditing() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteChorus() {
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
-      });
-    },
-    saveChorus() {
+    saveEditing() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
       })
       .catch(() => {
+        this.get('flashMessages').danger('Error');
+      });
+    },
+    addPerformer() {
+var performer = this.get('store').createRecord('performer', {
+        session: this.get('session'),
+        group: this.get('model'),
+      });
+      performer.save()
+      .then(() => {
+        this.set('group', null);
+        this.get('flashMessages').success('Success');
+      })
+      .catch(() => {
+        performer.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },

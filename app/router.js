@@ -50,7 +50,6 @@ Router.map(function() {
     });
     this.route('chorus-manager', {path: 'chorus-manager'}, function() {
       this.route('chorus', { path: ':entity_id'}, function() {
-        this.route('details', {path: 'details'});
         this.route('details', { path: 'details'});
         this.route('members', { path: 'members'});
         this.route('registrations', { path: 'registrations'}, function() {

@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
   // representingFilter: Ember.computed.filterBy(
   //   'representingCall',
   //   'kind',
-  //   'Quartet'
+  //   'Chorus'
   // ),
   representingSortProperties: [
     'nomen:asc',
@@ -51,25 +51,25 @@ export default Ember.Controller.extend({
     }
   ),
   actions: {
-    editQuartet() {
+    editChorus() {
       this.set('isEditing', true);
     },
-    cancelQuartet() {
+    cancelChorus() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteQuartet() {
+    deleteChorus() {
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
-        this.transitionToRoute('admin.quartet-manager');
+        this.transitionToRoute('admin.chorus-manager');
       })
       .catch(() => {
         this.get('flashMessages').danger('Error!');
       });
     },
-    saveQuartet() {
+    saveChorus() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);

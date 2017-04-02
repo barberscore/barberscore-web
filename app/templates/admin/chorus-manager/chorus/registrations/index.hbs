@@ -1,0 +1,128 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-4'>Registration</th>
+              <th class='col-md-1'>Songs Submitted</th>
+              <th class='col-md-1'>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each model.performers as |performer|}}
+              <tr>
+                <td>
+                  {{#link-to 'admin.chorus-manager.chorus.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
+                </td>
+                <td>
+                  {{performer.numSubmissions}}
+                </td>
+                <td>
+                  {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Registration{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearPerformer")
+    title="Create Registration"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createPerformer')
+      as |form|
+    }}
+      {{#form.element property='session' useIcons=false as |el|}}
+          {{#power-select
+            options=sessionOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Session"
+            allowClear=true
+            renderInPlace=true
+            as |session|
+          }}
+            Session: {{session.nomen}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='representing' useIcons=false as |el|}}
+          {{#power-select
+            options=representingOptions
+            selected=el.value
+            searchField='name'
+            onchange=(action (mut el.value))
+            placeholder="Enter District/Division/Affiliate Representation"
+            allowClear=true
+            renderInPlace=true
+            as |representing|
+          }}
+            Representing: {{representing.name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='is_evaluation' as |el|}}
+        {{#bs-button-group
+          value=el.value
+          type='radio'
+          onChange=(action (mut el.value))
+          as |bg|
+        }}
+          {{#bg.button type='default' value=false}}Skip Eval{{/bg.button}}
+          {{#bg.button type='default' value=true}}Include Eval{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+      {{#form.element property='is_private' as |el|}}
+        {{#bs-button-group
+          value=el.value
+          type='radio'
+          onChange=(action (mut el.value))
+          as |bg|
+        }}
+          {{#bg.button type='default' value=false}}Make Scores Public{{/bg.button}}
+          {{#bg.button type='default' value=true}}Keep Scores Private{{/bg.button}}
+        {{/bs-button-group}}
+      {{/form.element}}
+      {{#form.element property='director' useIcons=false as |el|}}
+          {{#power-select
+            search=(perform searchPerson)
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Director Name"
+            renderInPlace=true
+            allowClear=true
+            as |person|
+          }}
+            {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='codirector' useIcons=false as |el|}}
+          {{#power-select
+            search=(perform searchPerson)
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Co-Director Name (if applicable)"
+            renderInPlace=true
+            allowClear=true
+            as |person|
+          }}
+            Co-Director: {{person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
+</section>

@@ -51,12 +51,12 @@
             search=(perform searchEntity)
             selected=el.value
             onchange=(action (mut el.value))
-            placeholder="Enter Quartet Name"
+            placeholder="Enter Group Name"
             allowClear=true
             renderInPlace=true
             as |entity|
           }}
-            Quartet: {{entity.name}}
+            Group: {{entity.name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='representing' useIcons=false as |el|}}
@@ -95,58 +95,87 @@
           {{#bg.button type='default' value=true}}Keep Scores Private{{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
-      {{#form.element property='tenor' useIcons=false as |el|}}
+      {{#unless (eq model.kind 'Chorus')}}
+        {{#form.element property='tenor' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Tenor Name"
-            allowClear=true
             renderInPlace=true
+            allowClear=true
             as |person|
           }}
             Tenor: {{person.common_name}}
           {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='lead' useIcons=false as |el|}}
+        {{/form.element}}
+        {{#form.element property='lead' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Lead Name"
-            allowClear=true
             renderInPlace=true
+            allowClear=true
             as |person|
           }}
             Lead: {{person.common_name}}
           {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='baritone' useIcons=false as |el|}}
+        {{/form.element}}
+        {{#form.element property='baritone' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Baritone Name"
+              renderInPlace=true
             allowClear=true
-            renderInPlace=true
             as |person|
           }}
             Baritone: {{person.common_name}}
           {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='bass' useIcons=false as |el|}}
+        {{/form.element}}
+        {{#form.element property='bass' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Bass Name"
-            allowClear=true
             renderInPlace=true
+            allowClear=true
             as |person|
           }}
             Bass: {{person.common_name}}
           {{/power-select}}
-      {{/form.element}}
+        {{/form.element}}
+      {{else}}
+        {{#form.element property='director' useIcons=false as |el|}}
+            {{#power-select
+              search=(perform searchPerson)
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Director Name"
+              renderInPlace=true
+              allowClear=true
+              as |person|
+            }}
+              {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='codirector' useIcons=false as |el|}}
+            {{#power-select
+              search=(perform searchPerson)
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Co-Director Name (if applicable)"
+              renderInPlace=true
+              allowClear=true
+              as |person|
+            }}
+              Co-Director: {{person.common_name}}
+            {{/power-select}}
+        {{/form.element}}
+      {{/unless}}
     {{/bs-form}}
   {{/bs-modal-simple}}
 </section>

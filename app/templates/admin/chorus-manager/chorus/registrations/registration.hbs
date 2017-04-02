@@ -51,57 +51,31 @@
               {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          {{#form.element property='tenor' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Tenor Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Tenor: {{person.common_name}}
-            {{/power-select}}
+          {{#form.element property='director' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Director Name"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+              {{/power-select}}
           {{/form.element}}
-          {{#form.element property='lead' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Lead Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Lead: {{person.common_name}}
-            {{/power-select}}
-          {{/form.element}}
-          {{#form.element property='baritone' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Baritone Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Baritone: {{person.common_name}}
-            {{/power-select}}
-          {{/form.element}}
-          {{#form.element property='bass' useIcons=false as |el|}}
-            {{#power-select
-              search=(perform searchTask)
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Enter Bass Name"
-              disabled=isDisabled
-              allowClear=true
-              as |person|
-            }}
-              Bass: {{person.common_name}}
-            {{/power-select}}
+          {{#form.element property='codirector' useIcons=false as |el|}}
+              {{#power-select
+                search=(perform searchTask)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Enter Co-Director Name (if applicable)"
+                disabled=isDisabled
+                allowClear=true
+                as |person|
+              }}
+                Co-Director: {{person.common_name}}
+              {{/power-select}}
           {{/form.element}}
           {{#if isEditing}}
               {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
