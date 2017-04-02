@@ -22,8 +22,8 @@ Router.map(function() {
         this.route('contests', { path: 'contests'}, function() {
           this.route('contest', { path: ':contest_id'});
         });
-        this.route('performers', { path: 'registrations'}, function() {
-          this.route('performer', { path: ':performer_id'});
+        this.route('registrations', { path: 'registrations'}, function() {
+          this.route('registration', { path: ':performer_id'});
         });
         this.route('actions', {path: 'actions'});
       });

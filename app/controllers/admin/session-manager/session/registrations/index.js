@@ -121,7 +121,7 @@ export default Ember.Controller.extend({
         this.set('openModal', false);
         this.set('isEditing', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('admin.session-manager.session.performers.performer', performer);
+        this.transitionToRoute('admin.session-manager.session.registrations.registration', performer);
       })
       .catch(() => {
         performer.deleteRecord();

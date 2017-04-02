@@ -55,12 +55,12 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('admin.session-manager.session.performers.performer', newCur);
+      this.transitionToRoute('admin.session-manager.session.registrations.registration', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('admin.session-manager.session.performers.performer', newCur);
+      this.transitionToRoute('admin.session-manager.session.registrations.registration', newCur);
     },
     editPerformer() {
       this.set('isEditing', true);
