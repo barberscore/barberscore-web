@@ -136,6 +136,7 @@ export default Ember.Controller.extend({
         this.set('representing', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
+        this.set('isEditing', false);
         this.transitionToRoute('admin.quartet-manager.quartet.registrations.registration', performer);
       })
       .catch(() => {

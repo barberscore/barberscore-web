@@ -109,16 +109,17 @@ export default Ember.Controller.extend({
         representing: this.get('representing'),
         is_evaluation: this.get('is_evaluation'),
         is_private: this.get('is_private'),
-        tenor: this.get('tenor.person'),
-        lead: this.get('lead.person'),
-        baritone: this.get('baritone.person'),
-        bass: this.get('bass.person'),
+        tenor: this.get('tenor'),
+        lead: this.get('lead'),
+        baritone: this.get('baritone'),
+        bass: this.get('bass'),
       });
       performer.save()
       .then(() => {
         this.set('entity', null);
         this.set('representing', null);
         this.set('openModal', false);
+        this.set('isEditing', false);
         this.get('flashMessages').success('Success');
         this.transitionToRoute('admin.contest-manager.session.performers.performer', performer);
       })

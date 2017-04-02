@@ -97,54 +97,54 @@
       {{/form.element}}
       {{#form.element property='tenor' useIcons=false as |el|}}
           {{#power-select
-            options=activeTenors
+            search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Tenor Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |person|
           }}
-            Tenor: {{membership.person.common_name}}
+            Tenor: {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='lead' useIcons=false as |el|}}
           {{#power-select
-            options=activeLeads
+            search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Lead Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |person|
           }}
-            Lead: {{membership.person.common_name}}
+            Lead: {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='baritone' useIcons=false as |el|}}
           {{#power-select
-            options=activeBaritones
+            search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Baritone Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |person|
           }}
-            Baritone: {{membership.person.common_name}}
+            Baritone: {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='bass' useIcons=false as |el|}}
           {{#power-select
-            options=activeBasses
+            search=(perform searchPerson)
             selected=el.value
             onchange=(action (mut el.value))
             placeholder="Enter Bass Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |person|
           }}
-            Bass: {{membership.person.common_name}}
+            Bass: {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
     {{/bs-form}}

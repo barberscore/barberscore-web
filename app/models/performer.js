@@ -144,7 +144,7 @@ export default Model.extend({
       return this.get('contestants').mapBy('contest');
   }),
   numSubmissions: computed(
-    'contestants.length', function() {
-      return this.get('contestants.length');
+    'submissions.length', function() {
+      return this.get('submissions.length');
   })
 });
