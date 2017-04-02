@@ -76,12 +76,12 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
+      this.transitionToRoute('admin.session-manager.session.performers.performer', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('admin.contest-manager.session.performers.performer', newCur);
+      this.transitionToRoute('admin.session-manager.session.performers.performer', newCur);
     },
     editPerformer() {
       this.set('isEditing', true);
@@ -95,7 +95,7 @@ export default Ember.Controller.extend({
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('admin.contest-manager.convention.sessions.session', session);
+        this.transitionToRoute('admin.session-manager.convention.sessions.session', session);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');

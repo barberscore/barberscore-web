@@ -14,7 +14,7 @@
       <tbody>
         {{#each sortedSessions as |session|}}
           <tr>
-            <td>{{#link-to 'admin.contest-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
+            <td>{{#link-to 'admin.session-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
             <td>{{session.convention.name}}</td>
           </tr>
         {{else}}

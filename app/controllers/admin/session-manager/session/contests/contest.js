@@ -32,12 +32,12 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('admin.contest-manager.session.contests.contest', newCur);
+      this.transitionToRoute('admin.session-manager.session.contests.contest', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('admin.contest-manager.session.contests.contest', newCur);
+      this.transitionToRoute('admin.session-manager.session.contests.contest', newCur);
     },
     deleteContestant(contestant) {
       contestant.destroyRecord();
