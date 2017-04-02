@@ -48,7 +48,6 @@ export default Ember.Controller.extend({
         'entity__name': 'International',
         'entity__kind': 1,
         'is_qualifier': 'true',
-        'season': season[this.get('model.season')],
         'page_size':100,
     }).then((data) => {
       awards.addObjects(data);
