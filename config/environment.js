@@ -7,8 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     moment: {
-      allowEmpty: true, // default: false
-      includeTimezone: '2010-2020'
+      allowEmpty: true // default: false
     },
     contentSecurityPolicy: {
       'font-src': [
