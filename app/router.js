@@ -70,8 +70,8 @@ Router.map(function() {
         });
       });
     });
-    this.route('member-manager', {path: 'member-manager'}, function() {
-      this.route('member', { path: ':person_id'}, function() {
+    this.route('person-manager', {path: 'person-manager'}, function() {
+      this.route('person', { path: ':person_id'}, function() {
         this.route('details', {path: 'details'});
       });
     });

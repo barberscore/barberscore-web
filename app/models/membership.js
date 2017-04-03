@@ -31,4 +31,5 @@ export default Model.extend({
       return this.get('partOptions').indexOf(this.get('part'));
     }
   ),
+  entityKind: Ember.computed.alias('entity.kind')
 });
