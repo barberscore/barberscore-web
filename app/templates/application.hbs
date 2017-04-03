@@ -3,13 +3,10 @@
     {{#navbar.toggle}}
       {{fa-icon 'reorder'}}
     {{/navbar.toggle}}
-    {{#link-to 'index' class='navbar-brand'}}Barberscore{{/link-to}}
+    {{#link-to 'index' class='navbar-brand'}}<span><img src="bhs_logo_sm.png"></span>&nbsp;Barberscore{{/link-to}}
   </div>
   {{#navbar.content}}
     {{#navbar.nav type='pills' class='navbar-right' as |nav|}}
-      {{#if session.isAuthenticated}}
-        {{#nav.item}}{{#nav.link-to "admin"}}{{fa-icon 'dashboard' fixedWidth=true}}Administrator{{/nav.link-to}}{{/nav.item}}
-      {{/if}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}{{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{/bs-button}}{{/nav.item}}
       {{else}}
