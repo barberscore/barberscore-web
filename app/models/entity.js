@@ -27,6 +27,7 @@ export default Model.extend({
   children: hasMany('entity', {inverse: 'parent', async: true}),
   performers: hasMany('performer', {inverse: 'entity', async: true}),
   awards: hasMany('award', {async: true}),
+  repertories: hasMany('repertory', {async: true}),
   memberships: hasMany('membership', {async: true}),
   conventions: hasMany('convention', {async: true}),
   officers: hasMany('officer', {async: true}),

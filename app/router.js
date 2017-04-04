@@ -46,6 +46,7 @@ Router.map(function() {
         this.route('registrations', { path: 'registrations'}, function() {
           this.route('registration', { path: ':performer_id'});
         });
+        this.route('repertories', { path: 'repertories'});
       });
     });
     this.route('chorus-manager', {path: 'chorus-manager'}, function() {
@@ -55,6 +56,7 @@ Router.map(function() {
         this.route('registrations', { path: 'registrations'}, function() {
           this.route('registration', { path: ':performer_id'});
         });
+        this.route('repertories', { path: 'repertories'});
       });
     });
     this.route('award-manager', {path: 'award-manager'}, function() {

@@ -10,6 +10,7 @@ export default Model.extend({
   composers: attr('string'),
   arrangers: attr('string'),
   holders: attr('string'),
-  performer: hasMany('submissions', {async: true}),
+  repertories: hasMany('repertory', {async: true}),
+  songs: hasMany('song', {async: true}),
   permissions: attr(),
 });

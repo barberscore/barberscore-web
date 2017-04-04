@@ -11,6 +11,7 @@ export default Model.extend({
   arranger: attr('string'),
   songscore: belongsTo('songscore', {async: true}),
   performance: belongsTo('performance', {async: true}),
+  catalog: belongsTo('catalog', {async: true}),
   scores: hasMany('score', {async: true}),
   permissions: attr(),
 
