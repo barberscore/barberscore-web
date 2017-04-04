@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  searchTask: task(function* (term){
+  searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
       'nomen__icontains': term,
@@ -13,10 +13,14 @@ export default Ember.Controller.extend({
   }),
   openModal: false,
   partOptions: [
+    'Tenor',
+    'Lead',
+    'Baritone',
+    'Bass',
     'Director',
   ],
   sortedMembershipsProperties: [
-    'status:desc',
+    'nomen',
     'partSort',
   ],
   sortedMemberships: Ember.computed.sort(
@@ -36,7 +40,7 @@ export default Ember.Controller.extend({
         this.set('part', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('admin.chorus-manager.chorus.members');
+        this.transitionToRoute('admin.quartet-manager.quartet.members');
       })
       .catch(() => {
         membership.deleteRecord();
@@ -47,6 +51,15 @@ export default Ember.Controller.extend({
       this.set('person', null);
       this.set('part', null);
       this.set('openModal', false);
+    },
+    deleteMembership(membership) {
+      membership.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+      })
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
+      });
     },
   }
 });

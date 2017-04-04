@@ -4,28 +4,34 @@
       <thead>
         <tr>
           <th class='col-md-6'>Title</th>
+          <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
+          <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
+          <th {{action "sortBy" "is_medley"}}>Medley</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model.repertories as |repertory|}}
+        {{#each sortedRepertories as |repertory|}}
           <tr>
-            <td>
-              {{repertory.catalog.title}}
-            </td>
+            <td>{{repertory.catalog.title}}</td>
+            <td>{{repertory.catalog.bhs_id}}</td>
+            <td>{{repertory.catalog.arrangers}}</td>
+            <td>{{repertory.catalog.is_medley}}</td>
+            <td>{{fa-icon 'times-circle' click=(action 'deleteRepertory' repertory) class='text-danger'}}</td>
           </tr>
         {{/each}}
       </tbody>
     </table>
   </div>
 </section>
-{{!-- <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Member{{/bs-button}}
-</section> --}}
-{{!-- <section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Catalog to Repertory{{/bs-button}}
+</section>
+<section>
   {{#bs-modal-simple
     open=openModal
-    onHidden=(action "clearMembership")
-    title="Add Member"
+    onHidden=(action "clearRepertory")
+    title="Add Repertory"
     closeTitle="Cancel"
     submitTitle="Save"
     backdropClose=false
@@ -33,35 +39,25 @@
     {{#bs-form
       model=this
       formLayout='vertical'
-      onSubmit=(action 'createMembership')
+      onSubmit=(action 'createRepertory')
       as |form|
     }}
-      {{#form.element property='person' useIcons=false as |el|}}
+      {{#form.element property='catalog' useIcons=false as |el|}}
         {{#power-select
-          search=(perform searchTask)
+          search=(perform searchCatalog)
           selected=el.value
           renderInPlace=true
           onchange=(action (mut el.value))
-          placeholder="Search by Person Name"
+          placeholder="Search by Song Name or BHS Catalog Number"
           allowClear=true
-          as |person|
+          as |catalog|
         }}
-          Person: {{person.common_name}}
+          Song: {{catalog.nomen}}  {{#if catalog.arrangers}}(arr. {{catalog.arrangers}}){{/if}}
         {{/power-select}}
       {{/form.element}}
-      {{#form.element property='part' useIcons=false as |el|}}
-        {{#power-select
-          options=partOptions
-          renderInPlace=true
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Part"
-          allowClear=true
-          as |part|
-        }}
-          {{part}}
-        {{/power-select}}
-      {{/form.element}}
+        <p>
+          <strong>NOTE:&nbsp;</strong><small>If you can't find your song then cancel this and add it through the catalog manager first.</small>
+        </p>
     {{/bs-form}}
   {{/bs-modal-simple}}
-</section> --}}
+</section>

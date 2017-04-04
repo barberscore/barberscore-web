@@ -89,7 +89,9 @@
     </div>
   </div>
   <div>
-  <caption>Awards</caption>
+    <p>
+      Please select the Contests in which you wish to compete:
+    </p>
     {{multiselect-checkboxes
       options=contestOptions
       labelProperty='awardName'
@@ -99,7 +101,8 @@
       onchange=(action "updateSelection")
     }}
   </div>
-  <div class='table-responsive'>
+</section>
+{{!--   <div class='table-responsive'>
     <table class='table'>
       <caption>Song Submissions</caption>
       <thead>
@@ -177,4 +180,4 @@
       {{form.element controlType='tel' placeholder='BHS ID (if known)' property='bhs_id'}}
     {{/bs-form}}
   {{/bs-modal-simple}}
-</section>
+</section> --}}

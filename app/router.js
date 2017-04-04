@@ -54,9 +54,11 @@ Router.map(function() {
     this.route('chorus-manager', {path: 'chorus-manager'}, function() {
       this.route('chorus', { path: ':entity_id'}, function() {
         this.route('details', { path: 'details'});
-        this.route('members', { path: 'members'});
         this.route('registrations', { path: 'registrations'}, function() {
           this.route('registration', { path: ':performer_id'});
+        });
+        this.route('members', { path: 'members'}, function() {
+          this.route('member', { path: ':membership_id'});
         });
         this.route('repertories', { path: 'repertories'});
       });
