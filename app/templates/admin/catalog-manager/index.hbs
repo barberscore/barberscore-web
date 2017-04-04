@@ -19,14 +19,14 @@
       <caption>Current Catalog</caption>
       <thead>
         <tr>
-          <th {{action "sortBy" "title"}}>Title</th>
-          <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
-          <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
-          <th {{action "sortBy" "gender"}}>Gender</th>
+          <th class='col-md-6'>Title</th>
+          <th class='col-md-1'>BHS ID</th>
+          <th class='col-md-5'>Arranger(s)</th>
+          {{!-- <th {{action "sortBy" "gender"}}>Gender</th> --}}
           {{!-- <th {{action "sortBy" "voicing"}}>Voicing</th> --}}
-          <th {{action "sortBy" "difficulty"}}>Difficulty</th>
-          <th {{action "sortBy" "tempo"}}>Tempo</th>
-          <th {{action "sortBy" "is_medley"}}>Medley</th>
+          {{!-- <th {{action "sortBy" "difficulty"}}>Difficulty</th> --}}
+          {{!-- <th {{action "sortBy" "tempo"}}>Tempo</th> --}}
+          {{!-- <th {{action "sortBy" "is_medley"}}>Medley</th> --}}
         </tr>
       </thead>
       <tbody>
@@ -35,10 +35,10 @@
             <td>{{#link-to 'admin.catalog-manager.catalog.details' catalog}}{{catalog.title}}{{/link-to}}</td>
             <td>{{catalog.bhs_id}}</td>
             <td>{{catalog.arrangers}}</td>
-            <td>{{catalog.gender}}</td>
-            <td>{{catalog.difficulty}}</td>
-            <td>{{catalog.tempo}}</td>
-            <td>{{catalog.is_medley}}</td>
+            {{!-- <td>{{catalog.gender}}</td> --}}
+            {{!-- <td>{{catalog.difficulty}}</td> --}}
+            {{!-- <td>{{catalog.tempo}}</td> --}}
+            {{!-- <td>{{catalog.is_medley}}</td> --}}
           </tr>
         {{else}}
           <tr>
