@@ -139,10 +139,14 @@ export default Model.extend({
       return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
     }
   ),
-  selCons: computed(
+  contestsArray: computed(
     'contestants.@each.contest', function() {
-      return this.get('contestants').mapBy('contest');
+      return this.get('contestants');
   }),
+  selectedContests: computed.mapBy(
+    'contestsArray',
+    'contest.id'
+  ),
   numSubmissions: computed(
     'submissions.length', function() {
       return this.get('submissions.length');

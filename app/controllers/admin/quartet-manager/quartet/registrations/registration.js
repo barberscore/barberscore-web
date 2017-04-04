@@ -101,8 +101,9 @@ export default Ember.Controller.extend({
     },
     updateSelection(newSelection, value, operation) {
       if (operation==='added') {
+        let contest = this.get('store').peekRecord('contest', value);
         let contestant = this.get('model.contestants').createRecord({
-          contest: value
+          contest: contest
         });
         contestant.save()
         .then(() => {
@@ -111,7 +112,7 @@ export default Ember.Controller.extend({
           this.get('flashMessages').danger('Error');
         });
       } else { //operation === removed
-        let contestant = this.get('model.contestants').findBy('contest.id', value.get('id'));
+        let contestant = this.get('model.contestants').findBy('contest.id', value);
         contestant.destroyRecord()
         .then(() => {
         })
