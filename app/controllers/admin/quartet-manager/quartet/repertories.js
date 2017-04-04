@@ -13,8 +13,7 @@ export default Ember.Controller.extend({
       .then((data) => data);
   }),
   sortedRepertoriesProperties: [
-    'title',
-    'bhs_id',
+    'nomen',
   ],
   sortedRepertories: Ember.computed.sort(
     'model.repertories',

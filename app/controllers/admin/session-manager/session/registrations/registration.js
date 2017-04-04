@@ -28,12 +28,12 @@ export default Ember.Controller.extend({
     'model.session.performers',
     'performerSortProperties'
   ),
-  submissionSortProperties: [
-    'title',
+  sortedRepertoriesProperties: [
+    'nomen',
   ],
-  sortedSubmissions: Ember.computed.sort(
-    'model.submissions',
-    'submissionSortProperties'
+  sortedRepertories: Ember.computed.sort(
+    'model.entity.repertories',
+    'sortedRepertoriesProperties'
   ),
   contestSortProperties: [
     'nomen',

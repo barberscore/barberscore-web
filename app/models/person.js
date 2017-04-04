@@ -9,6 +9,7 @@ export default Model.extend({
   status: attr('person-status'),
   start_date: attr('isodate'),
   finish_date: attr('isodate'),
+  bhs_id: attr('number'),
   location: attr('string', {defaultValue:''}),
   website: attr('string', {defaultValue:''}),
   facebook: attr('string', {defaultValue:''}),

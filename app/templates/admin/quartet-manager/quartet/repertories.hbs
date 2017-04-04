@@ -7,17 +7,17 @@
           <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
           <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
           <th {{action "sortBy" "is_medley"}}>Medley</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
-            <td>
-              {{#link-to 'admin.catalog-manager.catalog.details' repertory.catalog}}{{repertory.catalog.title}}{{/link-to}}
-            </td>
+            <td>{{repertory.catalog.title}}</td>
             <td>{{repertory.catalog.bhs_id}}</td>
             <td>{{repertory.catalog.arrangers}}</td>
             <td>{{repertory.catalog.is_medley}}</td>
+            <td>{{fa-icon 'times-circle' click=(action 'deleteRepertory' repertory) class='text-danger'}}</td>
           </tr>
         {{/each}}
       </tbody>
