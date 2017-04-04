@@ -1,53 +1,33 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   queryParams: [
-    'kind',
+    'page_size',
   ],
-  kind: null,
-  // kind: Ember.computed(
-  //   'kindOut',
-  //   function(){
-  //     let k = this.get('kindOut');
-  //     console.log(k);
-  //     let map = {
-  //       'Organization': 1,
-  //       'District': 11,
-  //       'Noncompetitive': 12,
-  //       'Affiliate': 13,
-  //       'Division': 21,
-  //       'Quartet': 31,
-  //       'Chorus': 32,
-  //       'Very Large Quartet': 33,
-  //     };
-  //     return map[k];
-  //   }
-  // ),
+  page_size: 100,
   sortProperties: [
-    'name',
-    'kind',
-    'status',
+    'title',
+    'bhs_id',
   ],
   sortedItems: Ember.computed.sort(
     'model',
     'sortProperties'
   ),
-  // kindOptions: [
-  //   'Organization',
-  //   'District',
-  //   'Noncompetitive',
-  //   'Affiliate',
-  //   'Division',
-  //   'Quartet',
-  //   'Chorus',
-  //   'Very Large Quartet',
-  // ],
-  kindOptions: [
-    1,11,32
-  ],
+  searchCatalog: task(function* (term){
+    yield timeout(600);
+    return this.get('store').query('catalog', {
+      'nomen__icontains': term,
+      'page_size': 1000
+      })
+      .then((data) => data);
+  }),
   actions: {
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
+    },
+    transitionCatalog(catalog) {
+      this.transitionToRoute('admin.catalog-manager.catalog.details', catalog);
     },
   }
 });

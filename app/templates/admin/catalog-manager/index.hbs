@@ -3,15 +3,14 @@
 </section>
 <section>
   {{#power-select
-    options=kindOptions
-    selected=kind
-    onchange=(action (mut kind))
-    placeholder="Kind Filter"
-    disabled=isDisabled
+    search=(perform searchCatalog)
+    selected=catalog
+    onchange=(action "transitionCatalog")
+    placeholder="Search Catalog"
     allowClear=true
-    as |kind|
+    as |catalog|
   }}
-    Kind: {{kind-transform kind}}
+    Title: {{catalog.nomen}}  {{#if catalog.arrangers}}(arr. {{catalog.arrangers}}){{/if}}
   {{/power-select}}
 </section>
 <section>
@@ -21,14 +20,25 @@
       <thead>
         <tr>
           <th {{action "sortBy" "title"}}>Title</th>
-          <th {{action "sortBy" "status"}}>Status</th>
+          <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
+          <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
+          <th {{action "sortBy" "gender"}}>Gender</th>
+          {{!-- <th {{action "sortBy" "voicing"}}>Voicing</th> --}}
+          <th {{action "sortBy" "difficulty"}}>Difficulty</th>
+          <th {{action "sortBy" "tempo"}}>Tempo</th>
+          <th {{action "sortBy" "is_medley"}}>Medley</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedItems as |catalog|}}
           <tr>
             <td>{{#link-to 'admin.catalog-manager.catalog.details' catalog}}{{catalog.title}}{{/link-to}}</td>
-            <td>{{catalog.status}}</td>
+            <td>{{catalog.bhs_id}}</td>
+            <td>{{catalog.arrangers}}</td>
+            <td>{{catalog.gender}}</td>
+            <td>{{catalog.difficulty}}</td>
+            <td>{{catalog.tempo}}</td>
+            <td>{{catalog.is_medley}}</td>
           </tr>
         {{else}}
           <tr>
