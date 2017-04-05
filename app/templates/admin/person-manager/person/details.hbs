@@ -3,7 +3,7 @@
     {{#bs-form formLayout='vertical' model=model onSubmit=(action 'savePerson') as |form|}}
       {{#form.element}}
         {{file-upload disabled=isDisabled resource='person' target=model.id}}
-        {{/form.element}}
+      {{/form.element}}
       {{form.element controlType='text' disabled=isDisabled placeholder='Person Name' property='name'}}
       {{#form.element property='representing' useIcons=false as |el|}}
         {{#power-select

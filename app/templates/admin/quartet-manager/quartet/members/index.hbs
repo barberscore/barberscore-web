@@ -3,7 +3,8 @@
     <table class='table'>
       <thead>
         <tr>
-          <th class='col-md-6'>Person</th>
+          <th class='col-md-1'></th>
+          <th class='col-md-2'>Person</th>
           <th class='col-md-2'>Part</th>
           <th class='col-md-2'>Start</th>
           <th class='col-md-2'>End</th>
@@ -13,6 +14,13 @@
       <tbody>
         {{#each sortedMemberships as |membership|}}
           <tr>
+            <td class='img-responsive'>
+              {{#if membership.person.picture}}
+                <img src={{membership.person.picture}} class='img-responsive img-rounded'>
+              {{else}}
+                <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+              {{/if}}
+            </td>
             <td>
               {{#link-to 'admin.quartet-manager.quartet.members.member' membership}}{{membership.person.common_name}}{{/link-to}}
             </td>

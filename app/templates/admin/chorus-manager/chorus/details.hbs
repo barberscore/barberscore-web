@@ -5,6 +5,9 @@
     onSubmit=(action 'saveChorus')
     as |form|
   }}
+    {{#form.element}}
+      {{file-upload disabled=isDisabled resource='entity' target=model.id}}
+    {{/form.element}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Chorus Name' property='name'}}
     {{#form.element property='parent' useIcons=false as |el|}}
         {{#power-select
