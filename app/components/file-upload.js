@@ -17,7 +17,7 @@ export default EmberUploader.FileField.extend({
     if (!Ember.isEmpty(files)) {
       uploader.upload(files[0]);
     }
-    uploader.on('didUpload', e => {
+    uploader.on('didUpload', () => {
         this.get('flashMessages').success('Uploaded - CLICK SAVE TO SEE NEW IMAGE', {
           timeout: 7000,
         });
