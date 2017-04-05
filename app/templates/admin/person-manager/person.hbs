@@ -4,6 +4,15 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
+      <div class='row'>
+        <div class='col-md-2'>
+          {{#if model.picture}}
+            <img src={{model.picture}} class='img-responsive img-rounded'>
+          {{else}}
+            <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+          {{/if}}
+        </div>
+      </div>
       <h4>
         {{model.name}}
       </h4>
