@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
   }),
   sessionCall: Ember.computed(function() {
     return this.get('store').query('session', {
-        'status': 4
+        'convention__status': 4
       });
     // }).then((data) => {
     //   sessions.addObjects(data);

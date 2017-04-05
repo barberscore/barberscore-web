@@ -23,6 +23,12 @@
                   {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
                 </td>
               </tr>
+            {{else}}
+              <tr>
+                <td>
+                  (No current registrations.)
+                </td>
+              </tr>
             {{/each}}
           </tbody>
         </table>
