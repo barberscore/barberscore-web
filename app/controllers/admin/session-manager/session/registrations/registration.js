@@ -36,7 +36,11 @@ export default Ember.Controller.extend({
     'sortedRepertoriesProperties'
   ),
   contestSortProperties: [
-    'nomen',
+    'entityKindSort',
+    'awardQualifier',
+    'awardPrimary:desc',
+    'awardAgeSort',
+    'awardName',
   ],
   contestOptions: Ember.computed.sort(
     'model.session.contests',

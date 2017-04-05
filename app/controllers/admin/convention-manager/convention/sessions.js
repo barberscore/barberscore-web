@@ -38,16 +38,23 @@ export default Ember.Controller.extend({
     // TODO This is hack-central
     let awards = [];
     let season = {
-      'International': 1,
+      'Summer': 1,
       'Midwinter': 2,
       'Fall': 3,
       'Spring': 4,
       'Video': 9,
     };
+    let int_qual = 'true';
+    if (
+      (this.get('model.season') === 'Summer') || (this.get('model.season') === 'Midwinter')
+    ) {
+      int_qual = 'false';
+    }
+
     this.get('store').query('award', {
         'entity__name': 'International',
         'entity__kind': 1,
-        'is_qualifier': 'true',
+        'is_qualifier': int_qual,
         'page_size':100,
     }).then((data) => {
       awards.addObjects(data);
@@ -76,8 +83,11 @@ export default Ember.Controller.extend({
     }
   ),
   awardSortProperties: [
-    'entitySort',
-    'name:asc',
+    'entityKindSort',
+    'is_qualifier',
+    'is_primary:desc',
+    'ageSort',
+    'name',
   ],
   awardOptions: Ember.computed.sort(
     'awardFilter',

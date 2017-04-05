@@ -52,12 +52,11 @@ export default Model.extend({
     // 'Collegiate',
   ],
 
-  entitySort: Ember.computed(
+  entityKindSort: Ember.computed(
     'kind',
     'kindOptions',
-    'name',
     function() {
-      return this.get('kindOptions').indexOf(this.get('kind')) + " " + this.get('name');
+      return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
 });

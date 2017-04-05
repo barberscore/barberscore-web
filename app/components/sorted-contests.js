@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   sortedContestsProperties: [
-    'entitySort',
+    'entityKindSort',
     'kind',
     'nomen',
   ],

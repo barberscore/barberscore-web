@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   sortProperties: [
-    'entitySort:asc',
+    'entityKindSort:asc',
     'name',
   ],
   sortedItems: Ember.computed.sort(
@@ -37,13 +37,13 @@ export default Ember.Controller.extend({
       'page_size': 100,
     });
   }),
-  entitySortProperties: [
+  entityKindSortProperties: [
     'kindSort:asc',
     'name:asc',
   ],
   entityOptions: Ember.computed.sort(
     'entityCall',
-    'entitySortProperties'
+    'entityKindSortProperties'
   ),
 
   actions: {

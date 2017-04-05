@@ -42,13 +42,13 @@ export default Ember.Controller.extend({
       'page_size': 100,
     });
   }),
-  entitySortProperties: [
+  entityKindSortProperties: [
     'kindSort:asc',
     'name:asc',
   ],
   entityOptions: Ember.computed.sort(
     'entityCall',
-    'entitySortProperties'
+    'entityKindSortProperties'
   ),
   riserOptions: [
     0,3,4,5,6,7,8,9,10,11,12,13

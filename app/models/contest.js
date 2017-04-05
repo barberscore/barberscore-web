@@ -34,12 +34,9 @@ export default Model.extend({
     'Qualifier',
   ],
 
-  entitySort: Ember.computed(
-    'award.entity.entitySort',
-    function() {
-      return this.get('award.entity.entitySort');
-    }
-  ),
+  entityKindSort: Ember.computed.alias('award.entity.entityKindSort'),
+  awardQualifier: Ember.computed.alias('award.is_qualifier'),
+  awardPrimary: Ember.computed.alias('award.is_primary'),
+  awardAgeSort: Ember.computed.alias('award.ageSort'),
   awardName: Ember.computed.alias('award.name'),
-
 });

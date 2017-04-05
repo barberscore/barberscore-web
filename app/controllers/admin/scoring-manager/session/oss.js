@@ -12,7 +12,13 @@ export default Ember.Controller.extend({
     'model.performers',
     'performerSortProperties'
   ),
-  contestSortProperties: ['name:asc',],
+  contestSortProperties: [
+    'entityKindSort',
+    'awardQualifier',
+    'awardPrimary:desc',
+    'awardAgeSort',
+    'awardName',
+  ],
   championshipContests: Ember.computed.filterBy(
     'model.contests',
     'is_qualifier',

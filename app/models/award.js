@@ -38,6 +38,13 @@ export default Model.extend({
     'Collegiate',
     'Youth',
   ],
+
+  ageOptions: [
+    'Seniors',
+    'Youth',
+    'Collegiate',
+  ],
+
   seasonOptions: [
     'Summer',
     'Midwinter',
@@ -52,10 +59,24 @@ export default Model.extend({
     'Plateau 1',
   ],
 
-  entitySort: Ember.computed(
-    'entity.entitySort',
+  entityKindSort: Ember.computed(
+    'entity.entityKindSort',
     function() {
-      return this.get('entity.entitySort');
+      return this.get('entity.entityKindSort');
+    }
+  ),
+  kindSort: Ember.computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+  ageSort: Ember.computed(
+    'age',
+    'ageOptions',
+    function() {
+      return this.get('ageOptions').indexOf(this.get('age'));
     }
   ),
 });
