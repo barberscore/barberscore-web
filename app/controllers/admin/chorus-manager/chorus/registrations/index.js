@@ -68,6 +68,14 @@ export default Ember.Controller.extend({
   }),
   is_evaluation: true,
   is_private: false,
+
+  sortedPerformersProperties: [
+    'nomen:asc',
+  ],
+  sortedPerformers: Ember.computed.sort(
+    'model.performers',
+    'sortedPerformersProperties'
+  ),
   actions: {
     createPerformer(){
       let performer = this.get('store').createRecord('performer', {

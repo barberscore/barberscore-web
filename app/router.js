@@ -48,7 +48,11 @@ Router.map(function() {
         this.route('members', { path: 'members'}, function() {
           this.route('member', { path: ':membership_id'});
         });
-        this.route('repertories', { path: 'repertories'});
+        this.route('officers', { path: 'officers'}, function() {
+          this.route('officer', { path: ':officer_id'});
+        });
+        this.route('repertories', { path: 'repertories'}, function() {
+        });
       });
     });
     this.route('chorus-manager', {path: 'chorus-manager'}, function() {
@@ -60,7 +64,12 @@ Router.map(function() {
         this.route('members', { path: 'members'}, function() {
           this.route('member', { path: ':membership_id'});
         });
-        this.route('repertories', { path: 'repertories'});
+        this.route('officers', { path: 'officers'}, function() {
+          this.route('officer', { path: ':officer_id'});
+        });
+        this.route('repertories', { path: 'repertories'}, function() {
+          this.route('repertory', { path: ':repertory_id'});
+        });
       });
     });
     this.route('award-manager', {path: 'award-manager'}, function() {

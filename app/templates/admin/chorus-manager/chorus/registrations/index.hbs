@@ -11,7 +11,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.performers as |performer|}}
+            {{#each sortedPerformers as |performer|}}
               <tr>
                 <td>
                   {{#link-to 'admin.chorus-manager.chorus.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}

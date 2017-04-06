@@ -3,21 +3,17 @@
     <table class='table'>
       <thead>
         <tr>
-          <th class='col-md-6'>Person</th>
-          <th class='col-md-2'>Part</th>
-          <th class='col-md-2'>Start</th>
-          <th class='col-md-2'>End</th>
-          <th class='col-md-1'>Delete</th>
+          <th>Person</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Delete</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedMemberships as |membership|}}
           <tr>
             <td>
-              {{#link-to 'admin.quartet-manager.quartet.members.member' membership}}{{membership.person.common_name}}{{/link-to}}
-            </td>
-            <td>
-              {{membership.part}}
+              {{#link-to 'admin.chorus-manager.chorus.members.member' membership}}{{membership.person.common_name}}{{/link-to}}
             </td>
             <td>
               {{moment-format membership.start_date 'LL'}}
@@ -63,19 +59,6 @@
           as |person|
         }}
           Person: {{person.common_name}}&nbsp;{{#if person.bhs_id}}[{{person.bhs_id}}]&nbsp;{{/if}}{{person.location}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='part' useIcons=false as |el|}}
-        {{#power-select
-          options=partOptions
-          renderInPlace=true
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Part"
-          allowClear=true
-          as |part|
-        }}
-          {{part}}
         {{/power-select}}
       {{/form.element}}
     {{/bs-form}}
