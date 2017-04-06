@@ -32,6 +32,16 @@ export default Ember.Controller.extend({
     return this.get('store').query('award', {'nomen__icontains': term})
       .then((data) => data);
   }),
+  isPrevDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.firstObject');
+  }),
+  isNextDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.lastObject');
+  }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

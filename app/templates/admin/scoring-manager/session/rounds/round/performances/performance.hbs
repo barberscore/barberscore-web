@@ -3,8 +3,8 @@
     <div class='panel-heading'>
       <h4>Appearance: {{model.status}}</h4>
       <ul class='list-inline'>
-        <li>{{#bs-button onClick=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button onClick=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' sortedItems model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' sortedItems model)}}Next{{/bs-button}}</li>
       </ul>
     </div>
     <div class='panel-body'>

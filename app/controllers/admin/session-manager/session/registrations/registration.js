@@ -68,6 +68,16 @@ export default Ember.Controller.extend({
     'representingCall',
     'representingSortProperties'
   ),
+  isPrevDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.firstObject');
+  }),
+  isNextDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.lastObject');
+  }),
   actions: {
     populateSubmission(catalog) {
       this.set('catalog', catalog);
