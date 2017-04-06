@@ -136,6 +136,19 @@
           {{#bg.button type='default' value=true}}Qualifier{{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
+      {{#form.element property='parent' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=awardOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="If Qualifier, Choose Award that Qualification is For"
+          allowClear=true
+          as |parent|
+        }}
+          Qualification For: {{parent.name}}
+        {{/power-select}}
+      {{/form.element}}
     {{/bs-form}}
   {{/bs-modal-simple}}
 </section>

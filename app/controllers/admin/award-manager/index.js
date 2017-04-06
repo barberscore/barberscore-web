@@ -30,6 +30,15 @@ export default Ember.Controller.extend({
     3,
   ],
 
+  awardOptionsProperties: [
+    'nomen',
+  ],
+
+  awardOptions: Ember.computed.sort(
+    'entity.parent.awards',
+    'sortProperties'
+  ),
+
   openModal: false,
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
@@ -58,6 +67,7 @@ export default Ember.Controller.extend({
         rounds: this.get('rounds'),
         is_qualifier: this.get('is_qualifier'),
         entity: this.get('entity'),
+        parent: this.get('parent'),
       });
       award.save()
       .then(() => {
@@ -68,6 +78,7 @@ export default Ember.Controller.extend({
         this.set('rounds', null);
         this.set('is_qualifier', null);
         this.set('entity', null);
+        this.set('parent', null);
         this.set('openModal', false);
         this.transitionToRoute('admin.award-manager.award.details', award);
       })
@@ -83,6 +94,7 @@ export default Ember.Controller.extend({
         this.set('rounds', null);
         this.set('is_qualifier', null);
         this.set('entity', null);
+        this.set('parent', null);
       this.set('openModal', false);
     },
     deleteAward(award){
