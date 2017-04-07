@@ -11,22 +11,22 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedMemberships as |membership|}}
+        {{#each sortedMembers as |member|}}
           <tr>
             <td>
-              {{#link-to 'dashboard.chorus-manager.chorus.members.member' membership}}{{membership.person.common_name}}{{/link-to}}
+              {{#link-to 'dashboard.chorus-manager.chorus.members.member' member}}{{member.person.common_name}}{{/link-to}}
             </td>
             <td>
-              {{membership.status}}
+              {{member.status}}
             </td>
             <td>
-              {{moment-format membership.start_date 'LL'}}
+              {{moment-format member.start_date 'LL'}}
             </td>
             <td>
-              {{moment-format membership.end_date 'LL'}}
+              {{moment-format member.end_date 'LL'}}
             </td>
             <td>
-              {{fa-icon 'times-circle' click=(action 'deleteMembership' membership) class='text-danger'}}
+              {{fa-icon 'times-circle' click=(action 'deleteMember' member) class='text-danger'}}
             </td>
           </tr>
         {{/each}}
@@ -40,7 +40,7 @@
 <section>
   {{#bs-modal-simple
     open=openModal
-    onHidden=(action "clearMembership")
+    onHidden=(action "clearMember")
     title="Add Member"
     closeTitle="Cancel"
     submitTitle="Save"
@@ -49,7 +49,7 @@
     {{#bs-form
       model=this
       formLayout='vertical'
-      onSubmit=(action 'createMembership')
+      onSubmit=(action 'createMember')
       as |form|
     }}
       {{#form.element property='person' useIcons=false as |el|}}

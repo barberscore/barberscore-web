@@ -46,7 +46,7 @@ Router.map(function() {
           this.route('registration', { path: ':performer_id'});
         });
         this.route('members', { path: 'members'}, function() {
-          this.route('member', { path: ':membership_id'});
+          this.route('member', { path: ':member_id'});
         });
         this.route('officers', { path: 'officers'}, function() {
           this.route('officer', { path: ':officer_id'});
@@ -62,7 +62,7 @@ Router.map(function() {
           this.route('registration', { path: ':performer_id'});
         });
         this.route('members', { path: 'members'}, function() {
-          this.route('member', { path: ':membership_id'});
+          this.route('member', { path: ':member_id'});
         });
         this.route('officers', { path: 'officers'}, function() {
           this.route('officer', { path: ':officer_id'});

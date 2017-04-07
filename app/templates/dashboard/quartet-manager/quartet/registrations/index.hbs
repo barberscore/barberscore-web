@@ -107,9 +107,9 @@
             placeholder="Enter Tenor Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |member|
           }}
-            Tenor: {{membership.person.common_name}}
+            Tenor: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='lead' useIcons=false as |el|}}
@@ -120,9 +120,9 @@
             placeholder="Enter Lead Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |member|
           }}
-            Lead: {{membership.person.common_name}}
+            Lead: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='baritone' useIcons=false as |el|}}
@@ -133,9 +133,9 @@
             placeholder="Enter Baritone Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |member|
           }}
-            Baritone: {{membership.person.common_name}}
+            Baritone: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='bass' useIcons=false as |el|}}
@@ -146,9 +146,9 @@
             placeholder="Enter Bass Name"
             allowClear=true
             renderInPlace=true
-            as |membership|
+            as |member|
           }}
-            Bass: {{membership.person.common_name}}
+            Bass: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
     {{/bs-form}}

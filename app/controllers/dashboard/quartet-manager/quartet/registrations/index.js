@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
       .then((data) => data);
   }),
   activeMembers: Ember.computed.filterBy(
-    'model.memberships',
+    'model.members',
     'status',
     'Active'
   ),

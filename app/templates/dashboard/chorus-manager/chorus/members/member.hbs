@@ -10,7 +10,7 @@
         {{#bs-form
           formLayout="vertical"
           model=model
-          onSubmit=(action "saveMembership")
+          onSubmit=(action "saveMember")
           as |form|
         }}
           {{#form.element property='person' useIcons=false as |el|}}
@@ -45,7 +45,7 @@
                     date=el.value
                     format='YYYY-MM-DD'
                     updateDate=(action (mut el.value))
-                    placeholder="Membership Start Date"
+                    placeholder="Member Start Date"
                     disabled=isDisabled
                   }}
                 {{/form.element}}
@@ -56,7 +56,7 @@
                     date=el.value
                     format='YYYY-MM-DD'
                     updateDate=(action (mut el.value))
-                    placeholder="Membership End Date"
+                    placeholder="Member End Date"
                     clearBtn=true
                     disabled=isDisabled
                   }}
@@ -64,11 +64,11 @@
               </div>
             </div>
           {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelMembership')}}Cancel{{/bs-button}}
+              {{#bs-button onClick=(action 'cancelMember')}}Cancel{{/bs-button}}
               {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deleteMembership') class='pull-right btn-danger'}}Delete{{/bs-button}}
+              {{#bs-button onClick=(action 'deleteMember') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button onClick=(action 'editMembership')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editMember')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>

@@ -19,22 +19,22 @@ export default Ember.Controller.extend({
     'Bass',
     'Director',
   ],
-  sortedMembershipsProperties: [
+  sortedMembersProperties: [
     'statusSort',
     'partSort',
   ],
-  sortedMemberships: Ember.computed.sort(
-    'model.memberships',
-    'sortedMembershipsProperties'
+  sortedMembers: Ember.computed.sort(
+    'model.members',
+    'sortedMembersProperties'
   ),
   actions: {
-    createMembership(){
-      let membership = this.get('store').createRecord('membership', {
+    createMember(){
+      let member = this.get('store').createRecord('member', {
         entity: this.get('model'),
         person: this.get('person'),
         part: this.get('part'),
       });
-      membership.save()
+      member.save()
       .then(() => {
         this.set('person', null);
         this.set('part', null);
@@ -43,17 +43,17 @@ export default Ember.Controller.extend({
         this.transitionToRoute('dashboard.quartet-manager.quartet.members');
       })
       .catch(() => {
-        membership.deleteRecord();
+        member.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearMembership() {
+    clearMember() {
       this.set('person', null);
       this.set('part', null);
       this.set('openModal', false);
     },
-    deleteMembership(membership) {
-      membership.destroyRecord()
+    deleteMember(member) {
+      member.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

@@ -5,8 +5,8 @@ import {belongsTo} from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('membership-status'),
-  part: attr('membership-part'),
+  status: attr('member-status'),
+  part: attr('member-part'),
   start_date: attr('isodate'),
   end_date: attr('isodate'),
   entity: belongsTo('entity', {async: true}),

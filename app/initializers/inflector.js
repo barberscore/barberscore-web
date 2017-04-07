@@ -10,7 +10,7 @@ export function initialize(/* application */) {
   inflector.uncountable('contestprivate');
   inflector.uncountable('convention');
   inflector.uncountable('entity');
-  inflector.uncountable('membership');
+  inflector.uncountable('member');
   inflector.uncountable('office');
   inflector.uncountable('officer');
   inflector.uncountable('performance');

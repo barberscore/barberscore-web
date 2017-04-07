@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   flashMessage: Ember.get(this, 'flashMessages'),
   representingFilter: Ember.computed.filterBy(
-    'model.memberships',
+    'model.members',
     'entityKind',
     'Chorus'
   ),
@@ -14,14 +14,14 @@ export default Ember.Controller.extend({
     'entity'
   ),
   actions: {
-    editMembership() {
+    editMember() {
       this.set('isEditing', true);
     },
-    cancelMembership() {
+    cancelMember() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deleteMembership() {
+    deleteMember() {
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    saveMembership() {
+    saveMember() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);

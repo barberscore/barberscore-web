@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   flashMessage: Ember.get(this, 'flashMessages'),
   representingFilter: Ember.computed.filterBy(
-    'model.memberships',
+    'model.members',
     'entityKind',
     'Chorus'
   ),

@@ -26,7 +26,7 @@ export default Model.extend({
   nick_name: attr('string'),
   representing: belongsTo('entity', {async: true}),
   officers: hasMany('officer', {async: true}),
-  memberships: hasMany('membership', {async: true}),
+  members: hasMany('member', {async: true}),
   assignments: hasMany('assignment', {async: true}),
   user: belongsTo('user', {async: true}),
   permissions: attr(),

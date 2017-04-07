@@ -28,7 +28,7 @@ export default Model.extend({
   performers: hasMany('performer', {inverse: 'entity', async: true}),
   awards: hasMany('award', {async: true}),
   repertories: hasMany('repertory', {async: true}),
-  memberships: hasMany('membership', {async: true}),
+  members: hasMany('member', {async: true}),
   conventions: hasMany('convention', {async: true}),
   officers: hasMany('officer', {async: true}),
   permissions: attr(),
