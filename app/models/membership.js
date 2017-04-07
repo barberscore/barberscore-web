@@ -17,6 +17,13 @@ export default Model.extend({
     'Active',
     'Inactive',
   ],
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
   partOptions: [
     'Tenor',
     'Lead',

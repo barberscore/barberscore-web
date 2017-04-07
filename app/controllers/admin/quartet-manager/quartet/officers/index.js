@@ -19,41 +19,56 @@ export default Ember.Controller.extend({
     'Bass',
     'Director',
   ],
-  sortedMembershipsProperties: [
-    'statusSort',
+  sortedOfficersProperties: [
+    'nomen',
     'partSort',
   ],
-  sortedMemberships: Ember.computed.sort(
-    'model.memberships',
-    'sortedMembershipsProperties'
+  sortedOfficers: Ember.computed.sort(
+    'model.officers',
+    'sortedOfficersProperties'
+  ),
+  officeCall: Ember.computed(function() {
+    return this.get('store').query('office', {
+      'kind': 32, //TODO Hardcoded
+      // 'judges__status': 1,
+      // 'judges__kind': 40,
+      'page_size': 1000,
+    });
+  }),
+  officeOptionsProperties: [
+    'name:asc',
+  ],
+  officeOptions: Ember.computed.sort(
+    'officeCall',
+    'officeOptionsProperties'
   ),
   actions: {
-    createMembership(){
-      let membership = this.get('store').createRecord('membership', {
+    createOfficer(){
+      let officer = this.get('store').createRecord('officer', {
         entity: this.get('model'),
         person: this.get('person'),
-        part: this.get('part'),
+        office: this.get('office'),
       });
-      membership.save()
+      officer.save()
       .then(() => {
         this.set('person', null);
-        this.set('part', null);
+        this.set('office', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('admin.quartet-manager.quartet.members');
+        this.transitionToRoute('admin.quartet-manager.quartet.officers');
       })
       .catch(() => {
-        membership.deleteRecord();
+        officer.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearMembership() {
+    clearOfficer() {
       this.set('person', null);
-      this.set('part', null);
+      this.set('office', null);
       this.set('openModal', false);
     },
-    deleteMembership(membership) {
-      membership.destroyRecord()
+    deleteOfficer(officer) {
+      officer.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

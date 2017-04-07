@@ -6,6 +6,7 @@
           <th class='col-md-1'></th>
           <th class='col-md-2'>Person</th>
           <th class='col-md-2'>Part</th>
+          <th class='col-md-2'>Status</th>
           <th class='col-md-2'>Start</th>
           <th class='col-md-2'>End</th>
           <th class='col-md-1'>Delete</th>
@@ -26,6 +27,9 @@
             </td>
             <td>
               {{membership.part}}
+            </td>
+            <td>
+              {{membership.status}}
             </td>
             <td>
               {{moment-format membership.start_date 'LL'}}

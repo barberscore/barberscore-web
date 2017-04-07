@@ -4,6 +4,7 @@
       <thead>
         <tr>
           <th>Person</th>
+          <th>Status</th>
           <th>Start</th>
           <th>End</th>
           <th>Delete</th>
@@ -14,6 +15,9 @@
           <tr>
             <td>
               {{#link-to 'admin.chorus-manager.chorus.members.member' membership}}{{membership.person.common_name}}{{/link-to}}
+            </td>
+            <td>
+              {{membership.status}}
             </td>
             <td>
               {{moment-format membership.start_date 'LL'}}

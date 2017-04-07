@@ -6,7 +6,6 @@
           <thead>
             <tr>
               <th class='col-md-4'>Registration</th>
-              <th class='col-md-1'>Songs Submitted</th>
               <th class='col-md-1'>Delete</th>
             </tr>
           </thead>
@@ -15,9 +14,6 @@
               <tr>
                 <td>
                   {{#link-to 'admin.quartet-manager.quartet.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
-                </td>
-                <td>
-                  {{performer.numSubmissions}}
                 </td>
                 <td>
                   {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
