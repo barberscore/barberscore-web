@@ -64,8 +64,8 @@ module.exports = function(environment) {
   };
   ENV['ember-simple-auth'] = {
     authenticationRoute: 'index',
-    routeAfterAuthentication: 'admin',
-    routeIfAlreadyAuthenticated: 'admin',
+    routeAfterAuthentication: 'dashboard',
+    routeIfAlreadyAuthenticated: 'dashboard',
     auth0: {
       clientID: process.env.AUTH0_CLIENT_ID,
       domain: process.env.AUTH0_DOMAIN,

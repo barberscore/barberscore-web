@@ -1,0 +1,38 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+{{!-- <section>
+  {{#power-select
+    search=(perform searchTask)
+    selected=judge
+    onchange=(action "transitionJudge")
+    placeholder="Search by Judge Name"
+    allowClear=true
+    as |judge|
+  }}
+    {{judge.person.common_name}}
+  {{/power-select}}
+</section> --}}
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Person List</caption>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'name'}}>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |person|}}
+          <tr>
+            <td>{{#link-to 'dashboard.person-manager.person.details' person}}{{person.common_name}}{{/link-to}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>You don't exist!</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

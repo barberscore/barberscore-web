@@ -1,0 +1,99 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  {{#power-select
+    search=(perform searchCatalog)
+    selected=catalog
+    onchange=(action "transitionCatalog")
+    placeholder="Search Catalog"
+    allowClear=true
+    as |catalog|
+  }}
+    Title: {{catalog.nomen}}  {{#if catalog.arrangers}}(arr. {{catalog.arrangers}}){{/if}}
+  {{/power-select}}
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Catalog{{/bs-button}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Current Catalog</caption>
+      <thead>
+        <tr>
+          <th class='col-md-6'>Title</th>
+          <th class='col-md-1'>BHS ID</th>
+          <th class='col-md-5'>Arranger(s)</th>
+          {{!-- <th {{action "sortBy" "gender"}}>Gender</th> --}}
+          {{!-- <th {{action "sortBy" "voicing"}}>Voicing</th> --}}
+          {{!-- <th {{action "sortBy" "difficulty"}}>Difficulty</th> --}}
+          {{!-- <th {{action "sortBy" "tempo"}}>Tempo</th> --}}
+          {{!-- <th {{action "sortBy" "is_medley"}}>Medley</th> --}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedItems as |catalog|}}
+          <tr>
+            <td>{{#link-to 'dashboard.catalog-manager.catalog.details' catalog}}{{catalog.title}}{{/link-to}}</td>
+            <td>{{catalog.bhs_id}}</td>
+            <td>{{catalog.arrangers}}</td>
+            {{!-- <td>{{catalog.gender}}</td> --}}
+            {{!-- <td>{{catalog.difficulty}}</td> --}}
+            {{!-- <td>{{catalog.tempo}}</td> --}}
+            {{!-- <td>{{catalog.is_medley}}</td> --}}
+          </tr>
+        {{else}}
+          <tr>
+            <td>(None)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+<section>
+  {{page-numbers content=content}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearCatalog")
+    title="Create Catalog"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      formLayout="vertical"
+      model=this
+      onSubmit=(action "createCatalog")
+      as |form|
+    }}
+      {{form.element
+        controlType='text'
+        placeholder='Title'
+        renderInPlace=true
+        property='title'
+      }}
+      {{form.element
+        controlType='textarea'
+        placeholder='Arranger(s)'
+        renderInPlace=true
+        property='arrangers'
+      }}
+      {{form.element
+        controlType='textarea'
+        placeholder='Composer(s)/Lyricist(s)'
+        renderInPlace=true
+        property='composers'
+      }}
+      {{form.element
+        controlType='textarea'
+        placeholder='Copyright Holder(s)'
+        renderInPlace=true
+        property='holders'
+      }}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
+</section>

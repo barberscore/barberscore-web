@@ -1,0 +1,23 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.award-manager.award.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+  </div>
+</section>

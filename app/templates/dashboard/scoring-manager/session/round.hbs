@@ -1,0 +1,43 @@
+<section>
+  <div class='row'>
+    <div class='col-md-3'>
+      {{#bs-nav type="pills" justified=false stacked=true as |nav|}}
+          {{#nav.item}}
+            {{#nav.link-to 'dashboard.scoring-manager.session.round.oa' model}}OA{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'dashboard.scoring-manager.session.reports.announcement' model}}Announcements{{/nav.link-to}} --}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'dashboard.scoring-manager.session.reports.oss' model}}Official Scoring Summary{{/nav.link-to}} --}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{!-- {{#nav.link-to 'dashboard.scoring-manager.session.reports.csa' model}}Candidate Scoring Analysis{{/nav.link-to}} --}}
+          {{/nav.item}}
+      {{/bs-nav}}
+      {{!-- <section>
+        <div class='row'>
+          <div class='col-md-10'>
+            {{#power-select
+              search=(perform searchTask)
+              selected=award
+              onchange=(action (mut award))
+              placeholder="Enter Award for Contest"
+              disabled=isDisabled
+              allowClear=true
+              as |award|
+            }}
+              {{award.name}}
+            {{/power-select}}
+          </div>
+          <div class='col-md-2'>
+            {{#bs-button onClick=(action 'addContest') type='primary' size='sm'}}Add{{/bs-button}}
+          </div>
+        </div>
+      </section> --}}
+    </div>
+    <div class='col-md-9'>
+      {{outlet}}
+    </div>
+  </div>
+</section>

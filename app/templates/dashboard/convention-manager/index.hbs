@@ -1,0 +1,179 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Your Assigned Conventions&nbsp;{{!-- {{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'name'}}>Name</th>
+          <th {{action 'sortBy' 'entity'}}>Entity</th>
+          {{!-- <th {{action 'sortBy' 'kind'}}>Kind</th> --}}
+          <th {{action 'sortBy' 'season'}}>Season</th>
+          <th {{action 'sortBy' 'location'}}>Location</th>
+          <th {{action 'sortBy' 'open_date'}}>Open</th>
+          <th {{action 'sortBy' 'close_date'}}>Close</th>
+          <th {{action 'sortBy' 'start_date'}}>Start</th>
+          <th {{action 'sortBy' 'end_date'}}>End</th>
+          <th {{action 'sortBy' 'panel'}}>Panel</th>
+          <th>Risers</th>
+          <th {{action 'sortBy' 'status'}}>Status</th>
+          {{!-- <th>Actions</th> --}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedConventions as |convention|}}
+          <tr>
+            <td>{{#link-to 'dashboard.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
+            <td>{{convention.entity.short_name}}</td>
+            {{!-- <td>{{convention.kind}}</td> --}}
+            <td>{{convention.season}}</td>
+            <td>{{convention.location}}</td>
+            <td>{{moment-format convention.open_date 'L'}}</td>
+            <td>{{moment-format convention.close_date 'L'}}</td>
+            <td>{{moment-format convention.start_date 'L'}}</td>
+            <td>{{moment-format convention.end_date 'L'}}</td>
+            <td>{{convention.panel}}</td>
+            <td>{{convention.risers}}</td>
+            <td>{{convention.status}}</td>
+            {{!-- <td>{{fa-icon 'times-circle' class='text-danger'}}</td> --}}
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No conventions currently assigned to you.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+      {{!-- <tfoot>
+        <tr>
+          <td>
+          </td>
+        </tr>
+      </tfoot> --}}
+    </table>
+  </div>
+</section>
+
+{{!-- Modal --}}
+{{#bs-modal-simple
+  open=openModal
+  onHidden=(action "clearForm")
+  title="Create Convention"
+  closeTitle="Cancel"
+  submitTitle="Save"
+  backdropClose=false
+
+}}
+  {{#bs-form
+    model=this
+    formLayout='vertical'
+    onSubmit=(action 'createConvention')
+    as |form|
+  }}
+    {{form.element
+      controlType='text'
+      placeholder='Convention Name'
+      property='name'
+      disabled=isDisabled
+    }}
+    {{#form.element property='entity' useIcons=false as |el|}}
+      {{#power-select
+        renderInPlace=true
+        options=entityOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Convention Owner Entity"
+        disabled=isDisabled
+        allowClear=true
+        as |entity|
+      }}
+        Entity: {{entity.name}}
+      {{/power-select}}
+    {{/form.element}}
+    {{#form.element property='season' useIcons=false as |el|}}
+      {{#power-select
+        renderInPlace=true
+        options=seasonOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Season"
+        disabled=isDisabled
+        allowClear=true
+        as |season|
+      }}
+        Season: {{season}}
+      {{/power-select}}
+    {{/form.element}}
+    {{form.element
+      controlType='text'
+      placeholder='Location'
+      property='location'
+      disabled=isDisabled
+    }}
+    {{#form.element property='open_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Registration OpenDate"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='close_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Registration Close Date"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='start_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention Start Date"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='end_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Convention End Date"
+        disabled=isDisabled
+      }}
+    {{/form.element}}
+    {{#form.element property='panel' useIcons=false as |el|}}
+      {{#power-select
+        renderInPlace=true
+        options=panelOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Panel"
+        disabled=isDisabled
+        allowClear=true
+        as |panel|
+      }}
+        Panel: {{panel}}
+      {{/power-select}}
+    {{/form.element}}
+    {{#form.element property='risers' useIcons=false as |el|}}
+      {{#power-select-multiple
+        renderInPlace=true
+        options=riserOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Choose Riser Options"
+        disabled=isDisabled
+        allowClear=true
+        as |risers|
+      }}
+        Risers: {{risers}}
+      {{/power-select-multiple}}
+    {{/form.element}}
+  {{/bs-form}}
+{{/bs-modal-simple}}

@@ -1,0 +1,32 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Current Assignments</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Convention</th>
+          <th>Date</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |session|}}
+          <tr>
+            <td>{{#link-to 'dashboard.scoring-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
+            <td>{{session.convention.name}}</td>
+            <td>{{moment-format session.convention.start_date 'LL'}}</td>
+            <td>{{session.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No current assignments.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

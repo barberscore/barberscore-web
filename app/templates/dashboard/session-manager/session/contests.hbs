@@ -1,0 +1,31 @@
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th  {{action 'sortBy' 'entityKindSort'}} class='col-md-6'>Name</th>
+            {{!-- <th  {{action 'sortBy' 'kind'}}  class='col-md-2'>Kind</th> --}}
+            {{!-- <th class='col-md-1'>Delete</th> --}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedContests as |contest|}}
+            <tr>
+              <td>{{#link-to 'dashboard.session-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+              {{!-- <td>{{contest.kind}}</td> --}}
+              {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td> --}}
+            </tr>
+          {{else}}
+            <tr>
+              <td>No contests.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class='col-md-6'>
+      {{outlet}}
+    </div>
+  </div>
+</section>
