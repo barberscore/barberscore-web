@@ -3,23 +3,23 @@
 </section>
 <section>
   {{#power-select
-    search=(perform searchCatalog)
-    selected=catalog
-    onchange=(action "transitionCatalog")
-    placeholder="Search Catalog"
+    search=(perform searchChart)
+    selected=chart
+    onchange=(action "transitionChart")
+    placeholder="Search Chart"
     allowClear=true
-    as |catalog|
+    as |chart|
   }}
-    Title: {{catalog.nomen}}  {{#if catalog.arrangers}}(arr. {{catalog.arrangers}}){{/if}}
+    Title: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
   {{/power-select}}
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Catalog{{/bs-button}}
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Chart{{/bs-button}}
 </section>
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Current Catalog</caption>
+      <caption>Current Chart</caption>
       <thead>
         <tr>
           <th class='col-md-6'>Title</th>
@@ -33,15 +33,15 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedItems as |catalog|}}
+        {{#each sortedItems as |chart|}}
           <tr>
-            <td>{{#link-to 'dashboard.catalog-manager.catalog.details' catalog}}{{catalog.title}}{{/link-to}}</td>
-            <td>{{catalog.bhs_id}}</td>
-            <td>{{catalog.arrangers}}</td>
-            {{!-- <td>{{catalog.gender}}</td> --}}
-            {{!-- <td>{{catalog.difficulty}}</td> --}}
-            {{!-- <td>{{catalog.tempo}}</td> --}}
-            {{!-- <td>{{catalog.is_medley}}</td> --}}
+            <td>{{#link-to 'dashboard.chart-manager.chart.details' chart}}{{chart.title}}{{/link-to}}</td>
+            <td>{{chart.bhs_id}}</td>
+            <td>{{chart.arrangers}}</td>
+            {{!-- <td>{{chart.gender}}</td> --}}
+            {{!-- <td>{{chart.difficulty}}</td> --}}
+            {{!-- <td>{{chart.tempo}}</td> --}}
+            {{!-- <td>{{chart.is_medley}}</td> --}}
           </tr>
         {{else}}
           <tr>
@@ -58,8 +58,8 @@
 <section>
   {{#bs-modal-simple
     open=openModal
-    onHidden=(action "clearCatalog")
-    title="Create Catalog"
+    onHidden=(action "clearChart")
+    title="Create Chart"
     closeTitle="Cancel"
     submitTitle="Save"
     backdropClose=false
@@ -67,7 +67,7 @@
     {{#bs-form
       formLayout="vertical"
       model=this
-      onSubmit=(action "createCatalog")
+      onSubmit=(action "createChart")
       as |form|
     }}
       {{form.element

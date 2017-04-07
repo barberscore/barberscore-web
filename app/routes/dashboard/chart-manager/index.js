@@ -10,6 +10,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, RouteMixin, {
       perPage: "page_size",
       total_pages: "pages"
     };
-    return this.findPaged('catalog', params);
+    return this.findPaged('chart', params);
   },
 });

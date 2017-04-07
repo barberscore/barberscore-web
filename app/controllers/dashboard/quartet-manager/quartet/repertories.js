@@ -4,9 +4,9 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   openModal: false,
-  searchCatalog: task(function* (term){
+  searchChart: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('catalog', {
+    return this.get('store').query('chart', {
       'nomen__icontains': term,
       'page_size': 1000
       })
@@ -32,11 +32,11 @@ export default Ember.Controller.extend({
     createRepertory() {
       let repertory = this.get('store').createRecord('repertory', {
         entity: this.get('model'),
-        catalog: this.get('catalog'),
+        chart: this.get('chart'),
       });
       repertory.save()
       .then(() => {
-        this.set('catalog', null);
+        this.set('chart', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       })
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
       });
     },
     clearRepertory() {
-      this.set('catalog', null);
+      this.set('chart', null);
       this.set('openModal', false);
     }
   },

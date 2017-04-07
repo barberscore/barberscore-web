@@ -5,7 +5,7 @@ import {belongsTo, hasMany} from 'ember-data/relationships';
 export default Model.extend({
   nomen: attr('string'),
   status: attr('repertory-status'),
-  catalog: belongsTo('catalog', {async: true}),
+  chart: belongsTo('chart', {async: true}),
   entity: belongsTo('entity', {async: true}),
   submissions: hasMany('submission', {async: true}),
   permissions: attr(),

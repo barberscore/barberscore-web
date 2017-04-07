@@ -15,9 +15,9 @@ export default Ember.Controller.extend({
     'model',
     'sortProperties'
   ),
-  searchCatalog: task(function* (term){
+  searchChart: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('catalog', {
+    return this.get('store').query('chart', {
       'nomen__icontains': term,
       'page_size': 1000
       })
@@ -27,17 +27,17 @@ export default Ember.Controller.extend({
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
     },
-    transitionCatalog(catalog) {
-      this.transitionToRoute('dashboard.catalog-manager.catalog.details', catalog);
+    transitionChart(chart) {
+      this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
     },
-    createCatalog(){
-      let catalog = this.get('store').createRecord('catalog', {
+    createChart(){
+      let chart = this.get('store').createRecord('chart', {
         title: this.get('title'),
         arrangers: this.get('arrangers'),
         composers: this.get('composers'),
         holders: this.get('holders'),
       });
-      catalog.save()
+      chart.save()
       .then(() => {
         this.set('title', null);
         this.set('arrangers', null);
@@ -45,22 +45,22 @@ export default Ember.Controller.extend({
         this.set('holders', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('dashboard.catalog-manager.catalog.details', catalog);
+        this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
       })
       .catch(() => {
-        catalog.deleteRecord();
+        chart.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearCatalog() {
+    clearChart() {
       this.set('title', null);
       this.set('arrangers', null);
       this.set('composers', null);
       this.set('holders', null);
       this.set('openModal', false);
     },
-    deleteCatalog(catalog){
-      catalog.destroyRecord()
+    deleteChart(chart){
+      chart.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

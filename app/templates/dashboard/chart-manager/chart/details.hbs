@@ -1,5 +1,5 @@
 <section>
-  {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveCatalog") as |form|}}
+  {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveChart") as |form|}}
     {{form.element controlType='text' placeholder='Title' disabled=isDisabled property='title'}}
     {{form.element controlType='text' placeholder='BHS ID' disabled=true property='bhs_id'}}
     {{form.element controlType='textarea' placeholder='Arrangers' disabled=isDisabled property='arrangers'}}
@@ -7,10 +7,10 @@
     {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}}
   {{#form.element}}
     {{#if isEditing}}
-      {{#bs-button onClick=(action 'cancelCatalog')}}Cancel{{/bs-button}}
+      {{#bs-button onClick=(action 'cancelChart')}}Cancel{{/bs-button}}
       {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
     {{else}}
-      {{#bs-button onClick=(action 'editCatalog')}}Edit{{/bs-button}}
+      {{#bs-button onClick=(action 'editChart')}}Edit{{/bs-button}}
     {{/if}}
   {{/form.element}}
   {{/bs-form}}

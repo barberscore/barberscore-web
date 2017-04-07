@@ -13,9 +13,9 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
-  searchCatalog: task(function* (term){
+  searchChart: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('catalog', {
+    return this.get('store').query('chart', {
       'nomen__icontains': term,
       'page_size': 1000
       })
@@ -79,13 +79,13 @@ export default Ember.Controller.extend({
     return this.model == this.get('sortedItems.lastObject');
   }),
   actions: {
-    populateSubmission(catalog) {
-      this.set('catalog', catalog);
-      this.set('title', catalog.get('title'));
-      this.set('composers', catalog.get('composers'));
-      this.set('arrangers', catalog.get('arrangers'));
-      this.set('holders', catalog.get('holders'));
-      this.set('bhs_id', catalog.get('bhs_id'));
+    populateSubmission(chart) {
+      this.set('chart', chart);
+      this.set('title', chart.get('title'));
+      this.set('composers', chart.get('composers'));
+      this.set('arrangers', chart.get('arrangers'));
+      this.set('holders', chart.get('holders'));
+      this.set('bhs_id', chart.get('bhs_id'));
     },
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -172,7 +172,7 @@ export default Ember.Controller.extend({
         arrangers: this.get('arrangers'),
         holders: this.get('holders'),
         bhs_id: this.get('bhs_id'),
-        catalog: this.get('catalog'),
+        chart: this.get('chart'),
       });
       submission.save()
       .then(() => {
@@ -182,7 +182,7 @@ export default Ember.Controller.extend({
         this.set('arrangers', null);
         this.set('holders', null);
         this.set('bhs_id', null);
-        this.set('catalog', null);
+        this.set('chart', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       })
@@ -197,7 +197,7 @@ export default Ember.Controller.extend({
       this.set('arrangers', null);
       this.set('holders', null);
       this.set('bhs_id', null);
-      this.set('catalog', null);
+      this.set('chart', null);
       this.set('openModal', false);
     }
   },

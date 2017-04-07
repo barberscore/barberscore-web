@@ -4,7 +4,7 @@ import {hasMany} from 'ember-data/relationships';
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('catalog-status'),
+  status: attr('chart-status'),
   bhs_id: attr('number'),
   title: attr('string'),
   composers: attr('string'),

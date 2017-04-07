@@ -13,10 +13,10 @@
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
-            <td>{{repertory.catalog.title}}</td>
-            <td>{{repertory.catalog.bhs_id}}</td>
-            <td>{{repertory.catalog.arrangers}}</td>
-            <td>{{repertory.catalog.is_medley}}</td>
+            <td>{{repertory.chart.title}}</td>
+            <td>{{repertory.chart.bhs_id}}</td>
+            <td>{{repertory.chart.arrangers}}</td>
+            <td>{{repertory.chart.is_medley}}</td>
             <td>{{fa-icon 'times-circle' click=(action 'deleteRepertory' repertory) class='text-danger'}}</td>
           </tr>
         {{/each}}
@@ -25,7 +25,7 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Catalog to Repertory{{/bs-button}}
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Chart to Repertory{{/bs-button}}
 </section>
 <section>
   {{#bs-modal-simple
@@ -42,21 +42,21 @@
       onSubmit=(action 'createRepertory')
       as |form|
     }}
-      {{#form.element property='catalog' useIcons=false as |el|}}
+      {{#form.element property='chart' useIcons=false as |el|}}
         {{#power-select
-          search=(perform searchCatalog)
+          search=(perform searchChart)
           selected=el.value
           renderInPlace=true
           onchange=(action (mut el.value))
-          placeholder="Search by Song Name or BHS Catalog Number"
+          placeholder="Search by Song Name or BHS Chart Number"
           allowClear=true
-          as |catalog|
+          as |chart|
         }}
-          Song: {{catalog.nomen}}  {{#if catalog.arrangers}}(arr. {{catalog.arrangers}}){{/if}}
+          Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
         {{/power-select}}
       {{/form.element}}
         <p>
-          <strong>NOTE:&nbsp;</strong><small>If you can't find your song then cancel this and add it through the catalog manager first.</small>
+          <strong>NOTE:&nbsp;</strong><small>If you can't find your song then cancel this and add it through the chart manager first.</small>
         </p>
     {{/bs-form}}
   {{/bs-modal-simple}}

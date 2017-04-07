@@ -156,15 +156,15 @@
     }}
       {{#form.element property='submission' useIcons=false as |el|}}
         {{#power-select
-          search=(perform searchCatalog)
+          search=(perform searchChart)
           selected=el.value
           renderInPlace=true
           onchange=(action 'populateSubmission')
-          placeholder="Search by Song Name or BHS Catalog Number"
+          placeholder="Search by Song Name or BHS Chart Number"
           allowClear=true
-          as |catalog|
+          as |chart|
         }}
-          Song: {{catalog.title}} {{catalog.bhs_id}}
+          Song: {{chart.title}} {{chart.bhs_id}}
         {{/power-select}}
       {{/form.element}}
       <div>

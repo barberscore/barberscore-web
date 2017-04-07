@@ -4,7 +4,7 @@ export function initialize(/* application */) {
   var inflector = Ember.Inflector.inflector;
   inflector.uncountable('assignment');
   inflector.uncountable('award');
-  inflector.uncountable('catalog');
+  inflector.uncountable('chart');
   inflector.uncountable('contest');
   inflector.uncountable('contestant');
   inflector.uncountable('contestprivate');

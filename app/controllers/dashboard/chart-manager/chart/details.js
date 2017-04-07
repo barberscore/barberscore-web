@@ -5,14 +5,14 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not('isEditing'),
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
-    editCatalog() {
+    editChart() {
       this.set('isEditing', true);
     },
-    cancelCatalog() {
+    cancelChart() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    saveCatalog() {
+    saveChart() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);

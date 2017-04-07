@@ -101,8 +101,8 @@ Router.map(function() {
         this.route('details', {path: 'details'});
       });
     });
-    this.route('catalog-manager', {path: 'catalog-manager'}, function() {
-      this.route('catalog', { path: ':catalog_id' }, function() {
+    this.route('chart-manager', {path: 'chart-manager'}, function() {
+      this.route('chart', { path: ':chart_id' }, function() {
         this.route('details', {path: 'details'});
       });
     });
