@@ -7,7 +7,7 @@ const {computed} = Ember;
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('performance-status'),
+  status: attr('appearance-status'),
   num: attr('number'),
   rank: attr('number'),
   actual_start: attr('date'),
@@ -16,7 +16,7 @@ export default Model.extend({
   round: belongsTo('round', {async: true}),
   entry: belongsTo('entry', {async: true}),
   songs: hasMany('song', {async: true}),
-  performancescore: belongsTo('performancescore', {async: true}),
+  appearanceprivate: belongsTo('appearanceprivate', {async: true}),
   slot: belongsTo('slot', {async: true}),
   session: belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),

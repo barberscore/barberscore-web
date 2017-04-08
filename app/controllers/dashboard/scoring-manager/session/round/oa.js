@@ -1,11 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  performanceSortProperties: [
+  appearanceSortProperties: [
     'num:asc',
   ],
-  sortedPerformances: Ember.computed.sort(
-    'model.performances',
-    'performanceSortProperties'
+  sortedAppearances: Ember.computed.sort(
+    'model.appearances',
+    'appearanceSortProperties'
   ),
 });

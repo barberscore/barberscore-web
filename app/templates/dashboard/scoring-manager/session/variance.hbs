@@ -31,21 +31,21 @@
     </td>
     <td>
     {{#each assignment.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
+      {{#if (eq score.song.appearance.id model.id)}}
        <h1>{{score.points}}</h1>
       {{/if}}
     {{/each}}
     </td>
     <td>
     {{#each assignment.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
+      {{#if (eq score.song.appearance.id model.id)}}
       <h1>{{#if score.isReview}}Review{{else}}&nbsp;{{/if}}</h1>
       {{/if}}
     {{/each}}
     </td>
     <td>
     {{#each assignment.scores as |score|}}
-      {{#if (eq score.song.performance.id model.id)}}
+      {{#if (eq score.song.appearance.id model.id)}}
     {{fa-icon 'fa-square-o' size=5}}<br>
     {{/if}}
     {{/each}}

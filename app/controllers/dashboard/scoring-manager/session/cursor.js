@@ -15,8 +15,8 @@ export default Ember.Controller.extend({
   nextNum: Ember.computed(function(){
     return this.get('model.cursor.num') +1;
   }),
-  nextPerformances: Ember.computed.filterBy(
-    'model.cursor.round.performances',
+  nextAppearances: Ember.computed.filterBy(
+    'model.cursor.round.appearances',
     'num',
     'nextNum'
   ),

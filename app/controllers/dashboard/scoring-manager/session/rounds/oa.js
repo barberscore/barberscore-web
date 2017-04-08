@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['num', 'entry.entryscore.total_score:desc',],
-  sortedPerformances: Ember.computed.sort(
-    'model.performances',
-    'performanceSortProperties'
+  appearanceSortProperties: ['num', 'entry.entryprivate.total_score:desc',],
+  sortedAppearances: Ember.computed.sort(
+    'model.appearances',
+    'appearanceSortProperties'
   ),
   isEditing: false,
   isRaw: false,
@@ -14,21 +14,21 @@ export default Ember.Controller.extend({
     collapseHeader() {
       this.toggleProperty('isCollapsed');
     },
-    sortBy(performanceSortProperties) {
-      this.set('performanceSortProperties', [performanceSortProperties]);
+    sortBy(appearanceSortProperties) {
+      this.set('appearanceSortProperties', [appearanceSortProperties]);
     },
     editOrder() {
       this.set('isEditing', true);
     },
     saveOrder() {
-      let children = this.get('model.performances');
+      let children = this.get('model.appearances');
       children.forEach(function(item) {
         item.save();
       });
       this.set('isEditing', false);
     },
     cancelOrder() {
-      let children = this.get('model.performances');
+      let children = this.get('model.appearances');
       children.forEach(function(item) {
         item.rollbackAttributes();
       });
@@ -47,8 +47,8 @@ export default Ember.Controller.extend({
     letsGo() {
       this.toggleProperty('isRaw');
     },
-    deletePerformance(performance) {
-      performance.destroyRecord();
+    deleteAppearance(appearance) {
+      appearance.destroyRecord();
     },
     drawRound() {
       this.model.draw()
@@ -97,8 +97,8 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    moveTop(performance) {
-      performance.move_top()
+    moveTop(appearance) {
+      appearance.move_top()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -106,22 +106,22 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
-        this.get('model.performances').sortBy('performance.num');
+        this.get('model.appearances').sortBy('appearance.num');
       });
     },
-    moveUp(performance) {
-      performance.move_up()
+    moveUp(appearance) {
+      appearance.move_up()
       .then(() => {
         this.get('flashMessages').success('Success');
-        let reloaded =  this.get('model.performances').map( performance => performance.reload() );
+        let reloaded =  this.get('model.appearances').map( appearance => appearance.reload() );
         return Ember.RSVP.all(reloaded);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },
-    moveDown(performance) {
-      performance.move_down()
+    moveDown(appearance) {
+      appearance.move_down()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -129,21 +129,21 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
-        this.get('model.performances').sortBy('performance.num');
+        this.get('model.appearances').sortBy('appearance.num');
       });
     },
-    moveBottom(performance) {
-      performance.move_bottom()
+    moveBottom(appearance) {
+      appearance.move_bottom()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
-      performance.reload();
+      appearance.reload();
     },
-    scratch(performance) {
-      performance.scratch()
+    scratch(appearance) {
+      appearance.scratch()
       .then(() => {
         this.get('flashMessages').success('Success');
       })
@@ -151,7 +151,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       })
       .finally(()=>{
-        this.get('model.performances').removeObject(performance);
+        this.get('model.appearances').removeObject(appearance);
       });
     },
   },

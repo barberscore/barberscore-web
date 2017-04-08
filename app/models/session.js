@@ -24,7 +24,7 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   draft: memberAction({path: 'draft', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
-  cursor: belongsTo('performance', {async: true}),
+  cursor: belongsTo('appearance', {async: true}),
   permissions: attr(),
 
   statusOptions: [
@@ -72,12 +72,12 @@ export default Model.extend({
        };
     });
   }),
-  currentPerformancesSort: [
+  currentAppearancesSort: [
     'num',
   ],
-  currentPerformances: Ember.computed.sort(
-    'current.performances',
-    'currentPerformancesSort'
+  currentAppearances: Ember.computed.sort(
+    'current.appearances',
+    'currentAppearancesSort'
   ),
   conventionName: Ember.computed(
     'convention.name',

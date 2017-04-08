@@ -13,7 +13,7 @@ export default Model.extend({
   // mt: belongsTo('group', {async: true}),
   // current_session: belongsTo('session', {async: true, inverse: 'current'}),
   session: belongsTo('session', {async: true}),
-  performances: hasMany('performance', {async: true}),
+  appearances: hasMany('appearance', {async: true}),
   slots: hasMany('slot', {async: true}),
   permissions: attr(),
 

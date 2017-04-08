@@ -19,43 +19,43 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedPerformances as |performance|}}
+            {{#each sortedAppearances as |appearance|}}
               <tr>
                 <td>
-                  {{performance.num}}
+                  {{appearance.num}}
                 </td>
                 <td>
-                  {{#link-to 'dashboard.scoring-manager.session.rounds.round.performances.performance' performance}}{{performance.entry.group.name}}{{/link-to}}<br>
-                  {{performance.entry.group.chapter.name}}
+                  {{#link-to 'dashboard.scoring-manager.session.rounds.round.appearances.appearance' appearance}}{{appearance.entry.group.name}}{{/link-to}}<br>
+                  {{appearance.entry.group.chapter.name}}
                 </td>
                 <td>
-                  {{#each performance.songs as |song|}}
+                  {{#each appearance.songs as |song|}}
                     {{song.submission.title}}<br>
                   {{/each}}
                 </td>
                 <td>
-                  {{#each performance.songs as |song|}}
-                    {{song.songscore.mus_points}}<br>
+                  {{#each appearance.songs as |song|}}
+                    {{song.songprivate.mus_points}}<br>
                   {{/each}}
-                  {{performance.performancescore.mus_points}}
+                  {{appearance.appearanceprivate.mus_points}}
                 </td>
                 <td>
-                  {{#each performance.songs as |song|}}
-                    {{song.songscore.prs_points}}<br>
+                  {{#each appearance.songs as |song|}}
+                    {{song.songprivate.prs_points}}<br>
                   {{/each}}
-                  {{performance.performancescore.prs_points}}
+                  {{appearance.appearanceprivate.prs_points}}
                 </td>
                 <td>
-                  {{#each performance.songs as |song|}}
-                    {{song.songscore.sng_points}}<br>
+                  {{#each appearance.songs as |song|}}
+                    {{song.songprivate.sng_points}}<br>
                   {{/each}}
-                  {{performance.performancescore.sng_points}}
+                  {{appearance.appearanceprivate.sng_points}}
                 </td>
                 <td>
-                  {{#each performance.songs as |song|}}
-                    {{song.songscore.total_points}}<br>
+                  {{#each appearance.songs as |song|}}
+                    {{song.songprivate.total_points}}<br>
                   {{/each}}
-                  {{performance.performancescore.total_points}}
+                  {{appearance.appearanceprivate.total_points}}
                 </td>
               </tr>
             {{/each}}

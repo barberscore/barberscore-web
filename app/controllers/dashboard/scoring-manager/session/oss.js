@@ -3,10 +3,10 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isRaw: false,
   entrySortProperties: [
-    'entryscore.total_points:desc',
-    'entryscore.sng_points:desc',
-    'entryscore.mus_points:desc',
-    'entryscore.prs_points:desc',
+    'entryprivate.total_points:desc',
+    'entryprivate.sng_points:desc',
+    'entryprivate.mus_points:desc',
+    'entryprivate.prs_points:desc',
   ],
   sortedEntries: Ember.computed.sort(
     'model.entries',

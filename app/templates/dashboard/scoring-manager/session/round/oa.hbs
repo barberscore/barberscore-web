@@ -14,15 +14,15 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedPerformances as |performance|}}
+            {{#each sortedAppearances as |appearance|}}
               <tr>
                 <td>
-                  {{performance.num}}
+                  {{appearance.num}}
                 </td>
                 <td>
-                  {{!-- {{#link-to 'dashboard.scoring-manager.session.rounds.round.performances.performance' performance}}{{performance.entry.group.name}}{{/link-to}}<br> --}}
-                  {{!-- {{performance.entry.group.chapter.name}} --}}
-                  {{performance.entry.group.name}}
+                  {{!-- {{#link-to 'dashboard.scoring-manager.session.rounds.round.appearances.appearance' appearance}}{{appearance.entry.group.name}}{{/link-to}}<br> --}}
+                  {{!-- {{appearance.entry.group.chapter.name}} --}}
+                  {{appearance.entry.group.name}}
                 </td>
               </tr>
             {{/each}}

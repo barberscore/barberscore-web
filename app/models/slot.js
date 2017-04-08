@@ -6,7 +6,7 @@ export default Model.extend({
   nomen: attr('string'),
   status: attr('song-status'),
   round: belongsTo('round', {async: true}),
-  performances: hasMany('performance', {async: true}),
+  appearances: hasMany('appearance', {async: true}),
   num: attr('number'),
   onstage: attr('date'),
   permissions: attr(),

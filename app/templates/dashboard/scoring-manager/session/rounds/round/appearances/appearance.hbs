@@ -47,16 +47,16 @@
                   {{song.submission.title}}
                 </td>
                 <td class='text-right'>
-                  {{song.songscore.mus_points}}
+                  {{song.songprivate.mus_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.songscore.prs_points}}
+                  {{song.songprivate.prs_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.songscore.sng_points}}
+                  {{song.songprivate.sng_points}}
                 </td>
                 <td class='text-right'>
-                  {{song.songscore.total_points}}
+                  {{song.songprivate.total_points}}
                 </td>
               </tr>
             {{/each}}
@@ -67,16 +67,16 @@
                 Totals
               </th>
               <th class='text-right'>
-                {{model.performancescore.mus_points}}
+                {{model.appearanceprivate.mus_points}}
               </th>
               <th class='text-right'>
-                {{model.performancescore.prs_points}}
+                {{model.appearanceprivate.prs_points}}
               </th>
               <th class='text-right'>
-                {{model.performancescore.sng_points}}
+                {{model.appearanceprivate.sng_points}}
               </th>
               <th class='text-right'>
-                {{model.performancescore.total_points}}
+                {{model.appearanceprivate.total_points}}
               </th>
             </tr>
           </tfoot>
@@ -101,13 +101,13 @@
                   </td>
                   <td>
                     {{#each assignment.scores as |score|}}
-                      {{#if (eq score.song.performance.id model.id)}}<br>
+                      {{#if (eq score.song.appearance.id model.id)}}<br>
                       {{/if}}
                     {{/each}}
                   </td>
                   <td>
                     {{#each (sort-by 'song.num' assignment.scores) as |score|}}
-                      {{#if (eq score.song.performance.id model.id)}}
+                      {{#if (eq score.song.appearance.id model.id)}}
                         <div class={{score.hasVarianceClass}}>
                           {{score-edit model=score points=score.points}}
                         </div>
@@ -120,7 +120,7 @@
           </tbody>
         </table>
       </div>
-      {{#bs-button onClick='savePerformance'}}Save{{/bs-button}}
+      {{#bs-button onClick='saveAppearance'}}Save{{/bs-button}}
     </div>
   </div>
 </section>

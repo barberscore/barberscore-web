@@ -24,10 +24,10 @@ export default Model.extend({
   prelim: attr('number'),
   entity: belongsTo('entity', {inverse: 'entries', async: true}),
   session: belongsTo('session', {async: true}),
-  performances: hasMany('performance', {async: true}),
+  appearances: hasMany('appearance', {async: true}),
   contestants: hasMany('contestant', {async: true}),
   submissions: hasMany('submission', {async: true}),
-  entryscore: belongsTo('entryscore', {async: true}),
+  entryprivate: belongsTo('entryprivate', {async: true}),
   permissions: attr(),
 
   scratch: memberAction({path: 'scratch'}),
@@ -49,11 +49,11 @@ export default Model.extend({
 
 
   tp: computed.mapBy(
-    'performances',
+    'appearances',
     'totPoints'
   ),
   tc: computed.mapBy(
-    'performances',
+    'appearances',
     'stc'
   ),
   totPoints: computed.sum(
@@ -70,11 +70,11 @@ export default Model.extend({
     }
   ),
   mp: computed.mapBy(
-    'performances',
+    'appearances',
     'musPoints'
   ),
   mc: computed.mapBy(
-    'performances',
+    'appearances',
     'smc'
   ),
   musPoints: computed.sum(
@@ -91,11 +91,11 @@ export default Model.extend({
     }
   ),
   pp: computed.mapBy(
-    'performances',
+    'appearances',
     'prsPoints'
   ),
   pc: computed.mapBy(
-    'performances',
+    'appearances',
     'spc'
   ),
   prsPoints: computed.sum(
@@ -112,11 +112,11 @@ export default Model.extend({
     }
   ),
   sp: computed.mapBy(
-    'performances',
+    'appearances',
     'sngPoints'
   ),
   sc: computed.mapBy(
-    'performances',
+    'appearances',
     'ssc'
   ),
   sngPoints: computed.sum(

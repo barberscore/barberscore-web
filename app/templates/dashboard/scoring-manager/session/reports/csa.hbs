@@ -31,49 +31,49 @@
       <tbody>
         <tr>
           <td>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
                 {{truncate-text song.submission.title limit=50}}<br>
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{appearance.round.kind}}</em><br>{{/if}}
             {{/each}}
             <strong>Total</strong>
           </td>
           <td class='text-right'>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
                 {{#if isRaw}}{{song.songscƒ}}{{else}}{{song.songscƒ}}{{/if}}<br>
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.mus_points}}{{else}}{{performance.performancescore.mus_score}}{{/if}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.mus_points}}{{else}}{{appearance.appearanceprivate.mus_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.entryscore.mus_points}}{{else}}{{model.entryscore.mus_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryprivate.mus_points}}{{else}}{{model.entryprivate.mus_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
-                {{#if isRaw}}{{song.songscore.prs_points}}{{else}}{{song.songscore.prs_score}}{{/if}}<br>
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
+                {{#if isRaw}}{{song.songprivate.prs_points}}{{else}}{{song.songprivate.prs_score}}{{/if}}<br>
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.prs_points}}{{else}}{{performance.performancescore.prs_score}}{{/if}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.prs_points}}{{else}}{{appearance.appearanceprivate.prs_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.entryscore.prs_points}}{{else}}{{model.entryscore.prs_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryprivate.prs_points}}{{else}}{{model.entryprivate.prs_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
-                {{#if isRaw}}{{song.songscore.sng_points}}{{else}}{{song.songsccore.sng_score}}{{/if}}
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
+                {{#if isRaw}}{{song.songprivate.sng_points}}{{else}}{{song.songsccore.sng_score}}{{/if}}
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.sng_points}}{{else}}{{performance.performancescore.sng_score}}{{/if}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.sng_points}}{{else}}{{appearance.appearanceprivate.sng_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.entryscore.sng_points}}{{else}}{{model.entryscore.sng_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryprivate.sng_points}}{{else}}{{model.entryprivate.sng_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
-                {{#if isRaw}}{{song.songscore.total_points}}{{else}}{{song.songscore.total_score}}{{/if}}<br>
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
+                {{#if isRaw}}{{song.songprivate.total_points}}{{else}}{{song.songprivate.total_score}}{{/if}}<br>
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.total_points}}{{else}}{{performance.performancescore.total_score}}{{/if}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.total_points}}{{else}}{{appearance.appearanceprivate.total_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.entryscore.total_points}}{{else}}{{model.entryscore.total_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryprivate.total_points}}{{else}}{{model.entryprivate.total_score}}{{/if}}</strong><br>
           </td>
         </tr>
       </tbody>
@@ -97,19 +97,19 @@
       <tbody>
         <tr>
           <td>
-            {{#each model.performances as |performance|}}
-              {{#each performance.songs as |song|}}
+            {{#each model.appearances as |appearance|}}
+              {{#each appearance.songs as |song|}}
                 {{truncate-text song.submission.title limit=50}}<br>
               {{/each}}
-              {{#if (not-eq model.performances.length 1)}}<em>{{performance.round.kind}}</em><br>{{/if}}
+              {{#if (not-eq model.appearances.length 1)}}<em>{{appearance.round.kind}}</em><br>{{/if}}
             {{/each}}
             <strong>Total</strong>
           </td>
           {{#each model.session.assignments as |assignment|}}
             {{#unless (eq assignment.category 'Admin')}}
               <td class='text-right'>
-                {{#each model.performances as |performance|}}
-                  {{#each performance.songs as |song|}}
+                {{#each model.appearances as |appearance|}}
+                  {{#each appearance.songs as |song|}}
                     {{#each song.scores as |score|}}
                       {{#if (eq score.assignment.id assignment.id)}}{{score.points}}<br>{{/if}}
                     {{/each}}

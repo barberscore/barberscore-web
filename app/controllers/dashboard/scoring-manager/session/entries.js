@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
     },
   },
   entrySortProperties: [
-    'entry.entryscore.rank:asc',
+    'entry.entryprivate.rank:asc',
     'group.nomen:asc',
   ],
   sortedEntries: Ember.computed.sort(

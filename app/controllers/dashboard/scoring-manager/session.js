@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
   // isCollapsed: true,
   // isRaw: false,
   // entrySortProperties: [
-  //   'entry.entryscore.total_points:desc',
+  //   'entry.entryprivate.total_points:desc',
   //   'group.nomen:asc',
   // ],
   // sortedEntries: Ember.computed.sort(
@@ -26,8 +26,8 @@ export default Ember.Controller.extend({
   //   sortBy(entrySortProperties) {
   //     this.set('entrySortProperties', [entrySortProperties]);
   //   },
-  //   sortPerformancesBy(performanceSortProperties) {
-  //     this.set('perfSort', [performanceSortProperties]);
+  //   sortAppearancesBy(appearanceSortProperties) {
+  //     this.set('perfSort', [appearanceSortProperties]);
   //   },
   //   newSession() {
   //     let newSession = this.store.createRecord(
@@ -207,14 +207,14 @@ export default Ember.Controller.extend({
   //     this.set('isEditing', true);
   //   },
   //   saveOrder() {
-  //     let children = this.get('currentPerformances');
+  //     let children = this.get('currentAppearances');
   //     children.forEach(function(item) {
   //       item.save();
   //     });
   //     this.set('isEditing', false);
   //   },
   //   cancelOrder() {
-  //     let children = this.get('currentPerformances');
+  //     let children = this.get('currentAppearances');
   //     children.forEach(function(item) {
   //       item.rollbackAttributes();
   //     });

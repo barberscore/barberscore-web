@@ -5,7 +5,7 @@ export default DS.JSONAPISerializer.extend({
       contestants: {
         serialize: true
       },
-      performances: {
+      appearances: {
         serialize: true
       },
       submissions: {

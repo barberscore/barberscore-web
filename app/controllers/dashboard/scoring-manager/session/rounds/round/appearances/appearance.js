@@ -18,25 +18,25 @@ export default Ember.Controller.extend({
     'model.songs',
     'songSortProperties'
   ),
-  performanceSortProperties: [
+  appearanceSortProperties: [
     'num',
   ],
   sortedItems: Ember.computed.sort(
-    'model.round.performances',
-    'performanceSortProperties'
+    'model.round.appearances',
+    'appearanceSortProperties'
   ),
   actions: {
     previousItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.scoring-manager.session.rounds.round.performances.performance', newCur);
+      this.transitionToRoute('dashboard.scoring-manager.session.rounds.round.appearances.appearance', newCur);
     },
     nextItem(sortedItems, cursor) {
       let nowCur = sortedItems.indexOf(cursor);
       let newCur = sortedItems.objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.scoring-manager.session.rounds.round.performances.performance', newCur);
+      this.transitionToRoute('dashboard.scoring-manager.session.rounds.round.appearances.appearance', newCur);
     },
-    savePerformance() {
+    saveAppearance() {
       this.model.save()
       .then(response => {
         response.get('songs').invoke('save');
@@ -56,27 +56,27 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    startPerformance() {
+    startAppearance() {
       this.model.start()
       .then(response => {
-        this.store.pushPayload('performance', response);
+        this.store.pushPayload('appearance', response);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
     },
-    finishPerformance() {
+    finishAppearance() {
       this.model.finish()
       .then(response => {
-        this.store.pushPayload('performance', response);
+        this.store.pushPayload('appearance', response);
       })
       .catch(() => {
       });
     },
-    completePerformance() {
+    completeAppearance() {
       this.model.complete()
       .then((response) => {
-        this.store.pushPayload('performance', response);
+        this.store.pushPayload('appearance', response);
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
