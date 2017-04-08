@@ -49,7 +49,7 @@
               <th>Name</th>
               <th>Songs</th>
               <th>MUS</th>
-              <th>PRS</th>
+              <th>PER</th>
               <th>SNG</th>
               <th>TOT</th>
             </tr>
@@ -77,9 +77,9 @@
                 </td>
                 <td>
                   {{#each appearance.songs as |song|}}
-                    {{song.songprivate.prs_points}}<br>
+                    {{song.songprivate.per_points}}<br>
                   {{/each}}
-                  {{appearance.appearanceprivate.prs_points}}
+                  {{appearance.appearanceprivate.per_points}}
                 </td>
                 <td>
                   {{#each appearance.songs as |song|}}

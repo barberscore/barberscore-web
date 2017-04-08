@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     'entryprivate.total_points:desc',
     'entryprivate.sng_points:desc',
     'entryprivate.mus_points:desc',
-    'entryprivate.prs_points:desc',
+    'entryprivate.per_points:desc',
   ],
   sortedEntries: Ember.computed.sort(
     'model.entries',

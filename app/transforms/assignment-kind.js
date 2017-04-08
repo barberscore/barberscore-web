@@ -7,7 +7,7 @@ export default DS.Transform.extend({
       10: 'CA',
       20: 'ACA',
       30: 'Music',
-      40: 'Presentation',
+      40: 'Performance',
       50: 'Singing',
     };
     return map[serialized];
@@ -19,7 +19,7 @@ export default DS.Transform.extend({
       'CA': 10,
       'ACA': 20,
       'Music': 30,
-      'Presentation': 40,
+      'Performance': 40,
       'Singing': 50,
     };
     return map[deserialized];

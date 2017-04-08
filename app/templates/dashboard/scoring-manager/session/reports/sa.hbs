@@ -19,7 +19,7 @@
           <th>Name</th>
           <th>Songs</th>
           <th class='text-right'>MUS</th>
-          <th class='text-right'>PRS</th>
+          <th class='text-right'>PER</th>
           <th class='text-right'>SNG</th>
           <th class='text-right'>Total</th>
           {{#each model.assignments as |assignment|}}
@@ -60,11 +60,11 @@
           <td class='text-right'>
             {{#each entry.appearances as |appearance|}}
               {{#each appearance.songs as |song|}}
-                {{#if isRaw}}{{song.songprivate.prs_points}}{{else}}{{song.songprivate.prs_score}}{{/if}}<br>
+                {{#if isRaw}}{{song.songprivate.per_points}}{{else}}{{song.songprivate.per_score}}{{/if}}<br>
               {{/each}}
-              {{#if (not-eq entry.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.prs_points}}{{else}}{{appearance.appearanceprivate.prs_score}}{{/if}}</em><br>{{/if}}
+              {{#if (not-eq entry.appearances.length 1)}}<em>{{#if isRaw}}{{appearance.appearanceprivate.per_points}}{{else}}{{appearance.appearanceprivate.per_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{entry.entryprivate.prs_points}}{{else}}{{entry.entryprivate.prs_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{entry.entryprivate.per_points}}{{else}}{{entry.entryprivate.per_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
             {{#each entry.appearances as |appearance|}}

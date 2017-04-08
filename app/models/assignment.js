@@ -30,7 +30,7 @@ export default Model.extend({
   categoryOptions: [
     'Admin',
     'Music',
-    'Presentation',
+    'Performance',
     'Singing',
   ],
   kindOptions: [
@@ -38,7 +38,7 @@ export default Model.extend({
     'CA',
     'ACA',
     'Music',
-    'Presentation',
+    'Performance',
     'Singing',
   ],
 });

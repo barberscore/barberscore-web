@@ -53,10 +53,10 @@ export default Model.extend({
     'kind',
     'Official'
   ),
-  prsScores: Ember.computed.filterBy(
+  perScores: Ember.computed.filterBy(
     'totScores',
     'category',
-    'Presentation'
+    'Performance'
   ),
   musScores: Ember.computed.filterBy(
     'totScores',
@@ -105,21 +105,21 @@ export default Model.extend({
       }
    ),
 
-  prsScoresPoints: computed.mapBy(
-    'prsScores',
+  perScoresPoints: computed.mapBy(
+    'perScores',
     'points'
   ),
-  prsPoints: computed.sum(
-    'prsScoresPoints'
+  perPoints: computed.sum(
+    'perScoresPoints'
   ),
-  prsCount: computed.alias(
-    'prsScoresPoints.length'
+  perCount: computed.alias(
+    'perScoresPoints.length'
   ),
-  prsScore: Ember.computed(
-    'prsPoints',
-    'prsCount',
+  perScore: Ember.computed(
+    'perPoints',
+    'perCount',
     function() {
-        return (this.get('prsPoints') / this.get('prsCount')).toFixed(1);
+        return (this.get('perPoints') / this.get('perCount')).toFixed(1);
       }
    ),
 

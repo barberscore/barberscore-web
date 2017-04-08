@@ -44,7 +44,7 @@ export default Ember.Controller.extend({
     'CA',
     'ACA',
     'Music',
-    'Presentation',
+    'Performance',
     'Singing',
   ],
   actions: {

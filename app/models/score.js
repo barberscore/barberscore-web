@@ -28,7 +28,7 @@ export default Model.extend({
   ],
   categoryOptions: [
     'Music',
-    'Presentation',
+    'Performance',
     'Singing',
   ],
   kindOptions: [
@@ -92,12 +92,12 @@ export default Model.extend({
       }
     }
   ),
-  prsVar: computed(
-    'song.prsScore',
+  perVar: computed(
+    'song.perScore',
     'category',
     'points',
     function() {
-      if (this.get('category') ===  'Presentation' && Math.abs((this.get('points') - this.get('song.prsScore'))) > 5) {
+      if (this.get('category') ===  'Performance' && Math.abs((this.get('points') - this.get('song.perScore'))) > 5) {
         return true;
       } else {
         return false;
@@ -120,7 +120,7 @@ export default Model.extend({
     'lowReview',
     'highReview',
     'musVar',
-    'prsVar',
+    'perVar',
     'sngVar'
   ),
   hasVarianceClass: computed(

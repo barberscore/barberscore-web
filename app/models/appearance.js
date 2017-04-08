@@ -105,23 +105,23 @@ export default Model.extend({
   ),
   pp: computed.mapBy(
     'songs',
-    'prsPoints'
+    'perPoints'
   ),
   pc: computed.mapBy(
     'songs',
-    'prsCount'
+    'perCount'
   ),
-  prsPoints: computed.sum(
+  perPoints: computed.sum(
     'pp'
   ),
   spc: computed.sum(
     'pc'
   ),
-  prsScore: computed(
-    'prsPoints',
+  perScore: computed(
+    'perPoints',
     'spc',
     function() {
-      return (this.get('prsPoints') / this.get('spc')).toFixed(1);
+      return (this.get('perPoints') / this.get('spc')).toFixed(1);
     }
   ),
   sp: computed.mapBy(
