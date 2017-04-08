@@ -15,7 +15,7 @@ export default Model.extend({
   primary: belongsTo('contest', {async: true, inverse: 'primary_contest'}),
   convention: belongsTo('convention', {async: true}),
   rounds: hasMany('round', {async: true}),
-  performers: hasMany('performer', {async: true}),
+  entries: hasMany('entry', {async: true}),
   contests: hasMany('contest', {async: true}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
@@ -58,10 +58,10 @@ export default Model.extend({
     }
   ),
 
-  ranks: Ember.computed('performers.@each.totPoints', function() {
+  ranks: Ember.computed('entries.@each.totPoints', function() {
     let lastScore = null;
     let lastRank = null;
-    return this.get('performers').sortBy('totPoints').reverse().map((competitor, index) => {
+    return this.get('entries').sortBy('totPoints').reverse().map((competitor, index) => {
        let score = competitor.get('totPoints');
        let rank = score === lastScore ? lastRank : index+1;
        lastScore = score;

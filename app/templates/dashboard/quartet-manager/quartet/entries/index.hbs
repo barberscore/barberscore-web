@@ -5,28 +5,24 @@
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-4'>Registration</th>
-              <th class='col-md-1'>Songs Submitted</th>
+              <th class='col-md-4'>Entry</th>
               <th class='col-md-1'>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {{#each sortedPerformers as |performer|}}
+            {{#each model.entries as |entry|}}
               <tr>
                 <td>
-                  {{#link-to 'dashboard.chorus-manager.chorus.registrations.registration' performer}}{{performer.session.nomen}}{{/link-to}}
+                  {{#link-to 'dashboard.quartet-manager.quartet.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
                 </td>
                 <td>
-                  {{performer.numSubmissions}}
-                </td>
-                <td>
-                  {{fa-icon 'times-circle' click=(action 'deletePerformer' performer) class='text-danger'}}
+                  {{fa-icon 'times-circle' click=(action 'deleteEntry' entry) class='text-danger'}}
                 </td>
               </tr>
             {{else}}
               <tr>
                 <td>
-                  (No current registrations.)
+                  (No current entries.)
                 </td>
               </tr>
             {{/each}}
@@ -37,13 +33,13 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Registration{{/bs-button}}
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
 </section>
 <section>
   {{#bs-modal-simple
     open=openModal
-    onHidden=(action "clearPerformer")
-    title="Create Registration"
+    onHidden=(action "clearEntry")
+    title="Create Entry"
     closeTitle="Cancel"
     submitTitle="Save"
     backdropClose=false
@@ -51,7 +47,7 @@
     {{#bs-form
       model=this
       formLayout='vertical'
-      onSubmit=(action 'createPerformer')
+      onSubmit=(action 'createEntry')
       as |form|
     }}
       {{#form.element property='session' useIcons=false as |el|}}
@@ -103,30 +99,56 @@
           {{#bg.button type='default' value=true}}Keep Scores Private{{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
-      {{#form.element property='director' useIcons=false as |el|}}
+      {{#form.element property='tenor' useIcons=false as |el|}}
           {{#power-select
-            search=(perform searchPerson)
+            options=activeTenors
             selected=el.value
             onchange=(action (mut el.value))
-            placeholder="Enter Director Name"
-            renderInPlace=true
+            placeholder="Enter Tenor Name"
             allowClear=true
-            as |person|
+            renderInPlace=true
+            as |member|
           }}
-            {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+            Tenor: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
-      {{#form.element property='codirector' useIcons=false as |el|}}
+      {{#form.element property='lead' useIcons=false as |el|}}
           {{#power-select
-            search=(perform searchPerson)
+            options=activeLeads
             selected=el.value
             onchange=(action (mut el.value))
-            placeholder="Enter Co-Director Name (if applicable)"
-            renderInPlace=true
+            placeholder="Enter Lead Name"
             allowClear=true
-            as |person|
+            renderInPlace=true
+            as |member|
           }}
-            Co-Director: {{person.common_name}}
+            Lead: {{member.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='baritone' useIcons=false as |el|}}
+          {{#power-select
+            options=activeBaritones
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Baritone Name"
+            allowClear=true
+            renderInPlace=true
+            as |member|
+          }}
+            Baritone: {{member.person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='bass' useIcons=false as |el|}}
+          {{#power-select
+            options=activeBasses
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Bass Name"
+            allowClear=true
+            renderInPlace=true
+            as |member|
+          }}
+            Bass: {{member.person.common_name}}
           {{/power-select}}
       {{/form.element}}
     {{/bs-form}}

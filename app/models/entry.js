@@ -7,7 +7,7 @@ const {computed} = Ember;
 
 export default Model.extend({
   nomen: attr('string'),
-  status: attr('performer-status'),
+  status: attr('entry-status'),
   picture: attr('string'),
   tenor: belongsTo('person', {async: true}),
   lead: belongsTo('person', {async: true}),
@@ -22,12 +22,12 @@ export default Model.extend({
   representing: belongsTo('entity', {async: true}),
   seed: attr('number'),
   prelim: attr('number'),
-  entity: belongsTo('entity', {inverse: 'performers', async: true}),
+  entity: belongsTo('entity', {inverse: 'entries', async: true}),
   session: belongsTo('session', {async: true}),
   performances: hasMany('performance', {async: true}),
   contestants: hasMany('contestant', {async: true}),
   submissions: hasMany('submission', {async: true}),
-  performerscore: belongsTo('performerscore', {async: true}),
+  entryscore: belongsTo('entryscore', {async: true}),
   permissions: attr(),
 
   scratch: memberAction({path: 'scratch'}),

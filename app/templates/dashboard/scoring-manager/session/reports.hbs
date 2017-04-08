@@ -10,8 +10,8 @@
         <li>{{#link-to 'dashboard.scoring-manager.session.oss' model}}Official Scoring Summary{{/link-to}}</li>
         CSAs
         <ul>
-          {{#each model.sortedPerformers as |performer|}}
-            <li>{{#link-to 'dashboard.scoring-manager.session.csa' performer}}{{performer.group.name}}{{/link-to}}</li>
+          {{#each model.sortedEntries as |entry|}}
+            <li>{{#link-to 'dashboard.scoring-manager.session.csa' entry}}{{entry.group.name}}{{/link-to}}</li>
           {{/each}}
         </ul>
       </ul>

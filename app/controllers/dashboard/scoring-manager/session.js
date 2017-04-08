@@ -11,20 +11,20 @@ export default Ember.Controller.extend({
   // store: Ember.inject.service(),
   // isCollapsed: true,
   // isRaw: false,
-  // performerSortProperties: [
-  //   'performer.performerscore.total_points:desc',
+  // entrySortProperties: [
+  //   'entry.entryscore.total_points:desc',
   //   'group.nomen:asc',
   // ],
-  // sortedPerformers: Ember.computed.sort(
-  //   'model.performers',
-  //   'performerSortProperties'
+  // sortedEntries: Ember.computed.sort(
+  //   'model.entries',
+  //   'entrySortProperties'
   // ),
   // actions: {
   //   collapseHeader() {
   //     this.toggleProperty('isCollapsed');
   //   },
-  //   sortBy(performerSortProperties) {
-  //     this.set('performerSortProperties', [performerSortProperties]);
+  //   sortBy(entrySortProperties) {
+  //     this.set('entrySortProperties', [entrySortProperties]);
   //   },
   //   sortPerformancesBy(performanceSortProperties) {
   //     this.set('perfSort', [performanceSortProperties]);
@@ -63,14 +63,14 @@ export default Ember.Controller.extend({
   //       this.get('flashMessages').danger('Error');
   //     });
   //   },
-  //   scratchPerformer(performer) {
-  //     performer.scratch();
+  //   scratchEntry(entry) {
+  //     entry.scratch();
   //   },
-  //   disqualifyPerformer(performer) {
-  //     performer.disqualify();
+  //   disqualifyEntry(entry) {
+  //     entry.disqualify();
   //   },
-  //   deletePerformer(performer) {
-  //     performer.destroyRecord();
+  //   deleteEntry(entry) {
+  //     entry.destroyRecord();
   //   },
   //   scratchAssignment(assignment) {
   //     assignment.destroyRecord();

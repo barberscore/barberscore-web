@@ -2,12 +2,12 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  performerSortProperties: [
+  entrySortProperties: [
     'nomen:asc',
   ],
-  sortedPerformers: Ember.computed.sort(
-    'model.performers',
-    'performerSortProperties'
+  sortedEntries: Ember.computed.sort(
+    'model.entries',
+    'entrySortProperties'
   ),
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
@@ -106,8 +106,8 @@ export default Ember.Controller.extend({
   is_evaluation: true,
   is_private: false,
   actions: {
-    createPerformer(){
-      let performer = this.get('store').createRecord('performer', {
+    createEntry(){
+      let entry = this.get('store').createRecord('entry', {
         entity: this.get('entity'),
         session: this.get('model'),
         representing: this.get('representing'),
@@ -120,27 +120,27 @@ export default Ember.Controller.extend({
         director: this.get('director'),
         codirector: this.get('codirector'),
       });
-      performer.save()
+      entry.save()
       .then(() => {
         this.set('entity', null);
         this.set('representing', null);
         this.set('openModal', false);
         this.set('isEditing', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('dashboard.session-manager.session.registrations.registration', performer);
+        this.transitionToRoute('dashboard.session-manager.session.entries.entry', entry);
       })
       .catch(() => {
-        performer.deleteRecord();
+        entry.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearPerformer() {
+    clearEntry() {
       this.set('entity', null);
       this.set('representing', null);
       this.set('openModal', false);
     },
-    deletePerformer(performer){
-      performer.destroyRecord()
+    deleteEntry(entry){
+      entry.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

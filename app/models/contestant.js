@@ -7,7 +7,7 @@ export default Model.extend({
   status: attr('contestant-status'),
   contestantscore: belongsTo('contestantscore', {async: true}),
   contest: belongsTo('contest', {async: true}),
-  performer: belongsTo('performer', {async: true}),
+  entry: belongsTo('entry', {async: true}),
   permissions: attr(),
 
   statusOptions: [

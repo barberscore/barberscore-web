@@ -22,12 +22,12 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
-  performerSortProperties: [
+  entrySortProperties: [
     'nomen',
   ],
   sortedItems: Ember.computed.sort(
-    'model.session.performers',
-    'performerSortProperties'
+    'model.session.entries',
+    'entrySortProperties'
   ),
   submissionSortProperties: [
     'title',
@@ -56,24 +56,14 @@ export default Ember.Controller.extend({
       this.set('holders', chart.get('holders'));
       this.set('bhs_id', chart.get('bhs_id'));
     },
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.session-manager.session.registrations.registration', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.session-manager.session.registrations.registration', newCur);
-    },
-    editPerformer() {
+    editEntry() {
       this.set('isEditing', true);
     },
-    cancelPerformer() {
+    cancelEntry() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deletePerformer() {
+    deleteEntry() {
       let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
@@ -84,7 +74,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    savePerformer() {
+    saveEntry() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);
@@ -94,13 +84,13 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    buildPerformer() {
+    buildEntry() {
       this.model.build();
     },
-    scratchPerformer() {
+    scratchEntry() {
       this.model.scratch();
     },
-    disqualifyPerformer() {
+    disqualifyEntry() {
       this.model.disqualify();
     },
     updateSelection(newSelection, value, operation) {
@@ -136,7 +126,7 @@ export default Ember.Controller.extend({
     },
     createSubmission() {
       let submission = this.get('store').createRecord('submission', {
-        performer: this.get('model'),
+        entry: this.get('model'),
         title: this.get('title'),
         composers: this.get('composers'),
         arrangers: this.get('arrangers'),

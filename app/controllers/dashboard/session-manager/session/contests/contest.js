@@ -20,12 +20,12 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
-  performerSortProperties: [
+  entrySortProperties: [
     'nomen:asc',
   ],
-  sortedPerformers: Ember.computed.sort(
-    'model.session.performers',
-    'performerSortProperties'
+  sortedEntries: Ember.computed.sort(
+    'model.session.entries',
+    'entrySortProperties'
   ),
   searchTask: task(function* (term){
     yield timeout(600);
@@ -62,11 +62,11 @@ export default Ember.Controller.extend({
     addContestant(){
       let contestant = this.get('store').createRecord('contestant', {
         contest: this.get('model'),
-        performer: this.get('performer'),
+        entry: this.get('entry'),
       });
       contestant.save()
       .then(() => {
-        this.set('performer', null);
+        this.set('entry', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {

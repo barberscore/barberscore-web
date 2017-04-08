@@ -12,7 +12,7 @@ export default Model.extend({
   composers: attr('string', {defaultValue:''}),
   arrangers: attr('string', {defaultValue:''}),
   holders: attr('string', {defaultValue:''}),
-  performer: belongsTo('performer', {async: true}),
+  entry: belongsTo('entry', {async: true}),
   repertory: belongsTo('repertory', {async: true}),
   permissions: attr(),
 

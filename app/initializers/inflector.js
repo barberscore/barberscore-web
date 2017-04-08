@@ -15,8 +15,8 @@ export function initialize(/* application */) {
   inflector.uncountable('officer');
   inflector.uncountable('performance');
   inflector.uncountable('performanceprivate');
-  inflector.uncountable('performer');
-  inflector.uncountable('performerprivate');
+  inflector.uncountable('entry');
+  inflector.uncountable('entryprivate');
   inflector.uncountable('person');
   inflector.uncountable('repertory');
   inflector.uncountable('round');

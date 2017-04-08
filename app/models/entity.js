@@ -25,7 +25,7 @@ export default Model.extend({
   long_name: attr('string'),
   parent: belongsTo('entity', {inverse: 'children', async: true}),
   children: hasMany('entity', {inverse: 'parent', async: true}),
-  performers: hasMany('performer', {inverse: 'entity', async: true}),
+  entries: hasMany('entry', {inverse: 'entity', async: true}),
   awards: hasMany('award', {async: true}),
   repertories: hasMany('repertory', {async: true}),
   members: hasMany('member', {async: true}),

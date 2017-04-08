@@ -2,15 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isRaw: false,
-  performerSortProperties: [
-    'performerscore.total_points:desc',
-    'performerscore.sng_points:desc',
-    'performerscore.mus_points:desc',
-    'performerscore.prs_points:desc',
+  entrySortProperties: [
+    'entryscore.total_points:desc',
+    'entryscore.sng_points:desc',
+    'entryscore.mus_points:desc',
+    'entryscore.prs_points:desc',
   ],
-  sortedPerformers: Ember.computed.sort(
-    'model.performers',
-    'performerSortProperties'
+  sortedEntries: Ember.computed.sort(
+    'model.entries',
+    'entrySortProperties'
   ),
   contestSortProperties: [
     'entityKindSort',

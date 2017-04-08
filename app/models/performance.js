@@ -14,7 +14,7 @@ export default Model.extend({
   actual_finish: attr('date'),
   is_advancing: attr('boolean'),
   round: belongsTo('round', {async: true}),
-  performer: belongsTo('performer', {async: true}),
+  entry: belongsTo('entry', {async: true}),
   songs: hasMany('song', {async: true}),
   performancescore: belongsTo('performancescore', {async: true}),
   slot: belongsTo('slot', {async: true}),

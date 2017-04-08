@@ -69,16 +69,16 @@ export default Ember.Controller.extend({
   is_evaluation: true,
   is_private: false,
 
-  sortedPerformersProperties: [
+  sortedEntriesProperties: [
     'nomen:asc',
   ],
-  sortedPerformers: Ember.computed.sort(
-    'model.performers',
-    'sortedPerformersProperties'
+  sortedEntries: Ember.computed.sort(
+    'model.entries',
+    'sortedEntriesProperties'
   ),
   actions: {
-    createPerformer(){
-      let performer = this.get('store').createRecord('performer', {
+    createEntry(){
+      let entry = this.get('store').createRecord('entry', {
         entity: this.get('model'),
         session: this.get('session'),
         representing: this.get('representing'),
@@ -87,27 +87,27 @@ export default Ember.Controller.extend({
         director: this.get('director'),
         codirector: this.get('codirector'),
       });
-      performer.save()
+      entry.save()
       .then(() => {
         this.set('session', null);
         this.set('representing', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.set('isEditing', false);
-        this.transitionToRoute('dashboard.chorus-manager.chorus.registrations.registration', performer);
+        this.transitionToRoute('dashboard.chorus-manager.chorus.entries.entry', entry);
       })
       .catch(() => {
-        performer.deleteRecord();
+        entry.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearPerformer() {
+    clearEntry() {
       this.set('session', null);
       this.set('representing', null);
       this.set('openModal', false);
     },
-    deletePerformer(performer){
-      performer.destroyRecord()
+    deleteEntry(entry){
+      entry.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })

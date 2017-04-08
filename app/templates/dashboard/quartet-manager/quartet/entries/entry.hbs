@@ -10,7 +10,7 @@
         {{#bs-form
           formLayout="vertical"
           model=model
-          onSubmit=(action "savePerformer")
+          onSubmit=(action "saveEntry")
           as |form|
         }}
           {{#form.element property='representing' useIcons=false as |el|}}
@@ -104,11 +104,11 @@
             {{/power-select}}
           {{/form.element}}
           {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelPerformer')}}Cancel{{/bs-button}}
+              {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
               {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deletePerformer') class='pull-right btn-danger'}}Delete{{/bs-button}}
+              {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
-            {{#bs-button onClick=(action 'editPerformer')}}Edit{{/bs-button}}
+            {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
           {{/if}}
         {{/bs-form}}
       </div>

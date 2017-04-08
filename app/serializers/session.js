@@ -5,7 +5,7 @@ export default DS.JSONAPISerializer.extend({
       contests: {
         serialize: true
       },
-      performers: {
+      entries: {
         serialize: true
       },
       rounds: {

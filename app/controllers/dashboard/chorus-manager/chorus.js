@@ -33,18 +33,18 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    addPerformer() {
-var performer = this.get('store').createRecord('performer', {
+    addEntry() {
+var entry = this.get('store').createRecord('entry', {
         session: this.get('session'),
         group: this.get('model'),
       });
-      performer.save()
+      entry.save()
       .then(() => {
         this.set('group', null);
         this.get('flashMessages').success('Success');
       })
       .catch(() => {
-        performer.deleteRecord();
+        entry.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },

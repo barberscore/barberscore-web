@@ -46,7 +46,7 @@
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.mus_points}}{{else}}{{performance.performancescore.mus_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.performerscore.mus_points}}{{else}}{{model.performerscore.mus_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryscore.mus_points}}{{else}}{{model.entryscore.mus_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
             {{#each model.performances as |performance|}}
@@ -55,7 +55,7 @@
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.prs_points}}{{else}}{{performance.performancescore.prs_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.performerscore.prs_points}}{{else}}{{model.performerscore.prs_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryscore.prs_points}}{{else}}{{model.entryscore.prs_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
             {{#each model.performances as |performance|}}
@@ -64,7 +64,7 @@
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.sng_points}}{{else}}{{performance.performancescore.sng_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.performerscore.sng_points}}{{else}}{{model.performerscore.sng_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryscore.sng_points}}{{else}}{{model.entryscore.sng_score}}{{/if}}</strong><br>
           </td>
           <td class='text-right'>
             {{#each model.performances as |performance|}}
@@ -73,7 +73,7 @@
               {{/each}}
               {{#if (not-eq model.performances.length 1)}}<em>{{#if isRaw}}{{performance.performancescore.total_points}}{{else}}{{performance.performancescore.total_score}}{{/if}}</em><br>{{/if}}
             {{/each}}
-            <strong>{{#if isRaw}}{{model.performerscore.total_points}}{{else}}{{model.performerscore.total_score}}{{/if}}</strong><br>
+            <strong>{{#if isRaw}}{{model.entryscore.total_points}}{{else}}{{model.entryscore.total_score}}{{/if}}</strong><br>
           </td>
         </tr>
       </tbody>

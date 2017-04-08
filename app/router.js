@@ -22,8 +22,8 @@ Router.map(function() {
         this.route('contests', { path: 'contests'}, function() {
           this.route('contest', { path: ':contest_id'});
         });
-        this.route('registrations', { path: 'registrations'}, function() {
-          this.route('registration', { path: ':performer_id'});
+        this.route('entries', { path: 'entries'}, function() {
+          this.route('entry', { path: ':entry_id'});
         });
         this.route('actions', {path: 'actions'});
       });
@@ -42,8 +42,8 @@ Router.map(function() {
     this.route('quartet-manager', {path: 'quartet-manager'}, function() {
       this.route('quartet', { path: ':entity_id'}, function() {
         this.route('details', { path: 'details'});
-        this.route('registrations', { path: 'registrations'}, function() {
-          this.route('registration', { path: ':performer_id'});
+        this.route('entries', { path: 'entries'}, function() {
+          this.route('entry', { path: ':entry_id'});
         });
         this.route('members', { path: 'members'}, function() {
           this.route('member', { path: ':member_id'});
@@ -58,8 +58,8 @@ Router.map(function() {
     this.route('chorus-manager', {path: 'chorus-manager'}, function() {
       this.route('chorus', { path: ':entity_id'}, function() {
         this.route('details', { path: 'details'});
-        this.route('registrations', { path: 'registrations'}, function() {
-          this.route('registration', { path: ':performer_id'});
+        this.route('entries', { path: 'entries'}, function() {
+          this.route('entry', { path: ':entry_id'});
         });
         this.route('members', { path: 'members'}, function() {
           this.route('member', { path: ':member_id'});

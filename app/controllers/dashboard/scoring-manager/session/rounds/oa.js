@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
-  performanceSortProperties: ['num', 'performer.performerscore.total_score:desc',],
+  performanceSortProperties: ['num', 'entry.entryscore.total_score:desc',],
   sortedPerformances: Ember.computed.sort(
     'model.performances',
     'performanceSortProperties'

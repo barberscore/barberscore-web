@@ -5,6 +5,7 @@ export default Ember.Controller.extend({
   isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
   flashMessage: Ember.get(this, 'flashMessages'),
+  openModal: false,
   searchTask: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -21,19 +22,19 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
-  performerSortProperties: [
+  entrySortProperties: [
     'nomen',
   ],
   sortedItems: Ember.computed.sort(
-    'model.session.performers',
-    'performerSortProperties'
+    'model.session.entries',
+    'entrySortProperties'
   ),
-  sortedRepertoriesProperties: [
-    'nomen',
+  submissionSortProperties: [
+    'title',
   ],
-  sortedRepertories: Ember.computed.sort(
-    'model.entity.repertories',
-    'sortedRepertoriesProperties'
+  sortedSubmissions: Ember.computed.sort(
+    'model.submissions',
+    'submissionSortProperties'
   ),
   contestSortProperties: [
     'entityKindSort',
@@ -46,38 +47,6 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
-  representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
-        'kind__lt': '30',
-        'page_size': 100,
-      });
-    // }).then((data) => {
-    //   sessions.addObjects(data);
-    // });
-    // return sessions;
-  }),
-  // representingFilter: Ember.computed.filterBy(
-  //   'representingCall',
-  //   'kind',
-  //   'Quartet'
-  // ),
-  representingSortProperties: [
-    'nomen:asc',
-  ],
-  representingOptions: Ember.computed.sort(
-    'representingCall',
-    'representingSortProperties'
-  ),
-  isPrevDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
   actions: {
     populateSubmission(chart) {
       this.set('chart', chart);
@@ -90,21 +59,21 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.session-manager.session.registrations.registration', newCur);
+      this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.session-manager.session.registrations.registration', newCur);
+      this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
     },
-    editPerformer() {
+    editEntry() {
       this.set('isEditing', true);
     },
-    cancelPerformer() {
+    cancelEntry() {
       this.model.rollbackAttributes();
       this.set('isEditing', false);
     },
-    deletePerformer() {
+    deleteEntry() {
       let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
@@ -115,7 +84,7 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    savePerformer() {
+    saveEntry() {
       this.model.save()
       .then(() => {
         this.set('isEditing', false);
@@ -125,19 +94,20 @@ export default Ember.Controller.extend({
         this.get('flashMessages').danger('Error');
       });
     },
-    buildPerformer() {
+    buildEntry() {
       this.model.build();
     },
-    scratchPerformer() {
+    scratchEntry() {
       this.model.scratch();
     },
-    disqualifyPerformer() {
+    disqualifyEntry() {
       this.model.disqualify();
     },
     updateSelection(newSelection, value, operation) {
       if (operation==='added') {
+        let contest = this.get('store').peekRecord('contest', value);
         let contestant = this.get('model.contestants').createRecord({
-          contest: value
+          contest: contest
         });
         contestant.save()
         .then(() => {
@@ -146,7 +116,7 @@ export default Ember.Controller.extend({
           this.get('flashMessages').danger('Error');
         });
       } else { //operation === removed
-        let contestant = this.get('model.contestants').findBy('contest.id', value.get('id'));
+        let contestant = this.get('model.contestants').findBy('contest.id', value);
         contestant.destroyRecord()
         .then(() => {
         })
@@ -166,7 +136,7 @@ export default Ember.Controller.extend({
     },
     createSubmission() {
       let submission = this.get('store').createRecord('submission', {
-        performer: this.get('model'),
+        entry: this.get('model'),
         title: this.get('title'),
         composers: this.get('composers'),
         arrangers: this.get('arrangers'),

@@ -118,8 +118,8 @@ export default Ember.Controller.extend({
   is_evaluation: true,
   is_private: false,
   actions: {
-    createPerformer(){
-      let performer = this.get('store').createRecord('performer', {
+    createEntry(){
+      let entry = this.get('store').createRecord('entry', {
         entity: this.get('model'),
         session: this.get('session'),
         representing: this.get('representing'),
@@ -130,27 +130,27 @@ export default Ember.Controller.extend({
         baritone: this.get('baritone.person'),
         bass: this.get('bass.person'),
       });
-      performer.save()
+      entry.save()
       .then(() => {
         this.set('session', null);
         this.set('representing', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.set('isEditing', false);
-        this.transitionToRoute('dashboard.quartet-manager.quartet.registrations.registration', performer);
+        this.transitionToRoute('dashboard.quartet-manager.quartet.entries.entry', entry);
       })
       .catch(() => {
-        performer.deleteRecord();
+        entry.deleteRecord();
         this.get('flashMessages').danger('Error');
       });
     },
-    clearPerformer() {
+    clearEntry() {
       this.set('session', null);
       this.set('representing', null);
       this.set('openModal', false);
     },
-    deletePerformer(performer){
-      performer.destroyRecord()
+    deleteEntry(entry){
+      entry.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
       })
