@@ -1,16 +1,15 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo} from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('officer-status'),
-  start_date: attr('isodate'),
-  finish_date: attr('isodate'),
-  office: belongsTo('office', {async: true}),
-  person: belongsTo('person', {async: true}),
-  entity: belongsTo('entity', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('officer-status'),
+  start_date: DS.attr('isodate'),
+  finish_date: DS.attr('isodate'),
+  office: DS.belongsTo('office', {async: true}),
+  person: DS.belongsTo('person', {async: true}),
+  entity: DS.belongsTo('entity', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

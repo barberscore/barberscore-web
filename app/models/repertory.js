@@ -1,14 +1,13 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany} from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('repertory-status'),
-  chart: belongsTo('chart', {async: true}),
-  entity: belongsTo('entity', {async: true}),
-  submissions: hasMany('submission', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('repertory-status'),
+  chart: DS.belongsTo('chart', {async: true}),
+  entity: DS.belongsTo('entity', {async: true}),
+  submissions: DS.hasMany('submission', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

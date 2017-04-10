@@ -1,18 +1,17 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import { belongsTo } from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('assignment-status'),
-  category: attr('assignment-category'),
-  // designation: attr('string'),
-  kind: attr('assignment-kind'),
-  slot: attr('number'),
-  convention: belongsTo('convention', {async: true}),
-  person: belongsTo('person', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('assignment-status'),
+  category: DS.attr('assignment-category'),
+  // designation: DS.attr('string'),
+  kind: DS.attr('assignment-kind'),
+  slot: DS.attr('number'),
+  convention: DS.belongsTo('convention', {async: true}),
+  person: DS.belongsTo('person', {async: true}),
+  permissions: DS.attr(),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',

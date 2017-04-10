@@ -1,19 +1,18 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 const {computed} = Ember;
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('song-status'),
-  num: attr('number'),
-  arranger: attr('string'),
-  songprivate: belongsTo('songprivate', {async: true}),
-  appearance: belongsTo('appearance', {async: true}),
-  chart: belongsTo('chart', {async: true}),
-  scores: hasMany('score', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('song-status'),
+  num: DS.attr('number'),
+  arranger: DS.attr('string'),
+  songprivate: DS.belongsTo('songprivate', {async: true}),
+  appearance: DS.belongsTo('appearance', {async: true}),
+  chart: DS.belongsTo('chart', {async: true}),
+  scores: DS.hasMany('score', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',
@@ -23,6 +22,12 @@ export default Model.extend({
     'Final',
     'Published',
   ],
+
+  songScoreCall: Ember.computed(
+    'scores.@each.id', function() {
+      return this.get('scores');
+    }
+  ),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

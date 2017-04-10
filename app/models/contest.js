@@ -1,21 +1,20 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('contest-status'),
-  cycle: attr('number'),
-  is_qualifier: attr('boolean'),
-  kind: attr('contest-kind'),
-  contestants: hasMany('contestant', {async: true}),
-  primary_contest: belongsTo('session', {async: true, inverse: 'primary'}),
-  award: belongsTo('award', {async: true}),
-  session: belongsTo('session', {async: true}),
-  contestprivate: belongsTo('contestprivate', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('contest-status'),
+  cycle: DS.attr('number'),
+  is_qualifier: DS.attr('boolean'),
+  kind: DS.attr('contest-kind'),
+  contestants: DS.hasMany('contestant', {async: true}),
+  primary_contest: DS.belongsTo('session', {async: true, inverse: 'primary'}),
+  award: DS.belongsTo('award', {async: true}),
+  session: DS.belongsTo('session', {async: true}),
+  contestprivate: DS.belongsTo('contestprivate', {async: true}),
+  permissions: DS.attr(),
 
   build: memberAction({path: 'build'}),
 

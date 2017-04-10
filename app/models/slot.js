@@ -1,15 +1,14 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany} from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('song-status'),
-  round: belongsTo('round', {async: true}),
-  appearances: hasMany('appearance', {async: true}),
-  num: attr('number'),
-  onstage: attr('date'),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('song-status'),
+  round: DS.belongsTo('round', {async: true}),
+  appearances: DS.hasMany('appearance', {async: true}),
+  num: DS.attr('number'),
+  onstage: DS.attr('date'),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

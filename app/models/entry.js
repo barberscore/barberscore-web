@@ -1,34 +1,33 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 const {computed} = Ember;
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('entry-status'),
-  picture: attr('string'),
-  tenor: belongsTo('person', {async: true}),
-  lead: belongsTo('person', {async: true}),
-  baritone: belongsTo('person', {async: true}),
-  bass: belongsTo('person', {async: true}),
-  men: attr('number'),
-  risers: attr('number'),
-  is_evaluation: attr('boolean'),
-  is_private: attr('boolean'),
-  director: belongsTo('person', {async: true}),
-  codirector: belongsTo('person', {async: true}),
-  representing: belongsTo('entity', {async: true}),
-  seed: attr('number'),
-  prelim: attr('number'),
-  entity: belongsTo('entity', {inverse: 'entries', async: true}),
-  session: belongsTo('session', {async: true}),
-  appearances: hasMany('appearance', {async: true}),
-  contestants: hasMany('contestant', {async: true}),
-  submissions: hasMany('submission', {async: true}),
-  entryprivate: belongsTo('entryprivate', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('entry-status'),
+  picture: DS.attr('string'),
+  tenor: DS.belongsTo('person', {async: true}),
+  lead: DS.belongsTo('person', {async: true}),
+  baritone: DS.belongsTo('person', {async: true}),
+  bass: DS.belongsTo('person', {async: true}),
+  men: DS.attr('number'),
+  risers: DS.attr('number'),
+  is_evaluation: DS.attr('boolean'),
+  is_private: DS.attr('boolean'),
+  director: DS.belongsTo('person', {async: true}),
+  codirector: DS.belongsTo('person', {async: true}),
+  representing: DS.belongsTo('entity', {async: true}),
+  seed: DS.attr('number'),
+  prelim: DS.attr('number'),
+  entity: DS.belongsTo('entity', {inverse: 'entries', async: true}),
+  session: DS.belongsTo('session', {async: true}),
+  appearances: DS.hasMany('appearance', {async: true}),
+  contestants: DS.hasMany('contestant', {async: true}),
+  submissions: DS.hasMany('submission', {async: true}),
+  entryprivate: DS.belongsTo('entryprivate', {async: true}),
+  permissions: DS.attr(),
 
   scratch: memberAction({path: 'scratch'}),
   penalizeEligibility: memberAction({path: 'penalize-eligibility'}),

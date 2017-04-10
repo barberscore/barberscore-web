@@ -1,23 +1,22 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo} from 'ember-data/relationships';
+import DS from 'ember-data';
 const {computed} = Ember;
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('score-status'),
-  kind: attr('score-kind'),
-  category: attr('score-category'),
-  num: attr('number'),
-  points: attr('number'),
-  original: attr('number'),
-  violation: attr('score-violation'),
-  penalty: attr('number'),
-  is_flagged: attr('boolean'),
-  song: belongsTo('song', {async: true}),
-  person: belongsTo('person', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('score-status'),
+  kind: DS.attr('score-kind'),
+  category: DS.attr('score-category'),
+  num: DS.attr('number'),
+  points: DS.attr('number'),
+  original: DS.attr('number'),
+  violation: DS.attr('score-violation'),
+  penalty: DS.attr('number'),
+  is_flagged: DS.attr('boolean'),
+  song: DS.belongsTo('song', {async: true}),
+  person: DS.belongsTo('person', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

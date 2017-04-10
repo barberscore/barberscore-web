@@ -1,16 +1,15 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {hasMany} from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  name: attr('string'),
-  status: attr('office-status'),
-  kind: attr('office-kind'),
-  short_name: attr('string'),
-  long_name: attr('string'),
-  officers: hasMany('officer', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  name: DS.attr('string'),
+  status: DS.attr('office-status'),
+  kind: DS.attr('office-kind'),
+  short_name: DS.attr('string'),
+  long_name: DS.attr('string'),
+  officers: DS.hasMany('officer', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

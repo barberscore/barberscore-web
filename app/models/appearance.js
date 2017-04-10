@@ -1,31 +1,30 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 const {computed} = Ember;
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('appearance-status'),
-  num: attr('number'),
-  rank: attr('number'),
-  actual_start: attr('date'),
-  actual_finish: attr('date'),
-  is_advancing: attr('boolean'),
-  round: belongsTo('round', {async: true}),
-  entry: belongsTo('entry', {async: true}),
-  songs: hasMany('song', {async: true}),
-  appearanceprivate: belongsTo('appearanceprivate', {async: true}),
-  slot: belongsTo('slot', {async: true}),
-  session: belongsTo('session', {async: true}),
+  nomen: DS.attr('string'),
+  status: DS.attr('appearance-status'),
+  num: DS.attr('number'),
+  rank: DS.attr('number'),
+  actual_start: DS.attr('date'),
+  actual_finish: DS.attr('date'),
+  is_advancing: DS.attr('boolean'),
+  round: DS.belongsTo('round', {async: true}),
+  entry: DS.belongsTo('entry', {async: true}),
+  songs: DS.hasMany('song', {async: true}),
+  appearanceprivate: DS.belongsTo('appearanceprivate', {async: true}),
+  slot: DS.belongsTo('slot', {async: true}),
+  session: DS.belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),
   scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
-  permissions: attr(),
+  permissions: DS.attr(),
   statusOptions: [
     'New',
     'Validated',

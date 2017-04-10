@@ -1,22 +1,21 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('session-status'),
-  kind: attr('session-kind'),
-  age: attr('session-age'),
-  num_rounds: attr('number'),
-  is_prelims: attr('boolean'),
-  // current: belongsTo('round', {async: true, inverse: 'current_session'}),
-  primary: belongsTo('contest', {async: true, inverse: 'primary_contest'}),
-  convention: belongsTo('convention', {async: true}),
-  rounds: hasMany('round', {async: true}),
-  entries: hasMany('entry', {async: true}),
-  contests: hasMany('contest', {async: true}),
+  nomen: DS.attr('string'),
+  status: DS.attr('session-status'),
+  kind: DS.attr('session-kind'),
+  age: DS.attr('session-age'),
+  num_rounds: DS.attr('number'),
+  is_prelims: DS.attr('boolean'),
+  // current: DS.belongsTo('round', {async: true, inverse: 'current_session'}),
+  primary: DS.belongsTo('contest', {async: true, inverse: 'primary_contest'}),
+  convention: DS.belongsTo('convention', {async: true}),
+  rounds: DS.hasMany('round', {async: true}),
+  entries: DS.hasMany('entry', {async: true}),
+  contests: DS.hasMany('contest', {async: true}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   validate: memberAction({path: 'validate', type: 'post'}),
@@ -24,8 +23,8 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   draft: memberAction({path: 'draft', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
-  cursor: belongsTo('appearance', {async: true}),
-  permissions: attr(),
+  cursor: DS.belongsTo('appearance', {async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

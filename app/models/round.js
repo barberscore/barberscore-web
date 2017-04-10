@@ -1,22 +1,21 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('round-status'),
-  kind: attr('round-kind'),
-  start_date: attr('isodate'),
-  finish_date: attr('isodate'),
-  num: attr('number'),
-  // mt: belongsTo('group', {async: true}),
-  // current_session: belongsTo('session', {async: true, inverse: 'current'}),
-  session: belongsTo('session', {async: true}),
-  appearances: hasMany('appearance', {async: true}),
-  slots: hasMany('slot', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('round-status'),
+  kind: DS.attr('round-kind'),
+  start_date: DS.attr('isodate'),
+  finish_date: DS.attr('isodate'),
+  num: DS.attr('number'),
+  // mt: DS.belongsTo('group', {async: true}),
+  // current_session: DS.belongsTo('session', {async: true, inverse: 'current'}),
+  session: DS.belongsTo('session', {async: true}),
+  appearances: DS.hasMany('appearance', {async: true}),
+  slots: DS.hasMany('slot', {async: true}),
+  permissions: DS.attr(),
 
   draw: memberAction({path: 'draw'}),
   resort: memberAction({path: 'resort'}),

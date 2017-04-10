@@ -1,30 +1,29 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {belongsTo, hasMany } from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  name: attr('string'),
-  status: attr('award-status'),
-  kind: attr('award-kind'),
-  age: attr('award-age'),
-  season: attr('award-season'),
-  rounds: attr('number'),
-  is_qualifier: attr('boolean'),
-  is_primary: attr('boolean'),
-  is_improved: attr('boolean'),
-  is_novice: attr('boolean'),
-  is_manual: attr('boolean'),
-  threshold: attr('number'),
-  minimum: attr('number'),
-  advance: attr('number'),
-  size: attr('award-size'),
-  scope: attr('award-scope'),
-  idiom: attr('string'),
-  entity: belongsTo('entity', {async: true}),
-  contests: hasMany('contest', {inverse:'award', async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  name: DS.attr('string'),
+  status: DS.attr('award-status'),
+  kind: DS.attr('award-kind'),
+  age: DS.attr('award-age'),
+  season: DS.attr('award-season'),
+  rounds: DS.attr('number'),
+  is_qualifier: DS.attr('boolean'),
+  is_primary: DS.attr('boolean'),
+  is_improved: DS.attr('boolean'),
+  is_novice: DS.attr('boolean'),
+  is_manual: DS.attr('boolean'),
+  threshold: DS.attr('number'),
+  minimum: DS.attr('number'),
+  advance: DS.attr('number'),
+  size: DS.attr('award-size'),
+  scope: DS.attr('award-scope'),
+  idiom: DS.attr('string'),
+  entity: DS.belongsTo('entity', {async: true}),
+  contests: DS.hasMany('contest', {inverse:'award', async: true}),
+  permissions: DS.attr(),
 
   statusOptions: [
     'New',

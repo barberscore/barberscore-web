@@ -1,16 +1,15 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
-import {hasMany} from 'ember-data/relationships';
+import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: attr('string'),
-  status: attr('chart-status'),
-  bhs_id: attr('number'),
-  title: attr('string'),
-  composers: attr('string'),
-  arrangers: attr('string'),
-  holders: attr('string'),
-  repertories: hasMany('repertory', {async: true}),
-  songs: hasMany('song', {async: true}),
-  permissions: attr(),
+  nomen: DS.attr('string'),
+  status: DS.attr('chart-status'),
+  bhs_id: DS.attr('number'),
+  title: DS.attr('string'),
+  composers: DS.attr('string'),
+  arrangers: DS.attr('string'),
+  holders: DS.attr('string'),
+  repertories: DS.hasMany('repertory', {async: true}),
+  songs: DS.hasMany('song', {async: true}),
+  permissions: DS.attr(),
 });
