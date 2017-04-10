@@ -1,0 +1,26 @@
+<section>
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{#form.element
+      controlType='text'
+      disabled=true
+      placeholder='Kind'
+      property='kind'
+      as |el|
+    }}
+      Kind: {{el.value}}
+    {{/form.element}}
+    {{!-- {{#form.element
+      controlType='text'
+      disabled=true
+      placeholder='Slots'
+      property='slots'
+      as |el|
+    }}
+      Slots: {{el.value}}
+    {{/form.element}} --}}
+  {{/bs-form}}
+</section>

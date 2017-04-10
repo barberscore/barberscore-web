@@ -30,6 +30,11 @@ Router.map(function() {
     });
     this.route('scoring-manager', {path: 'scoring-manager'}, function() {
       this.route('round', { path: ':round_id' }, function() {
+        this.route('details', {path: 'details'});
+        this.route('appearances', { path: 'appearances'}, function() {
+          this.route('appearance', { path: ':appearance_id'});
+        });
+        this.route('actions', {path: 'actions'});
       });
     });
     this.route('judge-manager', {path: 'judge-manager'}, function() {

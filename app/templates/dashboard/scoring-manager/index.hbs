@@ -8,18 +8,16 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Convention</th>
-          <th>Date</th>
+          <th>Kind</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
-        {{#each model as |session|}}
+        {{#each sortedRounds as |round|}}
           <tr>
-            <td>{{#link-to 'dashboard.scoring-manager.session' session}}{{session.nomen}}{{/link-to}}</td>
-            <td>{{session.convention.name}}</td>
-            <td>{{moment-format session.convention.start_date 'LL'}}</td>
-            <td>{{session.status}}</td>
+            <td>{{#link-to 'dashboard.scoring-manager.round.details' round}}{{round.nomen}}{{/link-to}}</td>
+            <td>{{round.kind}}</td>
+            <td>{{round.status}}</td>
           </tr>
         {{else}}
           <tr>

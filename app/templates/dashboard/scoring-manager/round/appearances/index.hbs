@@ -1,0 +1,26 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Num</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAppearances as |appearance|}}
+            <tr>
+              <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
+              <td>{{appearance.num}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No appearances.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,93 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
+      <h4>
+        {{model.entry.entity.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>Songs</caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedSongs as |song|}}
+              <tr>
+                <td>
+                  {{#power-select
+                    options=model.chartOptions
+                    selected=song.chart
+                    onchange=(action (mut song.chart))
+                    placeholder="Choose Chart Title"
+                    allowClear=true
+                    disabled=false
+                    as |chart|
+                  }}
+                    Song {{song.num}}: {{chart.title}}
+                  {{/power-select}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No songs.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>Points</caption>
+          <thead>
+            <tr>
+              <td>
+                Judge
+              </td>
+              <td>
+                Points
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each scoresByNum as |group|}}
+              <tr>
+                <td>
+                  {{group.value}}&nbsp;-&nbsp;{{group.items.firstObject.category}}<br>
+                  {{group.items.firstObject.person.common_name}}
+                </td>
+                <td>
+                  {{#each group.items as |score|}}
+                   {{input type='tel' value=score.points}}<br>
+                  {{/each}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>
+                  (No scores.)
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>
+              </td>
+              <td>
+                {{#bs-button type="primary" }}Verify{{/bs-button}}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

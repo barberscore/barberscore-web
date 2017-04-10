@@ -9,6 +9,7 @@ export default Model.extend({
   status: attr('score-status'),
   kind: attr('score-kind'),
   category: attr('score-category'),
+  num: attr('number'),
   points: attr('number'),
   original: attr('number'),
   violation: attr('score-violation'),
@@ -41,6 +42,7 @@ export default Model.extend({
     'General',
   ],
 
+  songNum: computed.alias('song.num'),
   lowReview: computed(
     'song.ascSortedScores',
     function() {
@@ -131,6 +133,13 @@ export default Model.extend({
       } else {
         return '';
       }
+    }
+  ),
+  slotJudge: computed(
+    'num',
+    'person.common_name',
+    function() {
+      return this.get('num') + " - " + this.get('person.common_name');
     }
   ),
 });

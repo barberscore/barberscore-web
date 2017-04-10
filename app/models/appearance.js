@@ -26,7 +26,6 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
   permissions: attr(),
-
   statusOptions: [
     'New',
     'Validated',
@@ -39,6 +38,20 @@ export default Model.extend({
   ],
 
 
+  reportoriesFiltered: Ember.computed.alias(
+    'entry.entity.repertories'
+  ),
+  chartsMapped: Ember.computed.mapBy(
+    'reportoriesFiltered',
+    'chart'
+  ),
+  chartOptionsProperties: [
+    'title',
+  ],
+  chartOptions: Ember.computed.sort(
+    'chartsMapped',
+    'chartOptionsProperties'
+  ),
   // totSongsPoints: computed.mapBy(
   //   'songs',
   //   'totPoints',

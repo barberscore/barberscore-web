@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import {belongsTo, hasMany } from 'ember-data/relationships';
@@ -36,5 +37,13 @@ export default Model.extend({
     'Semi-Finals',
     'Quarter-Finals',
   ],
-
+  kindSort: Ember.computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+  sessionConventionStartDate: Ember.computed.alias('session.convention.start_date'),
+  sessionKindSort: Ember.computed.alias('session.kindSort'),
 });
