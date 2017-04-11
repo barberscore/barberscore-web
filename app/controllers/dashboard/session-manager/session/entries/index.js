@@ -124,6 +124,12 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('entity', null);
         this.set('representing', null);
+        this.set('tenor', null);
+        this.set('lead', null);
+        this.set('baritone', null);
+        this.set('bass', null);
+        this.set('director', null);
+        this.set('codirector', null);
         this.set('openModal', false);
         this.set('isEditing', false);
         this.get('flashMessages').success('Success');
@@ -137,6 +143,12 @@ export default Ember.Controller.extend({
     clearEntry() {
       this.set('entity', null);
       this.set('representing', null);
+      this.set('tenor', null);
+      this.set('lead', null);
+      this.set('baritone', null);
+      this.set('bass', null);
+      this.set('director', null);
+      this.set('codirector', null);
       this.set('openModal', false);
     },
     deleteEntry(entry){
