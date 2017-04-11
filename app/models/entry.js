@@ -26,7 +26,6 @@ export default Model.extend({
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
-  entryprivate: DS.belongsTo('entryprivate', {async: true}),
   permissions: DS.attr(),
 
   scratch: memberAction({path: 'scratch'}),

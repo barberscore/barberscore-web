@@ -4,7 +4,6 @@ import DS from 'ember-data';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('contestant-status'),
-  contestantprivate: DS.belongsTo('contestantprivate', {async: true}),
   contest: DS.belongsTo('contest', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
   permissions: DS.attr(),

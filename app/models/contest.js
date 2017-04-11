@@ -13,7 +13,6 @@ export default Model.extend({
   primary_contest: DS.belongsTo('session', {async: true, inverse: 'primary'}),
   award: DS.belongsTo('award', {async: true}),
   session: DS.belongsTo('session', {async: true}),
-  contestprivate: DS.belongsTo('contestprivate', {async: true}),
   permissions: DS.attr(),
 
   build: memberAction({path: 'build'}),

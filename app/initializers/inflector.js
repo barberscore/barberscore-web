@@ -2,21 +2,18 @@ import Ember from 'ember';
 
 export function initialize(/* application */) {
   var inflector = Ember.Inflector.inflector;
+  inflector.uncountable('appearance');
   inflector.uncountable('assignment');
   inflector.uncountable('award');
   inflector.uncountable('chart');
   inflector.uncountable('contest');
   inflector.uncountable('contestant');
-  inflector.uncountable('contestprivate');
   inflector.uncountable('convention');
   inflector.uncountable('entity');
+  inflector.uncountable('entry');
   inflector.uncountable('member');
   inflector.uncountable('office');
   inflector.uncountable('officer');
-  inflector.uncountable('appearance');
-  inflector.uncountable('appearanceprivate');
-  inflector.uncountable('entry');
-  inflector.uncountable('entryprivate');
   inflector.uncountable('person');
   inflector.uncountable('repertory');
   inflector.uncountable('round');
@@ -24,7 +21,6 @@ export function initialize(/* application */) {
   inflector.uncountable('session');
   inflector.uncountable('slot');
   inflector.uncountable('song');
-  inflector.uncountable('songprivate');
   inflector.uncountable('submission');
   inflector.uncountable('user');
   inflector.uncountable('venue');

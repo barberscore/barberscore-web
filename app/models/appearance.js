@@ -15,7 +15,6 @@ export default Model.extend({
   round: DS.belongsTo('round', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
   songs: DS.hasMany('song', {async: true}),
-  appearanceprivate: DS.belongsTo('appearanceprivate', {async: true}),
   slot: DS.belongsTo('slot', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),

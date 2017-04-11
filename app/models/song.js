@@ -8,7 +8,6 @@ export default Model.extend({
   status: DS.attr('song-status'),
   num: DS.attr('number'),
   arranger: DS.attr('string'),
-  songprivate: DS.belongsTo('songprivate', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
   chart: DS.belongsTo('chart', {async: true}),
   scores: DS.hasMany('score', {async: true}),
