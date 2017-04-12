@@ -45,28 +45,32 @@
       </div>
       <div class='table-responsive'>
         <table class='table'>
-          <caption>Points</caption>
+          <caption>Scores</caption>
           <thead>
             <tr>
-              <td>
+              <th>
+                Num
+              </th>
+              <th>
                 Judge
-              </td>
-              <td>
+              </th>
+              <th>
                 Points
-              </td>
+              </th>
             </tr>
           </thead>
           <tbody>
-            {{#each scoresByNum as |group|}}
+            {{#each groupedScores as |group|}}
               <tr>
                 <td>
-                  {{group.value}}&nbsp;-&nbsp;{{group.items.firstObject.category}}<br>
-                  {{group.items.firstObject.person.common_name}}
+                  {{group.value}}
                 </td>
                 <td>
-                  {{#each group.items as |score|}}
-                   {{input type='tel' value=score.points}}<br>
-                  {{/each}}
+                  {{group.items.firstObject.person.common_name}}<br>
+                  {{group.items.firstObject.category}}{{#if (eq group.items.firstObject.kind 'Practice')}} (Practice){{/if}}<br>
+                </td>
+                <td>
+                  {{sorted-scores scores=group.items}}
                 </td>
               </tr>
             {{else}}
@@ -79,7 +83,7 @@
           </tbody>
           <tfoot>
             <tr>
-              <td>
+              <td colspan=2>
               </td>
               <td>
                 {{#bs-button type="primary" }}Verify{{/bs-button}}

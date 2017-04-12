@@ -1,5 +1,6 @@
 import Ember from 'ember';
 // import { task, timeout } from 'ember-concurrency';
+import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
 
@@ -27,6 +28,31 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
+  scoresCall: Ember.computed(
+    'model.songs', function() {
+    let out = Ember.A();
+    this.get('model.songs').then((data) => {
+      let foo = data;
+      foo.forEach(function(item) {
+        let bar = item.get('scores');
+        bar.forEach(function(foobar) {
+          out.pushObject(foobar);
+        });
+      });
+    });
+    return out;
+  }),
+  sortedScoresProperties: [
+    'num',
+  ],
+  sortedScores: Ember.computed.sort(
+    'scoresCall',
+    'sortedScoresProperties'
+  ),
+  groupedScores: groupBy(
+    'sortedScores',
+    'num'
+  ),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
