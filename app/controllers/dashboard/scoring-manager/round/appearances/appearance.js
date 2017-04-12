@@ -3,6 +3,7 @@ import Ember from 'ember';
 import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
+  openModal: false,
   flashMessage: Ember.get(this, 'flashMessages'),
   sortedSongsProperties: [
     'num',
@@ -53,6 +54,13 @@ export default Ember.Controller.extend({
     'sortedScores',
     'num'
   ),
+  mappedScores: Ember.computed.mapBy(
+    'sortedScores',
+    'points'
+  ),
+  sumScores: Ember.computed.sum(
+    'mappedScores'
+  ),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -72,6 +80,11 @@ export default Ember.Controller.extend({
       .catch(() => {
         this.get('flashMessages').danger('Error');
       });
+    },
+    saveScores() {
+      this.get('sortedScores').invoke('save');
+      this.get('flashMessages').success('Success');
+      this.set('openModal', false);
     }
   }
 });

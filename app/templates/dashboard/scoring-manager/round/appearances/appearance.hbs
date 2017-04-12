@@ -82,7 +82,7 @@
               </tr>
             {{/each}}
           </tbody>
-          <tfoot>
+          {{!-- <tfoot>
             <tr>
               <td colspan=2>
               </td>
@@ -90,9 +90,26 @@
                 {{#bs-button type="primary" }}Verify{{/bs-button}}
               </td>
             </tr>
-          </tfoot>
+          </tfoot> --}}
         </table>
       </div>
     </div>
   </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='primary'}}Verify{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    title="Verify Scores"
+    closeTitle="Cancel"
+    submitTitle="OK"
+    backdropClose=false
+    onSubmit=(action "saveScores")
+  }}
+    <p>
+      The total is: {{sumScores}}
+    </p>
+  {{/bs-modal-simple}}
 </section>
