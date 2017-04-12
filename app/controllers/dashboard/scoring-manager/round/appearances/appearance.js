@@ -3,7 +3,7 @@ import Ember from 'ember';
 import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
-
+  flashMessage: Ember.get(this, 'flashMessages'),
   sortedSongsProperties: [
     'num',
   ],
@@ -64,5 +64,14 @@ export default Ember.Controller.extend({
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
       this.transitionToRoute('dashboard.scoring-manager.round.appearances.appearance', newCur);
     },
+    saveSong(song) {
+      song.save()
+      .then(() => {
+        this.get('flashMessages').success('Success');
+      })
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
+      });
+    }
   }
 });
