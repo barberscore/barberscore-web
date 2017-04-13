@@ -61,6 +61,17 @@ export default Ember.Controller.extend({
   sumScores: Ember.computed.sum(
     'mappedScores'
   ),
+  scoresVariance: Ember.computed.mapBy(
+    'scoresCall',
+    'hasVariance'
+  ),
+  hasVariance: Ember.computed(
+    'scoresVariance', function() {
+      return this.get('scoresVariance').any(
+        function(item) {
+          return item;
+        });
+  }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
