@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -17,4 +18,14 @@ export default Model.extend({
     'Inactive',
   ],
 
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
+  personName: Ember.computed.alias('person.name'),
+  officeName: Ember.computed.alias('office.name'),
+  entityName: Ember.computed.alias('entity.name'),
 });

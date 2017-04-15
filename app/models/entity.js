@@ -51,7 +51,7 @@ export default Model.extend({
     // 'Collegiate',
   ],
 
-  entityKindSort: Ember.computed(
+  kindSort: Ember.computed(
     'kind',
     'kindOptions',
     function() {

@@ -4,7 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').query('officer', {
-      'office__kind': 1, //Hard-coded
+      'office__is_cj': 'true', //Hard-coded
       'page_size': 1000
     });
   },

@@ -58,12 +58,7 @@ export default Model.extend({
     'Plateau 1',
   ],
 
-  entityKindSort: Ember.computed(
-    'entity.entityKindSort',
-    function() {
-      return this.get('entity.entityKindSort');
-    }
-  ),
+  entityKindSort: Ember.computed.alias('entity.kindSort'),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',

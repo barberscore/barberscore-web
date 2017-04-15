@@ -39,6 +39,19 @@
         Status: {{status}}
       {{/power-select}}
     {{/form.element}}
+    {{#form.element property='entity' useIcons=false as |el|}}
+      {{#power-select
+        options=entityOptions
+        selected=el.value
+        onchange=(action (mut el.value))
+        placeholder="Related Entity"
+        disabled=isDisabled
+        allowClear=true
+        as |entity|
+      }}
+        Entity: {{entity.name}}
+      {{/power-select}}
+    {{/form.element}}
     {{#form.element property='start_date' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value

@@ -10,7 +10,7 @@
     allowClear=true
     as |judge|
   }}
-    {{judge.person.common_name}}
+    {{judge.person.common_name}} {{judge.office.name}}
   {{/power-select}}
 </section>
 <section>
@@ -19,8 +19,10 @@
       <caption>Judges List{{!-- &nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'name'}}>Name</th>
-          <th {{action 'sortBy' 'kind'}}>Kind</th>
+          <th {{action 'sortBy' 'personName'}}>Name</th>
+          <th {{action 'sortBy' 'officeName'}}>Office</th>
+          <th {{action 'sortBy' 'entityName'}}>Entity</th>
+          <th {{action 'sortBy' 'statusSort'}}>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -28,6 +30,8 @@
           <tr>
             <td>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.common_name}}{{/link-to}}</td>
             <td>{{judge.office.name}}</td>
+            <td>{{judge.entity.name}}</td>
+            <td>{{judge.status}}</td>
           </tr>
         {{else}}
           <tr>
@@ -37,4 +41,64 @@
       </tbody>
     </table>
   </div>
+</section>
+<section>
+  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Judge{{/bs-button}}
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearJudge")
+    title="Create Judge"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=this
+      formLayout='vertical'
+      onSubmit=(action 'createJudge')
+      as |form|
+    }}
+      {{#form.element property='director' useIcons=false as |el|}}
+          {{#power-select
+            search=(perform searchPerson)
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Enter Person Name"
+            renderInPlace=true
+            allowClear=true
+            as |person|
+          }}
+            Person: {{person.common_name}}
+          {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='kind' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=kindOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Judge Kind"
+          allowClear=true
+          as |kind|
+        }}
+          Kind: {{kind}}
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='category' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=categoryOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Category"
+          allowClear=true
+          as |category|
+        }}
+          Category: {{category}}
+        {{/power-select}}
+      {{/form.element}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
 </section>

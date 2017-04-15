@@ -23,6 +23,12 @@
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.person-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
+        {{fa-icon 'user' size=5}}<br>
+        Person Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.quartet-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'users' size=5}}<br>
         Quartet Manager
@@ -41,19 +47,7 @@
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.organization-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
-        {{fa-icon 'bank' size=5}}<br>
-        Organization Manager
-      {{/link-to}}
-    </p>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.person-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
-        {{fa-icon 'user' size=5}}<br>
-        Person Manager
-      {{/link-to}}
-    </p>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.judge-manager'  tagName='button' class='btn btn-default launcher' disabled=true}}
+      {{#link-to 'dashboard.judge-manager'  tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'balance-scale' size=5}}<br>
         Judge Manager
       {{/link-to}}
@@ -68,6 +62,12 @@
       {{#link-to 'dashboard.person-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
         {{fa-icon 'calendar' size=5}}<br>
         Schedule Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.organization-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
+        {{fa-icon 'bank' size=5}}<br>
+        Organization Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>

@@ -13,13 +13,13 @@ export default Ember.Controller.extend({
       'page_size': 100,
     });
   }),
-  entityKindSortProperties: [
+  entityOptionsProperties: [
     'kindSort:asc',
     'name:asc',
   ],
   entityOptions: Ember.computed.sort(
     'entityCall',
-    'entityKindSortProperties'
+    'entityOptionsProperties'
   ),
   actions: {
     editAward() {

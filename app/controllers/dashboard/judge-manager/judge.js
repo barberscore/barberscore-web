@@ -2,7 +2,9 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  store: Ember.inject.service(),
   isEditing: false,
+  openModal: false,
   isDisabled: Ember.computed.not('isEditing'),
   searchTask: task(function* (term){
     yield timeout(600);
@@ -11,35 +13,39 @@ export default Ember.Controller.extend({
   }),
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
-    newJudge() {
-      let newJudge = this.store.createRecord(
-        'judge'
-      );
-      this.set('model', newJudge);
-      this.set('isEditing', true);
-    },
-    editJudge() {
-      this.set('isEditing', true);
-    },
-    cancelJudge() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    deleteJudge() {
-      this.model.destroyRecord()
+    createJudge(){
+      let judge = this.get('store').createRecord('judge', {
+        person: this.get('person'),
+        kind: this.get('kind'),
+        category: this.get('category'),
+      });
+      judge.save()
       .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.judge-manager');
+        this.get('flashMessages').success('Success');
+        this.set('kind', null);
+        this.set('category', null);
+        this.set('person', null);
+        this.set('openModal', false);
+        this.transitionToRoute('dashboard.judge-manager.judge', judge);
       })
       .catch(() => {
+        this.set('kind', null);
+        this.set('category', null);
+        this.set('person', null);
+        this.set('openModal', false);
         this.get('flashMessages').danger('Error');
       });
     },
-    saveJudge() {
-      this.model.save()
+    clearJudge() {
+      this.set('kind', null);
+      this.set('category', null);
+      this.set('person', null);
+      this.set('openModal', false);
+    },
+    deleteJudge(judge){
+      judge.destroyRecord()
       .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
+        this.get('flashMessages').warning('Deleted');
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');

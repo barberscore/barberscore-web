@@ -6,7 +6,7 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.entry.entity.name}} <strong>{{hasVariance}}</strong>
+        {{model.entry.entity.name}} {{#if hasVariance}} <span class="label label-danger">Variance Detected</span>{{/if}}
       </h4>
     </div>
     <div class='panel-body'>
