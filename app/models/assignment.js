@@ -12,6 +12,13 @@ export default Model.extend({
   convention: DS.belongsTo('convention', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
+  categorySort: Ember.computed(
+    'category',
+    'categoryOptions',
+    function() {
+      return this.get('categoryOptions').indexOf(this.get('category'));
+    }
+  ),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',
@@ -27,17 +34,15 @@ export default Model.extend({
     'Final',
   ],
   categoryOptions: [
-    'Admin',
-    'Music',
-    'Performance',
-    'Singing',
-  ],
-  kindOptions: [
     'DRCJ',
     'CA',
     'ACA',
     'Music',
     'Performance',
     'Singing',
+  ],
+  kindOptions: [
+    'Official',
+    'Practice',
   ],
 });

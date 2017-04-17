@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   assignmentSortProperties: [
-    'isNew',
+    'categorySort:asc',
     'kindSort:asc',
     'person.name:asc',
   ],
@@ -38,7 +38,7 @@ export default Ember.Controller.extend({
     })
       .then((data) => data);
   }),
-  kindOptions: [
+  categoryOptions: [
     'DRCJ',
     'CA',
     'ACA',
@@ -46,16 +46,22 @@ export default Ember.Controller.extend({
     'Performance',
     'Singing',
   ],
+  kindOptions: [
+    'Official',
+    'Practice',
+  ],
   actions: {
     createAssignment(){
       let assignment = this.get('store').createRecord('assignment', {
         convention: this.get('model'),
         person: this.get('person'),
+        category: this.get('category'),
         kind: this.get('kind'),
       });
       assignment.save()
       .then(() => {
         this.set('person', null);
+        this.set('category', null);
         this.set('kind', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
@@ -67,6 +73,7 @@ export default Ember.Controller.extend({
     },
     clearAssignment() {
       this.set('person', null);
+      this.set('category', null);
       this.set('kind', null);
       this.set('openModal', false);
     },

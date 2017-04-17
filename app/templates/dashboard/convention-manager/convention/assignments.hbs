@@ -6,6 +6,7 @@
           <tr>
             <th class='col-md-4'>Name</th>
             <th class='col-md-2'>Category</th>
+            <th class='col-md-2'>Kind</th>
             <th class='col-md-1'>Delete</th>
           </tr>
         </thead>
@@ -13,6 +14,7 @@
           {{#each sortedAssignments as |assignment|}}
             <tr>
               <td>{{assignment.person.common_name}}</td>
+              <td>{{assignment.category}}</td>
               <td>{{assignment.kind}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteAssignment' assignment) class='text-danger'}}</td>
             </tr>
@@ -58,6 +60,19 @@
           Person: {{person.common_name}} [{{#each person.officers as |officer|}}
             {{officer.office.name}}{{#unless (eq officer person.officers.lastObject)}}, {{/unless}}
           {{/each}}]
+        {{/power-select}}
+      {{/form.element}}
+      {{#form.element property='category' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=categoryOptions
+          selected=el.value
+          onchange=(action (mut el.value))
+          placeholder="Choose Category"
+          allowClear=true
+          as |category|
+        }}
+          Category: {{category}}
         {{/power-select}}
       {{/form.element}}
       {{#form.element property='kind' useIcons=false as |el|}}
