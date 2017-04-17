@@ -27,6 +27,32 @@ export default Ember.Controller.extend({
     'model',
     'sortedJudgesProperties'
   ),
+  officeCall: Ember.computed(function() {
+    return this.get('store').query('office', {
+      'is_cj': 'true', //TODO Hardcoded
+      'page_size': 1000,
+    });
+  }),
+  officeOptionsProperties: [
+    'name:asc',
+  ],
+  officeOptions: Ember.computed.sort(
+    'officeCall',
+    'officeOptionsProperties'
+  ),
+  entityCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+      'kind__in': '11,21', //TODO Hardcoded
+      'page_size': 1000,
+    });
+  }),
+  entityOptionsProperties: [
+    'name:asc',
+  ],
+  entityOptions: Ember.computed.sort(
+    'entityCall',
+    'entityOptionsProperties'
+  ),
   actions: {
     transitionJudge(judge) {
       this.transitionToRoute('dashboard.judge-manager.judge.details', judge);
@@ -35,31 +61,31 @@ export default Ember.Controller.extend({
       this.set('sortedJudgesProperties', [sortedJudgesProperties]);
     },
     createJudge(){
-      let judge = this.get('store').createRecord('judge', {
+      let judge = this.get('store').createRecord('officer', {
         person: this.get('person'),
-        kind: this.get('kind'),
-        category: this.get('category'),
+        office: this.get('office'),
+        entity: this.get('entity'),
       });
       judge.save()
       .then(() => {
         this.get('flashMessages').success('Success');
-        this.set('kind', null);
-        this.set('category', null);
+        this.set('entity', null);
+        this.set('office', null);
         this.set('person', null);
         this.set('openModal', false);
-        this.transitionToRoute('dashboard.judge-manager.judge', judge);
+        this.transitionToRoute('dashboard.judge-manager.judge.details', judge);
       })
       .catch(() => {
-        this.set('kind', null);
-        this.set('category', null);
+        this.set('entity', null);
+        this.set('office', null);
         this.set('person', null);
         this.set('openModal', false);
         this.get('flashMessages').danger('Error');
       });
     },
     clearJudge() {
-      this.set('kind', null);
-      this.set('category', null);
+      this.set('entity', null);
+      this.set('office', null);
       this.set('person', null);
       this.set('openModal', false);
     },

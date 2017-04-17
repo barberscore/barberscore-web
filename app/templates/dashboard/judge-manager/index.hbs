@@ -60,7 +60,7 @@
       onSubmit=(action 'createJudge')
       as |form|
     }}
-      {{#form.element property='director' useIcons=false as |el|}}
+      {{#form.element property='person' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchPerson)
             selected=el.value
@@ -73,30 +73,30 @@
             Person: {{person.common_name}}
           {{/power-select}}
       {{/form.element}}
-      {{#form.element property='kind' useIcons=false as |el|}}
+      {{#form.element property='office' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
-          options=kindOptions
+          options=officeOptions
           selected=el.value
           onchange=(action (mut el.value))
-          placeholder="Choose Judge Kind"
+          placeholder="Choose Office"
           allowClear=true
-          as |kind|
+          as |office|
         }}
-          Kind: {{kind}}
+          Office: {{office.name}}
         {{/power-select}}
       {{/form.element}}
-      {{#form.element property='category' useIcons=false as |el|}}
+      {{#form.element property='entity' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
-          options=categoryOptions
+          options=entityOptions
           selected=el.value
           onchange=(action (mut el.value))
-          placeholder="Choose Category"
+          placeholder="Choose Entity"
           allowClear=true
-          as |category|
+          as |entity|
         }}
-          Category: {{category}}
+          Entity: {{entity.name}}
         {{/power-select}}
       {{/form.element}}
     {{/bs-form}}
