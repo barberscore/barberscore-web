@@ -28,13 +28,10 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     addEntry() {
-var entry = this.get('store').createRecord('entry', {
+      var entry = this.get('store').createRecord('entry', {
         session: this.get('session'),
         group: this.get('model'),
       });
@@ -42,46 +39,7 @@ var entry = this.get('store').createRecord('entry', {
       .then(() => {
         this.set('group', null);
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        entry.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
-    // newRole() {
-    //   let newRole = this.store.createRecord(
-    //     'chorus'
-    //   );
-    //   this.set('model', newRole);
-    //   this.set('isRoleEditing', true);
-    // },
-    // editRole() {
-    //   this.set('isRoleEditing', true);
-    // },
-    // cancelRole() {
-    //   this.model.rollbackAttributes();
-    //   this.set('isRoleEditing', false);
-    // },
-    // deleteRole() {
-    //   isCollapsed:    //   this.model.destroyRecord()
-    //   .then(() => {
-    //     this.get('flashMessages').warning('Deleted');
-    //     this.transitionToRoute('dashboard');
-    //   })
-    //   .catch(() => {
-    //     this.get('flashMessages').danger('Error');
-    //   });
-    // },
-    // saveRoles() {
-    //   isCollapsed:    //   this.model.save()
-    //   .then(response => {
-    //     response.get('roles').invoke('save');
-    //     this.set('isRoleEditing', false);
-    //     this.get('flashMessages').success('Saved');
-    //   })
-    //   .catch(() => {
-    //     this.get('flashMessages').danger('Error');
-    //   });
-    // },
   },
 });

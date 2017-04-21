@@ -51,35 +51,24 @@ export default Ember.Controller.extend({
         .then(() => {
           this.get('target.router').refresh();
         });
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     startAppearance() {
       this.model.start()
       .then(response => {
         this.store.pushPayload('appearance', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     finishAppearance() {
       this.model.finish()
       .then(response => {
         this.store.pushPayload('appearance', response);
-      })
-      .catch(() => {
       });
     },
     completeAppearance() {
       this.model.complete()
       .then((response) => {
         this.store.pushPayload('appearance', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     saveActualStart(date) {

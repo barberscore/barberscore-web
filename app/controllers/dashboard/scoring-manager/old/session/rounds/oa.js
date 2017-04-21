@@ -54,9 +54,6 @@ export default Ember.Controller.extend({
       this.model.draw()
       .then(() => {
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
       this.model.reload();
     },
@@ -64,9 +61,6 @@ export default Ember.Controller.extend({
       this.model.resort()
       .then(() => {
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
       this.model.reload();
     },
@@ -74,27 +68,18 @@ export default Ember.Controller.extend({
       this.model.start()
       .then((response) => {
         this.store.pushPayload('round', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     finishRound() {
       this.model.finish()
       .then((response) => {
         this.store.pushPayload('round', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     publishRound() {
       this.model.publish()
       .then((response) => {
         this.store.pushPayload('round', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     moveTop(appearance) {
@@ -115,9 +100,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success('Success');
         let reloaded =  this.get('model.appearances').map( appearance => appearance.reload() );
         return Ember.RSVP.all(reloaded);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     moveDown(appearance) {
@@ -136,9 +118,6 @@ export default Ember.Controller.extend({
       appearance.move_bottom()
       .then(() => {
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
       appearance.reload();
     },

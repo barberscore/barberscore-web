@@ -92,9 +92,6 @@ export default Ember.Controller.extend({
         this.set('risers', null);
         this.set('openModal', false);
         this.transitionToRoute('dashboard.convention-manager.convention.details', convention);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     clearForm() {

@@ -43,9 +43,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
         this.transitionToRoute('dashboard.convention-manager');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error!');
       });
     },
     saveConvention() {
@@ -63,20 +60,12 @@ export default Ember.Controller.extend({
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
           this.transitionToRoute('dashboard.convention-manager');
-        })
-        .catch(() => {
-          this.model.rollbackAttributes();
-          this.get('flashMessages').danger('Error');
         });
       } else {
         this.model.save()
         .then(() => {
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
-        })
-        .catch(() => {
-          this.model.rollbackAttributes();
-          this.get('flashMessages').danger('Error');
         });
       }
     },
@@ -84,18 +73,12 @@ export default Ember.Controller.extend({
       this.model.start()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     endConvention() {
       this.model.end()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
   }

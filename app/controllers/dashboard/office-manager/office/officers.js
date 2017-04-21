@@ -59,19 +59,12 @@ export default Ember.Controller.extend({
         this.set('person', null);
         this.set('kind', null);
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        officer.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     deleteOfficer(officer){
       officer.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

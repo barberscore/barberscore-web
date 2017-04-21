@@ -87,9 +87,6 @@ export default Ember.Controller.extend({
       song.save()
       .then(() => {
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     saveScores() {

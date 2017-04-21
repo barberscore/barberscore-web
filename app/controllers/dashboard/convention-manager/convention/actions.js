@@ -7,36 +7,24 @@ export default Ember.Controller.extend({
       this.model.list_fsm()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     openConvention() {
       this.model.open_fsm()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     startConvention() {
       this.model.start_fsm()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     endConvention() {
       this.model.end_fsm()
       .then(response => {
         this.store.pushPayload('convention', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
   }

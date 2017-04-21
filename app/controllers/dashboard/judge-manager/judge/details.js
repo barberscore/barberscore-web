@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   currentUser: Ember.inject.service(),
   flashMessage: Ember.get(this, 'flashMessages'),
-  isEditing: false,
+  isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
   location: '',
   entityCall: Ember.computed(function() {
@@ -43,9 +43,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
         this.transitionToRoute('dashboard.judge-manager');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error!');
       });
     },
     saveJudge() {
@@ -63,20 +60,12 @@ export default Ember.Controller.extend({
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
           this.transitionToRoute('dashboard.judge-manager');
-        })
-        .catch(() => {
-          this.model.rollbackAttributes();
-          this.get('flashMessages').danger('Error');
         });
       } else {
         this.model.save()
         .then(() => {
           this.set('isEditing', false);
           this.get('flashMessages').success('Saved');
-        })
-        .catch(() => {
-          this.model.rollbackAttributes();
-          this.get('flashMessages').danger('Error');
         });
       }
     },
@@ -84,18 +73,12 @@ export default Ember.Controller.extend({
       this.model.start()
       .then(response => {
         this.store.pushPayload('judge', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     endJudge() {
       this.model.end()
       .then(response => {
         this.store.pushPayload('judge', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
   }

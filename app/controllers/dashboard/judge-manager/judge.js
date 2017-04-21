@@ -27,13 +27,6 @@ export default Ember.Controller.extend({
         this.set('person', null);
         this.set('openModal', false);
         this.transitionToRoute('dashboard.judge-manager.judge', judge);
-      })
-      .catch(() => {
-        this.set('kind', null);
-        this.set('category', null);
-        this.set('person', null);
-        this.set('openModal', false);
-        this.get('flashMessages').danger('Error');
       });
     },
     clearJudge() {
@@ -46,9 +39,6 @@ export default Ember.Controller.extend({
       judge.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   },

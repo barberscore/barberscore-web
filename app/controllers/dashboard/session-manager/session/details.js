@@ -33,9 +33,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('dashboard.session-manager.convention.sessions');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error!');
       });
     },
     saveSession() {
@@ -43,10 +40,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.model.rollbackAttributes();
-        this.get('flashMessages').danger('Error');
       });
     },
   }

@@ -68,10 +68,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('entry', null);
         this.get('flashMessages').success('Success');
-      })
-      .catch(() => {
-        contestant.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
   },

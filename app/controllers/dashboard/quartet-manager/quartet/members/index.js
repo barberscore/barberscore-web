@@ -41,10 +41,6 @@ export default Ember.Controller.extend({
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.transitionToRoute('dashboard.quartet-manager.quartet.members');
-      })
-      .catch(() => {
-        member.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     clearMember() {
@@ -56,9 +52,6 @@ export default Ember.Controller.extend({
       member.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

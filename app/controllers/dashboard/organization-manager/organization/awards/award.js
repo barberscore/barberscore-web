@@ -51,9 +51,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('dashboard.organization-manager.organization.awards.award');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error!');
       });
     },
     saveAward() {
@@ -61,10 +58,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch((failure) => {
-        this.model.rollbackAttributes();
-        this.get('flashMessages').danger(failure);
       });
     },
   }

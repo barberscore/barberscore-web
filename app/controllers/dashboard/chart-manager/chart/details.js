@@ -17,9 +17,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   },

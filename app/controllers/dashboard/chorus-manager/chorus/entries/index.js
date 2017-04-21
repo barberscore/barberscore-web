@@ -95,10 +95,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success('Success');
         this.set('isEditing', false);
         this.transitionToRoute('dashboard.chorus-manager.chorus.entries.entry', entry);
-      })
-      .catch(() => {
-        entry.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     clearEntry() {
@@ -110,9 +106,6 @@ export default Ember.Controller.extend({
       entry.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

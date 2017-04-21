@@ -81,10 +81,6 @@ export default Ember.Controller.extend({
         this.set('parent', null);
         this.set('openModal', false);
         this.transitionToRoute('dashboard.award-manager.award.details', award);
-      })
-      .catch(() => {
-        award.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     clearAward() {
@@ -101,9 +97,6 @@ export default Ember.Controller.extend({
       award.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

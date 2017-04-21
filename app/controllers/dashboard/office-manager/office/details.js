@@ -27,9 +27,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('dashboard.office-manager.office', office);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     saveOffice() {
@@ -37,9 +34,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   },

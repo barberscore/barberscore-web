@@ -56,10 +56,6 @@ export default Ember.Controller.extend({
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.transitionToRoute('dashboard.quartet-manager.quartet.officers');
-      })
-      .catch(() => {
-        officer.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     clearOfficer() {
@@ -71,9 +67,6 @@ export default Ember.Controller.extend({
       officer.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

@@ -24,9 +24,6 @@ export default Ember.Controller.extend({
       repertory.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     createRepertory() {
@@ -39,11 +36,6 @@ export default Ember.Controller.extend({
         this.set('chart', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        repertory.deleteRecord(),
-        this.set('openModal', false);
-        this.get('flashMessages').danger('Error');
       });
     },
     clearRepertory() {

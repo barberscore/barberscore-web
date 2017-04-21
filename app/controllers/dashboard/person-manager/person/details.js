@@ -26,9 +26,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('dashboard');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     savePerson() {

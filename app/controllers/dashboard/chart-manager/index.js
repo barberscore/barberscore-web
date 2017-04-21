@@ -46,10 +46,6 @@ export default Ember.Controller.extend({
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
         this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
-      })
-      .catch(() => {
-        chart.deleteRecord();
-        this.get('flashMessages').danger('Error');
       });
     },
     clearChart() {
@@ -63,9 +59,6 @@ export default Ember.Controller.extend({
       chart.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
   }

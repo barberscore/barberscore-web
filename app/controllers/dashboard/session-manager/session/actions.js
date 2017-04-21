@@ -8,18 +8,12 @@ export default Ember.Controller.extend({
       this.model.open()
       .then(response => {
         this.store.pushPayload('session', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     closeSession() {
       this.model.close()
       .then(response => {
         this.store.pushPayload('session', response);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger("Error" );
       });
     },
     validateCurrent() {
@@ -27,9 +21,6 @@ export default Ember.Controller.extend({
         current.validate()
         .then(response => {
           this.store.pushPayload('round', response);
-        })
-        .catch(() => {
-          this.get('flashMessages').danger("Error" );
         });
       });
     },

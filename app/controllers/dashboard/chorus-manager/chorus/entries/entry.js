@@ -69,9 +69,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.transitionToRoute('dashboard.session-manager.convention.sessions.session', session);
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     saveEntry() {
@@ -79,9 +76,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     buildEntry() {
@@ -101,17 +95,11 @@ export default Ember.Controller.extend({
         });
         contestant.save()
         .then(() => {
-        })
-        .catch(() => {
-          this.get('flashMessages').danger('Error');
         });
       } else { //operation === removed
         let contestant = this.get('model.contestants').findBy('contest.id', value);
         contestant.destroyRecord()
         .then(() => {
-        })
-        .catch(() => {
-          this.get('flashMessages').danger('Error');
         });
       }
     },
@@ -119,9 +107,6 @@ export default Ember.Controller.extend({
       submission.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     createSubmission() {
@@ -145,9 +130,6 @@ export default Ember.Controller.extend({
         this.set('chart', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     clearSubmission() {

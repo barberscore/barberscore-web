@@ -64,9 +64,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
         this.transitionToRoute('dashboard.chorus-manager');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error!');
       });
     },
     saveChorus() {
@@ -74,10 +71,6 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.model.rollbackAttributes();
-        this.get('flashMessages').danger('Error');
       });
     },
   }
