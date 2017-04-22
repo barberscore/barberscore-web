@@ -152,9 +152,16 @@
     {{/form.element}}
     {{#form.element}}
       {{#if isEditing}}
+        {{#bs-button onClick=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
         {{#bs-button onClick=(action 'cancelConvention')}}Cancel{{/bs-button}}
         {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{#bs-button onClick=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{#each model.errors.non-field-errors as |error|}}
+          <span class='has-error'>
+            <span class="help-block">
+              {{error.message}}
+            </span>
+          </span>
+        {{/each}}
       {{else}}
         {{#bs-button onClick=(action 'editConvention')}}Edit{{/bs-button}}
       {{/if}}
