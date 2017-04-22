@@ -3,34 +3,34 @@
 </section>
 <section>
   {{#power-select
-    search=(perform searchTask)
-    selected=judge
+    search=(perform searchOfficer)
+    selected=officer
     onchange=(action "transitionJudge")
     placeholder="Search by Judge Name"
     allowClear=true
-    as |judge|
+    as |officer|
   }}
-    {{judge.person.common_name}} {{judge.office.name}}
+    {{officer.person.common_name}} {{officer.office.name}}
   {{/power-select}}
 </section>
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Judges List{{!-- &nbsp;{{fa-icon 'plus-circle' click=(action (mut openModal) true) class='text-success'}} --}}</caption>
+      <caption>Credentials List</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'personName'}}>Name</th>
-          <th {{action 'sortBy' 'officeName'}}>Office</th>
-          <th {{action 'sortBy' 'entityName'}}>Entity</th>
-          <th {{action 'sortBy' 'statusSort'}}>Status</th>
+          <th  {{action 'sortBy' 'personName'}}>Name</th>
+          <th  {{action 'sortBy' 'officeShortName'}}>Office</th>
+          {{!-- <th>Entity</th> --}}
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedJudges as |judge|}}
           <tr>
-            <td>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.common_name}}{{/link-to}}</td>
-            <td>{{judge.office.name}}</td>
-            <td>{{judge.entity.name}}</td>
+            <td>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.name}}{{/link-to}}</td>
+            <td>{{judge.office.short_name}}</td>
+            {{!-- <td>{{judge.entity.name}}</td> --}}
             <td>{{judge.status}}</td>
           </tr>
         {{else}}
@@ -42,63 +42,10 @@
     </table>
   </div>
 </section>
+{{!-- <section>
+  {{page-numbers content=content}}
+</section> --}}
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Judge{{/bs-button}}
+  {{#bs-button onClick=(action 'createJudge') type='success'}}Add New Judge{{/bs-button}}
 </section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearJudge")
-    title="Create Judge"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createJudge')
-      as |form|
-    }}
-      {{#form.element property='person' useIcons=false as |el|}}
-          {{#power-select
-            search=(perform searchPerson)
-            selected=el.value
-            onchange=(action (mut el.value))
-            placeholder="Enter Person Name"
-            renderInPlace=true
-            allowClear=true
-            as |person|
-          }}
-            Person: {{person.common_name}}
-          {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='office' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=officeOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Office"
-          allowClear=true
-          as |office|
-        }}
-          Office: {{office.name}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='entity' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=entityOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Entity"
-          allowClear=true
-          as |entity|
-        }}
-          Entity: {{entity.name}}
-        {{/power-select}}
-      {{/form.element}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section>
+{{create-judge openModal=openModal model=judge}}

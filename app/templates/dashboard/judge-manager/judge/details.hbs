@@ -32,7 +32,7 @@
         options=model.statusOptions
         selected=el.value
         onchange=(action (mut el.value))
-        disabled=isDisabled
+        disabled=true
         allowClear=true
         as |status|
       }}
@@ -45,14 +45,14 @@
         selected=el.value
         onchange=(action (mut el.value))
         placeholder="Related Entity"
-        disabled=isDisabled
+        disabled=true
         allowClear=true
         as |entity|
       }}
         Entity: {{entity.name}}
       {{/power-select}}
     {{/form.element}}
-    {{#form.element property='start_date' useIcons=false as |el|}}
+    {{!-- {{#form.element property='start_date' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'
@@ -69,15 +69,14 @@
         placeholder="Judge End Date"
         disabled=isDisabled
       }}
-    {{/form.element}}
-    {{#form.element}}
+    {{/form.element}} --}}
+    {{!-- {{#form.element}}
       {{#if isEditing}}
         {{#bs-button onClick=(action 'cancelJudge')}}Cancel{{/bs-button}}
         {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{#bs-button onClick=(action 'deleteJudge') class='pull-right btn-danger'}}Delete{{/bs-button}}
       {{else}}
         {{#bs-button onClick=(action 'editJudge')}}Edit{{/bs-button}}
       {{/if}}
-    {{/form.element}}
+    {{/form.element}} --}}
   {{/bs-form}}
 </section>

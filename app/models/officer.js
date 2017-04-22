@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -11,6 +12,8 @@ export default Model.extend({
   person: DS.belongsTo('person', {async: true}),
   entity: DS.belongsTo('entity', {async: true}),
   permissions: DS.attr(),
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   statusOptions: [
     'New',
@@ -26,6 +29,7 @@ export default Model.extend({
     }
   ),
   personName: Ember.computed.alias('person.name'),
+  officeShortName: Ember.computed.alias('office.short_name'),
   officeName: Ember.computed.alias('office.name'),
   entityName: Ember.computed.alias('entity.name'),
 });
