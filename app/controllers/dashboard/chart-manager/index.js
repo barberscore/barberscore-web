@@ -2,11 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  queryParams: [
-    'page_size',
-  ],
   openModal: false,
-  page_size: 100,
   sortProperties: [
     'title',
     'bhs_id',
