@@ -25,9 +25,10 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Chart to Repertory{{/bs-button}}
+  {{#bs-button onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}
 </section>
-<section>
+{{create-repertory openModal=openModal model=repertory}}
+{{!-- <section>
   {{#bs-modal-simple
     open=openModal
     onHidden=(action "clearRepertory")
@@ -60,4 +61,4 @@
         </p>
     {{/bs-form}}
   {{/bs-modal-simple}}
-</section>
+</section> --}}

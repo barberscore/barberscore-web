@@ -1,0 +1,40 @@
+  {{#bs-modal-simple
+    open=openModal
+    onHidden=(action "clearRepertory")
+    title="Add Repertory"
+    closeTitle="Cancel"
+    submitTitle="Save"
+    backdropClose=false
+  }}
+    {{#bs-form
+      model=model
+      formLayout='vertical'
+      onSubmit=(action 'saveRepertory')
+      as |form|
+    }}
+      {{#form.element property='chart' as |el|}}
+        {{#power-select
+          search=(perform searchChart)
+          selected=el.value
+          renderInPlace=true
+          onchange=(action (mut el.value))
+          placeholder="Search by Song Name or BHS Chart Number"
+          allowClear=true
+          as |chart|
+        }}
+          Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
+        {{/power-select}}
+      {{/form.element}}
+        <p>
+          <strong>NOTE:&nbsp;</strong><small>If you can't find your song then cancel this and add it through the chart manager first.</small>
+        </p>
+      {{#each model.errors.non-field-errors as |error|}}
+        <span class='has-error'>
+          <span class="help-block">
+            {{error.message}}
+          </span>
+        </span>
+      {{/each}}
+    {{/bs-form}}
+  {{/bs-modal-simple}}
+

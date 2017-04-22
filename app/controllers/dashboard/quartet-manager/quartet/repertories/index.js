@@ -15,6 +15,10 @@ export default Ember.Controller.extend({
   sortedRepertoriesProperties: [
     'nomen',
   ],
+  filteredRepertories: Ember.computed.filterBy(
+    'model.repertories',
+    'isValid'
+  ),
   sortedRepertories: Ember.computed.sort(
     'model.repertories',
     'sortedRepertoriesProperties'
@@ -24,27 +28,14 @@ export default Ember.Controller.extend({
       repertory.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
       });
     },
     createRepertory() {
       let repertory = this.get('store').createRecord('repertory', {
         entity: this.get('model'),
-        chart: this.get('chart'),
       });
-      repertory.save()
-      .then(() => {
-        this.set('chart', null);
-        this.set('openModal', false);
-        this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        repertory.deleteRecord(),
-        this.set('openModal', false);
-        this.get('flashMessages').danger('Error');
-      });
+      this.set('openModal', true);
+      this.set('repertory', repertory);
     },
     clearRepertory() {
       this.set('chart', null);
