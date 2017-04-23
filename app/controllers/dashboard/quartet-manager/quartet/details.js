@@ -38,7 +38,8 @@ export default Ember.Controller.extend({
   //   'Quartet'
   // ),
   representingSortProperties: [
-    'nomen:asc',
+    'kindSort:asc',
+    'name:asc',
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',
