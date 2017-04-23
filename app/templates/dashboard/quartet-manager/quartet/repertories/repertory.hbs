@@ -1,0 +1,31 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <div>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+          {{#form.element property='chart' useIcons=false as |el|}}
+            {{#power-select
+              selected=el.value
+              onchange=(action (mut el.value))
+              allowClear=true
+              renderInPlace=true
+              disabled=true
+              as |chart|
+            }}
+              Chart: {{chart.title}}
+            {{/power-select}}
+          {{/form.element}}
+        {{/bs-form}}
+      </div>
+    </div>
+  </div>
+</section>

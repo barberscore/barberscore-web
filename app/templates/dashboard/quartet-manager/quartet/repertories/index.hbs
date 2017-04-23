@@ -7,17 +7,17 @@
           <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
           <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
           <th {{action "sortBy" "is_medley"}}>Medley</th>
-          <th>Delete</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
-            <td>{{repertory.chart.title}}</td>
+            <td>{{#link-to 'dashboard.quartet-manager.quartet.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
             <td>{{repertory.chart.bhs_id}}</td>
             <td>{{repertory.chart.arrangers}}</td>
             <td>{{repertory.chart.is_medley}}</td>
-            <td>{{fa-icon 'times-circle' click=(action 'deleteRepertory' repertory) class='text-danger'}}</td>
+            <td>{{repertory.status}}</td>
           </tr>
         {{/each}}
       </tbody>
