@@ -21,7 +21,7 @@
         <tr>
           <th  {{action 'sortBy' 'personName'}}>Name</th>
           <th  {{action 'sortBy' 'officeShortName'}}>Office</th>
-          {{!-- <th>Entity</th> --}}
+          <th>Representing</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -30,7 +30,7 @@
           <tr>
             <td>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.name}}{{/link-to}}</td>
             <td>{{judge.office.short_name}}</td>
-            {{!-- <td>{{judge.entity.name}}</td> --}}
+            <td>{{judge.person.district}}</td>
             <td>{{judge.status}}</td>
           </tr>
         {{else}}
