@@ -27,6 +27,7 @@ export default Model.extend({
   district: DS.attr('string'),
   division: DS.attr('string'),
   chapter: DS.attr('string'),
+  image_thumbnail: DS.attr('string'),
   representing: DS.belongsTo('entity', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
   members: DS.hasMany('member', {async: true}),
