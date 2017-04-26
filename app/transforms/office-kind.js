@@ -3,30 +3,26 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
-      1: 'Organization',
-      11: 'District',
-      12: 'Noncompetitive',
-      13: 'Affiliate',
-      21: 'Division',
-      31: 'Quartet',
-      32: 'Chorus',
-      33: 'Very Large Quartet',
-      34: 'Mixed Group',
+      11: 'SCJC',
+      12: 'DRCJ',
+      13: 'CA',
+      14: 'Judge',
+      22: 'Representative',
+      31: 'Staff',
+      32: 'Admin',
     };
     return map[serialized];
   },
 
   serialize: function(deserialized) {
     var map = {
-      'Organization': 1,
-      'District': 11,
-      'Noncompetitive': 12,
-      'Affiliate': 13,
-      'Division': 21,
-      'Quartet': 31,
-      'Chorus': 32,
-      'Very Large Quartet': 33,
-      'Mixed Group': 34,
+      'SCJC': 11,
+      'DRCJ': 12,
+      'CA': 13,
+      'Judge': 14,
+      'Representative': 21,
+      'Staff': 31,
+      'Admin': 32,
     };
     return map[deserialized];
   }

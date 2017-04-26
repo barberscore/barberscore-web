@@ -17,12 +17,48 @@ export default Ember.Controller.extend({
     });
   }),
   sortedJudgesProperties: [
-    'personName',
+    'officeSCJCSort',
     'officeShortName',
+    'personName',
   ],
   sortedJudges: Ember.computed.sort(
     'model',
     'sortedJudgesProperties'
+  ),
+  sortedSCJC: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeKind',
+    'SCJC'
+  ),
+  sortedDRCJ: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeKind',
+    'DRCJ'
+  ),
+  sortedCA: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeKind',
+    'CA'
+  ),
+  sortedMUS: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeShortName',
+    'MUS'
+  ),
+  sortedPER: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeShortName',
+    'PER'
+  ),
+  sortedSNG: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeShortName',
+    'SNG'
+  ),
+  sortedAdmin: Ember.computed.filterBy(
+    'sortedJudges',
+    'officeKind',
+    'Admin'
   ),
   actions: {
     sortBy(sortedJudgesProperties) {

@@ -14,37 +14,42 @@
   {{/power-select}}
 </section>
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Credentials List</caption>
-      <thead>
-        <tr>
-          <th  {{action 'sortBy' 'personName'}}>Name</th>
-          <th  {{action 'sortBy' 'officeShortName'}}>Office</th>
-          <th>Representing</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedJudges as |judge|}}
-          <tr>
-            <td>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.name}}{{/link-to}}</td>
-            <td>{{judge.office.short_name}}</td>
-            <td>{{judge.person.district}}</td>
-            <td>{{judge.status}}</td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>No Judges in System.</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
+      <h4>
+        Judge Roster
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-tab as |tab|}}
+        {{#tab.pane title="SCJC"}}
+          {{judge-list sortedJudges=sortedSCJC}}
+        {{/tab.pane}}
+        {{#tab.pane title="DRCJ"}}
+          {{judge-list sortedJudges=sortedDRCJ}}
+        {{/tab.pane}}
+        {{#tab.pane title="CA"}}
+          {{judge-list sortedJudges=sortedCA}}
+        {{/tab.pane}}
+        {{#tab.pane title="MUS"}}
+          {{judge-list sortedJudges=sortedMUS}}
+        {{/tab.pane}}
+        {{#tab.pane title="PER"}}
+          {{judge-list sortedJudges=sortedPER}}
+        {{/tab.pane}}
+        {{#tab.pane title="SNG"}}
+          {{judge-list sortedJudges=sortedSNG}}
+        {{/tab.pane}}
+        {{#tab.pane title="Admin"}}
+          {{judge-list sortedJudges=sortedAdmin}}
+        {{/tab.pane}}
+      {{/bs-tab}}
+    </div>
   </div>
 </section>
-{{!-- <section>
-  {{page-numbers content=content}}
-</section> --}}
 <section>
   {{#bs-button onClick=(action 'createJudge') type='success'}}Add New Judge{{/bs-button}}
 </section>

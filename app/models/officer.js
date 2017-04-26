@@ -30,6 +30,8 @@ export default Model.extend({
   ),
   personName: Ember.computed.alias('person.name'),
   officeShortName: Ember.computed.alias('office.short_name'),
+  officeSCJCSort: Ember.computed.alias('office.scjcSort'),
+  officeKind: Ember.computed.alias('office.kind'),
   officeName: Ember.computed.alias('office.name'),
   entityName: Ember.computed.alias('entity.name'),
 });

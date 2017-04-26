@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -18,15 +19,30 @@ export default Model.extend({
   ],
 
   kindOptions: [
-    'Organization',
-    'District',
-    'Noncompetitive',
-    'Affiliate',
-    'Division',
-    'Quartet',
-    'Chorus',
-    'Very Large Quartet',
-    'Mixed Group',
+    'SCJC',
+    'DRCJ',
+    'CA',
+    'Judge',
+    'Representative',
+    'Staff',
+    'Admin',
   ],
+
+  scjcSortOptions: [
+    'SCJC Chair',
+    'SCJC Chair Past',
+    'SCJC CA',
+    'SCJC MUS',
+    'SCJC PER',
+    'SCJC SNG',
+  ],
+
+  scjcSort: Ember.computed(
+    'short_name',
+    'scjcSortOptions',
+    function() {
+      return this.get('scjcSortOptions').indexOf(this.get('short_name'));
+    }
+  ),
 
 });

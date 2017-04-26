@@ -1,0 +1,26 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th  {{action 'sortBy' 'personName'}}>Name</th>
+        <th  {{action 'sortBy' 'officeShortName'}}>Office</th>
+        <th>Representing</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedJudges as |judge|}}
+        <tr>
+          <td><img src={{judge.person.image_thumbnail}}>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.name}}{{/link-to}}</td>
+          <td>{{judge.office.short_name}}</td>
+          <td>{{judge.person.district}}</td>
+          <td>{{judge.status}}</td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>No Judges in System.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
