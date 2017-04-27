@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
             footerText: "(If you aren't currently registered with the BHS, or can't remember your email, please contact <a href='mailto:support@barberscore.com'>support@barberscore.com</a> for assistance.)"
           },
           emailSent: {
-            success:  "We sent an email to <br>{email}<br>with a link to login."
+            success:  "Check your email for the log in link.  PLEASE NOTE: It may take up to a minute for the email to be sent, so please be patient."
           },
           error: {
             passwordless: {
