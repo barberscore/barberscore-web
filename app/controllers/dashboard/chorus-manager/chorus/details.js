@@ -38,7 +38,8 @@ export default Ember.Controller.extend({
   //   'Chorus'
   // ),
   representingSortProperties: [
-    'nomen:asc',
+    'kindSort:asc',
+    'name:asc',
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',
@@ -71,6 +72,11 @@ export default Ember.Controller.extend({
       .then(() => {
         this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
+      })
+      .catch((error) => {
+          if (error.errors[0].status === "403") {
+            this.get('flashMessages').danger("You don't have permission to make changes.  Please contact support.");
+          }
       });
     },
   }

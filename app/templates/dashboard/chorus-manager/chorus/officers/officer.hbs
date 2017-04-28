@@ -63,13 +63,13 @@
                 {{/form.element}}
               </div>
             </div>
-          {{#if isEditing}}
+          {{!-- {{#if isEditing}}
               {{#bs-button onClick=(action 'cancelOfficer')}}Cancel{{/bs-button}}
               {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
               {{#bs-button onClick=(action 'deleteOfficer') class='pull-right btn-danger'}}Delete{{/bs-button}}
           {{else}}
             {{#bs-button onClick=(action 'editOfficer')}}Edit{{/bs-button}}
-          {{/if}}
+          {{/if}} --}}
         {{/bs-form}}
       </div>
     </div>

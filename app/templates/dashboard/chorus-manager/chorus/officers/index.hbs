@@ -39,9 +39,10 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Officer{{/bs-button}}
+  {{#bs-button onClick=(action 'createOfficer') type='success'}}Add New Officer{{/bs-button}}
 </section>
-<section>
+{{create-chapterofficer openModal=openModal model=officer}}
+{{!-- <section>
   {{#bs-modal-simple
     open=openModal
     onHidden=(action "clearOfficer")
@@ -85,4 +86,4 @@
       {{/form.element}}
     {{/bs-form}}
   {{/bs-modal-simple}}
-</section>
+</section> --}}

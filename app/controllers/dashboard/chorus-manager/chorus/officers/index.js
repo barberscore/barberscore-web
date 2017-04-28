@@ -23,8 +23,12 @@ export default Ember.Controller.extend({
     'nomen',
     'partSort',
   ],
-  sortedOfficers: Ember.computed.sort(
+  filteredOfficers: Ember.computed.filterBy(
     'model.officers',
+    'isOld'
+  ),
+  sortedOfficers: Ember.computed.sort(
+    'filteredOfficers',
     'sortedOfficersProperties'
   ),
   officeCall: Ember.computed(function() {
@@ -45,23 +49,10 @@ export default Ember.Controller.extend({
   actions: {
     createOfficer(){
       let officer = this.get('store').createRecord('officer', {
-        entity: this.get('model'),
-        person: this.get('person'),
-        office: this.get('office'),
+        entity: this.get('model')
       });
-      officer.save()
-      .then(() => {
-        this.set('person', null);
-        this.set('office', null);
-        this.set('openModal', false);
-        this.get('flashMessages').success('Success');
-        this.transitionToRoute('dashboard.chorus-manager.chorus.officers');
-      });
-    },
-    clearOfficer() {
-      this.set('person', null);
-      this.set('office', null);
-      this.set('openModal', false);
+      this.set('officer', officer);
+      this.set('openModal', true);
     },
     deleteOfficer(officer) {
       officer.destroyRecord()

@@ -26,30 +26,11 @@ export default Ember.Controller.extend({
     transitionChart(chart) {
       this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
     },
-    createChart(){
+    createChart() {
       let chart = this.get('store').createRecord('chart', {
-        title: this.get('title'),
-        arrangers: this.get('arrangers'),
-        composers: this.get('composers'),
-        holders: this.get('holders'),
       });
-      chart.save()
-      .then(() => {
-        this.set('title', null);
-        this.set('arrangers', null);
-        this.set('composers', null);
-        this.set('holders', null);
-        this.set('openModal', false);
-        this.get('flashMessages').success('Success');
-        this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
-      });
-    },
-    clearChart() {
-      this.set('title', null);
-      this.set('arrangers', null);
-      this.set('composers', null);
-      this.set('holders', null);
-      this.set('openModal', false);
+      this.set('chart', chart);
+      this.set('openModal', true);
     },
     deleteChart(chart){
       chart.destroyRecord()

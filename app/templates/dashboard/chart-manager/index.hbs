@@ -14,7 +14,7 @@
   {{/power-select}}
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Chart{{/bs-button}}
+  {{#bs-button onClick=(action "createChart") type='success'}}Create New Chart{{/bs-button}}
 </section>
 <section>
   <div class='table-responsive'>
@@ -54,46 +54,4 @@
 </section>
 <section>
   {{page-numbers content=content}}
-</section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearChart")
-    title="Create Chart"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      formLayout="vertical"
-      model=this
-      onSubmit=(action "createChart")
-      as |form|
-    }}
-      {{form.element
-        controlType='text'
-        placeholder='Title'
-        renderInPlace=true
-        property='title'
-      }}
-      {{form.element
-        controlType='textarea'
-        placeholder='Arranger(s)'
-        renderInPlace=true
-        property='arrangers'
-      }}
-      {{form.element
-        controlType='textarea'
-        placeholder='Composer(s)/Lyricist(s)'
-        renderInPlace=true
-        property='composers'
-      }}
-      {{form.element
-        controlType='textarea'
-        placeholder='Copyright Holder(s)'
-        renderInPlace=true
-        property='holders'
-      }}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
 </section>

@@ -27,17 +27,17 @@ export default Ember.Controller.extend({
   ),
   sortedSCJC: Ember.computed.filterBy(
     'sortedJudges',
-    'officeKind',
+    'officeShortName',
     'SCJC'
   ),
   sortedDRCJ: Ember.computed.filterBy(
     'sortedJudges',
-    'officeKind',
+    'officeShortName',
     'DRCJ'
   ),
   sortedCA: Ember.computed.filterBy(
     'sortedJudges',
-    'officeKind',
+    'officeShortName',
     'CA'
   ),
   sortedMUS: Ember.computed.filterBy(
@@ -57,7 +57,7 @@ export default Ember.Controller.extend({
   ),
   sortedAdmin: Ember.computed.filterBy(
     'sortedJudges',
-    'officeKind',
+    'officeShortName',
     'Admin'
   ),
   actions: {

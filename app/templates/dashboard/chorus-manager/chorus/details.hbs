@@ -8,7 +8,7 @@
     {{#form.element}}
       Picture: {{file-upload disabled=isDisabled resource='entity' target=model.id}}
     {{/form.element}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Chorus Name' property='name'}}
+    {{form.element controlType='text' disabled=true placeholder='Chorus Name' property='name'}}
     {{#form.element property='parent' useIcons=false as |el|}}
         {{#power-select
           options=representingOptions
@@ -17,20 +17,19 @@
           onchange=(action (mut el.value))
           placeholder="Enter 'Home' District/Division/Affiliate"
           allowClear=true
-          renderInPlace=true
-          disabled=isDisabled
+          disabled=true
           as |parent|
         }}
           Home: {{parent.name}}
         {{/power-select}}
     {{/form.element}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
+    {{form.element controlType='text' disabled=true placeholder='Location' property='location'}}
     {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
     {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
     {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
-    {{form.element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
+    {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description' property='description'}}
     {{#form.element}}
       {{#if isEditing}}
         {{#bs-button onClick=(action 'cancelChorus')}}Cancel{{/bs-button}}

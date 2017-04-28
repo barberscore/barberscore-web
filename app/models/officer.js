@@ -34,4 +34,5 @@ export default Model.extend({
   officeKind: Ember.computed.alias('office.kind'),
   officeName: Ember.computed.alias('office.name'),
   entityName: Ember.computed.alias('entity.name'),
+  isOld: Ember.computed.not('isNew'),
 });

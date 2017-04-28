@@ -2,19 +2,19 @@
   <table class='table'>
     <thead>
       <tr>
-        <th  {{action 'sortBy' 'personName'}}>Name</th>
-        <th  {{action 'sortBy' 'officeShortName'}}>Office</th>
-        <th>Representing</th>
-        <th>Status</th>
+        <th>Person</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedJudges as |judge|}}
         <tr>
-          <td><img src={{judge.person.image_thumbnail}}>{{#link-to 'dashboard.judge-manager.judge.details' judge}}{{judge.person.name}}{{/link-to}}</td>
-          <td>{{judge.office.short_name}}</td>
-          <td>{{judge.person.district}}</td>
-          <td>{{judge.status}}</td>
+          <td>
+            <img src={{judge.person.image_thumbnail}}>
+          </td>
+          <td>
+            {{judge.person.name}}{{#if judge.person.spouse}}({{judge.person.spouse}}){{/if}}
+          </td>
         </tr>
       {{else}}
         <tr>
