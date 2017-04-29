@@ -1,0 +1,69 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{!-- <div>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+          {{#form.element property='title' useIcons=false as |el|}}
+            {{#power-select
+              options=null
+              selected=el.value
+              disabled=true
+              onchange=(action (mut el.value))
+              as |person|
+            }}
+              Person: {{person.common_name}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='office' useIcons=false as |el|}}
+            {{#power-select
+              options=officeOptions
+              selected=el.value
+              disabled=true
+              onchange=(action (mut el.value))
+              placeholder="Enter Office"
+              disabled=isDisabled
+              allowClear=true
+              as |office|
+            }}
+              Office: {{office.name}}
+            {{/power-select}}
+          {{/form.element}}
+            <div class='row'>
+              <div class='col-md-3'>
+                {{#form.element property='start_date' useIcons=false as |el|}}
+                  {{bs-datetimepicker
+                    date=el.value
+                    format='YYYY-MM-DD'
+                    updateDate=(action (mut el.value))
+                    placeholder="Officer Start Date"
+                    disabled=isDisabled
+                  }}
+                {{/form.element}}
+              </div>
+              <div class='col-md-3'>
+                {{#form.element property='end_date' useIcons=false as |el|}}
+                  {{bs-datetimepicker
+                    date=el.value
+                    format='YYYY-MM-DD'
+                    updateDate=(action (mut el.value))
+                    placeholder="Officer End Date"
+                    clearBtn=true
+                    disabled=isDisabled
+                  }}
+                {{/form.element}}
+              </div>
+            </div>
+        {{/bs-form}}
+      </div> --}}
+    </div>
+  </div>
+</section>

@@ -4,20 +4,17 @@
       <thead>
         <tr>
           <th class='col-md-6'>Title</th>
-          <th {{action "sortBy" "bhs_id"}}>BHS ID</th>
-          <th {{action "sortBy" "arrangers"}}>Arranger(s)</th>
-          <th {{action "sortBy" "is_medley"}}>Medley</th>
-          <th>Delete</th>
+          <th>Arranger(s)</th>
+          <th>BHS ID</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
+            {{!-- <td>{{#link-to 'dashboard.chorus-manager.chorus.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td> --}}
             <td>{{repertory.chart.title}}</td>
-            <td>{{repertory.chart.bhs_id}}</td>
             <td>{{repertory.chart.arrangers}}</td>
-            <td>{{repertory.chart.is_medley}}</td>
-            <td>{{fa-icon 'times-circle' click=(action 'deleteRepertory' repertory) class='text-danger'}}</td>
+            <td>{{repertory.chart.bhs_id}}</td>
           </tr>
         {{/each}}
       </tbody>
