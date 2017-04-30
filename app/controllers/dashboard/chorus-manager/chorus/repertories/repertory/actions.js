@@ -8,14 +8,14 @@ export default Ember.Controller.extend({
       this.model.validate()
       .then((response) => {
         this.store.pushPayload('repertory', response);
-        this.get('flashMessage').success("Validated!");
+        this.get('flashMessages').success("Validated!");
       });
     },
     invalidateRepertory() {
       this.model.invalidate()
       .then((response) => {
         this.store.pushPayload('repertory', response);
-        this.get('flashMessage').success("Invalidated!");
+        this.get('flashMessages').success("Invalidated!");
       });
     },
   },

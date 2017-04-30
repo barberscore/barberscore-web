@@ -71,7 +71,10 @@ Router.map(function() {
           this.route('member', { path: ':member_id'});
         });
         this.route('officers', { path: 'officers'}, function() {
-          this.route('officer', { path: ':officer_id'});
+          this.route('officer', { path: ':officer_id'}, function() {
+            this.route('details', {path: 'details'});
+            this.route('actions', {path: 'actions'});
+          });
         });
         this.route('repertories', { path: 'repertories'}, function() {
           this.route('repertory', { path: ':repertory_id'}, function() {
