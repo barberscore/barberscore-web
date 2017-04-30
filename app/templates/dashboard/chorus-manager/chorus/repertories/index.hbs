@@ -6,15 +6,17 @@
           <th class='col-md-6'>Title</th>
           <th>Arranger(s)</th>
           <th>BHS ID</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
-            {{!-- <td>{{#link-to 'dashboard.chorus-manager.chorus.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td> --}}
-            <td>{{repertory.chart.title}}</td>
+            <td>{{#link-to 'dashboard.chorus-manager.chorus.repertories.repertory.details' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
+            {{!-- <td>{{repertory.chart.title}}</td> --}}
             <td>{{repertory.chart.arrangers}}</td>
             <td>{{repertory.chart.bhs_id}}</td>
+            <td>{{repertory.status}}</td>
           </tr>
         {{/each}}
       </tbody>

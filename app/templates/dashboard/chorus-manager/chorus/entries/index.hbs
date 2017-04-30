@@ -6,6 +6,7 @@
           <thead>
             <tr>
               <th class='col-md-4'>Entry</th>
+              <th class='col-md-2'>State</th>
             </tr>
           </thead>
           <tbody>
@@ -13,6 +14,9 @@
               <tr>
                 <td>
                   {{#link-to 'dashboard.chorus-manager.chorus.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
+                </td>
+                <td>
+                  {{entry.status}}
                 </td>
               </tr>
             {{else}}
