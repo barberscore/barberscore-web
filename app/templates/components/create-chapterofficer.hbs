@@ -16,6 +16,7 @@
         {{#power-select
           search=(perform searchPerson)
           selected=el.value
+          searchField='nomen'
           onchange=(action (mut el.value))
           placeholder="Enter Person Name"
           renderInPlace=true
@@ -29,6 +30,7 @@
         {{#power-select
           options=officeOptions
           selected=el.value
+          searchField='nomen'
           onchange=(action (mut el.value))
           placeholder="Choose Office"
           renderInPlace=true

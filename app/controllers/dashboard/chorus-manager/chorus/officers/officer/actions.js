@@ -18,5 +18,12 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success('Saved');
       });
     },
+    deleteOfficer() {
+      this.model.destroyRecord()
+      .then(() => {
+        this.get('flashMessages').warning('Deleted');
+        this.transitionToRoute('dashboard.chorus-manager.chorus.officers');
+      });
+    },
   },
 });

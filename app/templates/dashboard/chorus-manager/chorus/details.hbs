@@ -34,7 +34,7 @@
       {{#if isEditing}}
         {{#bs-button onClick=(action 'cancelChorus')}}Cancel{{/bs-button}}
         {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{#bs-button onClick=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}}
+        {{!-- {{#bs-button onClick=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
       {{else}}
         {{#bs-button onClick=(action 'editChorus')}}Edit{{/bs-button}}
       {{/if}}

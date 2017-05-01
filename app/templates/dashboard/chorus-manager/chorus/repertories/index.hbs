@@ -18,6 +18,10 @@
             <td>{{repertory.chart.bhs_id}}</td>
             <td>{{repertory.status}}</td>
           </tr>
+        {{else}}
+          <tr>
+            <td>(No songs in repertory.)</td>
+          </tr>
         {{/each}}
       </tbody>
     </table>
