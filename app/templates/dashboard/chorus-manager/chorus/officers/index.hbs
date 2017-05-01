@@ -7,14 +7,14 @@
           <th>Office</th>
           {{!-- <th>Start</th> --}}
           {{!-- <th>End</th> --}}
-          {{!-- <th>Delete</th> --}}
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedOfficers as |officer|}}
           <tr>
             <td>
-              {{#link-to 'dashboard.chorus-manager.chorus.officers.officer.details' officer}}{{officer.person.common_name}}{{/link-to}}
+              {{#link-to 'dashboard.chorus-manager.chorus.officers.officer' officer}}{{officer.person.common_name}}{{/link-to}}
             </td>
             <td>
               {{officer.office.name}}
@@ -25,9 +25,9 @@
             {{!-- <td>
               {{moment-format officer.end_date 'LL'}}
             </td> --}}
-            {{!-- <td>
-              {{fa-icon 'times-circle' click=(action 'deleteOfficer' officer) class='text-danger'}}
-            </td> --}}
+            <td>
+              {{officer.status}}
+            </td>
           </tr>
         {{else}}
           <tr>
@@ -42,48 +42,3 @@
   {{#bs-button onClick=(action 'createOfficer') type='success'}}Add New Officer{{/bs-button}}
 </section>
 {{create-chapterofficer openModal=openModal model=officer}}
-{{!-- <section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearOfficer")
-    title="Add Officer"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createOfficer')
-      as |form|
-    }}
-      {{#form.element property='person' useIcons=false as |el|}}
-        {{#power-select
-          search=(perform searchPerson)
-          selected=el.value
-          renderInPlace=true
-          onchange=(action (mut el.value))
-          placeholder="Search by Person Name and/or BHS ID"
-          allowClear=true
-          as |person|
-        }}
-          Person: {{person.common_name}}&nbsp;{{#if person.bhs_id}}[{{person.bhs_id}}]&nbsp;{{/if}}{{person.location}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='office' useIcons=false as |el|}}
-        {{#power-select
-          options=officeOptions
-          searchField='name'
-          selected=el.value
-          renderInPlace=true
-          onchange=(action (mut el.value))
-          placeholder="Search by Office Title"
-          allowClear=true
-          as |office|
-        }}
-          Office: {{office.name}}
-        {{/power-select}}
-      {{/form.element}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section> --}}

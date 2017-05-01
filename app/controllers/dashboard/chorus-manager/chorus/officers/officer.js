@@ -5,17 +5,17 @@ export default Ember.Controller.extend({
   flashMessage: Ember.get(this, 'flashMessages'),
   actions: {
     activateOfficer() {
-      this.model.activate()
+      this.get('model').activate()
       .then((response) => {
-        this.store.pushPayload('officer', response);
+        this.get('store').pushPayload('officer', response);
         this.get('flashMessages').success("Activated");
       });
     },
     deactivateOfficer() {
-      this.model.deactivate()
+      this.get('model').deactivate()
       .then((response) => {
-        this.store.pushPayload('officer', response);
-        this.get('flashMessages').success('Saved');
+        this.get('store').pushPayload('officer', response);
+        this.get('flashMessages').success("Deactivated");
       });
     },
     deleteOfficer() {
