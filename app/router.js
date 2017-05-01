@@ -74,10 +74,7 @@ Router.map(function() {
           this.route('officer', { path: ':officer_id'});
         });
         this.route('repertories', { path: 'repertories'}, function() {
-          this.route('repertory', { path: ':repertory_id'}, function() {
-            this.route('details', {path: 'details'});
-            this.route('actions', {path: 'actions'});
-          });
+          this.route('repertory', { path: ':repertory_id'});
         });
       });
     });
