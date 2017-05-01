@@ -12,22 +12,19 @@
       onSubmit=(action 'saveRepertory')
       as |form|
     }}
-      {{#form.element property='chart' as |el|}}
+      {{#form.element property='chart' useIcons=false as |el|}}
         {{#power-select
           search=(perform searchChart)
           selected=el.value
-          renderInPlace=true
           onchange=(action (mut el.value))
-          placeholder="Search by Song Name or BHS Chart Number"
+          placeholder="Enter Song Title or BHS Number"
+          renderInPlace=true
           allowClear=true
           as |chart|
         }}
           Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
         {{/power-select}}
       {{/form.element}}
-        <p>
-          <strong>NOTE:&nbsp;</strong>By adding this song to your repertory you are affirming that you have complied with all appropriate copyright law and restrictions.
-        </p>
       {{#each model.errors.non-field-errors as |error|}}
         <span class='has-error'>
           <span class="help-block">

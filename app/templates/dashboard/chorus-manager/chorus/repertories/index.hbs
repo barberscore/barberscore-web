@@ -28,39 +28,6 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Chart to Repertory{{/bs-button}}
+  {{#bs-button onClick=(action 'createRepertory') type='success'}}Add Song to Repertory{{/bs-button}}
 </section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearRepertory")
-    title="Add Repertory"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createRepertory')
-      as |form|
-    }}
-      {{#form.element property='chart' useIcons=false as |el|}}
-        {{#power-select
-          search=(perform searchChart)
-          selected=el.value
-          renderInPlace=true
-          onchange=(action (mut el.value))
-          placeholder="Search by Song Name or BHS Chart Number"
-          allowClear=true
-          as |chart|
-        }}
-          Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
-        {{/power-select}}
-      {{/form.element}}
-        <p>
-          <strong>NOTE:&nbsp;</strong><small>If you can't find your song then cancel this and add it through the chart manager first.</small>
-        </p>
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section>
+{{create-repertory openModal=openModal model=repertory}}

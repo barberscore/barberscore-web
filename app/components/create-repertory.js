@@ -18,10 +18,11 @@ export default Ember.Component.extend({
       .then(() => {
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
+      })
+      .catch(() => {
+        this.get('flashMessages').danger('Error');
+        // console.log(error);
       });
-      // .catch((error) => {
-      //   console.log(error);
-      // });
     },
     clearRepertory() {
       this.get('model').deleteRecord();
