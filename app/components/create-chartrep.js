@@ -6,7 +6,12 @@ export default Ember.Component.extend({
   actions: {
     saveChart(){
       this.get('model').save()
-      .then(() => {
+      .then((data) => {
+        let repertory = this.get('store').createRecord('repertory', {
+          entity: this.get('model.entity'),
+          chart: data
+        });
+        repertory.save();
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       });

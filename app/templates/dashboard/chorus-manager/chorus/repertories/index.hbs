@@ -28,6 +28,10 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action 'createRepertory') type='success'}}Add Song to Repertory{{/bs-button}}
+  <ul class='list-inline'>
+    <li>{{#bs-button onClick=(action 'createRepertory') type='success'}}Add BHS Chart to Repertory{{/bs-button}}</li>
+    <li>{{#bs-button onClick=(action 'createChart') type='primary'}}Add New Chart to Repertory{{/bs-button}}</li>
+  </ul>
 </section>
 {{create-repertory openModal=openModal model=repertory}}
+{{create-chartrep openModal=openChartModal model=chart repertory=repertory}}

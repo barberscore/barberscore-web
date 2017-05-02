@@ -23,5 +23,12 @@ export default Ember.Controller.extend({
       this.set('repertory', repertory);
       this.set('openModal', true);
     },
+    createChart() {
+      let chart = this.get('store').createRecord('chart', {
+        entity: this.get('model')
+      });
+      this.set('chart', chart);
+      this.set('openChartModal', true);
+    },
   },
 });

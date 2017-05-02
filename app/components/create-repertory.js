@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Component.extend({
+  router: Ember.inject.service("-routing"),
   store: Ember.inject.service(),
   openModal: false,
   searchChart: task(function* (term){
@@ -18,10 +19,6 @@ export default Ember.Component.extend({
       .then(() => {
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
-        // console.log(error);
       });
     },
     clearRepertory() {

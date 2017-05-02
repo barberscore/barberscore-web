@@ -16,6 +16,7 @@
           {{form.element controlType='textarea' placeholder='Arrangers' disabled=true property='arrangers'}}
           {{form.element controlType='textarea' placeholder='Composers/Lyricists' disabled=true property='composers'}}
           {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=true property='holders'}}
+          {{form.element controlType='textarea' placeholder='Source' disabled=true property='entity.name'}}
           <ul class='list-inline'>
             <li>{{#bs-button onClick=(action 'validateRepertory') class='form-group' disabled=false}}Validate{{/bs-button}}</li>
             <li>{{#bs-button onClick=(action 'invalidateRepertory') class='form-group' disabled=false}}Invalidate{{/bs-button}}</li>
