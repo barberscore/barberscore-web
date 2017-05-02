@@ -15,8 +15,7 @@ export default Ember.Controller.extend({
 
   filteredEntries: Ember.computed.filterBy(
     'model.entries',
-    'status',
-    'New'
+    'notPublished'
   ),
   sortedEntriesProperties: [
     'nomen:asc',
@@ -48,6 +47,7 @@ export default Ember.Controller.extend({
         is_evaluation: this.get('is_evaluation'),
         is_private: this.get('is_private'),
         director: this.get('director'),
+        status: 'Submitted'
       });
       this.set('entry', entry);
       this.set('openModal', true);

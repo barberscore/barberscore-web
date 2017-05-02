@@ -28,12 +28,21 @@ export default Model.extend({
   submissions: DS.hasMany('submission', {async: true}),
   permissions: DS.attr(),
 
-  scratch: memberAction({path: 'scratch'}),
-  penalizeEligibility: memberAction({path: 'penalize-eligibility'}),
+  submit: memberAction({path: 'submit', type: 'post'}),
+
+  published: computed.equal(
+    'status',
+    'Published'
+  ),
+
+  notPublished: computed.not(
+    'published'
+  ),
+
 
   statusOptions: [
     'New',
-    'Registered',
+    'Submitted',
     'Accepted',
     'Declined',
     'Dropped',

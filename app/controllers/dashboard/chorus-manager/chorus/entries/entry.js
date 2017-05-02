@@ -48,6 +48,13 @@ export default Ember.Controller.extend({
     'contestSortProperties'
   ),
   actions: {
+    submitEntry() {
+      this.model.submit()
+      .then((response) => {
+        this.store.pushPayload('repertory', response);
+        this.get('flashMessages').success("Submitted!");
+      });
+    },
     populateSubmission(chart) {
       this.set('chart', chart);
       this.set('title', chart.get('title'));
@@ -64,11 +71,10 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteEntry() {
-      let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.session-manager.convention.sessions.session', session);
+        this.transitionToRoute('dashboard.chorus-manager.chorus.entries');
       });
     },
     saveEntry() {
