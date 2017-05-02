@@ -108,9 +108,7 @@ Router.map(function() {
       });
     });
     this.route('chart-manager', {path: 'chart-manager'}, function() {
-      this.route('chart', { path: ':chart_id' }, function() {
-        this.route('details', {path: 'details'});
-      });
+      this.route('chart', { path: ':chart_id' });
     });
   });
   this.route('about');

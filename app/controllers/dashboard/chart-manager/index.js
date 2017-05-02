@@ -23,13 +23,13 @@ export default Ember.Controller.extend({
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
     },
-    transitionChart(chart) {
-      this.transitionToRoute('dashboard.chart-manager.chart.details', chart);
+    transitionChart(selected) {
+      this.transitionToRoute('dashboard.chart-manager.chart.details', selected);
     },
     createChart() {
-      let chart = this.get('store').createRecord('chart', {
-      });
-      this.set('chart', chart);
+      // let chart = this.get('store').createRecord('chart', {
+      // });
+      // this.set('chart', chart);
       this.set('openModal', true);
     },
     deleteChart(chart){

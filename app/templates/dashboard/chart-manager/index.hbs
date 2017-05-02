@@ -4,7 +4,7 @@
 <section>
   {{#power-select
     search=(perform searchChart)
-    selected=chart
+    selected=selected
     onchange=(action "transitionChart")
     placeholder="Search Chart"
     allowClear=true
@@ -16,6 +16,7 @@
 <section>
   {{#bs-button onClick=(action "createChart") type='success'}}Create New Chart{{/bs-button}}
 </section>
+{{create-chart openModal=openModal model=chart}}
 <section>
   <div class='table-responsive'>
     <table class='table'>
@@ -25,23 +26,14 @@
           <th class='col-md-6'>Title</th>
           <th class='col-md-1'>BHS ID</th>
           <th class='col-md-5'>Arranger(s)</th>
-          {{!-- <th {{action "sortBy" "gender"}}>Gender</th> --}}
-          {{!-- <th {{action "sortBy" "voicing"}}>Voicing</th> --}}
-          {{!-- <th {{action "sortBy" "difficulty"}}>Difficulty</th> --}}
-          {{!-- <th {{action "sortBy" "tempo"}}>Tempo</th> --}}
-          {{!-- <th {{action "sortBy" "is_medley"}}>Medley</th> --}}
         </tr>
       </thead>
       <tbody>
         {{#each sortedItems as |chart|}}
           <tr>
-            <td>{{#link-to 'dashboard.chart-manager.chart.details' chart}}{{chart.title}}{{/link-to}}</td>
+            <td>{{#link-to 'dashboard.chart-manager.chart' chart}}{{chart.title}}{{/link-to}}</td>
             <td>{{chart.bhs_id}}</td>
             <td>{{chart.arrangers}}</td>
-            {{!-- <td>{{chart.gender}}</td> --}}
-            {{!-- <td>{{chart.difficulty}}</td> --}}
-            {{!-- <td>{{chart.tempo}}</td> --}}
-            {{!-- <td>{{chart.is_medley}}</td> --}}
           </tr>
         {{else}}
           <tr>
