@@ -53,7 +53,7 @@
     "ember-multiselect-checkboxes": "0.10.3",
     "ember-power-select": "1.7.2",
     "ember-simple-auth": "1.2.2",
-    "ember-simple-auth-auth0": "^3.0.1",
+    "ember-simple-auth-auth0": "https://github.com/XaserAcheron/ember-simple-auth-auth0.git#bower-nix-v1",
     "ember-truth-helpers": "1.3.0",
     "ember-uploader": "1.2.3",
     "eonasdan-bootstrap-datetimepicker": "4.17.47"
