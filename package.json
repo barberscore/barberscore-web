@@ -61,8 +61,5 @@
   "engines": {
     "node": "6.10.1"
   },
-  "scripts": {
-    "postinstall": "npm rebuild"
-  },
   "private": true
 }
