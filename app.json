@@ -13,7 +13,7 @@
     "AUTH0_DOMAIN": "barberscore.auth0.com",
     "BUGSNAG_API_KEY": "a231990acfb72a00bf3951369ad75390",
     "INTERCOM_APP_ID": "hb6rvkui",
-    "NPM_CONFIG_PRODUCTION": false
+    "NPM_CONFIG_PRODUCTION": "false"
   },
   "environments": {
     "test": {
@@ -24,9 +24,9 @@
         "AUTH0_DOMAIN": "barberscore-dev.auth0.com",
         "INTERCOM_APP_ID": "hb6rvkui",
         "AUTH0_AUDIENCE" : "https://barberscore.auth0.com/api/v2/",
-        "NPM_CONFIG_PRODUCTION": false,
+        "NPM_CONFIG_PRODUCTION": "false",
         "CODECLIMATE_REPO_TOKEN":"336ccc6d4f8a8b63a687d929c932d59a68de4b94fb3e6b9e2a5f29c892f028eb",
-        "COVERAGE": true
+        "COVERAGE": "true"
       },
       "scripts": {
         "test": "ember t"
