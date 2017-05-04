@@ -29,6 +29,7 @@
         "COVERAGE": "true"
       },
       "scripts": {
+        "test-setup": "yarn global eslint@3 bower codeclimate-test-reporter",
         "test": "ember t"
       },
       "buildpacks": [
