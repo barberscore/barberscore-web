@@ -47,5 +47,8 @@
   },
   "logo": "https://barberscore-django.herokuapp.com/static/app/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-ember",
-  "stack": "cedar-14"
+  "stack": "cedar-14",
+  "scripts": {
+    "postinstall": "bower install"
+  }
 }

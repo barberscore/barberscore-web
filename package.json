@@ -37,6 +37,7 @@
     "loader.js": "^4.2.3"
   },
   "dependencies": {
+    "bower": "^1.8.0",
     "ember-api-actions": "0.1.6",
     "ember-bootstrap": "1.0.0-alpha.11",
     "ember-bootstrap-datetimepicker": "1.1.0",
