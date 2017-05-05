@@ -8,7 +8,7 @@
   ],
   "addons": [
     "papertrail:choklad",
-    "rollbar:free",
+    "rollbar:free"
   ],
   "env": {
     "API_HOST": "https://barberscore-django.herokuapp.com",
