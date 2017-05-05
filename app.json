@@ -1,18 +1,20 @@
 {
   "name": "Barberscore Ember",
+  "description": "Scoring software for the Barbershop Harmony Society",
   "buildpacks": [
     {
       "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
     }
   ],
-  "description": "Scoring software for the Barbershop Harmony Society",
+  "addons": [
+    "papertrail:choklad",
+    "rollbar:free",
+  ],
   "env": {
     "API_HOST": "https://barberscore-django.herokuapp.com",
     "API_NAMESPACE": "api",
     "AUTH0_CLIENT_ID": "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
     "AUTH0_DOMAIN": "barberscore.auth0.com",
-    "BUGSNAG_API_KEY": "a231990acfb72a00bf3951369ad75390",
-    "INTERCOM_APP_ID": "hb6rvkui",
     "NPM_CONFIG_PRODUCTION": "false"
   },
   "environments": {
@@ -21,15 +23,10 @@
         "API_HOST": "https://barberscore-django.herokuapp.com",
         "API_NAMESPACE": "api",
         "AUTH0_CLIENT_ID": "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-        "AUTH0_DOMAIN": "barberscore-dev.auth0.com",
-        "INTERCOM_APP_ID": "hb6rvkui",
-        "AUTH0_AUDIENCE" : "https://barberscore.auth0.com/api/v2/",
-        "NPM_CONFIG_PRODUCTION": "false",
-        "CODECLIMATE_REPO_TOKEN":"336ccc6d4f8a8b63a687d929c932d59a68de4b94fb3e6b9e2a5f29c892f028eb",
-        "COVERAGE": "true"
+        "AUTH0_DOMAIN": "barberscore.auth0.com",
+        "NPM_CONFIG_PRODUCTION": "false"
       },
       "scripts": {
-        "test-setup": "yarn global eslint@3 bower codeclimate-test-reporter",
         "test": "ember t"
       },
       "buildpacks": [
@@ -45,10 +42,10 @@
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "standard-1x"
+      "size": "hobby"
     }
   },
-  "logo": "https://s3-us-west-1.amazonaws.com/barberscore/static/images/bhs_logo.png",
-  "repository": "https://github.com/dbinetti/barberscore-ember",
+  "logo": "https://barberscore-django.herokuapp.com/static/app/bhs_logo.png",
+  "repository": "https://github.com/barberscore/barberscore-ember",
   "stack": "cedar-14"
 }

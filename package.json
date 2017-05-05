@@ -40,7 +40,6 @@
     "ember-api-actions": "0.1.6",
     "ember-bootstrap": "1.0.0-alpha.11",
     "ember-bootstrap-datetimepicker": "1.1.0",
-    "ember-cli-bugsnag": "1.1.2",
     "ember-cli-code-coverage": "0.3.12",
     "ember-cli-flash": "1.4.2",
     "ember-cli-moment-shim": "3.1.0",
