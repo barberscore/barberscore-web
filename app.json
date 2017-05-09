@@ -27,12 +27,17 @@
         "NPM_CONFIG_PRODUCTION": "false"
       },
       "scripts": {
-        "test-setup": "yarn global add ember-cli@2.13 eslint@3 phantomjs-prebuilt",
         "test": "ember t"
       },
       "buildpacks": [
         {
-          "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
+          "url": "heroku/nodejs"
+        },
+        {
+          "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/ember-cli-deploy.tgz"
+        },
+        {
+          "url": "https://github.com/heroku/heroku-buildpack-static"
         }
       ]
     }
