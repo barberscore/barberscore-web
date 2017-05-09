@@ -1,11 +1,20 @@
 {
   "name": "Barberscore Ember",
   "description": "Scoring software for the Barbershop Harmony Society",
+  "logo": "https://barberscore-django.herokuapp.com/static/app/bhs_logo.png",
+  "repository": "https://github.com/barberscore/barberscore-ember",
+  "stack": "cedar-14",
   "buildpacks": [
     {
       "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
     }
   ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "hobby"
+    }
+  },
   "addons": [
     "papertrail:choklad",
     "rollbar:free"
@@ -19,39 +28,12 @@
   },
   "environments": {
     "test": {
-      "env": {
-        "API_HOST": "https://barberscore-django.herokuapp.com",
-        "API_NAMESPACE": "api",
-        "AUTH0_CLIENT_ID": "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-        "AUTH0_DOMAIN": "barberscore.auth0.com",
-        "NPM_CONFIG_PRODUCTION": "false"
-      },
+      "addons": [
+      ],
       "scripts": {
+        "postinstall": "bower install",
         "test": "ember t"
-      },
-      "buildpacks": [
-        {
-          "url": "heroku/nodejs"
-        },
-        {
-          "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/ember-cli-deploy.tgz"
-        },
-        {
-          "url": "https://github.com/heroku/heroku-buildpack-static"
-        }
-      ]
+      }
     }
-  },
-  "formation": {
-    "web": {
-      "quantity": 1,
-      "size": "hobby"
-    }
-  },
-  "logo": "https://barberscore-django.herokuapp.com/static/app/bhs_logo.png",
-  "repository": "https://github.com/barberscore/barberscore-ember",
-  "stack": "cedar-14",
-  "scripts": {
-    "postinstall": "bower install"
   }
 }
