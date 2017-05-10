@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  flashMessages: Ember.inject.service(),
   store: Ember.inject.service(),
   openModal: false,
   actions: {

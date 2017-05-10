@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   openModal: false,
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   awardCall: Ember.computed(
     'model.convention.id', function() {
       return this.get('store').query('award', {

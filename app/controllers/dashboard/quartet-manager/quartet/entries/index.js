@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   openModal: false,
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   modelKind: Ember.computed(function() {
     return this.get('model.kind');
   }),

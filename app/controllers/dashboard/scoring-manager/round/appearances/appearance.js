@@ -4,7 +4,7 @@ import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
   openModal: false,
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   sortedSongsProperties: [
     'num',
   ],

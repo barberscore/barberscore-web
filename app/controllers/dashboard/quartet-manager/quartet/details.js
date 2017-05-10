@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   currentUser: Ember.inject.service(),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
   location: '',

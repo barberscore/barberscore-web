@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -51,5 +52,14 @@ export default Model.extend({
     'Non-Member',
     'Associate',
   ],
-
+  filteredMembers: Ember.computed.filterBy(
+    'members',
+    'entityKind',
+    'Organization'
+  ),
+  duesThru: Ember.computed(
+    'filteredMembers', function() {
+      return this.get('filteredMembers.firstObject.end_date', null);
+    }
+  ),
 });

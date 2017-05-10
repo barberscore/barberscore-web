@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   actions: {
     editChart() {
       this.set('isEditing', true);

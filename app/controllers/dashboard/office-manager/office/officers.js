@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
     'model.officers',
     'officerSortProperties'
   ),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   adminCall: Ember.computed(function() {
     return this.get('store').query('person', {
       'officers__office__kind': 30, //TODO Hardcoded

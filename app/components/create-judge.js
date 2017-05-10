@@ -4,6 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   openModal: false,
+  flashMessages: Ember.inject.service(),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {

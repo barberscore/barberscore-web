@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   isEditing: true,
   isDisabled: true,
   // isDisabled: Ember.computed.not('isEditing'),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   representingFilter: Ember.computed.filterBy(
     'model.officers',
     'entityKind',

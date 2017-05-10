@@ -61,7 +61,7 @@
               allowClear=true
               as |person|
             }}
-              Tenor: {{person.common_name}}
+              Tenor: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.duesThru}}<span class='text-success'>Membership Expires: {{moment-format person.duesThru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Elapsed!</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='lead' useIcons=false as |el|}}
@@ -74,7 +74,7 @@
               allowClear=true
               as |person|
             }}
-              Lead: {{person.common_name}}
+              Lead: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.duesThru}}<span class='text-success'>Membership Expires: {{moment-format person.duesThru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Elapsed!</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='baritone' useIcons=false as |el|}}
@@ -87,7 +87,7 @@
               allowClear=true
               as |person|
             }}
-              Baritone: {{person.common_name}}
+              Baritone: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.duesThru}}<span class='text-success'>Membership Expires: {{moment-format person.duesThru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Elapsed!</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='bass' useIcons=false as |el|}}
@@ -100,7 +100,7 @@
               allowClear=true
               as |person|
             }}
-              Bass: {{person.common_name}}
+              Bass: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.duesThru}}<span class='text-success'>Membership Expires: {{moment-format person.duesThru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Elapsed!</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#if isEditing}}

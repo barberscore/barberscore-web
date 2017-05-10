@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   openModal: false,
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   kindy: Ember.computed(
     'model.kind', function() {
       return (this.get('model.kind') === 'Chorus') ? 32 : 31;

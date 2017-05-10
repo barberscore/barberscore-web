@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   openModal: false,
   searchChart: task(function* (term){
     yield timeout(600);

@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   isEditing: true,
   isDisabled: Ember.computed.not('isEditing'),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   representingFilter: Ember.computed.filterBy(
     'model.members',
     'entityKind',

@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
     return this.get('store').query('person', {'nomen__icontains': term})
       .then((data) => data);
   }),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   actions: {
     createJudge(){
       let judge = this.get('store').createRecord('judge', {

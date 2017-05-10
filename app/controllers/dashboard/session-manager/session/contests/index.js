@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
     return this.get('store').query('award', {'nomen__icontains': term})
       .then((data) => data);
   }),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   actions: {
     sortBy(contestSortProperties) {
       this.set('contestSortProperties', [contestSortProperties]);

@@ -3,7 +3,7 @@ import EmberUploader from 'ember-uploader';
 import config from '../config/environment';
 
 export default EmberUploader.FileField.extend({
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   filesDidChange: function(files) {
     const host = config.APP.API_HOST;
     const namespace = config.APP.API_NAMESPACE;

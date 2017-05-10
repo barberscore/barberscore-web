@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
   optionsSession: Ember.computed(function() {
     return this.get('store').query('session', {'status': 4});
   }),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   actions: {
     collapseHeader() {
       this.toggleProperty('isCollapsed');

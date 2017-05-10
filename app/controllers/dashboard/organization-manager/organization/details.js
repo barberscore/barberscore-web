@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   isWrite: Ember.computed.not('model.permissions.write'),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   actions: {
     editOrganization() {
       this.set('isEditing', true);

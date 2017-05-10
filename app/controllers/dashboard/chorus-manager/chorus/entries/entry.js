@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   openModal: false,
   searchTask: task(function* (term){
     yield timeout(600);

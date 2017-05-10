@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   assignmentSortProperties: ['kind', 'category','slot',],
-  flashMessage: Ember.get(this, 'flashMessages'),
+  flashMessages: Ember.inject.service(),
   scoringAssignments: Ember.computed.filter('model.round.session.assignments',
     function(item) {
       return item.get('category') !== 'Admin';
