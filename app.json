@@ -1,7 +1,7 @@
 {
   "name": "Barberscore Ember",
   "description": "Scoring software for the Barbershop Harmony Society",
-  "logo": "https://barberscore-django.herokuapp.com/static/app/bhs_logo.png",
+  "logo": "https://barberscore-api.herokuapp.com/static/app/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-ember",
   "stack": "cedar-14",
   "buildpacks": [
