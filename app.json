@@ -3,7 +3,7 @@
   "description": "Scoring software for the Barbershop Harmony Society",
   "logo": "https://barberscore-api.herokuapp.com/static/app/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-ember",
-  "stack": "cedar-14",
+  "stack": "cedar-16",
   "buildpacks": [
     {
       "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
@@ -16,16 +16,32 @@
     }
   },
   "env": {
-    "API_HOST": "https://barberscore-api.herokuapp.com",
-    "API_NAMESPACE": "api",
-    "AUTH0_CLIENT_ID": "0asRmTDrVcFf1DQfO9s51qyqDW5cneGk",
-    "AUTH0_DOMAIN": "barberscore.auth0.com",
-    "NPM_CONFIG_PRODUCTION": "false"
+    "API_HOST": {
+      "description": "The host of the Barberscore API.",
+      "required": true
+    },
+    "API_NAMESPACE": {
+      "description": "The API version.  Don't edit unless necessary.",
+      "value": "api",
+      "required": true
+    },
+    "AUTH0_CLIENT_ID": {
+      "description": "The Auth0 app id.  Should match the app id on the API.",
+      "required": true
+    },
+    "AUTH0_DOMAIN": {
+      "description": "The Auth0 endpoint.  Should match the endpoint on the API.",
+      "required": true
+    },
+    "NPM_CONFIG_PRODUCTION": {
+      "description": "Required by Heroku.  Do not edit.",
+      "value": "false",
+      "required": true
+    }
   },
   "environments": {
     "test": {
       "scripts": {
-        "postinstall": "bower install",
         "test": "ember t"
       }
     }
