@@ -1,5 +1,5 @@
 {
-  "name": "Barberscore Ember",
+  "name": "Barberscore Web",
   "description": "Scoring software for the Barbershop Harmony Society",
   "logo": "https://barberscore-api.herokuapp.com/static/app/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-web",
@@ -41,6 +41,8 @@
   },
   "environments": {
     "test": {
+      "env": {
+      },
       "scripts": {
         "test": "ember t"
       }
