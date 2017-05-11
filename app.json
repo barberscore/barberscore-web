@@ -2,8 +2,8 @@
   "name": "Barberscore Ember",
   "description": "Scoring software for the Barbershop Harmony Society",
   "logo": "https://barberscore-api.herokuapp.com/static/app/bhs_logo.png",
-  "repository": "https://github.com/barberscore/barberscore-ember",
-  "stack": "cedar-16",
+  "repository": "https://github.com/barberscore/barberscore-web",
+  "stack": "heroku-16",
   "buildpacks": [
     {
       "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
