@@ -38,9 +38,11 @@
     </table>
   </div>
 </section>
-<section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Officer{{/bs-button}}
-</section>
+{{#if model.permissions.write}}
+  <section>
+    {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Officer{{/bs-button}}
+  </section>
+{{/if}}
 <section>
   {{#bs-modal-simple
     open=openModal

@@ -103,18 +103,20 @@
               Bass: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.duesThru}}<span class='text-success'>Membership Expires: {{moment-format person.duesThru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Elapsed!</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
-          {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
-              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
+          {{#if model.permissions.write}}
+            {{#if isEditing}}
+                {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
+                {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+                {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
+            {{else}}
+              {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
+            {{/if}}
           {{/if}}
         {{/bs-form}}
       </div>
     </div>
   </div>
-  <div>
+  {{!-- <div>
     <p>
       Please select the Contests in which you wish to compete:
     </p>
@@ -126,7 +128,7 @@
       updateSelectionValue=false
       onchange=(action "updateSelection")
     }}
-  </div>
+  </div> --}}
 </section>
   {{!-- <div class='table-responsive'>
     <table class='table'>

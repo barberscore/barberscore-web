@@ -63,12 +63,14 @@
                 {{/form.element}}
               </div>
             </div>
-          {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelMember')}}Cancel{{/bs-button}}
-              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deleteMember') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action 'editMember')}}Edit{{/bs-button}}
+          {{#if model.permissions.write}}
+            {{#if isEditing}}
+                {{#bs-button onClick=(action 'cancelMember')}}Cancel{{/bs-button}}
+                {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+                {{#bs-button onClick=(action 'deleteMember') class='pull-right btn-danger'}}Delete{{/bs-button}}
+            {{else}}
+              {{#bs-button onClick=(action 'editMember')}}Edit{{/bs-button}}
+            {{/if}}
           {{/if}}
         {{/bs-form}}
       </div>

@@ -6,7 +6,7 @@
           <thead>
             <tr>
               <th class='col-md-4'>Entry</th>
-              <th class='col-md-1'>Delete</th>
+              <th class='col-md-1'>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -16,7 +16,7 @@
                   {{#link-to 'dashboard.quartet-manager.quartet.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
                 </td>
                 <td>
-                  {{fa-icon 'times-circle' click=(action 'deleteEntry' entry) class='text-danger'}}
+                  {{entry.status}}
                 </td>
               </tr>
             {{else}}
@@ -32,9 +32,11 @@
     </div>
   </div>
 </section>
-<section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
-</section>
+{{#if model.permissions.write}}
+  <section>
+    {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
+  </section>
+{{/if}}
 <section>
   {{#bs-modal-simple
     open=openModal

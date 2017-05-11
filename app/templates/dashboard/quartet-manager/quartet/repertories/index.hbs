@@ -24,9 +24,11 @@
     </table>
   </div>
 </section>
-<section>
-  {{#bs-button onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}
-</section>
+{{#if model.permissions.write}}
+  <section>
+    {{#bs-button onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}
+  </section>
+{{/if}}
 {{create-repertory openModal=openModal model=repertory}}
 {{!-- <section>
   {{#bs-modal-simple

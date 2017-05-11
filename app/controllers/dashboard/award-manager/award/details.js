@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isEditing: true,
+  isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
