@@ -42,6 +42,16 @@
       "description": "The Bugsnag API key.  Used for exception reporting.",
       "required": true
     },
+    "BUGSNAG_NOTIFY_RELEASE": {
+      "description": "Comma seperated list of release stages reported to Bugsnag.",
+      "value": "staging, production",
+      "required": false
+    },
+    "BUGSNAG_RELEASE_STAGE": {
+      "description": "The current release stage reported to Bugsnag.",
+      "value": "development",
+      "required": false
+    },
     "HEROKU_APP_NAME": {
       "description": "Will be populated by Heroku in Review App."
     },

@@ -9,13 +9,6 @@ module.exports = function(environment) {
     moment: {
       allowEmpty: true // default: false
     },
-    bugsnag: {
-      apiKey: process.env.BUGSNAG_API_KEY,
-      notifyReleaseStages: [
-        'staging',
-        'production',
-      ]
-    },
     contentSecurityPolicy: {
       'font-src': [
         'data:',
