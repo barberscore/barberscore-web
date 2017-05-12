@@ -39,12 +39,10 @@
       "required": true
     },
     "HEROKU_APP_NAME": {
-      "description": "Required by Heroku.  Do not edit.",
-      "required": true
+      "description": "Will be populated by Heroku in Review App."
     },
     "HEROKU_PARENT_APP_NAME": {
-      "description": "Required by Heroku.  Do not edit.",
-      "required": true
+      "description": "Will be populated by Heroku in Review App."
     }
   },
   "environments": {
