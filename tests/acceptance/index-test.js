@@ -1,5 +1,5 @@
 import { test } from 'qunit';
-import moduleForAcceptance from 'barberscore-ember/tests/helpers/module-for-acceptance';
+import moduleForAcceptance from 'barberscore-web/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | index');
 

@@ -1,7 +1,7 @@
 {
-  "name": "barberscore-ember",
+  "name": "barberscore-web",
   "version": "0.0.0",
-  "description": "Small description for barberscore-ember goes here",
+  "description": "Small description for barberscore-web goes here",
   "license": "MIT",
   "author": "",
   "directories": {
