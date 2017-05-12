@@ -38,6 +38,10 @@
       "value": "false",
       "required": true
     },
+    "BUGSNAG_API_KEY": {
+      "description": "The Bugsnag API key.  Used for exception reporting.",
+      "required": true
+    },
     "HEROKU_APP_NAME": {
       "description": "Will be populated by Heroku in Review App."
     },
