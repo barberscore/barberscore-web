@@ -37,6 +37,14 @@
       "description": "Required by Heroku.  Do not edit.",
       "value": "false",
       "required": true
+    },
+    "HEROKU_APP_NAME": {
+      "description": "Required by Heroku.  Do not edit.",
+      "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+      "description": "Required by Heroku.  Do not edit.",
+      "required": true
     }
   },
   "environments": {

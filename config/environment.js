@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'barberscore-ember',
+    modulePrefix: 'barberscore-web',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
