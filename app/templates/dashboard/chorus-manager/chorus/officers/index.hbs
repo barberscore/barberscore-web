@@ -38,9 +38,9 @@
     </table>
   </div>
 </section>
-{{#if model.permissions.write}}
+{{!-- {{#if model.permissions.write}}
   <section>
     {{#bs-button onClick=(action 'createOfficer') type='success'}}Add New Officer{{/bs-button}}
   </section>
-{{/if}}
+{{/if}} --}}
 {{create-chapterofficer openModal=openModal model=officer}}

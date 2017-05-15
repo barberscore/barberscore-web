@@ -19,12 +19,17 @@ export default Ember.Controller.extend({
     'Bass',
     'Director',
   ],
+  filteredMembers: Ember.computed.filterBy(
+    'model.members',
+    'status',
+    'Active'
+  ),
   sortedMembersProperties: [
     'nomen',
     'partSort',
   ],
   sortedMembers: Ember.computed.sort(
-    'model.members',
+    'filteredMembers',
     'sortedMembersProperties'
   ),
   actions: {

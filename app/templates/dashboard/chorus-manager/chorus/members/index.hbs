@@ -4,10 +4,10 @@
       <thead>
         <tr>
           <th>Person</th>
-          <th>Status</th>
+          {{!-- <th>Part</th> --}}
           <th>Start</th>
           <th>End</th>
-          <th>Delete</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
@@ -16,9 +16,9 @@
             <td>
               {{#link-to 'dashboard.chorus-manager.chorus.members.member' member}}{{member.person.common_name}}{{/link-to}}
             </td>
-            <td>
-              {{member.status}}
-            </td>
+            {{!-- <td>
+              {{member.part}}
+            </td> --}}
             <td>
               {{moment-format member.start_date 'LL'}}
             </td>
@@ -26,7 +26,7 @@
               {{moment-format member.end_date 'LL'}}
             </td>
             <td>
-              {{fa-icon 'times-circle' click=(action 'deleteMember' member) class='text-danger'}}
+              {{member.status}}
             </td>
           </tr>
         {{/each}}
@@ -34,9 +34,9 @@
     </table>
   </div>
 </section>
-<section>
+{{!-- <section>
   {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Member{{/bs-button}}
-</section>
+</section> --}}
 <section>
   {{#bs-modal-simple
     open=openModal

@@ -72,9 +72,9 @@
           {{#if model.permissions.write}}
             {{#form.element}}
             <ul class='list-inline'>
-              <li>{{#bs-button onClick=(action 'activateOfficer') disabled=false}}Activate{{/bs-button}}</li>
-              <li>{{#bs-button onClick=(action 'deactivateOfficer') disabled=false}}Deactivate{{/bs-button}}</li>
-              <li class='pull-right'>{{#bs-button onClick=(action 'deleteOfficer') type='danger' }}Delete{{/bs-button}}</li>
+              {{!-- <li>{{#bs-button onClick=(action 'activateOfficer') disabled=false}}Activate{{/bs-button}}</li> --}}
+              {{!-- <li>{{#bs-button onClick=(action 'deactivateOfficer') disabled=false}}Deactivate{{/bs-button}}</li> --}}
+              {{!-- <li class='pull-right'>{{#bs-button onClick=(action 'deleteOfficer') type='danger' }}Delete{{/bs-button}}</li> --}}
             </ul>
             {{/form.element}}
           {{/if}}
