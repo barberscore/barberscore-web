@@ -36,8 +36,8 @@
               disabled=isDisabled
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='is_private' as |el|}}
@@ -47,8 +47,8 @@
               onChange=(action (mut el.value))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='tenor' useIcons=false as |el|}}

@@ -113,6 +113,7 @@ export default Ember.Controller.extend({
       submission.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
+        this.transitionToRoute('dashboard.quartet-manager.quartet.entries');
       });
     },
     createSubmission() {

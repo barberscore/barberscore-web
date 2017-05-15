@@ -32,7 +32,7 @@ export default Ember.Controller.extend({
   ),
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
-        'kind__lt': '30',
+        'kind__in': '11,12,13',
         'page_size': 100,
       });
     // }).then((data) => {
@@ -46,18 +46,19 @@ export default Ember.Controller.extend({
   //   'Quartet'
   // ),
   representingSortProperties: [
-    'nomen:asc',
+    'kindSort:asc',
+    'name:asc'
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',
     'representingSortProperties'
   ),
-  representing: Ember.computed(
-    'model.parent',
-    function() {
-      return this.get('model.parent');
-    }
-  ),
+  // representing: Ember.computed(
+  //   'model.parent',
+  //   function() {
+  //     return this.get('model.parent');
+  //   }
+  // ),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -115,7 +116,7 @@ export default Ember.Controller.extend({
       return this.get('activeBasses.firstObject');
     }
   ),
-  is_evaluation: true,
+  is_evaluation: false,
   is_private: false,
   actions: {
     createEntry(){

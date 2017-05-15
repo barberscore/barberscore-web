@@ -46,6 +46,78 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
+  representingCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+        'kind__in': '11,12,13',
+        'page_size': 100,
+      });
+    // }).then((data) => {
+    //   sessions.addObjects(data);
+    // });
+    // return sessions;
+  }),
+  // representingFilter: Ember.computed.filterBy(
+  //   'representingCall',
+  //   'kind',
+  //   'Quartet'
+  // ),
+  representingSortProperties: [
+    'kindSort:asc',
+    'name:asc'
+  ],
+  representingOptions: Ember.computed.sort(
+    'representingCall',
+    'representingSortProperties'
+  ),
+  activeMembers: Ember.computed.filterBy(
+    'model.entity.members',
+    'status',
+    'Active'
+  ),
+  activeTenors: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Tenor'
+  ),
+  tenor: Ember.computed(
+    'activeTenors',
+    function() {
+      return this.get('activeTenors.firstObject');
+    }
+  ),
+  activeLeads: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Lead'
+  ),
+  lead: Ember.computed(
+    'activeLeads',
+    function() {
+      return this.get('activeLeads.firstObject');
+    }
+  ),
+  activeBaritones: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Baritone'
+  ),
+  baritone: Ember.computed(
+    'activeBaritones',
+    function() {
+      return this.get('activeBaritones.firstObject');
+    }
+  ),
+  activeBasses: Ember.computed.filterBy(
+    'activeMembers',
+    'part',
+    'Bass'
+  ),
+  bass: Ember.computed(
+    'activeBasses',
+    function() {
+      return this.get('activeBasses.firstObject');
+    }
+  ),
   actions: {
     populateSubmission(chart) {
       this.set('chart', chart);
@@ -73,11 +145,10 @@ export default Ember.Controller.extend({
       this.set('isEditing', false);
     },
     deleteEntry() {
-      let session = this.model.session;
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.session-manager.convention.sessions.session', session);
+        this.transitionToRoute('dashboard.quartet-manager.quartet.entries');
       });
     },
     saveEntry() {
