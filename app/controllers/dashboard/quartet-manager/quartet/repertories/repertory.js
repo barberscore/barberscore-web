@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
       .then((response) => {
         this.store.pushPayload('repertory', response);
         this.get('flashMessages').success("Validated!");
-        this.transitionToRoute('dashboard.chorus-manager.chorus.repertories');
+        this.transitionToRoute('dashboard.quartet-manager.quartet.repertories');
       });
     },
     invalidateRepertory() {
@@ -17,14 +17,14 @@ export default Ember.Controller.extend({
       .then((response) => {
         this.store.pushPayload('repertory', response);
         this.get('flashMessages').success("Invalidated!");
-        this.transitionToRoute('dashboard.chorus-manager.chorus.repertories');
+        this.transitionToRoute('dashboard.quartet-manager.quartet.repertories');
       });
     },
     deleteRepertory() {
       this.model.destroyRecord()
       .then(() => {
         this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.chorus-manager.chorus.repertories');
+        this.transitionToRoute('dashboard.quartet-manager.quartet.repertories');
       });
     }
   },

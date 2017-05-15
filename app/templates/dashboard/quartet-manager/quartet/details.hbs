@@ -8,7 +8,7 @@
     {{#form.element}}
       Picture:  {{file-upload disabled=isDisabled resource='entity' target=model.id}}
     {{/form.element}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Name' property='name'}}
+    {{form.element controlType='text' disabled=true placeholder='Quartet Name' property='name'}}
     {{#form.element property='parent' useIcons=false as |el|}}
         {{#power-select
           options=representingOptions
@@ -36,7 +36,7 @@
         {{#if isEditing}}
           {{#bs-button onClick=(action 'cancelQuartet')}}Cancel{{/bs-button}}
           {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-          {{#bs-button onClick=(action 'deleteQuartet') class='pull-right btn-danger'}}Delete{{/bs-button}}
+          {{!-- {{#bs-button onClick=(action 'deleteQuartet') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
         {{else}}
           {{#bs-button onClick=(action 'editQuartet')}}Edit{{/bs-button}}
         {{/if}}

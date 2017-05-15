@@ -28,10 +28,9 @@
             {{#power-select
               options=officeOptions
               selected=el.value
-              disabled=true
               onchange=(action (mut el.value))
               placeholder="Enter Office"
-              disabled=isDisabled
+              disabled=true
               allowClear=true
               as |office|
             }}
@@ -63,7 +62,7 @@
                 {{/form.element}}
               </div>
             </div>
-          {{#if model.permissions.write}}
+          {{!-- {{#if model.permissions.write}}
             {{#if isEditing}}
                 {{#bs-button onClick=(action 'cancelOfficer')}}Cancel{{/bs-button}}
                 {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
@@ -71,7 +70,7 @@
             {{else}}
               {{#bs-button onClick=(action 'editOfficer')}}Edit{{/bs-button}}
             {{/if}}
-          {{/if}}
+          {{/if}} --}}
         {{/bs-form}}
       </div>
     </div>

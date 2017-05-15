@@ -7,6 +7,7 @@
           <th>Office</th>
           {{!-- <th>Start</th> --}}
           {{!-- <th>End</th> --}}
+          <th>Status</th>
           {{!-- <th>Delete</th> --}}
         </tr>
       </thead>
@@ -18,6 +19,9 @@
             </td>
             <td>
               {{officer.office.name}}
+            </td>
+            <td>
+              {{officer.status}}
             </td>
             {{!-- <td>
               {{moment-format officer.start_date 'LL'}}
@@ -38,11 +42,11 @@
     </table>
   </div>
 </section>
-{{#if model.permissions.write}}
+{{!-- {{#if model.permissions.write}}
   <section>
     {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Officer{{/bs-button}}
   </section>
-{{/if}}
+{{/if}} --}}
 <section>
   {{#bs-modal-simple
     open=openModal

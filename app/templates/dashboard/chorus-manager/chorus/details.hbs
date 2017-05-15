@@ -30,14 +30,16 @@
     {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
     {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description' property='description'}}
-    {{#form.element}}
-      {{#if isEditing}}
-        {{#bs-button onClick=(action 'cancelChorus')}}Cancel{{/bs-button}}
-        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{!-- {{#bs-button onClick=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
-      {{else}}
-        {{#bs-button onClick=(action 'editChorus')}}Edit{{/bs-button}}
-      {{/if}}
-    {{/form.element}}
+    {{#if model.permissions.write}}
+      {{#form.element}}
+        {{#if isEditing}}
+          {{#bs-button onClick=(action 'cancelChorus')}}Cancel{{/bs-button}}
+          {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+          {{!-- {{#bs-button onClick=(action 'deleteChorus') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
+        {{else}}
+          {{#bs-button onClick=(action 'editChorus')}}Edit{{/bs-button}}
+        {{/if}}
+      {{/form.element}}
+    {{/if}}
   {{/bs-form}}
 </section>

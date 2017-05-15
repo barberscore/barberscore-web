@@ -1,31 +1,29 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
       <h4>
         {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
-      <div>
-        {{#bs-form
-          formLayout="vertical"
-          model=model
-          as |form|
-        }}
-          {{#form.element property='chart' useIcons=false as |el|}}
-            {{#power-select
-              selected=el.value
-              onchange=(action (mut el.value))
-              allowClear=true
-              renderInPlace=true
-              disabled=true
-              as |chart|
-            }}
-              Chart: {{chart.title}}
-            {{/power-select}}
-          {{/form.element}}
+      <section>
+        {{#bs-form formLayout="vertical" model=model.chart as |form|}}
+          {{form.element controlType='text' placeholder='Title' disabled=true property='title'}}
+          {{form.element controlType='text' placeholder='BHS ID' disabled=true property='bhs_id'}}
+          {{form.element controlType='textarea' placeholder='Arrangers' disabled=true property='arrangers'}}
+          {{form.element controlType='textarea' placeholder='Composers/Lyricists' disabled=true property='composers'}}
+          {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=true property='holders'}}
+          {{form.element controlType='textarea' placeholder='Source' disabled=true property='entity.name'}}
+          <ul class='list-inline'>
+            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'validateRepertory') class='form-group' disabled=false}}Validate{{/bs-button}}</li>{{/unless}}
+            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'invalidateRepertory') class='form-group' disabled=false}}Invalidate{{/bs-button}}</li>{{/unless}}
+            <li class='pull-right'>{{#bs-button onClick=(action 'deleteRepertory') class='form-group' type='danger' disabled=false}}Delete{{/bs-button}}</li>
+          </ul>
         {{/bs-form}}
-      </div>
+      </section>
     </div>
   </div>
 </section>

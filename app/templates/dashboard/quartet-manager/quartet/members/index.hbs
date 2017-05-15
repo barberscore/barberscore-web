@@ -3,25 +3,25 @@
     <table class='table'>
       <thead>
         <tr>
-          <th class='col-md-1'></th>
+          {{!-- <th class='col-md-1'></th> --}}
           <th class='col-md-2'>Person</th>
           <th class='col-md-2'>Part</th>
-          <th class='col-md-2'>Status</th>
           <th class='col-md-2'>Start</th>
           <th class='col-md-2'>End</th>
+          <th class='col-md-2'>Status</th>
           {{!-- <th class='col-md-1'>Delete</th> --}}
         </tr>
       </thead>
       <tbody>
         {{#each sortedMembers as |member|}}
           <tr>
-            <td class='img-responsive'>
+            {{!-- <td class='img-responsive'>
               {{#if member.person.picture}}
                 <img src={{member.person.picture}} class='img-responsive img-rounded'>
               {{else}}
                 <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
               {{/if}}
-            </td>
+            </td> --}}
             <td>
               {{#link-to 'dashboard.quartet-manager.quartet.members.member' member}}{{member.person.common_name}}{{/link-to}}
             </td>
@@ -29,13 +29,13 @@
               {{member.part}}
             </td>
             <td>
-              {{member.status}}
-            </td>
-            <td>
               {{moment-format member.start_date 'LL'}}
             </td>
             <td>
               {{moment-format member.end_date 'LL'}}
+            </td>
+            <td>
+              {{member.status}}
             </td>
             {{!-- <td>
               {{fa-icon 'times-circle' click=(action 'deleteMember' member) class='text-danger'}}
@@ -46,11 +46,11 @@
     </table>
   </div>
 </section>
-{{#if model.permissions.write}}
+{{!-- {{#if model.permissions.write}}
   <section>
     {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Member{{/bs-button}}
   </section>
-{{/if}}
+{{/if}} --}}
 <section>
   {{#bs-modal-simple
     open=openModal

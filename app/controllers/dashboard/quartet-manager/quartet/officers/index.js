@@ -29,7 +29,7 @@ export default Ember.Controller.extend({
   ),
   officeCall: Ember.computed(function() {
     return this.get('store').query('office', {
-      'kind': 32, //TODO Hardcoded
+      'kind': 31, //TODO Hardcoded
       // 'judges__status': 1,
       // 'judges__kind': 40,
       'page_size': 1000,

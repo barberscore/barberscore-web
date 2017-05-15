@@ -10,6 +10,7 @@ export default Ember.Component.extend({
       .then((data) => {
         let repertory = this.get('store').createRecord('repertory', {
           entity: this.get('model.entity'),
+          status: 'Valid',
           chart: data
         });
         repertory.save();

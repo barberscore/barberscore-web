@@ -2,8 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isEditing: false,
-  isDisabled: true,
-  // isDisabled: Ember.computed.not('isEditing'),
+  isDisabled: Ember.computed.not('isEditing'),
   flashMessages: Ember.inject.service(),
   representingFilter: Ember.computed.filterBy(
     'model.officers',
@@ -42,7 +41,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
-        this.transitionToRoute('dashboard.quartet-manager.quartet.details');
+        this.transitionToRoute('dashboard.quartet-manager.quartet.officers');
       });
     },
     saveOfficer() {

@@ -1,45 +1,35 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   openModal: false,
-  searchChart: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('chart', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
-  }),
   sortedRepertoriesProperties: [
     'nomen',
   ],
   filteredRepertories: Ember.computed.filterBy(
     'model.repertories',
-    'isValid'
+    'isOld'
   ),
   sortedRepertories: Ember.computed.sort(
-    'model.repertories',
+    'filteredRepertories',
     'sortedRepertoriesProperties'
   ),
   actions: {
-    deleteRepertory(repertory) {
-      repertory.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-      });
-    },
     createRepertory() {
       let repertory = this.get('store').createRecord('repertory', {
         entity: this.get('model'),
+        status: 'Valid'
       });
-      this.set('openModal', true);
       this.set('repertory', repertory);
+      this.set('openModal', true);
     },
-    clearRepertory() {
-      this.set('chart', null);
-      this.set('openModal', false);
-    }
+    createChart() {
+      let chart = this.get('store').createRecord('chart', {
+        entity: this.get('model')
+      });
+      this.set('chart', chart);
+      this.set('openChartModal', true);
+    },
   },
 });
