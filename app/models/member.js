@@ -10,6 +10,7 @@ export default Model.extend({
   end_date: DS.attr('isodate'),
   entity: DS.belongsTo('entity', {async: true}),
   person: DS.belongsTo('person', {async: true}),
+  participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
   statusOptions: [
     'New',
@@ -37,5 +38,6 @@ export default Model.extend({
       return this.get('partOptions').indexOf(this.get('part'));
     }
   ),
-  entityKind: Ember.computed.alias('entity.kind')
+  entityKind: Ember.computed.alias('entity.kind'),
+  personName: Ember.computed.alias('person.name')
 });

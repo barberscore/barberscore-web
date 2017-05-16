@@ -47,6 +47,18 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
+  filteredMembers: Ember.computed.filterBy(
+    'model.entity.members',
+    'status',
+    'Active'
+  ),
+  memberSortProperties: [
+    'nomen',
+  ],
+  memberOptions: Ember.computed.sort(
+    'filteredMembers',
+    'memberSortProperties'
+  ),
   actions: {
     submitEntry() {
       this.model.submit()
@@ -107,6 +119,24 @@ export default Ember.Controller.extend({
         contestant.destroyRecord()
         .then(() => {
         });
+      }
+    },
+    updateMembers(newSelection, value, operation) {
+      if (operation==='added') {
+        let member = this.get('store').peekRecord('member', value);
+        let participant = this.get('model.participants').createRecord({
+          member: member
+        });
+        participant.save()
+        .then(() => {
+        });
+        // console.log('added');
+      } else { //operation === removed
+        let participant = this.get('model.participants').findBy('member.id', value);
+        participant.destroyRecord()
+        .then(() => {
+        });
+        // console.log('removed');
       }
     },
     deleteSubmission(submission) {

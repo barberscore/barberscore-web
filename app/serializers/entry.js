@@ -11,5 +11,8 @@ export default DS.JSONAPISerializer.extend({
       submissions: {
         serialize: true
       },
+      participants: {
+        serialize: true
+      },
     }
 });

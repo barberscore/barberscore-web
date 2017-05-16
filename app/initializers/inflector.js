@@ -14,6 +14,7 @@ export function initialize(/* application */) {
   inflector.uncountable('member');
   inflector.uncountable('office');
   inflector.uncountable('officer');
+  inflector.uncountable('participant');
   inflector.uncountable('person');
   inflector.uncountable('repertory');
   inflector.uncountable('round');

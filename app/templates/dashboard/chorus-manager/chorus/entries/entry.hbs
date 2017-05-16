@@ -16,7 +16,7 @@
           onSubmit=(action "saveEntry")
           as |form|
         }}
-          {{#form.element property='representing' useIcons=false as |el|}}
+          {{!-- {{#form.element property='representing' useIcons=false as |el|}}
             {{#power-select
               options=representingOptions
               selected=el.value
@@ -30,7 +30,7 @@
             }}
               Representing: {{representing.name}}
             {{/power-select}}
-          {{/form.element}}
+          {{/form.element}} --}}
           {{#form.element property='is_evaluation' as |el|}}
             {{#bs-button-group
               value=el.value
@@ -39,8 +39,8 @@
               disabled=isDisabled
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='is_private' as |el|}}
@@ -50,8 +50,8 @@
               onChange=(action (mut el.value))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='director' useIcons=false as |el|}}
@@ -80,31 +80,30 @@
                 Co-Director: {{person.common_name}}
               {{/power-select}}
           {{/form.element}}
-          {{!-- {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
-              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
-          {{/if}} --}}
-          <ul class='list-inline'>
-            <li class='pull-right'>{{#bs-button onClick=(action 'deleteEntry') type='danger'}}Delete{{/bs-button}}</li>
-          </ul>
+          {{#if model.permissions.write}}
+            {{#if isEditing}}
+                {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
+                {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
+                {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
+            {{else}}
+              {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
+            {{/if}}
+          {{/if}}
         {{/bs-form}}
       </div>
     </div>
   </div>
-  {{!-- <div>
+  <div>
     <p>
-      Please select the Contests in which you wish to compete:
+      Please select the chorus members who will be on stage for this appearance:
     </p>
     {{multiselect-checkboxes
-      options=contestOptions
-      labelProperty='awardName'
+      options=memberOptions
+      labelProperty='personName'
       valueProperty='id'
-      selection=model.selectedContests
-      updateSelectionValue=false
-      onchange=(action "updateSelection")
+      selection=model.selectedMembers
+      updateSelectionValue=true
+      onchange=(action "updateMembers")
     }}
-  </div> --}}
+  </div>
 </section>

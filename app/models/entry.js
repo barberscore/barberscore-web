@@ -25,6 +25,7 @@ export default Model.extend({
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
+  participants: DS.hasMany('participant', {async: true}),
   submissions: DS.hasMany('submission', {async: true}),
   permissions: DS.attr(),
 
@@ -150,9 +151,17 @@ export default Model.extend({
     'contestants.@each.contest', function() {
       return this.get('contestants');
   }),
+  membersArray: computed(
+    'participants.@each.member', function() {
+      return this.get('participants');
+  }),
   selectedContests: computed.mapBy(
     'contestsArray',
     'contest.id'
+  ),
+  selectedMembers: computed.mapBy(
+    'membersArray',
+    'member.id'
   ),
   numSubmissions: computed(
     'submissions.length', function() {
