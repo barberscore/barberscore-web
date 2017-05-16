@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     //     allowSignUp: false,
     //     rememberLastLogin: true,
     //     theme: {
-    //       logo: 'https://barberscore-api.herokuapp.com/static/app/bhs_logo.png',
+    //       logo: 'https://barberscore-api.herokuapp.com/static/api/bhs_logo.png',
     //       primaryColor: '#337ab7'
     //     },
     //     languageDictionary: {
