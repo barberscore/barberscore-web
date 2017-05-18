@@ -10,7 +10,7 @@ export default EmberUploader.FileField.extend({
     const target = this.get('target');
     const resource = this.get('resource');
     const uploader = EmberUploader.Uploader.create({
-      url: `${host}/${namespace}/${resource}/${target}/picture`,
+      url: `${host}/${namespace}/${resource}/${target}/image`,
       paramName: 'upload'
     });
 
