@@ -118,6 +118,7 @@ export default Ember.Controller.extend({
       return this.get('activeBasses.firstObject');
     }
   ),
+  nowDate: Date(),
   actions: {
     populateSubmission(chart) {
       this.set('chart', chart);

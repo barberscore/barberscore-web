@@ -10,7 +10,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each model.entries as |entry|}}
+            {{#each sortedEntries as |entry|}}
               <tr>
                 <td>
                   {{#link-to 'dashboard.quartet-manager.quartet.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}

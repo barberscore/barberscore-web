@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import moment from 'moment';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -9,6 +10,7 @@ export default Model.extend({
   status: DS.attr('person-status'),
   start_date: DS.attr('isodate'),
   finish_date: DS.attr('isodate'),
+  dues_thru: DS.attr('isodate'),
   bhs_id: DS.attr('number'),
   location: DS.attr('string', {defaultValue:''}),
   website: DS.attr('string', {defaultValue:''}),
@@ -57,9 +59,15 @@ export default Model.extend({
     'entityKind',
     'Organization'
   ),
-  duesThru: Ember.computed(
-    'filteredMembers', function() {
-      return this.get('filteredMembers.firstObject.end_date', null);
+  isExpiring: Ember.computed(
+    'dues_thru', function() {
+      return (this.get('dues_thru') > moment('2017-07-01'));
+  }),
+  withExp: Ember.computed(
+    'name',
+    'dues_thru',
+    function() {
+      return this.get('name') + " " + this.get('dues_thru');
     }
-  ),
+  )
 });

@@ -30,6 +30,17 @@ export default Ember.Controller.extend({
     'sessionFilter',
     'sessionSortProperties'
   ),
+  filteredEntries: Ember.computed.filterBy(
+    'model.entries',
+    'notPublished'
+  ),
+  sortedEntriesProperties: [
+    'nomen:asc',
+  ],
+  sortedEntries: Ember.computed.sort(
+    'filteredEntries',
+    'sortedEntriesProperties'
+  ),
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
         'kind__in': '11,12,13',
