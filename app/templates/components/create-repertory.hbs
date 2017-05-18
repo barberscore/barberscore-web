@@ -1,37 +1,37 @@
-  {{#bs-modal-simple
+<section>
+  {{#bs-modal
     open=openModal
-    onHidden=(action "clearRepertory")
-    title="Add Repertory"
-    closeTitle="Cancel"
-    submitTitle="Save"
     backdropClose=false
+    onSubmit=(action 'saveRepertory')
+    onHidden=(action "clearRepertory")
+    as |modal|
   }}
-    {{#bs-form
-      model=model
-      formLayout='vertical'
-      onSubmit=(action 'saveRepertory')
-      as |form|
-    }}
-      {{#form.element property='chart' useIcons=false as |el|}}
-        {{#power-select
-          search=(perform searchChart)
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Enter Song Title or BHS Number"
-          renderInPlace=true
-          allowClear=true
-          as |chart|
-        }}
-          Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#each model.errors.non-field-errors as |error|}}
+    {{#modal.header}}
+      <h4 class='modal-title'>Save Repertory Chart</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      {{#power-select
+        search=(perform searchChart)
+        selected=model.chart
+        onchange=(action (mut model.chart))
+        placeholder="Enter Song Title or BHS Number"
+        renderInPlace=true
+        allowClear=true
+        as |chart|
+      }}
+        Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
+      {{/power-select}}
+      {{#each model.errors as |error|}}
         <span class='has-error'>
           <span class="help-block">
             {{error.message}}
           </span>
         </span>
       {{/each}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button onClick=(action modal.submit) type="primary"}}Submit{{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
