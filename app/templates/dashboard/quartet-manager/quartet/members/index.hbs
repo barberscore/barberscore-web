@@ -3,7 +3,6 @@
     <table class='table'>
       <thead>
         <tr>
-          {{!-- <th class='col-md-1'></th> --}}
           <th class='col-md-2'>Person</th>
           <th class='col-md-2'>Part</th>
           <th class='col-md-2'>Start</th>
@@ -15,13 +14,6 @@
       <tbody>
         {{#each sortedMembers as |member|}}
           <tr>
-            {{!-- <td class='img-responsive'>
-              {{#if member.person.picture}}
-                <img src={{member.person.picture}} class='img-responsive img-rounded'>
-              {{else}}
-                <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
-              {{/if}}
-            </td> --}}
             <td>
               {{#link-to 'dashboard.quartet-manager.quartet.members.member' member}}{{member.person.common_name}}{{/link-to}}
             </td>

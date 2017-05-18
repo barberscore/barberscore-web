@@ -7,7 +7,6 @@ const {computed} = Ember;
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('entry-status'),
-  picture: DS.attr('string'),
   tenor: DS.belongsTo('person', {async: true}),
   lead: DS.belongsTo('person', {async: true}),
   baritone: DS.belongsTo('person', {async: true}),

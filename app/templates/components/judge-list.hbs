@@ -10,9 +10,6 @@
       {{#each sortedJudges as |judge|}}
         <tr>
           <td>
-            <img src={{judge.person.image_thumbnail}}>
-          </td>
-          <td>
             {{judge.person.name}}{{#if judge.person.spouse}}({{judge.person.spouse}}){{/if}}
           </td>
         </tr>

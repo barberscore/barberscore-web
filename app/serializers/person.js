@@ -5,9 +5,6 @@ export default DS.JSONAPISerializer.extend({
       assignments: {
         serialize: true
       },
-      picture: {
-        serialize: false
-      },
       common_name: {
         serialize: false
       },
