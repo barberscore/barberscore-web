@@ -53,6 +53,7 @@ export default Ember.Controller.extend({
     'Active'
   ),
   memberSortProperties: [
+    'personLast',
     'nomen',
   ],
   memberOptions: Ember.computed.sort(

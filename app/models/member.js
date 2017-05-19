@@ -40,5 +40,6 @@ export default Model.extend({
   ),
   entityKind: Ember.computed.alias('entity.kind'),
   personName: Ember.computed.alias('person.name'),
+  personLast: Ember.computed.alias('person.last_name'),
   personNameExp: Ember.computed.alias('person.withExp')
 });
