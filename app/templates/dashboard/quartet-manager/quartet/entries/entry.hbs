@@ -22,7 +22,7 @@
               placeholder="Enter District/Division/Affiliate Representation"
               allowClear=true
               renderInPlace=true
-              disabled=isDisabled
+              disabled=true
               as |representing|
             }}
               Representing: {{representing.name}}
@@ -33,7 +33,6 @@
               value=el.value
               type='radio'
               onChange=(action (mut el.value))
-              disabled=isDisabled
               as |bg|
             }}
               {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
