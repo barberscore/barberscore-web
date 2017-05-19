@@ -17,7 +17,8 @@
           {{form.element controlType='text' placeholder='Title' disabled=isDisabled property='title'}}
           {{form.element controlType='text' placeholder='BHS ID' disabled=true property='bhs_id'}}
           {{form.element controlType='textarea' placeholder='Arrangers' disabled=isDisabled property='arrangers'}}
-          {{form.element controlType='textarea' placeholder='Composers/Lyricists' disabled=isDisabled property='composers'}}
+          {{form.element controlType='textarea' placeholder='Composers' disabled=isDisabled property='composers'}}
+          {{form.element controlType='textarea' placeholder='Lyricists' disabled=isDisabled property='lyricists'}}
           {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}}
           {{#if model.permissions.write}}
             {{#form.element}}

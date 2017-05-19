@@ -7,6 +7,7 @@ export default Model.extend({
   bhs_id: DS.attr('number'),
   title: DS.attr('string'),
   composers: DS.attr('string'),
+  lyricists: DS.attr('string'),
   arrangers: DS.attr('string'),
   holders: DS.attr('string'),
   entity: DS.belongsTo('entity', {async: true}),
