@@ -60,7 +60,7 @@
               allowClear=true
               as |person|
             }}
-              Tenor: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
+              Tenor: <strong>{{person.common_name}} {{person.bhs_id}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='lead' useIcons=false as |el|}}
@@ -73,7 +73,7 @@
               allowClear=true
               as |person|
             }}
-              Lead: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
+              Lead: <strong>{{person.common_name}} {{person.bhs_id}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='baritone' useIcons=false as |el|}}
@@ -86,7 +86,7 @@
               allowClear=true
               as |person|
             }}
-              Baritone: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
+              Baritone: <strong>{{person.common_name}} {{person.bhs_id}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='bass' useIcons=false as |el|}}
@@ -99,7 +99,7 @@
               allowClear=true
               as |person|
             }}
-              Bass: <strong>{{person.common_name}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
+              Bass: <strong>{{person.common_name}} {{person.bhs_id}}</strong>&nbsp;&mdash;&nbsp;{{#if person.isExpiring}}<span class='text-success'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{else}}<span class='text-danger'>Membership Expires: {{moment-format person.dues_thru 'LL'}}</span>{{/if}}
             {{/power-select}}
           {{/form.element}}
           {{#if model.permissions.write}}

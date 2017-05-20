@@ -64,7 +64,7 @@
                 allowClear=true
                 as |person|
               }}
-                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}} {{person.bhs_id}}
               {{/power-select}}
           {{/form.element}}
           {{#form.element property='codirector' useIcons=false as |el|}}
@@ -77,7 +77,7 @@
                 allowClear=true
                 as |person|
               }}
-                Co-Director: {{person.common_name}}
+                Co-Director: {{person.common_name}} {{person.bhs_id}}
               {{/power-select}}
           {{/form.element}}
           {{#if model.permissions.write}}
