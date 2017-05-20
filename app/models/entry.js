@@ -55,6 +55,7 @@ export default Model.extend({
   ],
 
 
+  partCount: computed.alias('participants.length'),
   tp: computed.mapBy(
     'appearances',
     'totPoints'
