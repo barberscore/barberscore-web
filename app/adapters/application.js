@@ -7,14 +7,4 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: ENV.APP.API_NAMESPACE,
   coalesceFindRequests: true,
   authorizer: 'authorizer:jwt',
-  // TODO Probably should have the server return a 422
-  handleResponse: function(status, headers, payload){
-    if(status === 400 && payload.errors){
-      return new DS.InvalidError(payload.errors);
-    }
-    if(status === 403 && payload.errors){
-      return new DS.ForbiddenError(payload.errors);
-    }
-    return this._super(...arguments);
-  }
 });
