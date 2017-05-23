@@ -32,11 +32,11 @@
     </div>
   </div>
 </section>
-{{#if model.permissions.write}}
+{{!-- {{#if model.permissions.write}}
   <section>
     {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
   </section>
-{{/if}}
+{{/if}} --}}
 <section>
   {{#bs-modal-simple
     open=openModal
