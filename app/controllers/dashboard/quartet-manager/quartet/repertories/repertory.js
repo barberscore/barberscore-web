@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   actions: {
     validateRepertory() {
-      this.model.validate()
+      this.model.validateRepertory()
       .then((response) => {
         this.store.pushPayload('repertory', response);
         this.get('flashMessages').success("Validated!");

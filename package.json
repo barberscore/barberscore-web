@@ -39,6 +39,7 @@
   "dependencies": {
     "ember-api-actions": "0.1.6",
     "ember-bootstrap": "1.0.0-alpha.12",
+    "ember-bootstrap-cp-validations": "^1.0.0-alpha.0",
     "ember-bootstrap-datetimepicker": "1.1.0",
     "ember-cli-bugsnag": "^1.2.0",
     "ember-cli-code-coverage": "0.3.12",
@@ -49,6 +50,7 @@
     "ember-cli-moment-shim": "3.1.0",
     "ember-cli-pagination": "3.0.1",
     "ember-concurrency": "0.8.3",
+    "ember-cp-validations": "^3.3.2",
     "ember-crumbly": "^2.0.0-alpha.1",
     "ember-font-awesome": "3.0.5",
     "ember-group-by": "0.0.3",
