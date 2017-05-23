@@ -11,10 +11,6 @@ module.exports = function(defaults) {
     'ember-power-select': {
       theme: 'bootstrap'
     },
-    sourcemaps: {
-      enabled: true, // This allows sourcemaps to be generated in all environments
-      extensions: ['js']
-    },
     fingerprint: {
       enabled: false
     }
