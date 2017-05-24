@@ -35,59 +35,51 @@
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(action (mut el.value))
-              disabled=isDisabled
+              onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=false}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=false}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='is_private' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(action (mut el.value))
+              onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=true}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=false}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=false}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          {{#form.element property='director' useIcons=false as |el|}}
-              {{#power-select
-                search=(perform searchTask)
-                selected=el.value
-                onchange=(action (mut el.value))
-                placeholder="Enter Director Name"
-                disabled=isDisabled
-                allowClear=true
-                as |person|
-              }}
-                {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}} {{person.bhs_id}}
-              {{/power-select}}
-          {{/form.element}}
-          {{#form.element property='codirector' useIcons=false as |el|}}
-              {{#power-select
-                search=(perform searchTask)
-                selected=el.value
-                onchange=(action (mut el.value))
-                placeholder="Enter Co-Director Name (if applicable)"
-                disabled=isDisabled
-                allowClear=true
-                as |person|
-              }}
-                Co-Director: {{person.common_name}} {{person.bhs_id}}
-              {{/power-select}}
-          {{/form.element}}
-          {{#if model.permissions.write}}
-            {{#if isEditing}}
-                {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
-                {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-                {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
-            {{else}}
-              {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
-            {{/if}}
+          {{#if (eq model.entity.kind 'Chorus')}}
+            {{#form.element property='director' useIcons=false as |el|}}
+                {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+                  placeholder="Enter Director Name"
+                  disabled=isEditing
+                  allowClear=true
+                  as |person|
+                }}
+                  {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}} {{person.bhs_id}}
+                {{/power-select}}
+            {{/form.element}}
+            {{#form.element property='codirector' useIcons=false as |el|}}
+                {{#power-select
+                  search=(perform searchTask)
+                  selected=el.value
+                  onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+                  placeholder="Enter Co-Director Name (if applicable)"
+                  disabled=isEditing
+                  allowClear=true
+                  as |person|
+                }}
+                  Co-Director: {{person.common_name}} {{person.bhs_id}}
+                {{/power-select}}
+            {{/form.element}}
           {{/if}}
         {{/bs-form}}
       </div>

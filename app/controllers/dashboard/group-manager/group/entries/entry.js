@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: false,
+  isEditing: Ember.computed.not('model.permissions.write'),
   isDisabled: Ember.computed.not('isEditing'),
   flashMessages: Ember.inject.service(),
   openModal: false,
@@ -61,13 +61,6 @@ export default Ember.Controller.extend({
         this.get('flashMessages').success("Submitted!");
       });
     },
-    editEntry() {
-      this.set('isEditing', true);
-    },
-    cancelEntry() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
     deleteEntry() {
       this.model.destroyRecord()
       .then(() => {
@@ -78,7 +71,6 @@ export default Ember.Controller.extend({
     saveEntry() {
       this.model.save()
       .then(() => {
-        this.set('isEditing', false);
         this.get('flashMessages').success('Saved');
       });
     },
