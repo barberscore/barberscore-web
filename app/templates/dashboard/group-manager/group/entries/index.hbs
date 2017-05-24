@@ -1,0 +1,40 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <div class='table-responsive'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-4'>Entry</th>
+              <th class='col-md-2'>State</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedEntries as |entry|}}
+              <tr>
+                <td>
+                  {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
+                </td>
+                <td>
+                  {{entry.status}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>
+                  (No current entries.)
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+{{!-- <section>
+  {{#if model.permissions.write}}
+    {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}
+  {{/if}}
+</section> --}}
+{{create-entry openModal=openModal model=entry director=director}}

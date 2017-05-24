@@ -41,6 +41,12 @@
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.group-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
+        {{fa-icon 'cubes' size=5}}<br>
+        Group Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.award-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
         {{fa-icon 'trophy' size=5}}<br>
         Award Manager

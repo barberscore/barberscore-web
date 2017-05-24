@@ -7,6 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
     moment: {
+      outputFormat: 'LL',
       allowEmpty: true // default: false
     },
     contentSecurityPolicy: {

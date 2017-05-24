@@ -1,0 +1,28 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Your Registered Groupes</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each model as |group|}}
+          <tr>
+            <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{group.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(None)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

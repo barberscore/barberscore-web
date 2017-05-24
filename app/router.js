@@ -78,6 +78,23 @@ Router.map(function() {
         });
       });
     });
+    this.route('group-manager', {path: 'group-manager'}, function() {
+      this.route('group', { path: ':entity_id'}, function() {
+        this.route('details', { path: 'details'});
+        this.route('entries', { path: 'entries'}, function() {
+          this.route('entry', { path: ':entry_id'});
+        });
+        this.route('members', { path: 'members'}, function() {
+          this.route('member', { path: ':member_id'});
+        });
+        this.route('officers', { path: 'officers'}, function() {
+          this.route('officer', { path: ':officer_id'});
+        });
+        this.route('repertories', { path: 'repertories'}, function() {
+          this.route('repertory', { path: ':repertory_id'});
+        });
+      });
+    });
     this.route('award-manager', {path: 'award-manager'}, function() {
       this.route('award', { path: ':award_id'}, function () {
         this.route('details', {path: 'details'});

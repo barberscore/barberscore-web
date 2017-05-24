@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import moment from 'moment';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -36,6 +37,20 @@ export default Model.extend({
     'partOptions',
     function() {
       return this.get('partOptions').indexOf(this.get('part'));
+    }
+  ),
+  personDetail: Ember.computed(
+    'person.common_name',
+    'person.dues_thru',
+    'part',
+    function() {
+      let partOut = "(Unknown Part)";
+      if (this.get('part')) {
+        partOut = this.get('part');
+      }
+      let dt = this.get('person.dues_thru');
+      let dtf = moment(dt).format('LL');
+      return this.get('person.common_name') + " - " + partOut + ";  BHS Membership Expires: " + dtf;
     }
   ),
   entityKind: Ember.computed.alias('entity.kind'),

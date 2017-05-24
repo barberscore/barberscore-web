@@ -1,0 +1,32 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        {{#bs-form formLayout="vertical" model=model.chart as |form|}}
+          {{form.element controlType='text' placeholder='Title' disabled=true property='title'}}
+          {{form.element controlType='text' placeholder='BHS ID' disabled=true property='bhs_id'}}
+          {{form.element controlType='textarea' placeholder='Arrangers' disabled=true property='arrangers'}}
+          {{form.element controlType='textarea' placeholder='Composers' disabled=true property='composers'}}
+          {{form.element controlType='textarea' placeholder='Lyricists' disabled=true property='lyricists'}}
+          {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=true property='holders'}}
+          {{form.element controlType='textarea' placeholder='Source' disabled=true property='entity.name'}}
+          {{#if model.permissions.write}}
+          <ul class='list-inline'>
+            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'validateRepertory') class='form-group' disabled=false}}Validate{{/bs-button}}</li>{{/unless}}
+            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'invalidateRepertory') class='form-group' disabled=false}}Invalidate{{/bs-button}}</li>{{/unless}}
+            <li class='pull-right'>{{#bs-button onClick=(action 'deleteRepertory') class='form-group' type='danger' disabled=false}}Delete{{/bs-button}}</li>
+          </ul>
+          {{/if}}
+        {{/bs-form}}
+      </section>
+    </div>
+  </div>
+</section>
