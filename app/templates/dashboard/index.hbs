@@ -28,7 +28,7 @@
         Person Manager
       {{/link-to}}
     </p>
-    <p class='col-md-3 text-center spacing'>
+    {{!-- <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.quartet-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'users' size=5}}<br>
         Quartet Manager
@@ -39,11 +39,17 @@
         {{fa-icon 'cubes' size=5}}<br>
         Chorus Manager
       {{/link-to}}
-    </p>
+    </p> --}}
     <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.group-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
-        {{fa-icon 'cubes' size=5}}<br>
+        {{fa-icon 'users' size=5}}<br>
         Group Manager
+      {{/link-to}}
+    </p>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.organization-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
+        {{fa-icon 'bank' size=5}}<br>
+        Organization Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
@@ -68,12 +74,6 @@
       {{#link-to 'dashboard.person-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
         {{fa-icon 'calendar' size=5}}<br>
         Schedule Manager
-      {{/link-to}}
-    </p>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.organization-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
-        {{fa-icon 'bank' size=5}}<br>
-        Organization Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>

@@ -4,10 +4,11 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Your Registered Groupes</caption>
+      <caption>Your Registered Groups</caption>
       <thead>
         <tr>
           <th>Name</th>
+          <th>Kind</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -15,6 +16,7 @@
         {{#each model as |group|}}
           <tr>
             <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{group.kind}}</td>
             <td>{{group.status}}</td>
           </tr>
         {{else}}
