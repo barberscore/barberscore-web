@@ -2208,12 +2208,6 @@ ember-bootstrap-datetimepicker@1.1.0:
     ember-cli-babel "^5.0.0"
     ember-runtime-enumerable-includes-polyfill "^1.0.1"
 
-ember-bootstrap-validations@^1.0.0-alpha:
-  version "1.0.0-alpha"
-  resolved "https://registry.yarnpkg.com/ember-bootstrap-validations/-/ember-bootstrap-validations-1.0.0-alpha.tgz#21f71cafd14134981aec595809c9f23cb96384e2"
-  dependencies:
-    ember-cli-babel "^5.1.6"
-
 ember-bootstrap@1.0.0-alpha.12:
   version "1.0.0-alpha.12"
   resolved "https://registry.yarnpkg.com/ember-bootstrap/-/ember-bootstrap-1.0.0-alpha.12.tgz#44c2dd631110dea5b1bf9bbe3829dd0934eb6c0b"
@@ -2615,6 +2609,13 @@ ember-cli@2.13.1:
     walk-sync "^0.3.0"
     yam "0.0.22"
 
+ember-composable-helpers@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-2.0.1.tgz#1568849ee176927fb73b0ed0a16e20b0ac90d774"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    ember-cli-babel "^5.1.7"
+
 ember-concurrency@0.8.3, ember-concurrency@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.3.tgz#f3adc58bc7a69c7d9ec27fe9cbe75cb8c0adf3bf"
@@ -2735,12 +2736,6 @@ ember-getowner-polyfill@~1.1.1:
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.2.0"
-
-ember-git-version@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-git-version/-/ember-git-version-0.1.1.tgz#816a572d103337faed4dbbafc29a1ccc361d0c4b"
-  dependencies:
-    git-repo-info "^1.0.2"
 
 ember-group-by@0.0.3:
   version "0.0.3"
@@ -3739,7 +3734,7 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-git-repo-info@^1.0.2, git-repo-info@^1.1.2, git-repo-info@^1.4.1:
+git-repo-info@^1.1.2, git-repo-info@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/git-repo-info/-/git-repo-info-1.4.1.tgz#2a072823254aaf62fcf0766007d7b6651bd41943"
 
