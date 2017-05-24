@@ -8,9 +8,6 @@ export default DS.JSONAPISerializer.extend({
       appearances: {
         serialize: true
       },
-      submissions: {
-        serialize: true
-      },
       participants: {
         serialize: true
       },

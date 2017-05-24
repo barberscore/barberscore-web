@@ -29,13 +29,6 @@ export default Ember.Controller.extend({
     'model.session.entries',
     'entrySortProperties'
   ),
-  submissionSortProperties: [
-    'title',
-  ],
-  sortedSubmissions: Ember.computed.sort(
-    'model.submissions',
-    'submissionSortProperties'
-  ),
   contestSortProperties: [
     'entityKindSort',
     'awardQualifier',
@@ -67,14 +60,6 @@ export default Ember.Controller.extend({
         this.store.pushPayload('repertory', response);
         this.get('flashMessages').success("Submitted!");
       });
-    },
-    populateSubmission(chart) {
-      this.set('chart', chart);
-      this.set('title', chart.get('title'));
-      this.set('composers', chart.get('composers'));
-      this.set('arrangers', chart.get('arrangers'));
-      this.set('holders', chart.get('holders'));
-      this.set('bhs_id', chart.get('bhs_id'));
     },
     editEntry() {
       this.set('isEditing', true);
@@ -140,45 +125,5 @@ export default Ember.Controller.extend({
         // console.log('removed');
       }
     },
-    deleteSubmission(submission) {
-      submission.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.quartet-manager.quartet.entries');
-      });
-    },
-    createSubmission() {
-      let submission = this.get('store').createRecord('submission', {
-        entry: this.get('model'),
-        title: this.get('title'),
-        composers: this.get('composers'),
-        arrangers: this.get('arrangers'),
-        holders: this.get('holders'),
-        bhs_id: this.get('bhs_id'),
-        chart: this.get('chart'),
-      });
-      submission.save()
-      .then(() => {
-        this.set('submission', null);
-        this.set('title', null);
-        this.set('composers', null);
-        this.set('arrangers', null);
-        this.set('holders', null);
-        this.set('bhs_id', null);
-        this.set('chart', null);
-        this.set('openModal', false);
-        this.get('flashMessages').success('Saved');
-      });
-    },
-    clearSubmission() {
-      this.set('submission', null);
-      this.set('title', null);
-      this.set('composers', null);
-      this.set('arrangers', null);
-      this.set('holders', null);
-      this.set('bhs_id', null);
-      this.set('chart', null);
-      this.set('openModal', false);
-    }
   },
 });

@@ -184,7 +184,6 @@
               <td>{{repertory.chart.title}}</td>
               <td>{{repertory.chart.bhs_id}}</td>
               <td>{{repertory.chart.arrangers}}</td>
-              {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteSubmission' submission) class='text-danger'}}</td> --}}
             </tr>
           {{else}}
             <tr>
@@ -196,49 +195,3 @@
     </div>
   </section>
 </section>
-{{!-- <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Song{{/bs-button}}
-</section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearSubmission")
-    title="Add Submission"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createSubmission')
-      as |form|
-    }}
-      {{#form.element property='submission' useIcons=false as |el|}}
-        {{#power-select
-          search=(perform searchChart)
-          selected=el.value
-          renderInPlace=true
-          onchange=(action 'populateSubmission')
-          placeholder="Search by Song Name or BHS Chart Number"
-          allowClear=true
-          as |chart|
-        }}
-          Song: {{chart.title}} {{chart.bhs_id}}
-        {{/power-select}}
-      {{/form.element}}
-      <div>
-        <hr>
-      </div>
-      <div>
-        <p>The search box above will populate these fields automatically;<br>if you can't find your song then enter details below</p>
-      </div>
-      {{form.element controlType='text' placeholder='Song Title' property='title'}}
-      {{form.element controlType='text' placeholder='Composer(s)/Lyricist(s)' property='composers'}}
-      {{form.element controlType='text' placeholder='Arranger(s)' property='arrangers'}}
-      {{form.element controlType='text' placeholder='Copyright Holders' property='holders'}}
-      {{form.element controlType='tel' placeholder='BHS ID (if known)' property='bhs_id'}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section>
- --}}

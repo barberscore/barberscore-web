@@ -22,7 +22,6 @@ export function initialize(/* application */) {
   inflector.uncountable('session');
   inflector.uncountable('slot');
   inflector.uncountable('song');
-  inflector.uncountable('submission');
   inflector.uncountable('user');
   inflector.uncountable('venue');
 }

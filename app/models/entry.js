@@ -25,7 +25,6 @@ export default Model.extend({
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
-  submissions: DS.hasMany('submission', {async: true}),
   permissions: DS.attr(),
 
   submit: memberAction({path: 'submit', type: 'post'}),
@@ -163,8 +162,4 @@ export default Model.extend({
     'membersArray',
     'member.id'
   ),
-  numSubmissions: computed(
-    'submissions.length', function() {
-      return this.get('submissions.length');
-  })
 });

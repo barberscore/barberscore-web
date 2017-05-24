@@ -33,7 +33,7 @@
           <td>
             {{#each model.appearances as |appearance|}}
               {{#each appearance.songs as |song|}}
-                {{truncate-text song.submission.title limit=50}}<br>
+                {{truncate-text song.chart.title limit=50}}<br>
               {{/each}}
               {{#if (not-eq model.appearances.length 1)}}<em>{{appearance.round.kind}}</em><br>{{/if}}
             {{/each}}
@@ -99,7 +99,7 @@
           <td>
             {{#each model.appearances as |appearance|}}
               {{#each appearance.songs as |song|}}
-                {{truncate-text song.submission.title limit=50}}<br>
+                {{truncate-text song.chart.title limit=50}}<br>
               {{/each}}
               {{#if (not-eq model.appearances.length 1)}}<em>{{appearance.round.kind}}</em><br>{{/if}}
             {{/each}}
@@ -131,4 +131,3 @@
       {{/each}}
     </ul>
 </section>
-

@@ -14,7 +14,6 @@ export default Model.extend(Validations, {
   status: DS.attr('repertory-status'),
   chart: DS.belongsTo('chart', {async: true}),
   entity: DS.belongsTo('entity', {async: true}),
-  submissions: DS.hasMany('submission', {async: true}),
   validateRepertory: memberAction({path: 'validate', type: 'post'}),
   invalidate: memberAction({path: 'invalidate', type: 'post'}),
   permissions: DS.attr(),
