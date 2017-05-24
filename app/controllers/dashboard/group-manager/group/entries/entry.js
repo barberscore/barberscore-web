@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  currentUser: Ember.inject.service('current-user'),
   isNotWrite: Ember.computed.not('model.permissions.write'),
   isSubmitted: Ember.computed.equal('model.status', 'Submitted'),
   isDisabled: Ember.computed.or(
@@ -59,7 +60,10 @@ export default Ember.Controller.extend({
   ),
   actions: {
     submitEntry() {
-      this.model.submit()
+      let userID = this.get('currentUser.user.id');
+      this.model.submit({
+        'by': userID
+      })
       .then((response) => {
         this.store.pushPayload('repertory', response);
         this.set('openModal', false);
