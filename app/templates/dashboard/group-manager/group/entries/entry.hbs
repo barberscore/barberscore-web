@@ -9,7 +9,7 @@
       </h4>
     </div>
     <div class='panel-body'>
-      <div>
+      <section>
         {{#bs-form
           formLayout="vertical"
           model=model
@@ -38,8 +38,8 @@
               onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=false}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=false}}Include Eval{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='is_private' as |el|}}
@@ -49,8 +49,8 @@
               onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=false}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=false}}Keep Scores Private{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=true}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#if (eq model.entity.kind 'Chorus')}}
@@ -60,7 +60,7 @@
                   selected=el.value
                   onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                   placeholder="Enter Director Name"
-                  disabled=isEditing
+                  disabled=isDisabled
                   allowClear=true
                   as |person|
                 }}
@@ -73,7 +73,7 @@
                   selected=el.value
                   onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                   placeholder="Enter Co-Director Name (if applicable)"
-                  disabled=isEditing
+                  disabled=isDisabled
                   allowClear=true
                   as |person|
                 }}
@@ -82,44 +82,64 @@
             {{/form.element}}
           {{/if}}
         {{/bs-form}}
-      </div>
+      </section>
+      <section>
+        <p>
+          You are eligble for the following awards:
+        </p>
+        {{multiselect-checkboxes
+          options=contestOptions
+          labelProperty='awardName'
+          valueProperty='id'
+          selection=model.selectedContests
+          disabled=true
+          updateSelectionValue=false
+          onchange=(action "updateSelection")
+        }}
+      </section>
+      <section>
+        <p>
+          Please select the group members who will be on stage for this appearance:
+        </p>
+        <p>Count: {{model.partCount}}</p>
+        {{multiselect-checkboxes
+          options=memberOptions
+          labelProperty='personDetail'
+          valueProperty='id'
+          selection=model.selectedMembers
+          updateSelectionValue=true
+          onchange=(action "updateMembers")
+          disabled=isDisabled
+        }}
+      </section>
+    </div>
+    <div class='panel-footer'>
+      {{#if (eq model.status 'New')}}
+        {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
+      {{else if (eq model.status 'Submitted')}}
+        <strong>Status: <span class='text-primary'>Submitted and Pending Acceptance</span></strong>
+      {{/if}}
     </div>
   </div>
-  <div>
-    <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
-    <ul class='list-styled'>
-      <li>Agrees to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which will be made of us and other quartets and/or groupes during the international convention. We agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. Agrees that the Society may record our portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of our portion of the contest on recordings to be manufactured and sold by the Society.</li>
-      <li>Certifying that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
-      <li>Certifying that we have complied with copyright law in the acquisition, arranging, and learning of our contest songs/ arrangements and will perform only legally cleared songs in the contest. We understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
-      <li>Certifying that we will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
-    </ul>
-  </div>
-  <div>
-    <p>
-      You are eligble for the following awards:
-    </p>
-    {{multiselect-checkboxes
-      options=contestOptions
-      labelProperty='awardName'
-      valueProperty='id'
-      selection=model.selectedContests
-      disabled=true
-      updateSelectionValue=false
-      onchange=(action "updateSelection")
-    }}
-  </div>
-  <div>
-    <p>
-      Please select the group members who will be on stage for this appearance:
-    </p>
-    <p>Count: {{model.partCount}}</p>
-    {{multiselect-checkboxes
-      options=memberOptions
-      labelProperty='personDetail'
-      valueProperty='id'
-      selection=model.selectedMembers
-      updateSelectionValue=true
-      onchange=(action "updateMembers")
-    }}
-  </div>
+</section>
+<section>
+  {{#bs-modal-simple
+    open=openModal
+    backdropClose=true
+    title='Submit Contest Entry'
+    closeTitle='Cancel'
+    submitTitle='Submit Contest Entry'
+    onHidden=(action (mut openModal) false)
+    onSubmit=(action 'submitEntry')
+  }}
+    <div>
+      <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
+      <ul class='list-styled'>
+        <li>Agrees to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which will be made of us and other quartets and/or groupes during the international convention. We agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. Agrees that the Society may record our portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of our portion of the contest on recordings to be manufactured and sold by the Society.</li>
+        <li>Certifying that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
+        <li>Certifying that we have complied with copyright law in the acquisition, arranging, and learning of our contest songs/ arrangements and will perform only legally cleared songs in the contest. We understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
+        <li>Certifying that we will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
+      </ul>
+    </div>
+  {{/bs-modal-simple}}
 </section>

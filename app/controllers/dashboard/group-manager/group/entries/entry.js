@@ -2,8 +2,12 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: Ember.computed.not('model.permissions.write'),
-  isDisabled: Ember.computed.not('isEditing'),
+  isNotWrite: Ember.computed.not('model.permissions.write'),
+  isSubmitted: Ember.computed.equal('model.status', 'Submitted'),
+  isDisabled: Ember.computed.or(
+    'isNotWrite',
+    'isSubmitted'
+  ),
   flashMessages: Ember.inject.service(),
   openModal: false,
   searchTask: task(function* (term){
@@ -58,6 +62,7 @@ export default Ember.Controller.extend({
       this.model.submit()
       .then((response) => {
         this.store.pushPayload('repertory', response);
+        this.set('openModal', false);
         this.get('flashMessages').success("Submitted!");
       });
     },
