@@ -7,7 +7,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     let user = this.get('currentUser.user.id');
     return this.get('store').query('entity', {
       'kind__gt': '30',
-      'members__person__user': user
+      'members__person__user': user,
+      'page_size': 100
     });
   },
 });
