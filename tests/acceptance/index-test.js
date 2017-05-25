@@ -4,9 +4,9 @@ import moduleForAcceptance from 'barberscore-web/tests/helpers/module-for-accept
 moduleForAcceptance('Acceptance | index');
 
 test('visiting /index', function(assert) {
-  visit('/index');
+  visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), '/index');
+    assert.equal(currentURL(), '/');
   });
 });
