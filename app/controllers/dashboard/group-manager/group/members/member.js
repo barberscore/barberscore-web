@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').warning('Deleted');
         this.set('isEditing', false);
-        this.transitionToRoute('dashboard.quartet-manager.quartet.details');
+        this.transitionToRoute('dashboard.group-manager.group.details');
       });
     },
     saveMember() {

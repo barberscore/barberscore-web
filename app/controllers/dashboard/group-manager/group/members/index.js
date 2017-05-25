@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
         this.set('part', null);
         this.set('openModal', false);
         this.get('flashMessages').success('Success');
-        this.transitionToRoute('dashboard.quartet-manager.quartet.members');
+        this.transitionToRoute('dashboard.group-manager.group.members');
       });
     },
     clearMember() {
