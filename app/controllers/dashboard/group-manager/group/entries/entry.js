@@ -58,18 +58,16 @@ export default Ember.Controller.extend({
     'filteredMembers',
     'memberSortProperties'
   ),
+  submitEntry: task(function *() {
+    let userID = this.get('currentUser.user.id');
+    let submission = yield this.model.submit({
+      'by': userID
+    });
+    this.store.pushPayload('entry', submission);
+    this.set('openModal', false);
+    this.get('flashMessages').success("Submitted!");
+  }).drop(),
   actions: {
-    submitEntry() {
-      let userID = this.get('currentUser.user.id');
-      this.model.submit({
-        'by': userID
-      })
-      .then((response) => {
-        this.store.pushPayload('repertory', response);
-        this.set('openModal', false);
-        this.get('flashMessages').success("Submitted!");
-      });
-    },
     deleteEntry() {
       this.model.destroyRecord()
       .then(() => {
