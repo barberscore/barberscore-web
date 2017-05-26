@@ -114,10 +114,12 @@
       </section>
     </div>
     <div class='panel-footer'>
-      {{#if (eq model.status 'New')}}
-        {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
-      {{else if (eq model.status 'Submitted')}}
-        <strong>Status: <span class='text-primary'>Submitted and Pending Acceptance</span></strong>
+      {{#if model.permissions.write}}
+        {{#if (eq model.status 'New')}}
+          {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
+        {{else if (eq model.status 'Submitted')}}
+          <strong>Status: <span class='text-primary'>Submitted and Pending Acceptance</span></strong>
+        {{/if}}
       {{/if}}
     </div>
   </div>
