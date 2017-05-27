@@ -6,4 +6,9 @@ export default DS.Model.extend({
   is_staff: DS.attr('boolean'),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
+
+  disabledAssignments: Ember.computed.not(
+    'person.assignments.length'
+  )
+
 });

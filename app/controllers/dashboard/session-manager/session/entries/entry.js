@@ -3,7 +3,7 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  isDisabled: false,
   flashMessages: Ember.inject.service(),
   searchTask: task(function* (term){
     yield timeout(600);
@@ -85,6 +85,15 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
+  acceptEntry: task(function *() {
+    let userID = this.get('currentUser.user.id');
+    let entry = yield this.model.accept({
+      'by': userID
+    });
+    this.store.pushPayload('entry', entry);
+    this.set('openModal', false);
+    this.get('flashMessages').success("Accepted!");
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -129,14 +138,15 @@ export default Ember.Controller.extend({
     },
     updateSelection(newSelection, value, operation) {
       if (operation==='added') {
+        let contest = this.get('store').peekRecord('contest', value);
         let contestant = this.get('model.contestants').createRecord({
-          contest: value
+          contest: contest
         });
         contestant.save()
         .then(() => {
         });
       } else { //operation === removed
-        let contestant = this.get('model.contestants').findBy('contest.id', value.get('id'));
+        let contestant = this.get('model.contestants').findBy('contest.id', value);
         contestant.destroyRecord()
         .then(() => {
         });

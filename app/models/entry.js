@@ -28,6 +28,7 @@ export default Model.extend({
   permissions: DS.attr(),
 
   submit: memberAction({path: 'submit', type: 'post'}),
+  accept: memberAction({path: 'accept', type: 'post'}),
 
   published: computed.equal(
     'status',

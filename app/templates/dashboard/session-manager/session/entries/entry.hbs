@@ -18,12 +18,13 @@
             onSubmit=(action "saveEntry")
             as |form|
           }}
+
             {{#form.element property='representing' useIcons=false as |el|}}
               {{#power-select
                 options=representingOptions
                 selected=el.value
                 searchField='name'
-                onchange=(action (mut el.value))
+                onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                 placeholder="Enter District/Division/Affiliate Representation"
                 allowClear=true
                 renderInPlace=true
@@ -37,7 +38,7 @@
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onChange=(action (mut el.value))
+                onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                 disabled=isDisabled
                 as |bg|
               }}
@@ -49,7 +50,7 @@
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onChange=(action (mut el.value))
+                onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                 as |bg|
               }}
                 {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
@@ -61,7 +62,7 @@
                   {{#power-select
                     search=(perform searchTask)
                     selected=el.value
-                    onchange=(action (mut el.value))
+                    onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                     placeholder="Enter Director Name"
                     disabled=isDisabled
                     allowClear=true
@@ -74,7 +75,7 @@
                   {{#power-select
                     search=(perform searchTask)
                     selected=el.value
-                    onchange=(action (mut el.value))
+                    onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
                     placeholder="Enter Co-Director Name (if applicable)"
                     disabled=isDisabled
                     allowClear=true
@@ -84,94 +85,101 @@
                   {{/power-select}}
               {{/form.element}}
             {{/if}}
-            {{#if model.permissions.write}}
-              {{#if isEditing}}
-                  {{#bs-button onClick=(action 'cancelEntry')}}Cancel{{/bs-button}}
-                  {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-                  {{#bs-button onClick=(action 'deleteEntry') class='pull-right btn-danger'}}Delete{{/bs-button}}
-              {{else}}
-                {{#bs-button onClick=(action 'editEntry')}}Edit{{/bs-button}}
-              {{/if}}
-            {{/if}}
           {{/bs-form}}
         </div>
+        <hr>
+        <section>
+        <p>
+          Contests Entered
+        </p>
+          {{multiselect-checkboxes
+            options=contestOptions
+            labelProperty='awardName'
+            valueProperty='id'
+            selection=model.selectedContests
+            updateSelectionValue=false
+            disabled=isDisabled
+            onchange=(action "updateSelection")
+          }}
+        </section>
+        <hr>
+        <section>
+          <div class='table-responsive'>
+            <p>
+              Song Repertory: {{model.repertoryCount}}
+            </p>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>BHS ID</th>
+                  <th>Arranger(s)</th>
+                  {{!-- <th>Delete</th> --}}
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sortedRepertories as |repertory|}}
+                  <tr>
+                    <td>{{repertory.chart.title}}</td>
+                    <td>{{repertory.chart.bhs_id}}</td>
+                    <td>{{repertory.chart.arrangers}}</td>
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td>(No songs in Repertory.)</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <hr>
+        <section>
+          <div class='table-responsive'>
+            <p>
+              Participants on Stage: {{model.participantCount}}
+            </p>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Part</th>
+                  <th>Membership Expires</th>
+                  {{!-- <th>Delete</th> --}}
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sortedParticipants as |participant|}}
+                  <tr>
+                    <td>{{participant.member.person.nomen}}</td>
+                    <td>{{#if participant.member.part}}{{participant.member.part}}{{else}}(Unknown){{/if}}</td>
+                    <td>{{moment-format participant.member.person.dues_thru 'LL'}}</td>
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td>(No participants selected.)</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </section>
       </div>
-    </div>
-  </section>
-  <hr>
-  <section>
-  <p>
-    Contests Entered
-  </p>
-    {{multiselect-checkboxes
-      options=contestOptions
-      labelProperty='awardName'
-      valueProperty='id'
-      selection=model.selectedContests
-      updateSelectionValue=false
-      onchange=(action "updateSelection")
-    }}
-  </section>
-  <hr>
-  <section>
-    <div class='table-responsive'>
-      <p>
-        Song Repertory: {{model.repertoryCount}}
-      </p>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>BHS ID</th>
-            <th>Arranger(s)</th>
-            {{!-- <th>Delete</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedRepertories as |repertory|}}
-            <tr>
-              <td>{{repertory.chart.title}}</td>
-              <td>{{repertory.chart.bhs_id}}</td>
-              <td>{{repertory.chart.arrangers}}</td>
-            </tr>
+      <div class='panel-footer'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'Submitted')}}
+            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+              {{#if acceptEntry.isRunning}}
+                Accepting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Accept Submission
+              {{/if}}
+            {{/bs-button}}
           {{else}}
-            <tr>
-              <td>(No songs in Repertory.)</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <hr>
-  <section>
-    <div class='table-responsive'>
-      <p>
-        Participants on Stage: {{model.participantCount}}
-      </p>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Part</th>
-            <th>Membership Expires</th>
-            {{!-- <th>Delete</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedParticipants as |participant|}}
-            <tr>
-              <td>{{participant.member.person.nomen}}</td>
-              <td>{{#if participant.member.part}}{{participant.member.part}}{{else}}(Unknown){{/if}}</td>
-              <td>{{moment-format participant.member.person.dues_thru 'LL'}}</td>
-            </tr>
-          {{else}}
-            <tr>
-              <td>(No participants selected.)</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+            <strong>Status: <span class='text-primary'>Accepted and Pending Contest</span></strong>
+          {{/if}}
+        {{/if}}
+      </div>
     </div>
   </section>
 </section>

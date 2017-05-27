@@ -91,6 +91,7 @@ export default Ember.Controller.extend({
       this.model.disqualify();
     },
     updateSelection(newSelection, value, operation) {
+      console.log(newSelection, value, operation);
       if (operation==='added') {
         let contest = this.get('store').peekRecord('contest', value);
         let contestant = this.get('model.contestants').createRecord({
