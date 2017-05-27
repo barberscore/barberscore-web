@@ -27,6 +27,9 @@ export default Model.extend({
   start_fsm: memberAction({path: 'start_fsm', type: 'post'}),
   finish_fsm: memberAction({path: 'finish_fsm', type: 'post'}),
 
+  isPublished: Ember.computed.equal('status', 'Published'),
+  isActive: Ember.computed.not('isPublished'),
+
   statusOptions: [
     'New',
     'Listed',

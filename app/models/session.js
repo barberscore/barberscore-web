@@ -26,6 +26,8 @@ export default Model.extend({
   cursor: DS.belongsTo('appearance', {async: true}),
   permissions: DS.attr(),
 
+  conventionStatus: Ember.computed.alias('convention.status'),
+  conventionIsActive: Ember.computed.alias('convention.isActive'),
   statusOptions: [
     'New',
     'Listed',
