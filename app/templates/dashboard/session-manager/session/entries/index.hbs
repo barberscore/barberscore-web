@@ -1,19 +1,24 @@
 <section>
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-md-12'>
       <table class='table'>
         <thead>
           <tr>
             <th class='col-md-4'>Name</th>
-            {{!-- <th class='col-md-1'>Songs Submitted</th> --}}
-            <th class='col-md-1'>Delete</th>
+            <th class='col-md-1'>Contests Entered</th>
+            <th class='col-md-1'>Songs in Repertory</th>
+            <th class='col-md-1'>Men on Stage</th>
+            {{!-- <th class='col-md-1'>Expired Memberships</th> --}}
           </tr>
         </thead>
         <tbody>
           {{#each sortedEntries as |entry|}}
             <tr>
               <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.entity.name}}{{/link-to}}</td>
-              <td>{{fa-icon 'times-circle' click=(action 'deleteEntry' entry) class='text-danger'}}</td>
+              <td>{{entry.contestantCount}}</td>
+              <td>{{entry.repertoryCount}}</td>
+              <td>{{entry.participantCount}}</td>
+              {{!-- <td>{{entry.expCount}}</td> --}}
             </tr>
           {{else}}
             <tr>

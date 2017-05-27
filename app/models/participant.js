@@ -8,6 +8,8 @@ export default Model.extend({
   member: DS.belongsTo('member', {async: true}),
   permissions: DS.attr(),
 
+  nameSort: Ember.computed.alias('member.person.last_name'),
+
   statusOptions: [
     'New',
   ],

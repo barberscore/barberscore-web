@@ -35,6 +35,13 @@ export default Ember.Controller.extend({
     'model.entity.repertories',
     'sortedRepertoriesProperties'
   ),
+  sortedParticipantsProperties: [
+    'nameSort',
+  ],
+  sortedParticipants: Ember.computed.sort(
+    'model.participants',
+    'sortedParticipantsProperties'
+  ),
   contestSortProperties: [
     'entityKindSort',
     'awardQualifier',

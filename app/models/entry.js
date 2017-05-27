@@ -54,7 +54,9 @@ export default Model.extend({
   ],
 
 
-  partCount: computed.alias('participants.length'),
+  contestantCount: computed.alias('contestants.length'),
+  participantCount: computed.alias('participants.length'),
+  repertoryCount: computed.alias('entity.repertories.length'),
   tp: computed.mapBy(
     'appearances',
     'totPoints'
