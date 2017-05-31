@@ -106,6 +106,9 @@ export default Ember.Controller.extend({
   is_evaluation: true,
   is_private: false,
   actions: {
+    sortBy(entrySortProperties) {
+      this.set('entrySortProperties', [entrySortProperties]);
+    },
     createEntry(){
       let entry = this.get('store').createRecord('entry', {
         entity: this.get('entity'),

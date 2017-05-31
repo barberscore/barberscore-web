@@ -4,11 +4,11 @@
       <table class='table'>
         <thead>
           <tr>
-            <th class='col-md-4'>Name</th>
-            <th class='col-md-1'>Contests Entered</th>
-            <th class='col-md-1'>Songs in Repertory</th>
-            <th class='col-md-1'>Men on Stage</th>
-            {{!-- <th class='col-md-1'>Expired Memberships</th> --}}
+            <th class='col-md-4' {{action "sortBy" "nomen"}}>Name</th>
+            <th class='col-md-1' {{action "sortBy" "contestantCount:desc"}}>Contests Entered</th>
+            <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
+            <th class='col-md-1' {{action "sortBy" "participantCount:desc"}}>Men on Stage</th>
+            <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
               <td>{{entry.contestantCount}}</td>
               <td>{{entry.repertoryCount}}</td>
               <td>{{entry.participantCount}}</td>
-              {{!-- <td>{{entry.expCount}}</td> --}}
+              <td>{{entry.status}}</td>
             </tr>
           {{else}}
             <tr>
