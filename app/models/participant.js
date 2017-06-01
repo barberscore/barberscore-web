@@ -11,8 +11,17 @@ export default Model.extend({
 
   nameSort: Ember.computed.alias('member.person.last_name'),
 
+  isExpiring: Ember.computed(
+    'member.person.dues_thru',
+    'entry.session.convention.start_date',
+    function () {
+      return this.get('member.person.dues_thru') < this.get('entry.session.convention.start_date')
+    }
+  ),
+
   statusOptions: [
     'New',
   ],
+
 
 });

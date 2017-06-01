@@ -40,17 +40,14 @@ export default Model.extend({
     }
   ),
   personDetail: Ember.computed(
-    'person.common_name',
-    'person.dues_thru',
+    'person.nomen',
     'part',
     function() {
       let partOut = "(Unknown Part)";
       if (this.get('part')) {
         partOut = this.get('part');
       }
-      let dt = this.get('person.dues_thru');
-      let dtf = moment(dt).format('LL');
-      return this.get('person.common_name') + " - " + partOut + ";  BHS Membership Expires: " + dtf;
+      return this.get('person.nomen') + " - " + partOut;
     }
   ),
   entityKind: Ember.computed.alias('entity.kind'),

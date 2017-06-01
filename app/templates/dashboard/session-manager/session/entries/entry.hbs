@@ -138,7 +138,7 @@
         <section>
           <div class='table-responsive'>
             <p>
-              Participants on Stage: {{model.participantCount}}
+              Participants on Stage: {{model.participantCount}}, Expiring: {{model.expiringMembersCount}}
             </p>
             <table class='table'>
               <thead>
@@ -182,5 +182,15 @@
         {{/if}}
       </div>
     </div>
+  </section>
+  <section>
+    {{#bs-button type=default size='xs' onClick=(toggle 'collapsed' this )}}Logs{{/bs-button}}
+    {{#bs-collapse collapsed=collapsed}}
+      <ul>
+        {{#each model.logs as |log|}}
+          <li>{{log.transition}} by {{log.by}}, {{moment-format log.timestamp 'LLL'}}</li>
+        {{/each}}
+      </ul>
+    {{/bs-collapse}}
   </section>
 </section>

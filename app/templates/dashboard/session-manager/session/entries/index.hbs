@@ -8,6 +8,7 @@
             <th class='col-md-1' {{action "sortBy" "contestantCount:desc"}}>Contests Entered</th>
             <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
             <th class='col-md-1' {{action "sortBy" "participantCount:desc"}}>Men on Stage</th>
+            <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
             <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
           </tr>
         </thead>
@@ -18,6 +19,7 @@
               <td>{{entry.contestantCount}}</td>
               <td>{{entry.repertoryCount}}</td>
               <td>{{entry.participantCount}}</td>
+              <td>{{entry.expiringMembersCount}}</td>
               <td>{{entry.status}}</td>
             </tr>
           {{else}}

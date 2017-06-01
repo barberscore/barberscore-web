@@ -2,6 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  collapsed: true,
   currentUser: Ember.inject.service('current-user'),
   isNotWrite: Ember.computed.not('model.permissions.write'),
   isSubmitted: Ember.computed.equal('model.status', 'Submitted'),

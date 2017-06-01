@@ -85,7 +85,7 @@
       </section>
       <section>
         <p>
-          You are eligble for the following awards:
+          You are eligible for the following awards:
         </p>
         {{multiselect-checkboxes
           options=contestOptions
@@ -101,7 +101,7 @@
         <p>
           Please select the group members who will be on stage for this appearance:
         </p>
-        <p>Count: {{model.partCount}}</p>
+        <p>Count: {{model.participantCount}}</p>
         {{multiselect-checkboxes
           options=memberOptions
           labelProperty='personDetail'
@@ -124,16 +124,44 @@
     </div>
   </div>
 </section>
-<section class='col-md-8'>
-    <p>
-      <strong>Note:</strong>  If you are missing members, please first check the eBiz site to ensure those names are listed with unexpired memberships.  If that checks out, then contact support@barberscore.com with the names and/or BHS member numbers and we'll get that fixed.
-    </p>
-    <p>
-      Also, due to popular demand we've recently made a change so that you can add/remove participating members all the way up to the day of the contest!   That said, please submit your entry with your best estimates.  We know that choruses need to be flexible as the participating roster changes leading up to the contest, but for planning purposes Dusty needs the counts to be at least close to whom you actually expect to be on stage.
-    </p>
-    <p>
-      Lastly, while the formal deadline is June 15, Dusty was hoping that people could get things in by June 1.  Remember that you can add songs to your Repertory at any time, or also add/remove participants, so those tasks can be completed after submission if you wish.
-    </p>
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+      {{#if (eq model.status 'New')}}
+        <p>
+          <strong>Note:</strong>  If you are missing members, please first check the eBiz site to ensure those names are listed with unexpired memberships.  If that checks out, then contact support@barberscore.com with the names and/or BHS member numbers and we'll get that fixed.
+        </p>
+        <p>
+          Also, due to popular demand we've recently made a change so that you can add/remove participating members all the way up to the day of the contest!   That said, please submit your entry with your best estimates.  We know that choruses need to be flexible as the participating roster changes leading up to the contest, but for planning purposes Dusty needs the counts to be at least close to whom you actually expect to be on stage.
+        </p>
+        <p>
+          Lastly, while the formal deadline is June 15, Dusty was hoping that people could get things in by June 1.  Remember that you can add songs to your Repertory at any time, or also add/remove participants, so those tasks can be completed after submission if you wish.
+        </p>
+      {{else}}
+        <p>
+          <strong>Note:</strong>  The following participants' BHS memberships will expire before the contest.  Remember that all men on stage must have a current registration and BHS membership or you may be disqualified.  Please note this data may be a few days old; check with the EBiz site for the most up to date information.
+        </p>
+        <ul class='list-styled'>
+          {{#each model.expiringMembers as |expiring|}}
+            <li>{{expiring.member.person.nomen}}, Exp. {{moment-format expiring.member.person.dues_thru 'LL'}}</li>
+          {{else}}
+            All Selected Members are Current!
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+    <div class='col-md-6'>
+      {{#bs-button class='pull-right' type=default size='xs' onClick=(toggle 'collapsed' this )}}Logs{{/bs-button}}
+      {{#bs-collapse collapsed=collapsed}}
+        <hr>
+        <ul>
+          {{#each model.logs as |log|}}
+            <li>{{log.transition}} by {{log.by}}, {{moment-format log.timestamp 'LLL'}}</li>
+          {{/each}}
+        </ul>
+      {{/bs-collapse}}
+    </div>
+  </div>
 </section>
 <section>
   {{#bs-modal

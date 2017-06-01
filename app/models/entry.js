@@ -26,6 +26,7 @@ export default Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
+  logs: DS.attr(),
 
   submit: memberAction({path: 'submit', type: 'post'}),
   accept: memberAction({path: 'accept', type: 'post'}),
@@ -37,6 +38,15 @@ export default Model.extend({
 
   notPublished: computed.not(
     'published'
+  ),
+
+  expiringMembers: computed.filterBy(
+    'participants',
+    'isExpiring'
+  ),
+
+  expiringMembersCount: computed.alias(
+    'expiringMembers.length'
   ),
 
 
