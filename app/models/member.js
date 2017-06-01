@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import moment from 'moment';
 
 export default Model.extend({
   nomen: DS.attr('string'),
