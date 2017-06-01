@@ -23,5 +23,4 @@ export default Model.extend(Validations, {
     'Active',
     'Inactive',
   ],
-  isOld: Ember.computed.not('isNew'),
 });

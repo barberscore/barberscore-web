@@ -7,12 +7,8 @@ export default Ember.Controller.extend({
   sortedRepertoriesProperties: [
     'nomen',
   ],
-  filteredRepertories: Ember.computed.filterBy(
-    'model.repertories',
-    'isOld'
-  ),
   sortedRepertories: Ember.computed.sort(
-    'filteredRepertories',
+    'model.repertories',
     'sortedRepertoriesProperties'
   ),
   actions: {
