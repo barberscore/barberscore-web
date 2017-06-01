@@ -1,5 +1,18 @@
 <section>
-  {{#bs-form
+  <ul class='list-unstyled'>
+    <li>Primary Award: {{primaryCP.award.name}}</li>
+
+    <li>Number Rounds: {{model.num_rounds}}</li>
+
+    <li>New Entries: {{model.newEntriesCount}}</li>
+
+    <li>Submitted Entries: {{model.submittedEntriesCount}}</li>
+
+    <li>Accepted Entries: {{model.acceptedEntriesCount}}</li>
+
+    <li>Total Entries: {{model.totalEntriesCount}}</li>
+  </ul>
+  {{!-- {{#bs-form
     model=this
     formLayout='vertical'
     as |form|
@@ -22,5 +35,5 @@
     }}
       Number Rounds: {{el.value}}
     {{/form.element}}
-  {{/bs-form}}
+  {{/bs-form}} --}}
 </section>

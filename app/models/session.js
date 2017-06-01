@@ -51,6 +51,27 @@ export default Model.extend({
     3,
   ],
 
+  newEntries: Ember.computed.filterBy(
+    'entries',
+    'status',
+    'New'
+  ),
+  submittedEntries: Ember.computed.filterBy(
+    'entries',
+    'status',
+    'Submitted'
+  ),
+  acceptedEntries: Ember.computed.filterBy(
+    'entries',
+    'status',
+    'Accepted'
+  ),
+
+  newEntriesCount: Ember.computed.alias('newEntries.length'),
+  submittedEntriesCount: Ember.computed.alias('submittedEntries.length'),
+  acceptedEntriesCount: Ember.computed.alias('acceptedEntries.length'),
+  totalEntriesCount: Ember.computed.alias('entries.length'),
+
   kindSort: Ember.computed(
     'kind',
     'kindOptions',
