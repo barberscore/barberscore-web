@@ -13,9 +13,9 @@ export default Model.extend({
 
   isExpiring: Ember.computed(
     'member.person.dues_thru',
-    'entry.session.convention.start_date',
+    'entry.session.convention.end_date',
     function () {
-      return this.get('member.person.dues_thru') < this.get('entry.session.convention.start_date')
+      return this.get('member.person.dues_thru') < this.get('entry.session.convention.end_date')
     }
   ),
 

@@ -57,10 +57,6 @@ export default Model.extend({
     'entityKind',
     'Organization'
   ),
-  isExpiring: Ember.computed(
-    'dues_thru', function() {
-      return (this.get('dues_thru') > moment('2017-07-01'));
-  }),
   withExp: Ember.computed(
     'name',
     'dues_thru',
