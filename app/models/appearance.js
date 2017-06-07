@@ -16,7 +16,6 @@ export default Model.extend({
   entry: DS.belongsTo('entry', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   slot: DS.belongsTo('slot', {async: true}),
-  session: DS.belongsTo('session', {async: true}),
   build: memberAction({path: 'build'}),
   scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start', type: 'post'}),
@@ -36,6 +35,9 @@ export default Model.extend({
   ],
 
 
+  slotNum: Ember.computed.alias(
+    'slot.num'
+  ),
   reportoriesFiltered: Ember.computed.alias(
     'entry.entity.repertories'
   ),

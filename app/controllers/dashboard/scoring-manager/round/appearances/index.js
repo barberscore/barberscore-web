@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   sortedAppearancesProperties: [
-    'num',
+    'slotNum',
   ],
   sortedAppearances: Ember.computed.sort(
     'model.appearances',

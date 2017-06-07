@@ -12,7 +12,7 @@
           {{#each sortedAppearances as |appearance|}}
             <tr>
               <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
-              <td>{{appearance.num}}</td>
+              <td>{{appearance.slot.num}}</td>
             </tr>
           {{else}}
             <tr>
