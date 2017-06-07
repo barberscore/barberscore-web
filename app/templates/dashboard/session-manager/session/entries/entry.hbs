@@ -166,21 +166,29 @@
           </div>
         </section>
       </div>
-      <div class='panel-footer'>
-        {{#if model.permissions.write}}
-          {{#if (eq model.status 'Submitted')}}
+      {{#if model.permissions.write}}
+        <div class='panel-footer'>
+          {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' onClick=(perform submitEntry)}}
+              {{#if submitEntry.isRunning}}
+                Submitting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Submit Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Submitted')}}
             {{#bs-button type='primary' onClick=(perform acceptEntry)}}
               {{#if acceptEntry.isRunning}}
                 Accepting {{fa-icon "spinner" spin=true}}
               {{else}}
-                Accept Submission
+                Accept Entry
               {{/if}}
             {{/bs-button}}
           {{else}}
-            <strong>Status: <span class='text-primary'>Accepted and Pending Contest</span></strong>
+            Status: <strong>{{model.status}}</strong>
           {{/if}}
-        {{/if}}
-      </div>
+        </div>
+      {{/if}}
     </div>
   </section>
   <section>
