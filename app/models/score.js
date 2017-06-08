@@ -16,7 +16,6 @@ export default Model.extend({
   is_flagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
-  person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
 
   statusOptions: [
@@ -42,6 +41,7 @@ export default Model.extend({
     'General',
   ],
 
+  panelistName: computed.alias('panelist.person.last_name'),
   songNum: computed.alias('song.num'),
   lowReview: computed(
     'song.ascSortedScores',

@@ -1,6 +1,5 @@
 import Ember from 'ember';
 // import { task, timeout } from 'ember-concurrency';
-import groupBy from 'ember-group-by';
 
 export default Ember.Controller.extend({
   openModal: false,
@@ -43,16 +42,22 @@ export default Ember.Controller.extend({
     });
     return out;
   }),
+  sortedPanelistsProperties: [
+    'kind',
+  ],
+  sortedPanelists: Ember.computed.sort(
+    'model.round.panelists',
+    'sortedPanelistsProperties'
+  ),
   sortedScoresProperties: [
-    'num',
+    'category',
+    'kind',
+    'panelistName',
+    'songNum',
   ],
   sortedScores: Ember.computed.sort(
     'scoresCall',
     'sortedScoresProperties'
-  ),
-  groupedScores: groupBy(
-    'sortedScores',
-    'num'
   ),
   mappedScores: Ember.computed.mapBy(
     'sortedScores',

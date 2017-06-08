@@ -11,9 +11,6 @@ module.exports = function(defaults) {
     'ember-power-select': {
       theme: 'bootstrap'
     },
-    'ember-composable-helpers': {
-      only: ['pipe']
-    },
     fingerprint: {
       enabled: false
     }

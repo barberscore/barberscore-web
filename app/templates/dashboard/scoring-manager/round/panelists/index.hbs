@@ -1,0 +1,34 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Kind</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedPanelists as |panelist|}}
+            <tr>
+              <td>
+                  {{#link-to  'dashboard.scoring-manager.round.panelists.panelist' panelist}}{{panelist.person.common_name}}{{/link-to}}
+              </td>
+              <td>
+                {{panelist.category}}
+              </td>
+              <td>
+                {{panelist.kind}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No appearances.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

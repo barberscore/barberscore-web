@@ -50,10 +50,13 @@
           <thead>
             <tr>
               <th>
-                Num
+                Panelist
               </th>
               <th>
-                Judge
+                Category
+              </th>
+              <th>
+                Kind
               </th>
               <th>
                 Points
@@ -61,17 +64,19 @@
             </tr>
           </thead>
           <tbody>
-            {{#each groupedScores as |group|}}
+            {{#each sortedScores as |score|}}
               <tr>
                 <td>
-                  {{group.value}}
+                  {{score.panelist.person.common_name}}
                 </td>
                 <td>
-                  {{group.items.firstObject.person.common_name}}<br>
-                  {{group.items.firstObject.category}}{{#if (eq group.items.firstObject.kind 'Practice')}} (Practice){{/if}}<br>
+                  {{score.category}}
                 </td>
                 <td>
-                  {{sorted-scores scores=group.items}}
+                  {{score.kind}}
+                </td>
+                <td>
+                  {{score.points}}
                 </td>
               </tr>
             {{else}}
