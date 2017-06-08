@@ -15,6 +15,7 @@ export default Model.extend({
   penalty: DS.attr('number'),
   is_flagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
+  panelist: DS.belongsTo('panelist', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
 

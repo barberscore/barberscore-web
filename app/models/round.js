@@ -15,6 +15,7 @@ export default Model.extend({
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   slots: DS.hasMany('slot', {async: true}),
+  panelists: DS.hasMany('panelist', {async: true}),
   permissions: DS.attr(),
 
   draw: memberAction({path: 'draw'}),
