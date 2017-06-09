@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('login');
   this.route('dashboard', { path: 'dashboard' }, function() {
     this.route('convention-manager', {path: 'convention-manager'}, function() {
       this.route('convention', { path: ':convention_id' }, function() {

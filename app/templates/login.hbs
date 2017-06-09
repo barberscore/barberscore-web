@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>Login</h1>
+</div>
+<div>
+  {{#bs-button onClick=(action "login") class='btn-primary navcenter'}}Login{{/bs-button}}
+</div>
+<div class='row'>
+  <div class='col-md-6'>
+    <p class='lead'>
+      Some users have reported getting caught in a loop; trying to log in simply brings them back to the home page.  This has been a difficult bug to fix, but there is a workaround.
+    </p>
+
+    <h3>Follow these steps:</h3>
+    <ol>
+      <li>Click on the login button.</li>
+      <li>Enter your email.</li>
+      <li>When the email arrives, click the sign in button.</li>
+      <li>When you are directed back to the homepage hit the Enter/Return key on your keyboard.  <em>Don't click anything!</em></li>
+      <li>You should then be directed to your dashboard.</li>
+    </ol>
+    <p>
+      If this process doesn't work then contact support and we'll figure out another solution.  Sorry for the trouble and thanks for your patience as we work out these bugs.
+    </p>
+    <p>
+      For those who are interested in the details, what is happening is that while the link is bringing you back to the homepage it is not actually being processed by the browser.  You can tell this is the case because the URL in the address bar will not be just https://barberscore.com but https://barberscore.com/#access_token=asfasdfd&expires_in=86400.... i.e., a very long URL.  If it is long, then hitting Enter (or clicking in the address bar directly) should force the browser to process the response and log you in.
+    </p>
+    <p>There's a picture of what it looks like <a href='https://www.dropbox.com/s/u58yb5iz92iyl0g/login%20workaround.pdf?dl=0'>here</a>.</p>
+  </div>
+</div>
