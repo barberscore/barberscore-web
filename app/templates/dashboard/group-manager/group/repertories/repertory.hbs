@@ -20,8 +20,8 @@
           {{form.element controlType='textarea' placeholder='Source' disabled=true property='entity.name'}}
           {{#if model.permissions.write}}
           <ul class='list-inline'>
-            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'validateRepertory') class='form-group' disabled=false}}Validate{{/bs-button}}</li>{{/unless}}
-            {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'invalidateRepertory') class='form-group' disabled=false}}Invalidate{{/bs-button}}</li>{{/unless}}
+            {{!-- {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'validateRepertory') class='form-group' disabled=false}}Validate{{/bs-button}}</li>{{/unless}} --}}
+            {{!-- {{#unless model.chart.bhs_id}}<li>{{#bs-button onClick=(action 'invalidateRepertory') class='form-group' disabled=false}}Invalidate{{/bs-button}}</li>{{/unless}} --}}
             <li class='pull-right'>{{#bs-button onClick=(action 'deleteRepertory') class='form-group' type='danger' disabled=false}}Delete{{/bs-button}}</li>
           </ul>
           {{/if}}
