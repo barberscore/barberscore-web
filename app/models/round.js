@@ -24,6 +24,8 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
+  conventionStatus: Ember.computed.alias('session.convention.status'),
+  conventionIsActive: Ember.computed.alias('session.convention.isActive'),
   statusOptions: [
     'New',
     'Drawn',

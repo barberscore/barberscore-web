@@ -10,8 +10,12 @@ export default Ember.Controller.extend({
     'start_date:asc',
     'end_date:asc',
   ],
+  filteredConventions: Ember.computed.filterBy(
+    'model',
+    'isActive'
+  ),
   sortedConventions: Ember.computed.sort(
-    'uniques',
+    'filteredConventions',
     'sortProperties'
   ),
   kindOptions: [
