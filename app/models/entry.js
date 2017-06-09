@@ -28,6 +28,7 @@ export default Model.extend({
   permissions: DS.attr(),
   logs: DS.attr(),
 
+  invite: memberAction({path: 'invite', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   accept: memberAction({path: 'accept', type: 'post'}),
 

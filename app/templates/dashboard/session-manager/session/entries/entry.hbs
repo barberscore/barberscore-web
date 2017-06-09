@@ -169,6 +169,14 @@
       {{#if model.permissions.write}}
         <div class='panel-footer'>
           {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' onClick=(perform inviteEntry)}}
+              {{#if inviteEntry.isRunning}}
+                Inviting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Invite Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Invited')}}
             {{#bs-button type='primary' onClick=(perform submitEntry)}}
               {{#if submitEntry.isRunning}}
                 Submitting {{fa-icon "spinner" spin=true}}

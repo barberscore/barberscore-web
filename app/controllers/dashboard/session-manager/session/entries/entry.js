@@ -86,6 +86,15 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
+  inviteEntry: task(function *() {
+    let userID = this.get('currentUser.user.id');
+    let entry = yield this.model.invite({
+      'by': userID
+    });
+    this.store.pushPayload('entry', entry);
+    this.set('openModal', false);
+    this.get('flashMessages').success("Invited!");
+  }).drop(),
   submitEntry: task(function *() {
     let userID = this.get('currentUser.user.id');
     let entry = yield this.model.submit({

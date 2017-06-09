@@ -56,6 +56,11 @@ export default Model.extend({
     'status',
     'New'
   ),
+  invitedEntries: Ember.computed.filterBy(
+    'entries',
+    'status',
+    'Invited'
+  ),
   submittedEntries: Ember.computed.filterBy(
     'entries',
     'status',
@@ -68,6 +73,7 @@ export default Model.extend({
   ),
 
   newEntriesCount: Ember.computed.alias('newEntries.length'),
+  invitedEntriesCount: Ember.computed.alias('invitedEntries.length'),
   submittedEntriesCount: Ember.computed.alias('submittedEntries.length'),
   acceptedEntriesCount: Ember.computed.alias('acceptedEntries.length'),
   totalEntriesCount: Ember.computed.alias('entries.length'),
