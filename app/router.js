@@ -98,7 +98,6 @@ Router.map(function() {
       this.route('chart', { path: ':chart_id' });
     });
   });
-  this.route('loop');
   this.route('about');
   this.route('faq');
   this.route('404', { path: '/*wildcard' });
