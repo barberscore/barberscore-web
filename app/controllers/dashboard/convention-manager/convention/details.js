@@ -1,5 +1,5 @@
 import Ember from 'ember';
-// import { task, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
@@ -22,6 +22,10 @@ export default Ember.Controller.extend({
     'entityCall',
     'entityOptionsProperties'
   ),
+  autosave: task(function* (){
+    yield timeout(1000);
+    yield this.get('model').save();
+  }).restartable(),
   actions: {
     newConvention() {
       let newConvention = this.store.createRecord(

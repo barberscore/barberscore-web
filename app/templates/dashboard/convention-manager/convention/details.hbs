@@ -11,6 +11,14 @@
       property='name'
       disabled=isDisabled
     }}
+    {{!-- <div class='form-group'>
+      <input
+      value={{model.name}}
+      oninput={{perform autosave value='target.value'}}
+      class='form-control'
+      type='text'
+    >
+    </div> --}}
     {{!-- {{#form.element property='status' useIcons=false as |el|}}
         {{#power-select
               options=model.statusOptions
