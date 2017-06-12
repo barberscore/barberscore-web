@@ -12,9 +12,13 @@ Router.map(function() {
     this.route('convention-manager', {path: 'convention-manager'}, function() {
       this.route('convention', { path: ':convention_id' }, function() {
         this.route('details', {path: 'details'});
+        this.route('assignments', { path: 'assignments'}, function() {
+          this.route('assignment', { path: ':assignment_id'});
+        });
+        this.route('sessions', { path: 'sessions'}, function() {
+          this.route('session', { path: ':session_id'});
+        });
         this.route('actions', {path: 'actions'});
-        this.route('assignments', { path: 'assignments'});
-        this.route('sessions', { path: 'sessions'});
       });
     });
     this.route('session-manager', {path: 'session-manager'}, function() {
