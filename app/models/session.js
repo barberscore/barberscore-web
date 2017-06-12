@@ -18,7 +18,7 @@ export default Model.extend({
   contests: DS.hasMany('contest', {async: true}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
-  validate: memberAction({path: 'validate', type: 'post'}),
+  verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   draft: memberAction({path: 'draft', type: 'post'}),

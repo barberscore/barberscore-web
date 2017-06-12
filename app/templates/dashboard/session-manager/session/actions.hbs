@@ -1,6 +1,7 @@
 <section>
   <ul class='list-unstyled'>
-    <li class='action-list'>{{#bs-button onChange=(action 'openSession') class='form-group' disabled=true}}Open Session{{/bs-button}}</li>
-    <li class='action-list'>{{#bs-button onChange=(action 'closeSession') class='form-group' disabled=true}}Close Session{{/bs-button}}</li>
+    <li class='action-list'>{{#bs-button onClick=(action 'openSession') class='form-group' disabled=true}}Open Session{{/bs-button}}</li>
+    <li class='action-list'>{{#bs-button onClick=(action 'closeSession') class='form-group' disabled=true}}Close Session{{/bs-button}}</li>
+    <li class='action-list'>{{#bs-button onClick=(action 'verifySession') class='form-group' disabled=true}}Verify Session{{/bs-button}}</li>
   </ul>
 </section>

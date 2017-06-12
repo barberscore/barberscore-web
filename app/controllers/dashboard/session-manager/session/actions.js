@@ -16,6 +16,12 @@ export default Ember.Controller.extend({
         this.store.pushPayload('session', response);
       });
     },
+    verifySession() {
+      this.model.verify()
+      .then(response => {
+        this.store.pushPayload('session', response);
+      });
+    },
     validateCurrent() {
       this.model.get('current').then(current => {
         current.validate()
