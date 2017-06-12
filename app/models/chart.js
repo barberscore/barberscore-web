@@ -19,7 +19,6 @@ export default Model.extend(Validations, {
   lyricists: DS.attr('string'),
   arrangers: DS.attr('string'),
   holders: DS.attr('string'),
-  entity: DS.belongsTo('entity', {async: true}),
   repertories: DS.hasMany('repertory', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
