@@ -22,7 +22,8 @@ export default Ember.Controller.extend({
     'entityCall',
     'entityOptionsProperties'
   ),
-  autosave: task(function* (){
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
     yield timeout(1000);
     yield this.get('model').save();
   }).restartable(),

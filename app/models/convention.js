@@ -2,8 +2,13 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
+import { validator, buildValidations } from 'ember-cp-validations';
 
-export default Model.extend({
+const Validations = buildValidations({
+  name: validator('presence', true),
+  });
+
+export default Model.extend(Validations, {
   nomen: DS.attr('string'),
   name: DS.attr('string'),
   slug: DS.attr('string'),

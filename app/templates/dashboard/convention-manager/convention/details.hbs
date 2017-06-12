@@ -2,177 +2,141 @@
   {{#bs-form
     model=model
     formLayout='vertical'
-    onSubmit=(action 'saveConvention')
     as |form|
   }}
     {{form.element
-      controlType='text'
-      placeholder='Convention Name'
       property='name'
-      disabled=isDisabled
+      onChange=(perform autosave 'name')
     }}
-    {{!-- <div class='form-group'>
-      <input
-      value={{model.name}}
-      oninput={{perform autosave value='target.value'}}
-      class='form-control'
-      type='text'
-    >
-    </div> --}}
-    {{!-- {{#form.element property='status' useIcons=false as |el|}}
-        {{#power-select
-              options=model.statusOptions
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Choose Status"
-              disabled=isDisabled
-              allowClear=true
-              as |status|
-        }}
-          Status: {{status}}
-        {{/power-select}}
-    {{/form.element}} --}}
-    {{#form.element property='entity' useIcons=false as |el|}}
+    {{#form.element}}
       {{#power-select
         renderInPlace=true
         options=entityOptions
-        selected=el.value
-        onchange=(action (mut el.value))
+        selected=model.entity
+        onchange=(perform autosave 'entity')
         placeholder="Choose Convention Owner Entity"
-        disabled=isDisabled
+        disabled=false
         allowClear=true
         as |entity|
       }}
         Owner: {{entity.name}}
       {{/power-select}}
     {{/form.element}}
-    {{!-- {{#form.element property='kind' useIcons=false as |el|}}
-        {{#power-select
-              options=model.kindOptions
-              selected=el.value
-              onchange=(action (mut el.value))
-              placeholder="Choose Kind"
-              disabled=isDisabled
-              allowClear=true
-              as |kind|
-        }}
-          Kind: {{kind}}
-        {{/power-select}}
-    {{/form.element}} --}}
-    {{#form.element property='season' useIcons=false as |el|}}
+    {{#form.element property='kind' as |el|}}
+      {{#power-select
+          options=model.kindOptions
+          selected=model.kind
+          onchange=(perform autosave 'kind')
+          placeholder="Choose Kind"
+          disabled=false
+          allowClear=true
+          as |kind|
+      }}
+        Kind: {{kind}}
+      {{/power-select}}
+    {{/form.element}}
+    {{#form.element property='season' as |el|}}
       {{#power-select
         options=model.seasonOptions
         selected=el.value
-        onchange=(action (mut el.value))
+        onchange=(perform autosave 'season')
         placeholder="Choose Season"
-        disabled=isDisabled
+        disabled=false
         allowClear=true
         as |season|
       }}
         Season: {{season}}
       {{/power-select}}
     {{/form.element}}
+
+
     {{form.element
       controlType='text'
       placeholder='Location'
       property='location'
-      disabled=isDisabled
+      disabled=false
+      onChange=(perform autosave 'location')
     }}
     {{!-- {{form.element
       controlType='tel'
       placeholder='Year'
       property='year'
-      disabled=isDisabled
+      disabled=false
+      onChange=(perform autosave 'year')
     }} --}}
     <div class='row'>
       <div class='col-md-3'>
-        {{#form.element property='open_date' useIcons=false as |el|}}
+        {{#form.element property='open_date' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(action (mut el.value))
+            updateDate=(perform autosave 'open_date')
             placeholder="Convention Entry Open Date"
-            disabled=isDisabled
+            disabled=false
           }}
         {{/form.element}}
       </div>
       <div class='col-md-3'>
-        {{#form.element property='close_date' useIcons=false as |el|}}
+        {{#form.element property='close_date' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(action (mut el.value))
+            updateDate=(perform autosave 'close_date')
             placeholder="Convention Entry Close Date"
-            disabled=isDisabled
+            disabled=false
           }}
         {{/form.element}}
       </div>
     </div>
     <div class='row'>
       <div class='col-md-3'>
-        {{#form.element property='start_date' useIcons=false as |el|}}
+        {{#form.element property='start_date' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(action (mut el.value))
+            updateDate=(perform autosave 'start_date')
             placeholder="Convention Start Date"
-            disabled=isDisabled
+            disabled=false
           }}
         {{/form.element}}
       </div>
       <div class='col-md-3'>
-        {{#form.element property='end_date' useIcons=false as |el|}}
+        {{#form.element property='end_date' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(action (mut el.value))
+            updateDate=(perform autosave 'end_date')
             placeholder="Convention End Date"
-            disabled=isDisabled
+            disabled=false
           }}
         {{/form.element}}
       </div>
     </div>
-    {{#form.element property='panel' useIcons=false as |el|}}
+    {{#form.element property='panel' as |el|}}
         {{#power-select
               options=model.panelOptions
               selected=el.value
-              onchange=(action (mut el.value))
+              onchange=(perform autosave 'panel')
               placeholder="Choose Panel"
-              disabled=isDisabled
+              disabled=false
               allowClear=true
               as |panel|
         }}
           Panel: {{panel}}
         {{/power-select}}
     {{/form.element}}
-    {{#form.element property='risers' useIcons=false as |el|}}
+    {{#form.element property='risers' as |el|}}
         {{#power-select-multiple
               options=model.riserOptions
               selected=el.value
-              onchange=(action (mut el.value))
+              onchange=(perform autosave 'risers')
               placeholder="Choose Riser Options"
-              disabled=isDisabled
+              disabled=false
               allowClear=true
               as |risers|
         }}
           Risers: {{risers}}
         {{/power-select-multiple}}
-    {{/form.element}}
-    {{#form.element}}
-      {{#if isEditing}}
-        {{#bs-button onClick=(action 'deleteConvention') class='pull-right btn-danger'}}Delete{{/bs-button}}
-        {{#bs-button onClick=(action 'cancelConvention')}}Cancel{{/bs-button}}
-        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{#each model.errors.non-field-errors as |error|}}
-          <span class='has-error'>
-            <span class="help-block">
-              {{error.message}}
-            </span>
-          </span>
-        {{/each}}
-      {{else}}
-        {{#bs-button onClick=(action 'editConvention')}}Edit{{/bs-button}}
-      {{/if}}
     {{/form.element}}
   {{/bs-form}}
 </section>

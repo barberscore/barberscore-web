@@ -3,7 +3,6 @@
     <div class='panel panel-default'>
       <div class='panel-heading'>
         <ul class='list-inline pull-right'>
-          <li>Status: {{model.status}}</li>
           <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
           <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
         </ul>
@@ -166,8 +165,8 @@
           </div>
         </section>
       </div>
-      {{#if model.permissions.write}}
-        <div class='panel-footer'>
+      <div class='panel-footer'>
+        {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
             {{#bs-button type='primary' onClick=(perform inviteEntry)}}
               {{#if inviteEntry.isRunning}}
@@ -193,13 +192,16 @@
               {{/if}}
             {{/bs-button}}
           {{else}}
-            Status: <strong>{{model.status}}</strong>
+            &nbsp;
           {{/if}}
+        {{/if}}
+        <div class='pull-right'>
+          Entry Status: <strong>{{model.status}}</strong>
         </div>
-      {{/if}}
+      </div>
     </div>
   </section>
-  <section>
+  {{!-- <section>
     {{#bs-button type=default size='xs' onClick=(toggle 'collapsed' this )}}Logs{{/bs-button}}
     {{#bs-collapse collapsed=collapsed}}
       <ul>
@@ -208,5 +210,5 @@
         {{/each}}
       </ul>
     {{/bs-collapse}}
-  </section>
+  </section> --}}
 </section>

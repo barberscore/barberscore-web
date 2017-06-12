@@ -5,21 +5,25 @@
         <thead>
           <tr>
             <th class='col-md-2'>Kind</th>
-            {{!-- <th class='col-md-2'>Age</th> --}}
-            <th class='col-md-6'>Contests</th>
-            <th class='col-md-1'>Delete</th>
+            {{!-- <th class='col-md-2'>Rounds</th> --}}
+            {{!-- <th class='col-md-6'>Contests</th> --}}
+            <th class='col-md-1'>Status</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedSessions as |session|}}
             <tr>
-              <td>{{session.kind}}</td>
-              {{!-- <td>{{session.age}}</td> --}}
-              {{!-- <td>{{session.num_rounds}}</td> --}}
               <td>
-                {{sorted-contests session=session}}
+                {{#link-to 'dashboard.convention-manager.convention.sessions.session' session}}{{session.kind}}{{/link-to}}
               </td>
-              <td>{{fa-icon 'times-circle' click=(action 'deleteSession' session) class='text-danger'}}</td>
+              {{!-- <td>{{session.age}}</td> --}}
+              {{!-- <td>
+                {{session.num_rounds}}
+              </td> --}}
+              {{!-- <td>
+                {{sorted-contests session=session}}
+              </td> --}}
+              <td>{{session.status}}</td>
             </tr>
           {{else}}
             <tr>
