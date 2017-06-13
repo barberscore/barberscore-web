@@ -112,16 +112,13 @@
               <thead>
                 <tr>
                   <th>Title</th>
-                  <th>BHS ID</th>
                   <th>Arranger(s)</th>
-                  {{!-- <th>Delete</th> --}}
                 </tr>
               </thead>
               <tbody>
                 {{#each sortedRepertories as |repertory|}}
                   <tr>
                     <td>{{repertory.chart.title}}</td>
-                    <td>{{repertory.chart.bhs_id}}</td>
                     <td>{{repertory.chart.arrangers}}</td>
                   </tr>
                 {{else}}
