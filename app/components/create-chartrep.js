@@ -6,7 +6,6 @@ export default Ember.Component.extend({
   openModal: false,
   actions: {
     saveChart(){
-      console.log(this.get('repertory'));
       this.get('model').save()
       .then((data) => {
         let repertory = this.get('repertory');
