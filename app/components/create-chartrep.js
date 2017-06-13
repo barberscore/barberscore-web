@@ -6,12 +6,11 @@ export default Ember.Component.extend({
   openModal: false,
   actions: {
     saveChart(){
+      console.log(this.get('repertory'));
       this.get('model').save()
       .then((data) => {
-        let repertory = this.get('store').createRecord('repertory', {
-          status: 'Valid',
-          chart: data
-        });
+        let repertory = this.get('repertory');
+        repertory.set('chart', data);
         repertory.save();
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');

@@ -3,9 +3,9 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
-      '-10': 'Invalid',
+      '-10': 'Inactive',
       '0': 'New',
-      '10': 'Valid',
+      '10': 'Active',
     };
     return map[serialized];
   },
@@ -13,8 +13,8 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'New': '0',
-      'Valid': '10',
-      'Invalid': '-10',
+      'Active': '10',
+      'Inactive': '-10',
     };
     return map[deserialized];
   }

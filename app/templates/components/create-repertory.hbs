@@ -18,12 +18,12 @@
           search=(perform searchChart)
           selected=el.value
           onchange=(action (mut el.value))
-          placeholder="Enter Song Title or BHS Number"
+          placeholder="Enter Song Title"
           allowClear=true
           renderInPlace=true
           as |chart|
         }}
-          Song: {{chart.nomen}}  {{#if chart.arrangers}}(arr. {{chart.arrangers}}){{/if}}
+          Song: {{chart.nomen}}
         {{/power-select}}
       {{/form.element}}
     {{/bs-form}}

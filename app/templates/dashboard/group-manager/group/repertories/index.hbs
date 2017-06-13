@@ -5,7 +5,7 @@
         <tr>
           <th class='col-md-6'>Title</th>
           <th>Arranger(s)</th>
-          <th>BHS ID</th>
+          {{!-- <th>BHS ID</th> --}}
           <th>Status</th>
         </tr>
       </thead>
@@ -15,7 +15,7 @@
             <td>{{#link-to 'dashboard.group-manager.group.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
             {{!-- <td>{{repertory.chart.title}}</td> --}}
             <td>{{repertory.chart.arrangers}}</td>
-            <td>{{repertory.chart.bhs_id}}</td>
+            {{!-- <td>{{repertory.chart.bhs_id}}</td> --}}
             <td>{{repertory.status}}</td>
           </tr>
         {{else}}
