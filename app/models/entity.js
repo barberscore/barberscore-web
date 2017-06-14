@@ -20,6 +20,7 @@ export default Model.extend(Validations, {
   name: DS.attr('string'),
   status: DS.attr('entity-status'),
   kind: DS.attr('entity-kind'),
+  bhs_id: DS.attr('number'),
   age: DS.attr('entity-age'),
   is_novice: DS.attr('boolean'),
   start_date: DS.attr('isodate'),
