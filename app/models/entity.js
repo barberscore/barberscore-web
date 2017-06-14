@@ -8,10 +8,6 @@ const Validations = buildValidations({
     type: 'email',
     allowBlank: true
   }),
-  phone: validator('format', {
-    type: 'phone',
-    allowBlank: true
-  }),
   website: validator('format', {
     type: 'url',
     allowBlank: true
