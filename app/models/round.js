@@ -18,9 +18,9 @@ export default Model.extend({
   panelists: DS.hasMany('panelist', {async: true}),
   permissions: DS.attr(),
 
-  draw: memberAction({path: 'draw'}),
-  resort: memberAction({path: 'resort'}),
-  start: memberAction({path: 'start', type: 'post'}),
+  open: memberAction({path: 'open', type: 'post'}),
+  close: memberAction({path: 'close', type: 'post'}),
+  verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
