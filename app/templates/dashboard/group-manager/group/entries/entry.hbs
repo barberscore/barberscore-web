@@ -139,7 +139,10 @@
         </p>
       {{else if (eq model.status 'Submitted')}}
         <p>
-          <strong>Note:</strong>  The following participants' BHS memberships will expire before the contest.  Remember that all men on stage must have a current registration and BHS membership or you may be disqualified.  Please note this data may be a few days old; check with the EBiz site for the most up to date information.<strong>Not applicable for YBQC</strong>
+          <strong>Note:</strong>  The following participants' BHS memberships will expire before the contest.  Remember that all men on stage must have a current registration and BHS membership or you may be disqualified.  Please note this data may be a few days old; check with the EBiz site for the most up to date information.
+        </p>
+        <p>
+          <strong>Not applicable for Affiliates or YBQC</strong>
         </p>
         <ul class='list-styled'>
           {{#each model.expiringMembers as |expiring|}}
