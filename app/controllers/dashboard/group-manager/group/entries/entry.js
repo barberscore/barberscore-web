@@ -116,12 +116,14 @@ export default Ember.Controller.extend({
         });
         participant.save()
         .then(() => {
+          this.get('flashMessages').success("Added!");
         });
         // console.log('added');
       } else { //operation === removed
         let participant = this.get('model.participants').findBy('member.id', value);
         participant.destroyRecord()
         .then(() => {
+          this.get('flashMessages').warning("Removed!");
         });
         // console.log('removed');
       }

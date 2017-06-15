@@ -9,9 +9,6 @@
           {{!-- Image --}}
         </div>
       </div>
-      <h4 class='pull-right'>
-        Status: <strong>{{model.status}}</strong>
-      </h4>
       <h4>
         {{model.name}}
       </h4>
@@ -35,6 +32,44 @@
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      {{!-- {{#if model.permissions.write}}
+        {{#if (eq model.status 'New')}}
+          {{#bs-button type='primary' onClick=(perform openSession)}}
+            {{#if openSession.isRunning}}
+              Opening {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Open Session
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Opened')}}
+          {{#bs-button type='primary' onClick=(perform closeSession)}}
+            {{#if closeSession.isRunning}}
+              Closing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Close Session
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Closed')}}
+          {{#bs-button type='primary' onClick=(perform verifySession)}}
+            {{#if verifySession.isRunning}}
+              Verifying {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Verify Session
+            {{/if}}
+          {{/bs-button}}
+        {{else}}
+          &nbsp;
+        {{/if}}
+      {{else}}
+        &nbsp;
+      {{/if}} --}}
+      <div class='pull-right'>
+        <h4>
+          Group Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
     </div>
   </div>
 </section>

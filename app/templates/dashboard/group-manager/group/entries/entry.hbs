@@ -1,9 +1,6 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <h4 class='pull-right'>
-        Status: {{model.status}}
-      </h4>
       <h4>
         {{model.nomen}}
       </h4>
@@ -113,7 +110,7 @@
         }}
       </section>
     </div>
-    <div class='panel-footer'>
+    <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
         {{#if (eq model.status 'Invited')}}
           {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
@@ -121,6 +118,11 @@
           <strong>Status: <span class='text-primary'>Submitted and Pending Acceptance</span></strong>
         {{/if}}
       {{/if}}
+      <div class='pull-right'>
+        <h4>
+          Entry Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
     </div>
   </div>
 </section>
