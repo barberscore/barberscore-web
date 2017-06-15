@@ -2,13 +2,13 @@ import Ember from 'ember';
 import { task } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  currentUser: Ember.inject.service(),
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   scheduleConvention: task(function *() {
-    let userID = this.get('currentUser.user.id');
     try {
       let convention = yield this.model.schedule({
-        'by': userID
+        'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('convention', convention);
       this.get('flashMessages').success("Scheduled!");
@@ -17,13 +17,12 @@ export default Ember.Controller.extend({
     }
   }).drop(),
   openConvention: task(function *() {
-    let userID = this.get('currentUser.user.id');
     try {
       let convention = yield this.model.open({
-        'by': userID
+        'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('convention', convention);
-      this.get('flashMessages').success("Scheduled!");
+      this.get('flashMessages').success("Opened!");
     } catch(e) {
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }

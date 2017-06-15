@@ -3,7 +3,7 @@
 </section>
 <section>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
+    <div class='panel-heading fixed-panel-header'>
       <h4>
         {{model.kind}} Session - {{model.convention.name}}
       </h4>
@@ -22,7 +22,7 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer'>
+    <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
         {{#if (eq model.status 'New')}}
           {{#bs-button type='primary' onClick=(perform openSession)}}
@@ -55,7 +55,9 @@
         &nbsp;
       {{/if}}
       <div class='pull-right'>
-        Session Status: <strong>{{model.status}}</strong>
+        <h4>
+          Session Status: <strong>{{model.status}}</strong>
+        </h4>
       </div>
     </div>
   </div>
