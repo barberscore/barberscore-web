@@ -14,7 +14,7 @@
         <tbody>
           {{#each sortedAppearances as |appearance|}}
             <tr>
-              <td>{{appearance.slot.num}}</td>
+              <td>{{appearance.num}}</td>
               <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
               {{!-- <td></td> --}}
               {{!-- <td>{{appearance.entry.entity.bhs_id}}</td> --}}
