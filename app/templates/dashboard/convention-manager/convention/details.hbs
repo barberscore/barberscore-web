@@ -22,34 +22,40 @@
         Owner: {{entity.name}}
       {{/power-select}}
     {{/form.element}}
-    {{#form.element property='kind' as |el|}}
-      {{#power-select
-          options=model.kindOptions
-          selected=model.kind
-          onchange=(perform autosave 'kind')
-          placeholder="Choose Kind"
-          disabled=false
-          allowClear=true
-          as |kind|
-      }}
-        Kind: {{kind}}
-      {{/power-select}}
-    {{/form.element}}
-    {{#form.element property='season' as |el|}}
-      {{#power-select
-        options=model.seasonOptions
-        selected=el.value
-        onchange=(perform autosave 'season')
-        placeholder="Choose Season"
-        disabled=false
-        allowClear=true
-        as |season|
-      }}
-        Season: {{season}}
-      {{/power-select}}
-    {{/form.element}}
-
-
+    <div class='row'>
+      <div class='col-md-3'>
+        {{#form.element property='season' as |el|}}
+          {{#power-select
+            options=model.seasonOptions
+            selected=el.value
+            renderInPlace=true
+            onchange=(perform autosave 'season')
+            placeholder="Choose Season"
+            disabled=false
+            allowClear=true
+            as |season|
+          }}
+            Season: {{season}}
+          {{/power-select}}
+        {{/form.element}}
+      </div>
+      <div class='col-md-3'>
+        {{#form.element property='year' as |el|}}
+          {{#power-select
+            options=model.yearOptions
+            selected=el.value
+            renderInPlace=true
+            onchange=(perform autosave 'year')
+            placeholder="Choose Year"
+            disabled=false
+            allowClear=true
+            as |year|
+          }}
+            Year: {{year}}
+          {{/power-select}}
+        {{/form.element}}
+      </div>
+    </div>
     {{form.element
       controlType='text'
       placeholder='Location'
@@ -57,13 +63,6 @@
       disabled=false
       onChange=(perform autosave 'location')
     }}
-    {{!-- {{form.element
-      controlType='tel'
-      placeholder='Year'
-      property='year'
-      disabled=false
-      onChange=(perform autosave 'year')
-    }} --}}
     <div class='row'>
       <div class='col-md-3'>
         {{#form.element property='open_date' as |el|}}

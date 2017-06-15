@@ -28,10 +28,8 @@ export default Model.extend(Validations, {
   assignments: DS.hasMany('assignment', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
   permissions: DS.attr(),
-  list_fsm: memberAction({path: 'list_fsm', type: 'post'}),
-  open_fsm: memberAction({path: 'open_fsm', type: 'post'}),
-  start_fsm: memberAction({path: 'start_fsm', type: 'post'}),
-  finish_fsm: memberAction({path: 'finish_fsm', type: 'post'}),
+  schedule: memberAction({path: 'schedule', type: 'post'}),
+  open: memberAction({path: 'open', type: 'post'}),
 
   isPublished: Ember.computed.equal('status', 'Published'),
   isActive: Ember.computed.not('isPublished'),
@@ -77,6 +75,9 @@ export default Model.extend(Validations, {
     'Quintiple',
   ],
 
+  yearOptions: [
+    2017,2018
+  ],
   riserOptions: [
     0,3,4,5,6,7,8,9,10,11,12,13
   ],

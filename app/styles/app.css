@@ -28,6 +28,16 @@
     padding: 6px;
 }
 
+.fixed-panel-header {
+  min-height: 60px;
+  max-height: 60px;
+  /*overflow-y: scroll;*/
+}
+.fixed-panel-footer {
+  min-height: 55px;
+  max-height: 55px;
+  /*overflow-y: scroll;*/
+}
 /*.ember-power-select-placeholder {
   min-width: 200px;
 }
