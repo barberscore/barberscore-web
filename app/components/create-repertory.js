@@ -10,6 +10,7 @@ export default Ember.Component.extend({
     yield timeout(600);
     return this.get('store').query('chart', {
       'nomen__icontains': term,
+      'status': 10,
       'page_size': 1000
       })
       .then((data) => data);
