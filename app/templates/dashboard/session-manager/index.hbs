@@ -7,15 +7,15 @@
       <caption>Current Sessions</caption>
       <thead>
         <tr>
-          <th {{action 'sortBy' 'kind'}}>Kind</th>
-          <th {{action 'sortBy' 'conventionName'}}>Convention</th>
+          <th {{action 'sortBy' 'nomen'}}>Name</th>
+          <th {{action 'sortBy' 'status'}}>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedSessions as |session|}}
           <tr>
-            <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.kind}}{{/link-to}}</td>
-            <td>{{session.convention.name}}</td>
+            <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.nomen}}{{/link-to}}</td>
+            <td>{{session.status}}</td>
           </tr>
         {{else}}
           <tr>
