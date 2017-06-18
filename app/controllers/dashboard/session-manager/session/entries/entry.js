@@ -57,6 +57,7 @@ export default Ember.Controller.extend({
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
         'kind__lt': '30',
+        'status': 10,
         'page_size': 100,
       });
     // }).then((data) => {
