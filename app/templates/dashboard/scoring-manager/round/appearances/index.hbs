@@ -1,6 +1,11 @@
 <section>
   <div class='row'>
     <div class='col-md-12'>
+      {{#if isSorting}}
+      {{#bs-button onClick=(action 'saveOrder')}}Save{{/bs-button}}
+      {{else}}
+      {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
+      {{/if}}
       <table class='table'>
         <thead>
           <tr>
@@ -12,21 +17,39 @@
           </tr>
         </thead>
         <tbody>
-          {{#each sortedAppearances as |appearance|}}
-            <tr>
-              <td>{{appearance.num}}</td>
-              <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
-              {{!-- <td></td> --}}
-              {{!-- <td>{{appearance.entry.entity.bhs_id}}</td> --}}
-              <td>{{appearance.entry.representing.short_name}}</td>
-            </tr>
+          {{#if isSorting}}
+            {{#sortable-group onChange="reorderItems" as |group|}}
+              {{#each sortedAppearances as |item|}}
+                {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                  <td>
+                    {{item.num}}
+                  </td>
+                  <td>
+                    {{item.entry.entity.name}}
+                  </td>
+                  <span class="handle">&varr;</span>
+                {{/sortable-item}}
+              {{/each}}
+            {{/sortable-group}}
           {{else}}
-            <tr>
-              <td>(Round will be empaneled when verified.)</td>
-            </tr>
-          {{/each}}
+            {{#each sortedAppearances as |appearance|}}
+              <tr>
+                <td>{{appearance.num}}</td>
+                <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
+                {{!-- <td></td> --}}
+                {{!-- <td>{{appearance.entry.entity.bhs_id}}</td> --}}
+                <td>{{appearance.entry.representing.short_name}}</td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(Round will be empaneled when verified.)</td>
+              </tr>
+            {{/each}}
+          {{/if}}
         </tbody>
       </table>
     </div>
   </div>
+</section>
+<section>
 </section>
