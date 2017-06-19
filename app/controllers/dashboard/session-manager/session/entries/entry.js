@@ -43,6 +43,13 @@ export default Ember.Controller.extend({
     'model.participants',
     'sortedParticipantsProperties'
   ),
+  sortedExpirationsProperties: [
+    'nameSort',
+  ],
+  sortedExpirations: Ember.computed.sort(
+    'model.expiringMembers',
+    'sortedExpirationsProperties'
+  ),
   contestSortProperties: [
     'entityKindSort',
     'awardQualifier',

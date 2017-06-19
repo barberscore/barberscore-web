@@ -134,15 +134,13 @@
         <section>
           <div class='table-responsive'>
             <p>
-              Participants on Stage: {{model.participantCount}}, Expiring: {{model.expiringMembersCount}}
+              Participants on Stage: {{model.participantCount}}
             </p>
             <table class='table'>
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Part</th>
-                  <th>Membership Expires</th>
-                  {{!-- <th>Delete</th> --}}
                 </tr>
               </thead>
               <tbody>
@@ -150,11 +148,38 @@
                   <tr>
                     <td>{{participant.member.person.nomen}}</td>
                     <td>{{#if participant.member.part}}{{participant.member.part}}{{else}}(Unknown){{/if}}</td>
-                    <td>{{moment-format participant.member.person.dues_thru 'LL'}}</td>
                   </tr>
                 {{else}}
                   <tr>
                     <td>(No participants selected.)</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <hr>
+        <section>
+          <div class='table-responsive'>
+            <p>
+              Expiring Members: {{model.expiringMembersCount}}
+            </p>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Membership Expires</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sortedExpirations as |expiration|}}
+                  <tr>
+                    <td>{{expiration.member.person.nomen}}</td>
+                    <td>{{moment-format expiration.member.person.dues_thru 'LL'}}</td>
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td>All Members Current.</td>
                   </tr>
                 {{/each}}
               </tbody>
