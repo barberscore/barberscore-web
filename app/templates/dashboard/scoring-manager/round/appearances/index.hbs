@@ -25,7 +25,7 @@
                     {{item.num}}
                   </td>
                   <td>
-                    {{item.entry.entity.name}}
+                    {{item.entry.entity.name}}{{#if item.entry.is_mt}}&nbsp;*MT{{/if}}
                   </td>
                   <span class="handle">&varr;</span>
                 {{/sortable-item}}
@@ -35,7 +35,7 @@
             {{#each sortedAppearances as |appearance|}}
               <tr>
                 <td>{{appearance.num}}</td>
-                <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
+                <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}{{/link-to}}</td>
                 {{!-- <td></td> --}}
                 {{!-- <td>{{appearance.entry.entity.bhs_id}}</td> --}}
                 <td>{{appearance.entry.representing.short_name}}</td>

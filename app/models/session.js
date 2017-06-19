@@ -10,6 +10,7 @@ export default Model.extend({
   age: DS.attr('session-age'),
   num_rounds: DS.attr('number'),
   is_prelims: DS.attr('boolean'),
+  is_invitational: DS.attr('boolean'),
   // current: DS.belongsTo('round', {async: true, inverse: 'current_session'}),
   primary: DS.belongsTo('contest', {async: true, inverse: 'primary_contest'}),
   convention: DS.belongsTo('convention', {async: true}),
@@ -51,6 +52,11 @@ export default Model.extend({
     3,
   ],
 
+  mtEntries: Ember.computed.filterBy(
+    'entries',
+    'is_mt'
+  ),
+  mtCount: Ember.computed.alias('mtEntries.length'),
   newEntries: Ember.computed.filterBy(
     'entries',
     'status',

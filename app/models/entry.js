@@ -15,6 +15,7 @@ export default Model.extend({
   risers: DS.attr('number'),
   is_evaluation: DS.attr('boolean'),
   is_private: DS.attr('boolean'),
+  is_mt: DS.attr('boolean'),
   director: DS.belongsTo('person', {async: true}),
   codirector: DS.belongsTo('person', {async: true}),
   representing: DS.belongsTo('entity', {async: true}),
