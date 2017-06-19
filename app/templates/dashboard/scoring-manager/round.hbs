@@ -3,7 +3,7 @@
 </section>
 <section>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
+    <div class='panel-heading fixed-panel-header'>
       <h4>
         {{model.nomen}}
       </h4>
@@ -22,8 +22,8 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer'>
       {{#if model.permissions.write}}
+    <div class='panel-footer fixed-panel-footer'>
         {{#if (eq model.status 'New')}}
           {{#bs-button type='primary' onClick=(perform openRound)}}
             {{#if openRound.isRunning}}
