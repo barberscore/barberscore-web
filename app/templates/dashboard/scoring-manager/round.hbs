@@ -22,8 +22,8 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-      {{#if model.permissions.write}}
     <div class='panel-footer fixed-panel-footer'>
+      {{!-- {{#if model.permissions.write}}
         {{#if (eq model.status 'New')}}
           {{#bs-button type='primary' onClick=(perform openRound)}}
             {{#if openRound.isRunning}}
@@ -53,7 +53,7 @@
         {{/if}}
       {{else}}
         &nbsp;
-      {{/if}}
+      {{/if}} --}}
       <div class='pull-right'>
         Round Status: <strong>{{model.status}}</strong>
       </div>
