@@ -8,7 +8,7 @@ export function kindTransform(params) {
       12: 'Noncompetitive',
       13: 'Affiliate',
       21: 'Division',
-      31: 'Quartet',
+      41: 'Quartet',
       32: 'Chorus',
       33: 'Very Large Quartet',
       34: 'Mixed Group',

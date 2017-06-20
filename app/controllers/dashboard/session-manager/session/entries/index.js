@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   kindy: Ember.computed(
     'model.kind', function() {
-      return (this.get('model.kind') === 'Chorus') ? 32 : 31;
+      return (this.get('model.kind') === 'Chorus') ? 32 : 41;
   }),
   searchEntity: task(function* (term){
     yield timeout(600);
