@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       });
   }),
   representingSortProperties: [
-    'nomen:asc',
+    'org_sort:asc',
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',

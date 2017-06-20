@@ -35,6 +35,7 @@ export default Model.extend(Validations, {
   code: DS.attr('string'),
   short_name: DS.attr('string'),
   long_name: DS.attr('string'),
+  org_sort: DS.attr('number'),
   parent: DS.belongsTo('entity', {inverse: 'children', async: true}),
   children: DS.hasMany('entity', {inverse: 'parent', async: true}),
   entries: DS.hasMany('entry', {inverse: 'entity', async: true}),
