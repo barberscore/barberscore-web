@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   openModal: false,
@@ -81,7 +81,7 @@ export default Ember.Controller.extend({
     let appearance = yield this.model.scratch({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('scratch', scratch);
+    this.store.pushPayload('appearance', appearance);
     this.set('openModal', false);
     this.get('flashMessages').success("Scratched!");
   }).drop(),
