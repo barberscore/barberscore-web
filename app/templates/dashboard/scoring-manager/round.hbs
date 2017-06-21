@@ -23,37 +23,17 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{!-- {{#if model.permissions.write}}
+      {{#if model.permissions.write}}
         {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' onClick=(perform openRound)}}
-            {{#if openRound.isRunning}}
-              Opening {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Open Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Opened')}}
-          {{#bs-button type='primary' onClick=(perform closeRound)}}
-            {{#if closeRound.isRunning}}
-              Closing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Close Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Closed')}}
-          {{#bs-button type='primary' onClick=(perform verifyROund)}}
+          {{#bs-button type='primary' onClick=(perform verifyRound)}}
             {{#if verifyRound.isRunning}}
               Verifying {{fa-icon "spinner" spin=true}}
             {{else}}
               Verify Round
             {{/if}}
           {{/bs-button}}
-        {{else}}
-          &nbsp;
         {{/if}}
-      {{else}}
-        &nbsp;
-      {{/if}} --}}
+      {{/if}}
       <div class='pull-right'>
         <h4>
           Round Status: <strong>{{model.status}}</strong>

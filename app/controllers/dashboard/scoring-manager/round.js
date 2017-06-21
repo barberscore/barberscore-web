@@ -21,9 +21,8 @@ export default Ember.Controller.extend({
     this.get('flashMessages').success("Closed!");
   }).drop(),
   verifyRound: task(function *() {
-    let userID = this.get('currentUser.user.id');
     let round = yield this.model.verify({
-      'by': userID
+      'by': this.get('currentUser.user.id')
     });
     this.store.pushPayload('round', round);
     this.get('flashMessages').success("Verified!");
