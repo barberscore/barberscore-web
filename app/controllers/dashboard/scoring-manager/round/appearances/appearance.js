@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   openModal: false,
@@ -76,6 +77,14 @@ export default Ember.Controller.extend({
           return item;
         });
   }),
+  scratchAppearance: task(function *() {
+    let appearance = yield this.model.scratch({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('scratch', scratch);
+    this.set('openModal', false);
+    this.get('flashMessages').success("Scratched!");
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

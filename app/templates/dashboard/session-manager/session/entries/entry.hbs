@@ -213,6 +213,14 @@
                 Accept Entry
               {{/if}}
             {{/bs-button}}
+          {{else if (eq model.status 'Accepted')}}
+            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+              {{#if scratchEntry.isRunning}}
+                Scratching {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Scratch Entry
+              {{/if}}
+            {{/bs-button}}
           {{else}}
             &nbsp;
           {{/if}}

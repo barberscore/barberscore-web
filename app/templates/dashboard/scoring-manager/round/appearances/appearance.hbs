@@ -1,6 +1,6 @@
 <section>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
+    <div class='panel-heading fixed-panel-header'>
       <ul class='list-inline pull-right'>
         <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
@@ -87,34 +87,52 @@
               </tr>
             {{/each}}
           </tbody>
-          {{!-- <tfoot>
-            <tr>
-              <td colspan=2>
-              </td>
-              <td>
-                {{#bs-button type="primary" }}Verify{{/bs-button}}
-              </td>
-            </tr>
-          </tfoot> --}}
         </table>
       </div>
     </div>
+    <div class='panel-footer fixed-panel-footer'>
+      {{#if model.permissions.write}}
+        {{#if (eq model.status 'New')}}
+          {{#bs-button type='primary' onClick=(perform verifyAppearance)}}
+            {{#if verifyAppearance.isRunning}}
+              Verifying {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Verify Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Verified')}}
+          {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+            {{#if scratchEntry.isRunning}}
+              Scratch {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Scratch Entry
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Submitted')}}
+          {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+            {{#if acceptEntry.isRunning}}
+              Accepting {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Accept Entry
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Accepted')}}
+          {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+            {{#if scratchEntry.isRunning}}
+              Scratching {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Scratch Entry
+            {{/if}}
+          {{/bs-button}}
+        {{else}}
+          &nbsp;
+        {{/if}}
+      {{/if}}
+      <div class='pull-right'>
+        <h4>
+          Entry Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+    </div>
   </div>
-</section>
-<section>
-  {{#bs-button onClick=(action (mut openModal) true) type='primary'}}Verify{{/bs-button}}
-</section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    title="Verify Scores"
-    closeTitle="Cancel"
-    submitTitle="OK"
-    backdropClose=false
-    onSubmit=(action "saveScores")
-  }}
-    <p>
-      The total is: {{sumScores}}
-    </p>
-  {{/bs-modal-simple}}
 </section>

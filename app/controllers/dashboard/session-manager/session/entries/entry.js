@@ -121,6 +121,14 @@ export default Ember.Controller.extend({
     this.set('openModal', false);
     this.get('flashMessages').success("Accepted!");
   }).drop(),
+  scratchEntry: task(function *() {
+    let entry = yield this.model.scratch({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('entry', entry);
+    this.set('openModal', false);
+    this.get('flashMessages').success("Scratched!");
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

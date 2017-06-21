@@ -32,6 +32,7 @@ export default Model.extend({
   invite: memberAction({path: 'invite', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   accept: memberAction({path: 'accept', type: 'post'}),
+  scratch: memberAction({path: 'scratch', type: 'post'}),
 
   published: computed.equal(
     'status',
