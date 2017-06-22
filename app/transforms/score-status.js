@@ -4,6 +4,7 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       0: 'New',
+      10: 'Verified',
       25: 'Cleared',
       30: 'Flagged',
       35: 'Revised',
@@ -15,7 +16,8 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'New': 0,
-      'Cleareed': 25,
+      'Verified': 10,
+      'Cleared': 25,
       'Flagged': 30,
       'Revised': 35,
       'Confirmed': 40,

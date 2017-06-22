@@ -8,10 +8,10 @@ export default DS.Transform.extend({
       12: 'Noncompetitive',
       13: 'Affiliate',
       21: 'Division',
-      41: 'Quartet',
       32: 'Chorus',
       33: 'Very Large Quartet',
       34: 'Mixed Group',
+      41: 'Quartet',
     };
     return map[serialized];
   },
@@ -23,10 +23,10 @@ export default DS.Transform.extend({
       'Noncompetitive': 12,
       'Affiliate': 13,
       'Division': 21,
-      'Quartet': 41,
       'Chorus': 32,
       'Very Large Quartet': 33,
       'Mixed Group': 34,
+      'Quartet': 41,
     };
     return map[deserialized];
   }
