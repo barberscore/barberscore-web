@@ -1131,6 +1131,13 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bootstrap-daterangepicker@^2.1.25:
+  version "2.1.25"
+  resolved "https://registry.yarnpkg.com/bootstrap-daterangepicker/-/bootstrap-daterangepicker-2.1.25.tgz#fcd8ba0b755a054d330d7a3b7c4dd8bb855cffb7"
+  dependencies:
+    jquery ">=1.10"
+    moment "^2.9.0"
+
 bootstrap@^3.3:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
@@ -1459,7 +1466,7 @@ broccoli-sri-hash@^2.1.0:
     sri-toolbox "^0.2.0"
     symlink-or-copy "^1.0.1"
 
-broccoli-stew@^1.0.4, broccoli-stew@^1.2.0, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2:
+broccoli-stew@^1.0.4, broccoli-stew@^1.2.0, broccoli-stew@^1.3.3, broccoli-stew@^1.4.0, broccoli-stew@^1.4.2, broccoli-stew@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/broccoli-stew/-/broccoli-stew-1.5.0.tgz#d7af8c18511dce510e49d308a62e5977f461883c"
   dependencies:
@@ -2206,7 +2213,7 @@ ember-cli-app-version@^3.0.0:
     ember-cli-htmlbars "^1.0.0"
     git-repo-version "0.4.1"
 
-ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7, ember-cli-babel@^5.1.8:
+ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cli-babel@^5.1.7, ember-cli-babel@^5.1.8, ember-cli-babel@^5.2.4:
   version "5.2.4"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-5.2.4.tgz#5ce4f46b08ed6f6d21e878619fb689719d6e8e13"
   dependencies:
@@ -2254,6 +2261,17 @@ ember-cli-build-config-editor@^0.5.0:
   resolved "https://registry.yarnpkg.com/ember-cli-build-config-editor/-/ember-cli-build-config-editor-0.5.0.tgz#e19a06f4da2e3e579b407964b72df9fbf3839f4b"
   dependencies:
     recast "^0.12.0"
+
+ember-cli-daterangepicker@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-daterangepicker/-/ember-cli-daterangepicker-0.5.0.tgz#f61b3d208b5f7f0fbf184322c4f0747d0621d60b"
+  dependencies:
+    bootstrap-daterangepicker "^2.1.25"
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^2.0.0"
+    ember-cli-babel "^5.2.4"
+    ember-cli-htmlbars "^1.1.1"
+    fastboot-transform "^0.1.0"
 
 ember-cli-dependency-checker@^1.3.0:
   version "1.4.0"
@@ -2345,15 +2363,16 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
-ember-cli-moment-shim@^3.1.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.3.0.tgz#420ea29a81d7c03410ee988d0d7e36b49b2b283d"
+ember-cli-moment-shim@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.3.1.tgz#5868095247ca3df6cf24ee413889423342e39549"
   dependencies:
     broccoli-funnel "^1.1.0"
     broccoli-merge-trees "^2.0.0"
     broccoli-stew "^1.4.0"
     chalk "^1.1.3"
     ember-cli-babel "^5.1.7"
+    ember-cli-import-polyfill "^0.2.0"
     exists-sync "^0.0.4"
     lodash.defaults "^4.2.0"
     moment "^2.18.1"
@@ -3393,6 +3412,12 @@ fast-sourcemap-concat@^1.0.1:
     source-map "^0.4.2"
     source-map-url "^0.3.0"
 
+fastboot-transform@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/fastboot-transform/-/fastboot-transform-0.1.0.tgz#c00c3c4f376b4e788278cec5cb8d35488e083c07"
+  dependencies:
+    broccoli-stew "^1.5.0"
+
 faye-websocket@~0.10.0:
   version "0.10.0"
   resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
@@ -4255,7 +4280,7 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-"jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.1.1:
+jquery@>=1.10, "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@^3.1.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -4894,7 +4919,7 @@ moment-timezone@~0.5.11:
   dependencies:
     moment ">= 2.9.0"
 
-"moment@>= 2.6.0", "moment@>= 2.9.0", moment@^2.10, moment@^2.18.1:
+"moment@>= 2.6.0", "moment@>= 2.9.0", moment@^2.10, moment@^2.18.1, moment@^2.9.0:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 

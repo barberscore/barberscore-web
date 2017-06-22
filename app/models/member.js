@@ -12,6 +12,7 @@ export default Model.extend({
   person: DS.belongsTo('person', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
+
   statusOptions: [
     'New',
     'Active',

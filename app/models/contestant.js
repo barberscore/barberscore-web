@@ -4,8 +4,17 @@ import DS from 'ember-data';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('contestant-status'),
-  contest: DS.belongsTo('contest', {async: true}),
+  rank: DS.attr('number'),
+  mus_points: DS.attr('number'),
+  per_points: DS.attr('number'),
+  sng_points: DS.attr('number'),
+  tot_points: DS.attr('number'),
+  mus_score: DS.attr('number'),
+  per_score: DS.attr('number'),
+  sng_score: DS.attr('number'),
+  tot_score: DS.attr('number'),
   entry: DS.belongsTo('entry', {async: true}),
+  contest: DS.belongsTo('contest', {async: true}),
   permissions: DS.attr(),
 
   statusOptions: [

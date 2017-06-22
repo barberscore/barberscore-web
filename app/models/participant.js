@@ -5,6 +5,7 @@ import DS from 'ember-data';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('participant-status'),
+  part: DS.attr('participant-part'),
   entry: DS.belongsTo('entry', {async: true}),
   member: DS.belongsTo('member', {async: true}),
   permissions: DS.attr(),

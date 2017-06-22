@@ -11,11 +11,12 @@ const Validations = buildValidations({
 export default Model.extend(Validations, {
   nomen: DS.attr('string'),
   status: DS.attr('repertory-status'),
-  chart: DS.belongsTo('chart', {async: true}),
   entity: DS.belongsTo('entity', {async: true}),
+  chart: DS.belongsTo('chart', {async: true}),
+  permissions: DS.attr(),
+
   validateRepertory: memberAction({path: 'validate', type: 'post'}),
   invalidate: memberAction({path: 'invalidate', type: 'post'}),
-  permissions: DS.attr(),
 
   statusOptions: [
     'New',

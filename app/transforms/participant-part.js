@@ -3,18 +3,22 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
-      '-10': 'Inactive',
-      '0': 'New',
-      '10': 'Active',
+      '-1': 'Director',
+      1: 'Tenor',
+      2: 'Lead',
+      3: 'Baritone',
+      4: 'Bass',
     };
     return map[serialized];
   },
 
   serialize: function(deserialized) {
     var map = {
-      'New': '0',
-      'Active': '10',
-      'Inactive': '-10',
+      'Director': '-1',
+      'Tenor': 1,
+      'Lead': 2,
+      'Baritone': 3,
+      'Bass': 4,
     };
     return map[deserialized];
   }

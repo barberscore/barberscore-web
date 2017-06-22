@@ -5,14 +5,13 @@ import DS from 'ember-data';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('assignment-status'),
-  category: DS.attr('assignment-category'),
-  // designation: DS.attr('string'),
   kind: DS.attr('assignment-kind'),
-  slot: DS.attr('number'),
+  category: DS.attr('assignment-category'),
   round: DS.belongsTo('round', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
+
   categorySort: Ember.computed(
     'category',
     'categoryOptions',

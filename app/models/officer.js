@@ -7,11 +7,12 @@ export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('officer-status'),
   start_date: DS.attr('isodate'),
-  finish_date: DS.attr('isodate'),
+  end_date: DS.attr('isodate'),
   office: DS.belongsTo('office', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   entity: DS.belongsTo('entity', {async: true}),
   permissions: DS.attr(),
+
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 

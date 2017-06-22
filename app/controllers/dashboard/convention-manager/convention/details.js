@@ -28,6 +28,11 @@ export default Ember.Controller.extend({
     yield this.get('model').save();
   }).restartable(),
   actions: {
+    setDateRange(foo, bar) {
+      this.model.set('date_range.lower', foo);
+      this.model.set('date_range.upper', bar);
+      this.model.save();
+    },
     newConvention() {
       let newConvention = this.store.createRecord(
         'convention'

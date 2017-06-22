@@ -8,6 +8,24 @@
       property='name'
       onChange=(perform autosave 'name')
     }}
+    {{!-- {{#form.element}}
+      {{date-range-picker
+        label='Convention Dates'
+        placeholder='Foobar'
+        start=model.date_range.lower
+        end=model.date_range.upper
+        applyAction=(action 'setDateRange')
+      }}
+    {{/form.element}}
+    {{#form.element}}
+      {{date-range-picker
+        label='Contest Entry Dates'
+        placeholder='Foobar'
+        start=model.entry_range.lower
+        end=model.entry_range.upper
+        applyAction=(action 'setDateRange')
+      }}
+    {{/form.element}} --}}
     {{#form.element}}
       {{#power-select
         renderInPlace=true

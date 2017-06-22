@@ -8,7 +8,6 @@ export default Model.extend({
   status: DS.attr('office-status'),
   kind: DS.attr('office-kind'),
   short_name: DS.attr('string'),
-  long_name: DS.attr('string'),
   officers: DS.hasMany('officer', {async: true}),
   permissions: DS.attr(),
 

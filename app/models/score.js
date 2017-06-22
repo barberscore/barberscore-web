@@ -6,8 +6,8 @@ const {computed} = Ember;
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('score-status'),
-  kind: DS.attr('score-kind'),
   category: DS.attr('score-category'),
+  kind: DS.attr('score-kind'),
   num: DS.attr('number'),
   points: DS.attr('number'),
   original: DS.attr('number'),

@@ -6,13 +6,12 @@ import {memberAction} from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('contest-status'),
-  cycle: DS.attr('number'),
   is_qualifier: DS.attr('boolean'),
   kind: DS.attr('contest-kind'),
-  contestants: DS.hasMany('contestant', {async: true}),
-  primary_contest: DS.belongsTo('session', {async: true, inverse: 'primary'}),
-  award: DS.belongsTo('award', {async: true}),
+  champion: DS.belongsTo('entry', {async: true}),
   session: DS.belongsTo('session', {async: true}),
+  award: DS.belongsTo('award', {async: true}),
+  contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
   build: memberAction({path: 'build'}),
