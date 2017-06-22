@@ -17,7 +17,6 @@
           <th {{action 'sortBy' 'start_date'}}>Start</th>
           <th {{action 'sortBy' 'end_date'}}>End</th>
           <th {{action 'sortBy' 'panel'}}>Panel</th>
-          <th>Risers</th>
           <th {{action 'sortBy' 'status'}}>Status</th>
           {{!-- <th>Actions</th> --}}
         </tr>
@@ -35,7 +34,6 @@
             <td>{{moment-format convention.start_date 'L'}}</td>
             <td>{{moment-format convention.end_date 'L'}}</td>
             <td>{{convention.panel}}</td>
-            <td>{{convention.risers}}</td>
             <td>{{convention.status}}</td>
             {{!-- <td>{{fa-icon 'times-circle' class='text-danger'}}</td> --}}
           </tr>

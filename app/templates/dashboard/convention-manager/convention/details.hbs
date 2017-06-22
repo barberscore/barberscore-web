@@ -142,18 +142,5 @@
           Panel: {{panel}}
         {{/power-select}}
     {{/form.element}}
-    {{#form.element property='risers' as |el|}}
-        {{#power-select-multiple
-              options=model.riserOptions
-              selected=el.value
-              onchange=(perform autosave 'risers')
-              placeholder="Choose Riser Options"
-              disabled=false
-              allowClear=true
-              as |risers|
-        }}
-          Risers: {{risers}}
-        {{/power-select-multiple}}
-    {{/form.element}}
   {{/bs-form}}
 </section>
