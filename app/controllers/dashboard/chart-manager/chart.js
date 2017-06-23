@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     this.get('model').set(property, value);
     yield timeout(1000);
     try {
-      let model = yield this.get('model').save();
+      yield this.get('model').save();
       this.get('flashMessages').success("Saved");
     } catch(e) {
       this.get('flashMessages').danger("Could not save; possible duplicate or empty fields!");
