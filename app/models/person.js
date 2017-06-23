@@ -37,6 +37,13 @@ export default Model.extend({
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
+
+  isML: Ember.computed(
+    'officers.@each.isML', function(){
+      let officers = this.get('officers');
+      return officers.filterBy('isML', true);
+    }),
+
   statusOptions: [
     'New',
     'Active',

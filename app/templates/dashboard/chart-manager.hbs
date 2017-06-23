@@ -16,7 +16,9 @@
       {{/power-select}}
     </div>
     <div class='col-md-offset-4 col-md-2'>
-      {{#bs-button onClick=(action "createChart") type='success'}}Create New Chart{{/bs-button}}
+      {{#if currentUser.user.person.isML}}
+        {{#bs-button onClick=(action "createChart") type='success'}}Create New Chart{{/bs-button}}
+      {{/if}}
     </div>
   </div>
 </section>
