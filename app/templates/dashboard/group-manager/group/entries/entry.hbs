@@ -50,7 +50,7 @@
               {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          {{#if (eq model.entity.kind 'Chorus')}}
+          {{!-- {{#if (eq model.entity.kind 'Chorus')}}
             {{#form.element property='director' useIcons=false as |el|}}
                 {{#power-select
                   search=(perform searchTask)
@@ -77,7 +77,7 @@
                   Co-Director: {{person.common_name}} {{person.bhs_id}}
                 {{/power-select}}
             {{/form.element}}
-          {{/if}}
+          {{/if}} --}}
         {{/bs-form}}
       </section>
       <section>
