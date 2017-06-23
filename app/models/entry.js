@@ -10,6 +10,7 @@ export default Model.extend({
   is_evaluation: DS.attr('boolean'),
   is_private: DS.attr('boolean'),
   is_mt: DS.attr('boolean'),
+  draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   rank: DS.attr('number'),

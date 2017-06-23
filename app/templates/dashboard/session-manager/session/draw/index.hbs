@@ -1,0 +1,59 @@
+<section>
+  {{#if (eq model.status 'Closed')}}
+    <div class='row'>
+      <div class='col-md-12'>
+        {{#if isSorting}}
+          {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
+          {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
+        {{else}}
+          {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
+        {{/if}}
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Number</th>
+              <th class='col-md-4'>Name</th>
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Rearrange</th>
+            </tr>
+          </thead>
+            {{#if isSorting}}
+              {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+                {{#each sortedEntries as |item|}}
+                  {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                    <td>
+                      {{item.draw}}
+                    </td>
+                    <td>
+                      {{item.entity.name}}{{#if item.is_mt}}&nbsp;*MT{{/if}}
+                    </td>
+                    <td>{{item.status}}</td>
+                    <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
+                  {{/sortable-item}}
+                {{/each}}
+              {{/sortable-group}}
+            {{else}}
+              <tbody>
+                {{#each sortedEntries as |entry|}}
+                  <tr>
+                    <td>{{entry.draw}}</td>
+                    <td>{{entry.entity.name}}{{#if entry.is_mt}}&nbsp;*MT{{/if}}</td>
+                    <td>{{entry.status}}</td>
+                    <td></td>
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td>(No entries.)</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            {{/if}}
+        </table>
+      </div>
+    </div>
+  {{else}}
+  <h4>
+    The Session can only be Drawn from the "Closed" state.
+  </h4>
+  {{/if}}
+</section>

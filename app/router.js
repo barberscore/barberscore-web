@@ -30,6 +30,8 @@ Router.map(function() {
         this.route('entries', { path: 'entries'}, function() {
           this.route('entry', { path: ':entry_id'});
         });
+        this.route('draw', { path: 'draw'}, function(){
+        });
       });
     });
     this.route('scoring-manager', {path: 'scoring-manager'}, function() {

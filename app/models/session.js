@@ -27,7 +27,7 @@ export default Model.extend({
   conventionIsActive: Ember.computed.alias('convention.isActive'),
   statusOptions: [
     'New',
-    'Listed',
+    'Scheduled',
     'Opened',
     'Closed',
     'Validated',

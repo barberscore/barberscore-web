@@ -21,6 +21,9 @@
           {{#nav.link-to "dashboard.session-manager.session.entries"}}Entries{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
+          {{#nav.link-to "dashboard.session-manager.session.draw"}}Draw{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
           {{#nav.link-to "dashboard.session-manager.session.contests"}}Contests{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
@@ -28,7 +31,7 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
+        {{#if (eq model.status 'Scheduled')}}
           {{#bs-button type='primary' onClick=(perform openSession)}}
             {{#if openSession.isRunning}}
               Opening {{fa-icon "spinner" spin=true}}
