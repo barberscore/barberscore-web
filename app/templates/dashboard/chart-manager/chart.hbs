@@ -1,37 +1,58 @@
-<section>
+{{!-- <section>
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-</section>
+</section> --}}
 <section>
   <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4 class='pull-right'>
-        Status: <strong>{{model.status}}</strong>
-      </h4>
+    <div class='panel-heading fixed-panel-header'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
       <h4>
         {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
       <section>
-        {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveChart") as |form|}}
-          {{form.element controlType='text' placeholder='Title' disabled=isDisabled property='title'}}
-          {{form.element controlType='text' placeholder='BHS ID' disabled=true property='bhs_id'}}
-          {{form.element controlType='textarea' placeholder='Arrangers' disabled=isDisabled property='arrangers'}}
-          {{form.element controlType='textarea' placeholder='Composers' disabled=isDisabled property='composers'}}
-          {{form.element controlType='textarea' placeholder='Lyricists' disabled=isDisabled property='lyricists'}}
-          {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}}
-          {{#if model.permissions.write}}
-            {{#form.element}}
-              {{#if isEditing}}
-                {{#bs-button onClick=(action 'cancelChart')}}Cancel{{/bs-button}}
-                {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-              {{else}}
-                {{#bs-button onClick=(action 'editChart')}}Edit{{/bs-button}}
-              {{/if}}
-            {{/form.element}}
-          {{/if}}
+        {{#bs-form formLayout="vertical" model=model as |form|}}
+          {{form.element controlType='text' placeholder='Title' disabled=isDisabled property='title' onChange=(perform autosave 'title')}}
+          {{form.element controlType='text' placeholder='Arrangers' disabled=isDisabled property='arrangers' onChange=(perform autosave 'arrangers')}}
+          {{form.element controlType='text' placeholder='Composers' disabled=isDisabled property='composers' onChange=(perform autosave 'composers')}}
+          {{form.element controlType='text' placeholder='Lyricists' disabled=isDisabled property='lyricists' onChange=(perform autosave 'lyricists')}}
+          {{!-- {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}} --}}
         {{/bs-form}}
       </section>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <div class='pull-right'>
+        <h4>
+          Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+      <div>
+        {{#if model.permissions.write}}
+          <ul class='list-inline'>
+            {{#if (or (eq model.status 'New')(eq model.status 'Inactive'))}}
+              <li>{{#bs-button type='primary'  disabled=model.isError onClick=(perform activateChart)}}
+                {{#if activateChart.isRunning}}
+                  Activating {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Activate Chart
+                {{/if}}
+              {{/bs-button}}</li>
+            {{/if}}
+            {{#if (or (eq model.status 'New')(eq model.status 'Active'))}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform dectivateChart)}}
+                {{#if dectivateChart.isRunning}}
+                  Deactivating {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Deactivate Chart
+                {{/if}}
+              {{/bs-button}}</li>
+            {{/if}}
+          </ul>
+        {{/if}}
+      </div>
     </div>
   </div>
 </section>
