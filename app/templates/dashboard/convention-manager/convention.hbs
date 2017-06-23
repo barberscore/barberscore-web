@@ -23,26 +23,28 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' disabled=model.isError onClick=(perform scheduleConvention)}}
-            {{#if scheduleConvention.isRunning}}
-              Scheduling {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Schedule Convention
-            {{/if}}
-          {{/bs-button}}
+      <div>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(perform scheduleConvention)}}
+              {{#if scheduleConvention.isRunning}}
+                Scheduling {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Schedule Convention
+              {{/if}}
+            {{/bs-button}}
+          {{/if}}
+          {{!-- {{else if (eq model.status 'Scheduled')}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(perform openConvention)}}
+              {{#if openConvention.isRunning}}
+                Opening {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Open Convention
+              {{/if}}
+            {{/bs-button}}
+          {{/if}} --}}
         {{/if}}
-        {{#if (eq model.status 'Scheduled')}}
-          {{#bs-button type='primary' disabled=model.isError onClick=(perform openConvention)}}
-            {{#if openConvention.isRunning}}
-              Opening {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Open Convention
-            {{/if}}
-          {{/bs-button}}
-        {{/if}}
-      {{/if}}
+      </div>
       <div class='pull-right'>
         <h4>Convention Status: <strong>{{model.status}}</strong></h4>
       </div>
