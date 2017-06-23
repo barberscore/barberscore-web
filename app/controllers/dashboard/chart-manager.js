@@ -24,5 +24,8 @@ export default Ember.Controller.extend({
     transitionChart(selected) {
       this.transitionToRoute('dashboard.chart-manager.chart', selected);
     },
+    createChart() {
+      this.transitionToRoute('dashboard.chart-manager.new');
+    },
   }
 });

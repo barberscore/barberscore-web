@@ -1,0 +1,38 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>(New Chart)</h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-form
+        formLayout="vertical"
+        model=model
+        onSubmit=(action "saveChart")
+        as |form|
+      }}
+        {{form.element
+          controlType='text'
+          placeholder='Title'
+          property='title'
+        }}
+        {{form.element
+          controlType='text'
+          placeholder='Arranger(s)'
+          property='arrangers'
+        }}
+        {{form.element
+          controlType='text'
+          placeholder='Composer(s)'
+          property='composers'
+        }}
+        {{form.element
+          controlType='text'
+          placeholder='Lyricist(s)'
+          property='lyricists'
+        }}
+        {{#bs-button type="default" onClick=(action 'cancelChart')}}Cancel{{/bs-button}}
+        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+      {{/bs-form}}
+    </div>
+  </div>
+</section>
