@@ -8,8 +8,13 @@ export default Ember.Controller.extend({
     'draw:asc',
   ],
   sortedEntries: Ember.computed.sort(
-    'model.entries',
+    'filteredEntries',
     'entrySortProperties'
+  ),
+  filteredEntries: Ember.computed.filterBy(
+    'model.entries',
+    'status',
+    'Accepted'
   ),
   actions: {
     reorderItems(itemModels) {
