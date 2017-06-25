@@ -82,8 +82,21 @@ export default Ember.Controller.extend({
       'by': this.get('currentUser.user.id')
     });
     this.store.pushPayload('appearance', appearance);
-    this.set('openModal', false);
     this.get('flashMessages').success("Scratched!");
+  }).drop(),
+  startAppearance: task(function *() {
+    let appearance = yield this.model.start({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('appearance', appearance);
+    this.get('flashMessages').success("Started!");
+  }).drop(),
+  finishAppearance: task(function *() {
+    let appearance = yield this.model.finish({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('appearance', appearance);
+    this.get('flashMessages').success("Finished!");
   }).drop(),
   actions: {
     previousItem(cursor) {

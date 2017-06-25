@@ -9,6 +9,10 @@
         {{model.entry.entity.name}} {{#if hasVariance}} <span class="label label-danger">Variance Detected</span>{{/if}}
       </h4>
     </div>
+    <div>
+      Start:  {{moment-format model.actual_start 'LLL'}}
+      Finish:  {{moment-format model.actual_finish 'LLL'}}
+    </div>
     <div class='panel-body'>
       <div class='table-responsive'>
         <table class='table'>
@@ -92,7 +96,23 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
+        {{#if (eq model.status 'Scheduled')}}
+          {{#bs-button type='primary' onClick=(perform startAppearance)}}
+            {{#if startAppearance.isRunning}}
+              Starting {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Start Appearance
+            {{/if}}
+          {{/bs-button}}
+          {{else if (eq model.status 'Started')}}
+          {{#bs-button type='primary' onClick=(perform finishAppearance)}}
+            {{#if finishAppearance.isRunning}}
+              Finishing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Finish Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Finished')}}
           {{#bs-button type='primary' onClick=(perform verifyAppearance)}}
             {{#if verifyAppearance.isRunning}}
               Verifying {{fa-icon "spinner" spin=true}}
@@ -100,37 +120,11 @@
               Verify Appearance
             {{/if}}
           {{/bs-button}}
-        {{else if (eq model.status 'Verified')}}
-          {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-            {{#if scratchEntry.isRunning}}
-              Scratch {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Scratch Entry
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Submitted')}}
-          {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-            {{#if acceptEntry.isRunning}}
-              Accepting {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Accept Entry
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Accepted')}}
-          {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-            {{#if scratchEntry.isRunning}}
-              Scratching {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Scratch Entry
-            {{/if}}
-          {{/bs-button}}
-        {{else}}
-          &nbsp;
         {{/if}}
       {{/if}}
       <div class='pull-right'>
         <h4>
-          Entry Status: <strong>{{model.status}}</strong>
+          Appearance Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
     </div>
