@@ -55,11 +55,15 @@
               Verify Session
             {{/if}}
           {{/bs-button}}
-        {{else}}
-          &nbsp;
+        {{else if (eq model.status 'Verified')}}
+          {{#bs-button type='primary' onClick=(perform startSession)}}
+            {{#if startSession.isRunning}}
+              Starting {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Start Session
+            {{/if}}
+          {{/bs-button}}
         {{/if}}
-      {{else}}
-        &nbsp;
       {{/if}}
       <div class='pull-right'>
         <h4>

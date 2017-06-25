@@ -34,6 +34,17 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Verification Failed; Please check your entry.");
     }
   }).drop(),
+  startSession: task(function *() {
+    try {
+      let session = yield this.model.start({
+        'by': this.get('currentUser.user.id')
+      });
+      this.store.pushPayload('session', session);
+      this.get('flashMessages').success("Started!");
+    } catch(e) {
+      this.get('flashMessages').danger("Session Start Failed; Please check your entry.");
+    }
+  }).drop(),
   sortedItemsSortProperties: [
     'nomen',
   ],
