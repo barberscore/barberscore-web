@@ -1,36 +1,42 @@
 <section>
-  <ul class='list-unstyled'>
-    <li>Primary Award: {{primaryCP.award.name}}</li>
-    <li>Number Rounds: {{model.num_rounds}}</li>
-    <li>New Entries: {{model.newEntriesCount}}</li>
-    <li>Invited Entries: {{model.invitedEntriesCount}}</li>
-    <li>Submitted Entries: {{model.submittedEntriesCount}}</li>
-    <li>Accepted Entries: {{model.acceptedEntriesCount}}</li>
-    <li>Scratched Entries: {{model.scratchedEntriesCount}}</li>
-    <li>Total Entries: {{model.totalEntriesCount}}</li>
-  </ul>
-  {{!-- {{#bs-form
-    model=this
-    formLayout='vertical'
-    as |form|
-  }}
-    {{#form.element
-      controlType='text'
-      disabled=true
-      placeholder='Primary Award'
-      property='primaryCP.award.name'
-      as |el|
-    }}
-      Primary Award: {{el.value}}
-    {{/form.element}}
-    {{#form.element
-      controlType='text'
-      disabled=true
-      placeholder='Number Rounds'
-      property='model.num_rounds'
-      as |el|
-    }}
-      Number Rounds: {{el.value}}
-    {{/form.element}}
-  {{/bs-form}} --}}
+  <div class='col-md-4'>
+    <ul class='list-unstyled'>
+      <li>Primary Award: {{primaryCP.award.name}}</li>
+    </ul>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h5>Counts</h5>
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.newEntriesCount}}</span>
+        New Entries
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.invitedEntriesCount}}</span>
+        Invited Entries
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.submittedEntriesCount}}</span>
+        Submitted Entries
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.acceptedEntriesCount}}</span>
+        Accepted Entries
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.scratchedEntriesCount}}</span>
+        Scratched Entries
+      </li>
+      <li class="list-group-item">
+        <span class="badge">{{model.totalEntriesCount}}</span>
+        Total Entries
+      </li>
+    </ul>
+    <h5>
+      Downloads
+    </h5>
+    <ul class='list-unstyled'>
+      <li>Scoresheet: &nbsp;<a href='{{model.scoresheet}}'>{{fa-icon 'download'}}</a></li>
+    </ul>
+  </div>
 </section>

@@ -7,6 +7,8 @@ export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
+  scoresheet: DS.attr('string'),
+  bbscores: DS.attr('string'),
   num_rounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
