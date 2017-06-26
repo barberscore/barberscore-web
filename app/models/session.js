@@ -74,10 +74,17 @@ export default Model.extend({
     'Accepted'
   ),
 
+  scratchedEntries: Ember.computed.filterBy(
+    'entries',
+    'status',
+    'Scratched'
+  ),
+
   newEntriesCount: Ember.computed.alias('newEntries.length'),
   invitedEntriesCount: Ember.computed.alias('invitedEntries.length'),
   submittedEntriesCount: Ember.computed.alias('submittedEntries.length'),
   acceptedEntriesCount: Ember.computed.alias('acceptedEntries.length'),
+  scratchedEntriesCount: Ember.computed.alias('scratchedEntries.length'),
   totalEntriesCount: Ember.computed.alias('entries.length'),
 
   kindSort: Ember.computed(
