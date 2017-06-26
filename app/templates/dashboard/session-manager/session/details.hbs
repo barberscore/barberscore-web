@@ -36,7 +36,9 @@
       Downloads
     </h5>
     <ul class='list-unstyled'>
-      <li>Scoresheet: &nbsp;<a href='{{model.scoresheet}}'>{{fa-icon 'download'}}</a></li>
+      {{#if model.bbscores}}
+        <li>BBScores CSV Export: &nbsp;<a href='{{model.bbscores}}'>{{fa-icon 'file-text-o'}}</a></li>
+      {{/if}}
     </ul>
   </div>
 </section>
