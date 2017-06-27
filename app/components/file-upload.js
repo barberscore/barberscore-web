@@ -21,10 +21,8 @@ export default EmberUploader.FileField.extend({
         model.set('image', data.data.image);
       });
     }
-    uploader.on('didUpload', e => {
-        this.get('flashMessages').success('Uploaded!', {
-          timeout: 7000,
-        });
+    uploader.on('didUpload', () => {
+        this.get('flashMessages').success('Uploaded!');
     });
   }
 });
