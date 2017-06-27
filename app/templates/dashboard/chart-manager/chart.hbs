@@ -19,8 +19,14 @@
           {{form.element controlType='text' placeholder='Arrangers' disabled=isDisabled property='arrangers' onChange=(perform autosave 'arrangers')}}
           {{form.element controlType='text' placeholder='Composers' disabled=isDisabled property='composers' onChange=(perform autosave 'composers')}}
           {{form.element controlType='text' placeholder='Lyricists' disabled=isDisabled property='lyricists' onChange=(perform autosave 'lyricists')}}
+          {{#form.element}}
+            {{#if model.image}}
+              <a href={{model.image}}>{{fa-icon 'file-pdf-o' size=3}}</a>
+            {{/if}}
+          {{/form.element}}
           {{!-- {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}} --}}
         {{/bs-form}}
+        {{file-upload disabled=false resource='chart' target=model.id model=model}}
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>

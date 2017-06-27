@@ -18,6 +18,7 @@ export default Model.extend(Validations, {
   arrangers: DS.attr('string'),
   composers: DS.attr('string'),
   lyricists: DS.attr('string'),
+  image: DS.attr('string'),
   holders: DS.attr('string', {defaultValue:''}),
   repertories: DS.hasMany('repertory', {async: true}),
   songs: DS.hasMany('song', {async: true}),
