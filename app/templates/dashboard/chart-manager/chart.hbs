@@ -21,7 +21,7 @@
           {{form.element controlType='text' placeholder='Lyricists' disabled=isDisabled property='lyricists' onChange=(perform autosave 'lyricists')}}
           {{#form.element}}
             {{#if model.image}}
-              <a href={{model.image}}>{{fa-icon 'file-pdf-o' size=3}}</a>
+              <a href={{model.image}}>{{fa-icon 'file-o' size=3}}&nbsp;{{model.image}}</a>
             {{/if}}
           {{/form.element}}
           {{!-- {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}} --}}
