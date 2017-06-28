@@ -21,6 +21,7 @@ export default Model.extend({
   work_phone: DS.attr('string', {defaultValue:''}),
   cell_phone: DS.attr('string', {defaultValue:''}),
   airports: DS.attr(),
+  image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
   bhs_id: DS.attr('number'),
   common_name: DS.attr('string'),
