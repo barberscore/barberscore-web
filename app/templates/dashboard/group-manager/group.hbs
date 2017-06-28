@@ -6,7 +6,10 @@
     <div class='panel-heading'>
       <div class='row'>
         <div class='col-md-2'>
-          {{!-- Image --}}
+          {{#if model.image}}
+            <img src={{model.image}} class='img-responsive'>
+          {{/if}}
+          Picture: {{file-upload disabled=false resource='entity' target=model.id model=model}}
         </div>
       </div>
       <h4>

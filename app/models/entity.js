@@ -30,6 +30,7 @@ export default Model.extend(Validations, {
   twitter: DS.attr('string'),
   email: DS.attr('string'),
   phone: DS.attr('string'),
+  image: DS.attr('string'),
   description: DS.attr('string'),
   bhs_id: DS.attr('number'),
   org_sort: DS.attr('number'),
