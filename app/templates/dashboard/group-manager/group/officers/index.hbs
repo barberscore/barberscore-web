@@ -6,8 +6,8 @@
           <th class='col-md-3'>Person</th>
           <th>Office</th>
           <th>Start</th>
-          <th>End</th>
-          <th>Status</th>
+          {{!-- <th>End</th> --}}
+          {{!-- <th>Status</th> --}}
         </tr>
       </thead>
       <tbody>
@@ -19,12 +19,12 @@
             <td>
               {{officer.office.name}}
             </td>
-            <td>
+            {{!-- <td>
               {{moment-format officer.start_date 'LL'}}
-            </td>
-            <td>
+            </td> --}}
+            {{!-- <td>
               {{moment-format officer.end_date 'LL'}}
-            </td>
+            </td> --}}
             <td>
               {{officer.status}}
             </td>
@@ -35,6 +35,11 @@
           </tr>
         {{/each}}
       </tbody>
+      <tfoot>
+        <tr>
+        <small>This information is provided by eBiz.</small>
+      </tr>
+      </tfoot>
     </table>
   </div>
 </section>

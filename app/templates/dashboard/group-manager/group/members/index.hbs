@@ -5,8 +5,8 @@
         <tr>
           <th>Person</th>
           <th>Part</th>
-          <th>Start</th>
-          <th>End</th>
+          {{!-- <th>Start</th> --}}
+          {{!-- <th>End</th> --}}
           <th>Status</th>
         </tr>
       </thead>
@@ -19,18 +19,23 @@
             <td>
               {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
             </td>
-            <td>
+            {{!-- <td>
               {{moment-format member.start_date 'LL'}}
-            </td>
-            <td>
+            </td> --}}
+            {{!-- <td>
               {{moment-format member.end_date 'LL'}}
-            </td>
+            </td> --}}
             <td>
               {{member.status}}
             </td>
           </tr>
         {{/each}}
       </tbody>
+      <tfoot>
+        <tr>
+        <small>This information is provided by eBiz.</small>
+      </tr>
+      </tfoot>
     </table>
   </div>
 </section>
