@@ -8,8 +8,12 @@
         <div class='col-md-2'>
           {{#if model.image}}
             <img src={{model.image}} class='img-responsive'>
+          {{else}}
+            <img src='/assets/no_image_available.jpg' class='img-responsive'>
           {{/if}}
-          Picture: {{file-upload disabled=false resource='entity' target=model.id model=model}}
+          {{#if model.permissions.write}}
+            {{file-upload disabled=false resource='chart' target=model.id model=model}}
+          {{/if}}
         </div>
       </div>
       <h4>

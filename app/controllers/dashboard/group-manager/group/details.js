@@ -1,12 +1,13 @@
 import Ember from 'ember';
-// import { task, timeout } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  isDisabled: Ember.computed.not(
+    'model.permissions.write'
+  ),
   location: '',
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
@@ -51,33 +52,14 @@ export default Ember.Controller.extend({
       return this.get('model.representing');
     }
   ),
-  actions: {
-    editGroup() {
-      this.set('isEditing', true);
-    },
-    cancelGroup() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    deleteGroup() {
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.set('isEditing', false);
-        this.transitionToRoute('dashboard.group-manager');
-      });
-    },
-    saveGroup() {
-      this.model.save()
-      .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
-      })
-      .catch((error) => {
-          if (error.errors[0].status === "403") {
-            this.get('flashMessages').danger("You don't have permission to make changes.  Please contact support.");
-          }
-      });
-    },
-  }
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      this.get('flashMessages').danger("Could not save; possible duplicate or empty fields!");
+    }
+  }).restartable(),
 });

@@ -2,7 +2,6 @@
   {{#bs-form
     model=model
     formLayout='vertical'
-    onSubmit=(action 'saveGroup')
     as |form|
   }}
     {{form.element controlType='text' disabled=true placeholder='Group Name' property='name'}}
@@ -17,26 +16,15 @@
           disabled=true
           as |parent|
         }}
-          Home: {{parent.name}}
+          Representing: {{parent.name}}
         {{/power-select}}
     {{/form.element}}
-    {{form.element controlType='text' disabled=true placeholder='Location' property='location'}}
-    {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
-    {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
-    {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
-    {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description' property='description'}}
-    {{#if model.permissions.write}}
-      {{#form.element}}
-        {{#if isEditing}}
-          {{#bs-button onClick=(action 'cancelGroup')}}Cancel{{/bs-button}}
-          {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-          {{!-- {{#bs-button onClick=(action 'deleteGroup') class='pull-right btn-danger'}}Delete{{/bs-button}} --}}
-        {{else}}
-          {{#bs-button onClick=(action 'editGroup')}}Edit{{/bs-button}}
-        {{/if}}
-      {{/form.element}}
-    {{/if}}
+    {{form.element controlType='text' disabled=true placeholder='Location' property='location' onChange=(perform autosave 'location')}}
+    {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website' onChange=(perform autosave 'website')}}
+    {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email' onChange=(perform autosave 'email')}}
+    {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}}
+    {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description - Write a few words to describe your group, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
   {{/bs-form}}
 </section>
