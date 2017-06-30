@@ -1,6 +1,3 @@
-{{!-- <section>
-  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-</section> --}}
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
@@ -15,16 +12,39 @@
     <div class='panel-body'>
       <section>
         {{#bs-form formLayout="vertical" model=model as |form|}}
-          {{form.element controlType='text' placeholder='Title' disabled=isDisabled property='title' onChange=(perform autosave 'title')}}
-          {{form.element controlType='text' placeholder='Arrangers' disabled=isDisabled property='arrangers' onChange=(perform autosave 'arrangers')}}
-          {{form.element controlType='text' placeholder='Composers' disabled=isDisabled property='composers' onChange=(perform autosave 'composers')}}
-          {{form.element controlType='text' placeholder='Lyricists' disabled=isDisabled property='lyricists' onChange=(perform autosave 'lyricists')}}
+          {{form.element
+            controlType='text'
+            placeholder='Title'
+            disabled=isDisabled
+            property='title'
+            onChange=(perform autosave 'title')
+          }}
+          {{form.element
+            controlType='text'
+            placeholder='Arrangers'
+            disabled=isDisabled
+            property='arrangers'
+            onChange=(perform autosave 'arrangers')
+          }}
+          {{form.element
+            controlType='text'
+            placeholder='Composers'
+            disabled=isDisabled
+            property='composers'
+            onChange=(perform autosave 'composers')
+          }}
+          {{form.element
+            controlType='text'
+            placeholder='Lyricists'
+            disabled=isDisabled
+            property='lyricists'
+            onChange=(perform autosave 'lyricists')
+          }}
           {{#form.element}}
             {{#if model.image}}
               <a href={{model.image}}>{{fa-icon 'file-o' size=3}}&nbsp;{{model.image}}</a>
             {{/if}}
           {{/form.element}}
-          {{!-- {{form.element controlType='textarea' placeholder='Copyright Holders' disabled=isDisabled property='holders'}} --}}
         {{/bs-form}}
         {{#if model.permissions.write}}
           {{file-upload disabled=false resource='chart' target=model.id model=model}}

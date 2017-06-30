@@ -3,8 +3,6 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   currentUser: Ember.inject.service('current-user'),
-  flashMessages: Ember.inject.service(),
-  openModal: false,
   sortProperties: [
     'statusSort',
     'nomen',

@@ -1,0 +1,99 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>(New Award)</h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-form
+        model=this
+        formLayout='vertical'
+        onSubmit=(action 'saveAward')
+        as |form|
+      }}
+        {{form.element
+          controlType='text'
+          placeholder='Award Name'
+          property='name'
+        }}
+        {{!-- {{#form.element property='entity' useIcons=false as |el|}}
+          {{#power-select
+            renderInPlace=true
+            options=entityOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Choose Entity"
+            allowClear=true
+            as |entity|
+          }}
+            Entity: {{entity.name}}
+          {{/power-select}}
+        {{/form.element}} --}}
+        {{#form.element property='kind' useIcons=false as |el|}}
+          {{#power-select
+            renderInPlace=true
+            options=kindOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Choose Award Kind"
+            allowClear=true
+            as |kind|
+          }}
+            Kind: {{kind}}
+          {{/power-select}}
+        {{/form.element}}
+        {{!-- {{#form.element property='season' useIcons=false as |el|}}
+          {{#power-select
+            renderInPlace=true
+            options=seasonOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Choose Award Season"
+            allowClear=true
+            as |season|
+          }}
+            Season: {{season}}
+          {{/power-select}}
+        {{/form.element}} --}}
+        {{#form.element property='rounds' useIcons=false as |el|}}
+          {{#power-select
+            renderInPlace=true
+            options=roundOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="Choose Award Rounds"
+            allowClear=true
+            as |rounds|
+          }}
+            Rounds: {{rounds}}
+          {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='is_qualifier' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false}}Championship{{/bg.button}}
+            {{#bg.button type='default' value=true}}Qualifier{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#form.element property='parent' useIcons=false as |el|}}
+          {{#power-select
+            renderInPlace=true
+            options=awardOptions
+            selected=el.value
+            onchange=(action (mut el.value))
+            placeholder="If Qualifier, Choose Award that Qualification is For"
+            allowClear=true
+            as |parent|
+          }}
+            Qualification For: {{parent.name}}
+          {{/power-select}}
+        {{/form.element}}
+        {{#bs-button type="default" onClick=(action 'cancelAward')}}Cancel{{/bs-button}}
+        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+      {{/bs-form}}
+    </div>
+  </div>
+</section>

@@ -2,8 +2,8 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  currentUser: Ember.inject.service(),
   store: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
   chartManager: Ember.inject.controller('dashboard.chart-manager'),
   flashMessages: Ember.inject.service(),
   isDisabled: Ember.computed.not(

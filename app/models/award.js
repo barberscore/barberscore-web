@@ -36,9 +36,8 @@ export default Model.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
-    'Seniors',
-    'Collegiate',
-    'Youth',
+    'Mixed Group',
+    'Very Large Quartet',
   ],
 
   ageOptions: [
@@ -59,6 +58,12 @@ export default Model.extend({
   ],
   scopeOptions: [
     'Plateau 1',
+  ],
+
+  roundOptions: [
+    1,
+    2,
+    3,
   ],
 
   entityKindSort: Ember.computed.alias('entity.kindSort'),

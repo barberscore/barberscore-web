@@ -45,6 +45,12 @@ export default Model.extend({
       return officers.filterBy('isML', true);
     }),
 
+  isDRCJ: Ember.computed(
+    'officers.@each.isDRCJ', function(){
+      let officers = this.get('officers');
+      return officers.filterBy('isDRCJ', true);
+    }),
+
   statusOptions: [
     'New',
     'Active',

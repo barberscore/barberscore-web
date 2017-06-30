@@ -4,10 +4,10 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
   model() {
-    let user = this.get('currentUser.user.id');
+    let user_id = this.get('currentUser.user.id');
     return this.get('store').query('award', {
-      'drcj': user,
-      'page_size': 1000
+      'entity__officers__person__user': user_id,
+      'page_size': 100
     });
   },
 });
