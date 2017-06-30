@@ -1,39 +1,47 @@
-{{model.nomen}}
-{{!-- <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <ul class='list-inline pull-right'>
-        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-      </ul>
-      <h4>
-        {{model.award.name}}
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <div class='table-responsive'>
-        <table class='table'>
-          <caption>Contestants</caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedContestants as |contestant|}}
-              <tr>
-                <td>
-                  {{contestant.entry.entity.name}}
-                </td>
-              </tr>
-            {{else}}
-              <tr>
-                <td>(No contestants entered for this contest.)</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+<section>
+  <section>
+    <div class='panel panel-default'>
+      <div class='panel-heading fixed-panel-header'>
+        <ul class='list-inline pull-right'>
+          {{!-- <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li> --}}
+          {{!-- <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li> --}}
+        </ul>
+        <h4>
+          {{model.nomen}}
+        </h4>
+      </div>
+      <div class='panel-body'>
+        <p>
+          Awards Available
+        </p>
+        {{multiselect-checkboxes
+          options=awardOptions
+          labelProperty='nomen'
+          valueProperty='id'
+          selection=model.selectedAwards
+          updateSelectionValue=false
+          disabled=isDisabled
+          onchange=(action "updateSelection")
+        }}
+      </div>
+      <div class='panel-footer fixed-panel-footer'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' onClick=(perform scheduleSession)}}
+              {{#if scheduleSession.isRunning}}
+                Scheduling {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Schedule Session
+              {{/if}}
+            {{/bs-button}}
+          {{/if}}
+        {{/if}}
+        <div class='pull-right'>
+          <h4>
+            Session Status: <strong>{{model.status}}</strong>
+          </h4>
+        </div>
       </div>
     </div>
-  </div>
-</section> --}}
+  </section>
+</section>

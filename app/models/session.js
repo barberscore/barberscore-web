@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import {memberAction} from 'ember-api-actions';
+const {computed} = Ember;
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -16,6 +17,7 @@ export default Model.extend({
   rounds: DS.hasMany('round', {async: true}),
   permissions: DS.attr(),
 
+  schedule: memberAction({path: 'schedule', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
@@ -123,5 +125,13 @@ export default Model.extend({
     function() {
       return this.get('convention.name');
     }
+  ),
+  awardsArray: computed(
+    'contests.@each.award', function() {
+      return this.get('contests');
+  }),
+  selectedAwards: computed.mapBy(
+    'awardsArray',
+    'award.id'
   ),
 });
