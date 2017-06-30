@@ -12,7 +12,7 @@
             <img src='/assets/no_image_available.jpg' class='img-responsive'>
           {{/if}}
           {{#if model.permissions.write}}
-            {{file-upload disabled=false resource='chart' target=model.id model=model}}
+            {{file-upload disabled=false resource='entity' target=model.id model=model}}
           {{/if}}
         </div>
       </div>

@@ -10,7 +10,7 @@
           options=representingOptions
           selected=el.value
           searchField='name'
-          onchange=(action (mut el.value))
+          onchange=(perform autosave 'parent')
           placeholder="Enter 'Home' District/Division/Affiliate"
           allowClear=true
           disabled=true

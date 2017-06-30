@@ -9,35 +9,12 @@ export default Ember.Controller.extend({
     'model.permissions.write'
   ),
   location: '',
-  entityCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
-      'kind__lt': 20, //TODO Hardcoded
-      'page_size': 100,
-    });
-  }),
-  entityOptionsProperties: [
-    'kindSort:asc',
-    'name:asc',
-  ],
-  entityOptions: Ember.computed.sort(
-    'entityCall',
-    'entityOptionsProperties'
-  ),
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
         'kind__lt': '30',
         'page_size': 100,
       });
-    // }).then((data) => {
-    //   sessions.addObjects(data);
-    // });
-    // return sessions;
   }),
-  // representingFilter: Ember.computed.filterBy(
-  //   'representingCall',
-  //   'kind',
-  //   'Group'
-  // ),
   representingSortProperties: [
     'kindSort:asc',
     'name:asc',

@@ -1,48 +1,40 @@
 <section>
-  <section>
-    {{#bs-form formLayout='vertical' model=model onSubmit=(action 'savePerson') as |form|}}
-      {{#form.element}}
-        {{file-upload disabled=isDisabled resource='person' target=model.id}}
-      {{/form.element}}
-      {{form.element controlType='text' disabled=isDisabled placeholder='Person Name' property='name'}}
-      {{#form.element property='representing' useIcons=false as |el|}}
-        {{#power-select
-          options=representingOptions
-          selected=el.value
-          searchField='name'
-          onchange=(action (mut el.value))
-          placeholder="Enter Home Chapter"
-          allowClear=true
-          disabled=isDisabled
-          as |representing|
-        }}
-          Home Chapter: {{representing.long_name}} {{representing.code}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='birth_date' useIcons=false as |el|}}
-        {{bs-datetimepicker
-          date=el.value
-          format='YYYY-MM-DD'
-          updateDate=(action (mut el.value))
-          placeholder="Birthdate"
-          disabled=isDisabled
-        }}
-      {{/form.element}}
-      {{form.element controlType='text' disabled=isDisabled placeholder='Significant Other' property='spouse'}}
-      {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
-      {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
-      {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
-      {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
-      {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
-      {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
-      {{form.element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
-      {{#if isEditing}}
-        {{#bs-button onClick=(action 'cancelPerson')}}Cancel{{/bs-button}}
-        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-        {{#bs-button type='danger' onClick=(action 'deletePerson') class='pull-right'}}Delete{{/bs-button}}
-      {{else}}
-        {{#bs-button type='default' onClick=(action 'editPerson') disabled=isWrite}}Edit{{/bs-button}}
-      {{/if}}
-    {{/bs-form}}
-  </section>
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{form.element controlType='text' disabled=true placeholder='Person Name' property='name'}}
+    {{form.element controlType='email' disabled=true placeholder='Email' property='email'}}
+    {{#form.element property='birth_date' useIcons=false as |el|}}
+      {{bs-datetimepicker
+        date=el.value
+        format='YYYY-MM-DD'
+        updateDate=(action (mut el.value))
+        placeholder="Birthdate"
+        disabled=true
+      }}
+    {{/form.element}}
+    {{#form.element property='representing' useIcons=false as |el|}}
+      {{#power-select
+        options=representingOptions
+        selected=el.value
+        searchField='name'
+        onchange=(perform autosave 'parent')
+        placeholder="Enter Best Choice for Home Chapter/Division/District"
+        allowClear=true
+        disabled=isDisabled
+        as |representing|
+      }}
+        Home: {{representing.nomen}}
+      {{/power-select}}
+    {{/form.element}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Significant Other' property='spouse' onChange=(perform autosave 'spouse')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location' onChange=(perform autosave 'location')}}
+    {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website' onChange=(perform autosave 'website')}}
+    {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}}
+    {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description - Write a few words to serve as a bio, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
+  {{/bs-form}}
 </section>

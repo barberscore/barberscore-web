@@ -1,42 +1,42 @@
 import Ember from 'ember';
+import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  store: Ember.inject.service(),
+  currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  representingFilter: Ember.computed.filterBy(
-    'model.members',
-    'entityKind',
-    'Chorus'
+  isDisabled: Ember.computed.not(
+    'model.permissions.write'
   ),
-  representingOptions: Ember.computed.mapBy(
-    'representingFilter',
-    'entity'
+  location: '',
+  representingCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+        'kind__lte': '31',
+        'page_size': 100,
+      });
+  }),
+  representingSortProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  representingOptions: Ember.computed.sort(
+    'representingCall',
+    'representingSortProperties'
   ),
-  actions: {
-    editPerson() {
-      this.set('isEditing', true);
-    },
-    cancelPerson() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    deletePerson() {
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard');
-      });
-    },
-    savePerson() {
-      this.model.save()
-      .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
-      })
-      .catch(() => {
-        this.get('flashMessages').danger('Error');
-      });
-    },
-  },
+  representing: Ember.computed(
+    'model.representing',
+    function() {
+      return this.get('model.representing');
+    }
+  ),
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      this.get('flashMessages').danger("Could not save; possible duplicate or empty fields!");
+    }
+  }).restartable(),
 });
