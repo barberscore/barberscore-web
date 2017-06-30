@@ -50,6 +50,7 @@
     "ember-concurrency": "^0.8.3",
     "ember-cp-validations": "^3.3.2",
     "ember-crumbly": "^2.0.0-alpha.1",
+    "ember-file-upload": "^2.0.0-beta.43",
     "ember-font-awesome": "3.0.5",
     "ember-moment": "^7.3.0",
     "ember-multiselect-checkboxes": "0.10.3",
@@ -58,7 +59,6 @@
     "ember-simple-auth-auth0": "https://github.com/XaserAcheron/ember-simple-auth-auth0.git#bower-nix-v1",
     "ember-sortable": "^1.9.3",
     "ember-truth-helpers": "1.3.0",
-    "ember-uploader": "1.2.3",
     "eonasdan-bootstrap-datetimepicker": "4.17.47"
   },
   "engines": {
