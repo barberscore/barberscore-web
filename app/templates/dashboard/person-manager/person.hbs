@@ -16,8 +16,6 @@
             {{/if}}
           {{/if}}
           {{#if model.permissions.write}}
-            {{!-- {{file-upload disabled=false resource='person' target=model.id model=model}} --}}
-            {{!-- {{file-up}} --}}
             {{#file-upload
               name="photos"
               accept="image/*"

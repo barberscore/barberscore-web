@@ -24,6 +24,14 @@ export default Model.extend(Validations, {
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
+  chartPre: Ember.computed(function() {
+    if (this.get('image')) {
+      return this.get('image')+'.png';
+    } else {
+      return null;
+    }
+  }),
+
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 

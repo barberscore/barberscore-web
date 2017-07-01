@@ -40,15 +40,29 @@
             property='lyricists'
             onChange=(perform autosave 'lyricists')
           }}
-          {{#form.element}}
-            {{#if model.image}}
-              <a href={{model.image}}>{{fa-icon 'file-o' size=3}}&nbsp;{{model.image}}</a>
-            {{/if}}
-          {{/form.element}}
         {{/bs-form}}
-        {{#if model.permissions.write}}
-          {{file-upload disabled=false resource='chart' target=model.id model=model}}
-        {{/if}}
+        <div class='col-md-6'>
+          {{#if uploadPhoto.isRunning}}
+            Uploading {{fa-icon "spinner" size=5 spin=true}}
+          {{else}}
+            {{#if model.chartPre}}
+              <a href={{model.image}}><img src={{model.chartPre}} class='img-responsive'></a>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          {{/if}}
+          {{#if model.permissions.write}}
+            {{#file-upload
+              name="photos"
+              accept="image/*"
+              multiple=false
+              disabled=false
+              onfileadd=(perform uploadPhoto)
+            }}
+              <a id="upload-image" tabindex=0><small>Add/Replace Chart</small></a>
+            {{/file-upload}}
+          {{/if}}
+        </div>
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>

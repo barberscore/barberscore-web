@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import config from '../../../config/environment';
 import { task } from 'ember-concurrency';
-const { get } = Ember;
 
 export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
@@ -18,9 +17,4 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
-  actions: {
-    uploadImage(file) {
-      get(this, 'uploadPhoto').perform(file);
-    }
-  }
 });
