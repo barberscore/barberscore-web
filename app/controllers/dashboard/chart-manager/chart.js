@@ -20,7 +20,6 @@ export default Ember.Controller.extend({
       yield this.get('model').save();
       this.get('flashMessages').success("Saved!");
     } catch (e) {
-      console.log(e);
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
