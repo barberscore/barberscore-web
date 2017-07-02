@@ -43,7 +43,9 @@ Router.map(function() {
         this.route('appearances', { path: 'appearances'}, function() {
           this.route('appearance', { path: ':appearance_id'});
         });
-        this.route('actions', {path: 'actions'});
+        this.route('contests', { path: 'contests'}, function() {
+          this.route('contest', { path: ':contest_id'});
+        });
       });
     });
     this.route('judge-manager', {path: 'judge-manager'}, function() {
