@@ -1,3 +1,80 @@
 <section>
-  {{model.nomen}}
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
+      <h4>
+        {{model.person.common_name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <div>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+        {{#form.element property='person' as |el|}}
+            {{#power-select
+              search=(perform searchPerson)
+              selected=el.value
+              onchange=(perform autosave 'person')
+              placeholder="Enter Judge Name"
+              renderInPlace=true
+              allowClear=true
+              as |person|
+            }}
+              Person: {{person.nomen}}
+            {{/power-select}}
+        {{/form.element}}
+        {{/bs-form}}
+      </div>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      {{!-- {{#if model.permissions.write}}
+        {{#unless isDisabled}}
+          {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' onClick=(perform inviteEntry)}}
+              {{#if inviteEntry.isRunning}}
+                Inviting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Invite Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Invited')}}
+            {{#bs-button type='primary' onClick=(perform submitEntry)}}
+              {{#if submitEntry.isRunning}}
+                Submitting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Submit Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Submitted')}}
+            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+              {{#if acceptEntry.isRunning}}
+                Accepting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Accept Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Accepted')}}
+            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+              {{#if scratchEntry.isRunning}}
+                Scratching {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Scratch Entry
+              {{/if}}
+            {{/bs-button}}
+          {{/if}}
+        {{/unless}}
+      {{/if}} --}}
+      <div class='pull-right'>
+        <h4>
+          Panelist Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+    </div>
+  </div>
 </section>

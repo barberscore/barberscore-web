@@ -4,9 +4,9 @@ import DS from 'ember-data';
 
 export default Model.extend({
   nomen: DS.attr('string'),
-  status: DS.attr('assignment-status'),
-  kind: DS.attr('assignment-kind'),
-  category: DS.attr('assignment-category'),
+  status: DS.attr('panelist-status'),
+  kind: DS.attr('panelist-kind'),
+  category: DS.attr('panelist-category'),
   round: DS.belongsTo('round', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   scores: DS.hasMany('score', {async: true}),
