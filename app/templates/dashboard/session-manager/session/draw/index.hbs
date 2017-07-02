@@ -1,20 +1,26 @@
 <section>
-  {{#if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
+  {{#if (or (eq model.status 'New')(eq model.status 'Opened'))}}
+    <h4>
+      The Session can only be Drawn from the "Closed" or "Verified" state.
+    </h4>
+  {{else}}
     <div class='row'>
       <div class='col-md-12'>
-        {{#if isSorting}}
-          {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
-          {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
-        {{else}}
-          {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
-        {{/if}}
+        {{#unless (eq model.status 'Started')}}
+          {{#if isSorting}}
+            {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
+            {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
+          {{else}}
+            {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
+          {{/if}}
+        {{/unless}}
         <table class='table'>
           <thead>
             <tr>
               <th class='col-md-1'>Number</th>
               <th class='col-md-4'>Name</th>
               <th class='col-md-1'>Status</th>
-              <th class='col-md-1'>Rearrange</th>
+              {{#if isSorting}}<th class='col-md-1'>Rearrange</th>{{/if}}
             </tr>
           </thead>
             {{#if isSorting}}
@@ -39,7 +45,6 @@
                     <td>{{entry.draw}}</td>
                     <td>{{entry.entity.name}}{{#if entry.is_mt}}&nbsp;*MT{{/if}}</td>
                     <td>{{entry.status}}</td>
-                    <td></td>
                   </tr>
                 {{else}}
                   <tr>
@@ -51,9 +56,5 @@
         </table>
       </div>
     </div>
-  {{else}}
-  <h4>
-    The Session can only be Drawn from the "Closed" or "Verified" state.
-  </h4>
   {{/if}}
 </section>

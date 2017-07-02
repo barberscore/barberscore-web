@@ -2,18 +2,10 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  collapsed: true,
-  isEditing: false,
-  isDisabled: false,
-  flashMessages: Ember.inject.service(),
-  searchTask: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('person', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
-  }),
+  isDisabled: Ember.computed.equal(
+    'model.session.status',
+    'Started',
+  ),
   searchChart: task(function* (term){
     yield timeout(600);
     return this.get('store').query('chart', {
@@ -22,13 +14,6 @@ export default Ember.Controller.extend({
       })
       .then((data) => data);
   }),
-  entrySortProperties: [
-    'nomen',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.session.entries',
-    'entrySortProperties'
-  ),
   sortedRepertoriesProperties: [
     'nomen',
   ],
@@ -63,26 +48,24 @@ export default Ember.Controller.extend({
   ),
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
-        'kind__lt': '30',
-        'status': 10,
-        'page_size': 100,
-      });
-    // }).then((data) => {
-    //   sessions.addObjects(data);
-    // });
-    // return sessions;
+      'kind__lt': '30',
+      'status': 10,
+      'page_size': 100,
+    });
   }),
-  // representingFilter: Ember.computed.filterBy(
-  //   'representingCall',
-  //   'kind',
-  //   'Quartet'
-  // ),
   representingSortProperties: [
     'nomen:asc',
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',
     'representingSortProperties'
+  ),
+  entrySortProperties: [
+    'nomen',
+  ],
+  sortedItems: Ember.computed.sort(
+    'model.session.entries',
+    'entrySortProperties'
   ),
   isPrevDisabled: Ember.computed(
     'model',
@@ -95,27 +78,24 @@ export default Ember.Controller.extend({
     return this.model == this.get('sortedItems.lastObject');
   }),
   inviteEntry: task(function *() {
-    let userID = this.get('currentUser.user.id');
     let entry = yield this.model.invite({
-      'by': userID
+      'by': this.get('currentUser.user.id'),
     });
     this.store.pushPayload('entry', entry);
     this.set('openModal', false);
     this.get('flashMessages').success("Invited!");
   }).drop(),
   submitEntry: task(function *() {
-    let userID = this.get('currentUser.user.id');
     let entry = yield this.model.submit({
-      'by': userID
+      'by': this.get('currentUser.user.id'),
     });
     this.store.pushPayload('entry', entry);
     this.set('openModal', false);
     this.get('flashMessages').success("Submitted!");
   }).drop(),
   acceptEntry: task(function *() {
-    let userID = this.get('currentUser.user.id');
     let entry = yield this.model.accept({
-      'by': userID
+      'by': this.get('currentUser.user.id'),
     });
     this.store.pushPayload('entry', entry);
     this.set('openModal', false);
@@ -129,6 +109,16 @@ export default Ember.Controller.extend({
     this.set('openModal', false);
     this.get('flashMessages').success("Scratched!");
   }).drop(),
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      this.get('flashMessages').danger("Could not save; possible duplicate or empty fields!");
+    }
+  }).restartable(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -139,37 +129,6 @@ export default Ember.Controller.extend({
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
       this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
-    },
-    editEntry() {
-      this.set('isEditing', true);
-    },
-    cancelEntry() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    deleteEntry() {
-      let session = this.model.session;
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.session-manager.convention.sessions.session', session);
-      });
-    },
-    saveEntry() {
-      this.model.save()
-      .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
-      });
-    },
-    buildEntry() {
-      this.model.build();
-    },
-    scratchEntry() {
-      this.model.scratch();
-    },
-    disqualifyEntry() {
-      this.model.disqualify();
     },
     updateSelection(newSelection, value, operation) {
       if (operation==='added') {

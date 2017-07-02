@@ -35,7 +35,9 @@
   </div>
 </section>
 <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
+  {{#unless (eq model.status 'Started')}}
+    {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Entry{{/bs-button}}
+  {{/unless}}
 </section>
 <section>
   {{#bs-modal-simple

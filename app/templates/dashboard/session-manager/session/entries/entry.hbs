@@ -15,16 +15,14 @@
           {{#bs-form
             formLayout="vertical"
             model=model
-            onSubmit=(action "saveEntry")
             as |form|
           }}
-
             {{#form.element property='representing' useIcons=false as |el|}}
               {{#power-select
                 options=representingOptions
                 selected=el.value
                 searchField='name'
-                onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+                onchange=(perform autosave 'representing')
                 placeholder="Enter District/Division/Affiliate Representation"
                 allowClear=true
                 renderInPlace=true
@@ -38,7 +36,7 @@
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+                onchange=(perform autosave 'is_evaluation')
                 disabled=isDisabled
                 as |bg|
               }}
@@ -50,41 +48,13 @@
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+                onchange=(perform autosave 'is_private')
                 as |bg|
               }}
                 {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
                 {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
               {{/bs-button-group}}
             {{/form.element}}
-            {{#if (eq model.session.kind 'Chorus')}}
-              {{#form.element property='director' useIcons=false as |el|}}
-                  {{#power-select
-                    search=(perform searchTask)
-                    selected=el.value
-                    onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
-                    placeholder="Enter Director Name"
-                    disabled=isDisabled
-                    allowClear=true
-                    as |person|
-                  }}
-                    {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
-                  {{/power-select}}
-              {{/form.element}}
-              {{#form.element property='codirector' useIcons=false as |el|}}
-                  {{#power-select
-                    search=(perform searchTask)
-                    selected=el.value
-                    onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
-                    placeholder="Enter Co-Director Name (if applicable)"
-                    disabled=isDisabled
-                    allowClear=true
-                    as |person|
-                  }}
-                    Co-Director: {{person.common_name}}
-                  {{/power-select}}
-              {{/form.element}}
-            {{/if}}
           {{/bs-form}}
         </div>
         <hr>
@@ -189,41 +159,41 @@
       </div>
       <div class='panel-footer fixed-panel-footer'>
         {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' onClick=(perform inviteEntry)}}
-              {{#if inviteEntry.isRunning}}
-                Inviting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Invite Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Invited')}}
-            {{#bs-button type='primary' onClick=(perform submitEntry)}}
-              {{#if submitEntry.isRunning}}
-                Submitting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Submit Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Submitted')}}
-            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-              {{#if acceptEntry.isRunning}}
-                Accepting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Accept Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Accepted')}}
-            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-              {{#if scratchEntry.isRunning}}
-                Scratching {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Scratch Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else}}
-            &nbsp;
-          {{/if}}
+          {{#unless isDisabled}}
+            {{#if (eq model.status 'New')}}
+              {{#bs-button type='primary' onClick=(perform inviteEntry)}}
+                {{#if inviteEntry.isRunning}}
+                  Inviting {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Invite Entry
+                {{/if}}
+              {{/bs-button}}
+            {{else if (eq model.status 'Invited')}}
+              {{#bs-button type='primary' onClick=(perform submitEntry)}}
+                {{#if submitEntry.isRunning}}
+                  Submitting {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Submit Entry
+                {{/if}}
+              {{/bs-button}}
+            {{else if (eq model.status 'Submitted')}}
+              {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+                {{#if acceptEntry.isRunning}}
+                  Accepting {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Accept Entry
+                {{/if}}
+              {{/bs-button}}
+            {{else if (eq model.status 'Accepted')}}
+              {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+                {{#if scratchEntry.isRunning}}
+                  Scratching {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Scratch Entry
+                {{/if}}
+              {{/bs-button}}
+            {{/if}}
+          {{/unless}}
         {{/if}}
         <div class='pull-right'>
           <h4>
@@ -233,14 +203,4 @@
       </div>
     </div>
   </section>
-  {{!-- <section>
-    {{#bs-button type=default size='xs' onClick=(toggle 'collapsed' this )}}Logs{{/bs-button}}
-    {{#bs-collapse collapsed=collapsed}}
-      <ul>
-        {{#each model.logs as |log|}}
-          <li>{{log.transition}} by {{log.by}}, {{moment-format log.timestamp 'LLL'}}</li>
-        {{/each}}
-      </ul>
-    {{/bs-collapse}}
-  </section> --}}
 </section>
