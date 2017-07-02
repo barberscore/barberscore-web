@@ -35,6 +35,14 @@
               Verify Round
             {{/if}}
           {{/bs-button}}
+        {{else if (eq model.status 'Verified')}}
+          {{#bs-button type='primary' onClick=(perform startRound)}}
+            {{#if startRound.isRunning}}
+              Starting {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Start Round
+            {{/if}}
+          {{/bs-button}}
         {{/if}}
       {{/if}}
       <div class='pull-right'>

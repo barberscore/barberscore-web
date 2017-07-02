@@ -1,25 +1,25 @@
 <section>
   <div class='row'>
     <div class='col-md-12'>
-      {{!-- {{#if isSorting}}
-        {{#bs-button onClick=(action 'saveOrder')}}Save{{/bs-button}}
-      {{else}}
-        {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
-      {{/if}} --}}
+      {{#unless (eq model.status 'Started')}}
+        {{#if isSorting}}
+          {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
+          {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
+        {{else}}
+          {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
+        {{/if}}
+      {{/unless}}
       <table class='table'>
         <thead>
           <tr>
-            <th>OA</th>
-            <th>Name</th>
-            {{!-- <th>Contests</th> --}}
-            {{!-- <th>BHS ID</th> --}}
-            <th>District</th>
-            <th>Status</th>
+            <th class='col-md-1'>OA</th>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-1'>Status</th>
+            {{#if isSorting}}<th class='col-md-1'>Rearrange</th>{{/if}}
           </tr>
         </thead>
-        <tbody>
           {{#if isSorting}}
-            {{#sortable-group onChange="reorderItems" as |group|}}
+            {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
               {{#each sortedAppearances as |item|}}
                 {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
                   <td>
@@ -28,30 +28,27 @@
                   <td>
                     {{item.entry.entity.name}}{{#if item.entry.is_mt}}&nbsp;*MT{{/if}}
                   </td>
-                  <span class="handle">&varr;</span>
+                  <td>{{item.status}}</td>
+                  <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
                 {{/sortable-item}}
               {{/each}}
             {{/sortable-group}}
           {{else}}
-            {{#each sortedAppearances as |appearance|}}
-              <tr>
-                <td>{{appearance.num}}</td>
-                <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}{{/link-to}}</td>
-                {{!-- <td></td> --}}
-                {{!-- <td>{{appearance.entry.entity.bhs_id}}</td> --}}
-                <td>{{appearance.entry.representing.short_name}}</td>
-                <td>{{appearance.status}}</td>
-              </tr>
-            {{else}}
-              <tr>
-                <td>(Round will be empaneled when verified.)</td>
-              </tr>
-            {{/each}}
+            <tbody>
+              {{#each sortedAppearances as |appearance|}}
+                <tr>
+                  <td>{{appearance.num}}</td>
+                  <td>{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}</td>
+                  <td>{{appearance.status}}</td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td>(No entries.)</td>
+                </tr>
+              {{/each}}
+            </tbody>
           {{/if}}
-        </tbody>
       </table>
     </div>
   </div>
-</section>
-<section>
 </section>

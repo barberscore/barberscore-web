@@ -11,6 +11,10 @@ export default Ember.Controller.extend({
     'model.round.panelists',
     'panelistSortProperties'
   ),
+  isDisabled: Ember.computed.equal(
+    'model.round.status',
+    'Started',
+  ),
   isPrevDisabled: Ember.computed(
     'model',
     'sortedItems', function() {

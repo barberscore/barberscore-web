@@ -14,9 +14,8 @@ export default Model.extend({
   slots: DS.hasMany('slot', {async: true}),
   permissions: DS.attr(),
 
-  open: memberAction({path: 'open', type: 'post'}),
-  close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
+  start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
