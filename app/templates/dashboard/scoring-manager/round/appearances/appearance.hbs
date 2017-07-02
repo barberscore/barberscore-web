@@ -6,13 +6,13 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.entry.entity.name}} {{#if hasVariance}} <span class="label label-danger">Variance Detected</span>{{/if}}
+        {{model.entry.entity.name}} {{#if (and hasVariance (eq model.status 'Finished'))}} <span class="label label-danger">Variance Detected</span>{{/if}}
       </h4>
     </div>
-    <div>
+    {{!-- <div>
       Start:  {{moment-format model.actual_start 'LLL'}}
       Finish:  {{moment-format model.actual_finish 'LLL'}}
-    </div>
+    </div> --}}
     <div class='panel-body'>
       <div class='table-responsive'>
         <table class='table'>
@@ -113,11 +113,11 @@
             {{/if}}
           {{/bs-button}}
         {{else if (eq model.status 'Finished')}}
-          {{#bs-button type='primary' onClick=(perform verifyAppearance)}}
-            {{#if verifyAppearance.isRunning}}
-              Verifying {{fa-icon "spinner" spin=true}}
+          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
+            {{#if confirmAppearance.isRunning}}
+              Confirming {{fa-icon "spinner" spin=true}}
             {{else}}
-              Verify Appearance
+              Confirm Appearance
             {{/if}}
           {{/bs-button}}
         {{/if}}

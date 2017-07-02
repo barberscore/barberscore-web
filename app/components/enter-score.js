@@ -3,7 +3,8 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   autosave: task(function* (points){
-    this.get('score').set('points', points);
+    let intPoints = parseInt(points);
+    this.get('score').set('points', intPoints);
     yield timeout(200);
     yield this.get('score').save();
   }).restartable()

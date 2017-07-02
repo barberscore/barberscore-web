@@ -26,11 +26,11 @@ export default Model.extend({
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
-  build: memberAction({path: 'build'}),
   scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
+  confirm: memberAction({path: 'confirm', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
   statusOptions: [
@@ -38,7 +38,7 @@ export default Model.extend({
     'Validated',
     'Started',
     'Finished',
-    'Entered',
+    'Confirmed',
     'Flagged',
     'Cleared',
     'Published',

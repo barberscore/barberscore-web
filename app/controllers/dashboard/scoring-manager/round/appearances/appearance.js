@@ -98,6 +98,13 @@ export default Ember.Controller.extend({
     this.store.pushPayload('appearance', appearance);
     this.get('flashMessages').success("Finished!");
   }).drop(),
+  confirmAppearance: task(function *() {
+    let appearance = yield this.model.confirm({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('appearance', appearance);
+    this.get('flashMessages').success("Confirmed!");
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

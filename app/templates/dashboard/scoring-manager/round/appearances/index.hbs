@@ -38,7 +38,7 @@
               {{#each sortedAppearances as |appearance|}}
                 <tr>
                   <td>{{appearance.num}}</td>
-                  <td>{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}</td>
+                  <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}{{/link-to}}</td>
                   <td>{{appearance.status}}</td>
                 </tr>
               {{else}}
