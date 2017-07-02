@@ -14,8 +14,6 @@ export default Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
-  build: memberAction({path: 'build'}),
-
   statusOptions: [
     'New',
     'Opened',
