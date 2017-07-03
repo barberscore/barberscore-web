@@ -3,7 +3,7 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   sortedContestantsProperties: [
-    'nomen',
+    'entryTotPoints:desc',
   ],
   sortedContestants: Ember.computed.sort(
     'model.contestants',
