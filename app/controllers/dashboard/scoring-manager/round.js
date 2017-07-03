@@ -18,4 +18,11 @@ export default Ember.Controller.extend({
     this.store.pushPayload('round', round);
     this.get('flashMessages').success("Started!");
   }).drop(),
+  finishRound: task(function *() {
+    let round = yield this.model.finish({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('round', round);
+    this.get('flashMessages').success("Finished!");
+  }).drop(),
 });
