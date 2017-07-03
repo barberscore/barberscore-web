@@ -43,6 +43,14 @@
               Start Round
             {{/if}}
           {{/bs-button}}
+        {{else if (eq model.status 'Started')}}
+          {{#bs-button type='primary' onClick=(perform finishRound)}}
+            {{#if finishRound.isRunning}}
+              Finishing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Finish Round
+            {{/if}}
+          {{/bs-button}}
         {{/if}}
       {{/if}}
       <div class='pull-right'>
