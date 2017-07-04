@@ -31,7 +31,7 @@
                       {{item.draw}}
                     </td>
                     <td>
-                      {{item.entity.name}}{{#if item.is_mt}}&nbsp;*MT{{/if}}
+                      {{item.entity.name}}
                     </td>
                     <td>{{item.status}}</td>
                     <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
@@ -43,7 +43,7 @@
                 {{#each sortedEntries as |entry|}}
                   <tr>
                     <td>{{entry.draw}}</td>
-                    <td>{{entry.entity.name}}{{#if entry.is_mt}}&nbsp;*MT{{/if}}</td>
+                    <td>{{entry.entity.name}}</td>
                     <td>{{entry.status}}</td>
                   </tr>
                 {{else}}

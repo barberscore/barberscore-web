@@ -30,11 +30,6 @@ export default Model.extend({
     'Published',
   ],
 
-  songScoreCall: Ember.computed(
-    'scores.@each.id', function() {
-      return this.get('scores');
-    }
-  ),
 
   ascSortProperties: ['points:asc',],
   ascSortedScores: Ember.computed.sort(

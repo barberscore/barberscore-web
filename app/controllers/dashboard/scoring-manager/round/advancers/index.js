@@ -4,17 +4,21 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   isSorting: false,
-  sortedContestsProperties: [
-    'nomen',
+  advancersSortProperties: [
+    'draw:asc',
   ],
-  sortedContests: Ember.computed.sort(
-    'model.session.contests',
-    'sortedContestsProperties'
+  filteredAdvancers: Ember.computed.filterBy(
+    'model.appearances',
+    'isAdvancer'
+  ),
+  sortedAdvancers: Ember.computed.sort(
+    'filteredAdvancers',
+    'advancersSortProperties'
   ),
   actions: {
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        item.set('num', index + 1);
+        item.set('draw', index + 1);
       });
     },
     saveOrder() {

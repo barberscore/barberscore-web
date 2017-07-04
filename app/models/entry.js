@@ -9,7 +9,6 @@ export default Model.extend({
   status: DS.attr('entry-status'),
   is_evaluation: DS.attr('boolean'),
   is_private: DS.attr('boolean'),
-  is_mt: DS.attr('boolean'),
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
@@ -34,6 +33,7 @@ export default Model.extend({
   submit: memberAction({path: 'submit', type: 'post'}),
   accept: memberAction({path: 'accept', type: 'post'}),
   scratch: memberAction({path: 'scratch', type: 'post'}),
+  complete: memberAction({path: 'complete', type: 'post'}),
 
   published: computed.equal(
     'status',

@@ -13,9 +13,8 @@ export default Ember.Controller.extend({
   ),
   actions: {
     reorderItems(itemModels) {
-      let mtCount = this.get('model.mtCount');
       itemModels.forEach(function(item, index) {
-        item.set('num', index - mtCount + 1);
+        item.set('num', index + 1);
       });
     },
     saveOrder() {

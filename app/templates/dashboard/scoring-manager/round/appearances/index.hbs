@@ -1,7 +1,7 @@
 <section>
   <div class='row'>
     <div class='col-md-12'>
-      {{#unless (eq model.status 'Started')}}
+      {{#unless (or (eq model.status 'Started')(eq model.status 'Finished'))}}
         {{#if isSorting}}
           {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
           {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
@@ -26,10 +26,14 @@
                     {{item.num}}
                   </td>
                   <td>
-                    {{item.entry.entity.name}}{{#if item.entry.is_mt}}&nbsp;*MT{{/if}}
+                    {{item.entry.entity.name}}
                   </td>
-                  <td>{{item.status}}</td>
-                  <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
+                  <td>
+                    {{item.status}}
+                  </td>
+                  <td>
+                    <span class="handle" data-item="{{item}}">&vArr;</span>
+                  </td>
                 {{/sortable-item}}
               {{/each}}
             {{/sortable-group}}
@@ -37,9 +41,15 @@
             <tbody>
               {{#each sortedAppearances as |appearance|}}
                 <tr>
-                  <td>{{appearance.num}}</td>
-                  <td>{{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{#if appearance.entry.is_mt}}&nbsp;*MT{{/if}}{{/link-to}}</td>
-                  <td>{{appearance.status}}</td>
+                  <td>
+                    {{appearance.num}}
+                  </td>
+                  <td>
+                    {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{appearance.status}}
+                  </td>
                 </tr>
               {{else}}
                 <tr>

@@ -19,8 +19,14 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.scoring-manager.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
-        {{#nav.item}}
+        {{!-- {{#nav.item}}
           {{#nav.link-to "dashboard.scoring-manager.round.contests"}}Contests{{/nav.link-to}}
+        {{/nav.item}} --}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.scoring-manager.round.advancers"}}Advancers{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.scoring-manager.round.finishers"}}Finishers{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}
@@ -49,6 +55,14 @@
               Finishing {{fa-icon "spinner" spin=true}}
             {{else}}
               Finish Round
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Finished')}}
+          {{#bs-button type='primary' onClick=(perform publishRound)}}
+            {{#if publishRound.isRunning}}
+              Publishing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Publish Round
             {{/if}}
           {{/bs-button}}
         {{/if}}

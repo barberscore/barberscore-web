@@ -52,11 +52,6 @@ export default Model.extend({
     3,
   ],
 
-  mtEntries: Ember.computed.filterBy(
-    'entries',
-    'is_mt'
-  ),
-  mtCount: Ember.computed.alias('mtEntries.length'),
   newEntries: Ember.computed.filterBy(
     'entries',
     'status',

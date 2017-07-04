@@ -43,5 +43,4 @@ export default Model.extend({
   ),
   sessionConventionStartDate: Ember.computed.alias('session.convention.start_date'),
   sessionKindSort: Ember.computed.alias('session.kindSort'),
-  mtCount: Ember.computed.alias('session.mtCount'),
 });

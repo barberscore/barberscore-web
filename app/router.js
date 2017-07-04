@@ -46,6 +46,10 @@ Router.map(function() {
         this.route('contests', { path: 'contests'}, function() {
           this.route('contest', { path: ':contest_id'});
         });
+        this.route('advancers', { path: 'advancers'}, function(){
+        });
+        this.route('finishers', { path: 'finishers'}, function(){
+        });
       });
     });
     this.route('judge-manager', {path: 'judge-manager'}, function() {

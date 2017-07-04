@@ -8,6 +8,7 @@ export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('appearance-status'),
   num: DS.attr('number'),
+  draw: DS.attr('number'),
   actual_start: DS.attr('date'),
   actual_finish: DS.attr('date'),
   is_advancing: DS.attr('boolean'),
@@ -45,6 +46,14 @@ export default Model.extend({
   ],
 
 
+  isAdvancer: Ember.computed.gt(
+    'draw',
+    0,
+  ),
+  isFinisher: Ember.computed.lt(
+    'draw',
+    0,
+  ),
   slotNum: Ember.computed.alias(
     'slot.num'
   ),
