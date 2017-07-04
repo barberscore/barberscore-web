@@ -99,20 +99,20 @@
         {{#if model.permissions.write}}
           <ul class='list-inline'>
             {{#if (or (eq model.status 'New')(eq model.status 'Inactive'))}}
-              <li>{{#bs-button type='primary'  disabled=model.isError onClick=(perform activateChart)}}
-                {{#if activateChart.isRunning}}
+              <li>{{#bs-button type='primary'  disabled=model.isError onClick=(perform activateAward)}}
+                {{#if activateAward.isRunning}}
                   Activating {{fa-icon "spinner" spin=true}}
                 {{else}}
-                  Activate Chart
+                  Activate Award
                 {{/if}}
               {{/bs-button}}</li>
             {{/if}}
             {{#if (or (eq model.status 'New')(eq model.status 'Active'))}}
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform dectivateChart)}}
-                {{#if dectivateChart.isRunning}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform dectivateAward)}}
+                {{#if dectivateAward.isRunning}}
                   Deactivating {{fa-icon "spinner" spin=true}}
                 {{else}}
-                  Deactivate Chart
+                  Deactivate Award
                 {{/if}}
               {{/bs-button}}</li>
             {{/if}}
