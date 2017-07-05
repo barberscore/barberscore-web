@@ -41,6 +41,20 @@ export default Model.extend({
     'General',
   ],
 
+  rowClass: computed(
+    'kind', function() {
+      if (this.get('category') === 'Music') {
+        return 'warning';
+      } else if (this.get('category') === 'Performance') {
+        return 'success';
+      } else if (this.get('category') === 'Singing') {
+        return 'info';
+      } else {
+        return null;
+      }
+    }
+  ),
+
   panelistName: computed.alias('panelist.person.last_name'),
   songNum: computed.alias('song.num'),
   lowReview: computed(
