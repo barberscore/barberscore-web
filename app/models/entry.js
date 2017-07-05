@@ -156,13 +156,13 @@ export default Model.extend({
       return (this.get('sngPoints') / this.get('ssc')).toFixed(1);
     }
   ),
-  // totRank: computed(
-  //   'session.ranks.@each.{score,rank}',
-  //   'totPoints',
-  //   function() {
-  //     return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
-  //   }
-  // ),
+  totRank: computed(
+    'session.ranks.@each.{score,rank}',
+    'totPoints',
+    function() {
+      return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
+    }
+  ),
   contestsArray: computed(
     'contestants.@each.contest', function() {
       return this.get('contestants');

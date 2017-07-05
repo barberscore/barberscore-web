@@ -6,68 +6,20 @@
   {{else}}
     <div class='row'>
       <div class='col-md-12'>
-        {{!-- {{#unless (eq model.status 'Started')}} --}}
-          {{#if isSorting}}
-            {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
-            {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
-          {{/if}}
-        {{!-- {{/unless}} --}}
-        <table class='table'>
-          <thead>
-            <tr>
-              <th class='col-md-1'>Draw</th>
-              <th class='col-md-4'>Name</th>
-              <th class='col-md-1'>Status</th>
-              {{#if isSorting}}<th class='col-md-1'>Rearrange</th>{{/if}}
-            </tr>
-          </thead>
-            {{#if isSorting}}
-              {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-                {{#each sortedAdvancers as |item|}}
-                  {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
-                    <td>{{item.draw}}</td>
-                    <td>{{item.entry.entity.name}}</td>
-                    <td>{{item.status}}</td>
-                    <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
-                  {{/sortable-item}}
-                {{/each}}
-              {{/sortable-group}}
-            {{else}}
-              <tbody>
-                {{#each sortedAdvancers as |appearance|}}
-                  <tr>
-                    <td>{{appearance.draw}}</td>
-                    <td>{{appearance.entry.entity.name}}</td>
-                    <td>{{appearance.status}}</td>
-                  </tr>
-                {{else}}
-                  <tr>
-                    <td>(No entries.)</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            {{/if}}
-        </table>
-        {{#bs-button type='success'}}Add to Draw{{/bs-button}}
-        {{!-- <hr>
         <table class='table'>
           <thead>
             <tr>
               <th class='col-md-1'>Rank</th>
               <th class='col-md-4'>Name</th>
               <th class='col-md-1'>Points</th>
-              <th class='col-md-1'>Status</th>
             </tr>
           </thead>
             <tbody>
               {{#each sortedFinishers as |appearance|}}
                 <tr>
-                  <td>{{appearance.rank}}</td>
+                  <td>{{appearance.entry.totRank}}</td>
                   <td>{{appearance.entry.entity.name}}</td>
-                  <td>{{appearance.totPoints}}</td>
-                  <td>{{appearance.status}}</td>
+                  <td>{{appearance.entry.totPoints}}</td>
                 </tr>
               {{else}}
                 <tr>
@@ -75,7 +27,8 @@
                 </tr>
               {{/each}}
             </tbody>
-        </table> --}}
+        </table>
+        {{#bs-button type='success'}}Add to Draw{{/bs-button}}
       </div>
     </div>
   {{/unless}}
