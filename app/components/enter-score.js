@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   autosave: task(function* (points){
     let intPoints = parseInt(points);
     this.get('score').set('points', intPoints);
-    yield timeout(200);
+    yield timeout(800);
     yield this.get('score').save();
   }).restartable()
 });
