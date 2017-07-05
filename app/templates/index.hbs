@@ -6,8 +6,19 @@
     If you are the authorized representative for a chorus or quartet participating in the 2017 International Contest please {{#link-to 'login'}}Login{{/link-to}}.
   </p>
   <p>
-    Otherwise, please be patient as we rollout features en route to Las Vegas.
+    <strong>New Feature!</strong>  See competitor detail and song choices with arrangers!
   </p>
+  <ul class='list-unstyled'>
+    {{#each model as |round|}}
+      <tr>
+        <td>{{#link-to 'rounds.round.appearances' round}}{{round.nomen}}{{/link-to}}</td>
+      </tr>
+    {{else}}
+      <tr>
+        <td>(No current rounds!)</td>
+      </tr>
+    {{/each}}
+  </ul>
 </div>
 <div class="footer bottom-bar">
   <ul class="nav nav-pills">
