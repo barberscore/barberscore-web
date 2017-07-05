@@ -112,6 +112,14 @@ Router.map(function() {
   this.route('about');
   this.route('faq');
   this.route('404', { path: '/*wildcard' });
+  this.route('rounds', { path: 'round'}, function() {
+    this.route('round', { path: ':round_id'}, function(){
+      this.route('details', {path: 'details'});
+      this.route('appearances', { path: 'appearances'}, function() {
+        this.route('appearance', { path: ':appearance_id'});
+      });
+    });
+  });
 });
 
 export default Router;
