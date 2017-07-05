@@ -10,7 +10,7 @@
         <tbody>
           {{#each model as |round|}}
             <tr>
-              <td>{{#link-to 'rounds.round' round}}{{round.nomen}}{{/link-to}}</td>
+              <td>{{#link-to 'rounds.round.appearances' round}}{{round.nomen}}{{/link-to}}</td>
             </tr>
           {{else}}
             <tr>

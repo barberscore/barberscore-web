@@ -32,10 +32,10 @@
             <ul class='list-unstyled'>
               {{#if model.entry.representing.nomen}}<li>{{model.entry.representing.nomen}}</li>{{/if}}
               {{#if model.entry.entity.location}}<li>{{model.entry.entity.location}}</li>{{/if}}
-              {{#if model.entry.entity.email}}<li>{{model.entry.entity.email}}</li>{{/if}}
-              {{#if model.entry.entity.website}}<li>{{model.entry.entity.website}}</li>{{/if}}
-              {{#if model.entry.entity.facebook}}<li>{{model.entry.entity.facebook}}</li>{{/if}}
-              {{#if model.entry.entity.twitter}}<li>{{model.entry.entity.twitter}}</li>{{/if}}
+              {{#if model.entry.entity.email}}<li><a href='mailto:{{model.entry.entity.email}}'>{{model.entry.entity.email}}</a></li>{{/if}}
+              {{#if model.entry.entity.website}}<li><a href={{model.entry.entity.website}}>{{model.entry.entity.website}}</a></li>{{/if}}
+              {{#if model.entry.entity.facebook}}<li><a href={{model.entry.entity.facebook}}>{{model.entry.entity.facebook}}</a></li>{{/if}}
+              {{#if model.entry.entity.twitter}}<li><a href='https://twitter.com/{{model.entry.entity.twitter}}'>{{model.entry.entity.twitter}}</a></li>{{/if}}
               {{#if model.entry.entity.phone}}<li>{{model.entry.entity.phone}}</li>{{/if}}
             </ul>
           </div>
