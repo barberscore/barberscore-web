@@ -6,7 +6,7 @@
         <thead>
           <tr>
             <th class='col-md-1'>OA</th>
-            <th class='col-md-1'>Name</th>
+            <th class='col-md-3'>Name</th>
             <th class='col-md-4'>Songs</th>
             {{!-- <th class='col-md-1'>Status</th> --}}
           </tr>
@@ -17,9 +17,7 @@
               <td>{{appearance.num}}</td>
               <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
               <td>
-                {{#each sortedSongs as |song|}}
-                  {{song.chart.title}}<br>
-                {{/each}}
+                {{sorted-songs songs=appearance.songs}}
               </td>
             </tr>
           {{else}}
