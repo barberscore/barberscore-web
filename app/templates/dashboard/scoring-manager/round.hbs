@@ -22,9 +22,11 @@
         {{!-- {{#nav.item}}
           {{#nav.link-to "dashboard.scoring-manager.round.contests"}}Contests{{/nav.link-to}}
         {{/nav.item}} --}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.scoring-manager.round.advancers"}}Advancers{{/nav.link-to}}
-        {{/nav.item}}
+        {{#unless (eq model.kind 'Finals')}}
+          {{#nav.item}}
+            {{#nav.link-to "dashboard.scoring-manager.round.advancers"}}Advancers{{/nav.link-to}}
+          {{/nav.item}}
+        {{/unless}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.scoring-manager.round.finishers"}}Finishers{{/nav.link-to}}
         {{/nav.item}}
