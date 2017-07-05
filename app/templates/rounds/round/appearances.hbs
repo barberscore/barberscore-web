@@ -1,11 +1,13 @@
 <section>
-  <div class='row'>
-    <div class='col-md-3'>
+  {{!-- <div class='row'> --}}
+    {{outlet}}
+    {{!-- <div class='col-md-8'> --}}
       <table class='table'>
         <thead>
           <tr>
             <th class='col-md-1'>OA</th>
             <th class='col-md-1'>Name</th>
+            <th class='col-md-4'>Songs</th>
             {{!-- <th class='col-md-1'>Status</th> --}}
           </tr>
         </thead>
@@ -14,7 +16,11 @@
             <tr>
               <td>{{appearance.num}}</td>
               <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
-              {{!-- <td>{{appearance.status}}</td> --}}
+              <td>
+                {{#each sortedSongs as |song|}}
+                  {{song.chart.title}}<br>
+                {{/each}}
+              </td>
             </tr>
           {{else}}
             <tr>
@@ -23,9 +29,8 @@
           {{/each}}
         </tbody>
       </table>
-    </div>
-    <div class='col-md-9'>
-      {{outlet}}
-    </div>
-  </div>
+    {{!-- </div>
+    <div class='col-md-4'>
+    </div> --}}
+  {{!-- </div> --}}
 </section>

@@ -11,6 +11,7 @@ export default Model.extend({
   permissions: DS.attr(),
 
   nameSort: Ember.computed.alias('member.person.last_name'),
+  partSort: Ember.computed.alias('member.partSort'),
 
   isExpiring: Ember.computed(
     'member.person.dues_thru',

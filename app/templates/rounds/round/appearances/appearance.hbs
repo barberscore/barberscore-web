@@ -2,40 +2,49 @@
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
       <ul class='list-inline pull-right'>
-        {{!-- <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li> --}}
-        {{!-- <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li> --}}
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
         {{model.entry.entity.name}}
       </h4>
     </div>
-    {{!-- <div>
-      Start:  {{moment-format model.actual_start 'LLL'}}
-      Finish:  {{moment-format model.actual_finish 'LLL'}}
-    </div> --}}
     <div class='panel-body'>
-      <div class='table-responsive'>
-        <table class='table'>
-          <caption>Songs</caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedSongs as |song|}}
-              <tr>
-                <td>
-                  {{song.chart.title}}
-                </td>
-              </tr>
+      <div class='row'>
+        <div class='col-md-6'>
+          <div>
+            {{#if model.image}}
+              <img src={{model.image}} class='img-responsive'>
             {{else}}
-              <tr>
-                <td>(No songs.)</td>
-              </tr>
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </div>
+        </div>
+        <div class='col-md-6'>
+          <div>
+            {{#each sortedParticipants as |participant|}}
+              <ul class='list-unstyled'>
+                <li>{{participant.member.person.common_name}}, {{participant.member.part}}</li>
+              </ul>
             {{/each}}
-          </tbody>
-        </table>
+          </div>
+          <div>
+            <ul class='list-unstyled'>
+              {{#if model.entry.representing.nomen}}<li>{{model.entry.representing.nomen}}</li>{{/if}}
+              {{#if model.entry.entity.location}}<li>{{model.entry.entity.location}}</li>{{/if}}
+              {{#if model.entry.entity.email}}<li>{{model.entry.entity.email}}</li>{{/if}}
+              {{#if model.entry.entity.website}}<li>{{model.entry.entity.website}}</li>{{/if}}
+              {{#if model.entry.entity.facebook}}<li>{{model.entry.entity.facebook}}</li>{{/if}}
+              {{#if model.entry.entity.twitter}}<li>{{model.entry.entity.twitter}}</li>{{/if}}
+              {{#if model.entry.entity.phone}}<li>{{model.entry.entity.phone}}</li>{{/if}}
+            </ul>
+          </div>
+          <div>
+            <p>
+              {{model.entry.entity.description}}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
     <div class='panel-footer fixed-panel-footer'>
