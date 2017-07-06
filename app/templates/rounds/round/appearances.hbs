@@ -16,7 +16,7 @@
           {{#each sortedAppearances as |appearance|}}
             <tr>
               <td>{{appearance.num}}</td>
-              <td>{{moment-format appearance.slot.onstage 'LTS'}}</td>
+              <td>{{moment-format appearance.slot.onstage 'LT'}}</td>
               <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
               <td>
                 {{sorted-songs songs=appearance.songs}}
