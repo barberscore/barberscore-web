@@ -19,9 +19,9 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.scoring-manager.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
-        {{!-- {{#nav.item}}
-          {{#nav.link-to "dashboard.scoring-manager.round.contests"}}Contests{{/nav.link-to}}
-        {{/nav.item}} --}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.scoring-manager.round.standings"}}Standings{{/nav.link-to}}
+        {{/nav.item}}
         {{#unless (eq model.kind 'Finals')}}
           {{#nav.item}}
             {{#nav.link-to "dashboard.scoring-manager.round.advancers"}}Advancers{{/nav.link-to}}

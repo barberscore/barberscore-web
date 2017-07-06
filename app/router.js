@@ -50,6 +50,8 @@ Router.map(function() {
         });
         this.route('finishers', { path: 'finishers'}, function(){
         });
+        this.route('standings', { path: 'standings'}, function(){
+        });
       });
     });
     this.route('judge-manager', {path: 'judge-manager'}, function() {
