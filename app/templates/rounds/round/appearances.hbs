@@ -9,8 +9,9 @@
             <th class='col-md-1'>OA</th>
             <th class='col-md-1'>Prelims</th>
             <th class='col-md-1'>Scheduled</th>
+            <th class='col-md-1'>Actual</th>
             <th class='col-md-3'>Name</th>
-            <th class='col-md-4'>Songs</th>
+            <th class='col-md-5'>Songs</th>
             {{!-- <th class='col-md-1'>Status</th> --}}
           </tr>
         </thead>
@@ -20,6 +21,7 @@
               <td>{{appearance.num}}</td>
               <td>{{single-fixed appearance.entry.prelim}}</td>
               <td>{{moment-format appearance.slot.onstage 'LT'}}</td>
+              <td>{{moment-format appearance.actual_start 'LT'}}</td>
               <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}&nbsp;({{appearance.entry.representing.short_name}})</td>
               <td>
                 {{sorted-songs songs=appearance.songs}}
