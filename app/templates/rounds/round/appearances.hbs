@@ -3,9 +3,11 @@
     {{outlet}}
     {{!-- <div class='col-md-8'> --}}
       <table class='table'>
+        <caption><strong>Note:</strong> These are prelim (qualifying) scores.  Actual scores not available until contest is finished.</caption>
         <thead>
           <tr>
             <th class='col-md-1'>OA</th>
+            <th class='col-md-1'>Prelims</th>
             <th class='col-md-1'>Scheduled</th>
             <th class='col-md-3'>Name</th>
             <th class='col-md-4'>Songs</th>
@@ -16,6 +18,7 @@
           {{#each sortedAppearances as |appearance|}}
             <tr>
               <td>{{appearance.num}}</td>
+              <td>{{single-fixed appearance.entry.prelim}}</td>
               <td>{{moment-format appearance.slot.onstage 'LT'}}</td>
               <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}</td>
               <td>
