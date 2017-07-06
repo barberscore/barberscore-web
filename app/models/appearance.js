@@ -46,6 +46,9 @@ export default Model.extend({
   ],
 
 
+  entryTotPoints: Ember.computed.alias(
+    'entry.totPoints'
+  ),
   isAdvancer: Ember.computed.gt(
     'draw',
     0,

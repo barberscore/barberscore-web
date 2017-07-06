@@ -3,7 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   finishersSortProperties: [
-    'totPoints:desc',
+    'entryTotPoints:desc',
   ],
   sortedAppearances: Ember.computed.sort(
     'model.appearances',
