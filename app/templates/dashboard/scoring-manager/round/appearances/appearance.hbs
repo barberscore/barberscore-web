@@ -9,11 +9,12 @@
         {{model.entry.entity.name}}{{#if (and hasVariance (eq model.status 'Finished'))}} <span class="label label-danger">Variance Detected</span>{{/if}}
       </h4>
     </div>
-    {{!-- <div>
-      Start:  {{moment-format model.actual_start 'LLL'}}
-      Finish:  {{moment-format model.actual_finish 'LLL'}}
-    </div> --}}
     <div class='panel-body'>
+      <ul class='list-inline'>
+        <li>Grid:  {{moment-format model.slot.onstage "HH:mm"}}</li>
+        <li>Actual:  {{moment-format model.actual_start "HH:mm"}}</li>
+        {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
+      </ul>
       <div class='table-responsive'>
         <table class='table'>
           <caption>Songs</caption>

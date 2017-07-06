@@ -13,6 +13,8 @@
         <thead>
           <tr>
             <th class='col-md-1'>OA</th>
+            {{#unless isSorting}}<th class='col-md-1'>Grid</th>{{/unless}}
+            {{#unless isSorting}}<th class='col-md-1'>Actual</th>{{/unless}}
             <th class='col-md-4'>Name</th>
             <th class='col-md-1'>Status</th>
             {{#if isSorting}}<th class='col-md-1'>Rearrange</th>{{/if}}
@@ -43,6 +45,12 @@
                 <tr>
                   <td>
                     {{appearance.num}}
+                  </td>
+                  <td>
+                    {{moment-format appearance.slot.onstage 'HH:mm'}}
+                  </td>
+                  <td>
+                    {{moment-format appearance.actual_start 'HH:mm'}}
                   </td>
                   <td>
                     {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}
