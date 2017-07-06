@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   finishersSortProperties: [
-    'totPoints:desc',
+    'entryTotPoints:desc',
   ],
   filteredFinishers: Ember.computed.filterBy(
     'model.appearances',

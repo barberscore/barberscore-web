@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
       });
     },
     saveOrder() {
-      this.get('sortedAppearances').invoke('save');
+      this.get('sortedAdvancers').invoke('save');
       this.set('isSorting', false);
       this.get('flashMessages').success('Success');
     }
