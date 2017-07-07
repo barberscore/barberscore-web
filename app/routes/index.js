@@ -3,7 +3,7 @@ import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-
 export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   model() {
     return this.get('store').query('round', {
-      'session__convention__year': 2017,
+      'session__convention__status': 20,
     });
   }
 });
