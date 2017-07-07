@@ -21,6 +21,8 @@ export default Model.extend({
   per_score: DS.attr('number'),
   sng_score: DS.attr('number'),
   tot_score: DS.attr('number'),
+  var_pdf: DS.attr('string'),
+
   round: DS.belongsTo('round', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
   slot: DS.belongsTo('slot', {async: true}),
@@ -33,6 +35,7 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   confirm: memberAction({path: 'confirm', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
+  printVar: memberAction({path: 'print_var', type: 'post'}),
 
   statusOptions: [
     'New',

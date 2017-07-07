@@ -105,6 +105,15 @@ export default Ember.Controller.extend({
     this.store.pushPayload('appearance', appearance);
     this.get('flashMessages').success("Confirmed!");
   }).drop(),
+  printVar: task(function *() {
+    try {
+      let appearance = yield this.model.printVar();
+      this.store.pushPayload('appearance', appearance);
+      this.get('flashMessages').success("Activated!");
+    } catch(e) {
+      this.get('flashMessages').danger("Please check that all fields are entered!");
+    }
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
