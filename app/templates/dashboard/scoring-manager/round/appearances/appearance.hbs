@@ -54,14 +54,17 @@
           <caption>Scores Total: {{sumScores}}</caption>
           <thead>
             <tr>
-              <th>
+              <th class='col-md-3'>
                 Panelist
               </th>
-              <th>
+              <th class='col-md-2'>
                 Category
               </th>
-              <th>
+              <th class='col-md-5'>
                 Kind
+              </th>
+              <th class='col-md-1'>
+                Num
               </th>
               <th class='col-md-1'>
                 Points
@@ -79,6 +82,9 @@
                 </td>
                 <td>
                   {{score.kind}}
+                </td>
+                <td>
+                  {{score.panelist.num}} - {{score.song.num}}
                 </td>
                 <td>
                   {{enter-score score=score}}
