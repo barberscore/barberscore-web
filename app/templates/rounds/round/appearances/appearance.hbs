@@ -24,8 +24,9 @@
           {{#if (eq model.entry.entity.kind 'Chorus')}}
             <div>
               {{#each filteredDirectors as |participant|}}
-                <ul class='list-unstyled'>
-                  <li>{{participant.member.person.common_name}}, {{participant.member.part}}</li>
+                Directed By:
+                <ul class='list-inline'>
+                  <li>{{participant.member.person.common_name}}</li>
                 </ul>
               {{/each}}
             </div>
