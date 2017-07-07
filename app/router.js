@@ -120,6 +120,9 @@ Router.map(function() {
       this.route('appearances', { path: 'appearances'}, function() {
         this.route('appearance', { path: ':appearance_id'});
       });
+      this.route('scores', { path: 'scores'}, function() {
+        this.route('score', { path: ':appearance_id'});
+      });
     });
   });
 });

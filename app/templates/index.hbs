@@ -9,7 +9,7 @@
     <strong>New Feature!</strong>  See competitor detail and song choices with arrangers!
   </p>
   <ul class='list-unstyled'>
-    {{#each model as |round|}}
+    {{#each sortedRounds as |round|}}
       <tr>
         <td>{{#link-to 'rounds.round.appearances' round}}{{round.nomen}}{{/link-to}}</td>
       </tr>

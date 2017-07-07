@@ -49,6 +49,9 @@ export default Model.extend({
   entryTotPoints: Ember.computed.alias(
     'entry.totPoints'
   ),
+  entryRank: Ember.computed.alias(
+    'entry.rank'
+  ),
   isAdvancer: Ember.computed.gt(
     'draw',
     0,
