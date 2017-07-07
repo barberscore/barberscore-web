@@ -8,6 +8,11 @@ export default Ember.Controller.extend({
     'model.entry.participants',
     'participantsSortProperties'
   ),
+  filteredDirectors: Ember.computed.filterBy(
+    'model.entry.participants',
+    'part',
+    'Director',
+  ),
   sortedItemsProperties: [
     'num',
   ],

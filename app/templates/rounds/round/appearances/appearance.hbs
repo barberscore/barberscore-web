@@ -21,13 +21,23 @@
           </div>
         </div>
         <div class='col-md-6'>
-          <div>
-            {{#each sortedParticipants as |participant|}}
-              <ul class='list-unstyled'>
-                <li>{{participant.member.person.common_name}}, {{participant.member.part}}</li>
-              </ul>
-            {{/each}}
-          </div>
+          {{#if (eq model.entry.entity.kind 'Chorus')}}
+            <div>
+              {{#each filteredDirectors as |participant|}}
+                <ul class='list-unstyled'>
+                  <li>{{participant.member.person.common_name}}, {{participant.member.part}}</li>
+                </ul>
+              {{/each}}
+            </div>
+          {{else}}
+            <div>
+              {{#each sortedParticipants as |participant|}}
+                <ul class='list-unstyled'>
+                  <li>{{participant.member.person.common_name}}, {{participant.member.part}}</li>
+                </ul>
+              {{/each}}
+            </div>
+          {{/if}}
           <div>
             <ul class='list-unstyled'>
               {{#if model.entry.representing.nomen}}<li>{{model.entry.representing.nomen}}</li>{{/if}}
