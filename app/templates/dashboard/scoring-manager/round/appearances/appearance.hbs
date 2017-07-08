@@ -15,13 +15,11 @@
               Variance Detected
             {{/if}}
           {{/bs-button}}
+          {{#if model.var_pdf}}
+            <a href={{model.var_pdf}}>{{fa-icon 'fa-file-pdf-o'}}</a>
+          {{/if}}
         {{/if}}
       </h4>
-    </div>
-    <div>
-      {{#if model.var_pdf}}
-        <a href={{model.var_pdf}}>Variance Form</a>
-      {{/if}}
     </div>
     <div class='panel-body'>
       <ul class='list-inline'>
