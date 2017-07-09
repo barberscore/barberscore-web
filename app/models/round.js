@@ -13,6 +13,7 @@ export default Model.extend({
   panelists: DS.hasMany('panelist', {async: true}),
   slots: DS.hasMany('slot', {async: true}),
   permissions: DS.attr(),
+  ann_pdf: DS.attr('string'),
 
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
