@@ -9,7 +9,7 @@ export default Model.extend({
   kind: DS.attr('office-kind'),
   short_name: DS.attr('string'),
   officers: DS.hasMany('officer', {async: true}),
-  is_ml: DS.attr('boolean'),
+  is_cm: DS.attr('boolean'),
   is_drcj: DS.attr('boolean'),
   permissions: DS.attr(),
 
