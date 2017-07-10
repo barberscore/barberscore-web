@@ -10,7 +10,7 @@ export default Model.extend({
   short_name: DS.attr('string'),
   officers: DS.hasMany('officer', {async: true}),
   is_chart_manager: DS.attr('boolean'),
-  is_drcj: DS.attr('boolean'),
+  is_convention_manager: DS.attr('boolean'),
   permissions: DS.attr(),
 
   statusOptions: [

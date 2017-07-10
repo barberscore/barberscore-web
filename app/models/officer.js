@@ -37,5 +37,5 @@ export default Model.extend({
   entityName: Ember.computed.alias('entity.name'),
   isOld: Ember.computed.not('isNew'),
   isML: Ember.computed.alias('office.is_chart_manager'),
-  isDRCJ: Ember.computed.alias('office.is_drcj')
+  isDRCJ: Ember.computed.alias('office.is_convention_manager')
 });
