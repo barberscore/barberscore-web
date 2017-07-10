@@ -27,7 +27,7 @@ export default Model.extend({
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  personSort: Ember.computed.alias('person.last_name'),
+  personSort: Ember.computed.alias('person.lastName'),
   statusOptions: [
     'New',
     'Scheduled',

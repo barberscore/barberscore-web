@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
     'awards',
     'rounds'
   ),
-  num_rounds: Ember.computed.max('allRounds'),
+  numRounds: Ember.computed.max('allRounds'),
   awardCall: Ember.computed(function() {
     // TODO This is hack-central
     let awards = [];
@@ -44,17 +44,17 @@ export default Ember.Controller.extend({
       'Spring': 4,
       'Video': 9,
     };
-    let int_qual = 'true';
+    let intQual = 'true';
     if (
       (this.get('model.season') === 'Summer') || (this.get('model.season') === 'Midwinter')
     ) {
-      int_qual = 'false';
+      intQual = 'false';
     }
 
     this.get('store').query('award', {
         'entity__name': 'International',
         'entity__kind': 1,
-        'is_qualifier': int_qual,
+        'is_qualifier': intQual,
         'page_size':100,
     }).then((data) => {
       awards.addObjects(data);
@@ -84,8 +84,8 @@ export default Ember.Controller.extend({
   ),
   awardSortProperties: [
     'entityKindSort',
-    'is_qualifier',
-    'is_primary:desc',
+    'isQualifier',
+    'isPrimary:desc',
     'ageSort',
     'name',
   ],
@@ -99,7 +99,7 @@ export default Ember.Controller.extend({
         convention: this.get('model'),
         kind: this.get('kind'),
         age: this.get('age'),
-        num_rounds: this.get('num_rounds'),
+        numRounds: this.get('numRounds'),
       });
       session.save()
       .then((response) => {

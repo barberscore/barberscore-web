@@ -14,7 +14,7 @@
         {{#each sortedMembers as |member|}}
           <tr>
             <td>
-              {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.common_name}}{{/link-to}}
+              {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.commonName}}{{/link-to}}
             </td>
             <td>
               {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
@@ -67,7 +67,7 @@
           allowClear=true
           as |person|
         }}
-          Person: {{person.common_name}}&nbsp;{{#if person.bhs_id}}[{{person.bhs_id}}]&nbsp;{{/if}}{{person.location}}
+          Person: {{person.commonName}}&nbsp;{{#if person.bhsId}}[{{person.bhsId}}]&nbsp;{{/if}}{{person.location}}
         {{/power-select}}
       {{/form.element}}
     {{/bs-form}}

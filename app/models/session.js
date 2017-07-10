@@ -10,7 +10,7 @@ export default Model.extend({
   kind: DS.attr('session-kind'),
   scoresheet: DS.attr('string'),
   bbscores: DS.attr('string'),
-  num_rounds: DS.attr('number'),
+  numRounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),

@@ -12,7 +12,7 @@
         <tbody>
           {{#each model.officers as |officer|}}
             <tr>
-              <td>{{officer.person.common_name}}</td>
+              <td>{{officer.person.commonName}}</td>
               <td>{{officer.kind}}</td>
               <td>{{fa-icon 'times-circle' click=(action 'deleteOfficer' officer) class='text-danger'}}</td>
             </tr>
@@ -34,7 +34,7 @@
                 allowClear=true
                 as |person|
               }}
-                {{person.common_name}}&nbsp;{{#if person.certifications}}{{person.certifications}}{{/if}}
+                {{person.commonName}}&nbsp;{{#if person.certifications}}{{person.certifications}}{{/if}}
               {{/power-select}}
             </td>
             <td>

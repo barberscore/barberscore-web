@@ -4,18 +4,19 @@ import DS from 'ember-data';
 const {computed} = Ember;
 
 export default Model.extend({
+  // Fields
   nomen: DS.attr('string'),
   status: DS.attr('song-status'),
   num: DS.attr('number'),
   rank: DS.attr('number'),
-  mus_points: DS.attr('number'),
-  per_points: DS.attr('number'),
-  sng_points: DS.attr('number'),
-  tot_points: DS.attr('number'),
-  mus_score: DS.attr('number'),
-  per_score: DS.attr('number'),
-  sng_score: DS.attr('number'),
-  tot_score: DS.attr('number'),
+  musPoints: DS.attr('number'),
+  perPoints: DS.attr('number'),
+  sngPoints: DS.attr('number'),
+  totPoints: DS.attr('number'),
+  musScore: DS.attr('number'),
+  perScore: DS.attr('number'),
+  sngScore: DS.attr('number'),
+  totScore: DS.attr('number'),
   appearance: DS.belongsTo('appearance', {async: true}),
   chart: DS.belongsTo('chart', {async: true}),
   scores: DS.hasMany('score', {async: true}),

@@ -10,8 +10,8 @@ export default Ember.Controller.extend({
       return this.get('model.parent');
     }
   ),
-  is_evaluation: false,
-  is_private: false,
+  isEvaluation: false,
+  isPrivate: false,
 
   filteredEntries: Ember.computed.filterBy(
     'model.entries',
@@ -44,8 +44,8 @@ export default Ember.Controller.extend({
       let entry = this.get('store').createRecord('entry', {
         entity: this.get('model'),
         representing: this.get('representing'),
-        is_evaluation: this.get('is_evaluation'),
-        is_private: this.get('is_private'),
+        isEvaluation: this.get('isEvaluation'),
+        isPrivate: this.get('isPrivate'),
         director: this.get('director'),
         status: 'Submitted'
       });

@@ -20,8 +20,8 @@ export default Ember.Component.extend({
   ),
   awardSortProperties: [
     'entityKindSort',
-    'is_qualifier',
-    'is_primary:desc',
+    'isQualifier',
+    'isPrimary:desc',
     'ageSort',
     'name',
   ],

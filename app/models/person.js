@@ -6,8 +6,8 @@ export default Model.extend({
   nomen: DS.attr('string'),
   name: DS.attr('string'),
   status: DS.attr('person-status'),
-  birth_date: DS.attr('isodate'),
-  dues_thru: DS.attr('isodate'),
+  birthDate: DS.attr('isodate'),
+  duesThru: DS.attr('isodate'),
   spouse: DS.attr('string', {defaultValue:''}),
   location: DS.attr('string', {defaultValue:''}),
   part: DS.attr('person-part'),
@@ -17,19 +17,19 @@ export default Model.extend({
   email: DS.attr('string', {defaultValue:''}),
   phone: DS.attr('string', {defaultValue:''}),
   address: DS.attr('string', {defaultValue:''}),
-  home_phone: DS.attr('string', {defaultValue:''}),
-  work_phone: DS.attr('string', {defaultValue:''}),
-  cell_phone: DS.attr('string', {defaultValue:''}),
+  homePhone: DS.attr('string', {defaultValue:''}),
+  workPhone: DS.attr('string', {defaultValue:''}),
+  cellPhone: DS.attr('string', {defaultValue:''}),
   airports: DS.attr(),
   image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
-  bhs_id: DS.attr('number'),
-  common_name: DS.attr('string'),
-  full_name: DS.attr('string'),
-  formal_name: DS.attr('string'),
-  first_name: DS.attr('string'),
-  last_name: DS.attr('string'),
-  nick_name: DS.attr('string'),
+  bhsId: DS.attr('number'),
+  commonName: DS.attr('string'),
+  fullName: DS.attr('string'),
+  formalName: DS.attr('string'),
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  nickName: DS.attr('string'),
   representing: DS.belongsTo('entity', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   members: DS.hasMany('member', {async: true}),
@@ -38,6 +38,12 @@ export default Model.extend({
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
+
+  isConventionManager: Ember.computed(
+    'officers.@each.isConventionManager', function(){
+      let officers = this.get('officers');
+      return officers.filterBy('isConventionManager', true);
+    }),
 
   isML: Ember.computed(
     'officers.@each.isML', function(){
@@ -74,9 +80,9 @@ export default Model.extend({
   ),
   withExp: Ember.computed(
     'name',
-    'dues_thru',
+    'duesThru',
     function() {
-      return this.get('name') + " " + this.get('dues_thru');
+      return this.get('name') + " " + this.get('duesThru');
     }
   )
 });

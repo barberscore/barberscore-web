@@ -83,22 +83,22 @@
     }}
     <div class='row'>
       <div class='col-md-3'>
-        {{#form.element property='open_date' as |el|}}
+        {{#form.element property='openDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(perform autosave 'open_date')
+            updateDate=(perform autosave 'openDate')
             placeholder="Convention Entry Open Date"
             disabled=false
           }}
         {{/form.element}}
       </div>
       <div class='col-md-3'>
-        {{#form.element property='close_date' as |el|}}
+        {{#form.element property='closeDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(perform autosave 'close_date')
+            updateDate=(perform autosave 'closeDate')
             placeholder="Convention Entry Close Date"
             disabled=false
           }}
@@ -107,22 +107,22 @@
     </div>
     <div class='row'>
       <div class='col-md-3'>
-        {{#form.element property='start_date' as |el|}}
+        {{#form.element property='startDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(perform autosave 'start_date')
+            updateDate=(perform autosave 'startDate')
             placeholder="Convention Start Date"
             disabled=false
           }}
         {{/form.element}}
       </div>
       <div class='col-md-3'>
-        {{#form.element property='end_date' as |el|}}
+        {{#form.element property='endDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
-            updateDate=(perform autosave 'end_date')
+            updateDate=(perform autosave 'endDate')
             placeholder="Convention End Date"
             disabled=false
           }}

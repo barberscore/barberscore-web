@@ -7,10 +7,17 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('office-status'),
   kind: DS.attr('office-kind'),
-  short_name: DS.attr('string'),
+  shortName: DS.attr('string'),
   officers: DS.hasMany('officer', {async: true}),
-  is_chart_manager: DS.attr('boolean'),
-  is_convention_manager: DS.attr('boolean'),
+  isConventionManager: DS.attr('boolean'),
+  isSessionManager: DS.attr('boolean'),
+  isScoringManager: DS.attr('boolean'),
+  isOrganizationManager: DS.attr('boolean'),
+  isGroupmanager: DS.attr('boolean'),
+  isPersonManager: DS.attr('boolean'),
+  isAwardManager: DS.attr('boolean'),
+  isJudgeManager: DS.attr('boolean'),
+  isChartManager: DS.attr('boolean'),
   permissions: DS.attr(),
 
   statusOptions: [
@@ -39,10 +46,10 @@ export default Model.extend({
   ],
 
   scjcSort: Ember.computed(
-    'short_name',
+    'shortName',
     'scjcSortOptions',
     function() {
-      return this.get('scjcSortOptions').indexOf(this.get('short_name'));
+      return this.get('scjcSortOptions').indexOf(this.get('shortName'));
     }
   ),
 

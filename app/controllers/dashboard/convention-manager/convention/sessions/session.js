@@ -5,8 +5,8 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   awardSortProperties: [
     'entityKindSort',
-    'is_qualifier',
-    'is_primary:desc',
+    'isQualifier',
+    'isPrimary:desc',
     'ageSort',
     'name',
   ],

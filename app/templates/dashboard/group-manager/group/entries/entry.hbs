@@ -28,7 +28,7 @@
               Representing: {{representing.name}}
             {{/power-select}}
           {{/form.element}} --}}
-          {{#form.element property='is_evaluation' as |el|}}
+          {{#form.element property='isEvaluation' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
@@ -39,7 +39,7 @@
               {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          {{#form.element property='is_private' as |el|}}
+          {{#form.element property='isPrivate' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
@@ -61,7 +61,7 @@
                   allowClear=true
                   as |person|
                 }}
-                  {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}} {{person.bhs_id}}
+                  {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.commonName}} {{person.bhs_id}}
                 {{/power-select}}
             {{/form.element}}
             {{#form.element property='codirector' useIcons=false as |el|}}
@@ -74,7 +74,7 @@
                   allowClear=true
                   as |person|
                 }}
-                  Co-Director: {{person.common_name}} {{person.bhs_id}}
+                  Co-Director: {{person.commonName}} {{person.bhs_id}}
                 {{/power-select}}
             {{/form.element}}
           {{/if}} --}}
@@ -126,7 +126,7 @@
               </p>
               <ul class='list-styled'>
                 {{#each model.expiringMembers as |expiring|}}
-                  <li>{{expiring.member.person.nomen}}, Exp. {{moment-format expiring.member.person.dues_thru 'LL'}}</li>
+                  <li>{{expiring.member.person.nomen}}, Exp. {{moment-format expiring.member.person.duesThru 'LL'}}</li>
                 {{else}}
                   All Participants are Current!
                 {{/each}}

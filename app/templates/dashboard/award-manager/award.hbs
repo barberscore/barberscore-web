@@ -75,11 +75,11 @@
               Rounds: {{rounds}}
             {{/power-select}}
           {{/form.element}}
-          {{#form.element property='is_qualifier' as |el|}}
+          {{#form.element property='isQualifier' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(perform autosave 'is_qualifier')
+              onChange=(perform autosave 'isQualifier')
               as |bg|
             }}
               {{#bg.button type='default' value=false disabled=isDisabled}}Championship{{/bg.button}}

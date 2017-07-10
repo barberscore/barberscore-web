@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   sortProperties: [
-    'is_primary:desc',
+    'isPrimary:desc',
     'name:asc',
     'kindOptions',
   ],

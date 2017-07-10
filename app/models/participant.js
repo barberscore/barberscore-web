@@ -10,16 +10,16 @@ export default Model.extend({
   member: DS.belongsTo('member', {async: true}),
   permissions: DS.attr(),
 
-  nameSort: Ember.computed.alias('member.person.last_name'),
+  nameSort: Ember.computed.alias('member.person.lastName'),
   partSort: Ember.computed.alias('member.partSort'),
 
   isExpiring: Ember.computed(
-    'member.person.dues_thru',
+    'member.person.duesThru',
     'entry.representing.kind',
-    'entry.session.convention.end_date',
+    'entry.session.convention.endDate',
     function () {
       let bhs = this.get('entry.representing.kind') === 'District';
-      let expiring = this.get('member.person.dues_thru') < this.get('entry.session.convention.end_date');
+      let expiring = this.get('member.person.duesThru') < this.get('entry.session.convention.endDate');
       return (bhs && expiring);
     }
   ),

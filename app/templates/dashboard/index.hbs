@@ -2,10 +2,10 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-<p>Welcome {{currentUser.user.person.common_name}}</p>
+<p>Welcome {{currentUser.user.person.commonName}}</p>
 <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.convention-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
+      {{#link-to 'dashboard.convention-manager' tagName='button' class='btn btn-default launcher' disabled=isConventionManagerDisabled}}
         {{fa-icon 'road' size=5}}<br>
         Convention Manager
       {{/link-to}}
@@ -65,7 +65,7 @@
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.office-manager' tagName='button' class='btn btn-default launcher' disabled=true}}
+      {{#link-to 'dashboard.office-manager' tagName='button' class='btn btn-default launcher' disabled=false}}
         {{fa-icon 'codepen' size=5}}<br>
         Office Manager
       {{/link-to}}

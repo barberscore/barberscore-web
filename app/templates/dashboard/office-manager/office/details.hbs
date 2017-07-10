@@ -2,7 +2,7 @@
   <div>
     {{#bs-form formLayout="vertical" model=model onSubmit=(action "saveOffice") as |form|}}
       {{form.element controlType='text' placeholder='Name' property='name'}}
-      {{form.element controlType='text' placeholder='Short Name' property='short_name'}}
+      {{form.element controlType='text' placeholder='Short Name' property='shortName'}}
       {{form.element controlType='textarea' placeholder='Description' property='description'}}
     {{/bs-form}}
   </div>

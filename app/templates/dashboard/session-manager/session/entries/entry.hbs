@@ -32,11 +32,11 @@
                 Representing: {{representing.name}}
               {{/power-select}}
             {{/form.element}}
-            {{#form.element property='is_evaluation' as |el|}}
+            {{#form.element property='isEvaluation' as |el|}}
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onchange=(perform autosave 'is_evaluation')
+                onchange=(perform autosave 'isEvaluation')
                 disabled=isDisabled
                 as |bg|
               }}
@@ -44,11 +44,11 @@
                 {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
               {{/bs-button-group}}
             {{/form.element}}
-            {{#form.element property='is_private' as |el|}}
+            {{#form.element property='isPrivate' as |el|}}
               {{#bs-button-group
                 value=el.value
                 type='radio'
-                onchange=(perform autosave 'is_private')
+                onchange=(perform autosave 'isPrivate')
                 as |bg|
               }}
                 {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
@@ -145,7 +145,7 @@
                 {{#each sortedExpirations as |expiration|}}
                   <tr>
                     <td>{{expiration.member.person.nomen}}</td>
-                    <td>{{moment-format expiration.member.person.dues_thru 'LL'}}</td>
+                    <td>{{moment-format expiration.member.person.duesThru 'LL'}}</td>
                   </tr>
                 {{else}}
                   <tr>

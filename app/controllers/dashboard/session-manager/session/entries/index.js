@@ -34,7 +34,7 @@ export default Ember.Controller.extend({
       });
   }),
   representingSortProperties: [
-    'org_sort:asc',
+    'orgSort:asc',
   ],
   representingOptions: Ember.computed.sort(
     'representingCall',
@@ -103,8 +103,8 @@ export default Ember.Controller.extend({
       return this.get('activeBasses.firstObject');
     }
   ),
-  is_evaluation: true,
-  is_private: false,
+  isEvaluation: true,
+  isPrivate: false,
   actions: {
     sortBy(entrySortProperties) {
       this.set('entrySortProperties', [entrySortProperties]);
@@ -114,8 +114,8 @@ export default Ember.Controller.extend({
         entity: this.get('entity'),
         session: this.get('model'),
         representing: this.get('representing'),
-        is_evaluation: this.get('is_evaluation'),
-        is_private: this.get('is_private'),
+        isEvaluation: this.get('isEvaluation'),
+        isPrivate: this.get('isPrivate'),
         tenor: this.get('tenor'),
         lead: this.get('lead'),
         baritone: this.get('baritone'),

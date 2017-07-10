@@ -5,22 +5,22 @@ export default DS.JSONAPISerializer.extend({
       assignments: {
         serialize: true
       },
-      common_name: {
+      commonName: {
         serialize: false
       },
-      full_name: {
+      fullName: {
         serialize: false
       },
-      formal_name: {
+      formalName: {
         serialize: false
       },
-      first_name: {
+      firstName: {
         serialize: false
       },
-      last_name: {
+      lastName: {
         serialize: false
       },
-      nick_name: {
+      nickName: {
         serialize: false
       },
     }

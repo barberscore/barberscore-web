@@ -24,8 +24,8 @@ export default Ember.Controller.extend({
     'adminCall'
   ),
   adminSortProperties: [
-    'last_name:asc',
-    'first_name:asc',
+    'lastName:asc',
+    'firstName:asc',
   ],
   adminOptions: Ember.computed.sort(
     'adminUniques',

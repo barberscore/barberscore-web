@@ -7,8 +7,8 @@ export default Ember.Controller.extend({
   ),
   openModal: false,
   sortProperties: [
-    'start_date:asc',
-    'end_date:asc',
+    'startDate:asc',
+    'endDate:asc',
   ],
   filteredConventions: Ember.computed.filterBy(
     'model',
@@ -69,8 +69,8 @@ export default Ember.Controller.extend({
         name: this.get('name'),
         entity: this.get('entity'),
         location: this.get('location'),
-        start_date: this.get('start_date'),
-        end_date: this.get('end_date'),
+        startDate: this.get('startDate'),
+        endDate: this.get('endDate'),
         kind: this.get('kind'),
         season: this.get('season'),
         panel: this.get('panel'),
@@ -88,8 +88,8 @@ export default Ember.Controller.extend({
         this.set('name', null);
         this.set('entity', null);
         this.set('location', null);
-        this.set('start_date', null);
-        this.set('end_date', null);
+        this.set('startDate', null);
+        this.set('endDate', null);
         this.set('kind', null);
         this.set('season', null);
         this.set('panel', null);
@@ -102,8 +102,8 @@ export default Ember.Controller.extend({
       this.set('name', null);
       this.set('entity', null);
       this.set('location', null);
-      this.set('start_date', null);
-      this.set('end_date', null);
+      this.set('startDate', null);
+      this.set('endDate', null);
       this.set('kind', null);
       this.set('season', null);
       this.set('panel', null);

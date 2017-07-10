@@ -13,7 +13,7 @@
         <tbody>
           {{#each sortedAssignments as |assignment|}}
             <tr>
-              <td>{{#link-to 'dashboard.convention-manager.convention.assignments.assignment' assignment}}{{assignment.person.common_name}}{{/link-to}}</td>
+              <td>{{#link-to 'dashboard.convention-manager.convention.assignments.assignment' assignment}}{{assignment.person.commonName}}{{/link-to}}</td>
               <td>{{assignment.category}}</td>
               <td>{{assignment.kind}}</td>
               <td>{{assignment.status}}</td>
@@ -57,7 +57,7 @@
           allowClear=true
           as |person|
         }}
-          Person: {{person.common_name}} [{{#each person.officers as |officer|}}
+          Person: {{person.commonName}} [{{#each person.officers as |officer|}}
             {{officer.office.name}}{{#unless (eq officer person.officers.lastObject)}}, {{/unless}}
           {{/each}}]
         {{/power-select}}

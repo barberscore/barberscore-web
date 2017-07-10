@@ -13,7 +13,7 @@ export default Model.extend({
   panelists: DS.hasMany('panelist', {async: true}),
   slots: DS.hasMany('slot', {async: true}),
   permissions: DS.attr(),
-  ann_pdf: DS.attr('string'),
+  annPdf: DS.attr('string'),
 
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
@@ -42,6 +42,6 @@ export default Model.extend({
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  sessionConventionStartDate: Ember.computed.alias('session.convention.start_date'),
+  sessionConventionStartDate: Ember.computed.alias('session.convention.startDate'),
   sessionKindSort: Ember.computed.alias('session.kindSort'),
 });

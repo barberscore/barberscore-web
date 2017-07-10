@@ -6,7 +6,7 @@
   }}
     {{form.element controlType='text' disabled=true placeholder='Person Name' property='name'}}
     {{form.element controlType='email' disabled=true placeholder='Email' property='email'}}
-    {{#form.element property='birth_date' useIcons=false as |el|}}
+    {{#form.element property='birthDate' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'

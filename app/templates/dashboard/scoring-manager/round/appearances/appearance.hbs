@@ -15,8 +15,8 @@
               Variance Detected
             {{/if}}
           {{/bs-button}}
-          {{#if model.var_pdf}}
-            <a href={{model.var_pdf}}>{{fa-icon 'fa-file-pdf-o'}}</a>
+          {{#if model.varPdf}}
+            <a href={{model.varPdf}}>{{fa-icon 'fa-file-pdf-o'}}</a>
           {{/if}}
         {{/if}}
       </h4>
@@ -24,7 +24,7 @@
     <div class='panel-body'>
       <ul class='list-inline'>
         <li>Grid:  {{moment-format model.slot.onstage "HH:mm"}}</li>
-        <li>Actual:  {{moment-format model.actual_start "HH:mm"}}</li>
+        <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
         {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
       </ul>
       <div class='table-responsive'>
@@ -87,7 +87,7 @@
             {{#each sortedScores as |score|}}
               <tr class={{score.rowClass}}>
                 <td>
-                  {{score.panelist.person.common_name}}
+                  {{score.panelist.person.commonName}}
                 </td>
                 <td>
                   {{score.category}}

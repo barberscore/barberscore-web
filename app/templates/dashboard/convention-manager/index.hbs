@@ -12,10 +12,10 @@
           {{!-- <th {{action 'sortBy' 'kind'}}>Kind</th> --}}
           <th {{action 'sortBy' 'season'}}>Season</th>
           <th {{action 'sortBy' 'location'}}>Location</th>
-          <th {{action 'sortBy' 'open_date'}}>Open</th>
-          <th {{action 'sortBy' 'close_date'}}>Close</th>
-          <th {{action 'sortBy' 'start_date'}}>Start</th>
-          <th {{action 'sortBy' 'end_date'}}>End</th>
+          <th {{action 'sortBy' 'openDate'}}>Open</th>
+          <th {{action 'sortBy' 'closeDate'}}>Close</th>
+          <th {{action 'sortBy' 'startDate'}}>Start</th>
+          <th {{action 'sortBy' 'endDate'}}>End</th>
           <th {{action 'sortBy' 'panel'}}>Panel</th>
           <th {{action 'sortBy' 'status'}}>Status</th>
           {{!-- <th>Actions</th> --}}
@@ -25,14 +25,14 @@
         {{#each sortedConventions as |convention|}}
           <tr>
             <td>{{#link-to 'dashboard.convention-manager.convention.details' convention}}{{convention.name}}{{/link-to}}</td>
-            <td>{{convention.entity.short_name}}</td>
+            <td>{{convention.entity.shortName}}</td>
             {{!-- <td>{{convention.kind}}</td> --}}
             <td>{{convention.season}}</td>
             <td>{{convention.location}}</td>
-            <td>{{moment-format convention.open_date 'L'}}</td>
-            <td>{{moment-format convention.close_date 'L'}}</td>
-            <td>{{moment-format convention.start_date 'L'}}</td>
-            <td>{{moment-format convention.end_date 'L'}}</td>
+            <td>{{moment-format convention.openDate 'L'}}</td>
+            <td>{{moment-format convention.closeDate 'L'}}</td>
+            <td>{{moment-format convention.startDate 'L'}}</td>
+            <td>{{moment-format convention.endDate 'L'}}</td>
             <td>{{convention.panel}}</td>
             <td>{{convention.status}}</td>
             {{!-- <td>{{fa-icon 'times-circle' class='text-danger'}}</td> --}}
@@ -109,7 +109,7 @@
       property='location'
       disabled=isDisabled
     }}
-    {{#form.element property='open_date' useIcons=false as |el|}}
+    {{#form.element property='openDate' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'
@@ -118,7 +118,7 @@
         disabled=isDisabled
       }}
     {{/form.element}}
-    {{#form.element property='close_date' useIcons=false as |el|}}
+    {{#form.element property='closeDate' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'
@@ -127,7 +127,7 @@
         disabled=isDisabled
       }}
     {{/form.element}}
-    {{#form.element property='start_date' useIcons=false as |el|}}
+    {{#form.element property='startDate' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'
@@ -136,7 +136,7 @@
         disabled=isDisabled
       }}
     {{/form.element}}
-    {{#form.element property='end_date' useIcons=false as |el|}}
+    {{#form.element property='endDate' useIcons=false as |el|}}
       {{bs-datetimepicker
         date=el.value
         format='YYYY-MM-DD'

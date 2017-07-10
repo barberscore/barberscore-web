@@ -17,7 +17,7 @@
           {{#each sortedEntries as |entry|}}
             <tr>
               <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.entity.name}}{{/link-to}}</td>
-              <td>{{entry.representing.short_name}}</td>
+              <td>{{entry.representing.shortName}}</td>
               <td>{{entry.contestantCount}}</td>
               <td>{{entry.repertoryCount}}</td>
               <td>{{entry.participantCount}}</td>
@@ -81,7 +81,7 @@
             Representing: {{representing.name}}
           {{/power-select}}
       {{/form.element}}
-      {{#form.element property='is_evaluation' as |el|}}
+      {{#form.element property='isEvaluation' as |el|}}
         {{#bs-button-group
           value=el.value
           type='radio'
@@ -92,7 +92,7 @@
           {{#bg.button type='default' value=true}}Include Eval{{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
-      {{#form.element property='is_private' as |el|}}
+      {{#form.element property='isPrivate' as |el|}}
         {{#bs-button-group
           value=el.value
           type='radio'
@@ -114,7 +114,7 @@
             allowClear=true
             as |person|
           }}
-            Tenor: {{person.common_name}}
+            Tenor: {{person.commonName}}
           {{/power-select}}
         {{/form.element}}
         {{#form.element property='lead' useIcons=false as |el|}}
@@ -127,7 +127,7 @@
             allowClear=true
             as |person|
           }}
-            Lead: {{person.common_name}}
+            Lead: {{person.commonName}}
           {{/power-select}}
         {{/form.element}}
         {{#form.element property='baritone' useIcons=false as |el|}}
@@ -140,7 +140,7 @@
             allowClear=true
             as |person|
           }}
-            Baritone: {{person.common_name}}
+            Baritone: {{person.commonName}}
           {{/power-select}}
         {{/form.element}}
         {{#form.element property='bass' useIcons=false as |el|}}
@@ -153,7 +153,7 @@
             allowClear=true
             as |person|
           }}
-            Bass: {{person.common_name}}
+            Bass: {{person.commonName}}
           {{/power-select}}
         {{/form.element}}
       {{else}}
@@ -167,7 +167,7 @@
               allowClear=true
               as |person|
             }}
-              {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.common_name}}
+              {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.commonName}}
             {{/power-select}}
         {{/form.element}}
         {{#form.element property='codirector' useIcons=false as |el|}}
@@ -180,7 +180,7 @@
               allowClear=true
               as |person|
             }}
-              Co-Director: {{person.common_name}}
+              Co-Director: {{person.commonName}}
             {{/power-select}}
         {{/form.element}}
       {{/unless}}

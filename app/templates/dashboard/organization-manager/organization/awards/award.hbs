@@ -19,28 +19,28 @@
           <ul class='list-inline'>
             <li>
               {{#form.element}}
-                {{#bs-button disabled=isDisabled active=model.is_primary onClick=(action (toggle 'is_primary' model))}}
+                {{#bs-button disabled=isDisabled active=model.isPrimary onClick=(action (toggle 'isPrimary' model))}}
                   Primary
                 {{/bs-button}}
               {{/form.element}}
             </li>
             <li>
               {{#form.element}}
-                {{#bs-button disabled=isDisabled active=model.is_novice onClick=(action (toggle 'is_novice' model))}}
+                {{#bs-button disabled=isDisabled active=model.isNovice onClick=(action (toggle 'isNovice' model))}}
                   Novice
                 {{/bs-button}}
               {{/form.element}}
             </li>
             <li>
               {{#form.element}}
-                {{#bs-button disabled=isDisabled active=model.is_improved onClick=(action (toggle 'is_improved' model))}}
+                {{#bs-button disabled=isDisabled active=model.isImproved onClick=(action (toggle 'isImproved' model))}}
                   Most-Improved
                 {{/bs-button}}
               {{/form.element}}
             </li>
             <li>
               {{#form.element}}
-                {{#bs-button disabled=isDisabled active=model.is_manual onClick=(action (toggle 'is_manual' model))}}
+                {{#bs-button disabled=isDisabled active=model.isManual onClick=(action (toggle 'isManual' model))}}
                   Manual
                 {{/bs-button}}
               {{/form.element}}
@@ -75,13 +75,13 @@
           {{form.element
             controlType='tel'
             placeholder='Number of Championship Rounds'
-            property='championship_rounds'
+            property='championshipRounds'
             disabled=isDisabled
           }}
           {{form.element
             controlType='tel'
             placeholder='Number of Qualifier Rounds'
-            property='qualifier_rounds'
+            property='qualifierRounds'
             disabled=isDisabled
           }}
           {{form.element

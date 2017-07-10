@@ -29,8 +29,8 @@ export default Ember.Controller.extend({
   }).restartable(),
   actions: {
     setDateRange(foo, bar) {
-      this.model.set('date_range.lower', foo);
-      this.model.set('date_range.upper', bar);
+      this.model.set('dateRange.lower', foo);
+      this.model.set('dateRange.upper', bar);
       this.model.save();
     },
     newConvention() {

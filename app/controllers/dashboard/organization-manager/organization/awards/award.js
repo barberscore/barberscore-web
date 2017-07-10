@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
   //     .then((data) => data);
   // }),
   awardSortProperties: [
-    'is_primary:desc',
+    'isPrimary:desc',
     'name:asc',
     'kindOptions',
   ],

@@ -13,7 +13,7 @@ export default Model.extend({
   original: DS.attr('number'),
   // violation: DS.attr('score-violation'),
   penalty: DS.attr('number'),
-  is_flagged: DS.attr('boolean'),
+  isFlagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
   permissions: DS.attr(),
@@ -55,7 +55,7 @@ export default Model.extend({
     }
   ),
 
-  panelistName: computed.alias('panelist.person.last_name'),
+  panelistName: computed.alias('panelist.person.lastName'),
   songNum: computed.alias('song.num'),
   lowReview: computed(
     'song.ascSortedScores',
@@ -140,9 +140,9 @@ export default Model.extend({
     'sngVar'
   ),
   hasVarianceClass: computed(
-    'is_flagged',
+    'isFlagged',
     function() {
-      if (this.get('is_flagged')) {
+      if (this.get('isFlagged')) {
         return 'has-error has-feedback';
       } else {
         return '';
@@ -151,9 +151,9 @@ export default Model.extend({
   ),
   slotJudge: computed(
     'num',
-    'person.common_name',
+    'person.commonName',
     function() {
-      return this.get('num') + " - " + this.get('person.common_name');
+      return this.get('num') + " - " + this.get('person.commonName');
     }
   ),
 });

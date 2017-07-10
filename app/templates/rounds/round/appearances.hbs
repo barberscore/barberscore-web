@@ -21,8 +21,8 @@
               <td>{{appearance.num}}</td>
               <td>{{single-fixed appearance.entry.prelim}}</td>
               <td>{{moment-format appearance.slot.onstage 'LT'}}</td>
-              <td>{{moment-format appearance.actual_start 'LT'}}</td>
-              <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}&nbsp;({{appearance.entry.representing.short_name}})</td>
+              <td>{{moment-format appearance.actualStart 'LT'}}</td>
+              <td>{{#link-to 'rounds.round.appearances.appearance' appearance}}{{appearance.entry.entity.name}}{{/link-to}}&nbsp;({{appearance.entry.representing.shortName}})</td>
               <td>
                 {{sorted-songs songs=appearance.songs}}
               </td>

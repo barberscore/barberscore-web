@@ -5,7 +5,7 @@ import DS from 'ember-data';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('contest-status'),
-  is_qualifier: DS.attr('boolean'),
+  isQualifier: DS.attr('boolean'),
   kind: DS.attr('contest-kind'),
   champion: DS.belongsTo('entry', {async: true}),
   session: DS.belongsTo('session', {async: true}),
@@ -29,8 +29,8 @@ export default Model.extend({
   ],
 
   entityKindSort: Ember.computed.alias('award.entity.kindSort'),
-  awardQualifier: Ember.computed.alias('award.is_qualifier'),
-  awardPrimary: Ember.computed.alias('award.is_primary'),
+  awardQualifier: Ember.computed.alias('award.isQualifier'),
+  awardPrimary: Ember.computed.alias('award.isPrimary'),
   awardAgeSort: Ember.computed.alias('award.ageSort'),
   awardName: Ember.computed.alias('award.name'),
 });

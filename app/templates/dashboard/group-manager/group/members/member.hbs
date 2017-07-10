@@ -21,7 +21,7 @@
               onchange=(action (mut el.value))
               as |person|
             }}
-              Person: {{person.common_name}}
+              Person: {{person.commonName}}
             {{/power-select}}
           {{/form.element}}
           {{#form.element property='part' useIcons=false as |el|}}
@@ -40,7 +40,7 @@
           {{/form.element}}
             <div class='row'>
               <div class='col-md-3'>
-                {{#form.element property='start_date' useIcons=false as |el|}}
+                {{#form.element property='startDate' useIcons=false as |el|}}
                   {{bs-datetimepicker
                     date=el.value
                     format='YYYY-MM-DD'
@@ -51,7 +51,7 @@
                 {{/form.element}}
               </div>
               <div class='col-md-3'>
-                {{#form.element property='end_date' useIcons=false as |el|}}
+                {{#form.element property='endDate' useIcons=false as |el|}}
                   {{bs-datetimepicker
                     date=el.value
                     format='YYYY-MM-DD'
