@@ -7,7 +7,7 @@ export default DS.Transform.extend({
       2: 'Double',
       3: 'Triple',
       4: 'Quadruple',
-      5: 'Quintiple',
+      5: 'Quintuple',
     };
     return map[serialized];
   },
@@ -18,7 +18,7 @@ export default DS.Transform.extend({
       'Double': 2,
       'Triple': 3,
       'Quadruple': 4,
-      'Quintiple': 5,
+      'Quintuple': 5,
     };
     return map[deserialized];
   }
