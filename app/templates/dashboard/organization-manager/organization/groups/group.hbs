@@ -1,0 +1,97 @@
+<section>
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{form.element
+      property='name'
+      onChange=(perform autosave 'name')
+      disabled=true
+    }}
+    {{#form.element property='parent' useIcons=false as |el|}}
+      {{#power-select
+        options=representingOptions
+        selected=el.value
+        searchField='name'
+        onchange=(perform autosave 'parent')
+        placeholder="Enter 'Home' District/Division/Affiliate"
+        allowClear=true
+        disabled=false
+        as |parent|
+      }}
+        Representing: {{parent.name}}
+      {{/power-select}}
+    {{/form.element}}
+    {{#form.element}}
+      {{#power-select
+        renderInPlace=true
+        options=model.kindOptions
+        selected=model.kind
+        onchange=(perform autosave 'kind')
+        placeholder="Choose Entity Kind"
+        disabled=false
+        allowClear=true
+        as |kind|
+      }}
+        Kind: {{kind}}
+      {{/power-select}}
+    {{/form.element}}
+    {{form.element
+      controlType='text'
+      placeholder='Short Name'
+      property='shortName'
+      disabled=false
+      onChange=(perform autosave 'shortName')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Location'
+      property='location'
+      disabled=false
+      onChange=(perform autosave 'location')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Website'
+      property='website'
+      disabled=false
+      onChange=(perform autosave 'website')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Facebook'
+      property='facebook'
+      disabled=false
+      onChange=(perform autosave 'facebook')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Twitter'
+      property='twitter'
+      disabled=false
+      onChange=(perform autosave 'twitter')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Email'
+      property='email'
+      disabled=false
+      onChange=(perform autosave 'email')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Phone'
+      property='phone'
+      disabled=false
+      onChange=(perform autosave 'phone')
+    }}
+    {{form.element
+      controlType='textarea'
+      placeholder='Description'
+      property='description'
+      disabled=false
+      onChange=(perform autosave 'description')
+    }}
+  {{/bs-form}}
+</section>

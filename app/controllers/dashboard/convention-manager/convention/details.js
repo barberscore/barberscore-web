@@ -25,7 +25,14 @@ export default Ember.Controller.extend({
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
-    yield this.get('model').save();
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
   }).restartable(),
   actions: {
     setDateRange(foo, bar) {

@@ -1,0 +1,30 @@
+<section>
+  <div class='row'>
+    <div class='col-md-4'>
+      <table class='table'>
+        {{!-- <caption>Awards</caption> --}}
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Home</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedItems as |entity|}}
+            <tr>
+              <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' entity}}{{entity.nomen}}{{/link-to}}</td>
+              <td>{{entity.parent.name}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>No groups in this organization.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div class='col-md-8'>
+      {{outlet}}
+    </div>
+  </div>
+</section>

@@ -2,19 +2,9 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  sortedContestantsProperties: [
-    'entryTotPoints:desc',
-  ],
-  sortedContestants: Ember.computed.sort(
-    'model.contestants',
-    'sortedContestantsProperties'
-  ),
-  contestsSortProperties: [
-    'nomen',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.session.contests',
-    'contestsSortProperties'
+  groupManager: Ember.inject.controller('dashboard.organization-manager.organization.groups'),
+  sortedItems: Ember.computed.alias(
+    'groupManager.sortedItems',
   ),
   isPrevDisabled: Ember.computed(
     'model',
@@ -26,6 +16,26 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
+  representingCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+        'kind__lt': '30',
+        'page_size': 100,
+      });
+  }),
+  representingSortProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  representingOptions: Ember.computed.sort(
+    'representingCall',
+    'representingSortProperties'
+  ),
+  representing: Ember.computed(
+    'model.representing',
+    function() {
+      return this.get('model.representing');
+    }
+  ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
@@ -42,12 +52,12 @@ export default Ember.Controller.extend({
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.scoring-manager.round.contests.contest', newCur);
+      this.transitionToRoute('dashboard.award-manager.award.details', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.scoring-manager.round.contests.contest', newCur);
+      this.transitionToRoute('dashboard.award-manager.award.details', newCur);
     },
-  },
+  }
 });

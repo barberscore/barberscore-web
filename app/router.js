@@ -90,6 +90,9 @@ Router.map(function() {
         this.route('awards', {path: 'awards'}, function() {
           this.route('award', { path: ':award_id'});
         });
+        this.route('groups', {path: 'groups'}, function() {
+          this.route('group', { path: ':group_id'});
+        });
       });
     });
     this.route('person-manager', {path: 'person-manager'}, function() {

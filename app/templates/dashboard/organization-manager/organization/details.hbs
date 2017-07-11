@@ -1,19 +1,56 @@
 <section>
-  {{#bs-form formLayout='vertical' model=model onSubmit=(action 'saveOrganization') as |form|}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Organization Name' property='name'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location'}}
-    {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website'}}
-    {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email'}}
-    {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Facebook' property='facebook'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Twitter' property='twitter'}}
-    {{form.element controlType='textarea' disabled=isDisabled placeholder='Description' property='description'}}
-    {{#if isEditing}}
-      {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
-      {{#bs-button onClick=(action 'cancelOrganization')}}Cancel{{/bs-button}}
-      {{#bs-button type='danger' onClick=(action 'deleteOrganization') class='pull-right'}}Delete{{/bs-button}}
-    {{else}}
-      {{#bs-button type='default' onClick=(action 'editOrganization') disabled=isWrite}}Edit{{/bs-button}}
-    {{/if}}
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{form.element
+      controlType='text'
+      placeholder='Organization Name'
+      property='name'
+      onChange=(perform autosave 'name')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Location'
+      property='location'
+      onChange=(perform autosave 'location')
+    }}
+    {{form.element
+      controlType='url'
+      placeholder='Website'
+      property='website'
+      onChange=(perform autosave 'website')
+    }}
+    {{form.element
+      controlType='email'
+      placeholder='Email'
+      property='email'
+      onChange=(perform autosave 'email')
+    }}
+    {{form.element
+      controlType='phone'
+      placeholder='Phone'
+      property='phone'
+      onChange=(perform autosave 'phone')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Facebook'
+      property='facebook'
+      onChange=(perform autosave 'facebook')
+    }}
+    {{form.element
+      controlType='text'
+      placeholder='Twitter'
+      property='twitter'
+      onChange=(perform autosave 'twitter')
+    }}
+    {{form.element
+      controlType='textarea'
+      placeholder='Description'
+      property='description'
+      onChange=(perform autosave 'description')
+    }}
   {{/bs-form}}
 </section>
