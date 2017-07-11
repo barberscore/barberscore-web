@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -27,6 +28,11 @@ export default Model.extend({
   children: DS.hasMany('award', {inverse:'parent', async: true}),
   contests: DS.hasMany('contest', {inverse:'award', async: true}),
   permissions: DS.attr(),
+
+  // Transitions
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+
 
   statusOptions: [
     'New',

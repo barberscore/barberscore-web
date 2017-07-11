@@ -1,0 +1,52 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th {{action 'sortBy' 'name'}}>Name</th>
+          <th {{action 'sortBy' 'entity'}}>Entity</th>
+          <th {{action 'sortBy' 'kind'}}>Kind</th>
+          <th {{action 'sortBy' 'season'}}>Season</th>
+          <th {{action 'sortBy' 'rounds'}}>Rounds</th>
+          <th {{action 'sortBy' 'parent'}}>Parent</th>
+          <th {{action 'sortBy' 'isRepQualifies'}}>DisRep</th>
+          <th {{action 'sortBy' 'threshold'}}>Threshold</th>
+          <th {{action 'sortBy' 'minimum'}}>Minimum</th>
+          <th {{action 'sortBy' 'advance'}}>Advance</th>
+          <th {{action 'sortBy' 'status'}}>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedItems as |award|}}
+          <tr>
+            <td>{{#link-to 'dashboard.award-manager.award.details' award}}{{award.name}}{{/link-to}}</td>
+            <td>{{award.entity.name}}</td>
+            <td>{{award.kind}}</td>
+            <td>{{award.season}}</td>
+            <td>{{award.rounds}}</td>
+            <td>{{award.parent.name}}</td>
+            <td>{{award.isRepQualifies}}</td>
+            <td>{{award.threshold}}</td>
+            <td>{{award.minimum}}</td>
+            <td>{{award.advance}}</td>
+            <td>{{award.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(None)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <section>
+    <div>
+      {{#if currentUser.user.person.isAwardManager}}
+        {{#bs-button onClick=(action "createAward") type='success'}}Create New Award{{/bs-button}}
+      {{/if}}
+    </div>
+  </section>
+</section>

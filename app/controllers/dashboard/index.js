@@ -7,30 +7,30 @@ export default Ember.Controller.extend({
     'currentUser.user.disabledAssignments'
   ),
   isConventionManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isConventionManager.length'
+    'currentUser.user.person.isConventionManager'
   ),
   isSessionManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isSessionManager.length'
+    'currentUser.user.person.isSessionManager'
   ),
   isScoringManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isScoringManager.length'
+    'currentUser.user.person.isScoringManager'
   ),
   isOrganizationManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isOrganizationManager.length'
+    'currentUser.user.person.isOrganizationManager'
   ),
   isGroupManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isGroupManager.length'
+    'currentUser.user.person.isGroupManager'
   ),
   isPersonManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isPersonManager.length'
+    'currentUser.user.person.isPersonManager'
   ),
   isAwardManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isAwardManager.length'
+    'currentUser.user.person.isAwardManager'
   ),
   isJudgeManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isJudgeManager.length'
+    'currentUser.user.person.isJudgeManager'
   ),
   isChartManagerDisabled: Ember.computed.not(
-    'currentUser.user.person.isChartManager.length'
+    'currentUser.user.person.isChartManager'
   ),
 });

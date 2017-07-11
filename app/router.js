@@ -79,7 +79,9 @@ Router.map(function() {
       });
     });
     this.route('award-manager', {path: 'award-manager'}, function() {
-      this.route('award', { path: ':award_id' });
+      this.route('award', { path: ':award_id' }, function(){
+        this.route('details', {path: 'details'});
+      });
       this.route('new', { path: 'new' });
     });
     this.route('organization-manager', {path: 'organization-manager'}, function() {
