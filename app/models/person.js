@@ -39,23 +39,63 @@ export default Model.extend({
   permissions: DS.attr(),
 
 
+  // Module Permissions CPs
   isConventionManager: Ember.computed(
     'officers.@each.isConventionManager', function(){
-      let officers = this.get('officers');
-      return officers.filterBy('isConventionManager', true);
-    }),
+    let officers = this.get('officers');
+    return officers.filterBy('isConventionManager', true);
+  }),
 
-  isML: Ember.computed(
-    'officers.@each.isML', function(){
-      let officers = this.get('officers');
-      return officers.filterBy('isML', true);
-    }),
+  isSessionManager: Ember.computed(
+  'officers.@each.isSessionManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isSessionManager', true);
+  }),
 
-  isDRCJ: Ember.computed(
-    'officers.@each.isDRCJ', function(){
-      let officers = this.get('officers');
-      return officers.filterBy('isDRCJ', true);
-    }),
+  isScoringManager: Ember.computed(
+    'officers.@each.isScoringManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isScoringManager', true);
+  }),
+
+  isOrganizationManager: Ember.computed(
+    'officers.@each.isOrganizationManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isOrganizationManager', true);
+  }),
+
+  isGroupManager: Ember.computed(
+    'officers.@each.isGroupManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isGroupManager', true);
+  }),
+
+  isPersonManager: Ember.computed(
+    'officers.@each.isPersonManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isPersonManager', true);
+  }),
+
+  isAwardManager: Ember.computed(
+    'officers.@each.isAwardManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isAwardManager', true);
+  }),
+
+  isJudgeManager: Ember.computed(
+    'officers.@each.isJudgeManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isJudgeManager', true);
+  }),
+
+  isChartManager: Ember.computed(
+    'officers.@each.isChartManager', function(){
+    let officers = this.get('officers');
+    return officers.filterBy('isChartManager', true);
+  }),
+
+
+
 
   statusOptions: [
     'New',

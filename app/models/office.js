@@ -13,7 +13,7 @@ export default Model.extend({
   isSessionManager: DS.attr('boolean'),
   isScoringManager: DS.attr('boolean'),
   isOrganizationManager: DS.attr('boolean'),
-  isGroupmanager: DS.attr('boolean'),
+  isGroupManager: DS.attr('boolean'),
   isPersonManager: DS.attr('boolean'),
   isAwardManager: DS.attr('boolean'),
   isJudgeManager: DS.attr('boolean'),

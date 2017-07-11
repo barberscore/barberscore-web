@@ -81,13 +81,13 @@ export default Model.extend({
     'totScores',
     'points'
   ),
-  totPoints: computed.sum(
+  totPointsCP: computed.sum(
     'totRawPoints'
   ),
   totCount: computed.alias(
     'totRawPoints.length'
   ),
-  totScore: Ember.computed(
+  totScoreCP: Ember.computed(
     'totPoints',
     'totCount',
     function() {
@@ -99,13 +99,13 @@ export default Model.extend({
     'musScores',
     'points'
   ),
-  musPoints: computed.sum(
+  musPointsCP: computed.sum(
     'musScoresPoints'
   ),
   musCount: computed.alias(
     'musScoresPoints.length'
   ),
-  musScore: Ember.computed(
+  musScoreCP: Ember.computed(
     'musPoints',
     'musCount',
     function() {
@@ -117,13 +117,13 @@ export default Model.extend({
     'perScores',
     'points'
   ),
-  perPoints: computed.sum(
+  perPointsCP: computed.sum(
     'perScoresPoints'
   ),
   perCount: computed.alias(
     'perScoresPoints.length'
   ),
-  perScore: Ember.computed(
+  perScoreCP: Ember.computed(
     'perPoints',
     'perCount',
     function() {
@@ -135,13 +135,13 @@ export default Model.extend({
     'sngScores',
     'points'
   ),
-  sngPoints: computed.sum(
+  sngPointsCP: computed.sum(
     'sngScoresPoints'
   ),
   sngCount: computed.alias(
     'sngScoresPoints.length'
   ),
-  sngScore: Ember.computed(
+  sngScoreCP: Ember.computed(
     'sngPoints',
     'sngCount',
     function() {

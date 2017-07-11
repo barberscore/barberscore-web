@@ -80,13 +80,13 @@ export default Model.extend({
     'appearances',
     'stc'
   ),
-  totPoints: computed.sum(
+  totPointsCP: computed.sum(
     'tp'
   ),
   stc: computed.sum(
     'tc'
   ),
-  totScore: computed(
+  totScoreCP: computed(
     'totPoints',
     'stc',
     function() {
@@ -101,13 +101,13 @@ export default Model.extend({
     'appearances',
     'smc'
   ),
-  musPoints: computed.sum(
+  musPointsCP: computed.sum(
     'mp'
   ),
   smc: computed.sum(
     'mc'
   ),
-  musScore: computed(
+  musScoreCP: computed(
     'musPoints',
     'smc',
     function() {
@@ -122,13 +122,13 @@ export default Model.extend({
     'appearances',
     'spc'
   ),
-  perPoints: computed.sum(
+  perPointsCP: computed.sum(
     'pp'
   ),
   spc: computed.sum(
     'pc'
   ),
-  perScore: computed(
+  perScoreCP: computed(
     'perPoints',
     'spc',
     function() {
@@ -143,13 +143,13 @@ export default Model.extend({
     'appearances',
     'ssc'
   ),
-  sngPoints: computed.sum(
+  sngPointsCP: computed.sum(
     'sp'
   ),
   ssc: computed.sum(
     'sc'
   ),
-  sngScore: computed(
+  sngScoreCP: computed(
     'sngPoints',
     'ssc',
     function() {
