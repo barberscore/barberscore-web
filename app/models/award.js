@@ -17,7 +17,7 @@ export default Model.extend({
   isNovice: DS.attr('boolean'),
   isManual: DS.attr('boolean'),
   isMulti: DS.attr('boolean'),
-  isDistrictRepresentatives: DS.attr('boolean'),
+  isRepQualifies: DS.attr('boolean'),
   rounds: DS.attr('number'),
   threshold: DS.attr('number'),
   minimum: DS.attr('number'),

@@ -9,6 +9,34 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not(
     'model.permissions.write'
   ),
+  entityCall: Ember.computed(function() {
+    return this.get('store').query('entity', {
+      'officers__person__user': this.get('currentUser.user.id'),
+      'officers__person__is_award_manager': true
+    });
+  }),
+  entityOptionsProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  entityOptions: Ember.computed.sort(
+    'entityCall',
+    'entityOptionsProperties'
+  ),
+  awardCall: Ember.computed(function() {
+    return this.get('store').query('award', {
+      'entity__officers__person__user': this.get('currentUser.user.id'),
+      'entity__officers__person__is_award_manager': true
+    });
+  }),
+  awardOptionsProperties: [
+    'kindSort:asc',
+    'name:asc',
+  ],
+  awardOptions: Ember.computed.sort(
+    'awardCall',
+    'awardOptionsProperties'
+  ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
