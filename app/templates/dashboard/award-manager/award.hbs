@@ -19,7 +19,7 @@
             disabled=isDisabled
             onChange=(perform autosave 'name')
           }}
-          {{#form.element property='entity' useIcons=false as |el|}}
+          {{!-- {{#form.element property='entity' useIcons=false as |el|}}
             {{#power-select
               renderInPlace=true
               options=entityOptions
@@ -32,7 +32,7 @@
             }}
               Entity: {{entity.name}}
             {{/power-select}}
-          {{/form.element}}
+          {{/form.element}} --}}
           {{#form.element property='kind' useIcons=false as |el|}}
             {{#power-select
               renderInPlace=true
@@ -47,7 +47,7 @@
               Kind: {{kind}}
             {{/power-select}}
           {{/form.element}}
-          {{#form.element property='season' useIcons=false as |el|}}
+          {{!-- {{#form.element property='season' useIcons=false as |el|}}
             {{#power-select
               renderInPlace=true
               options=model.seasonOptions
@@ -60,7 +60,7 @@
             }}
               Season: {{season}}
             {{/power-select}}
-          {{/form.element}}
+          {{/form.element}} --}}
           {{#form.element property='rounds' useIcons=false as |el|}}
             {{#power-select
               renderInPlace=true
@@ -75,32 +75,17 @@
               Rounds: {{rounds}}
             {{/power-select}}
           {{/form.element}}
-          {{#form.element property='age' useIcons=false as |el|}}
-            {{#power-select
-              renderInPlace=true
-              options=model.ageOptions
-              selected=el.value
-              onchange=(perform autosave 'age')
-              placeholder="Choose Award Age (if applicable)"
-              allowClear=true
-              disabled=isDisabled
-              as |age|
-            }}
-              Age: {{age}}
-            {{/power-select}}
-          {{/form.element}}
-          {{#form.element property='isManual' as |el|}}
+          {{#form.element property='isQualifier' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(perform autosave 'isManual')
+              onChange=(perform autosave 'isQualifier')
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Winner Automatically Determined{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Winner Manually Determined{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Championship{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Qualifier{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          <hr>
         {{/bs-form}}
       </section>
     </div>
