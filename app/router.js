@@ -110,6 +110,10 @@ Router.map(function() {
       this.route('chart', { path: ':chart_id' });
       this.route('new', { path: 'new' });
     });
+    this.route('schedule-manager', {path: 'schedule-manager'}, function() {
+      this.route('schedule', { path: ':schedule_id' });
+      this.route('new', { path: 'new' });
+    });
   });
   this.route('about');
   this.route('faq');
