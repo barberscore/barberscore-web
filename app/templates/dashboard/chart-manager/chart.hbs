@@ -15,31 +15,43 @@
           {{form.element
             controlType='text'
             placeholder='Title'
-            disabled=isDisabled
             property='title'
             onChange=(perform autosave 'title')
           }}
           {{form.element
             controlType='text'
             placeholder='Arrangers'
-            disabled=isDisabled
             property='arrangers'
             onChange=(perform autosave 'arrangers')
           }}
           {{form.element
             controlType='text'
             placeholder='Composers'
-            disabled=isDisabled
             property='composers'
             onChange=(perform autosave 'composers')
           }}
           {{form.element
             controlType='text'
             placeholder='Lyricists'
-            disabled=isDisabled
             property='lyricists'
             onChange=(perform autosave 'lyricists')
           }}
+          {{form.element
+            controlType='textarea'
+            rows=6
+            property='description'
+            placeholder='Public details (ie, From the Musical "SMASH")'
+            onChange=(perform autosave 'description')
+          }}
+          {{#if model.permissions.write}}
+            {{form.element
+              controlType='textarea'
+              rows=6
+              property='notes'
+              placeholder='Private notes field'
+              onChange=(perform autosave 'notes')
+            }}
+          {{/if}}
         {{/bs-form}}
         <div class='col-md-6'>
           {{#if uploadPhoto.isRunning}}

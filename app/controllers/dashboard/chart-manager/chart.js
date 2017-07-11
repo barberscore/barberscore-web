@@ -57,13 +57,7 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
-  sortedItemsSortProperties: [
-    'statusSort',
-  ],
-  sortedItems: Ember.computed.sort(
-    'chartManager.sortedItems',
-    'sortedItemsSortProperties'
-  ),
+  sortedItems: Ember.computed.alias('chartManager.sortedItems'),
   isPrevDisabled: Ember.computed(
     'model',
     'sortedItems', function() {
