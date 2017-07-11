@@ -85,7 +85,7 @@ export default Model.extend({
   isJudgeManager: Ember.computed(
     'officers.@each.isJudgeManager', function(){
     let officers = this.get('officers');
-    return Boolean(officers.filterBy('isConventioisJudgeManagernManager', true).length);
+    return Boolean(officers.filterBy('isJudgeManager', true).length);
   }),
 
   isChartManager: Ember.computed(
@@ -93,8 +93,6 @@ export default Model.extend({
     let officers = this.get('officers');
     return Boolean(officers.filterBy('isChartManager', true).length);
   }),
-
-
 
 
   statusOptions: [

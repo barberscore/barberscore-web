@@ -5,7 +5,6 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   currentUser: Ember.inject.service(),
-  chartManager: Ember.inject.controller('dashboard.chart-manager'),
   flashMessages: Ember.inject.service(),
   isDisabled: Ember.computed.not(
     'model.permissions.write'
@@ -57,6 +56,7 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
+  chartManager: Ember.inject.controller('dashboard.chart-manager'),
   sortedItems: Ember.computed.alias('chartManager.sortedItems'),
   isPrevDisabled: Ember.computed(
     'model',

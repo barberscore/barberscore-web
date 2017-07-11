@@ -2,6 +2,7 @@ import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
+import {memberAction} from 'ember-api-actions';
 
 const Validations = buildValidations({
   email: validator('format', {
@@ -43,6 +44,9 @@ export default Model.extend(Validations, {
   officers: DS.hasMany('officer', {async: true}),
   repertories: DS.hasMany('repertory', {async: true}),
   permissions: DS.attr(),
+
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   kindOptions: [
     'Organization',

@@ -4,23 +4,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
-  isWrite: Ember.computed.not('model.permissions.write'),
-  // searchTask: task(function* (term){
-  //   yield timeout(600);
-  //   return this.get('store').query('person', {'nomen__icontains': term})
-  //     .then((data) => data);
-  // }),
-  awardSortProperties: [
-    'isPrimary:desc',
-    'name:asc',
-    'kindOptions',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.entity.awards',
-    'awardSortProperties'
-  ),
+  awardManager: Ember.inject.controller('dashboard.award-manager.index'),
+  sortedItems: Ember.computed('awardManager.sortedItems'),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
