@@ -6,8 +6,11 @@ export default Ember.Controller.extend({
         'entityKindSort:asc',
         'name',
     ],
-    sortedItems: Ember.computed.sort(
+    uniqueItems: Ember.computed.uniq(
         'model',
+    ),
+    sortedItems: Ember.computed.sort(
+        'uniqueItems',
         'sortProperties'
     ),
     actions: {
