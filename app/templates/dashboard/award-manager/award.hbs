@@ -4,8 +4,12 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
+      {{!-- <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul> --}}
       <h4>
-        {{model.name}}
+        {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
@@ -17,6 +21,35 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
+      <div class='pull-right'>
+        <h4>
+          Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+      <div>
+        {{#if model.permissions.write}}
+          <ul class='list-inline'>
+            {{#if (or (eq model.status 'New')(eq model.status 'Inactive'))}}
+              <li>{{#bs-button type='primary'  disabled=model.isError onClick=(perform activateAward)}}
+                {{#if activateAward.isRunning}}
+                  Activating {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Activate Award
+                {{/if}}
+              {{/bs-button}}</li>
+            {{/if}}
+            {{#if (or (eq model.status 'New')(eq model.status 'Active'))}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform deactivateAward)}}
+                {{#if deactivateAward.isRunning}}
+                  Deactivating {{fa-icon "spinner" spin=true}}
+                {{else}}
+                  Deactivate Award
+                {{/if}}
+              {{/bs-button}}</li>
+            {{/if}}
+          </ul>
+        {{/if}}
+      </div>
     </div>
   </div>
 </section>

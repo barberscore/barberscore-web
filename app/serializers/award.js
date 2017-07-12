@@ -5,5 +5,8 @@ export default DS.JSONAPISerializer.extend({
       contests: {
         serialize: true
       },
+      children: {
+        serialize: true
+      },
     }
 });

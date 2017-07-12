@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  awardManager: Ember.inject.controller('dashboard.award-manager.index'),
+  awardManager: Ember.inject.controller('dashboard.organization-manager.organization.awards'),
   sortedItems: Ember.computed('awardManager.sortedItems'),
   actions: {
     previousItem(cursor) {
