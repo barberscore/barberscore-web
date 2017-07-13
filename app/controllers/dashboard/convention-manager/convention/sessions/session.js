@@ -10,8 +10,16 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
+  filteredAwards: Ember.computed(
+  'model.convention.entity.awards.@each.kind',
+    function(){
+      let awards = this.get('model.convention.entity.awards');
+      let kind = this.get('model.kind');
+      return awards.filterBy('kind', kind);
+    }
+  ),
   awardOptions: Ember.computed.sort(
-    'model.convention.entity.awards',
+    'filteredAwards',
     'awardSortProperties'
   ),
   sortedAwards: Ember.computed.alias('awardOptions'),
@@ -38,10 +46,6 @@ export default Ember.Controller.extend({
     });
     this.store.pushPayload('session', session);
     this.get('flashMessages').success("Scheduled!");
-  }).drop(),
-  addContest: task(function *(property, value) {
-    console.log(property);
-    console.log(value.get('name'));
   }).drop(),
   actions: {
     previousItem(cursor) {
