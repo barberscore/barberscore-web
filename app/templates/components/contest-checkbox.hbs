@@ -4,6 +4,6 @@
   onChange=(perform toggleAward 'contests')
   as |bg|
 }}
-  {{#bg.button type='default' value=true disabled=false}}On{{/bg.button}}
-  {{#bg.button type='default' value=false disabled=false}}Off{{/bg.button}}
+  {{#bg.button type='default' value=true disabled=isDisabled}}On{{/bg.button}}
+  {{#bg.button type='default' value=false disabled=isDisabled}}Off{{/bg.button}}
 {{/bs-button-group}}

@@ -35,51 +35,6 @@
     </div>
   </div>
 </section>
-<section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Create New Session{{/bs-button}}
-</section>
-<section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearSession")
-    title="Create Session"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createSession')
-      as |form|
-    }}
-      {{#form.element property='kind' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=kindOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Session Kind"
-          allowClear=true
-          as |kind|
-        }}
-          Kind: {{kind}}
-        {{/power-select}}
-      {{/form.element}}
-      {{#form.element property='awards' useIcons=false as |el|}}
-        {{#if awardOptions}}
-          Select Contests for this Session:<br><br>
-          {{multiselect-checkboxes
-            options=awardOptions
-            labelProperty='name'
-            selection=el.value
-            updateSelectionValue=false
-            onchange=(action (mut el.value))
-          }}
-          <br><br>
-          If you need to create new awards, you can do so in the {{#link-to 'dashboard.award-manager'}}Award Manager{{/link-to}}.
-        {{/if}}
-      {{/form.element}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section>
+{{!-- <section>
+  {{#bs-button type='success' onClick=(action 'createSession')}}Create New Session{{/bs-button}}
+</section> --}}

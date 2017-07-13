@@ -4,6 +4,10 @@ import { task } from 'ember-concurrency';
 export default Ember.Component.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
+  isDisabled: Ember.computed.equal(
+    'model.status',
+    'Scheduled',
+  ),
   isSelected: Ember.computed(
     'award',
     'contests.@each.award',

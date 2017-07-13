@@ -58,21 +58,5 @@ export default Ember.Controller.extend({
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
       this.transitionToRoute('dashboard.convention-manager.convention.sessions.session', newCur);
     },
-    updateSelection(newSelection, value, operation) {
-      if (operation==='added') {
-        let award = this.get('store').peekRecord('award', value);
-        let contest = this.get('model.contests').createRecord({
-          award: award
-        });
-        contest.save()
-        .then(() => {
-        });
-      } else { //operation === removed
-        let contest = this.get('model.contests').findBy('award.id', value);
-        contest.destroyRecord()
-        .then(() => {
-        });
-      }
-    },
   },
 });
