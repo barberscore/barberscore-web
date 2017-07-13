@@ -1,19 +1,19 @@
 <section>
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-md-8'>
       <table class='table'>
         {{!-- <caption>Awards</caption> --}}
         <thead>
           <tr>
             <th>Name</th>
-            <th>Home</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedItems as |entity|}}
             <tr>
               <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' entity}}{{entity.nomen}}{{/link-to}}</td>
-              <td>{{entity.parent.name}}</td>
+              <td>{{entity.status}}</td>
             </tr>
           {{else}}
             <tr>

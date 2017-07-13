@@ -45,7 +45,7 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
-  dectivateChart: task(function *() {
+  deactivateChart: task(function *() {
     try {
       let chart = yield this.model.deactivate({
         'by': this.get('currentUser.user.id')

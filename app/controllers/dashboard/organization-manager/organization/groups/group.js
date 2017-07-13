@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  groupManager: Ember.inject.controller('dashboard.organization-manager.organization.groups'),
+  groupManager: Ember.inject.controller('dashboard.organization-manager.organization.groups.index'),
   flashMessages: Ember.inject.service(),
   sortedItems: Ember.computed.alias('groupManager.sortedItems'),
   isPrevDisabled: Ember.computed(
@@ -60,12 +60,12 @@ export default Ember.Controller.extend({
       })
     }
   }).drop(),
-  dectivateGroup: task(function *() {
+  deactivateGroup: task(function *() {
     try {
       let group = yield this.model.deactivate({
         'by': this.get('currentUser.user.id')
       });
-      this.store.unloadRecord(group);
+      this.store.pushPayload('entity', group);
       this.get('flashMessages').success("Deactivated!");
     } catch(e) {
       e.errors.forEach((error) => {

@@ -74,4 +74,28 @@ export default Model.extend(Validations, {
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
+  isQuartet: Ember.computed.equal(
+    'kind',
+    'Quartet',
+  ),
+  isChorus: Ember.computed.equal(
+    'kind',
+    'Chorus',
+  ),
+  isVeryLargeQuartet: Ember.computed.equal(
+    'kind',
+    'Very Large Quartet',
+  ),
+  isMixedGroup: Ember.computed.equal(
+    'kind',
+    'Mixed Group',
+  ),
+  isGroup: Ember.computed.or(
+    'isQuartet',
+    'isChorus',
+    'isVeryLargeQuartet',
+    'isMixedGroup',
+  ),
+  isOrg: Ember.computed.not('isGroup'),
+
 });

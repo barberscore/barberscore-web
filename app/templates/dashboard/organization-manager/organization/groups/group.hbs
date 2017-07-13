@@ -115,7 +115,7 @@
           Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
-      {{!-- <div>
+      <div>
         {{#if model.permissions.write}}
           <ul class='list-inline'>
             {{#if (or (eq model.status 'New')(eq model.status 'Inactive'))}}
@@ -128,17 +128,17 @@
               {{/bs-button}}</li>
             {{/if}}
             {{#if (or (eq model.status 'New')(eq model.status 'Active'))}}
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform dectivateGroup)}}
-                {{#if dectivateGroup.isRunning}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform deactivateGroup)}}
+                {{#if deactivateGroup.isRunning}}
                   Deactivating {{fa-icon "spinner" spin=true}}
                 {{else}}
-                  Deactivate Goup
+                  Deactivate Group
                 {{/if}}
               {{/bs-button}}</li>
             {{/if}}
           </ul>
         {{/if}}
-      </div> --}}
+      </div>
     </div>
   </div>
 </section>

@@ -96,8 +96,8 @@
               {{/bs-button}}</li>
             {{/if}}
             {{#if (or (eq model.status 'New')(eq model.status 'Active'))}}
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform dectivateChart)}}
-                {{#if dectivateChart.isRunning}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(perform deactivateChart)}}
+                {{#if deactivateChart.isRunning}}
                   Deactivating {{fa-icon "spinner" spin=true}}
                 {{else}}
                   Deactivate Chart

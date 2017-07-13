@@ -7,13 +7,12 @@ export default Ember.Controller.extend({
     'kindSort:desc',
     'name:asc',
   ],
-  activeEntities: Ember.computed.filterBy(
+  filteredEntities: Ember.computed.filterBy(
     'model.children',
-    'status',
-    'Active'
+    'isGroup',
   ),
   sortedItems: Ember.computed.sort(
-    'activeEntities',
+    'filteredEntities',
     'sortProperties'
   ),
 });

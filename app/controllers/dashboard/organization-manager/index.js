@@ -5,8 +5,11 @@ export default Ember.Controller.extend({
     'kindSort:asc',
     'name:asc',
   ],
-  sortedOrganizations: Ember.computed.sort(
+  uniqOrganizations: Ember.computed.uniq(
     'model',
+  ),
+  sortedOrganizations: Ember.computed.sort(
+    'uniqOrganizations',
     'sortProperties'
   ),
   actions: {
