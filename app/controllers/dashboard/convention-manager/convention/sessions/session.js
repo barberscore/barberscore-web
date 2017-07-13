@@ -28,7 +28,6 @@ export default Ember.Controller.extend({
     'filteredKind.@each.season',
     'model.convention.season',
     function() {
-      console.log(this.get('model.convention.season'));
       return this.get('filteredKind').filterBy('season', this.get('model.convention.season'));
     }
   ),
