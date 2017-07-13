@@ -1,4 +1,4 @@
-<section>
+<section class='col-md-6'>
   {{#bs-form
     model=model
     formLayout='vertical'
@@ -33,7 +33,7 @@
         selected=model.entity
         onchange=(perform autosave 'entity')
         placeholder="Choose Convention Owner Entity"
-        disabled=false
+        disabled=true
         allowClear=true
         as |entity|
       }}
@@ -41,7 +41,7 @@
       {{/power-select}}
     {{/form.element}}
     <div class='row'>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='season' as |el|}}
           {{#power-select
             options=model.seasonOptions
@@ -49,7 +49,7 @@
             renderInPlace=true
             onchange=(perform autosave 'season')
             placeholder="Choose Season"
-            disabled=false
+            disabled=true
             allowClear=true
             as |season|
           }}
@@ -57,7 +57,7 @@
           {{/power-select}}
         {{/form.element}}
       </div>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='year' as |el|}}
           {{#power-select
             options=model.yearOptions
@@ -65,7 +65,7 @@
             renderInPlace=true
             onchange=(perform autosave 'year')
             placeholder="Choose Year"
-            disabled=false
+            disabled=true
             allowClear=true
             as |year|
           }}
@@ -82,7 +82,7 @@
       onChange=(perform autosave 'location')
     }}
     <div class='row'>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='openDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
@@ -93,7 +93,7 @@
           }}
         {{/form.element}}
       </div>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='closeDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
@@ -106,7 +106,7 @@
       </div>
     </div>
     <div class='row'>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='startDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
@@ -117,7 +117,7 @@
           }}
         {{/form.element}}
       </div>
-      <div class='col-md-3'>
+      <div class='col-md-6'>
         {{#form.element property='endDate' as |el|}}
           {{bs-datetimepicker
             date=el.value

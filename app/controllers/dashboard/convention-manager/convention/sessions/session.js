@@ -14,6 +14,7 @@ export default Ember.Controller.extend({
     'model.convention.entity.awards',
     'awardSortProperties'
   ),
+  sortedAwards: Ember.computed.alias('awardOptions'),
   sessionSortProperties: [
     'nomen',
   ],
@@ -37,6 +38,10 @@ export default Ember.Controller.extend({
     });
     this.store.pushPayload('session', session);
     this.get('flashMessages').success("Scheduled!");
+  }).drop(),
+  addContest: task(function *(property, value) {
+    console.log(property);
+    console.log(value.get('name'));
   }).drop(),
   actions: {
     previousItem(cursor) {

@@ -16,6 +16,7 @@ Router.map(function() {
           this.route('assignment', { path: ':assignment_id'});
         });
         this.route('sessions', { path: 'sessions'}, function() {
+          this.route('new', { path: 'new'});
           this.route('session', { path: ':session_id'});
         });
         this.route('actions', {path: 'actions'});
