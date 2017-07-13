@@ -17,9 +17,10 @@ export default Ember.Controller.extend({
   }),
   representingCall: Ember.computed(function() {
     return this.get('store').query('entity', {
-        'kind__lt': '30',
-        'page_size': 100,
-      });
+      'kind__in': '11,21', // TODO Hardcoded
+      'officers__person__user': this.get('currentUser.user.id'),
+      'status__gte': 0,
+    });
   }),
   representingSortProperties: [
     'kindSort:asc',
@@ -28,12 +29,6 @@ export default Ember.Controller.extend({
   representingOptions: Ember.computed.sort(
     'representingCall',
     'representingSortProperties'
-  ),
-  representing: Ember.computed(
-    'model.representing',
-    function() {
-      return this.get('model.representing');
-    }
   ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
