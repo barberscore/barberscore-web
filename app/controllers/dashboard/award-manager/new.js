@@ -32,34 +32,34 @@ export default Ember.Controller.extend({
     'entityUniqs',
     'entityOptionsProperties'
   ),
-  awardCall: Ember.computed(function() {
-    let awards = [];
-    this.get('store').query('award', {
-      'entity__officers__person__user': this.get('currentUser.user.id'),
-      'entity__officers__office__is_award_manager': true
-    }).then((data) => {
-      awards.addObjects(data);
-    });
-    this.get('store').query('award', {
-      'parent__entity__officers__person__user': this.get('currentUser.user.id'),
-      'parent__entity__officers__office__is_award_manager': true
-    }).then((data) => {
-      awards.addObjects(data);
-    });
-    return awards;
-  }),
-  awardOptionsProperties: [
-    'entityKindSort:asc',
-    'kindSort:asc',
-    'name:asc',
-  ],
-  awardUniques: Ember.computed.uniq(
-    'awardCall',
-  ),
-  awardOptions: Ember.computed.sort(
-    'awardUniques',
-    'awardOptionsProperties'
-  ),
+  // awardCall: Ember.computed(function() {
+  //   let awards = [];
+  //   this.get('store').query('award', {
+  //     'entity__officers__person__user': this.get('currentUser.user.id'),
+  //     'entity__officers__office__is_award_manager': true
+  //   }).then((data) => {
+  //     awards.addObjects(data);
+  //   });
+  //   this.get('store').query('award', {
+  //     'parent__entity__officers__person__user': this.get('currentUser.user.id'),
+  //     'parent__entity__officers__office__is_award_manager': true
+  //   }).then((data) => {
+  //     awards.addObjects(data);
+  //   });
+  //   return awards;
+  // }),
+  // awardOptionsProperties: [
+  //   'entityKindSort:asc',
+  //   'kindSort:asc',
+  //   'name:asc',
+  // ],
+  // awardUniques: Ember.computed.uniq(
+  //   'awardCall',
+  // ),
+  // awardOptions: Ember.computed.sort(
+  //   'awardUniques',
+  //   'awardOptionsProperties'
+  // ),
   actions: {
     cancelAward(){
       this.transitionToRoute('dashboard.award-manager');

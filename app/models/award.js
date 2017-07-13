@@ -8,6 +8,7 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('award-status'),
   kind: DS.attr('award-kind'),
+  level: DS.attr('award-level'),
   age: DS.attr('award-age'),
   season: DS.attr('award-season'),
   size: DS.attr('award-size'),
@@ -46,6 +47,12 @@ export default Model.extend({
     'Very Large Quartet',
   ],
 
+  levelOptions: [
+    'Championship',
+    'Award',
+    'Qualifier',
+  ],
+
   ageOptions: [
     'Seniors',
     'Youth',
@@ -72,12 +79,24 @@ export default Model.extend({
     3,
   ],
 
+  isChampionship: Ember.computed.equal(
+    'level',
+    'Championship',
+  ),
+
   entityKindSort: Ember.computed.alias('entity.kindSort'),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+  levelSort: Ember.computed(
+    'level',
+    'levelOptions',
+    function() {
+      return this.get('levelOptions').indexOf(this.get('level'));
     }
   ),
   ageSort: Ember.computed(

@@ -4,6 +4,7 @@ export default Ember.Controller.extend({
     currentUser: Ember.inject.service('current-user'),
     sortProperties: [
         'entityKindSort:asc',
+        'level',
         'name',
     ],
     uniqueItems: Ember.computed.uniq(

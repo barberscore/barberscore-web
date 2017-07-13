@@ -32,6 +32,19 @@
           Kind: {{kind}}
         {{/power-select}}
       {{/form.element}}
+      {{#form.element property='level' useIcons=false as |el|}}
+        {{#power-select
+          renderInPlace=true
+          options=model.levelOptions
+          selected=el.value
+          onchange=(perform autosave 'level')
+          placeholder="Choose Award Level"
+          allowClear=true
+          as |level|
+        }}
+          Level: {{level}}
+        {{/power-select}}
+      {{/form.element}}
       {{#form.element property='season' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
@@ -69,8 +82,8 @@
           {{#bg.button type='default' value=true disabled=isDisabled}}Winner Determined Manually (ie, Most-Improved, etc.){{/bg.button}}
         {{/bs-button-group}}
       {{/form.element}}
-      <hr>
-      {{#form.element property='parent' useIcons=false as |el|}}
+      {{!-- <hr> --}}
+      {{!-- {{#form.element property='parent' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
           options=awardOptions
@@ -82,7 +95,7 @@
         }}
           Parent Award: {{award.name}}
         {{/power-select}}
-      {{/form.element}}
+      {{/form.element}} --}}
       {{!-- {{#form.element property='isRepQualifies' as |el|}}
         {{#bs-button-group
           value=el.value
