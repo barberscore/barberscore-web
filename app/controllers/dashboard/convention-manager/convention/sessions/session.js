@@ -10,16 +10,33 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  filteredAwards: Ember.computed(
-  'model.convention.entity.awards.@each.kind',
-    function(){
-      let awards = this.get('model.convention.entity.awards');
-      let kind = this.get('model.kind');
-      return awards.filterBy('kind', kind);
+  awardCall: Ember.computed(function(){
+    return this.get('store').query('award', {
+        'entity__officers__person__user': this.get('currentUser.user.id'),
+        'entity__officers__office__is_award_manager': true,
+        'page_size': 100
+      });
+  }),
+  filteredKind: Ember.computed(
+    'awardCall.@each.kind',
+    'model.kind',
+    function() {
+      return this.get('awardCall').filterBy('kind', this.get('model.kind'));
     }
   ),
+  filteredSeason: Ember.computed(
+    'filteredKind.@each.season',
+    'model.convention.season',
+    function() {
+      console.log(this.get('model.convention.season'));
+      return this.get('filteredKind').filterBy('season', this.get('model.convention.season'));
+    }
+  ),
+  awardUniques: Ember.computed.uniq(
+    'filteredSeason'
+  ),
   awardOptions: Ember.computed.sort(
-    'filteredAwards',
+    'awardUniques',
     'awardSortProperties'
   ),
   sortedAwards: Ember.computed.alias('awardOptions'),

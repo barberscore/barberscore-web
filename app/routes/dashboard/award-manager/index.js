@@ -6,6 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').query('award', {
       'entity__officers__person__user': this.get('currentUser.user.id'),
+      'entity__officers__office__is_award_manager': true,
       'page_size': 100
     });
   },
