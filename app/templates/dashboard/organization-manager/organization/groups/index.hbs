@@ -1,18 +1,24 @@
 <section>
   <div class='row'>
-    <div class='col-md-8'>
+    <div class='col-md-12'>
       <table class='table'>
         {{!-- <caption>Awards</caption> --}}
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Status</th>
+            <th {{action 'sortBy' 'name'}}>Name</th>
+            <th {{action 'sortBy' 'kindSort'}}>Kind</th>
+            <th {{action 'sortBy' 'location'}}>Location</th>
+            <th {{action 'sortBy' 'bhsId'}}>BHS ID</th>
+            <th {{action 'sortBy' 'status'}}>Status</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedItems as |entity|}}
             <tr>
               <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' entity}}{{entity.nomen}}{{/link-to}}</td>
+              <td>{{entity.kind}}</td>
+              <td>{{entity.location}}</td>
+              <td>{{entity.bhsId}}</td>
               <td>{{entity.status}}</td>
             </tr>
           {{else}}

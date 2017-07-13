@@ -6,6 +6,7 @@ export default Ember.Controller.extend({
   sortProperties: [
     'kindSort:desc',
     'name:asc',
+    'status:desc',
   ],
   filteredEntities: Ember.computed.filterBy(
     'model.children',
@@ -15,4 +16,9 @@ export default Ember.Controller.extend({
     'filteredEntities',
     'sortProperties'
   ),
+  actions: {
+    sortBy(sortProperties) {
+      this.set('sortProperties', [sortProperties]);
+    },
+  }
 });
