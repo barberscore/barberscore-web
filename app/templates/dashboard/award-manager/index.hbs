@@ -7,15 +7,16 @@
       <thead>
         <tr>
           <th {{action 'sortBy' 'name'}}>Name</th>
-          <th {{action 'sortBy' 'entity'}}>Entity</th>
+          <th {{action 'sortBy' 'entity'}}>Owner</th>
           <th {{action 'sortBy' 'kind'}}>Kind</th>
           <th {{action 'sortBy' 'season'}}>Season</th>
           <th {{action 'sortBy' 'rounds'}}>Rounds</th>
-          <th {{action 'sortBy' 'parent'}}>Parent</th>
-          <th {{action 'sortBy' 'isRepQualifies'}}>DisRep</th>
-          <th {{action 'sortBy' 'threshold'}}>Threshold</th>
-          <th {{action 'sortBy' 'advance'}}>Advance</th>
-          <th {{action 'sortBy' 'minimum'}}>Minimum</th>
+          <th {{action 'sortBy' 'parent'}}>Manual</th>
+          <th {{action 'sortBy' 'isManual'}}>Parent</th>
+          {{!-- <th {{action 'sortBy' 'isRepQualifies'}}>DisRep</th> --}}
+          {{!-- <th {{action 'sortBy' 'threshold'}}>Threshold</th> --}}
+          {{!-- <th {{action 'sortBy' 'advance'}}>Advance</th> --}}
+          {{!-- <th {{action 'sortBy' 'minimum'}}>Minimum</th> --}}
           <th {{action 'sortBy' 'status'}}>Status</th>
         </tr>
       </thead>
@@ -27,11 +28,12 @@
             <td>{{award.kind}}</td>
             <td>{{award.season}}</td>
             <td>{{award.rounds}}</td>
+            <td>{{award.isManual}}</td>
             <td>{{award.parent.name}}</td>
-            <td>{{award.isRepQualifies}}</td>
-            <td>{{award.threshold}}</td>
-            <td>{{award.advance}}</td>
-            <td>{{award.minimum}}</td>
+            {{!-- <td>{{award.isRepQualifies}}</td> --}}
+            {{!-- <td>{{award.threshold}}</td> --}}
+            {{!-- <td>{{award.advance}}</td> --}}
+            {{!-- <td>{{award.minimum}}</td> --}}
             <td>{{award.status}}</td>
           </tr>
         {{else}}

@@ -8,7 +8,8 @@ export default Ember.Controller.extend({
   entityCall: Ember.computed(function() {
     return this.get('store').query('entity', {
       'officers__person__user': this.get('currentUser.user.id'),
-      'officers__person__is_award_manager': true
+      'officers__person__is_award_manager': true,
+      'kind__in': '11,21',
     });
   }),
   entityOptionsProperties: [
@@ -20,12 +21,23 @@ export default Ember.Controller.extend({
     'entityOptionsProperties'
   ),
   awardCall: Ember.computed(function() {
-    return this.get('store').query('award', {
+    let awards = [];
+    this.get('store').query('award', {
       'entity__officers__person__user': this.get('currentUser.user.id'),
-      'entity__officers__person__is_award_manager': true
+      'entity__officers__office__is_award_manager': true
+    }).then((data) => {
+      awards.addObjects(data);
     });
+    this.get('store').query('award', {
+      'parent__entity__officers__person__user': this.get('currentUser.user.id'),
+      'parent__entity__officers__office__is_award_manager': true
+    }).then((data) => {
+      awards.addObjects(data);
+    });
+    return awards;
   }),
   awardOptionsProperties: [
+    'entityKindSort:asc',
     'kindSort:asc',
     'name:asc',
   ],

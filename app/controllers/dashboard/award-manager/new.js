@@ -49,6 +49,7 @@ export default Ember.Controller.extend({
     return awards;
   }),
   awardOptionsProperties: [
+    'entityKindSort:asc',
     'kindSort:asc',
     'name:asc',
   ],

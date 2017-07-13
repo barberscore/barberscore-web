@@ -12,9 +12,8 @@
           options=entityOptions
           selected=el.value
           onchange=(perform autosave 'entity')
-          placeholder="Choose Entity"
+          placeholder="Choose Owner (District or Division)"
           allowClear=true
-          disabled=isDisabled
           as |entity|
         }}
           Entity: {{entity.name}}
@@ -28,7 +27,6 @@
           onchange=(perform autosave 'kind')
           placeholder="Choose Award Kind"
           allowClear=true
-          disabled=isDisabled
           as |kind|
         }}
           Kind: {{kind}}
@@ -42,7 +40,6 @@
           onchange=(perform autosave 'season')
           placeholder="Choose Award Season"
           allowClear=true
-          disabled=isDisabled
           as |season|
         }}
           Season: {{season}}
@@ -56,7 +53,6 @@
           onchange=(perform autosave 'rounds')
           placeholder="Choose Award Rounds"
           allowClear=true
-          disabled=isDisabled
           as |rounds|
         }}
           Rounds: {{rounds}}
@@ -82,7 +78,6 @@
           onchange=(perform autosave 'parent')
           placeholder="If a Qualifier Award, choose the Parent Award for which this award qualifies"
           allowClear=true
-          disabled=isDisabled
           as |award|
         }}
           Parent Award: {{award.name}}
