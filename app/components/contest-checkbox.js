@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default Ember.Component.extend({
   store: Ember.inject.service(),
@@ -23,7 +23,8 @@ export default Ember.Component.extend({
         session: this.get('model'),
         isQualifier: false,
       });
-      newContest.save().then(()=> this.get('flashMessages').success("Saved"));
+      yield newContest.save();
+      this.get('flashMessages').success("Saved");
     } else {
       let contest = this.get('model.contests').findBy('award.id', this.get('award.id'));
       contest.destroyRecord().then(()=> this.get('flashMessages').success("Saved"));
