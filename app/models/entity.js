@@ -1,22 +1,22 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import { validator, buildValidations } from 'ember-cp-validations';
+// import { validator, buildValidations } from 'ember-cp-validations';
 import {memberAction} from 'ember-api-actions';
 
-const Validations = buildValidations({
-  email: validator('format', {
-    type: 'email',
-    allowBlank: true
-  }),
-  website: validator('format', {
-    type: 'url',
-    allowBlank: true
-  }),
-});
+// const Validations = buildValidations({
+//   email: validator('format', {
+//     type: 'email',
+//     allowBlank: true
+//   }),
+//   website: validator('format', {
+//     type: 'url',
+//     allowBlank: true
+//   }),
+// });
 
 
-export default Model.extend(Validations, {
+export default Model.extend({
   nomen: DS.attr('string'),
   name: DS.attr('string'),
   status: DS.attr('entity-status'),
