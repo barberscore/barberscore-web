@@ -30,50 +30,50 @@ export default Model.extend({
     'Active',
   ),
 
-  isConventionManager: Ember.computed.and(
-    'office.isConventionManager',
-    'isActive'
-  ),
-
-  isSessionManager: Ember.computed.and(
-    'office.isSessionManager',
-    'isActive'
-  ),
-
-  isScoringManager: Ember.computed.and(
-    'office.isScoringManager',
-    'isActive'
-  ),
-
-  isOrganizationManager: Ember.computed.and(
-    'office.isOrganizationManager',
-    'isActive'
-  ),
-
-  isGroupManager: Ember.computed.and(
-    'office.isGroupManager',
-    'isActive'
-  ),
-
-  isPersonManager: Ember.computed.and(
-    'office.isPersonManager',
-    'isActive'
-  ),
-
-  isAwardManager: Ember.computed.and(
-    'office.isAwardManager',
-    'isActive'
-  ),
-
-  isJudgeManager: Ember.computed.and(
-    'office.isJudgeManager',
-    'isActive'
-  ),
-
-  isChartManager: Ember.computed.and(
-    'office.isChartManager',
-    'isActive'
-  ),
+  // isConventionManager: Ember.computed.and(
+  //   'office.isConventionManager',
+  //   'isActive'
+  // ),
+  //
+  // isSessionManager: Ember.computed.and(
+  //   'office.isSessionManager',
+  //   'isActive'
+  // ),
+  //
+  // isScoringManager: Ember.computed.and(
+  //   'office.isScoringManager',
+  //   'isActive'
+  // ),
+  //
+  // isOrganizationManager: Ember.computed.and(
+  //   'office.isOrganizationManager',
+  //   'isActive'
+  // ),
+  //
+  // isGroupManager: Ember.computed.and(
+  //   'office.isGroupManager',
+  //   'isActive'
+  // ),
+  //
+  // isPersonManager: Ember.computed.and(
+  //   'office.isPersonManager',
+  //   'isActive'
+  // ),
+  //
+  // isAwardManager: Ember.computed.and(
+  //   'office.isAwardManager',
+  //   'isActive'
+  // ),
+  //
+  // isJudgeManager: Ember.computed.and(
+  //   'office.isJudgeManager',
+  //   'isActive'
+  // ),
+  //
+  // isChartManager: Ember.computed.and(
+  //   'office.isChartManager',
+  //   'isActive'
+  // ),
 
   // Sorts
   statusSort: Ember.computed(
