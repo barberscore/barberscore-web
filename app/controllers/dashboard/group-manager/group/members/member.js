@@ -6,12 +6,12 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   representingFilter: Ember.computed.filterBy(
     'model.members',
-    'entityKind',
+    'groupKind',
     'Group'
   ),
   representingOptions: Ember.computed.mapBy(
     'representingFilter',
-    'entity'
+    'group'
   ),
   actions: {
     editMember() {

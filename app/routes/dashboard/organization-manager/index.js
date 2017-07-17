@@ -4,8 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
   model: function() {
-    return this.get('store').query('entity', {
-      'kind__lt': 30, // TODO Hardcoded
+    return this.get('store').query('organization', {
       'officers__person__user': this.get('currentUser.user.id'),
       'status__gte': 0,
     });

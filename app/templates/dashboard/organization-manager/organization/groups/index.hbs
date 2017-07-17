@@ -13,13 +13,13 @@
           </tr>
         </thead>
         <tbody>
-          {{#each sortedItems as |entity|}}
+          {{#each sortedItems as |group|}}
             <tr>
-              <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' entity}}{{entity.nomen}}{{/link-to}}</td>
-              <td>{{entity.kind}}</td>
-              <td>{{entity.location}}</td>
-              <td>{{entity.bhsId}}</td>
-              <td>{{entity.status}}</td>
+              <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' group}}{{group.nomen}}{{/link-to}}</td>
+              <td>{{group.kind}}</td>
+              <td>{{group.location}}</td>
+              <td>{{group.bhsId}}</td>
+              <td>{{group.status}}</td>
             </tr>
           {{else}}
             <tr>

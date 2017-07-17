@@ -40,19 +40,19 @@ export default Ember.Controller.extend({
     'Quintiple',
   ],
 
-  entityCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+  organizationCall: Ember.computed(function() {
+    return this.get('store').query('organization', {
       'kind__lt': 20, //TODO Hardcoded
       'page_size': 100,
     });
   }),
-  entityOptionsProperties: [
+  organizationOptionsProperties: [
     'kindSort:asc',
     'name:asc',
   ],
-  entityOptions: Ember.computed.sort(
-    'entityCall',
-    'entityOptionsProperties'
+  organizationOptions: Ember.computed.sort(
+    'organizationCall',
+    'organizationOptionsProperties'
   ),
   riserOptions: [
     0,3,4,5,6,7,8,9,10,11,12,13
@@ -67,7 +67,7 @@ export default Ember.Controller.extend({
       // TODO this seems pretty damn hacky.
       let convention = this.get('store').createRecord('convention', {
         name: this.get('name'),
-        entity: this.get('entity'),
+        organization: this.get('organization'),
         location: this.get('location'),
         startDate: this.get('startDate'),
         endDate: this.get('endDate'),
@@ -86,7 +86,7 @@ export default Ember.Controller.extend({
         convention.get('assignments').pushObject(assignment);
         this.get('flashMessages').success('Saved');
         this.set('name', null);
-        this.set('entity', null);
+        this.set('organization', null);
         this.set('location', null);
         this.set('startDate', null);
         this.set('endDate', null);
@@ -100,7 +100,7 @@ export default Ember.Controller.extend({
     },
     clearForm() {
       this.set('name', null);
-      this.set('entity', null);
+      this.set('organization', null);
       this.set('location', null);
       this.set('startDate', null);
       this.set('endDate', null);

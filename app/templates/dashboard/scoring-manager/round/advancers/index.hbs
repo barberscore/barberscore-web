@@ -28,7 +28,7 @@
                 {{#each sortedAdvancers as |item|}}
                   {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
                     <td>{{item.draw}}</td>
-                    <td>{{item.entry.entity.name}}</td>
+                    <td>{{item.entry.group.name}}</td>
                     <td>{{item.status}}</td>
                     <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
                   {{/sortable-item}}
@@ -39,7 +39,7 @@
                 {{#each sortedAdvancers as |appearance|}}
                   <tr>
                     <td>{{appearance.draw}}</td>
-                    <td>{{appearance.entry.entity.name}}</td>
+                    <td>{{appearance.entry.group.name}}</td>
                     <td>{{appearance.status}}</td>
                   </tr>
                 {{else}}
@@ -65,7 +65,7 @@
               {{#each sortedFinishers as |appearance|}}
                 <tr>
                   <td>{{appearance.rank}}</td>
-                  <td>{{appearance.entry.entity.name}}</td>
+                  <td>{{appearance.entry.group.name}}</td>
                   <td>{{appearance.totPoints}}</td>
                   <td>{{appearance.status}}</td>
                 </tr>

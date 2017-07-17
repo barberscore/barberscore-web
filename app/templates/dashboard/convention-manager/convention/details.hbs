@@ -29,15 +29,15 @@
     {{#form.element}}
       {{#power-select
         renderInPlace=true
-        options=entityOptions
-        selected=model.entity
-        onchange=(perform autosave 'entity')
+        options=organizationOptions
+        selected=model.organization
+        onchange=(perform autosave 'organization')
         placeholder="Choose Convention Owner Entity"
         disabled=true
         allowClear=true
-        as |entity|
+        as |organization|
       }}
-        Owner: {{entity.name}}
+        Owner: {{organization.name}}
       {{/power-select}}
     {{/form.element}}
     <div class='row'>

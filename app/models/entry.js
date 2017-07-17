@@ -22,8 +22,8 @@ export default Model.extend({
   sngScore: DS.attr('number'),
   totScore: DS.attr('number'),
   session: DS.belongsTo('session', {async: true}),
-  entity: DS.belongsTo('entity', {inverse: 'entries', async: true}),
-  representing: DS.belongsTo('entity', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
@@ -71,7 +71,7 @@ export default Model.extend({
 
   contestantCount: computed.alias('contestants.length'),
   participantCount: computed.alias('participants.length'),
-  repertoryCount: computed.alias('entity.repertories.length'),
+  repertoryCount: computed.alias('group.repertories.length'),
   tp: computed.mapBy(
     'appearances',
     'totPoints'

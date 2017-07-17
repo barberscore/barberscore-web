@@ -11,7 +11,7 @@ const Validations = buildValidations({
 export default Model.extend(Validations, {
   nomen: DS.attr('string'),
   status: DS.attr('repertory-status'),
-  entity: DS.belongsTo('entity', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   chart: DS.belongsTo('chart', {async: true}),
   permissions: DS.attr(),
 

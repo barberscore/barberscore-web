@@ -30,7 +30,6 @@ export default Model.extend({
   firstName: DS.attr('string'),
   lastName: DS.attr('string'),
   nickName: DS.attr('string'),
-  representing: DS.belongsTo('entity', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   members: DS.hasMany('member', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
@@ -123,7 +122,7 @@ export default Model.extend({
   ],
   filteredMembers: Ember.computed.filterBy(
     'members',
-    'entityKind',
+    'organizationKind',
     'Organization'
   ),
   withExp: Ember.computed(

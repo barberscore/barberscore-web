@@ -63,16 +63,13 @@ Router.map(function() {
       });
     });
     this.route('group-manager', {path: 'group-manager'}, function() {
-      this.route('group', { path: ':entity_id'}, function() {
+      this.route('group', { path: ':group_id'}, function() {
         this.route('details', { path: 'details'});
         this.route('entries', { path: 'entries'}, function() {
           this.route('entry', { path: ':entry_id'});
         });
         this.route('members', { path: 'members'}, function() {
           this.route('member', { path: ':member_id'});
-        });
-        this.route('officers', { path: 'officers'}, function() {
-          this.route('officer', { path: ':officer_id'});
         });
         this.route('repertories', { path: 'repertories'}, function() {
           this.route('repertory', { path: ':repertory_id'});
@@ -86,10 +83,16 @@ Router.map(function() {
       this.route('new', { path: 'new' });
     });
     this.route('organization-manager', {path: 'organization-manager'}, function() {
-      this.route('organization', { path: ':entity_id'}, function () {
+      this.route('organization', { path: ':organization_id'}, function () {
         this.route('details', {path: 'details'});
         this.route('awards', {path: 'awards'}, function() {
           this.route('award', { path: ':award_id'});
+        });
+        this.route('officers', {path: 'officers'}, function() {
+          this.route('officer', { path: ':officer_id'});
+        });
+        this.route('conventions', {path: 'conventions'}, function() {
+          this.route('convention', { path: ':convention_id'});
         });
         this.route('groups', {path: 'groups'}, function() {
           this.route('group', { path: ':group_id'});

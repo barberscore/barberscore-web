@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
       const host = config.APP.API_HOST;
       const namespace = config.APP.API_NAMESPACE;
       const target = this.get('model.id');
-      let response = yield file.upload(`${host}/${namespace}/entity/${target}/image`);
+      let response = yield file.upload(`${host}/${namespace}/group/${target}/image`);
       this.set('model.image', response.body.image);
       yield this.get('model').save();
       this.get('flashMessages').success("Saved!");

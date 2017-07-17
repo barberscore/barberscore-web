@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   sortedContestsProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',

@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     'entrySortProperties'
   ),
   contestSortProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',

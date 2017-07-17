@@ -16,7 +16,7 @@
         <tbody>
           {{#each sortedEntries as |entry|}}
             <tr>
-              <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.entity.name}}{{/link-to}}</td>
+              <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
               <td>{{entry.representing.shortName}}</td>
               <td>{{entry.contestantCount}}</td>
               <td>{{entry.repertoryCount}}</td>
@@ -54,7 +54,7 @@
       onSubmit=(action 'createEntry')
       as |form|
     }}
-      {{#form.element property='entity' useIcons=false as |el|}}
+      {{#form.element property='group' useIcons=false as |el|}}
           {{#power-select
             search=(perform searchEntity)
             selected=el.value
@@ -62,9 +62,9 @@
             placeholder="Enter Group Name"
             allowClear=true
             renderInPlace=true
-            as |entity|
+            as |group|
           }}
-            Group: {{entity.name}}
+            Group: {{group.name}}
           {{/power-select}}
       {{/form.element}}
       {{#form.element property='representing' useIcons=false as |el|}}

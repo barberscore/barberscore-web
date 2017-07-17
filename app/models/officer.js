@@ -10,7 +10,7 @@ export default Model.extend({
   endDate: DS.attr('isodate'),
   office: DS.belongsTo('office', {async: true}),
   person: DS.belongsTo('person', {async: true}),
-  entity: DS.belongsTo('entity', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
   permissions: DS.attr(),
 
   // Transitions
@@ -91,7 +91,7 @@ export default Model.extend({
   officeSCJCSort: Ember.computed.alias('office.scjcSort'),
   officeKind: Ember.computed.alias('office.kind'),
   officeName: Ember.computed.alias('office.name'),
-  entityName: Ember.computed.alias('entity.name'),
+  organizationName: Ember.computed.alias('organization.name'),
   isOld: Ember.computed.not('isNew'),
 
 });

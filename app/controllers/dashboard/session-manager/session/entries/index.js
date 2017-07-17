@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
   }),
   searchEntity: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('entity', {
+    return this.get('store').query('group', {
         'nomen__icontains': term,
         'kind': this.get('kindy'),
         'status': 10,
@@ -28,7 +28,7 @@ export default Ember.Controller.extend({
       .then((data) => data);
   }),
   representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+    return this.get('store').query('organization', {
         'kind__lt': '30',
         'page_size': 100,
       });
@@ -111,7 +111,7 @@ export default Ember.Controller.extend({
     },
     createEntry(){
       let entry = this.get('store').createRecord('entry', {
-        entity: this.get('entity'),
+        group: this.get('group'),
         session: this.get('model'),
         representing: this.get('representing'),
         isEvaluation: this.get('isEvaluation'),
@@ -125,7 +125,7 @@ export default Ember.Controller.extend({
       });
       entry.save()
       .then(() => {
-        this.set('entity', null);
+        this.set('group', null);
         this.set('representing', null);
         this.set('tenor', null);
         this.set('lead', null);
@@ -140,7 +140,7 @@ export default Ember.Controller.extend({
       });
     },
     clearEntry() {
-      this.set('entity', null);
+      this.set('group', null);
       this.set('representing', null);
       this.set('tenor', null);
       this.set('lead', null);

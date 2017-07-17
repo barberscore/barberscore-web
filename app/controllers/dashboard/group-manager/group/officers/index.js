@@ -28,12 +28,12 @@ export default Ember.Controller.extend({
     'sortedOfficersProperties'
   ),
   actions: {
-    createOfficer(){
-      let officer = this.get('store').createRecord('officer', {
-        entity: this.get('model')
-      });
-      this.set('officer', officer);
-      this.set('openModal', true);
-    },
+    // createOfficer(){
+    //   let officer = this.get('store').createRecord('officer', {
+    //     groupd: this.get('model')
+    //   });
+    //   this.set('officer', officer);
+    //   this.set('openModal', true);
+    // },
   }
 });

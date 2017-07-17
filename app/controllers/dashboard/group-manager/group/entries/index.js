@@ -42,7 +42,7 @@ export default Ember.Controller.extend({
   actions: {
     createEntry(){
       let entry = this.get('store').createRecord('entry', {
-        entity: this.get('model'),
+        group: this.get('model'),
         representing: this.get('representing'),
         isEvaluation: this.get('isEvaluation'),
         isPrivate: this.get('isPrivate'),

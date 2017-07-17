@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   sortedContestsProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',

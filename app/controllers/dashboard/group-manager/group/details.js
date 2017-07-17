@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
   ),
   location: '',
   representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+    return this.get('store').query('organization', {
         'kind__lt': '30',
         'page_size': 100,
       });

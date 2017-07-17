@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
   awardSortProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'isQualifier',
     'isPrimary:desc',
     'ageSort',
@@ -13,8 +13,8 @@ export default Ember.Controller.extend({
   ],
   awardCall: Ember.computed(function(){
     return this.get('store').query('award', {
-        'entity__officers__person__user': this.get('currentUser.user.id'),
-        'entity__officers__office__is_award_manager': true,
+        'organization__officers__person__user': this.get('currentUser.user.id'),
+        'organization__officers__office__is_award_manager': true,
         'page_size': 100
       });
   }),

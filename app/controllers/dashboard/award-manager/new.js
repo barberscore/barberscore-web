@@ -14,42 +14,42 @@ export default Ember.Controller.extend({
       })
     }
   }).drop(),
-  entityCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+  organizationCall: Ember.computed(function() {
+    return this.get('store').query('organization', {
       'officers__person__user': this.get('currentUser.user.id'),
       'officers__office__is_award_manager': true,
       'status__gte': 0,
     });
   }),
-  entityOptionsProperties: [
+  organizationOptionsProperties: [
     'kindSort:asc',
     'name:asc',
   ],
-  entityUniqs: Ember.computed.uniq(
-    'entityCall',
+  organizationUniqs: Ember.computed.uniq(
+    'organizationCall',
   ),
-  entityOptions: Ember.computed.sort(
-    'entityUniqs',
-    'entityOptionsProperties'
+  organizationOptions: Ember.computed.sort(
+    'organizationUniqs',
+    'organizationOptionsProperties'
   ),
   // awardCall: Ember.computed(function() {
   //   let awards = [];
   //   this.get('store').query('award', {
-  //     'entity__officers__person__user': this.get('currentUser.user.id'),
-  //     'entity__officers__office__is_award_manager': true
+  //     'organization__officers__person__user': this.get('currentUser.user.id'),
+  //     'organization__officers__office__is_award_manager': true
   //   }).then((data) => {
   //     awards.addObjects(data);
   //   });
   //   this.get('store').query('award', {
-  //     'parent__entity__officers__person__user': this.get('currentUser.user.id'),
-  //     'parent__entity__officers__office__is_award_manager': true
+  //     'parent__organization__officers__person__user': this.get('currentUser.user.id'),
+  //     'parent__organization__officers__office__is_award_manager': true
   //   }).then((data) => {
   //     awards.addObjects(data);
   //   });
   //   return awards;
   // }),
   // awardOptionsProperties: [
-  //   'entityKindSort:asc',
+  //   'organizationKindSort:asc',
   //   'kindSort:asc',
   //   'name:asc',
   // ],

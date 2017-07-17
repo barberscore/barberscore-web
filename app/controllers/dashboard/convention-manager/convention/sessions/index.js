@@ -52,22 +52,22 @@ export default Ember.Controller.extend({
     }
 
     this.get('store').query('award', {
-        'entity__name': 'International',
-        'entity__kind': 1,
+        'organization__name': 'International',
+        'organization__kind': 1,
         'is_qualifier': intQual,
         'page_size':100,
     }).then((data) => {
       awards.addObjects(data);
     });
     this.get('store').query('award', {
-        'entity': this.get('model.entity.id'),
+        'organization': this.get('model.organization.id'),
         'season': season[this.get('model.season')],
         'page_size':100,
     }).then((data2) => {
       awards.addObjects(data2);
     });
     this.get('store').query('award', {
-        'entity__parent': this.get('model.entity.id'),
+        'organization__parent': this.get('model.organization.id'),
         'season': season[this.get('model.season')],
         'page_size':100,
     }).then((data3) => {
@@ -83,7 +83,7 @@ export default Ember.Controller.extend({
     }
   ),
   awardSortProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'isQualifier',
     'isPrimary:desc',
     'ageSort',

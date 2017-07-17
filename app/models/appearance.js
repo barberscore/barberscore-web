@@ -66,11 +66,11 @@ export default Model.extend({
   slotNum: Ember.computed.alias(
     'slot.num'
   ),
-  reportoriesFiltered: Ember.computed.alias(
-    'entry.entity.repertories'
+  repertoriesFiltered: Ember.computed.alias(
+    'entry.group.repertories'
   ),
   chartsMapped: Ember.computed.mapBy(
-    'reportoriesFiltered',
+    'repertoriesFiltered',
     'chart'
   ),
   chartOptionsProperties: [

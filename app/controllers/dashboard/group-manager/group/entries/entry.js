@@ -37,7 +37,7 @@ export default Ember.Controller.extend({
     'entrySortProperties'
   ),
   contestSortProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',
@@ -48,7 +48,7 @@ export default Ember.Controller.extend({
     'contestSortProperties'
   ),
   filteredMembers: Ember.computed.filterBy(
-    'model.entity.members',
+    'model.group.members',
     'status',
     'Active'
   ),

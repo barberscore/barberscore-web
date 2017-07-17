@@ -8,19 +8,19 @@ export default Ember.Controller.extend({
   isEditing: false,
   isDisabled: Ember.computed.not('isEditing'),
   location: '',
-  entityCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+  organizationCall: Ember.computed(function() {
+    return this.get('store').query('organization', {
       'kind__lt': 20, //TODO Hardcoded
       'page_size': 100,
     });
   }),
-  entityOptionsProperties: [
+  organizationOptionsProperties: [
     'kindSort:asc',
     'name:asc',
   ],
-  entityOptions: Ember.computed.sort(
-    'entityCall',
-    'entityOptionsProperties'
+  organizationOptions: Ember.computed.sort(
+    'organizationCall',
+    'organizationOptionsProperties'
   ),
   actions: {
     newJudge() {

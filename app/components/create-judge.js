@@ -26,18 +26,18 @@ export default Ember.Component.extend({
     'officeCall',
     'officeOptionsProperties'
   ),
-  entityCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+  organizationCall: Ember.computed(function() {
+    return this.get('store').query('organization', {
       'kind__in': '11,21', //TODO Hardcoded
       'page_size': 1000,
     });
   }),
-  entityOptionsProperties: [
+  organizationOptionsProperties: [
     'name:asc',
   ],
-  entityOptions: Ember.computed.sort(
-    'entityCall',
-    'entityOptionsProperties'
+  organizationOptions: Ember.computed.sort(
+    'organizationCall',
+    'organizationOptionsProperties'
   ),
   actions: {
     saveJudge() {

@@ -6,17 +6,17 @@
         property='name'
         onChange=(perform autosave 'name')
       }}
-      {{#form.element property='entity' useIcons=false as |el|}}
+      {{#form.element property='group' useIcons=false as |el|}}
         {{#power-select
           renderInPlace=true
-          options=entityOptions
+          options=groupOptions
           selected=el.value
-          onchange=(perform autosave 'entity')
+          onchange=(perform autosave 'group')
           placeholder="Choose Owner (District or Division)"
           allowClear=true
-          as |entity|
+          as |group|
         }}
-          Entity: {{entity.name}}
+          Group: {{group.name}}
         {{/power-select}}
       {{/form.element}}
       {{#form.element property='kind' useIcons=false as |el|}}

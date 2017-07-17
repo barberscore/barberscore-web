@@ -24,10 +24,10 @@ export default Model.extend({
   threshold: DS.attr('number'),
   minimum: DS.attr('number'),
   advance: DS.attr('number'),
-  entity: DS.belongsTo('entity', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
+  contests: DS.hasMany('contest', {async: true}),
   parent: DS.belongsTo('award', {inverse:'children', async: true}),
   children: DS.hasMany('award', {inverse:'parent', async: true}),
-  contests: DS.hasMany('contest', {inverse:'award', async: true}),
   permissions: DS.attr(),
 
   // Transitions
@@ -84,7 +84,7 @@ export default Model.extend({
     'Championship',
   ),
 
-  entityKindSort: Ember.computed.alias('entity.kindSort'),
+  organizationKindSort: Ember.computed.alias('organization.kindSort'),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',

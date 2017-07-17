@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
     'nomen',
   ],
   sortedRepertories: Ember.computed.sort(
-    'model.entity.repertories',
+    'model.group.repertories',
     'sortedRepertoriesProperties'
   ),
   sortedParticipantsProperties: [
@@ -36,7 +36,7 @@ export default Ember.Controller.extend({
     'sortedExpirationsProperties'
   ),
   contestSortProperties: [
-    'entityKindSort',
+    'organizationKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',
@@ -47,7 +47,7 @@ export default Ember.Controller.extend({
     'contestSortProperties'
   ),
   representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+    return this.get('store').query('organization', {
       'kind__lt': '30',
       'status': 10,
       'page_size': 100,

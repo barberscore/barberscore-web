@@ -15,10 +15,10 @@ export default Model.extend({
 
   isExpiring: Ember.computed(
     'member.person.duesThru',
-    'entry.representing.kind',
+    'entry.organization.kind',
     'entry.session.convention.endDate',
     function () {
-      let bhs = this.get('entry.representing.kind') === 'District';
+      let bhs = this.get('entry.organization.kind') === 'District';
       let expiring = this.get('member.person.duesThru') < this.get('entry.session.convention.endDate');
       return (bhs && expiring);
     }

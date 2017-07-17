@@ -7,7 +7,7 @@
       <thead>
         <tr>
           <th {{action 'sortBy' 'name'}}>Name</th>
-          <th {{action 'sortBy' 'entity'}}>Owner</th>
+          <th {{action 'sortBy' 'group'}}>Owner</th>
           <th {{action 'sortBy' 'kind'}}>Kind</th>
           <th {{action 'sortBy' 'level'}}>Level</th>
           <th {{action 'sortBy' 'season'}}>Season</th>
@@ -25,7 +25,7 @@
         {{#each sortedItems as |award|}}
           <tr>
             <td>{{#link-to 'dashboard.award-manager.award.details' award}}{{award.name}}{{/link-to}}</td>
-            <td>{{award.entity.name}}</td>
+            <td>{{award.group.name}}</td>
             <td>{{award.kind}}</td>
             <td>{{award.level}}</td>
             <td>{{award.season}}</td>

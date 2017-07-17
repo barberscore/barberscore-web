@@ -35,7 +35,7 @@ export default Ember.Controller.extend({
   actions: {
     createMember(){
       let member = this.get('store').createRecord('member', {
-        entity: this.get('model'),
+        group: this.get('model'),
         person: this.get('person'),
         part: this.get('part'),
       });

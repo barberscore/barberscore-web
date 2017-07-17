@@ -39,19 +39,6 @@
           Office: {{office.name}}
         {{/power-select}}
       {{/form.element}}
-      {{!-- {{#form.element property='entity' useIcons=false as |el|}}
-        {{#power-select
-          renderInPlace=true
-          options=entityOptions
-          selected=el.value
-          onchange=(action (mut el.value))
-          placeholder="Choose Entity"
-          allowClear=true
-          as |entity|
-        }}
-          Entity: {{entity.name}}
-        {{/power-select}}
-      {{/form.element}} --}}
       {{#each model.errors.non-field-errors as |error|}}
         <span class='has-error'>
           <span class="help-block">

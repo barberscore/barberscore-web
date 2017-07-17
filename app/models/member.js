@@ -8,7 +8,7 @@ export default Model.extend({
   part: DS.attr('member-part'),
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
-  entity: DS.belongsTo('entity', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
@@ -50,7 +50,7 @@ export default Model.extend({
       return this.get('person.nomen') + " - " + partOut;
     }
   ),
-  entityKind: Ember.computed.alias('entity.kind'),
+  groupKind: Ember.computed.alias('group.kind'),
   personName: Ember.computed.alias('person.name'),
   personLast: Ember.computed.alias('person.last_name'),
   personNameExp: Ember.computed.alias('person.withExp')

@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     'sessionSortProperties'
   ),
   representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
+    return this.get('store').query('organization', {
         'kind__lt': '20',
         'page_size': 100,
       });

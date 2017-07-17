@@ -15,21 +15,6 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
-  representingCall: Ember.computed(function() {
-    return this.get('store').query('entity', {
-      'kind__in': '11,21', // TODO Hardcoded
-      'officers__person__user': this.get('currentUser.user.id'),
-      'status__gte': 0,
-    });
-  }),
-  representingSortProperties: [
-    'kindSort:asc',
-    'name:asc',
-  ],
-  representingOptions: Ember.computed.sort(
-    'representingCall',
-    'representingSortProperties'
-  ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
@@ -47,7 +32,7 @@ export default Ember.Controller.extend({
       let group = yield this.model.activate({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('entity', group);
+      this.store.pushPayload('group', group);
       this.get('flashMessages').success("Activated!");
     } catch(e) {
       e.errors.forEach((error) => {
@@ -60,7 +45,7 @@ export default Ember.Controller.extend({
       let group = yield this.model.deactivate({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('entity', group);
+      this.store.pushPayload('group', group);
       this.get('flashMessages').success("Deactivated!");
     } catch(e) {
       e.errors.forEach((error) => {

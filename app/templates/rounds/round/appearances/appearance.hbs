@@ -6,22 +6,22 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.entry.entity.name}}
+        {{model.entry.group.name}}
       </h4>
     </div>
     <div class='panel-body'>
       <div class='row'>
         <div class='col-md-6'>
           <div>
-            {{#if model.entry.entity.image}}
-              <img src={{model.entry.entity.image}} class='img-responsive'>
+            {{#if model.entry.group.image}}
+              <img src={{model.entry.group.image}} class='img-responsive'>
             {{else}}
               <img src='/assets/no_image_available.jpg' class='img-responsive'>
             {{/if}}
           </div>
         </div>
         <div class='col-md-6'>
-          {{#if (eq model.entry.entity.kind 'Chorus')}}
+          {{#if (eq model.entry.group.kind 'Chorus')}}
             <div>
               {{#each filteredDirectors as |participant|}}
                 Directed By:
@@ -42,17 +42,17 @@
           <div>
             <ul class='list-unstyled'>
               {{#if model.entry.representing.nomen}}<li>{{model.entry.representing.nomen}}</li>{{/if}}
-              {{#if model.entry.entity.location}}<li>{{model.entry.entity.location}}</li>{{/if}}
-              {{#if model.entry.entity.email}}<li><a href='mailto:{{model.entry.entity.email}}'>{{model.entry.entity.email}}</a></li>{{/if}}
-              {{#if model.entry.entity.website}}<li><a href={{model.entry.entity.website}}>{{model.entry.entity.website}}</a></li>{{/if}}
-              {{#if model.entry.entity.facebook}}<li><a href={{model.entry.entity.facebook}}>{{model.entry.entity.facebook}}</a></li>{{/if}}
-              {{#if model.entry.entity.twitter}}<li><a href='https://twitter.com/{{model.entry.entity.twitter}}'>{{model.entry.entity.twitter}}</a></li>{{/if}}
-              {{#if model.entry.entity.phone}}<li>{{model.entry.entity.phone}}</li>{{/if}}
+              {{#if model.entry.group.location}}<li>{{model.entry.group.location}}</li>{{/if}}
+              {{#if model.entry.group.email}}<li><a href='mailto:{{model.entry.group.email}}'>{{model.entry.group.email}}</a></li>{{/if}}
+              {{#if model.entry.group.website}}<li><a href={{model.entry.group.website}}>{{model.entry.group.website}}</a></li>{{/if}}
+              {{#if model.entry.group.facebook}}<li><a href={{model.entry.group.facebook}}>{{model.entry.group.facebook}}</a></li>{{/if}}
+              {{#if model.entry.group.twitter}}<li><a href='https://twitter.com/{{model.entry.group.twitter}}'>{{model.entry.group.twitter}}</a></li>{{/if}}
+              {{#if model.entry.group.phone}}<li>{{model.entry.group.phone}}</li>{{/if}}
             </ul>
           </div>
           <div>
             <p>
-              {{model.entry.entity.description}}
+              {{model.entry.group.description}}
             </p>
           </div>
         </div>

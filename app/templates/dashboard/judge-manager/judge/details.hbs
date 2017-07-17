@@ -39,17 +39,17 @@
         Status: {{status}}
       {{/power-select}}
     {{/form.element}}
-    {{#form.element property='entity' useIcons=false as |el|}}
+    {{#form.element property='organization' useIcons=false as |el|}}
       {{#power-select
-        options=entityOptions
+        options=organizationOptions
         selected=el.value
         onchange=(action (mut el.value))
         placeholder="Related Entity"
         disabled=true
         allowClear=true
-        as |entity|
+        as |organization|
       }}
-        Entity: {{entity.name}}
+        Entity: {{organization.name}}
       {{/power-select}}
     {{/form.element}}
     {{!-- {{#form.element property='start_date' useIcons=false as |el|}}
