@@ -1,0 +1,65 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>(New Entry)</h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-form
+        model=model
+        formLayout='vertical'
+        onSubmit=(action 'saveEntry')
+        as |form|
+      }}
+        {{#form.element property='group' as |el|}}
+            {{#power-select
+              search=(perform searchGroup)
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Group Name"
+              allowClear=true
+              as |group|
+            }}
+              Group: {{group.name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='organization' as |el|}}
+            {{#power-select
+              options=representingOptions
+              selected=el.value
+              searchField='name'
+              onchange=(action (mut el.value))
+              placeholder="Enter District/Division/Affiliate Representation"
+              allowClear=true
+              as |representing|
+            }}
+              Representing: {{representing.name}}
+            {{/power-select}}
+        {{/form.element}}
+        {{#form.element property='isEvaluation' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false}}Skip Eval{{/bg.button}}
+            {{#bg.button type='default' value=true}}Include Eval{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{#form.element property='isPrivate' as |el|}}
+          {{#bs-button-group
+            value=el.value
+            type='radio'
+            onChange=(action (mut el.value))
+            as |bg|
+          }}
+            {{#bg.button type='default' value=false}}Make Scores Public{{/bg.button}}
+            {{#bg.button type='default' value=true}}Keep Scores Private{{/bg.button}}
+          {{/bs-button-group}}
+        {{/form.element}}
+        {{!-- {{#bs-button type="default" onClick=(action 'cancelChart')}}Cancel{{/bs-button}} --}}
+        {{#bs-button type="primary" buttonType="submit"}}Save{{/bs-button}}
+      {{/bs-form}}
+    </div>
+  </div>
+</section>

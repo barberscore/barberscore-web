@@ -30,6 +30,7 @@ Router.map(function() {
         });
         this.route('entries', { path: 'entries'}, function() {
           this.route('entry', { path: ':entry_id'});
+          this.route('new', { path: 'new' });
         });
         this.route('draw', { path: 'draw'}, function(){
         });

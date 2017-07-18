@@ -23,7 +23,7 @@ export default Model.extend({
   totScore: DS.attr('number'),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
-  organization: DS.belongsTo('organization', {async: true}),
+  organization: DS.belongsTo('organization', {inverse: 'entries', sync: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
