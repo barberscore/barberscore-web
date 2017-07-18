@@ -46,6 +46,11 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
+  isActive: Ember.computed.equal(
+    'status',
+    'Active',
+  ),
+
   kindOptions: [
     'Quartet',
     'Chorus',
