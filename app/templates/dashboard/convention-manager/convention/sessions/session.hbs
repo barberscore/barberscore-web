@@ -22,14 +22,14 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each sortedAwards as |award|}}
-                  <tr>
-                    <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
-                    <td>{{award.name}}</td>
-                  </tr>
+                {{#each filteredAwards as |award|}}
+                    <tr>
+                      <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
+                      <td>{{award.name}}</td>
+                    </tr>
                 {{else}}
                   <tr>
-                    <td>No awards.</td>
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   </tr>
                 {{/each}}
               </tbody>

@@ -14,32 +14,16 @@ export default Ember.Controller.extend({
   awardCall: Ember.computed(function(){
     return this.get('store').query('award', {
         'organization__officers__person__user': this.get('currentUser.user.id'),
-        'organization__officers__office__is_award_manager': true,
-        'page_size': 100
       });
   }),
-  filteredKind: Ember.computed(
-    'awardCall.@each.kind',
+  filteredAwards: Ember.computed(
+    'awardCall.@each.{kind,season}',
     'model.kind',
-    function() {
-      return this.get('awardCall').filterBy('kind', this.get('model.kind'));
-    }
-  ),
-  filteredSeason: Ember.computed(
-    'filteredKind.@each.season',
     'model.convention.season',
     function() {
-      return this.get('filteredKind').filterBy('season', this.get('model.convention.season'));
+      return this.get('awardCall').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
-  awardUniques: Ember.computed.uniq(
-    'filteredSeason'
-  ),
-  awardOptions: Ember.computed.sort(
-    'awardUniques',
-    'awardSortProperties'
-  ),
-  sortedAwards: Ember.computed.alias('awardOptions'),
   sessionSortProperties: [
     'nomen',
   ],
