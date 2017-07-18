@@ -46,6 +46,26 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
+  // awardSortProperties: [
+  //   'organizationKindSort',
+  //   'isQualifier',
+  //   'isPrimary:desc',
+  //   'ageSort',
+  //   'name',
+  // ],
+  // awardCall: Ember.computed(function(){
+  //   return this.get('store').query('award', {
+  //       'organization__officers__person__user': this.get('currentUser.user.id'),
+  //     });
+  // }),
+  // filteredAwards: Ember.computed(
+  //   'awardCall.@each.{kind,season}',
+  //   'model.kind',
+  //   'model.convention.season',
+  //   function() {
+  //     return this.get('awardCall').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
+  //   }
+  // ),
   representingCall: Ember.computed(function() {
     return this.get('store').query('organization', {
       'kind__lt': '30',

@@ -17,15 +17,14 @@
             model=model
             as |form|
           }}
-            {{#form.element property='representing' useIcons=false as |el|}}
+            {{#form.element property='organization' useIcons=false as |el|}}
               {{#power-select
                 options=representingOptions
                 selected=el.value
                 searchField='name'
-                onchange=(perform autosave 'representing')
+                onchange=(perform autosave 'organization')
                 placeholder="Enter District/Division/Affiliate Representation"
                 allowClear=true
-                renderInPlace=true
                 disabled=isDisabled
                 as |representing|
               }}
@@ -59,6 +58,31 @@
         </div>
         <hr>
         <section>
+          <div class='table-responsive'>
+            <table class='table'>
+              <caption>Contests Entered</caption>
+              <thead>
+                <tr>
+                  <th>Include?</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each contestOptions as |contest|}}
+                    <tr>
+                      <td>{{contestant-checkbox contest=contest contestants=model.contestants model=model}}</td>
+                      <td>{{contest.nomen}}</td>
+                    </tr>
+                {{else}}
+                  <tr>
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        {{!-- <section>
         <p>
           Contests Entered
         </p>
@@ -71,7 +95,7 @@
             disabled=isDisabled
             onchange=(action "updateSelection")
           }}
-        </section>
+        </section> --}}
         <hr>
         <section>
           <div class='table-responsive'>
