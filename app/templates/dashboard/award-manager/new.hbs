@@ -90,8 +90,8 @@
             onchange=(action (mut el.value))
             as |bg|
           }}
-            {{#bg.button type='default' value=false disabled=isDisabled}}Winner Determined by Highest Point Total{{/bg.button}}
-            {{#bg.button type='default' value=true disabled=isDisabled}}Winner Determined Manually (ie, Most-Improved, etc.){{/bg.button}}
+            {{#bg.button type='default' value=false disabled=isDisabled}}Automatically Determined{{/bg.button}}
+            {{#bg.button type='default' value=true disabled=isDisabled}}Manually Determined (ie, Most-Improved, etc.){{/bg.button}}
           {{/bs-button-group}}
         {{/form.element}}
         {{!-- <hr>
