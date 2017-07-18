@@ -31,7 +31,7 @@
           {{#if (eq model.status 'New')}}
             {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
               {{#if publishConvention.isRunning}}
-                Scheduling {{fa-icon "spinner" spin=true}}
+                Publishing {{fa-icon "spinner" spin=true}}
               {{else}}
                 Publish Convention
               {{/if}}

@@ -63,52 +63,5 @@ export default Ember.Controller.extend({
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
     },
-    createConvention() {
-      // TODO this seems pretty damn hacky.
-      let convention = this.get('store').createRecord('convention', {
-        name: this.get('name'),
-        organization: this.get('organization'),
-        location: this.get('location'),
-        startDate: this.get('startDate'),
-        endDate: this.get('endDate'),
-        kind: this.get('kind'),
-        season: this.get('season'),
-        panel: this.get('panel'),
-        risers: this.get('risers'),
-      });
-      convention.save()
-      .then((response) => {
-        let assignment = response.get('assignments').createRecord({
-          person: this.get('currentUser.user.person'),
-          kind: 'DRCJ'
-        });
-        assignment.save();
-        convention.get('assignments').pushObject(assignment);
-        this.get('flashMessages').success('Saved');
-        this.set('name', null);
-        this.set('organization', null);
-        this.set('location', null);
-        this.set('startDate', null);
-        this.set('endDate', null);
-        this.set('kind', null);
-        this.set('season', null);
-        this.set('panel', null);
-        this.set('risers', null);
-        this.set('openModal', false);
-        this.transitionToRoute('dashboard.convention-manager.convention.details', convention);
-      });
-    },
-    clearForm() {
-      this.set('name', null);
-      this.set('organization', null);
-      this.set('location', null);
-      this.set('startDate', null);
-      this.set('endDate', null);
-      this.set('kind', null);
-      this.set('season', null);
-      this.set('panel', null);
-      this.set('risers', null);
-      this.set('openModal', false);
-    },
-  }
+  },
 });
