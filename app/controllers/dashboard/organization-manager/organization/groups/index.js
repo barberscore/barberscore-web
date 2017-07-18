@@ -3,17 +3,19 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
+  showInactive: false,
   sortProperties: [
     'kindSort:asc',
     'name:asc',
     'status:desc',
   ],
-  filteredEntities: Ember.computed.filterBy(
-    'model.children',
-    'isGroup',
+  activeGroups: Ember.computed.filterBy(
+    'model.groups',
+    'status',
+    'isActive',
   ),
-  sortedItems: Ember.computed.sort(
-    'filteredEntities',
+  sortedGroups: Ember.computed.sort(
+    'model.groups',
     'sortProperties'
   ),
   actions: {

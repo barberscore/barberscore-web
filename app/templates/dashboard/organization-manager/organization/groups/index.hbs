@@ -13,13 +13,17 @@
           </tr>
         </thead>
         <tbody>
-          {{#each sortedItems as |group|}}
+          {{#each sortedGroups as |group|}}
             <tr>
-              <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' group}}{{group.nomen}}{{/link-to}}</td>
-              <td>{{group.kind}}</td>
-              <td>{{group.location}}</td>
-              <td>{{group.bhsId}}</td>
-              <td>{{group.status}}</td>
+              {{#if group.isLoading}}
+                <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>{{#link-to 'dashboard.organization-manager.organization.groups.group' group}}{{group.nomen}}{{/link-to}}</td>
+                <td>{{group.kind}}</td>
+                <td>{{group.location}}</td>
+                <td>{{group.bhsId}}</td>
+                <td>{{group.status}}</td>
+              {{/if}}
             </tr>
           {{else}}
             <tr>
