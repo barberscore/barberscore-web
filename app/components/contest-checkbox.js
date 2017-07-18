@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   flashMessages: Ember.inject.service(),
   isDisabled: Ember.computed.equal(
     'model.status',
-    'Scheduled',
+    'Published',
   ),
   isSelected: Ember.computed(
     'award',

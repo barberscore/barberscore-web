@@ -115,7 +115,7 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
-        {{#if (eq model.status 'Scheduled')}}
+        {{#if (eq model.status 'Published')}}
           {{#bs-button type='primary' onClick=(perform startAppearance)}}
             {{#if startAppearance.isRunning}}
               Starting {{fa-icon "spinner" spin=true}}

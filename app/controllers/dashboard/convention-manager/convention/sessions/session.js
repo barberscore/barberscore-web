@@ -41,12 +41,12 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
-  scheduleSession: task(function *() {
-    let session = yield this.model.schedule({
+  publishSession: task(function *() {
+    let session = yield this.model.publish({
       'by': this.get('currentUser.user.id')
     });
     this.store.pushPayload('session', session);
-    this.get('flashMessages').success("Scheduled!");
+    this.get('flashMessages').success("Published!");
   }).drop(),
   actions: {
     previousItem(cursor) {

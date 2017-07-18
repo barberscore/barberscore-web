@@ -30,7 +30,7 @@ export default Model.extend({
   personSort: Ember.computed.alias('person.lastName'),
   statusOptions: [
     'New',
-    'Scheduled',
+    'Published',
     'Confirmed',
     'Validated',
     'Final',

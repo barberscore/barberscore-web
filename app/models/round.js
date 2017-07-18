@@ -18,7 +18,7 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  publish: memberAction({path: 'publish', type: 'post'}),
+  announce: memberAction({path: 'announce', type: 'post'}),
 
   conventionStatus: Ember.computed.alias('session.convention.status'),
   conventionIsActive: Ember.computed.alias('session.convention.isActive'),
@@ -28,7 +28,7 @@ export default Model.extend({
     'Validated',
     'Started',
     'Finished',
-    'Published',
+    'Announced',
   ],
   kindOptions: [
     'Finals',

@@ -45,7 +45,7 @@ export default Model.extend({
     'Confirmed',
     'Flagged',
     'Cleared',
-    'Published',
+    'Announced',
   ],
 
 

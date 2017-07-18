@@ -28,7 +28,7 @@ export default Model.extend({
     'Finished',
     'Scratched',
     'Disqualified',
-    'Published',
+    'Announced',
   ],
   entryTotPoints: Ember.computed.alias('entry.totPoints'),
 

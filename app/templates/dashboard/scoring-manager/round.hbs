@@ -60,11 +60,11 @@
             {{/if}}
           {{/bs-button}}
         {{else if (eq model.status 'Finished')}}
-          {{#bs-button type='primary' onClick=(perform publishRound)}}
-            {{#if publishRound.isRunning}}
-              Publishing {{fa-icon "spinner" spin=true}}
+          {{#bs-button type='primary' onClick=(perform announceRound)}}
+            {{#if announceRound.isRunning}}
+              Announceing {{fa-icon "spinner" spin=true}}
             {{else}}
-              Publish Round
+              Announce Round
             {{/if}}
           {{/bs-button}}
         {{/if}}

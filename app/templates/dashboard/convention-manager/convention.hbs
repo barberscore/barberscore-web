@@ -29,11 +29,11 @@
       <div>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' disabled=model.isError onClick=(perform scheduleConvention)}}
-              {{#if scheduleConvention.isRunning}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
+              {{#if publishConvention.isRunning}}
                 Scheduling {{fa-icon "spinner" spin=true}}
               {{else}}
-                Schedule Convention
+                Publish Convention
               {{/if}}
             {{/bs-button}}
           {{/if}}

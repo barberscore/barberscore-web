@@ -19,9 +19,9 @@ export default Ember.Controller.extend({
     'model.round.status',
     'Finished',
   ),
-  isPublished: Ember.computed.equal(
+  isAnnounced: Ember.computed.equal(
     'model.round.status',
-    'Published',
+    'Announced',
   ),
   isDisabled: Ember.computed.or(
     'isStarted',

@@ -27,7 +27,7 @@ export default Model.extend({
   ),
   statusOptions: [
     'New',
-    'Scheduled',
+    'Published',
     'Confirmed',
     'Validated',
     'Final',

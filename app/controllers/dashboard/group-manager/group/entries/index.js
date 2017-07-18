@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
 
   filteredEntries: Ember.computed.filterBy(
     'model.entries',
-    'notPublished'
+    'notAnnounced'
   ),
   sortedEntriesProperties: [
     'nomen:asc',

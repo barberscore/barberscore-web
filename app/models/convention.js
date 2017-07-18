@@ -26,11 +26,11 @@ export default Model.extend(Validations, {
   sessions: DS.hasMany('session', {async: true}),
   permissions: DS.attr(),
 
-  schedule: memberAction({path: 'schedule', type: 'post'}),
+  publish: memberAction({path: 'publish', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
 
-  isPublished: Ember.computed.equal('status', 'Published'),
-  isActive: Ember.computed.not('isPublished'),
+  isAnnounced: Ember.computed.equal('status', 'Announced'),
+  isActive: Ember.computed.not('isAnnounced'),
 
   statusOptions: [
     'New',
@@ -40,7 +40,7 @@ export default Model.extend(Validations, {
     'Validated',
     'Started',
     'Finished',
-    'Published',
+    'Announced',
   ],
 
   kindOptions: [

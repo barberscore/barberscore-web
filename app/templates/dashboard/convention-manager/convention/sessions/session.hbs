@@ -40,11 +40,11 @@
       <div class='panel-footer fixed-panel-footer'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' onClick=(perform scheduleSession)}}
-              {{#if scheduleSession.isRunning}}
+            {{#bs-button type='primary' onClick=(perform publishSession)}}
+              {{#if publishSession.isRunning}}
                 Scheduling {{fa-icon "spinner" spin=true}}
               {{else}}
-                Schedule Session
+                Publish Session
               {{/if}}
             {{/bs-button}}
           {{/if}}

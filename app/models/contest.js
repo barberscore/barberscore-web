@@ -19,7 +19,7 @@ export default Model.extend({
     'Closed',
     'Validated',
     'Finished',
-    'Published',
+    'Announced',
   ],
 
   kindOptions: [

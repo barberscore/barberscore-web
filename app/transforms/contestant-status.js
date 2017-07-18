@@ -12,7 +12,7 @@ export default DS.Transform.extend({
       60: 'Finished',
       70: 'Scratched',
       80: 'Disqualified',
-      90: 'Published',
+      90: 'Announced',
     };
     return map[serialized];
   },
@@ -28,7 +28,7 @@ export default DS.Transform.extend({
       'Finished': 60,
       'Scratched': 70,
       'Disqualified': 80,
-      'Published': 90,
+      'Announced': 90,
     };
     return map[deserialized];
   }

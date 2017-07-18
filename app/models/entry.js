@@ -35,13 +35,13 @@ export default Model.extend({
   scratch: memberAction({path: 'scratch', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
-  published: computed.equal(
+  announced: computed.equal(
     'status',
-    'Published'
+    'Announced'
   ),
 
-  notPublished: computed.not(
-    'published'
+  notAnnounced: computed.not(
+    'announced'
   ),
 
   expiringMembers: computed.filterBy(
@@ -65,7 +65,7 @@ export default Model.extend({
     'Disqualified',
     'Started',
     'Finished',
-    'Published',
+    'Announced',
   ],
 
 

@@ -76,8 +76,8 @@ export default Ember.Controller.extend({
         this.store.pushPayload('round', response);
       });
     },
-    publishRound() {
-      this.model.publish()
+    announceRound() {
+      this.model.announce()
       .then((response) => {
         this.store.pushPayload('round', response);
       });

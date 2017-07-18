@@ -28,7 +28,7 @@ export default Model.extend({
     'Finished',
     'Confirmed',
     'Final',
-    'Published',
+    'Announced',
   ],
 
 
