@@ -39,7 +39,6 @@ export default Model.extend({
   children: DS.hasMany('organization', {inverse: 'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
-  entries: DS.hasMany('entry', {inverse: 'organization', async: true}),
   groups: DS.hasMany('group', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
   permissions: DS.attr(),

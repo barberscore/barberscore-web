@@ -18,19 +18,19 @@ export default Ember.Controller.extend({
         'page_size': 1000,
       });
   }),
-  representingCall: Ember.computed(function() {
-    return this.get('store').query('organization', {
-        'kind__lt': '30',
-        'page_size': 100,
-      });
-  }),
-  representingSortProperties: [
-    'orgSort:asc',
-  ],
-  representingOptions: Ember.computed.sort(
-    'representingCall',
-    'representingSortProperties'
-  ),
+  // representingCall: Ember.computed(function() {
+  //   return this.get('store').query('organization', {
+  //       'kind__lt': '30',
+  //       'page_size': 100,
+  //     });
+  // }),
+  // representingSortProperties: [
+  //   'orgSort:asc',
+  // ],
+  // representingOptions: Ember.computed.sort(
+  //   'representingCall',
+  //   'representingSortProperties'
+  // ),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {

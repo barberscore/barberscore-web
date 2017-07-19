@@ -7,17 +7,18 @@
           <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
         </ul>
         <h4>
-          {{model.group.name}}{{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
+          {{model.group.name}}&nbsp;({{model.group.organization.shortName}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
         </h4>
       </div>
       <div class='panel-body'>
-        <div>
+        <section>
+          <p>Preferences</p>
           {{#bs-form
             formLayout="vertical"
             model=model
             as |form|
           }}
-            {{#form.element property='organization' useIcons=false as |el|}}
+            {{!-- {{#form.element property='organization' useIcons=false as |el|}}
               {{#power-select
                 options=representingOptions
                 selected=el.value
@@ -30,7 +31,7 @@
               }}
                 Representing: {{representing.name}}
               {{/power-select}}
-            {{/form.element}}
+            {{/form.element}} --}}
             {{#form.element property='isEvaluation' as |el|}}
               {{#bs-button-group
                 value=el.value
@@ -55,12 +56,12 @@
               {{/bs-button-group}}
             {{/form.element}}
           {{/bs-form}}
-        </div>
+        </section>
         <hr>
         <section>
+          <p>Contests Entered</p>
           <div class='table-responsive'>
             <table class='table'>
-              <caption>Contests Entered</caption>
               <thead>
                 <tr>
                   <th>Include?</th>
@@ -70,7 +71,14 @@
               <tbody>
                 {{#each contestOptions as |contest|}}
                     <tr>
-                      <td>{{contestant-checkbox contest=contest contestants=model.contestants model=model}}</td>
+                      <td>
+                        {{contestant-checkbox
+                          contest=contest
+                          contestants=model.contestants
+                          model=model
+                          isDisabled=isDisabled
+                        }}
+                      </td>
                       <td>{{contest.nomen}}</td>
                     </tr>
                 {{else}}
@@ -182,50 +190,31 @@
         </section>
       </div>
       <div class='panel-footer fixed-panel-footer'>
-        {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' disabled=model.isError onClick=(action (mut openInviteModal) true)}}
-              Invite Entry
-            {{/bs-button}}
-          {{else if (eq model.status 'Invited')}}
-            {{#bs-button type='primary' onClick=(perform submitEntry)}}
-              {{#if submitEntry.isRunning}}
-                Submitting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Submit Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Submitted')}}
-            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-              {{#if acceptEntry.isRunning}}
-                Accepting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Accept Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Accepted')}}
-            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-              {{#if scratchEntry.isRunning}}
-                Scratching {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Scratch Entry
-              {{/if}}
-            {{/bs-button}}
+        <ul class='list-inline'>
+          {{#if model.permissions.write}}
+            {{#if (eq model.status 'New')}}
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
+            {{else if (eq model.status 'Invited')}}
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
+            {{else if (eq model.status 'Submitted')}}
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut acceptEntryModal) true)}}Accept Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
+            {{else if (eq model.status 'Accepted')}}
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+            {{/if}}
           {{/if}}
-        {{/if}}
-        <div class='pull-right'>
-          <h4>
-            Entry Status: <strong>{{model.status}}</strong>
-          </h4>
-        </div>
+          <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+        </ul>
       </div>
     </div>
   </section>
 </section>
 <section>
   {{#bs-modal
-    open=openInviteModal
-    onHidden=(pipe-action (action (mut openInviteModal) false) (action (mut errorInviteModal) false))
+    open=inviteEntryModal
+    onHidden=(pipe-action (action (mut inviteEntryModal) false) (action (mut inviteEntryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
@@ -236,7 +225,7 @@
         This will invite {{model.group.name}} to the {{model.session.nomen}}.  The group contacts will
         be sent an email with the invite instructions.
       </p>
-      {{#if errorInviteModal}}
+      {{#if inviteEntryModalError}}
       <p class='text-danger'>
         Could not invite group.  Check to see that the group contact has a valid email.  Otherwise, contact support.
       </p>
@@ -254,32 +243,32 @@
     {{/modal.footer}}
   {{/bs-modal}}
 </section>
-{{!-- <section>
+<section>
   {{#bs-modal
-    open=openModal
-    onHidden=(pipe-action (action (mut openModal) false) (action (mut modalError) false))
+    open=deleteEntryModal
+    onHidden=(pipe-action (action (mut deleteEntryModal) false) (action (mut deleteEntryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Publish Convention</h4>
+      <h4>Delete Entry</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        After you have published you won't be able to edit details easily.  Each session must also be published.
+        This will delete the entry for {{model.group.name}}.  It can not be undone.
       </p>
-      {{#if modalError}}
+      {{#if deleteEntryModalError}}
       <p class='text-danger'>
-        Could not publish Convention.  Are you sure all fields are entered and sessions are published?
+        Could not delete entry.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
-        {{#if publishConvention.isRunning}}
-          Publishing {{fa-icon "spinner" spin=true}}
+      {{#bs-button type='danger' onClick=(perform deleteEntry)}}
+        {{#if deleteEntry.isRunning}}
+          Deleting {{fa-icon "spinner" spin=true}}
         {{else}}
-          Publish Convention
+          Delete Entry
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}
@@ -287,32 +276,125 @@
 </section>
 <section>
   {{#bs-modal
-    open=openModal
-    onHidden=(pipe-action (action (mut openModal) false) (action (mut modalError) false))
+    open=submitEntryModal
+    onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Publish Convention</h4>
+      <h4>Submit Entry</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        After you have published you won't be able to edit details easily.  Each session must also be published.
+        This will submit the entry for {{model.group.name}}.  It can not be undone.
       </p>
-      {{#if modalError}}
+      {{#if submitEntryModalError}}
       <p class='text-danger'>
-        Could not publish Convention.  Are you sure all fields are entered and sessions are published?
+        Could not submit entry.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
-        {{#if publishConvention.isRunning}}
-          Publishing {{fa-icon "spinner" spin=true}}
+      {{#bs-button type='primary' onClick=(perform submitEntry)}}
+        {{#if submitEntry.isRunning}}
+          Submiting {{fa-icon "spinner" spin=true}}
         {{else}}
-          Publish Convention
+          Submit Entry
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}
   {{/bs-modal}}
-</section> --}}
+</section>
+<section>
+  {{#bs-modal
+    open=declineEntryModal
+    onHidden=(pipe-action (action (mut declineEntryModal) false) (action (mut declineEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Decline Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will decline the invitation for {{model.group.name}}.
+      </p>
+      {{#if submitEntryModalError}}
+      <p class='text-danger'>
+        Could not decline entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform declineEntry)}}
+        {{#if declineEntry.isRunning}}
+          Declining {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Decline Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=acceptEntryModal
+    onHidden=(pipe-action (action (mut acceptEntryModal) false) (action (mut acceptEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Accept Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will accept the invitation for {{model.group.name}}.
+      </p>
+      {{#if acceptEntryModalError}}
+      <p class='text-danger'>
+        Could not accept entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="success"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+        {{#if acceptEntry.isRunning}}
+          Accepting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Accept Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=scratchEntryModal
+    onHidden=(pipe-action (action (mut scratchEntryModal) false) (action (mut scratchEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Scratch Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will scratch the entry for {{model.group.name}}.
+      </p>
+      {{#if scratchEntryModalError}}
+      <p class='text-danger'>
+        Could not scratch entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform scratchEntry)}}
+        {{#if scratchEntry.isRunning}}
+          Scratching {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Scratch Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>

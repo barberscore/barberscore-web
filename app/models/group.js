@@ -34,7 +34,7 @@ export default Model.extend({
   description: DS.attr('string'),
   bhsId: DS.attr('number'),
   orgSort: DS.attr('number'),
-  organization: DS.belongsTo('group', {async: true}),
+  organization: DS.belongsTo('organization', {async: true}),
   awards: DS.hasMany('award', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
