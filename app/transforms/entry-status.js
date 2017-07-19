@@ -5,6 +5,7 @@ export default DS.Transform.extend({
     var map = {
       0: 'New',
       5: 'Invited',
+      7: 'Declined',
       10: 'Submitted',
       20: 'Accepted',
       30: 'Rejected',
@@ -24,6 +25,7 @@ export default DS.Transform.extend({
     var map = {
       'New': 0,
       'Invited': 5,
+      'Declined': 7,
       'Submitted': 10,
       'Accepted': 20,
       'Rejected': 30,

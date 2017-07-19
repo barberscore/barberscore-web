@@ -7,7 +7,7 @@
           <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
         </ul>
         <h4>
-          {{model.group.name}}&nbsp;&mdash;&nbsp;{{model.prelim}}
+          {{model.group.name}}{{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
         </h4>
       </div>
       <div class='panel-body'>
@@ -183,41 +183,35 @@
       </div>
       <div class='panel-footer fixed-panel-footer'>
         {{#if model.permissions.write}}
-          {{#unless isDisabled}}
-            {{#if (eq model.status 'New')}}
-              {{#bs-button type='primary' onClick=(perform inviteEntry)}}
-                {{#if inviteEntry.isRunning}}
-                  Inviting {{fa-icon "spinner" spin=true}}
-                {{else}}
-                  Invite Entry
-                {{/if}}
-              {{/bs-button}}
-            {{else if (eq model.status 'Invited')}}
-              {{#bs-button type='primary' onClick=(perform submitEntry)}}
-                {{#if submitEntry.isRunning}}
-                  Submitting {{fa-icon "spinner" spin=true}}
-                {{else}}
-                  Submit Entry
-                {{/if}}
-              {{/bs-button}}
-            {{else if (eq model.status 'Submitted')}}
-              {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-                {{#if acceptEntry.isRunning}}
-                  Accepting {{fa-icon "spinner" spin=true}}
-                {{else}}
-                  Accept Entry
-                {{/if}}
-              {{/bs-button}}
-            {{else if (eq model.status 'Accepted')}}
-              {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-                {{#if scratchEntry.isRunning}}
-                  Scratching {{fa-icon "spinner" spin=true}}
-                {{else}}
-                  Scratch Entry
-                {{/if}}
-              {{/bs-button}}
-            {{/if}}
-          {{/unless}}
+          {{#if (eq model.status 'New')}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(action (mut openInviteModal) true)}}
+              Invite Entry
+            {{/bs-button}}
+          {{else if (eq model.status 'Invited')}}
+            {{#bs-button type='primary' onClick=(perform submitEntry)}}
+              {{#if submitEntry.isRunning}}
+                Submitting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Submit Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Submitted')}}
+            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
+              {{#if acceptEntry.isRunning}}
+                Accepting {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Accept Entry
+              {{/if}}
+            {{/bs-button}}
+          {{else if (eq model.status 'Accepted')}}
+            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
+              {{#if scratchEntry.isRunning}}
+                Scratching {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Scratch Entry
+              {{/if}}
+            {{/bs-button}}
+          {{/if}}
         {{/if}}
         <div class='pull-right'>
           <h4>
@@ -228,3 +222,97 @@
     </div>
   </section>
 </section>
+<section>
+  {{#bs-modal
+    open=openInviteModal
+    onHidden=(pipe-action (action (mut openInviteModal) false) (action (mut errorInviteModal) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Invite Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will invite {{model.group.name}} to the {{model.session.nomen}}.  The group contacts will
+        be sent an email with the invite instructions.
+      </p>
+      {{#if errorInviteModal}}
+      <p class='text-danger'>
+        Could not invite group.  Check to see that the group contact has a valid email.  Otherwise, contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform inviteEntry)}}
+        {{#if inviteEntry.isRunning}}
+          Inviting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Invite Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+{{!-- <section>
+  {{#bs-modal
+    open=openModal
+    onHidden=(pipe-action (action (mut openModal) false) (action (mut modalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Publish Convention</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        After you have published you won't be able to edit details easily.  Each session must also be published.
+      </p>
+      {{#if modalError}}
+      <p class='text-danger'>
+        Could not publish Convention.  Are you sure all fields are entered and sessions are published?
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
+        {{#if publishConvention.isRunning}}
+          Publishing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Publish Convention
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=openModal
+    onHidden=(pipe-action (action (mut openModal) false) (action (mut modalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Publish Convention</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        After you have published you won't be able to edit details easily.  Each session must also be published.
+      </p>
+      {{#if modalError}}
+      <p class='text-danger'>
+        Could not publish Convention.  Are you sure all fields are entered and sessions are published?
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
+        {{#if publishConvention.isRunning}}
+          Publishing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Publish Convention
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section> --}}

@@ -80,13 +80,20 @@ export default Ember.Controller.extend({
     'representingCall',
     'representingSortProperties'
   ),
+  openInviteModal: false,
+  errorInviteModal: false,
   inviteEntry: task(function *() {
-    let entry = yield this.model.invite({
-      'by': this.get('currentUser.user.id'),
-    });
-    this.store.pushPayload('entry', entry);
-    this.set('openModal', false);
-    this.get('flashMessages').success("Invited!");
+    try {
+      let entry = yield this.model.invite({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('openInviteModal', false);
+      this.set('errorInviteModal', false);
+      this.get('flashMessages').success("Invited!");
+    } catch(e) {
+      this.set('errorInviteModal', true);
+    }
   }).drop(),
   submitEntry: task(function *() {
     let entry = yield this.model.submit({
