@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   entrySortProperties: [
     'nomen:asc',
   ],
-  sortedEntries: Ember.computed.sort(
+  sortedItems: Ember.computed.sort(
     'model.entries',
     'entrySortProperties'
   ),
@@ -14,12 +14,6 @@ export default Ember.Controller.extend({
     },
     createEntry() {
       this.transitionToRoute('dashboard.session-manager.session.entries.new');
-    },
-    deleteEntry(entry){
-      entry.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-      });
     },
   }
 });

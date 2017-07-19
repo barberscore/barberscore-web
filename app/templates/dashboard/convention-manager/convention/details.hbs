@@ -6,6 +6,7 @@
   }}
     {{form.element
       property='name'
+      disabled=isDisabled
       onChange=(perform autosave 'name')
     }}
     {{!-- {{#form.element}}
@@ -78,7 +79,7 @@
       controlType='text'
       placeholder='Location'
       property='location'
-      disabled=false
+      disabled=isDisabled
       onChange=(perform autosave 'location')
     }}
     <div class='row'>
@@ -89,7 +90,7 @@
             format='YYYY-MM-DD'
             updateDate=(perform autosave 'openDate')
             placeholder="Convention Entry Open Date"
-            disabled=false
+            disabled=isDisabled
           }}
         {{/form.element}}
       </div>
@@ -100,7 +101,7 @@
             format='YYYY-MM-DD'
             updateDate=(perform autosave 'closeDate')
             placeholder="Convention Entry Close Date"
-            disabled=false
+            disabled=isDisabled
           }}
         {{/form.element}}
       </div>
@@ -113,7 +114,7 @@
             format='YYYY-MM-DD'
             updateDate=(perform autosave 'startDate')
             placeholder="Convention Start Date"
-            disabled=false
+            disabled=isDisabled
           }}
         {{/form.element}}
       </div>
@@ -124,7 +125,7 @@
             format='YYYY-MM-DD'
             updateDate=(perform autosave 'endDate')
             placeholder="Convention End Date"
-            disabled=false
+            disabled=isDisabled
           }}
         {{/form.element}}
       </div>
@@ -135,7 +136,7 @@
               selected=el.value
               onchange=(perform autosave 'panel')
               placeholder="Choose Panel"
-              disabled=false
+              disabled=isDisabled
               allowClear=true
               as |panel|
         }}

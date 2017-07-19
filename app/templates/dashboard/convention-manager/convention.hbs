@@ -29,16 +29,41 @@
       <div>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
-              {{#if publishConvention.isRunning}}
-                Publishing {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Publish Convention
-              {{/if}}
-            {{/bs-button}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(action (mut openModal) true)}}Publish Convention{{/bs-button}}
           {{/if}}
         {{/if}}
       </div>
     </div>
   </div>
+</section>
+<section>
+  {{#bs-modal
+    open=openModal
+    onHidden=(pipe-action (action (mut openModal) false) (action (mut modalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Publish Convention</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        After you have published you won't be able to edit details easily.  Each session must also be published.
+      </p>
+      {{#if modalError}}
+      <p class='text-danger'>
+        Could not publish Convention.  Are you sure all fields are entered and sessions are published?
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform publishConvention)}}
+        {{#if publishConvention.isRunning}}
+          Publishing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Publish Convention
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
 </section>

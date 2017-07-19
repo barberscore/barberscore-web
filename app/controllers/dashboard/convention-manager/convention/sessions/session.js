@@ -25,6 +25,13 @@ export default Ember.Controller.extend({
       return this.get('awardCall').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
+  uniqueAwards: Ember.computed.uniq(
+    'filteredAwards',
+  ),
+  sortedAwards: Ember.computed.sort(
+    'uniqueAwards',
+    'awardSortProperties',
+  ),
   sessionSortProperties: [
     'nomen',
   ],

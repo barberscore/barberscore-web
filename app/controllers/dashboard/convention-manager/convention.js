@@ -5,15 +5,19 @@ export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
+  openModal: false,
+  modalError: false,
   publishConvention: task(function *() {
     try {
       let convention = yield this.model.publish({
         'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('convention', convention);
+      this.set('openModal', false);
+      this.set('modalError', false);
       this.get('flashMessages').success("Published!");
     } catch(e) {
-      this.get('flashMessages').danger("Please check that all fields are entered!");
+      this.set('modalError', true);
     }
   }).drop(),
   openConvention: task(function *() {

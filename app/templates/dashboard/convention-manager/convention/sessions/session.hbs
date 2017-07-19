@@ -22,7 +22,7 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each filteredAwards as |award|}}
+                {{#each sortedAwards as |award|}}
                     <tr>
                       <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
                       <td>{{award.name}}</td>

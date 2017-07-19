@@ -13,17 +13,14 @@
         <tbody>
           {{#each sortedSessions as |session|}}
             <tr>
-              <td>
-                {{#link-to 'dashboard.convention-manager.convention.sessions.session' session}}{{session.kind}}{{/link-to}}
-              </td>
-              {{!-- <td>{{session.age}}</td> --}}
-              {{!-- <td>
-                {{session.num_rounds}}
-              </td> --}}
-              {{!-- <td>
-                {{sorted-contests session=session}}
-              </td> --}}
-              <td>{{session.status}}</td>
+              {{#if session.isLoading}}
+                <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>
+                  {{#link-to 'dashboard.convention-manager.convention.sessions.session' session}}{{session.kind}}{{/link-to}}
+                </td>
+                <td>{{session.status}}</td>
+              {{/if}}
             </tr>
           {{else}}
             <tr>

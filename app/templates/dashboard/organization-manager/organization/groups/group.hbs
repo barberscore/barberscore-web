@@ -20,9 +20,9 @@
           {{form.element
             property='name'
             onChange=(perform autosave 'name')
-            disabled=true
+            disabled=false
           }}
-          {{#form.element property='parent' useIcons=false as |el|}}
+          {{#form.element property='parent' as |el|}}
             {{#power-select
               options=representingOptions
               selected=el.value
@@ -50,13 +50,6 @@
               Kind: {{kind}}
             {{/power-select}}
           {{/form.element}}
-          {{form.element
-            controlType='text'
-            placeholder='Short Name'
-            property='shortName'
-            disabled=false
-            onChange=(perform autosave 'shortName')
-          }}
           {{form.element
             controlType='text'
             placeholder='Location'

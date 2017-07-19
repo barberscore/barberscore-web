@@ -15,7 +15,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each sortedEntries as |entry|}}
+          {{#each sortedItems as |entry|}}
             <tr>
               {{#if entry.isLoading}}
                 <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>

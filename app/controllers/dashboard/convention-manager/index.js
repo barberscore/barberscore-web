@@ -14,6 +14,9 @@ export default Ember.Controller.extend({
     'model',
     'isActive'
   ),
+  uniqueConventions: Ember.computed.uniq(
+    'filteredConventions',
+  ),
   sortedConventions: Ember.computed.sort(
     'filteredConventions',
     'sortProperties'

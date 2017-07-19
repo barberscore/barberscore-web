@@ -80,23 +80,6 @@ export default Ember.Controller.extend({
     'representingCall',
     'representingSortProperties'
   ),
-  entrySortProperties: [
-    'nomen',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.session.entries',
-    'entrySortProperties'
-  ),
-  isPrevDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
   inviteEntry: task(function *() {
     let entry = yield this.model.invite({
       'by': this.get('currentUser.user.id'),
@@ -141,6 +124,18 @@ export default Ember.Controller.extend({
       })
     }
   }).restartable(),
+  entryManager: Ember.inject.controller('dashboard.session-manager.session.entries.index'),
+  sortedItems: Ember.computed.alias('entryManager.sortedItems'),
+  isPrevDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.firstObject');
+  }),
+  isNextDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.lastObject');
+  }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
@@ -152,21 +147,5 @@ export default Ember.Controller.extend({
       let newCur = this.get('sortedItems').objectAt(nowCur+1);
       this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
     },
-    updateSelection(newSelection, value, operation) {
-      if (operation==='added') {
-        let contest = this.get('store').peekRecord('contest', value);
-        let contestant = this.get('model.contestants').createRecord({
-          contest: contest
-        });
-        contestant.save()
-        .then(() => {
-        });
-      } else { //operation === removed
-        let contestant = this.get('model.contestants').findBy('contest.id', value);
-        contestant.destroyRecord()
-        .then(() => {
-        });
-      }
-    },
-  },
+  }
 });
