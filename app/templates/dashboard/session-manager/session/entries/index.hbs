@@ -10,19 +10,25 @@
             <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
             <th class='col-md-1' {{action "sortBy" "participantCount:desc"}}>Men on Stage</th>
             <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
+            <th class='col-md-1' {{action "sortBy" "prelim:desc"}}>Prelim</th>
             <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedEntries as |entry|}}
             <tr>
-              <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
-              <td>{{entry.organization.shortName}}</td>
-              <td>{{entry.contestantCount}}</td>
-              <td>{{entry.repertoryCount}}</td>
-              <td>{{entry.participantCount}}</td>
-              <td>{{entry.expiringMembersCount}}</td>
-              <td>{{entry.status}}</td>
+              {{#if entry.isLoading}}
+                <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
+                <td>{{entry.organization.shortName}}</td>
+                <td>{{entry.contestantCount}}</td>
+                <td>{{entry.repertoryCount}}</td>
+                <td>{{entry.participantCount}}</td>
+                <td>{{entry.expiringMembersCount}}</td>
+                <td>{{single-fixed entry.prelim}}</td>
+                <td>{{entry.status}}</td>
+              {{/if}}
             </tr>
           {{else}}
             <tr>
