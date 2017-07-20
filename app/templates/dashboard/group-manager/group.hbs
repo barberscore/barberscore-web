@@ -37,9 +37,6 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.group-manager.group.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
-        {{!-- {{#nav.item}}
-          {{#nav.link-to "dashboard.group-manager.group.officers"}}Officers{{/nav.link-to}}
-        {{/nav.item}} --}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.group-manager.group.members"}}Members{{/nav.link-to}}
         {{/nav.item}}
@@ -53,42 +50,81 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{!-- {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' onClick=(perform openSession)}}
-            {{#if openSession.isRunning}}
-              Opening {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Open Session
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Opened')}}
-          {{#bs-button type='primary' onClick=(perform closeSession)}}
-            {{#if closeSession.isRunning}}
-              Closing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Close Session
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Closed')}}
-          {{#bs-button type='primary' onClick=(perform verifySession)}}
-            {{#if verifySession.isRunning}}
-              Verifying {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Verify Session
-            {{/if}}
-          {{/bs-button}}
-        {{else}}
-          &nbsp;
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateGroupModal) true)}}Activate Group{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateGroupModal) true)}}Deactivate Group{{/bs-button}}</li>
+          {{else if (eq model.status 'Active')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateGroupModal) true)}}Deactivate Group{{/bs-button}}</li>
+          {{else if (eq model.status 'Inactive')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateGroupModal) true)}}Activate Group{{/bs-button}}</li>
+          {{/if}}
         {{/if}}
-      {{else}}
-        &nbsp;
-      {{/if}} --}}
-      <div class='pull-right'>
-        <h4>
-          Group Status: <strong>{{model.status}}</strong>
-        </h4>
-      </div>
+        <li class='pull-right'><h4>Group Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
     </div>
   </div>
+</section>
+<section>
+  {{#bs-modal
+    open=activateGroupModal
+    onHidden=(pipe-action (action (mut activateGroupModal) false) (action (mut activateGroupModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Activate Group</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will activate.
+      </p>
+      {{#if activateGroupModalError}}
+      <p class='text-danger'>
+        Could not activate group.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform activateGroup)}}
+        {{#if activateGroup.isRunning}}
+          Activating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Activate Group
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=deactivateGroupModal
+    onHidden=(pipe-action (action (mut deactivateGroupModal) false) (action (mut deactivateGroupModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Deactivate Group</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will deactivate.
+      </p>
+      {{#if deactivateGroupModalError}}
+      <p class='text-danger'>
+        Could not deactivate group.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform deactivateGroup)}}
+        {{#if deactivateGroup.isRunning}}
+          Deactivating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Deactivate Group
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
 </section>

@@ -2,33 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
-    'model.permissions.write'
-  ),
-  location: '',
-  representingCall: Ember.computed(function() {
-    return this.get('store').query('organization', {
-        'kind__lt': '30',
-        'page_size': 100,
-      });
-  }),
-  representingSortProperties: [
-    'kindSort:asc',
-    'name:asc',
-  ],
-  representingOptions: Ember.computed.sort(
-    'representingCall',
-    'representingSortProperties'
-  ),
-  representing: Ember.computed(
-    'model.representing',
-    function() {
-      return this.get('model.representing');
-    }
-  ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);

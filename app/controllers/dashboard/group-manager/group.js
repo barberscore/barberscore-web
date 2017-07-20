@@ -3,16 +3,6 @@ import config from '../../../config/environment';
 import { task } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  isEditing: false,
-  isCollapsed: true,
-  isRoleEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
-  isRoleDisabled: Ember.computed.not('isRoleEditing'),
-  collapseGroup: false,
-  isRoleCollapsed: false,
-  optionsSession: Ember.computed(function() {
-    return this.get('store').query('session', {'status': 4});
-  }),
   flashMessages: Ember.inject.service(),
   uploadPhoto: task(function * (file) {
     try {
@@ -27,34 +17,34 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
-  actions: {
-    collapseHeader() {
-      this.toggleProperty('isCollapsed');
-    },
-    setEditing() {
-      this.set('isEditing', true);
-    },
-    undoEditing() {
-      this.model.rollbackAttributes();
-      this.set('isEditing', false);
-    },
-    saveEditing() {
-      this.model.save()
-      .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
+  activateGroupModal: false,
+  activateGroupModalError: false,
+  activateGroup: task(function *() {
+    try {
+      let group = yield this.model.activate({
+        'by': this.get('currentUser.user.id'),
       });
-    },
-    addEntry() {
-      var entry = this.get('store').createRecord('entry', {
-        session: this.get('session'),
-        group: this.get('model'),
+      this.store.pushPayload('group', group);
+      this.set('activateGroupModal', false);
+      this.set('activateGroupModalError', false);
+      this.get('flashMessages').success("Deactivated!");
+    } catch(e) {
+      this.set('activateGroupModalError', true);
+    }
+  }).drop(),
+  deactivateGroupModal: false,
+  deactivateGroupModalError: false,
+  deactivateGroup: task(function *() {
+    try {
+      let group = yield this.model.deactivate({
+        'by': this.get('currentUser.user.id'),
       });
-      entry.save()
-      .then(() => {
-        this.set('group', null);
-        this.get('flashMessages').success('Success');
-      });
-    },
-  },
+      this.store.pushPayload('group', group);
+      this.set('deactivateGroupModal', false);
+      this.set('deactivateGroupModalError', false);
+      this.get('flashMessages').success("Deactivated!");
+    } catch(e) {
+      this.set('deactivateGroupModalError', true);
+    }
+  }).drop(),
 });

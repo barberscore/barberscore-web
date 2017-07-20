@@ -18,20 +18,6 @@
             model=model
             as |form|
           }}
-            {{!-- {{#form.element property='organization' useIcons=false as |el|}}
-              {{#power-select
-                options=representingOptions
-                selected=el.value
-                searchField='name'
-                onchange=(perform autosave 'organization')
-                placeholder="Enter District/Division/Affiliate Representation"
-                allowClear=true
-                disabled=isDisabled
-                as |representing|
-              }}
-                Representing: {{representing.name}}
-              {{/power-select}}
-            {{/form.element}} --}}
             {{#form.element property='isEvaluation' as |el|}}
               {{#bs-button-group
                 value=el.value

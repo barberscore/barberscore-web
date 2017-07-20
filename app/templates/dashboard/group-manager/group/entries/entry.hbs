@@ -13,21 +13,6 @@
           onSubmit=(action "saveEntry")
           as |form|
         }}
-          {{!-- {{#form.element property='representing' useIcons=false as |el|}}
-            {{#power-select
-              options=representingOptions
-              selected=el.value
-              searchField='name'
-              onchange=(action (mut el.value))
-              placeholder="Enter District/Division/Affiliate Representation"
-              allowClear=true
-              renderInPlace=true
-              disabled=isDisabled
-              as |representing|
-            }}
-              Representing: {{representing.name}}
-            {{/power-select}}
-          {{/form.element}} --}}
           {{#form.element property='isEvaluation' as |el|}}
             {{#bs-button-group
               value=el.value
@@ -50,34 +35,6 @@
               {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-          {{!-- {{#if (eq model.group.kind 'Chorus')}}
-            {{#form.element property='director' useIcons=false as |el|}}
-                {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
-                  placeholder="Enter Director Name"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-                }}
-                  {{#if model.codirector}}Co-Director:{{else}}Director:{{/if}} {{person.commonName}} {{person.bhs_id}}
-                {{/power-select}}
-            {{/form.element}}
-            {{#form.element property='codirector' useIcons=false as |el|}}
-                {{#power-select
-                  search=(perform searchTask)
-                  selected=el.value
-                  onchange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
-                  placeholder="Enter Co-Director Name (if applicable)"
-                  disabled=isDisabled
-                  allowClear=true
-                  as |person|
-                }}
-                  Co-Director: {{person.commonName}} {{person.bhs_id}}
-                {{/power-select}}
-            {{/form.element}}
-          {{/if}} --}}
         {{/bs-form}}
       </section>
       <section>

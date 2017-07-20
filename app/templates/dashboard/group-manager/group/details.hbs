@@ -5,18 +5,18 @@
     as |form|
   }}
     {{form.element controlType='text' disabled=true placeholder='Group Name' property='name'}}
-    {{#form.element property='parent' useIcons=false as |el|}}
+    {{#form.element property='organization' useIcons=false as |el|}}
         {{#power-select
           options=representingOptions
           selected=el.value
           searchField='name'
-          onchange=(perform autosave 'parent')
+          onchange=(perform autosave 'organization')
           placeholder="Enter 'Home' District/Division/Affiliate"
           allowClear=true
           disabled=true
-          as |parent|
+          as |organization|
         }}
-          Representing: {{parent.name}}
+          Representing: {{organization.name}}
         {{/power-select}}
     {{/form.element}}
     {{form.element controlType='text' disabled=true placeholder='Location' property='location' onChange=(perform autosave 'location')}}
