@@ -37,9 +37,7 @@
 </section>
 <section class='col-md-8'>
     <p>
-      <strong>Note:</strong>  You can add to your Repertory at any time (even after you submit your contest entry).  Remember that any song you sing on stage must be in your Repertory <em>before</em> your performance or you will be disqualified, so please submit at least {{#if (eq model.kind 'Quartet')}}six{{else}}two{{/if}} songs.  The Repertory saves all entries, so feel free to add every song for which you have copyright clearance; you won't need to do it again next contest.
+      <strong>Note:</strong>  You can add to your Repertory at any time (even after you submit your contest entry).  Remember that any song you sing on stage must be in your Repertory <em>before</em> your performance or you may be disqualified.  The Repertory saves all entries, so feel free to add every song for which you have copyright clearance; you won't need to do it again next contest.
     </p>
 </section>
 {{!-- Modals --}}
-{{create-repertory openModal=openModal model=repertory}}
-{{create-chartrep openModal=openChartModal model=chart repertory=repertory}}

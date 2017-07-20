@@ -74,6 +74,7 @@ Router.map(function() {
         });
         this.route('repertories', { path: 'repertories'}, function() {
           this.route('repertory', { path: ':repertory_id'});
+          this.route('new', { path: 'new' });
         });
       });
     });
