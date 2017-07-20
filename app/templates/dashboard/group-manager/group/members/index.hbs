@@ -31,18 +31,18 @@
           </tr>
         {{/each}}
       </tbody>
-      <tfoot>
+      {{!-- <tfoot>
         <tr>
         <small>This information is provided by eBiz.</small>
       </tr>
-      </tfoot>
+      </tfoot> --}}
     </table>
   </div>
 </section>
-{{!-- <section>
-  {{#bs-button onClick=(action (mut openModal) true) type='success'}}Add Member{{/bs-button}}
-</section> --}}
 <section>
+  {{#bs-button onClick=(action 'createMember') type='success'}}Add Member{{/bs-button}}
+</section>
+{{!-- <section>
   {{#bs-modal-simple
     open=openModal
     onHidden=(action "clearMember")
@@ -72,4 +72,4 @@
       {{/form.element}}
     {{/bs-form}}
   {{/bs-modal-simple}}
-</section>
+</section> --}}

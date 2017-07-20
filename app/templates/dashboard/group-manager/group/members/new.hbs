@@ -1,0 +1,56 @@
+<div class='col-md-6'>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4 class='pull-right'>
+        Status: <strong>{{model.status}}</strong>
+      </h4>
+      <h4>
+        {{model.person.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+          {{#bs-form
+            formLayout="vertical"
+            model=model
+            onSubmit=(perform saveMember)
+            as |form|
+          }}
+            {{#form.element property='person' as |el|}}
+              {{#power-select
+                search=(perform searchPerson)
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Search by Name or Member Number"
+                allowClear=true
+                as |person|
+              }}
+                Person: {{person.nomen}}
+              {{/power-select}}
+            {{/form.element}}
+            {{#form.element property='part' as |el|}}
+              {{#power-select
+                options=model.partOptions
+                selected=el.value
+                onchange=(action (mut el.value))
+                placeholder="Choose Part"
+                allowClear=true
+                as |part|
+              }}
+                Part: {{part}}
+              {{/power-select}}
+            {{/form.element}}
+            {{#bs-button type='default' onClick=(action "clearMember")}}Cancel{{/bs-button}}
+            {{#bs-button type='success' buttonType='submit'}}Save{{/bs-button}}
+          {{/bs-form}}
+      </section>
+      <section>
+          <p>
+            <strong>Note:</strong>  Members added here are done so in "Provisional" status until their membership is verified with the Barbershop Harmony Society.
+          </p>
+      </section>
+    </div>
+  </div>
+</section>
+</div>

@@ -19,6 +19,7 @@ export default Model.extend({
 
   statusOptions: [
     'New',
+    'Provisional',
     'Active',
     'Inactive',
   ],
