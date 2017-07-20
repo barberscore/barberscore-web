@@ -1,3 +1,4 @@
+<div class='col-md-9'>
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
@@ -10,7 +11,6 @@
         {{#bs-form
           formLayout="vertical"
           model=model
-          onSubmit=(action "saveMember")
           as |form|
         }}
           {{#form.element property='person' useIcons=false as |el|}}
@@ -29,7 +29,7 @@
               options=model.partOptions
               selected=el.value
               disabled=true
-              onchange=(action (mut el.value))
+              onchange=(perform autosave 'part')
               placeholder="Enter Primary Part"
               disabled=isDisabled
               allowClear=true
@@ -39,23 +39,23 @@
             {{/power-select}}
           {{/form.element}}
             <div class='row'>
-              <div class='col-md-3'>
+              <div class='col-md-6'>
                 {{#form.element property='startDate' useIcons=false as |el|}}
                   {{bs-datetimepicker
                     date=el.value
                     format='YYYY-MM-DD'
-                    updateDate=(action (mut el.value))
+                    updateDate=(perform autosave 'startDate')
                     placeholder="Member Start Date"
                     disabled=isDisabled
                   }}
                 {{/form.element}}
               </div>
-              <div class='col-md-3'>
+              <div class='col-md-6'>
                 {{#form.element property='endDate' useIcons=false as |el|}}
                   {{bs-datetimepicker
                     date=el.value
                     format='YYYY-MM-DD'
-                    updateDate=(action (mut el.value))
+                    updateDate=(perform autosave 'endDate')
                     placeholder="Member End Date"
                     clearBtn=true
                     disabled=isDisabled
@@ -63,15 +63,86 @@
                 {{/form.element}}
               </div>
             </div>
-          {{!-- {{#if isEditing}}
-              {{#bs-button onClick=(action 'cancelMember')}}Cancel{{/bs-button}}
-              {{bs-button defaultText="Submit" type="primary" buttonType="submit"}}
-              {{#bs-button onClick=(action 'deleteMember') class='pull-right btn-danger'}}Delete{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action 'editMember')}}Edit{{/bs-button}}
-          {{/if}} --}}
         {{/bs-form}}
       </div>
     </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateMemberModal) true)}}Activate Member{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateMemberModal) true)}}Deactivate Member{{/bs-button}}</li>
+          {{else if (eq model.status 'Active')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateMemberModal) true)}}Deactivate Member{{/bs-button}}</li>
+          {{else if (eq model.status 'Inactive')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateMemberModal) true)}}Activate Member{{/bs-button}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Member Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
   </div>
+</section>
+</div>
+<section>
+  {{#bs-modal
+    open=activateMemberModal
+    onHidden=(pipe-action (action (mut activateMemberModal) false) (action (mut activateMemberModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Activate Member</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will activate.
+      </p>
+      {{#if activateMemberModalError}}
+      <p class='text-danger'>
+        Could not activate member.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform activateMember)}}
+        {{#if activateMember.isRunning}}
+          Activating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Activate Member
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=deactivateMemberModal
+    onHidden=(pipe-action (action (mut deactivateMemberModal) false) (action (mut deactivateMemberModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Deactivate Member</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will deactivate.
+      </p>
+      {{#if deactivateMemberModalError}}
+      <p class='text-danger'>
+        Could not deactivate member.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform deactivateMember)}}
+        {{#if deactivateMember.isRunning}}
+          Deactivating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Deactivate Member
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
 </section>
