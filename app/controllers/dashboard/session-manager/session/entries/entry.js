@@ -56,6 +56,17 @@ export default Ember.Controller.extend({
     'model.session.contests',
     'contestSortProperties'
   ),
+  sortedContactsProperties: [
+    'nomen',
+  ],
+  filteredContacts: Ember.computed.filterBy(
+    'model.group.members',
+    'isAdmin'
+  ),
+  sortedContacts: Ember.computed.sort(
+    'filteredContacts',
+    'sortedContactsProperties'
+  ),
   // awardSortProperties: [
   //   'organizationKindSort',
   //   'isQualifier',

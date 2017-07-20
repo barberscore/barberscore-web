@@ -46,6 +46,10 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
+  isBHS: Ember.computed.notEmpty(
+    'bhsId',
+  ),
+
   isActive: Ember.computed.equal(
     'status',
     'Active',
@@ -63,6 +67,19 @@ export default Model.extend({
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
+
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
 });

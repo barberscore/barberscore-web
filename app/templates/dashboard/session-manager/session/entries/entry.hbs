@@ -59,7 +59,41 @@
         </section>
         <hr>
         <section>
-          <p>Contests Entered</p>
+          <p>Group Contacts</p>
+          <div class='table-responsive'>
+            <table class='table'>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sortedContacts as |contact|}}
+                    <tr>
+                      {{#if contact.person.isLoading}}
+                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>{{contact.person.name}}</td>
+                        <td>{{contact.person.email}}</td>
+                        <td>{{contact.person.cellPhone}}</td>
+                      {{/if}}
+                    </tr>
+                {{else}}
+                  <tr>
+                    <td colspan=2>No contacts available</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <hr>
+        <section>
+          <p>
+            Contests Entered: {{model.contestantCount}}
+          </p>
           <div class='table-responsive'>
             <table class='table'>
               <thead>
@@ -71,39 +105,29 @@
               <tbody>
                 {{#each contestOptions as |contest|}}
                     <tr>
-                      <td>
-                        {{contestant-checkbox
-                          contest=contest
-                          contestants=model.contestants
-                          model=model
-                          isDisabled=isDisabled
-                        }}
-                      </td>
-                      <td>{{contest.nomen}}</td>
+                      {{#if contest.isLoading}}
+                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>
+                          {{contestant-checkbox
+                            contest=contest
+                            contestants=model.contestants
+                            model=model
+                            isDisabled=isDisabled
+                          }}
+                        </td>
+                        <td>{{contest.nomen}}</td>
+                      {{/if}}
                     </tr>
                 {{else}}
                   <tr>
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    <td colspan=2>No contests available</td>
                   </tr>
                 {{/each}}
               </tbody>
             </table>
           </div>
         </section>
-        {{!-- <section>
-        <p>
-          Contests Entered
-        </p>
-          {{multiselect-checkboxes
-            options=contestOptions
-            labelProperty='awardName'
-            valueProperty='id'
-            selection=model.selectedContests
-            updateSelectionValue=false
-            disabled=isDisabled
-            onchange=(action "updateSelection")
-          }}
-        </section> --}}
         <hr>
         <section>
           <div class='table-responsive'>
@@ -120,8 +144,12 @@
               <tbody>
                 {{#each sortedRepertories as |repertory|}}
                   <tr>
-                    <td>{{repertory.chart.title}}</td>
-                    <td>{{repertory.chart.arrangers}}</td>
+                    {{#if repertory.chart.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>{{repertory.chart.title}}</td>
+                      <td>{{repertory.chart.arrangers}}</td>
+                    {{/if}}
                   </tr>
                 {{else}}
                   <tr>
