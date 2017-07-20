@@ -53,14 +53,14 @@
               {{/if}}
             {{/bs-button}}
           {{else if (eq model.status 'Submitted')}}
-            {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-              {{#if acceptEntry.isRunning}}
-                Accepting {{fa-icon "spinner" spin=true}}
+            {{#bs-button type='primary' onClick=(perform approveEntry)}}
+              {{#if approveEntry.isRunning}}
+                Approving {{fa-icon "spinner" spin=true}}
               {{else}}
-                Accept Entry
+                Approve Entry
               {{/if}}
             {{/bs-button}}
-          {{else if (eq model.status 'Accepted')}}
+          {{else if (eq model.status 'Approved')}}
             {{#bs-button type='danger' onClick=(perform scratchEntry)}}
               {{#if scratchEntry.isRunning}}
                 Scratching {{fa-icon "spinner" spin=true}}

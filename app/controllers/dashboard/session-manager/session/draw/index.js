@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
   filteredEntries: Ember.computed.filterBy(
     'model.entries',
     'status',
-    'Accepted'
+    'Approved'
   ),
   actions: {
     reorderItems(itemModels) {

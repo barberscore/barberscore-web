@@ -199,9 +199,9 @@
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
               <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
             {{else if (eq model.status 'Submitted')}}
-              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut acceptEntryModal) true)}}Accept Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
               <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
-            {{else if (eq model.status 'Accepted')}}
+            {{else if (eq model.status 'Approved')}}
               <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
             {{/if}}
           {{/if}}
@@ -338,30 +338,30 @@
 </section>
 <section>
   {{#bs-modal
-    open=acceptEntryModal
-    onHidden=(pipe-action (action (mut acceptEntryModal) false) (action (mut acceptEntryModalError) false))
+    open=approveEntryModal
+    onHidden=(pipe-action (action (mut approveEntryModal) false) (action (mut approveEntryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Accept Entry</h4>
+      <h4>Approve Entry</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will accept the invitation for {{model.group.name}}.
+        This will approve the invitation for {{model.group.name}}.
       </p>
-      {{#if acceptEntryModalError}}
+      {{#if approveEntryModalError}}
       <p class='text-danger'>
-        Could not accept entry.  Please contact support.
+        Could not approve entry.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="success"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform acceptEntry)}}
-        {{#if acceptEntry.isRunning}}
-          Accepting {{fa-icon "spinner" spin=true}}
+      {{#bs-button type='primary' onClick=(perform approveEntry)}}
+        {{#if approveEntry.isRunning}}
+          Approving {{fa-icon "spinner" spin=true}}
         {{else}}
-          Accept Entry
+          Approve Entry
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}

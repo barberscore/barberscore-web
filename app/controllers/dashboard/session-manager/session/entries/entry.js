@@ -150,19 +150,19 @@ export default Ember.Controller.extend({
       this.set('submitEntryModalError', true);
     }
   }).drop(),
-  acceptEntryModal: false,
-  acceptEntryModalError: false,
-  acceptEntry: task(function *() {
+  approveEntryModal: false,
+  approveEntryModalError: false,
+  approveEntry: task(function *() {
     try {
-      let entry = yield this.model.accept({
+      let entry = yield this.model.approve({
         'by': this.get('currentUser.user.id'),
       });
       this.store.pushPayload('entry', entry);
-      this.set('acceptEntryModal', false);
-      this.set('acceptEntryModalError', false);
-      this.get('flashMessages').success("Accepted!");
+      this.set('approveEntryModal', false);
+      this.set('approveEntryModalError', false);
+      this.get('flashMessages').success("Approved!");
     } catch(e) {
-      this.set('acceptEntryModalError', true);
+      this.set('approveEntryModalError', true);
     }
   }).drop(),
   scratchEntryModal: false,

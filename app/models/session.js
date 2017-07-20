@@ -67,10 +67,10 @@ export default Model.extend({
     'status',
     'Submitted'
   ),
-  acceptedEntries: Ember.computed.filterBy(
+  approvedEntries: Ember.computed.filterBy(
     'entries',
     'status',
-    'Accepted'
+    'Approved'
   ),
 
   scratchedEntries: Ember.computed.filterBy(
@@ -82,7 +82,7 @@ export default Model.extend({
   newEntriesCount: Ember.computed.alias('newEntries.length'),
   invitedEntriesCount: Ember.computed.alias('invitedEntries.length'),
   submittedEntriesCount: Ember.computed.alias('submittedEntries.length'),
-  acceptedEntriesCount: Ember.computed.alias('acceptedEntries.length'),
+  approvedEntriesCount: Ember.computed.alias('approvedEntries.length'),
   scratchedEntriesCount: Ember.computed.alias('scratchedEntries.length'),
   totalEntriesCount: Ember.computed.alias('entries.length'),
 

@@ -31,7 +31,7 @@ export default Model.extend({
   invite: memberAction({path: 'invite', type: 'post'}),
   decline: memberAction({path: 'decline', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
-  accept: memberAction({path: 'accept', type: 'post'}),
+  approve: memberAction({path: 'approve', type: 'post'}),
   scratch: memberAction({path: 'scratch', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
@@ -57,7 +57,7 @@ export default Model.extend({
   statusOptions: [
     'New',
     'Submitted',
-    'Accepted',
+    'Approved',
     'Declined',
     'Dropped',
     'Validated',

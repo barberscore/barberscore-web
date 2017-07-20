@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   currentUser: Ember.inject.service('current-user'),
   isNotWrite: Ember.computed.not('model.permissions.write'),
   isSubmitted: Ember.computed.equal('model.status', 'Submitted'),
-  isAccepted: Ember.computed.equal('model.status', 'Accepted'),
+  isApproved: Ember.computed.equal('model.status', 'Approved'),
   isDisabled: Ember.computed.or(
     'isNotWrite',
     'isSubmitted'

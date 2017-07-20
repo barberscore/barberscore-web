@@ -142,7 +142,7 @@
         {{#if (eq model.status 'Invited')}}
           {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
         {{else if (eq model.status 'Submitted')}}
-          <strong>Status: <span class='text-primary'>Submitted and Pending Acceptance</span></strong>
+          <strong>Status: <span class='text-primary'>Submitted and Pending Approval</span></strong>
         {{/if}}
       {{/if}}
       <div class='pull-right'>
