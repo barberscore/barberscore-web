@@ -46,11 +46,16 @@
       </tbody>
     </table>
   </div>
-  <section>
-    <div>
-      {{#if currentUser.user.person.isAwardManager}}
-        {{#bs-button onClick=(action "createAward") type='success'}}Create New Award{{/bs-button}}
-      {{/if}}
-    </div>
-  </section>
+</section>
+{{!-- <section>
+  <div>
+    {{#if currentUser.user.person.isAwardManager}}
+      {{#bs-button onClick=(action "createAward") type='success'}}Create New Award{{/bs-button}}
+    {{/if}}
+  </div>
+</section> --}}
+<section>
+  <h4>
+    <strong>Note:</strong> If you need to create a new Award please contact the SCJC Chair.
+  </h4>
 </section>
