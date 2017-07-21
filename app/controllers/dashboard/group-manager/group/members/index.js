@@ -1,7 +1,9 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
+  isDisabled: Ember.computed.not(
+    'model.permissions.write',
+  ),
   sortedMembersProperties: [
     'statusSort',
     'partSort',

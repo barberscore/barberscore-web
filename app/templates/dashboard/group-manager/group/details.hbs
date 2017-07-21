@@ -1,4 +1,26 @@
 <section>
+  <div class='row'>
+    <div class='col-md-2'>
+      {{#if uploadPhoto.isRunning}}
+        Uploading {{fa-icon "spinner" size=5 spin=true}}
+      {{else}}
+        {{#if model.image}}
+          <img src={{model.image}} class='img-responsive'>
+        {{else}}
+          <img src='/assets/no_image_available.jpg' class='img-responsive'>
+        {{/if}}
+      {{/if}}
+      {{#file-upload
+        name="photos"
+        accept="image/*"
+        multiple=false
+        disabled=isDisabled
+        onfileadd=(perform uploadPhoto)
+      }}
+        <a id="upload-image" tabindex=0><small>Add/Replace Image</small></a>
+      {{/file-upload}}
+    </div>
+  </div>
   {{#bs-form
     model=model
     formLayout='vertical'
@@ -19,7 +41,7 @@
           Representing: {{organization.name}}
         {{/power-select}}
     {{/form.element}}
-    {{form.element controlType='text' disabled=true placeholder='Location' property='location' onChange=(perform autosave 'location')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Location' property='location' onChange=(perform autosave 'location')}}
     {{form.element controlType='url' disabled=isDisabled placeholder='Website' property='website' onChange=(perform autosave 'website')}}
     {{form.element controlType='email' disabled=isDisabled placeholder='Email' property='email' onChange=(perform autosave 'email')}}
     {{form.element controlType='phone' disabled=isDisabled placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}

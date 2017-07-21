@@ -15,8 +15,8 @@ export default Model.extend(Validations, {
   chart: DS.belongsTo('chart', {async: true}),
   permissions: DS.attr(),
 
-  validateRepertory: memberAction({path: 'validate', type: 'post'}),
-  invalidate: memberAction({path: 'invalidate', type: 'post'}),
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   statusOptions: [
     'New',

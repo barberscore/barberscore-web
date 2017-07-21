@@ -1,31 +1,37 @@
 import Ember from 'ember';
+import { task } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  actions: {
-    validateRepertory() {
-      this.model.validateRepertory()
-      .then((response) => {
-        this.store.pushPayload('repertory', response);
-        this.get('flashMessages').success("Validated!");
-        this.transitionToRoute('dashboard.group-manager.group.repertories');
+  activateRepertoryModal: false,
+  activateRepertoryModalError: false,
+  activateRepertory: task(function *() {
+    try {
+      let repertory = yield this.model.activate({
+        'by': this.get('currentUser.user.id'),
       });
-    },
-    invalidateRepertory() {
-      this.model.invalidate()
-      .then((response) => {
-        this.store.pushPayload('repertory', response);
-        this.get('flashMessages').success("Invalidated!");
-        this.transitionToRoute('dashboard.group-manager.group.repertories');
-      });
-    },
-    deleteRepertory() {
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.group-manager.group.repertories');
-      });
+      this.store.pushPayload('repertory', repertory);
+      this.set('activateRepertoryModal', false);
+      this.set('activateRepertoryModalError', false);
+      this.get('flashMessages').success("Deactivated!");
+    } catch(e) {
+      this.set('activateRepertoryModalError', true);
     }
-  },
+  }).drop(),
+  deactivateRepertoryModal: false,
+  deactivateRepertoryModalError: false,
+  deactivateRepertory: task(function *() {
+    try {
+      let repertory = yield this.model.deactivate({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('repertory', repertory);
+      this.set('deactivateRepertoryModal', false);
+      this.set('deactivateRepertoryModalError', false);
+      this.get('flashMessages').success("Deactivated!");
+    } catch(e) {
+      this.set('deactivateRepertoryModalError', true);
+    }
+  }).drop(),
 });

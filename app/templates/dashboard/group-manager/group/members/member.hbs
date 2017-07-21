@@ -38,7 +38,7 @@
               Part: {{part}}
             {{/power-select}}
           {{/form.element}}
-            <div class='row'>
+            {{!-- <div class='row'>
               <div class='col-md-6'>
                 {{#form.element property='startDate' useIcons=false as |el|}}
                   {{bs-datetimepicker
@@ -62,7 +62,7 @@
                   }}
                 {{/form.element}}
               </div>
-            </div>
+            </div> --}}
         {{/bs-form}}
       </div>
     </div>
@@ -76,6 +76,8 @@
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateMemberModal) true)}}Deactivate Member{{/bs-button}}</li>
           {{else if (eq model.status 'Inactive')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateMemberModal) true)}}Activate Member{{/bs-button}}</li>
+          {{else if (eq model.status 'Provisional')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteMemberModal) true)}}Delete  Provisional{{/bs-button}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Member Status: <strong>{{model.status}}</strong></h4></li>
@@ -138,6 +140,37 @@
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
       {{#bs-button type='primary' onClick=(perform deactivateMember)}}
         {{#if deactivateMember.isRunning}}
+          Deactivating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Deactivate Member
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=deleteMemberModal
+    onHidden=(pipe-action (action (mut deleteMemberModal) false) (action (mut deleteMemberModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Deactivate Member</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will delete.
+      </p>
+      {{#if deleteMemberModalError}}
+      <p class='text-danger'>
+        Could not delete member.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform deleteMember)}}
+        {{#if deleteMember.isRunning}}
           Deactivating {{fa-icon "spinner" spin=true}}
         {{else}}
           Deactivate Member

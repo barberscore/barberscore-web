@@ -1,9 +1,10 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  openModal: false,
   flashMessages: Ember.inject.service(),
-
+  isDisabled: Ember.computed.not(
+    'model.permissions.write',
+  ),
   representing: Ember.computed(
     'model.parent',
     function() {

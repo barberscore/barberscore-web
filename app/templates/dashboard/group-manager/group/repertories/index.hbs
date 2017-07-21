@@ -5,18 +5,19 @@
         <tr>
           <th class='col-md-6'>Title</th>
           <th>Arranger(s)</th>
-          {{!-- <th>BHS ID</th> --}}
-          {{!-- <th>Status</th> --}}
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRepertories as |repertory|}}
           <tr>
-            <td>{{#link-to 'dashboard.group-manager.group.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
-            {{!-- <td>{{repertory.chart.title}}</td> --}}
-            <td>{{repertory.chart.arrangers}}</td>
-            {{!-- <td>{{repertory.chart.bhs_id}}</td> --}}
-            {{!-- <td>{{repertory.status}}</td> --}}
+            {{#if repertory.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{#link-to 'dashboard.group-manager.group.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
+              <td>{{repertory.chart.arrangers}}</td>
+              <td>{{repertory.status}}</td>
+            {{/if}}
           </tr>
         {{else}}
           <tr>
@@ -27,17 +28,11 @@
     </table>
   </div>
 </section>
-<section>
-  {{#if model.permissions.write}}
-    <ul class='list-inline'>
-      <li>{{#bs-button onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}</li>
-      {{!-- <li>{{#bs-button onClick=(action 'createChart') type='primary'}}Add New Chart to Repertory{{/bs-button}}</li> --}}
-    </ul>
-  {{/if}}
-</section>
-<section class='col-md-8'>
+{{#if model.permissions.write}}
+  <section>
+    <p>{{#bs-button disabled=isDisabled onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}</p>
     <p>
       <strong>Note:</strong>  You can add to your Repertory at any time (even after you submit your contest entry).  Remember that any song you sing on stage must be in your Repertory <em>before</em> your performance or you may be disqualified.  The Repertory saves all entries, so feel free to add every song for which you have copyright clearance; you won't need to do it again next contest.
     </p>
-</section>
-{{!-- Modals --}}
+  </section>
+{{/if}}

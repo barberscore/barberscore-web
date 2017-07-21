@@ -1,9 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  openModal: false,
+  isDisabled: Ember.computed.not(
+    'model.permissions.write',
+  ),
   sortedRepertoriesProperties: [
     'nomen',
   ],

@@ -4,30 +4,6 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <div class='row'>
-        <div class='col-md-2'>
-          {{#if uploadPhoto.isRunning}}
-            Uploading {{fa-icon "spinner" size=5 spin=true}}
-          {{else}}
-            {{#if model.image}}
-              <img src={{model.image}} class='img-responsive'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive'>
-            {{/if}}
-          {{/if}}
-          {{#if model.permissions.write}}
-            {{#file-upload
-              name="photos"
-              accept="image/*"
-              multiple=false
-              disabled=false
-              onfileadd=(perform uploadPhoto)
-            }}
-              <a id="upload-image" tabindex=0><small>Add/Replace Image</small></a>
-            {{/file-upload}}
-          {{/if}}
-        </div>
-      </div>
       <h4>
         {{model.name}}
       </h4>

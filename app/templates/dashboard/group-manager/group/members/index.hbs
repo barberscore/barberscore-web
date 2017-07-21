@@ -7,69 +7,46 @@
           <th>Part</th>
           {{!-- <th>Start</th> --}}
           {{!-- <th>End</th> --}}
+          <th>Admin</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedMembers as |member|}}
           <tr>
-            <td>
-              {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.commonName}}{{/link-to}}
-            </td>
-            <td>
-              {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
-            </td>
-            {{!-- <td>
-              {{moment-format member.start_date 'LL'}}
-            </td> --}}
-            {{!-- <td>
-              {{moment-format member.end_date 'LL'}}
-            </td> --}}
-            <td>
-              {{member.status}}
-            </td>
+            {{#if member.isLoading}}
+              <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                {{#if member.person.isLoading}}
+                  <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.nomen}}{{/link-to}}
+                {{/if}}
+              </td>
+              <td>
+                {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
+              </td>
+              {{!-- <td>{{moment-format member.start_date 'LL'}}</td> --}}
+              {{!-- <td>{{moment-format member.end_date 'LL'}}</td> --}}
+              <td>{{boolean-checkmark value=member.isAdmin}}</td>
+              <td>{{member.status}}</td>
+            {{/if}}
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan=3>(No members.)</td>
           </tr>
         {{/each}}
       </tbody>
-      {{!-- <tfoot>
-        <tr>
-        <small>This information is provided by eBiz.</small>
-      </tr>
-      </tfoot> --}}
     </table>
   </div>
 </section>
-<section>
-  {{#bs-button onClick=(action 'createMember') type='success'}}Add Member{{/bs-button}}
-</section>
-{{!-- <section>
-  {{#bs-modal-simple
-    open=openModal
-    onHidden=(action "clearMember")
-    title="Add Member"
-    closeTitle="Cancel"
-    submitTitle="Save"
-    backdropClose=false
-  }}
-    {{#bs-form
-      model=this
-      formLayout='vertical'
-      onSubmit=(action 'createMember')
-      as |form|
-    }}
-      {{#form.element property='person' useIcons=false as |el|}}
-        {{#power-select
-          search=(perform searchPerson)
-          selected=el.value
-          renderInPlace=true
-          onchange=(action (mut el.value))
-          placeholder="Search by Person Name and/or BHS ID"
-          allowClear=true
-          as |person|
-        }}
-          Person: {{person.commonName}}&nbsp;{{#if person.bhsId}}[{{person.bhsId}}]&nbsp;{{/if}}{{person.location}}
-        {{/power-select}}
-      {{/form.element}}
-    {{/bs-form}}
-  {{/bs-modal-simple}}
-</section> --}}
+{{#if model.permissions.write}}
+  <section>
+    <p>{{#bs-button onClick=(action 'createMember') disabled=isDisabled type='success'}}Add Member{{/bs-button}}</p>
+    <p>
+      <strong>Note:</strong>  Members are primarily handled by BHS.
+    </p>
+  </section>
+{{/if}}
