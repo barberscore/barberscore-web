@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
   ),
   sortedMembersProperties: [
     'statusSort',
-    'partSort',
+    'personLast',
     'nomen',
   ],
   sortedMembers: Ember.computed.sort(

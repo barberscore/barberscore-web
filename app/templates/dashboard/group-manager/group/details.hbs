@@ -10,15 +10,17 @@
           <img src='/assets/no_image_available.jpg' class='img-responsive'>
         {{/if}}
       {{/if}}
-      {{#file-upload
-        name="photos"
-        accept="image/*"
-        multiple=false
-        disabled=isDisabled
-        onfileadd=(perform uploadPhoto)
-      }}
-        <a id="upload-image" tabindex=0><small>Add/Replace Image</small></a>
-      {{/file-upload}}
+      {{#unless isDisabled}}
+        {{#file-upload
+          name="photos"
+          accept="image/*"
+          multiple=false
+          disabled=isDisabled
+          onfileadd=(perform uploadPhoto)
+        }}
+          <a id="upload-image" tabindex=0><small>Add/Replace Image</small></a>
+        {{/file-upload}}
+      {{/unless}}
     </div>
   </div>
   {{#bs-form

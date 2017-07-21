@@ -10,19 +10,7 @@ export default Ember.Controller.extend({
         'Scratched',
         'Announced',
       ]
-      if (disabled.includes(this.get('model.status'))) {
-        return true;
-      } else {
-        return false;
-      }
-  }),
-  searchChart: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('chart', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
+      return disabled.includes(this.get('model.status'));
   }),
   sortedRepertoriesProperties: [
     'nomen',
@@ -66,40 +54,6 @@ export default Ember.Controller.extend({
     'filteredContacts',
     'sortedContactsProperties'
   ),
-  // awardSortProperties: [
-  //   'organizationKindSort',
-  //   'isQualifier',
-  //   'isPrimary:desc',
-  //   'ageSort',
-  //   'name',
-  // ],
-  // awardCall: Ember.computed(function(){
-  //   return this.get('store').query('award', {
-  //       'organization__officers__person__user': this.get('currentUser.user.id'),
-  //     });
-  // }),
-  // filteredAwards: Ember.computed(
-  //   'awardCall.@each.{kind,season}',
-  //   'model.kind',
-  //   'model.convention.season',
-  //   function() {
-  //     return this.get('awardCall').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
-  //   }
-  // ),
-  // representingCall: Ember.computed(function() {
-  //   return this.get('store').query('organization', {
-  //     'kind__lt': '30',
-  //     'status': 10,
-  //     'page_size': 100,
-  //   });
-  // }),
-  // representingSortProperties: [
-  //   'nomen:asc',
-  // ],
-  // representingOptions: Ember.computed.sort(
-  //   'representingCall',
-  //   'representingSortProperties'
-  // ),
   inviteEntryModal: false,
   inviteEntryModalError: false,
   inviteEntry: task(function *() {

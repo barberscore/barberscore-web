@@ -44,6 +44,51 @@ export default Ember.Controller.extend({
       this.set('submitEntryModalError', true);
     }
   }).drop(),
+  deleteEntryModal: false,
+  deleteEntryModalError: false,
+  deleteEntry: task(function *() {
+    try {
+      yield this.model.destroyRecord({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.set('deleteEntryModal', false);
+      this.set('deleteEntryModalError', false);
+      this.get('flashMessages').success("Deleted!");
+      this.transitionToRoute('dashboard.session-manager.session.entries.index');
+    } catch(e) {
+      this.set('deleteEntryModalError', true);
+    }
+  }).drop(),
+  declineEntryModal: false,
+  declineEntryModalError: false,
+  declineEntry: task(function *() {
+    try {
+      let entry = yield this.model.decline({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('declineEntryModal', false);
+      this.set('declineEntryModalError', false);
+      this.get('flashMessages').success("Declined!");
+    } catch(e) {
+      this.set('declineEntryModalError', true);
+    }
+  }).drop(),
+  scratchEntryModal: false,
+  scratchEntryModalError: false,
+  scratchEntry: task(function *() {
+    try {
+      let entry = yield this.model.scratch({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('scratchEntryModal', false);
+      this.set('scratchEntryModalError', false);
+      this.get('flashMessages').success("Scratched!");
+    } catch(e) {
+      this.set('scratchEntryModalError', true);
+    }
+  }).drop(),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
