@@ -7,110 +7,181 @@
     </div>
     <div class='panel-body'>
       <section>
+        <p>Preferences</p>
         {{#bs-form
           formLayout="vertical"
           model=model
-          onSubmit=(action "saveEntry")
           as |form|
         }}
           {{#form.element property='isEvaluation' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+              onChange=(perform autosave 'isEvaluation')
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=true}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=true}}Include Eval{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
           {{#form.element property='isPrivate' as |el|}}
             {{#bs-button-group
               value=el.value
               type='radio'
-              onChange=(pipe-action (action (mut el.value)) (action 'saveEntry'))
+              onChange=(perform autosave 'isPrivate')
               as |bg|
             }}
-              {{#bg.button type='default' value=false disabled=true}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=true}}Keep Scores Private{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
         {{/bs-form}}
       </section>
+      <hr>
       <section>
         <p>
-          You are eligible for the following awards:
+          Contests Entered: {{model.contestantCount}}
         </p>
-        {{multiselect-checkboxes
-          options=contestOptions
-          labelProperty='awardName'
-          valueProperty='id'
-          selection=model.selectedContests
-          disabled=true
-          updateSelectionValue=false
-          onchange=(action "updateSelection")
-        }}
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Compete?</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each contestOptions as |contest|}}
+                  <tr>
+                    {{#if contest.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>
+                        {{contestant-checkbox
+                          contest=contest
+                          contestants=model.contestants
+                          model=model
+                          isDisabled=isDisabled
+                        }}
+                      </td>
+                      <td>{{contest.nomen}}</td>
+                    {{/if}}
+                  </tr>
+              {{else}}
+                <tr>
+                  <td colspan=2>No contests available</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </section>
+      <hr>
       <section>
         <p>
-          Please select the group members who will be on stage for this appearance:
+          Participants on Stage: {{model.participantCount}}
         </p>
-        <p>Count: {{model.participantCount}}</p>
-        {{multiselect-checkboxes
-          options=memberOptions
-          labelProperty='personDetail'
-          valueProperty='id'
-          selection=model.selectedMembers
-          updateSelectionValue=true
-          onchange=(action "updateMembers")
-          disabled=isDisabled
-        }}
-      </section>
-      <section>
-        <div class='row'>
-          <div class='col-md-6'>
-            {{#if (eq model.status 'Invited')}}
-              <p>
-                <strong>Note:</strong>  If you are missing members, please first check the eBiz site to ensure those names are listed with unexpired memberships.  If that checks out, then contact support@barberscore.com with the names and/or BHS member numbers and we'll get it fixed.  <em>We can't add them unless they appear in eBiz, so check there first.</em>
-              </p>
-              <p>
-                Also, due to popular demand we've recently made a change so that you can add/remove participating members all the way up to the convention!   That said, please submit your entry with your best estimates.  We know that choruses need to be flexible as the participating roster changes leading up to the contest, but for planning purposes Dusty needs the counts to be at least close to whom you actually expect to be on stage.
-              </p>
-            {{else}}
-              {{#unless (eq model.session.convention.name 'Harmony Foundation International Youth Barbershop Convention 2017')}}
-              <p>
-                <strong>Note:</strong>  The following participants' BHS memberships will expire before the contest.  Remember that all men on stage must have a current registration and BHS membership or you may be disqualified.  Please note this data may be a few days old; check with the EBiz site for the most up to date information.
-              </p>
-              <ul class='list-styled'>
-                {{#each model.expiringMembers as |expiring|}}
-                  <li>{{expiring.member.person.nomen}}, Exp. {{moment-format expiring.member.person.duesThru 'LL'}}</li>
-                {{else}}
-                  All Participants are Current!
-                {{/each}}
-              </ul>
-              {{/unless}}
-            {{/if}}
-          </div>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Performing?</th>
+                <th>Name</th>
+                <th>Dues Thru</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each memberOptions as |member|}}
+                  <tr>
+                    {{#if member.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>
+                        {{participant-checkbox
+                          member=member
+                          participants=model.participants
+                          model=model
+                          isDisabled=isDisabled
+                        }}
+                      </td>
+                      <td>{{member.person.name}}</td>
+                      <td>{{moment-format member.person.duesThru 'LL'}}</td>
+                    {{/if}}
+                  </tr>
+              {{else}}
+                <tr>
+                  <td colspan=2>No contests available</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </div>
       </section>
     </div>
+
     <div class='panel-footer fixed-panel-footer'>
-      {{#if model.permissions.write}}
-        {{#if (eq model.status 'Invited')}}
-          {{#bs-button type='primary' onClick=(action (mut openModal) true)}}Review and Submit{{/bs-button}}
-        {{else if (eq model.status 'Submitted')}}
-          <strong>Status: <span class='text-primary'>Submitted and Pending Approval</span></strong>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Invited')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Invitation{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Invitation{{/bs-button}}</li>
+          {{else if (eq model.status 'Submitted')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Approved')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+          {{/if}}
         {{/if}}
-      {{/if}}
-      <div class='pull-right'>
-        <h4>
-          Entry Status: <strong>{{model.status}}</strong>
-        </h4>
-      </div>
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
     </div>
   </div>
 </section>
 <section>
+  {{#bs-modal
+    open=submitEntryModal
+    onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Submit Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        <div>
+          <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
+          <ul class='list-styled'>
+            <li>Agrees to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which will be made of us and other quartets and/or groupes during the international convention. We agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. Agrees that the Society may record our portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of our portion of the contest on recordings to be manufactured and sold by the Society.</li>
+            <li>Certifying that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
+            <li>Certifying that we have complied with copyright law in the acquisition, arranging, and learning of our contest songs/ arrangements and will perform only legally cleared songs in the contest. We understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
+            <li>Certifying that we will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
+          </ul>
+        </div>
+      </p>
+      {{#if submitEntryModalError}}
+      <p class='text-danger'>
+        Could not submit entry.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform submitEntry)}}
+        {{#if submitEntry.isRunning}}
+          Submitting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Submit Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+
+
+
+{{!-- <section>
   {{#bs-modal
     open=openModal
     backdropClose=true
@@ -143,4 +214,4 @@
       {{/bs-button}}
     {{/modal.footer}}
   {{/bs-modal}}
-</section>
+</section> --}}

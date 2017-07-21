@@ -1,22 +1,35 @@
 import Ember from 'ember';
-import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   store: Ember.inject.service(),
-  searchPerson: task(function* (term){
-    yield timeout(600);
-    let persons = yield this.get('store').query('person', {
-      'nomen__icontains': term,
-      'page_size': 100,
+  sessionCall: Ember.computed(function() {
+    return this.get('store').query('session', {
+      'status': 4, // TODO HARDCODED
+      'page_size': 100
     });
-    return persons;
   }),
-  saveMember: task(function* (){
+  sessionFilter: Ember.computed(
+    'sessionCall.@each.kind',
+    'model.group.kind',
+    function() {
+      return this.get('sessionCall').filterBy('kind', this.get('model.group.kind'));
+    }
+  ),
+  sessionSortProperties: [
+    'nomen',
+  ],
+  sessionOptions: Ember.computed.sort(
+    'sessionFilter',
+    'sessionSortProperties'
+  ),
+  saveEntry: task(function* (){
     try {
-      yield this.get('model').save();
+      let entry = yield this.get('model').save();
+      // this.store.pushPayload('entry', entry);
       this.get('flashMessages').success('Saved');
-      this.transitionToRoute('dashboard.group-manager.group.members.index');
+      this.transitionToRoute('dashboard.group-manager.group.entries.entry', entry);
     } catch(e) {
       e.errors.forEach((error) => {
         this.get('flashMessages').danger(error.detail);
@@ -24,9 +37,9 @@ export default Ember.Controller.extend({
     }
   }),
   actions: {
-    clearMember() {
+    clearEntry() {
       this.get('model').deleteRecord();
-      this.transitionToRoute('dashboard.group-manager.group.members.index');
+      this.transitionToRoute('dashboard.group-manager.group.entries.index');
     }
   },
 });

@@ -2,39 +2,9 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  collapsed: true,
-  currentUser: Ember.inject.service('current-user'),
-  isNotWrite: Ember.computed.not('model.permissions.write'),
-  isSubmitted: Ember.computed.equal('model.status', 'Submitted'),
-  isApproved: Ember.computed.equal('model.status', 'Approved'),
-  isDisabled: Ember.computed.or(
-    'isNotWrite',
-    'isSubmitted'
-  ),
   flashMessages: Ember.inject.service(),
-  openModal: false,
-  searchTask: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('person', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
-  }),
-  searchChart: task(function* (term){
-    yield timeout(600);
-    return this.get('store').query('chart', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
-  }),
-  entrySortProperties: [
-    'nomen',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.session.entries',
-    'entrySortProperties'
+  isDisabled: Ember.computed.not(
+    'model.permissions.write',
   ),
   contestSortProperties: [
     'organizationKindSort',
@@ -49,8 +19,7 @@ export default Ember.Controller.extend({
   ),
   filteredMembers: Ember.computed.filterBy(
     'model.group.members',
-    'status',
-    'Active'
+    'canParticipate',
   ),
   memberSortProperties: [
     'personLast',
@@ -60,73 +29,31 @@ export default Ember.Controller.extend({
     'filteredMembers',
     'memberSortProperties'
   ),
+  submitEntryModal: false,
+  submitEntryModalError: false,
   submitEntry: task(function *() {
-    let userID = this.get('currentUser.user.id');
-    let submission = yield this.model.submit({
-      'by': userID
-    });
-    this.store.pushPayload('entry', submission);
-    this.set('openModal', false);
-    this.get('flashMessages').success("Submitted!");
+    try {
+      let entry = yield this.model.submit({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('submitEntryModal', false);
+      this.set('submitEntryModalError', false);
+      this.get('flashMessages').success("Submitted!");
+    } catch(e) {
+      this.set('submitEntryModalError', true);
+    }
   }).drop(),
-  actions: {
-    deleteEntry() {
-      this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.group-manager.group.entries');
-      });
-    },
-    saveEntry() {
-      this.model.save()
-      .then(() => {
-        this.get('flashMessages').success('Saved');
-      });
-    },
-    buildEntry() {
-      this.model.build();
-    },
-    scratchEntry() {
-      this.model.scratch();
-    },
-    disqualifyEntry() {
-      this.model.disqualify();
-    },
-    updateSelection(newSelection, value, operation) {
-      if (operation==='added') {
-        let contest = this.get('store').peekRecord('contest', value);
-        let contestant = this.get('model.contestants').createRecord({
-          contest: contest
-        });
-        contestant.save()
-        .then(() => {
-        });
-      } else { //operation === removed
-        let contestant = this.get('model.contestants').findBy('contest.id', value);
-        contestant.destroyRecord()
-        .then(() => {
-        });
-      }
-    },
-    updateMembers(newSelection, value, operation) {
-      if (operation==='added') {
-        let member = this.get('store').peekRecord('member', value);
-        let participant = this.get('model.participants').createRecord({
-          member: member
-        });
-        participant.save()
-        .then(() => {
-          this.get('flashMessages').success("Added!");
-        });
-        // console.log('added');
-      } else { //operation === removed
-        let participant = this.get('model.participants').findBy('member.id', value);
-        participant.destroyRecord()
-        .then(() => {
-          this.get('flashMessages').warning("Removed!");
-        });
-        // console.log('removed');
-      }
-    },
-  },
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
+  }).restartable(),
 });

@@ -12,12 +12,16 @@
           <tbody>
             {{#each sortedEntries as |entry|}}
               <tr>
-                <td>
-                  {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
-                </td>
-                <td>
-                  {{entry.status}}
-                </td>
+                {{#if entry.isLoading}}
+                  <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  <td>
+                    {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.nomen}}{{/link-to}}
+                  </td>
+                  <td>
+                    {{entry.status}}
+                  </td>
+                {{/if}}
               </tr>
             {{else}}
               <tr>
@@ -32,8 +36,8 @@
     </div>
   </div>
 </section>
-{{!-- <section>
+<section>
   {{#if model.permissions.write}}
     {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}
   {{/if}}
-</section> --}}
+</section>

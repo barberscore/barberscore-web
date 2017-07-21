@@ -38,7 +38,6 @@ export default Model.extend({
   permissions: DS.attr(),
 
 
-
   // Module Permissions CPs
   isConventionManager: DS.attr('boolean'),
   isSessionManager: DS.attr('boolean'),

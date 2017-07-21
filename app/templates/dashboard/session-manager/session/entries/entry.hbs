@@ -1,229 +1,216 @@
 <section>
-  <section>
-    <div class='panel panel-default'>
-      <div class='panel-heading fixed-panel-header'>
-        <ul class='list-inline pull-right'>
-          <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-          <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-        </ul>
-        <h4>
-          {{model.group.name}}&nbsp;({{model.group.organization.shortName}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
-        </h4>
-      </div>
-      <div class='panel-body'>
-        <section>
-          <p>Preferences</p>
-          {{#bs-form
-            formLayout="vertical"
-            model=model
-            as |form|
-          }}
-            {{#form.element property='isEvaluation' as |el|}}
-              {{#bs-button-group
-                value=el.value
-                type='radio'
-                onchange=(perform autosave 'isEvaluation')
-                disabled=isDisabled
-                as |bg|
-              }}
-                {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-                {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
-              {{/bs-button-group}}
-            {{/form.element}}
-            {{#form.element property='isPrivate' as |el|}}
-              {{#bs-button-group
-                value=el.value
-                type='radio'
-                onchange=(perform autosave 'isPrivate')
-                as |bg|
-              }}
-                {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-                {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
-              {{/bs-button-group}}
-            {{/form.element}}
-          {{/bs-form}}
-        </section>
-        <hr>
-        <section>
-          <p>Group Contacts</p>
-          <div class='table-responsive'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Phone</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each sortedContacts as |contact|}}
-                    <tr>
-                      {{#if contact.person.isLoading}}
-                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                      {{else}}
-                        <td>{{contact.person.name}}</td>
-                        <td>{{contact.person.email}}</td>
-                        <td>{{contact.person.cellPhone}}</td>
-                      {{/if}}
-                    </tr>
-                {{else}}
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
+      <h4>
+        {{model.group.name}}&nbsp;({{model.group.organization.shortName}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        <p>Preferences</p>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+          {{#form.element property='isEvaluation' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(perform autosave 'isEvaluation')
+              disabled=isDisabled
+              as |bg|
+            }}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
+          {{#form.element property='isPrivate' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(perform autosave 'isPrivate')
+              as |bg|
+            }}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
+        {{/bs-form}}
+      </section>
+      <hr>
+      <section>
+        <p>Group Contacts</p>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedContacts as |contact|}}
                   <tr>
-                    <td colspan=2>No contacts available</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <hr>
-        <section>
-          <p>
-            Contests Entered: {{model.contestantCount}}
-          </p>
-          <div class='table-responsive'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Include?</th>
-                  <th>Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each contestOptions as |contest|}}
-                    <tr>
-                      {{#if contest.isLoading}}
-                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                      {{else}}
-                        <td>
-                          {{contestant-checkbox
-                            contest=contest
-                            contestants=model.contestants
-                            model=model
-                            isDisabled=isDisabled
-                          }}
-                        </td>
-                        <td>{{contest.nomen}}</td>
-                      {{/if}}
-                    </tr>
-                {{else}}
-                  <tr>
-                    <td colspan=2>No contests available</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <hr>
-        <section>
-          <div class='table-responsive'>
-            <p>
-              Song Repertory: {{model.repertoryCount}}
-            </p>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Arranger(s)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each sortedRepertories as |repertory|}}
-                  <tr>
-                    {{#if repertory.chart.isLoading}}
+                    {{#if contact.person.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>{{repertory.chart.title}}</td>
-                      <td>{{repertory.chart.arrangers}}</td>
+                      <td>{{contact.person.name}}</td>
+                      <td><a href='mailto:{{contact.person.email}}'>{{contact.person.email}}</a></td>
+                      <td><a href='tel:{{contact.person.cellPhone}}'>{{contact.person.cellPhone}}</a></td>
                     {{/if}}
                   </tr>
-                {{else}}
-                  <tr>
-                    <td>(No songs in Repertory.)</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <hr>
-        <section>
-          <div class='table-responsive'>
-            <p>
-              Participants on Stage: {{model.participantCount}}
-            </p>
-            <table class='table'>
-              <thead>
+              {{else}}
                 <tr>
-                  <th>Name</th>
-                  <th>Part</th>
+                  <td colspan=2>No contacts available</td>
                 </tr>
-              </thead>
-              <tbody>
-                {{#each sortedParticipants as |participant|}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Contests Entered: {{model.contestantCount}}
+        </p>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Compete?</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each contestOptions as |contest|}}
                   <tr>
-                    <td>{{participant.member.person.nomen}}</td>
-                    <td>{{#if participant.member.part}}{{participant.member.part}}{{else}}(Unknown){{/if}}</td>
+                    {{#if contest.isLoading}}
+                      <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>
+                        {{contestant-checkbox
+                          contest=contest
+                          contestants=model.contestants
+                          model=model
+                          isDisabled=isDisabled
+                        }}
+                      </td>
+                      <td>{{contest.nomen}}</td>
+                    {{/if}}
                   </tr>
-                {{else}}
-                  <tr>
-                    <td>(No participants selected.)</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </section>
-        <hr>
-        <section>
-          <div class='table-responsive'>
-            <p>
-              Expiring Members: {{model.expiringMembersCount}}
-            </p>
-            <table class='table'>
-              <thead>
+              {{else}}
                 <tr>
-                  <th>Name</th>
-                  <th>Membership Expires</th>
+                  <td colspan=2>No contests available</td>
                 </tr>
-              </thead>
-              <tbody>
-                {{#each sortedExpirations as |expiration|}}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Participants on Stage: {{model.participantCount}}
+        </p>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Performing?</th>
+                <th>Name</th>
+                <th>Dues Thru</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each memberOptions as |member|}}
                   <tr>
-                    <td>{{expiration.member.person.nomen}}</td>
-                    <td>{{moment-format expiration.member.person.duesThru 'LL'}}</td>
+                    {{#if member.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>
+                        {{participant-checkbox
+                          member=member
+                          participants=model.participants
+                          model=model
+                          isDisabled=isDisabled
+                        }}
+                      </td>
+                      {{#if member.person.isLoading}}
+                        <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>{{member.person.name}}</td>
+                      {{/if}}
+                      <td>{{moment-format member.person.duesThru 'LL'}}</td>
+                    {{/if}}
                   </tr>
-                {{else}}
-                  <tr>
-                    <td>All Members Current.</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      </div>
-      <div class='panel-footer fixed-panel-footer'>
-        <ul class='list-inline'>
-          {{#if model.permissions.write}}
-            {{#if (eq model.status 'New')}}
-              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
-            {{else if (eq model.status 'Invited')}}
-              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
-            {{else if (eq model.status 'Submitted')}}
-              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
-            {{else if (eq model.status 'Approved')}}
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
-            {{/if}}
-          {{/if}}
-          <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
-        </ul>
-      </div>
+              {{else}}
+                <tr>
+                  <td colspan=2>No contests available</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <div class='table-responsive'>
+          <p>
+            Song Repertory: {{model.repertoryCount}}
+          </p>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Arranger(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedRepertories as |repertory|}}
+                <tr>
+                  {{#if repertory.chart.isLoading}}
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{repertory.chart.title}}</td>
+                    <td>{{repertory.chart.arrangers}}</td>
+                  {{/if}}
+                </tr>
+              {{else}}
+                <tr>
+                  <td>(No songs in Repertory.)</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </section>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Invited')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Submitted')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Approved')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
 </section>
 <section>
   {{#bs-modal

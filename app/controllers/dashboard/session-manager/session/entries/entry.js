@@ -31,19 +31,18 @@ export default Ember.Controller.extend({
     'model.group.repertories',
     'sortedRepertoriesProperties'
   ),
-  sortedParticipantsProperties: [
-    'nameSort',
-  ],
-  sortedParticipants: Ember.computed.sort(
-    'model.participants',
-    'sortedParticipantsProperties'
+  filteredMembers: Ember.computed.filterBy(
+    'model.group.members',
+    'status',
+    'Active'
   ),
-  sortedExpirationsProperties: [
-    'nameSort',
+  memberSortProperties: [
+    'personLast',
+    'nomen',
   ],
-  sortedExpirations: Ember.computed.sort(
-    'model.expiringMembers',
-    'sortedExpirationsProperties'
+  memberOptions: Ember.computed.sort(
+    'filteredMembers',
+    'memberSortProperties'
   ),
   contestSortProperties: [
     'organizationKindSort',

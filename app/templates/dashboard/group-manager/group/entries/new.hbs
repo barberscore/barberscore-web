@@ -1,4 +1,4 @@
-<div class='col-md-6'>
+<div class='col-md-10'>
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
@@ -6,7 +6,7 @@
         Status: <strong>{{model.status}}</strong>
       </h4>
       <h4>
-        {{model.person.name}}
+        (New Entry)
       </h4>
     </div>
     <div class='panel-body'>
@@ -14,40 +14,28 @@
           {{#bs-form
             formLayout="vertical"
             model=model
-            onSubmit=(perform saveMember)
+            onSubmit=(perform saveEntry)
             as |form|
           }}
-            {{#form.element property='person' as |el|}}
+            {{#form.element property='session' as |el|}}
               {{#power-select
-                search=(perform searchPerson)
+                options=sessionOptions
                 selected=el.value
                 onchange=(action (mut el.value))
-                placeholder="Search by Name or Member Number"
+                placeholder="Choose Session"
                 allowClear=true
-                as |person|
+                as |session|
               }}
-                Person: {{person.nomen}}
+                Session: {{session.nomen}}; {{session.convention.location}}, {{moment-format session.convention.startDate 'LL'}}
               {{/power-select}}
             {{/form.element}}
-            {{#form.element property='part' as |el|}}
-              {{#power-select
-                options=model.partOptions
-                selected=el.value
-                onchange=(action (mut el.value))
-                placeholder="Choose Part"
-                allowClear=true
-                as |part|
-              }}
-                Part: {{part}}
-              {{/power-select}}
-            {{/form.element}}
-            {{#bs-button type='default' onClick=(action "clearMember")}}Cancel{{/bs-button}}
+            {{#bs-button type='default' onClick=(action "clearEntry")}}Cancel{{/bs-button}}
             {{#bs-button type='success' buttonType='submit'}}Save{{/bs-button}}
           {{/bs-form}}
       </section>
       <section>
           <p>
-            <strong>Note:</strong>  Members added here are done so in "Provisional" status until their membership is verified with the Barbershop Harmony Society.
+            <strong>Note:</strong>  You can enter any session currently Open.
           </p>
       </section>
     </div>

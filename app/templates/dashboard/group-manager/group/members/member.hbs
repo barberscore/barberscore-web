@@ -28,7 +28,6 @@
             {{#power-select
               options=model.partOptions
               selected=el.value
-              disabled=true
               onchange=(perform autosave 'part')
               placeholder="Enter Primary Part"
               disabled=isDisabled
@@ -38,6 +37,20 @@
               Part: {{part}}
             {{/power-select}}
           {{/form.element}}
+          {{#form.element property='isAdmin' as |el|}}
+            {{#bs-button-group
+              value=el.value
+              type='radio'
+              onChange=(perform autosave 'isAdmin')
+              as |bg|
+            }}
+              {{#bg.button type='default' value=true disabled=isDisabled}}Group Admin{{/bg.button}}
+              {{#bg.button type='default' value=false disabled=isDisabled}}Not Group Admin{{/bg.button}}
+            {{/bs-button-group}}
+          {{/form.element}}
+
+
+
             {{!-- <div class='row'>
               <div class='col-md-6'>
                 {{#form.element property='startDate' useIcons=false as |el|}}

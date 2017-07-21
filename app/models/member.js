@@ -17,6 +17,14 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
+
+  canParticipate: Ember.computed(
+    'status', function() {
+      let canParticipate = ['Active', 'Provisional',]
+      return canParticipate.includes(this.get('status'));
+    }
+  ),
+
   statusOptions: [
     'New',
     'Provisional',
