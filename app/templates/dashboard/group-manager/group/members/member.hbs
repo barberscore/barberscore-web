@@ -110,7 +110,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will activate.
+        This will list the member as currently singing with your group.
       </p>
       {{#if activateMemberModalError}}
       <p class='text-danger'>
@@ -141,7 +141,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will deactivate.
+        This will indicate that the Member no longer is actively singing with your group.
       </p>
       {{#if deactivateMemberModalError}}
       <p class='text-danger'>
@@ -168,11 +168,11 @@
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Deactivate Member</h4>
+      <h4>Delete Member</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will delete.
+        This will completely remove all record of this member with your group.  Delete should only be done for errors, provisional members, or other cases where the member never existed in the first place.  For former members, choose "Deactivate" instead.
       </p>
       {{#if deleteMemberModalError}}
       <p class='text-danger'>
@@ -184,9 +184,9 @@
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
       {{#bs-button type='primary' onClick=(perform deleteMember)}}
         {{#if deleteMember.isRunning}}
-          Deactivating {{fa-icon "spinner" spin=true}}
+          Deleting {{fa-icon "spinner" spin=true}}
         {{else}}
-          Deactivate Member
+          Delete Member
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}

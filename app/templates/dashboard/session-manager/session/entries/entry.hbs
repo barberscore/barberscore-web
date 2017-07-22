@@ -223,8 +223,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will invite {{model.group.name}} to the {{model.session.nomen}}.  The group contacts will
-        be sent an email with the invite instructions.
+        This will formally invite the group to the contest and allow them to submit an entry.  The group admin will be sent an email with instructions how to proceed.
       </p>
       {{#if inviteEntryModalError}}
       <p class='text-danger'>
@@ -255,7 +254,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will delete the entry for {{model.group.name}}.  It can not be undone.
+        This will delete the entry.  This should only be used for errors or other cases where the entry should never have existed in the first place.  Otherwise, you should use "Decline" or "Scratch".
       </p>
       {{#if deleteEntryModalError}}
       <p class='text-danger'>
@@ -286,7 +285,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will submit the entry for {{model.group.name}}.  It can not be undone.
+        This submits an entry directly.  Please note that there are disclaimers related to submission that are not included in a manual entry.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
@@ -317,7 +316,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will decline the invitation for {{model.group.name}}.
+        This will formally decline your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
@@ -348,7 +347,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will approve the invitation for {{model.group.name}}.
+        This approves the submission for the group.  They will receive an email notifying them that they are all set for the contest.
       </p>
       {{#if approveEntryModalError}}
       <p class='text-danger'>
@@ -379,7 +378,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will scratch the entry for {{model.group.name}}.
+        This scratches the previously approved contest Entry.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ and is not guaranteed.
       </p>
       {{#if scratchEntryModalError}}
       <p class='text-danger'>

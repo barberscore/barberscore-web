@@ -15,7 +15,7 @@
         {{#each sortedMembers as |member|}}
           <tr>
             {{#if member.isLoading}}
-              <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>
                 {{#if member.person.isLoading}}
@@ -46,7 +46,7 @@
   <section>
     <p>{{#bs-button onClick=(action 'createMember') disabled=isDisabled type='success'}}Add Member{{/bs-button}}</p>
     <p>
-      <strong>Note:</strong>  Members are primarily handled by BHS.
+      <strong>Note:</strong>  Memberships are primarily managed through the BHS Member Center.  We allow edits to this information as a convenience; please note that whatever is on the Member Center is the most up-to-date.
     </p>
   </section>
 {{/if}}

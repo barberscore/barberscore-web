@@ -150,20 +150,19 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        <div>
-          <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
+        This will formally submit your entry into the contest.
+      </p>
+      <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
           <ul class='list-styled'>
-            <li>Agrees to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which will be made of us and other quartets and/or groupes during the international convention. We agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. Agrees that the Society may record our portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of our portion of the contest on recordings to be manufactured and sold by the Society.</li>
-            <li>Certifying that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
-            <li>Certifying that we have complied with copyright law in the acquisition, arranging, and learning of our contest songs/ arrangements and will perform only legally cleared songs in the contest. We understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
-            <li>Certifying that we will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
+            <li>You agree to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which may be made of you and other quartets and/or groups during the contest.  You agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. You agree that the Society may record your portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of your portion of the contest on recordings to be manufactured and sold by the Society.</li>
+            <li>You certify that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
+            <li>You certify that you have complied with copyright law in the acquisition, arranging, and learning of our contest songs/arrangements and will perform only legally cleared songs in the contest. You understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
+            <li>You certify that you will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
           </ul>
-        </div>
-      </p>
       {{#if submitEntryModalError}}
-      <p class='text-danger'>
-        Could not submit entry.
-      </p>
+        <p class='text-danger'>
+          Could not submit entry.  Please contact support.
+        </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
@@ -189,7 +188,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will decline the invitation for {{model.group.name}}.
+        This will formally decline your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
@@ -220,7 +219,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will approve the invitation for {{model.group.name}}.
+        This approves the submission for the group.  They will receive an email notifying them that they are all set for the contest.
       </p>
       {{#if approveEntryModalError}}
       <p class='text-danger'>
@@ -251,7 +250,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will scratch the entry for {{model.group.name}}.
+        This scratches the previously approved contest Entry.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ and is not guaranteed.
       </p>
       {{#if scratchEntryModalError}}
       <p class='text-danger'>
