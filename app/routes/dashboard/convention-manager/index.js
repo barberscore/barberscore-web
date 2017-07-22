@@ -5,7 +5,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   currentUser: Ember.inject.service('current-user'),
   model() {
     return this.get('store').query('convention', {
-      'organization__officers__person__user': this.get('currentUser.user.id'),
+      'assignments__person__user': this.get('currentUser.user.id'),
       'page_size': 100
     });
   },

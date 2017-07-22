@@ -2,11 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
-  uniques: Ember.computed.uniq(
-    'model'
-  ),
-  openModal: false,
-  sortProperties: [
+  sortedConventionsProperties: [
     'startDate:asc',
     'endDate:asc',
   ],
@@ -19,14 +15,8 @@ export default Ember.Controller.extend({
   ),
   sortedConventions: Ember.computed.sort(
     'filteredConventions',
-    'sortProperties'
+    'sortedConventionsProperties'
   ),
-  kindOptions: [
-    'International',
-    'District',
-    'Division',
-    'District and Division',
-  ],
   seasonOptions: [
     'Summer',
     'Midwinter',
@@ -34,19 +24,17 @@ export default Ember.Controller.extend({
     'Spring',
     'Video',
   ],
-
   panelOptions: [
     'Single',
     'Double',
     'Triple',
     'Quadruple',
-    'Quintiple',
+    'Quintuple',
   ],
 
   organizationCall: Ember.computed(function() {
     return this.get('store').query('organization', {
-      'kind__lt': 20, //TODO Hardcoded
-      'page_size': 100,
+      'status': 10, //TODO Hardcoded
     });
   }),
   organizationOptionsProperties: [
@@ -57,10 +45,6 @@ export default Ember.Controller.extend({
     'organizationCall',
     'organizationOptionsProperties'
   ),
-  riserOptions: [
-    0,3,4,5,6,7,8,9,10,11,12,13
-  ],
-  location: '',
 
   actions: {
     sortBy(sortProperties) {
