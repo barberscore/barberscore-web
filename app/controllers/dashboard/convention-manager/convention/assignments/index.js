@@ -41,7 +41,6 @@ export default Ember.Controller.extend({
   categoryOptions: [
     'DRCJ',
     'CA',
-    'ACA',
     'Music',
     'Performance',
     'Singing',

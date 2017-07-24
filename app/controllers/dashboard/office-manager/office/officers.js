@@ -42,7 +42,6 @@ export default Ember.Controller.extend({
   kindOptions: [
     'DRCJ',
     'CA',
-    'ACA',
     'Music',
     'Performance',
     'Singing',
