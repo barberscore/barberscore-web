@@ -36,18 +36,6 @@ export default Ember.Controller.extend({
       this.set('deactivateMemberModalError', true);
     }
   }).drop(),
-  autosave: task(function* (property, value){
-    this.get('model').set(property, value);
-    yield timeout(1000);
-    try {
-      yield this.get('model').save();
-      this.get('flashMessages').success("Saved");
-    } catch(e) {
-      e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
-      })
-    }
-  }).restartable(),
   deleteMemberModal: false,
   deleteMemberModalError: false,
   deleteMember: task(function *() {
@@ -61,4 +49,16 @@ export default Ember.Controller.extend({
       this.set('deleteMemberModalError', true);
     }
   }).drop(),
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
+  }).restartable(),
 });

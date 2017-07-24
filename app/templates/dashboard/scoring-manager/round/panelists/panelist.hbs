@@ -16,20 +16,20 @@
           model=model
           as |form|
         }}
-        {{#form.element property='person' as |el|}}
-            {{#power-select
-              search=(perform searchPerson)
-              selected=el.value
-              onchange=(perform autosave 'person')
-              placeholder="Enter Judge Name"
-              renderInPlace=true
-              allowClear=true
-              disabled=isDisabled
-              as |person|
-            }}
-              Person: {{person.nomen}}
-            {{/power-select}}
-        {{/form.element}}
+          {{#form.element property='person' as |el|}}
+              {{#power-select
+                search=(perform searchPerson)
+                selected=el.value
+                onchange=(perform autosave 'person')
+                placeholder="Enter Judge Name"
+                renderInPlace=true
+                allowClear=true
+                disabled=isDisabled
+                as |person|
+              }}
+                Person: {{person.nomen}}
+              {{/power-select}}
+          {{/form.element}}
         {{/bs-form}}
       </div>
     </div>

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import {memberAction} from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -10,6 +11,9 @@ export default Model.extend({
   convention: DS.belongsTo('convention', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
+
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   categorySort: Ember.computed(
     'category',
@@ -27,10 +31,8 @@ export default Model.extend({
   ),
   statusOptions: [
     'New',
-    'Published',
-    'Confirmed',
-    'Validated',
-    'Final',
+    'Active',
+    'Inactive',
   ],
   categoryOptions: [
     'DRCJ',

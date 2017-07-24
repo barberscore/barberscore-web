@@ -1,39 +1,169 @@
-{{model.nomen}}
-{{!-- <section>
+<div class='col-md-9'>
+<section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <ul class='list-inline pull-right'>
-        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-      </ul>
       <h4>
-        {{model.award.name}}
+        {{model.nomen}}
       </h4>
     </div>
     <div class='panel-body'>
-      <div class='table-responsive'>
-        <table class='table'>
-          <caption>Contestants</caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedContestants as |contestant|}}
-              <tr>
-                <td>
-                  {{contestant.entry.group.name}}
-                </td>
-              </tr>
-            {{else}}
-              <tr>
-                <td>(No contestants entered for this contest.)</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
+      <div>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+          {{#form.element property='person' as |el|}}
+            {{#power-select
+              search=(perform searchPerson)
+              selected=el.value
+              onchange=(perform autosave 'person')
+              placeholder="Enter Judge Name"
+              renderInPlace=true
+              allowClear=true
+              disabled=isDisabled
+              as |person|
+            }}
+              Person: {{person.nomen}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='category' useIcons=false as |el|}}
+            {{#power-select
+              options=model.categoryOptions
+              selected=el.value
+              onchange=(perform autosave 'category')
+              placeholder="Enter Category"
+              disabled=isDisabled
+              allowClear=true
+              as |category|
+            }}
+              Category: {{category}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='kind' useIcons=false as |el|}}
+            {{#power-select
+              options=model.kindOptions
+              selected=el.value
+              onchange=(perform autosave 'kind')
+              placeholder="Enter Kind"
+              disabled=isDisabled
+              allowClear=true
+              as |kind|
+            }}
+              Kind: {{kind}}
+            {{/power-select}}
+          {{/form.element}}
+        {{/bs-form}}
       </div>
     </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateAssignmentModal) true)}}Activate Assignment{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteAssignmentModal) true)}}Delete Assignment{{/bs-button}}</li>
+          {{else if (eq model.status 'Active')}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateAssignmentModal) true)}}Deactivate Assignment{{/bs-button}}</li>
+          {{else if (eq model.status 'Inactive')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateAssignmentModal) true)}}Activate Assignment{{/bs-button}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Assignment Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
   </div>
-</section> --}}
+</section>
+</div>
+<section>
+  {{#bs-modal
+    open=activateAssignmentModal
+    onHidden=(pipe-action (action (mut activateAssignmentModal) false) (action (mut activateAssignmentModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Activate Assignment</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will set the assignment as active.
+      </p>
+      {{#if activateAssignmentModalError}}
+      <p class='text-danger'>
+        Could not activate assignment.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform activateAssignment)}}
+        {{#if activateAssignment.isRunning}}
+          Activating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Activate Assignment
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=deactivateAssignmentModal
+    onHidden=(pipe-action (action (mut deactivateAssignmentModal) false) (action (mut deactivateAssignmentModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Deactivate Assignment</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will deactive the Assignment.
+      </p>
+      {{#if deactivateAssignmentModalError}}
+      <p class='text-danger'>
+        Could not deactivate assignment.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform deactivateAssignment)}}
+        {{#if deactivateAssignment.isRunning}}
+          Deactivating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Deactivate Assignment
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=deleteAssignmentModal
+    onHidden=(pipe-action (action (mut deleteAssignmentModal) false) (action (mut deleteAssignmentModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Delete Assignment</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will completely remove all record of this assignment.  Delete should only be done for errors or other cases where the assignment effectively never should have existed in the first place.  For former assignments, choose "Deactivate" instead.
+      </p>
+      {{#if deleteAssignmentModalError}}
+      <p class='text-danger'>
+        Could not delete assignment.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' onClick=(perform deleteAssignment)}}
+        {{#if deleteAssignment.isRunning}}
+          Deleting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Delete Assignment
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
