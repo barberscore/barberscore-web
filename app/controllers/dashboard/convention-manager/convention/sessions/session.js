@@ -12,26 +12,26 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  awardCall: Ember.computed(function(){
-    return this.get('store').query('award', {
-        'organization__officers__person__user': this.get('currentUser.user.id'),
-      });
-  }),
   filteredAwards: Ember.computed(
-    'awardCall.@each.{kind,season}',
+    'model.convention.organization.awards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
     function() {
-      return this.get('awardCall').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
+      return this.get('model.convention.organization.awards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
-  uniqueAwards: Ember.computed.uniq(
-    'filteredAwards',
-  ),
   sortedAwards: Ember.computed.sort(
-    'uniqueAwards',
+    'filteredAwards',
     'awardSortProperties',
   ),
+  publishSession: task(function *() {
+    let session = yield this.model.publish({
+      'by': this.get('currentUser.user.id')
+    });
+    this.store.pushPayload('session', session);
+    this.get('flashMessages').success("Published!");
+  }).drop(),
+  sessionManager: Ember.inject.controller('dashboard.convention-manager.convention.sessions.index'),
   sessionSortProperties: [
     'nomen',
   ],
@@ -46,13 +46,6 @@ export default Ember.Controller.extend({
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
-  publishSession: task(function *() {
-    let session = yield this.model.publish({
-      'by': this.get('currentUser.user.id')
-    });
-    this.store.pushPayload('session', session);
-    this.get('flashMessages').success("Published!");
-  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

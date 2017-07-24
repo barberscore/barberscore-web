@@ -24,12 +24,16 @@
               <tbody>
                 {{#each sortedAwards as |award|}}
                     <tr>
-                      <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
-                      <td>{{award.name}}</td>
+                      {{#if award.isLoading}}
+                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
+                        <td>{{award.name}}</td>
+                      {{/if}}
                     </tr>
                 {{else}}
                   <tr>
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    (No available awards.)
                   </tr>
                 {{/each}}
               </tbody>
