@@ -6,6 +6,7 @@ export default DS.Transform.extend({
       10: 'Championship',
       20: 'Award',
       30: 'Qualifier',
+      40: 'Sentinel',
     };
     return map[serialized];
   },
@@ -15,6 +16,7 @@ export default DS.Transform.extend({
       'Championship': 10,
       'Award': 20,
       'Qualifier': 30,
+      'Sentinel': 40,
     };
     return map[deserialized];
   }
