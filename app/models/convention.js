@@ -27,7 +27,7 @@ export default Model.extend(Validations, {
   permissions: DS.attr(),
 
   publish: memberAction({path: 'publish', type: 'post'}),
-  open: memberAction({path: 'open', type: 'post'}),
+  archive: memberAction({path: 'archive', type: 'post'}),
 
   isAnnounced: Ember.computed.equal('status', 'Announced'),
   isActive: Ember.computed.not('isAnnounced'),

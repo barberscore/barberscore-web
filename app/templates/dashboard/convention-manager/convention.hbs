@@ -34,6 +34,10 @@
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
             {{#bs-button type='primary' disabled=model.isError onClick=(action (mut publishConventionModal) true)}}Publish Convention{{/bs-button}}
+          {{else if (eq model.status 'Published')}}
+            {{#bs-button type='warning' disabled=model.isError onClick=(action (mut archiveConventionModal) true)}}Archive Convention{{/bs-button}}
+          {{else if (eq model.status 'Archived')}}
+            {{#bs-button type='primary' disabled=model.isError onClick=(action (mut publishConventionModal) true)}}Publish Convention{{/bs-button}}
           {{/if}}
         {{/if}}
       </div>
@@ -66,6 +70,37 @@
           Publishing {{fa-icon "spinner" spin=true}}
         {{else}}
           Publish Convention
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=archiveConventionModal
+    onHidden=(pipe-action (action (mut archiveConventionModal) false) (action (mut archiveConventionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Archive Convention</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will archive the convention.  It will still be searchable but won't appear in lists.
+      </p>
+      {{#if publishConventionModalError}}
+      <p class='text-danger'>
+        Could not archive Convention.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform archiveConvention)}}
+        {{#if archiveConvention.isRunning}}
+          Archiving {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Archive Convention
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}

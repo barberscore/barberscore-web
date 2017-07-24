@@ -20,6 +20,21 @@ export default Ember.Controller.extend({
       this.set('publishConventionModalError', true);
     }
   }).drop(),
+  archiveConventionModal: false,
+  archiveConventionModalError: false,
+  archiveConvention: task(function *() {
+    try {
+      let convention = yield this.model.archive({
+        'by': this.get('currentUser.user.id')
+      });
+      this.store.pushPayload('convention', convention);
+      this.set('archiveConventionModal', false);
+      this.set('archiveConventionModalError', false);
+      this.get('flashMessages').success("Archived!");
+    } catch(e) {
+      this.set('archiveConventionModalError', true);
+    }
+  }).drop(),
   conventionManager: Ember.inject.controller('dashboard.convention-manager.index'),
   conventionSortProperties: [
     'nomen',

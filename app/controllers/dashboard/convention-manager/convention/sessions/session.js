@@ -4,7 +4,6 @@ import { task } from 'ember-concurrency';
 export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  sessionManager: Ember.inject.controller('dashboard.convention-manager.convention.sessions.index'),
   awardSortProperties: [
     'organizationKindSort',
     'isQualifier',

@@ -5,12 +5,7 @@ export default DS.Transform.extend({
     var map = {
       0: 'New',
       2: 'Published',
-      4: 'Opened',
-      8: 'Closed',
-      10: 'Validated',
-      20: 'Started',
-      30: 'Finished',
-      45: 'Announced',
+      95: 'Archived',
     };
     return map[serialized];
   },
@@ -19,12 +14,7 @@ export default DS.Transform.extend({
     var map = {
       'New': 0,
       'Published': 2,
-      'Opened': 4,
-      'Closed': 8,
-      'Validated': 10,
-      'Started': 20,
-      'Finished': 30,
-      'Announced': 45,
+      'Archived': 95,
     };
     return map[deserialized];
   }
