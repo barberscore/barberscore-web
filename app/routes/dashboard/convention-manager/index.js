@@ -6,6 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').query('convention', {
       'assignments__person__user': this.get('currentUser.user.id'),
+      'assignments__category': 5,
       'page_size': 100,
       'status__lt': 95,
     });
