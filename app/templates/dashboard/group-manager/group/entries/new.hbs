@@ -21,6 +21,7 @@
                 onchange=(action (mut el.value))
                 placeholder="Choose Session"
                 allowClear=true
+                noMatchesMessage="No Sessions are Currently Open."
                 as |session|
               }}
                 Session: {{session.nomen}}; {{session.convention.location}}, {{moment-format session.convention.startDate 'LL'}}
@@ -32,7 +33,7 @@
       </section>
       <section>
           <p>
-            <strong>Note:</strong>  You can enter any session currently Open.
+            <strong>Note:</strong>  You can enter any session currently listed as Open.  If "No Results Found"
           </p>
       </section>
     </div>
