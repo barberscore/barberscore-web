@@ -2,14 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   sortProperties: [
+    'statusSort:asc',
     'kindSort:asc',
     'name:asc',
   ],
-  uniqOrganizations: Ember.computed.uniq(
+  uniqueOrganizations: Ember.computed.uniq(
     'model',
   ),
   sortedOrganizations: Ember.computed.sort(
-    'uniqOrganizations',
+    'uniqueOrganizations',
     'sortProperties'
   ),
   actions: {

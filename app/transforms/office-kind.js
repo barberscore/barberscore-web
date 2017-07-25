@@ -9,9 +9,6 @@ export default DS.Transform.extend({
       13: 'Affiliate',
       21: 'Division',
       32: 'Chapter',
-      33: 'Very Large Quartet',
-      34: 'Mixed Group',
-      41: 'Quartet',
     };
     return map[serialized];
   },
@@ -24,9 +21,6 @@ export default DS.Transform.extend({
       'Affiliate': 13,
       'Division': 21,
       'Chapter': 32,
-      'Very Large Quartet': 33,
-      'Mixed Group': 34,
-      'Quartet': 41,
     };
     return map[deserialized];
   }

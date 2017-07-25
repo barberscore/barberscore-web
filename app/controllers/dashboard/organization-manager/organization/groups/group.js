@@ -2,19 +2,7 @@ import Ember from 'ember';
 import { task, timeout } from 'ember-concurrency';
 
 export default Ember.Controller.extend({
-  groupManager: Ember.inject.controller('dashboard.organization-manager.organization.groups.index'),
   flashMessages: Ember.inject.service(),
-  sortedItems: Ember.computed.alias('groupManager.sortedItems'),
-  isPrevDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: Ember.computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
@@ -53,6 +41,18 @@ export default Ember.Controller.extend({
       })
     }
   }).drop(),
+  groupManager: Ember.inject.controller('dashboard.organization-manager.organization.groups.index'),
+  sortedItems: Ember.computed.alias('groupManager.sortedGroups'),
+  isPrevDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.firstObject');
+  }),
+  isNextDisabled: Ember.computed(
+    'model',
+    'sortedItems', function() {
+    return this.model == this.get('sortedItems.lastObject');
+  }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

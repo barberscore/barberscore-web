@@ -54,12 +54,24 @@ export default Model.extend({
     'Division',
     'Chapter',
   ],
-
   kindSort: Ember.computed(
     'kind',
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+
+  statusOptions: [
+    'New',
+    'Active',
+    'Inactive',
+  ],
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
 });

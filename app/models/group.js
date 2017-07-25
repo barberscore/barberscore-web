@@ -58,8 +58,6 @@ export default Model.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
-    'Very Large Quartet',
-    'Mixed Group',
   ],
 
   kindSort: Ember.computed(

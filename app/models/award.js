@@ -43,8 +43,6 @@ export default Model.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
-    'Mixed Group',
-    'Very Large Quartet',
   ],
 
   levelOptions: [
@@ -85,7 +83,7 @@ export default Model.extend({
   ),
 
   organizationKindSort: Ember.computed.alias('organization.kindSort'),
-  organizationNameSort: Ember.computed.alias('organization.name'),
+  organizationNameSort: Ember.computed.alias('organization.shortName'),
   statusSort: Ember.computed(
     'status',
     'statusOptions',
