@@ -1,16 +1,13 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  filteredSessions: Ember.computed.filterBy(
-    'model',
-    'conventionIsActive',
-  ),
   sortProperties: [
-    'conventionName:asc',
-    'kind:asc',
+    'statusSort:asc',
+    'kindSort:asc',
+    'nomen',
   ],
   sortedSessions: Ember.computed.sort(
-    'filteredSessions',
+    'model',
     'sortProperties'
   ),
   actions: {

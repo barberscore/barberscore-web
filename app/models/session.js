@@ -29,6 +29,11 @@ export default Model.extend({
 
   conventionStatus: Ember.computed.alias('convention.status'),
   conventionIsActive: Ember.computed.alias('convention.isActive'),
+
+  isArchived: Ember.computed.equal('status', 'Archived'),
+  isCurrent: Ember.computed.not('isArchived'),
+
+
   statusOptions: [
     'New',
     'Published',
@@ -38,6 +43,7 @@ export default Model.extend({
     'Started',
     'Finished',
     'Announced',
+    'Archived',
   ],
   kindOptions: [
     'Quartet',
@@ -84,6 +90,14 @@ export default Model.extend({
   scratchedEntriesCount: Ember.computed.alias('scratchedEntries.length'),
   totalEntriesCount: Ember.computed.alias('entries.length'),
   contestCount: computed.alias('contests.length'),
+
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
 
   kindSort: Ember.computed(
     'kind',

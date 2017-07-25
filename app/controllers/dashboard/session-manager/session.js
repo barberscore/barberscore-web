@@ -45,13 +45,8 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Session Start Failed; Please check your entry.");
     }
   }).drop(),
-  sortedItemsSortProperties: [
-    'nomen',
-  ],
-  sortedItems: Ember.computed.sort(
-    'model.convention.sessions',
-    'sortedItemsSortProperties'
-  ),
+  sessionManager: Ember.inject.controller('dashboard.session-manager.index'),
+  sortedItems: Ember.computed.alias('sessionManager.sortedSessions'),
   isPrevDisabled: Ember.computed(
     'model',
     'sortedItems', function() {
