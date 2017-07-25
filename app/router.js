@@ -14,12 +14,12 @@ Router.map(function() {
         this.route('details', {path: 'details'});
         this.route('assignments', { path: 'assignments'}, function() {
           this.route('assignment', { path: ':assignment_id'});
+          this.route('new', { path: 'new'});
         });
         this.route('sessions', { path: 'sessions'}, function() {
-          this.route('new', { path: 'new'});
           this.route('session', { path: ':session_id'});
+          this.route('new', { path: 'new'});
         });
-        this.route('actions', {path: 'actions'});
       });
     });
     this.route('session-manager', {path: 'session-manager'}, function() {

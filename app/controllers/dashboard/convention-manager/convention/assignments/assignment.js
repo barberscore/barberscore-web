@@ -33,7 +33,6 @@ export default Ember.Controller.extend({
       this.set('deactivateAssignmentModalError', false);
       this.get('flashMessages').success("Deactivated!");
     } catch(e) {
-      console.log(e);
       this.set('deactivateAssignmentModalError', true);
     }
   }).drop(),

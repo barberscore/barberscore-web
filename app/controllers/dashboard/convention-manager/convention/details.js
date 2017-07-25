@@ -4,7 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.equal('model.status', 'Published'),
+  isDisabled: Ember.computed.not('model.permissions.write'),
   organizationCall: Ember.computed(function() {
     return this.get('store').query('organization', {
       'kind__lt': 20, //TODO Hardcoded

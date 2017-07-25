@@ -85,6 +85,7 @@ export default Model.extend({
   approvedEntriesCount: Ember.computed.alias('approvedEntries.length'),
   scratchedEntriesCount: Ember.computed.alias('scratchedEntries.length'),
   totalEntriesCount: Ember.computed.alias('entries.length'),
+  contestCount: computed.alias('contests.length'),
 
   kindSort: Ember.computed(
     'kind',

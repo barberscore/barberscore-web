@@ -42,7 +42,7 @@
         </section>
       </div>
       <div class='panel-footer fixed-panel-footer'>
-        {{#if model.permissions.write}}
+        {{!-- {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
             {{#bs-button type='primary' onClick=(perform publishSession)}}
               {{#if publishSession.isRunning}}
@@ -52,7 +52,7 @@
               {{/if}}
             {{/bs-button}}
           {{/if}}
-        {{/if}}
+        {{/if}} --}}
         <div class='pull-right'>
           <h4>
             Session Status: <strong>{{model.status}}</strong>

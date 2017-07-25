@@ -1,0 +1,64 @@
+<div class='col-md-6'>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>
+        (New Assignment)
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        {{#bs-form
+          model=model
+          formLayout='vertical'
+          onSubmit=(perform saveAssignment)
+          as |form|
+        }}
+          {{#form.element property='person' as |el|}}
+            {{#power-select
+              options=judgeOptions
+              searchField='nomen'
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Person for Assignment"
+              allowClear=true
+              as |person|
+            }}
+              {{!-- Person: {{person.commonName}} [{{#each person.officers as |officer|}}
+                {{officer.office.name}}{{#unless (eq officer person.officers.lastObject)}}, {{/unless}}
+              {{/each}}] --}}
+              Person: {{person.commonName}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='category' as |el|}}
+            {{#power-select
+              options=model.categoryOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Category"
+              allowClear=true
+              as |category|
+            }}
+              Category: {{category}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='kind' as |el|}}
+            {{#power-select
+              options=model.kindOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Kind"
+              allowClear=true
+              as |kind|
+            }}
+              Kind: {{kind}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#bs-button type='default' onClick=(action "clearAssignment")}}Cancel{{/bs-button}}
+          {{#bs-button type='success' buttonType='submit'}}Save{{/bs-button}}
+        {{/bs-form}}
+      </section>
+    </div>
+  </div>
+</section>
+</div>
