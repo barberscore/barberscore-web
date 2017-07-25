@@ -85,6 +85,14 @@ export default Model.extend({
   ),
 
   organizationKindSort: Ember.computed.alias('organization.kindSort'),
+  organizationNameSort: Ember.computed.alias('organization.name'),
+  statusSort: Ember.computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
   kindSort: Ember.computed(
     'kind',
     'kindOptions',
@@ -97,6 +105,13 @@ export default Model.extend({
     'levelOptions',
     function() {
       return this.get('levelOptions').indexOf(this.get('level'));
+    }
+  ),
+  seasonSort: Ember.computed(
+    'season',
+    'seasonOptions',
+    function() {
+      return this.get('seasonOptions').indexOf(this.get('season'));
     }
   ),
   ageSort: Ember.computed(

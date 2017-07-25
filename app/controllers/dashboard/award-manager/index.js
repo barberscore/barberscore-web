@@ -3,8 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
     currentUser: Ember.inject.service('current-user'),
     sortProperties: [
-        'organizationKindSort:asc',
-        'level',
+        'statusSort',
+        'organizationKindSort',
+        'organizationNameSort',
+        'seasonSort',
+        'kindSort',
+        'levelSort',
         'name',
     ],
     uniqueItems: Ember.computed.uniq(
