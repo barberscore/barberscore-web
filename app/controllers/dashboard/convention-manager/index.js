@@ -14,7 +14,7 @@ export default Ember.Controller.extend({
     'filteredConventions',
   ),
   sortedConventions: Ember.computed.sort(
-    'filteredConventions',
+    'uniqueConventions',
     'sortedConventionsProperties'
   ),
   seasonOptions: [
