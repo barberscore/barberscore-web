@@ -18,6 +18,9 @@
           {{#nav.link-to "dashboard.session-manager.session.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
+          {{#nav.link-to "dashboard.session-manager.session.awards"}}Awards{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
           {{#nav.link-to "dashboard.session-manager.session.entries"}}Entries{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
@@ -30,46 +33,180 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{#if model.permissions.write}}
-        {{#if (eq model.status 'Published')}}
-          {{#bs-button type='primary' onClick=(perform openSession)}}
-            {{#if openSession.isRunning}}
-              Opening {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Open Session
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Opened')}}
-          {{#bs-button type='primary' onClick=(perform closeSession)}}
-            {{#if closeSession.isRunning}}
-              Closing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Close Session
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Closed')}}
-          {{#bs-button type='primary' onClick=(perform verifySession)}}
-            {{#if verifySession.isRunning}}
-              Verifying {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Verify Session
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Verified')}}
-          {{#bs-button type='primary' onClick=(perform startSession)}}
-            {{#if startSession.isRunning}}
-              Starting {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Start Session
-            {{/if}}
-          {{/bs-button}}
-        {{/if}}
-      {{/if}}
       <div class='pull-right'>
         <h4>
           Session Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
+      {{#if model.permissions.write}}
+        <ul class='list-inline'>
+          {{#if (eq model.status 'New')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut openSessionModal) true)}}Open Session{{/bs-button}}</li>
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut restrictSessionModal) true)}}Restrict Session (Invitational){{/bs-button}}</li>
+          {{else if (or (eq model.status 'Opened')(eq model.status 'Restricted'))}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut closeSessionModal) true)}}Close Session{{/bs-button}}</li>
+          {{else if (eq model.status 'Closed')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Verify Session{{/bs-button}}</li>
+          {{else if (eq model.status 'Verified')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut startSessionModal) true)}}Start Session{{/bs-button}}</li>
+          {{/if}}
+        </ul>
+      {{/if}}
     </div>
   </div>
+</section>
+<section>
+  {{#bs-modal
+    open=openSessionModal
+    onHidden=(pipe-action (action (mut openSessionModal) false) (action (mut openSessionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Open Session</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Open Text.
+      </p>
+      {{#if openSessionModalError}}
+      <p class='text-danger'>
+        Could not Open Session.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform openSession)}}
+        {{#if openSession.isRunning}}
+          Opening {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Open Session
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=restrictSessionModal
+    onHidden=(pipe-action (action (mut restrictSessionModal) false) (action (mut restrictSessionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Restrict Session</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Restrict Text.
+      </p>
+      {{#if restrictSessionModalError}}
+      <p class='text-danger'>
+        Could not Restrict Session.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform restrictSession)}}
+        {{#if restrictSession.isRunning}}
+          Restricting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Restrict Session
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=closeSessionModal
+    onHidden=(pipe-action (action (mut closeSessionModal) false) (action (mut closeSessionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Close Session</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Close Text.
+      </p>
+      {{#if closeSessionModalError}}
+      <p class='text-danger'>
+        Could not Close Session.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform closeSession)}}
+        {{#if closeSession.isRunning}}
+          Closeing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Close Session
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=verifySessionModal
+    onHidden=(pipe-action (action (mut verifySessionModal) false) (action (mut verifySessionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Verify Session</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Verify Text.
+      </p>
+      {{#if verifySessionModalError}}
+      <p class='text-danger'>
+        Could not Verify Session.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform verifySession)}}
+        {{#if verifySession.isRunning}}
+          Verifying {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Verify Session
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
+    open=startSessionModal
+    onHidden=(pipe-action (action (mut startSessionModal) false) (action (mut startSessionModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Start Session</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Start Text.
+      </p>
+      {{#if startSessionModalError}}
+      <p class='text-danger'>
+        Could not Start Session.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='primary' disabled=model.isError onClick=(perform startSession)}}
+        {{#if startSession.isRunning}}
+          Starting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Start Session
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
 </section>

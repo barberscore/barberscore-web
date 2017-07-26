@@ -1,0 +1,36 @@
+<section>
+  <div class='row'>
+    <div class='col-md-9'>
+          <div class='table-responsive'>
+            <table class='table'>
+              <caption>Available Awards</caption>
+              <thead>
+                <tr>
+                  <th>Include?</th>
+                  <th {{action 'sortBy' 'name'}}>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each sortedAwards as |award|}}
+                    <tr>
+                      {{#if award.isLoading}}
+                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
+                        <td>{{award.name}}</td>
+                      {{/if}}
+                    </tr>
+                {{else}}
+                  <tr>
+                    (No available awards.)
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+    </div>
+  </div>
+</section>
+{{!-- <section>
+  {{#bs-button type='success' onClick=(action 'createSession')}}Create New Session{{/bs-button}}
+</section> --}}

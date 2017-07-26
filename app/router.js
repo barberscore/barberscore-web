@@ -25,6 +25,9 @@ Router.map(function() {
     this.route('session-manager', {path: 'session-manager'}, function() {
       this.route('session', { path: ':session_id' }, function() {
         this.route('details', {path: 'details'});
+        this.route('awards', { path: 'awards'}, function() {
+          this.route('award', { path: ':award_id'});
+        });
         this.route('contests', { path: 'contests'}, function() {
           this.route('contest', { path: ':contest_id'});
         });
