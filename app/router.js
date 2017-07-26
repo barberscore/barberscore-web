@@ -129,6 +129,7 @@ Router.map(function() {
   });
   this.route('about');
   this.route('note');
+  this.route('tutorials');
   this.route('faq');
   this.route('404', { path: '/*wildcard' });
   this.route('rounds', { path: 'round'}, function() {
