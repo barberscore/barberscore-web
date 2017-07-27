@@ -27,7 +27,7 @@
                       {{#if award.isLoading}}
                         <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                       {{else}}
-                        <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
+                        <td>{{contest-checkbox award=award contests=model.contests model=model isDisabled=isDisabled}}</td>
                         <td>{{award.name}}</td>
                       {{/if}}
                     </tr>

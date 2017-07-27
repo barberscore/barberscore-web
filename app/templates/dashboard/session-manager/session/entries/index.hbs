@@ -1,57 +1,59 @@
 {{#if (eq model.status 'New')}}
-  <h4>
-    Entries can only be added once the Session has been Opened or Restricted.
-  </h4>
+  <section>
+    <h4>
+      Entries can only be added once the Session has been Opened or Restricted.
+    </h4>
+  </section>
 {{else}}
-<section>
-  <div class='row'>
-    <div class='col-md-12'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th class='col-md-4' {{action "sortBy" "nomen"}}>Name</th>
-            <th class='col-md-1' {{action "sortBy" "nomen"}}>Representing</th>
-            <th class='col-md-1' {{action "sortBy" "contestantCount:desc"}}>Contests Entered</th>
-            <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
-            <th class='col-md-1' {{action "sortBy" "participantCount:desc"}}>Men on Stage</th>
-            <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
-            <th class='col-md-1' {{action "sortBy" "prelim:desc"}}>Prelim</th>
-            <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedItems as |entry|}}
+  <section>
+    <div class='row'>
+      <div class='col-md-12'>
+        <table class='table'>
+          <thead>
             <tr>
-              {{#if entry.isLoading}}
-                <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                  {{#if entry.group.isLoading}}
+              <th class='col-md-4' {{action "sortBy" "nomen"}}>Name</th>
+              <th class='col-md-1' {{action "sortBy" "nomen"}}>Representing</th>
+              <th class='col-md-1' {{action "sortBy" "contestantCount:desc"}}>Contests Entered</th>
+              <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
+              <th class='col-md-1' {{action "sortBy" "participantCount:desc"}}>Men on Stage</th>
+              <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
+              <th class='col-md-1' {{action "sortBy" "prelim:desc"}}>Prelim</th>
+              <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedItems as |entry|}}
+              <tr>
+                {{#if entry.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
+                    {{#if entry.group.isLoading}}
+                    <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
+                  {{/if}}
+                  <td>{{entry.group.organization.shortName}}</td>
+                  <td>{{entry.contestantCount}}</td>
+                  <td>{{entry.repertoryCount}}</td>
+                  <td>{{entry.participantCount}}</td>
+                  <td>{{entry.expiringMembersCount}}</td>
+                  <td>{{single-fixed entry.prelim}}</td>
+                  <td>{{entry.status}}</td>
                 {{/if}}
-                <td>{{entry.group.organization.shortName}}</td>
-                <td>{{entry.contestantCount}}</td>
-                <td>{{entry.repertoryCount}}</td>
-                <td>{{entry.participantCount}}</td>
-                <td>{{entry.expiringMembersCount}}</td>
-                <td>{{single-fixed entry.prelim}}</td>
-                <td>{{entry.status}}</td>
-              {{/if}}
-            </tr>
-          {{else}}
-            <tr>
-              <td>(No groups currently entered for this session.)</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No groups currently entered for this session.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</section>
-<section>
-  {{#unless (eq model.status 'Started')}}
-    {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}
-  {{/unless}}
-</section>
+  </section>
+  <section>
+    {{#unless (eq model.status 'Started')}}
+      {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}
+    {{/unless}}
+  </section>
 {{/if}}

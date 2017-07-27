@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   assignmentSortProperties: [
     'categorySort:asc',
     'kindSort:asc',
-    'person.name:asc',
+    'personLastName:asc',
   ],
   sortedAssignments: Ember.computed.sort(
     'model.assignments',

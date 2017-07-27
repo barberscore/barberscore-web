@@ -15,6 +15,8 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
+  personLastName: Ember.computed.alias('person.lastName'),
+
   categorySort: Ember.computed(
     'category',
     'categoryOptions',

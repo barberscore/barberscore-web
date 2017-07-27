@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   openModal: false,
   sessionSortProperties: [
-    'kind',
+    'kindSort',
     'name:asc'
   ],
   sortedSessions: Ember.computed.sort(

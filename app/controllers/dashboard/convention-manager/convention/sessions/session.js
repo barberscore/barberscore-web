@@ -4,6 +4,7 @@ import { task } from 'ember-concurrency';
 export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
+  isDisabled: Ember.computed.not('model.permissions.write'),
   awardSortProperties: [
     'organizationKindSort',
     'isQualifier',

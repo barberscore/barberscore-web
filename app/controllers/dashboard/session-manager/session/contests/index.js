@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  store: Ember.inject.service(),
   contestSortProperties: [
     'organizationKindSort',
     'awardQualifier',
@@ -19,12 +20,25 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
+  districtAwards: Ember.computed.alias('model.convention.organization.awards'),
+  divisionAwards: Ember.computed(
+    'model.convention.organization',
+    function() {
+      return this.get('store').query('award', {
+        'organization__parent': this.get('model.convention.organization.id'),
+      });
+    }
+  ),
+  unionedAwards: Ember.computed.union(
+    'districtAwards',
+    'divisionAwards',
+  ),
   filteredAwards: Ember.computed(
-    'model.convention.organization.awards.@each.{kind,season}',
+    'unionedAwards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
     function() {
-      return this.get('model.convention.organization.awards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
+      return this.get('unionedAwards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
   sortedAwards: Ember.computed.sort(

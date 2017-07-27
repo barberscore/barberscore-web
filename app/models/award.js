@@ -82,6 +82,7 @@ export default Model.extend({
     'Championship',
   ),
 
+  organizationParent: Ember.computed.alias('organization.parent'),
   organizationKindSort: Ember.computed.alias('organization.kindSort'),
   organizationNameSort: Ember.computed.alias('organization.shortName'),
   statusSort: Ember.computed(
