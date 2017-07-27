@@ -34,13 +34,16 @@ export default Model.extend({
   isArchived: Ember.computed.equal('status', 'Archived'),
   isCurrent: Ember.computed.not('isArchived'),
 
+  organizationKindSort: Ember.computed.alias('convention.organizationKindSort'),
+  organizationNomen: Ember.computed.alias('convention.organizationNomen'),
+
 
   statusOptions: [
     'New',
-    'Published',
     'Opened',
+    'Restricted',
     'Closed',
-    'Validated',
+    'Verified',
     'Started',
     'Finished',
     'Announced',

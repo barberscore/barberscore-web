@@ -32,6 +32,9 @@ export default Model.extend(Validations, {
   isAnnounced: Ember.computed.equal('status', 'Announced'),
   isActive: Ember.computed.not('isAnnounced'),
 
+  organizationKindSort: Ember.computed.alias('organization.kindSort'),
+  organizationNomen: Ember.computed.alias('organization.nomen'),
+
   statusOptions: [
     'New',
     'Listed',

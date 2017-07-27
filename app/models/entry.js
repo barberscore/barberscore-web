@@ -56,11 +56,13 @@ export default Model.extend({
 
   statusOptions: [
     'New',
+    'Invited',
+    'Declined',
     'Submitted',
     'Approved',
-    'Declined',
-    'Dropped',
-    'Validated',
+    'Rejected',
+    'Withdrew',
+    'Verified',
     'Scratched',
     'Disqualified',
     'Started',

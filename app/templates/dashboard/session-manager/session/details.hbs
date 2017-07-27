@@ -1,44 +1,48 @@
 <section>
-  <div class='col-md-4'>
-    {{!-- <ul class='list-unstyled'>
-      <li>Primary Award: {{primaryCP.award.name}}</li>
-    </ul> --}}
-    <ul class="list-group">
-      <li class="list-group-item">
-        <h5>Counts</h5>
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.newEntriesCount}}</span>
-        New Entries
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.invitedEntriesCount}}</span>
-        Invited Entries
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.submittedEntriesCount}}</span>
-        Submitted Entries
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.approvedEntriesCount}}</span>
-        Approved Entries
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.scratchedEntriesCount}}</span>
-        Scratched Entries
-      </li>
-      <li class="list-group-item">
-        <span class="badge">{{model.totalEntriesCount}}</span>
-        Total Entries
-      </li>
-    </ul>
+  <div class='row'>
+    <div class='col-md-4'>
+      {{!-- <ul class='list-unstyled'>
+        <li>Primary Award: {{primaryCP.award.name}}</li>
+      </ul> --}}
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h5>Counts</h5>
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.newEntriesCount}}</span>
+          New Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.invitedEntriesCount}}</span>
+          Invited Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.submittedEntriesCount}}</span>
+          Submitted Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.approvedEntriesCount}}</span>
+          Approved Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.scratchedEntriesCount}}</span>
+          Scratched Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.totalEntriesCount}}</span>
+          Total Entries
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section>
+  {{#if model.bbscores}}
     <h5>
       Downloads
     </h5>
     <ul class='list-unstyled'>
-      {{#if model.bbscores}}
         <li>BBScores CSV Export: &nbsp;<a href='{{model.bbscores}}'>{{fa-icon 'file-text-o'}}</a></li>
-      {{/if}}
     </ul>
-  </div>
+  {{/if}}
 </section>

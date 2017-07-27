@@ -3,8 +3,8 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   sortProperties: [
     'statusSort:asc',
-    'kindSort:asc',
-    'nomen',
+    'organizationKindSort:asc',
+    'nomen:asc',
   ],
   sortedSessions: Ember.computed.sort(
     'model',
