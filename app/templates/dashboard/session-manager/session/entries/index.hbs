@@ -1,3 +1,8 @@
+{{#if (eq model.status 'New')}}
+  <h4>
+    Entries can only be added once the Session has been Opened or Restricted.
+  </h4>
+{{else}}
 <section>
   <div class='row'>
     <div class='col-md-12'>
@@ -49,3 +54,4 @@
     {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}
   {{/unless}}
 </section>
+{{/if}}

@@ -18,16 +18,13 @@
           {{#nav.link-to "dashboard.session-manager.session.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.session-manager.session.awards"}}Awards{{/nav.link-to}}
+          {{#nav.link-to "dashboard.session-manager.session.contests"}}Contests{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.session-manager.session.entries"}}Entries{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.session-manager.session.draw"}}Draw{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.session-manager.session.contests"}}Contests{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}
@@ -66,7 +63,10 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        Open Text.
+        Opening the session makes it available for groups to enter the contest directly.  If this session is typically by Invitation Only (such as the International Convention) then choose "Restrict" instead.  Once opened, all Active groups within the District will receive an email that the Session is open and accepting entry submissions.
+      </p>
+      <p>
+        <strong>Important:</strong> Be sure you have selected all the awards that may be given out during this session prior to opening it.  You won't be able to change this later without significant effort.  See the "Contests" tab in the session manager to include awards in this session.
       </p>
       {{#if openSessionModalError}}
       <p class='text-danger'>
@@ -96,9 +96,12 @@
       <h4>Restrict Session</h4>
     {{/modal.header}}
     {{#modal.body}}
-      <p>
-        Restrict Text.
-      </p>
+    <p>
+      Restricing the session allows you to enter groups that have qualified.  If this session is not restricted then choose "Open" instead.  Once restricted, you will be able to start inviting groups to the session directly..
+    </p>
+    <p>
+      <strong>Important:</strong> Be sure you have selected all the awards that may be given out during this session prior to opening it.  You won't be able to change this later without significant effort.  See the "Contests" tab in the session manager to include awards in this session.
+    </p>
       {{#if restrictSessionModalError}}
       <p class='text-danger'>
         Could not Restrict Session.
@@ -128,7 +131,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        Close Text.
+        This closes the session to new entries (in the case of an "Open" session) and sets the initial draw randomly.  You will still be able to manually add entries or re-sort the draw.  Also, this is consider a "private" action; the draw and list of entries will not be made public until the next action is taken.
       </p>
       {{#if closeSessionModalError}}
       <p class='text-danger'>
@@ -159,7 +162,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        Verify Text.
+        This makes the draw public and sends a note to all entries that the session is officially verified and ready to go.  You can still manually add entries and rearrange the draw following verification; however, since it is public this should be done sparingly and only under truly exceptional circumstances.
       </p>
       {{#if verifySessionModalError}}
       <p class='text-danger'>
@@ -190,7 +193,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        Start Text.
+        This officially starts the session and represents the official handoff from the DRCJ to the Contest Administrator.  After the session is started it is put into a locked down state; you won't be able to add, scratch, re-arrange the draw or take any actions.  Any changes subsequent to a session Start must be handled by the CA.
       </p>
       {{#if startSessionModalError}}
       <p class='text-danger'>

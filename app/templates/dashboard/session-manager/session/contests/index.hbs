@@ -1,31 +1,60 @@
-<section>
-  <div class='row'>
-    <div class='col-md-6'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th  {{action 'sortBy' 'organizationKindSort'}} class='col-md-6'>Name</th>
-            {{!-- <th  {{action 'sortBy' 'kind'}}  class='col-md-2'>Kind</th> --}}
-            {{!-- <th class='col-md-1'>Delete</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedContests as |contest|}}
-            <tr>
-              <td>{{#link-to 'dashboard.session-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
-              {{!-- <td>{{contest.kind}}</td> --}}
-              {{!-- <td>{{fa-icon 'times-circle' click=(action 'deleteContest' contest) class='text-danger'}}</td> --}}
-            </tr>
-          {{else}}
-            <tr>
-              <td>No contests.</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+{{#if (eq model.status 'New')}}
+  <section>
+    <div class='row'>
+      <div class='col-md-9'>
+        <div class='table-responsive'>
+          <table class='table'>
+            <caption>Available Awards</caption>
+            <thead>
+              <tr>
+                <th>Include?</th>
+                <th {{action 'sortBy' 'name'}}>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedAwards as |award|}}
+                  <tr>
+                    {{#if award.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
+                      <td>{{award.name}}</td>
+                    {{/if}}
+                  </tr>
+              {{else}}
+                <tr>
+                  (No available awards.)
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-    <div class='col-md-6'>
-      {{outlet}}
+  </section>
+{{else}}
+  <section>
+    <div class='row'>
+      <div class='col-md-6'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th  {{action 'sortBy' 'organizationKindSort'}} class='col-md-6'>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedContests as |contest|}}
+              <tr>
+                <td>{{#link-to 'dashboard.session-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>No contests.</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+{{/if}}
