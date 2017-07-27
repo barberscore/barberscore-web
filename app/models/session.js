@@ -8,6 +8,7 @@ export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
+  isInvitational: DS.attr('boolean'),
   scoresheet: DS.attr('string'),
   bbscores: DS.attr('string'),
   numRounds: DS.attr('number'),
@@ -19,7 +20,6 @@ export default Model.extend({
 
   publish: memberAction({path: 'publish', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
-  restrict: memberAction({path: 'restrict', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
@@ -36,7 +36,6 @@ export default Model.extend({
 
   organizationKindSort: Ember.computed.alias('convention.organizationKindSort'),
   organizationNomen: Ember.computed.alias('convention.organizationNomen'),
-
 
   statusOptions: [
     'New',

@@ -20,21 +20,6 @@ export default Ember.Controller.extend({
       this.set('openSessionModalError', true);
     }
   }).drop(),
-  restrictSessionModal: false,
-  restrictSessionModalError: false,
-  restrictSession: task(function *() {
-    try {
-      let session = yield this.model.restrict({
-        'by': this.get('currentUser.user.id')
-      });
-      this.store.pushPayload('session', session);
-      this.set('restrictSessionModal', false);
-      this.set('restrictSessionModalError', false);
-      this.get('flashMessages').success("Restricted!");
-    } catch(e) {
-      this.set('restrictSessionModalError', true);
-    }
-  }).drop(),
   closeSessionModal: false,
   closeSessionModalError: false,
   closeSession: task(function *() {

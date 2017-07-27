@@ -7,6 +7,7 @@ export default Ember.Controller.extend({
   sessionCall: Ember.computed(function() {
     return this.get('store').query('session', {
       'status': 4, // TODO HARDCODED
+      'is_invitational': false,
       'page_size': 100
     });
   }),

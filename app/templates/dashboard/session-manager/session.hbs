@@ -39,8 +39,7 @@
         <ul class='list-inline'>
           {{#if (eq model.status 'New')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut openSessionModal) true)}}Open Session{{/bs-button}}</li>
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut restrictSessionModal) true)}}Restrict Session (Invitational){{/bs-button}}</li>
-          {{else if (or (eq model.status 'Opened')(eq model.status 'Restricted'))}}
+          {{else if (eq model.status 'Opened')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut closeSessionModal) true)}}Close Session{{/bs-button}}</li>
           {{else if (eq model.status 'Closed')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Verify Session{{/bs-button}}</li>
@@ -81,40 +80,6 @@
           Opening {{fa-icon "spinner" spin=true}}
         {{else}}
           Open Session
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=restrictSessionModal
-    onHidden=(pipe-action (action (mut restrictSessionModal) false) (action (mut restrictSessionModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Restrict Session</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-    <p>
-      Restricing the session allows you to enter groups that have qualified.  If this session is not restricted then choose "Open" instead.  Once restricted, you will be able to start inviting groups to the session directly..
-    </p>
-    <p>
-      <strong>Important:</strong> Be sure you have selected all the awards that may be given out during this session prior to opening it.  You won't be able to change this later without significant effort.  See the "Contests" tab in the session manager to include awards in this session.
-    </p>
-      {{#if restrictSessionModalError}}
-      <p class='text-danger'>
-        Could not Restrict Session.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform restrictSession)}}
-        {{#if restrictSession.isRunning}}
-          Restricting {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Restrict Session
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}
