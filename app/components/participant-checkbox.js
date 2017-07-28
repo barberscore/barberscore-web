@@ -22,11 +22,27 @@ export default Ember.Component.extend({
         member: this.get('member'),
         entry: this.get('model'),
       });
-      yield newParticipant.save();
-      this.get('flashMessages').success("Saved");
+      try {
+        yield newParticipant.save();
+        this.get('flashMessages').success("Saved");
+      } catch(e) {
+        e.errors.forEach((error) => {
+          this.get('flashMessages').danger(error.detail);
+        });
+        newParticipant.deleteRecord();
+      }
     } else {
-      let contestant = this.get('model.participants').findBy('member.id', this.get('member.id'));
-      contestant.destroyRecord().then(()=> this.get('flashMessages').success("Saved"));
+      let participant = this.get('model.participants').findBy('contest.id', this.get('contest.id'));
+      if (participant) {
+        try {
+          yield participant.destroyRecord();
+          this.get('flashMessages').success("Saved");
+        } catch(e) {
+          e.errors.forEach((error) => {
+            this.get('flashMessages').danger(error.detail);
+          });
+        }
+      }
     }
   }).restartable(),
 });
