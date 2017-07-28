@@ -32,7 +32,7 @@ export default Ember.Component.extend({
         newParticipant.deleteRecord();
       }
     } else {
-      let participant = this.get('model.participants').findBy('contest.id', this.get('contest.id'));
+      let participant = this.get('model.participants').findBy('member.id', this.get('member.id'));
       if (participant) {
         try {
           yield participant.destroyRecord();
