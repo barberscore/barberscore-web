@@ -65,6 +65,6 @@ export default Model.extend({
   ),
   groupKind: Ember.computed.alias('group.kind'),
   personName: Ember.computed.alias('person.name'),
-  personLast: Ember.computed.alias('person.last_name'),
+  personLast: Ember.computed.alias('person.lastName'),
   personNameExp: Ember.computed.alias('person.withExp')
 });
