@@ -7,7 +7,7 @@ export default Ember.Controller.extend({
     login () {
       const lockOptions = {
         autoclose: true,
-        icon: 'https://barberscore-api.herokuapp.com/static/api/bhs_logo.png',
+        icon: '/assets/bhs_logo.png',
         closeable: true,
         focusInput: true,
         gravatar: false,
