@@ -13,6 +13,10 @@ module.exports = function(defaults) {
     },
     fingerprint: {
       enabled: false
+    },
+    sourcemaps: {
+      enabled: true, // This allows sourcemaps to be generated in all environments
+      extensions: ['js']
     }
   });
 

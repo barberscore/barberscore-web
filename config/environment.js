@@ -96,6 +96,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.currentRevision = process.env.SOURCE_VERSION;
   }
   return ENV;
 };
