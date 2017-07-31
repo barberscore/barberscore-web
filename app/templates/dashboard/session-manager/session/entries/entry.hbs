@@ -195,7 +195,11 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
+            {{#if model.session.isInvitational}}
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
+            {{else}}
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
+            {{/if}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
@@ -285,7 +289,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This submits an entry directly.  Please note that there are disclaimers related to submission that are not included in a manual entry.
+        This submits an entry directly on behalf of a group.  Please make sure the group for whom you are submitting is aware of the requirements (such as copyright clearance, etc.).
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
@@ -297,7 +301,7 @@
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
       {{#bs-button type='primary' onClick=(perform submitEntry)}}
         {{#if submitEntry.isRunning}}
-          Submiting {{fa-icon "spinner" spin=true}}
+          Submitting {{fa-icon "spinner" spin=true}}
         {{else}}
           Submit Entry
         {{/if}}

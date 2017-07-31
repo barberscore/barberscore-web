@@ -19,7 +19,7 @@
               allowClear=true
               as |group|
             }}
-              Group: {{group.name}}
+              Group: {{group.nomen}} {{#if group.organization.shortName}}({{group.organization.shortName}}){{/if}}
             {{/power-select}}
         {{/form.element}}
         {{!-- {{#form.element property='organization' as |el|}}
