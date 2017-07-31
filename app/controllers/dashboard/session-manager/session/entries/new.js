@@ -36,6 +36,7 @@ export default Ember.Controller.extend({
       });
     },
     cancelEntry(){
+      this.get('model').deleteRecord();
       this.transitionToRoute('dashboard.session-manager.session.entries.index');
     },
     willTransition() {

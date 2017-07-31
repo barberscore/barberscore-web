@@ -30,7 +30,7 @@ export default Ember.Controller.extend({
       this.store.pushPayload('session', session);
       this.set('closeSessionModal', false);
       this.set('closeSessionModalError', false);
-      this.get('flashMessages').success("Closeed!");
+      this.get('flashMessages').success("Closed!");
     } catch(e) {
       this.set('closeSessionModalError', true);
     }
