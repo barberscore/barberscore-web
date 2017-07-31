@@ -198,7 +198,7 @@
             {{#if model.session.isInvitational}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
             {{else}}
-              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
             {{/if}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}
@@ -329,8 +329,8 @@
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform declineEntry)}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='danger' onClick=(perform declineEntry)}}
         {{#if declineEntry.isRunning}}
           Declining {{fa-icon "spinner" spin=true}}
         {{else}}
@@ -360,7 +360,7 @@
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="success"}}Cancel{{/bs-button}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
       {{#bs-button type='primary' onClick=(perform approveEntry)}}
         {{#if approveEntry.isRunning}}
           Approving {{fa-icon "spinner" spin=true}}
@@ -391,8 +391,8 @@
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform scratchEntry)}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='danger' onClick=(perform scratchEntry)}}
         {{#if scratchEntry.isRunning}}
           Scratching {{fa-icon "spinner" spin=true}}
         {{else}}

@@ -109,7 +109,7 @@ export default Ember.Controller.extend({
       this.store.pushPayload('entry', entry);
       this.set('submitEntryModal', false);
       this.set('submitEntryModalError', false);
-      this.get('flashMessages').success("Submit!");
+      this.get('flashMessages').success("Submitted!");
     } catch(e) {
       this.set('submitEntryModalError', true);
     }
