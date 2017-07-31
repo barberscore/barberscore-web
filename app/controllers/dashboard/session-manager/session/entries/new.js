@@ -5,32 +5,20 @@ export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
   searchGroup: task(function* (term){
     yield timeout(600);
-    // let groups = yield this.get('store').query('group', {
-    //     'nomen__icontains': term,
-    //     'status': 10,
-    //     'page_size': 1000,
-    //   });
-    // let filteredGroups = groups.filterBy('kind', this.get('model.kind'));
-    // return filteredGroups
-    return this.get('store').query('group', {
+    let kindOptions = {
+      'Chorus': 32,
+      'Quartet': 41,
+    };
+    let kindModel = this.get('model.session.kind');
+    let kindInt = kindOptions[kindModel];
+    let groups = yield this.get('store').query('group', {
         'nomen__icontains': term,
         'status': 10,
         'page_size': 1000,
+        'kind': kindInt,
       });
+    return groups
   }),
-  // representingCall: Ember.computed(function() {
-  //   return this.get('store').query('organization', {
-  //       'kind__lt': '30',
-  //       'page_size': 100,
-  //     });
-  // }),
-  // representingSortProperties: [
-  //   'orgSort:asc',
-  // ],
-  // representingOptions: Ember.computed.sort(
-  //   'representingCall',
-  //   'representingSortProperties'
-  // ),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
