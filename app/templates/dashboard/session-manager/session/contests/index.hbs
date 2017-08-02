@@ -1,7 +1,7 @@
 {{#if (eq model.status 'New')}}
   <section>
     <div class='row'>
-      <div class='col-md-9'>
+      <div class='col-md-12'>
         <div class='table-responsive'>
           <table class='table'>
             <caption>Available Awards</caption>
@@ -9,6 +9,7 @@
               <tr>
                 <th>Include?</th>
                 <th {{action 'sortByAward' 'name'}}>Name</th>
+                <th>Rounds</th>
               </tr>
             </thead>
             <tbody>
@@ -19,6 +20,7 @@
                     {{else}}
                       <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
                       <td>{{award.name}}</td>
+                      <td>{{award.rounds}}</td>
                     {{/if}}
                   </tr>
               {{else}}
