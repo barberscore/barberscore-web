@@ -78,13 +78,14 @@
     {{form.element
       controlType='text'
       placeholder='Location'
+      label="Location"
       property='location'
       disabled=isDisabled
       onChange=(perform autosave 'location')
     }}
     <div class='row'>
       <div class='col-md-6'>
-        {{#form.element property='openDate' as |el|}}
+        {{#form.element label="Open Date" property='openDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
@@ -95,7 +96,7 @@
         {{/form.element}}
       </div>
       <div class='col-md-6'>
-        {{#form.element property='closeDate' as |el|}}
+        {{#form.element label="Close Date" property='closeDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
@@ -108,7 +109,7 @@
     </div>
     <div class='row'>
       <div class='col-md-6'>
-        {{#form.element property='startDate' as |el|}}
+        {{#form.element label="Start Date" property='startDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
@@ -119,7 +120,7 @@
         {{/form.element}}
       </div>
       <div class='col-md-6'>
-        {{#form.element property='endDate' as |el|}}
+        {{#form.element label="End Date" property='endDate' as |el|}}
           {{bs-datetimepicker
             date=el.value
             format='YYYY-MM-DD'
