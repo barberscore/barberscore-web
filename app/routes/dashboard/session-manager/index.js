@@ -8,6 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       'convention__assignments__person__user': this.get('currentUser.user.id'),
       'page_size': 100,
       'status__lt': 95,
+      'convention__assignments__category': 5,
     });
   },
 });
