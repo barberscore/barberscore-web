@@ -24,7 +24,7 @@ export default Ember.Controller.extend({
           },
           error: {
             passwordless: {
-              "bad.connection":  "We're sorry, we can't log you in because that email is not registered with the BHS.  Try again with a different email address or contact customerservice@barbershop.org for assistance.",
+              "bad.connection":  "We're sorry, we can't log you in either because that email is not registered with the BHS or you are not the admin contact for your group.  Try again with a different email address or contact customerservice@barbershop.org for assistance.",
             }
           }
         },
