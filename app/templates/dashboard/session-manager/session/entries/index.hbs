@@ -28,7 +28,7 @@
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
                     {{#if entry.group.isLoading}}
-                    <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
                     <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
                   {{/if}}
