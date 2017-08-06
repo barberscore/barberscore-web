@@ -6,8 +6,11 @@ export default Ember.Controller.extend({
     'organizationKindSort:asc',
     'nomen:asc',
   ],
-  sortedSessions: Ember.computed.sort(
+  uniqueSessions: Ember.computed.uniq(
     'model',
+  ),
+  sortedSessions: Ember.computed.sort(
+    'uniqueSessions',
     'sortProperties'
   ),
   actions: {
