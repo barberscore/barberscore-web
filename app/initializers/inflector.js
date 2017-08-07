@@ -10,6 +10,7 @@ export function initialize(/* application */) {
   inflector.uncountable('contestant');
   inflector.uncountable('convention');
   inflector.uncountable('entry');
+  inflector.uncountable('grantor');
   inflector.uncountable('group');
   inflector.uncountable('member');
   inflector.uncountable('office');

@@ -41,6 +41,7 @@ export default Model.extend({
   conventions: DS.hasMany('convention', {async: true}),
   groups: DS.hasMany('group', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
+  grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),

@@ -16,6 +16,7 @@ export default Model.extend({
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
+  grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
   publish: memberAction({path: 'publish', type: 'post'}),
