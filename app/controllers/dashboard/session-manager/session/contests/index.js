@@ -20,29 +20,27 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  districtAwards: Ember.computed.alias('model.convention.organization.awards'),
-  divisionAwards: Ember.computed(
-    'model.convention.organization',
+  rawAwards: Ember.computed(
+    'model',
     function() {
       return this.get('store').query('award', {
-        'organization__parent': this.get('model.convention.organization.id'),
+        'organization__grantors__session': this.get('model.id'),
       });
     }
   ),
-  unionedAwards: Ember.computed.union(
-    'districtAwards',
-    'divisionAwards',
-  ),
   filteredAwards: Ember.computed(
-    'unionedAwards.@each.{kind,season}',
+    'rawAwards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
     function() {
-      return this.get('unionedAwards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
+      return this.get('rawAwards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
-  sortedAwards: Ember.computed.sort(
+  uniqueAwards: Ember.computed.uniq(
     'filteredAwards',
+  ),
+  sortedAwards: Ember.computed.sort(
+    'uniqueAwards',
     'awardSortProperties',
   ),
   actions: {
