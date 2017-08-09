@@ -20,6 +20,7 @@ export default Model.extend(Validations, {
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
   location: DS.attr('string', {defaultValue: ''}),
+  description: DS.attr('string'),
   venue: DS.belongsTo('venue', {async: true}),
   organization: DS.belongsTo('organization', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),

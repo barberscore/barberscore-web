@@ -75,6 +75,19 @@
         {{/form.element}}
       </div>
     </div>
+    {{#form.element property='panel' as |el|}}
+        {{#power-select
+              options=model.panelOptions
+              selected=el.value
+              onchange=(perform autosave 'panel')
+              placeholder="Choose Panel"
+              disabled=true
+              allowClear=true
+              as |panel|
+        }}
+          Panel: {{panel}}
+        {{/power-select}}
+    {{/form.element}}
     {{form.element
       controlType='text'
       placeholder='Location'
@@ -131,18 +144,7 @@
         {{/form.element}}
       </div>
     </div>
-    {{#form.element property='panel' as |el|}}
-        {{#power-select
-              options=model.panelOptions
-              selected=el.value
-              onchange=(perform autosave 'panel')
-              placeholder="Choose Panel"
-              disabled=isDisabled
-              allowClear=true
-              as |panel|
-        }}
-          Panel: {{panel}}
-        {{/power-select}}
-    {{/form.element}}
+    {{form.element label="Description" controlType='textarea' rows=5 placeholder='Description.  A general notes field, usually used for hotel, convention venue info.  Will be included in competitor entry emails.' property='description' onChange=(perform autosave 'description')
+}}
   {{/bs-form}}
 </section>
