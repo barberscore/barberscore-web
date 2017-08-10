@@ -37,12 +37,15 @@
   </div>
 </section>
 <section>
-  {{#if model.bbscores}}
     <h5>
       Downloads
     </h5>
     <ul class='list-unstyled'>
+      {{#if model.bbscores}}
         <li>BBScores CSV Export: &nbsp;<a href='{{model.bbscores}}'>{{fa-icon 'file-text-o'}}</a></li>
+      {{/if}}
+      {{#if model.drcjReport}}
+        <li>DRCJ Report CSV Export: &nbsp;<a href='{{model.drcjReport}}'>{{fa-icon 'file-text-o'}}</a></li>
+      {{/if}}
     </ul>
-  {{/if}}
 </section>

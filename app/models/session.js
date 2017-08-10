@@ -11,6 +11,7 @@ export default Model.extend({
   isInvitational: DS.attr('boolean'),
   scoresheet: DS.attr('string'),
   bbscores: DS.attr('string'),
+  drcjReport: DS.attr('string'),
   numRounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),

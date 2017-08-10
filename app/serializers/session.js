@@ -8,6 +8,9 @@ export default DS.JSONAPISerializer.extend({
       bbscores: {
         serialize: false
       },
+      drcjReport: {
+        serialize: false
+      },
       contests: {
         serialize: true
       },
