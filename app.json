@@ -22,7 +22,6 @@
     },
     "API_NAMESPACE": {
       "description": "The API version.  Don't edit unless necessary.",
-      "value": "api",
       "required": true
     },
     "AUTH0_CLIENT_ID": {
@@ -44,12 +43,10 @@
     },
     "BUGSNAG_NOTIFY_RELEASE": {
       "description": "Comma seperated list of release stages reported to Bugsnag.",
-      "value": "staging, production",
       "required": false
     },
     "BUGSNAG_RELEASE_STAGE": {
       "description": "The current release stage reported to Bugsnag.",
-      "value": "development",
       "required": false
     },
     "HEROKU_APP_NAME": {
