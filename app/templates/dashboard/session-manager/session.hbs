@@ -44,6 +44,7 @@
           {{else if (eq model.status 'Closed')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Verify Session{{/bs-button}}</li>
           {{else if (eq model.status 'Verified')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Re-Verify Session{{/bs-button}}</li>
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut startSessionModal) true)}}Start Session{{/bs-button}}</li>
           {{/if}}
         </ul>
