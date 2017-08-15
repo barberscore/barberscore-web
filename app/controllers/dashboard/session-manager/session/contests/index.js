@@ -25,6 +25,7 @@ export default Ember.Controller.extend({
     function() {
       return this.get('store').query('award', {
         'organization__grantors__session': this.get('model.id'),
+        'page_size': 100,
       });
     }
   ),
