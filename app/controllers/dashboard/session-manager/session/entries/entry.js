@@ -6,7 +6,7 @@ export default Ember.Controller.extend({
     'model.status',
     function(){
       let disabled = [
-        'Declined',
+        'Withdrawn',
         'Scratched',
         'Announced',
       ]
@@ -84,19 +84,19 @@ export default Ember.Controller.extend({
       this.set('deleteEntryModalError', true);
     }
   }).drop(),
-  declineEntryModal: false,
-  declineEntryModalError: false,
-  declineEntry: task(function *() {
+  withdrawEntryModal: false,
+  withdrawEntryModalError: false,
+  withdrawEntry: task(function *() {
     try {
-      let entry = yield this.model.decline({
+      let entry = yield this.model.withdraw({
         'by': this.get('currentUser.user.id'),
       });
       this.store.pushPayload('entry', entry);
-      this.set('declineEntryModal', false);
-      this.set('declineEntryModalError', false);
-      this.get('flashMessages').success("Declined!");
+      this.set('withdrawEntryModal', false);
+      this.set('withdrawEntryModalError', false);
+      this.get('flashMessages').success("Withdrawn!");
     } catch(e) {
-      this.set('declineEntryModalError', true);
+      this.set('withdrawEntryModalError', true);
     }
   }).drop(),
   submitEntryModal: false,

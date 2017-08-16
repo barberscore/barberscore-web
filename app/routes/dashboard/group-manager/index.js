@@ -1,13 +1,16 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
-export default Ember.Route.extend(AuthenticatedRouteMixin, {
-  currentUser: Ember.inject.service('current-user'),
-  model: function() {
-    return this.get('store').query('group', {
-      'members__person__user': this.get('currentUser.user.id'),
-      'status__gte': '0',
-      'page_size': 100
-    });
+export default Ember.Route.extend(AuthenticatedRouteMixin, RouteMixin, {
+  perPage: 20,
+  model(params) {
+    params = {}
+    params.paramMapping = {
+      page: "page",
+      perPage: "page_size",
+      total_pages: "pages"
+    };
+    return this.findPaged('group', params);
   },
 });

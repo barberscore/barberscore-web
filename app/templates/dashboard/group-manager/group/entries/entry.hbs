@@ -127,7 +127,7 @@
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Invitation{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut declineEntryModal) true)}}Decline Invitation{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Invitation{{/bs-button}}</li>
           {{else if (eq model.status 'Submitted')}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Approved')}}
@@ -179,30 +179,30 @@
 </section>
 <section>
   {{#bs-modal
-    open=declineEntryModal
-    onHidden=(pipe-action (action (mut declineEntryModal) false) (action (mut declineEntryModalError) false))
+    open=withdrawEntryModal
+    onHidden=(pipe-action (action (mut withdrawEntryModal) false) (action (mut withdrawEntryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Decline Entry</h4>
+      <h4>Withdraw Entry</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will formally decline your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
+        This will formally withdraw your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
-        Could not decline entry.  Please contact support.
+        Could not withdraw entry.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform declineEntry)}}
-        {{#if declineEntry.isRunning}}
+      {{#bs-button type='primary' onClick=(perform withdrawEntry)}}
+        {{#if withdrawEntry.isRunning}}
           Declining {{fa-icon "spinner" spin=true}}
         {{else}}
-          Decline Entry
+          Withdraw Entry
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}

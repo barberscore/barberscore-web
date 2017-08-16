@@ -13,6 +13,7 @@ export default DS.Transform.extend({
       70: 'Scratched',
       80: 'Disqualified',
       90: 'Announced',
+      95: 'Archived',
     };
     return map[serialized];
   },
@@ -29,7 +30,8 @@ export default DS.Transform.extend({
       'Scratched': 70,
       'Disqualified': 80,
       'Announced': 90,
-    };
+      'Archived': 95,
+};
     return map[deserialized];
   }
 });

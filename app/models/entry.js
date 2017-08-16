@@ -29,7 +29,7 @@ export default Model.extend({
   permissions: DS.attr(),
 
   invite: memberAction({path: 'invite', type: 'post'}),
-  decline: memberAction({path: 'decline', type: 'post'}),
+  withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
   scratch: memberAction({path: 'scratch', type: 'post'}),
@@ -57,7 +57,7 @@ export default Model.extend({
   statusOptions: [
     'New',
     'Invited',
-    'Declined',
+    'Withdrawn',
     'Submitted',
     'Approved',
     'Rejected',
