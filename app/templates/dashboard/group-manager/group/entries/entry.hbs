@@ -126,8 +126,8 @@
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Invitation{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Invitation{{/bs-button}}</li>
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Entry{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Submitted')}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Approved')}}
@@ -188,7 +188,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will formally withdraw your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
+        This will formally withdraw your entry in this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>

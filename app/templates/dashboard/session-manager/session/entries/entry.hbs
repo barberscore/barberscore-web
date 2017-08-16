@@ -197,6 +197,7 @@
           {{#if (eq model.status 'New')}}
             {{#if model.session.isInvitational}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
+              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
             {{else}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
             {{/if}}
@@ -320,7 +321,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will formally withdraw your invitation to this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
+        This will formally withdraw participation in this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
       </p>
       {{#if submitEntryModalError}}
       <p class='text-danger'>
