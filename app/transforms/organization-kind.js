@@ -1,14 +1,5 @@
 import DS from 'ember-data';
 
-export const organizationKindMap = {
-  'International': 1,
-  'District': 11,
-  'Noncompetitive': 12,
-  'Affiliate': 13,
-  'Division': 21,
-  'Chapter': 30,
-}
-
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
@@ -23,6 +14,14 @@ export default DS.Transform.extend({
   },
 
   serialize: function(deserialized) {
-    return organizationKindMap[deserialized];
+    var map = {
+      'International': 1,
+      'District': 11,
+      'Noncompetitive': 12,
+      'Affiliate': 13,
+      'Division': 21,
+      'Chapter': 30,
+    };
+    return map[deserialized];
   }
 });

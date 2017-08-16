@@ -13,7 +13,6 @@ export default DS.Transform.extend({
       50: 'Scratched',
       60: 'Cleared',
       90: 'Announced',
-      95: 'Archived',
     };
     return map[serialized];
   },
@@ -30,7 +29,6 @@ export default DS.Transform.extend({
       'Scratched': 50,
       'Cleared': 60,
       'Announced': 90,
-      'Archived': 95,
     };
     return map[deserialized];
   }
