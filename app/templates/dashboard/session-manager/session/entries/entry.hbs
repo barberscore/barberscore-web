@@ -197,7 +197,6 @@
           {{#if (eq model.status 'New')}}
             {{#if model.session.isInvitational}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
-              <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
             {{else}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Approve Entry{{/bs-button}}</li>
             {{/if}}
@@ -259,7 +258,7 @@
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        This will delete the entry.  This should only be used for errors or other cases where the entry should never have existed in the first place.  Otherwise, you should use "Withdraw" or "Scratch".
+        This will delete the entry.  This should generally be used for errors or other cases where the entry should never have existed in the first place, including for invitationals where the entry will not receive an invitation to the contest (either because all slots have already been filled or their qualifying score is too low.)
       </p>
       {{#if deleteEntryModalError}}
       <p class='text-danger'>
