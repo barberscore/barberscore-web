@@ -13,15 +13,15 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedGroups as |group|}}
+        {{#each sortedMembers as |member|}}
           <tr>
-            <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
-            <td>{{group.kind}}</td>
-            <td>{{group.status}}</td>
+            <td>{{#link-to 'dashboard.group-manager.group.details' member.group}}{{member.group.name}}{{/link-to}}</td>
+            <td>{{member.group.kind}}</td>
+            <td>{{member.group.status}}</td>
           </tr>
         {{else}}
           <tr>
-            <td>(You are not part of any Active Group at this time.)</td>
+            <td>(You are not listed as an Admin for any group.  Please contact support for assistance.)</td>
           </tr>
         {{/each}}
       </tbody>

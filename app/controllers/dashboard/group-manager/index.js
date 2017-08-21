@@ -1,12 +1,11 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  sortedGroupsProperties: [
-    'statusSort',
-    'name',
+  sortedMembersProperties: [
+    'groupSort',
   ],
-  sortedGroups: Ember.computed.sort(
+  sortedMembers: Ember.computed.sort(
     'model',
-    'sortedGroupsProperties'
+    'sortedMembersProperties'
   ),
 });
