@@ -9,8 +9,13 @@ export default Ember.Controller.extend({
     'personLast',
     'nomen',
   ],
-  sortedMembers: Ember.computed.sort(
+  filteredMembers: Ember.computed.filterBy(
     'model.members',
+    'status',
+    'Active',
+  ),
+  sortedMembers: Ember.computed.sort(
+    'filteredMembers',
     'sortedMembersProperties'
   ),
   actions: {

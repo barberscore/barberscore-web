@@ -1,52 +1,51 @@
-<section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th>Person</th>
-          <th>Part</th>
-          {{!-- <th>Start</th> --}}
-          {{!-- <th>End</th> --}}
-          <th>Admin</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedMembers as |member|}}
-          <tr>
-            {{#if member.isLoading}}
-              <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>
-                {{#if member.person.isLoading}}
-                  <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                {{else}}
-                  {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.nomen}}{{/link-to}}
-                {{/if}}
-              </td>
-              <td>
-                {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
-              </td>
-              {{!-- <td>{{moment-format member.start_date 'LL'}}</td> --}}
-              {{!-- <td>{{moment-format member.end_date 'LL'}}</td> --}}
-              <td>{{boolean-checkmark value=member.isAdmin}}</td>
-              <td>{{member.status}}</td>
-            {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td colspan=3>(No members.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-</section>
-{{#if model.permissions.write}}
+  <div class='col-md-6'>
   <section>
-    <p>{{#bs-button onClick=(action 'createMember') disabled=isDisabled type='success'}}Add Member{{/bs-button}}</p>
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class='col-md-4'>Person</th>
+            <th class='col-md-1'>Part</th>
+            {{!-- <th>Start</th> --}}
+            {{!-- <th>End</th> --}}
+            <th class='col-md-1'>Admin</th>
+            {{!-- <th>Status</th> --}}
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedMembers as |member|}}
+            <tr>
+              {{#if member.isLoading}}
+                <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>
+                  {{#if member.person.isLoading}}
+                    <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.nomen}}{{/link-to}}
+                  {{/if}}
+                </td>
+                <td>
+                  {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
+                </td>
+                {{!-- <td>{{moment-format member.start_date 'LL'}}</td> --}}
+                {{!-- <td>{{moment-format member.end_date 'LL'}}</td> --}}
+                <td>{{boolean-checkmark value=member.isAdmin}}</td>
+                {{!-- <td>{{member.status}}</td> --}}
+              {{/if}}
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan=3>(No members.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <section>
     <p>
-      <strong>Note:</strong>  Memberships are primarily managed through the BHS Member Center.  We allow edits to this information as a convenience; please note that whatever is on the Member Center is the most up-to-date.
+      <strong>Note:</strong>  This information comes from the BHS Member Center and is updated every 24 hours.  To make changes to your group's membership please do so there.  Only currently Active members (as defined by the BHS Member Center) are shown.
     </p>
   </section>
-{{/if}}
+</div>

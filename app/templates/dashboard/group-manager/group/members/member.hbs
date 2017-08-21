@@ -30,7 +30,7 @@
               selected=el.value
               onchange=(perform autosave 'part')
               placeholder="Enter Primary Part"
-              disabled=isDisabled
+              disabled=true
               allowClear=true
               as |part|
             }}
@@ -48,7 +48,9 @@
               {{#bg.button type='default' value=false disabled=isDisabled}}Not Group Admin{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
-
+          <p>
+            <strong>Note:</strong>  If you disable yourself you will be immediately be prevented from making any further changes to this group.
+          </p>
 
 
             {{!-- <div class='row'>
@@ -80,7 +82,7 @@
       </div>
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      <ul class='list-inline'>
+      {{!-- <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateMemberModal) true)}}Activate Member{{/bs-button}}</li>
@@ -94,12 +96,12 @@
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Member Status: <strong>{{model.status}}</strong></h4></li>
-      </ul>
+      </ul> --}}
     </div>
   </div>
 </section>
 </div>
-<section>
+{{!-- <section>
   {{#bs-modal
     open=activateMemberModal
     onHidden=(pipe-action (action (mut activateMemberModal) false) (action (mut activateMemberModalError) false))
@@ -194,4 +196,4 @@
       {{/bs-button}}
     {{/modal.footer}}
   {{/bs-modal}}
-</section>
+</section> --}}
