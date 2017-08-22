@@ -13,6 +13,7 @@ export default Model.extend({
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   rank: DS.attr('number'),
+  directors: DS.attr('string', {defaultValue: ''}),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),
