@@ -55,7 +55,7 @@
     "ember-font-awesome": "3.0.5",
     "ember-moment": "^7.3.0",
     "ember-multiselect-checkboxes": "0.10.3",
-    "ember-power-select": "1.9.2",
+    "ember-power-select": "1.9.5",
     "ember-simple-auth": "1.4.0",
     "ember-simple-auth-auth0": "https://github.com/XaserAcheron/ember-simple-auth-auth0.git#bower-nix-v1",
     "ember-sortable": "^1.9.3",
