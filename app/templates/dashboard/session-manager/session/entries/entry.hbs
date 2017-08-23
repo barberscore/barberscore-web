@@ -40,6 +40,9 @@
               {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
             {{/bs-button-group}}
           {{/form.element}}
+          {{#if (eq model.group.kind 'Chorus')}}
+            {{form.element controlType='text' disabled=false placeholder='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
+          {{/if}}
         {{/bs-form}}
       </section>
       <hr>
