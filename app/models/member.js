@@ -63,7 +63,9 @@ export default Model.extend({
       return this.get('person.nomen') + " - " + partOut;
     }
   ),
-  groupKind: Ember.computed.alias('group.kind'),
+  groupStatus: Ember.computed.alias('group.statusSort'),
+  groupName: Ember.computed.alias('group.name'),
+  groupKind: Ember.computed.alias('group.kindSort'),
   personName: Ember.computed.alias('person.name'),
   personLast: Ember.computed.alias('person.lastName'),
   personNameExp: Ember.computed.alias('person.withExp')
