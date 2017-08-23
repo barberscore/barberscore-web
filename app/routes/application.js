@@ -7,7 +7,8 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   currentUser: service(),
 
   beforeModel() {
-    this._super(...arguments).then(() => this._loadCurrentUser());
+    this._super(...arguments);
+    return this._loadCurrentUser();
   },
 
   sessionAuthenticated() {
