@@ -125,9 +125,10 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Performing?</th>
-                <th>Name</th>
-                <th>Dues Thru</th>
+                <th class='col-md-1'>Performing?</th>
+                <th class='col-md-2'>Name</th>
+                <th class='col-md-1'>Part</th>
+                <th class='col-md-1'>Expires</th>
               </tr>
             </thead>
             <tbody>
@@ -149,7 +150,8 @@
                       {{else}}
                         <td>{{member.person.name}}</td>
                       {{/if}}
-                      <td>{{moment-format member.person.duesThru 'LL'}}</td>
+                      <td>{{member.part}}</td>
+                      <td>{{moment-format member.validThrough 'LL'}}</td>
                     {{/if}}
                   </tr>
               {{else}}
