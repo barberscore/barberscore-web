@@ -23,6 +23,7 @@ export default Model.extend({
   airports: DS.attr(),
   image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
+  isBhs: DS.attr('boolean'),
   bhsId: DS.attr('number'),
   commonName: DS.attr('string'),
   fullName: DS.attr('string'),

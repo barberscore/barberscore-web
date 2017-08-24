@@ -32,6 +32,7 @@ export default Model.extend({
   phone: DS.attr('string'),
   image: DS.attr('string'),
   description: DS.attr('string'),
+  isBhs: DS.attr('boolean'),
   bhsId: DS.attr('number'),
   orgSort: DS.attr('number'),
   organization: DS.belongsTo('organization', {async: true}),
@@ -45,10 +46,6 @@ export default Model.extend({
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
-
-  isBHS: Ember.computed.notEmpty(
-    'bhsId',
-  ),
 
   isActive: Ember.computed.equal(
     'status',
