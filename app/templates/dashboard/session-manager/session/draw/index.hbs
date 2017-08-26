@@ -6,53 +6,33 @@
   {{else}}
     <div class='row'>
       <div class='col-md-12'>
-        {{#unless (eq model.status 'Started')}}
-          {{#if isSorting}}
-            {{#bs-button onClick=(action (mut isSorting) false)}}Cancel{{/bs-button}}
-            {{#bs-button type='primary' onClick=(action 'saveOrder')}}Save{{/bs-button}}
-          {{else}}
-            {{#bs-button onClick=(action (mut isSorting) true)}}Sort{{/bs-button}}
-          {{/if}}
-        {{/unless}}
         <table class='table'>
           <thead>
             <tr>
               <th class='col-md-1'>Number</th>
               <th class='col-md-4'>Name</th>
               <th class='col-md-1'>Status</th>
-              {{#if isSorting}}<th class='col-md-1'>Rearrange</th>{{/if}}
+              <th class='col-md-1'>Rearrange</th>
             </tr>
           </thead>
-            {{#if isSorting}}
-              {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-                {{#each sortedEntries as |item|}}
-                  {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
-                    <td>
-                      {{item.draw}}
-                    </td>
-                    <td>
-                      {{item.group.name}}
-                    </td>
-                    <td>{{item.status}}</td>
-                    <td><span class="handle" data-item="{{item}}">&vArr;</span></td>
-                  {{/sortable-item}}
-                {{/each}}
-              {{/sortable-group}}
-            {{else}}
-              <tbody>
-                {{#each sortedEntries as |entry|}}
-                  <tr>
-                    <td>{{entry.draw}}</td>
-                    <td>{{entry.group.name}}</td>
-                    <td>{{entry.status}}</td>
-                  </tr>
-                {{else}}
-                  <tr>
-                    <td>(No entries.)</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-            {{/if}}
+            {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+              {{#each sortedEntries as |item|}}
+                {{#sortable-item tagName="tr" model=item group=group handle=".handle"}}
+                  <td>
+                    {{item.draw}}
+                  </td>
+                  <td>
+                    {{item.group.name}}
+                  </td>
+                  <td>{{item.status}}</td>
+                  <td>{{#unless (eq model.status 'Started')}}<span class="handle" data-item="{{item}}">&vArr;</span>{{/unless}}</td>
+                {{/sortable-item}}
+              {{else}}
+                <tr>
+                  <td>(No entries.)</td>
+                </tr>
+              {{/each}}
+            {{/sortable-group}}
         </table>
       </div>
     </div>

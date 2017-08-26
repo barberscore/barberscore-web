@@ -3,7 +3,6 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   flashMessages: Ember.inject.service(),
-  isSorting: false,
   entrySortProperties: [
     'draw:asc',
   ],
@@ -21,6 +20,8 @@ export default Ember.Controller.extend({
       itemModels.forEach(function(item, index) {
         item.set('draw', index + 1);
       });
+      itemModels.invoke('save');
+      this.get('flashMessages').success('Success');
     },
     saveOrder() {
       this.get('sortedEntries').invoke('save');
