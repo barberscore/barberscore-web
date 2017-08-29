@@ -19,22 +19,25 @@
     </p>
     {{#bs-collapse collapsed=collapsed}}
         <p>
-          Some users have reported getting stuck in a loop where they are redirected back to the login page but aren't logged in.  If this happens to you, here is the workaround:
+          Some users have reported getting stuck in a loop where they are redirected back to the login page but aren't logged in.  If this happens to you, try this workaround:
           <ol>
             <li>Click on the login button.</li>
             <li>Enter your email.</li>
             <li>When the email arrives, click the sign in button.</li>
-            <li>When you come back to the login page <em>don't click the login button again!</em></li>
+            <li>When you come back to the login page <strong>don't click the login button again!</strong></li>
             <li>Instead, click in the browser address bar (where the URL is) and hit enter/return.   Sometimes several key presses is necessary for the URL to register.</li>
             <li>If this still doesn't work, then click the 'reload/refresh' icon to try to load the URL.</li>
-            <li>When the URL registers you should see the dashboard, indicating you're logged in.</li>
+            <li>If the URL registers you should see the dashboard, indicating you're logged in.</li>
           </ol>
         </p>
         <p>
-          To explain what's happening, the sign in button in the email has a special access token embedded in the URL that allows you entry into the site.  However, in some cases the browser is simply not recognizing that there is a new URL, and so it sits there instead of processing the link.  This workaround is simply trying to force the browser to process the URL that is in the address bar.
+          If this process doesn't work then please try using a smartphone, tablet, or another computer (home/work/spouse/child).  We have found that Windows 7 in particular is causing people trouble.
         </p>
         <p>
-          If this process doesn't work then contact customerservice@barbershop.org and we'll figure out another solution.  Sorry for the trouble and thanks for your patience as we work out these bugs.
+          We know this is very frustrating and we're working hard to isolate the cause.  Please don't hestiate to reach out to customerservice@barbershop.org for additional help.
+        </p>
+        <p>
+          <small>To explain what's happening, the sign in button in the email has a special access token embedded in the URL that allows you entry into the site.  However, in some cases the browser is simply not recognizing that there is a new URL, and so it sits there instead of processing the link.  This workaround is simply trying to force the browser to process the URL that is in the address bar.</small>
         </p>
     {{/bs-collapse}}
   </div>
