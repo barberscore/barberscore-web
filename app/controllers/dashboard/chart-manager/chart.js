@@ -1,6 +1,9 @@
 import Ember from 'ember';
 import config from '../../../config/environment';
-import { task, timeout } from 'ember-concurrency';
+import {
+  task,
+  timeout
+} from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   store: Ember.inject.service(),
@@ -9,7 +12,7 @@ export default Ember.Controller.extend({
   isDisabled: Ember.computed.not(
     'model.permissions.write'
   ),
-  uploadPhoto: task(function * (file) {
+  uploadPhoto: task(function* (file) {
     try {
       const host = config.APP.API_HOST;
       const namespace = config.APP.API_NAMESPACE;
@@ -22,37 +25,37 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
-  autosave: task(function* (property, value){
+  autosave: task(function* (property, value) {
     this.get('model').set(property, value);
     yield timeout(1000);
     try {
       yield this.get('model').save();
       this.get('flashMessages').success("Saved");
-    } catch(e) {
+    } catch (e) {
       e.errors.forEach((error) => {
         this.get('flashMessages').danger(error.detail);
       })
     }
   }).restartable(),
-  activateChart: task(function *() {
+  activateChart: task(function* () {
     try {
       let chart = yield this.model.activate({
         'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('chart', chart);
       this.get('flashMessages').success("Activated!");
-    } catch(e) {
+    } catch (e) {
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
-  deactivateChart: task(function *() {
+  deactivateChart: task(function* () {
     try {
       let chart = yield this.model.deactivate({
         'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('chart', chart);
       this.get('flashMessages').success("Deactivated!");
-    } catch(e) {
+    } catch (e) {
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
@@ -60,24 +63,26 @@ export default Ember.Controller.extend({
   sortedItems: Ember.computed.alias('chartManager.sortedItems'),
   isPrevDisabled: Ember.computed(
     'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
+    'sortedItems',
+    function () {
+      return this.model == this.get('sortedItems.firstObject');
+    }),
   isNextDisabled: Ember.computed(
     'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
+    'sortedItems',
+    function () {
+      return this.model == this.get('sortedItems.lastObject');
+    }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      let newCur = this.get('sortedItems').objectAt(nowCur - 1);
       this.transitionToRoute('dashboard.chart-manager.chart', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      let newCur = this.get('sortedItems').objectAt(nowCur + 1);
       this.transitionToRoute('dashboard.chart-manager.chart', newCur);
     },
   }
-  });
+});
