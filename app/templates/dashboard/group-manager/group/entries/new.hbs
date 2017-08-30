@@ -1,42 +1,29 @@
 <div class='col-md-10'>
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
-      <h4>
-        (New Entry)
-      </h4>
-    </div>
-    <div class='panel-body'>
-      <section>
-          {{#bs-form
-            formLayout="vertical"
-            model=model
-            onSubmit=(perform saveEntry)
-            as |form|
-          }}
+  <section>
+    <div class='panel panel-default'>
+      <div class='panel-heading fixed-panel-header'>
+        <h4>
+          (New Entry)
+        </h4>
+      </div>
+      <div class='panel-body'>
+        <section>
+          {{#bs-form formLayout="vertical" model=model onSubmit=(perform saveEntry) as |form| }}
             {{#form.element property='session' as |el|}}
-              {{#power-select
-                options=sessionOptions
-                selected=el.value
-                onchange=(action (mut el.value))
-                placeholder="Choose Session"
-                allowClear=true
-                noMatchesMessage="No Sessions are Currently Open."
-                as |session|
-              }}
-                Session: {{session.nomen}}; {{session.convention.location}}, {{moment-format session.convention.startDate 'LL'}}
+              {{#power-select options=sessionOptions selected=el.value onchange=(action (mut el.value)) searchField='nomen' placeholder="Choose Session"
+                allowClear=true noMatchesMessage="We Could Not Find an Open Session with that Name" as |session| }} Session: {{session.nomen}}; {{session.convention.location}}, {{moment-format session.convention.startDate 'LL'}}
               {{/power-select}}
             {{/form.element}}
             {{#bs-button type='default' onClick=(action "clearEntry")}}Cancel{{/bs-button}}
-            {{#bs-button type='success' buttonType='submit'}}Save{{/bs-button}}
+            {{#bs-button type='success' buttonType='submit' }}Save{{/bs-button}}
           {{/bs-form}}
-      </section>
-      <section>
+        </section>
+        <section>
           <p>
-            <strong>Note:</strong>  You can enter any session currently listed as Open.  If "No Results Found"
+            <strong>Note:</strong> You can enter any session currently listed as Open. If "No Results Found"
           </p>
-      </section>
+        </section>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </div>
