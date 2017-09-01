@@ -7,6 +7,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       'isEvaluation': true,
       'isPrivate': false,
       'group': this.modelFor('dashboard.group-manager.group'),
+      'appearances': [],
+      'contestants': [],
+      'participants': [],
     });
   },
 });
