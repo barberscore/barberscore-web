@@ -1,40 +1,50 @@
-# Barberscore-Web
+# barberscore-web
 
+This README outlines the details of collaborating on this Ember application.
+A short introduction of this app could easily go here.
 
-This is the front-end website for the new Contest Manager of the Barbershop Harmony Society.  
+## Prerequisites
 
-It is based on the Ember javascript app framework.  To set up your local environment:
+You will need the following things properly installed on your computer.
 
-Install Dependencies:
-  - Install Git
-  - Install Node & NPM (https://nodejs.org/en/)
-  - Install Watchman (optional)
-  - Install PhantomJS (optional)
+* [Git](https://git-scm.com/)
+* [Node.js](https://nodejs.org/) (with NPM)
+* [Ember CLI](https://ember-cli.com/)
+* [Google Chrome](https://google.com/chrome/)
 
-Install Ember globally:
-  - `npm install -g ember-cli@2.14`
+## Installation
 
-Clone the Repo and CD into it.
+* `git clone <repository-url>` this repository
+* `cd barberscore-web`
+* `npm install`
 
-Install Barberscore-Web application:
-  - `npm install`
+## Running / Development
 
-Be sure you have the following local environment variables set:
-```
-API_HOST='http://localhost:8000' (or your API)
-API_NAMESPACE='api' (or your API)
+* `ember serve`
+* Visit your app at [http://localhost:4200](http://localhost:4200).
 
-AUTH0_DOMAIN='barberscore-dev.auth0.com'
-AUTH0_AUDIENCE='https://barberscore.auth0.com/api/v2/'
-AUTH0_CLIENT_ID='C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF'
+### Code Generators
 
-BUGSNAG_API_KEY='a231990acfb72a00bf3951369ad75390'
-BUGSNAG_NOTIFY_RELEASE='production,staging'
-```
+Make use of the many generators for code, try `ember help generate` for more details
 
+### Running Tests
 
-Finally, run `ember serve` to start the local development server.
+* `ember test`
+* `ember test --server`
 
-For more details on Ember, see https://emberjs.com
+### Building
 
-Any questions?  Reach out to admin@barberscore.com
+* `ember build` (development)
+* `ember build --environment production` (production)
+
+### Deploying
+
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+* [ember.js](https://emberjs.com/)
+* [ember-cli](https://ember-cli.com/)
+* Development Browser Extensions
+  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)

@@ -1,9 +1,10 @@
 /* eslint-env node */
+'use strict';
 
-module.exports = function(environment) {
-  var ENV = {
+module.exports = function (environment) {
+  let ENV = {
     modulePrefix: 'barberscore-web',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     moment: {
@@ -22,29 +23,16 @@ module.exports = function(environment) {
         '\'unsafe-eval\'',
         'http://localhost:4200',
         'https://*.auth0.com',
-        'https://widget.intercom.io',
-        'https://js.intercomcdn.com',
-      ].join(' '),
-      'media-src': [
-        'https://js.intercomcdn.com',
       ].join(' '),
       'img-src': [
         'data:',
         '*.gravatar.com',
         '*.wp.com',
         'https://*.auth0.com',
-        'https://static.intercomcdn.com',
-        'https://js.intercomcdn.com',
       ].join(' '),
       'connect-src': [
         'http://localhost:4200',
         'https://*.auth0.com',
-        'https://api-iam.intercom.io',
-        'https://api-ping.intercom.io',
-        'https://nexus-websocket-a.intercom.io',
-        'https://nexus-websocket-b.intercom.io',
-        'wss://nexus-websocket-a.intercom.io',
-        'wss://nexus-websocket-b.intercom.io',
       ].join(' ')
     },
     EmberENV: {
@@ -77,11 +65,11 @@ module.exports = function(environment) {
   ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
 
   if (environment === 'development') {
-    ENV.APP.LOG_RESOLVER = false;
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_TRANSITIONS = false;
-    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
 
   if (environment === 'test') {
