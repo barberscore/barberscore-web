@@ -1,10 +1,19 @@
 import Ember from 'ember';
-import { task } from 'ember-concurrency';
+import {
+  task
+} from 'ember-concurrency';
 
 export default Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not('model.permissions.write'),
+  isNew: Ember.computed.equal('model.status', 'New'),
+  isEditable: Ember.computed.and(
+    'model.permissions.write',
+    'isNew',
+  ),
+  isDisabled: Ember.computed.not(
+    'isEditable',
+  ),
   awardSortProperties: [
     'organizationKindSort',
     'isQualifier',
@@ -16,7 +25,7 @@ export default Ember.Controller.extend({
     'model.convention.organization.awards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
-    function() {
+    function () {
       return this.get('model.convention.organization.awards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
@@ -24,7 +33,7 @@ export default Ember.Controller.extend({
     'filteredAwards',
     'awardSortProperties',
   ),
-  publishSession: task(function *() {
+  publishSession: task(function* () {
     let session = yield this.model.publish({
       'by': this.get('currentUser.user.id')
     });
@@ -38,23 +47,25 @@ export default Ember.Controller.extend({
   sortedItems: Ember.computed.alias('sessionManager.sortedSessions'),
   isPrevDisabled: Ember.computed(
     'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
+    'sortedItems',
+    function () {
+      return this.model == this.get('sortedItems.firstObject');
+    }),
   isNextDisabled: Ember.computed(
     'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
+    'sortedItems',
+    function () {
+      return this.model == this.get('sortedItems.lastObject');
+    }),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      let newCur = this.get('sortedItems').objectAt(nowCur - 1);
       this.transitionToRoute('dashboard.convention-manager.convention.sessions.session', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      let newCur = this.get('sortedItems').objectAt(nowCur + 1);
       this.transitionToRoute('dashboard.convention-manager.convention.sessions.session', newCur);
     },
   },
