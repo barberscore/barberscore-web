@@ -9,17 +9,20 @@ export default Ember.Controller.extend({
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      let newCur = this.get('sortedItems').objectAt(nowCur - 1);
       this.transitionToRoute('dashboard.organization-manager.organization.awards.award', newCur);
     },
     nextItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      let newCur = this.get('sortedItems').objectAt(nowCur + 1);
       this.transitionToRoute('dashboard.organization-manager.organization.awards.award', newCur);
     },
     newAward() {
       let newAward = this.store.createRecord(
-        'award'
+        'award', {
+          children: [],
+          contests: [],
+        }
       );
       this.set('model', newAward);
       this.set('isEditing', true);
@@ -33,17 +36,17 @@ export default Ember.Controller.extend({
     },
     deleteAward() {
       this.model.destroyRecord()
-      .then(() => {
-        this.get('flashMessages').warning('Deleted');
-        this.transitionToRoute('dashboard.organization-manager.organization.awards.award');
-      });
+        .then(() => {
+          this.get('flashMessages').warning('Deleted');
+          this.transitionToRoute('dashboard.organization-manager.organization.awards.award');
+        });
     },
     saveAward() {
       this.model.save()
-      .then(() => {
-        this.set('isEditing', false);
-        this.get('flashMessages').success('Saved');
-      });
+        .then(() => {
+          this.set('isEditing', false);
+          this.get('flashMessages').success('Saved');
+        });
     },
   }
 });

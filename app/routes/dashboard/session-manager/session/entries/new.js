@@ -7,6 +7,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       'isEvaluation': true,
       'isPrivate': false,
       'session': this.modelFor('dashboard.session-manager.session'),
+      'appearances': [],
+      'contestants': [],
+      'participants': [],
     });
   },
 });

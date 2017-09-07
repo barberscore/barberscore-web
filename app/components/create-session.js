@@ -5,7 +5,8 @@ export default Ember.Component.extend({
   openModal: false,
   flashMessages: Ember.inject.service(),
   awardCall: Ember.computed(
-    'model.convention.id', function() {
+    'model.convention.id',
+    function () {
       return this.get('store').query('award', {
         'convention': this.get('model.convention.id'),
         'page_size': 100
@@ -14,7 +15,7 @@ export default Ember.Component.extend({
   awardFilter: Ember.computed(
     'awardCall',
     'model.kind',
-    function() {
+    function () {
       return this.get('awardCall').filterBy('kind', this.get('model.kind'));
     }
   ),
@@ -32,17 +33,18 @@ export default Ember.Component.extend({
   actions: {
     saveSession() {
       this.get('model').save()
-      .then((response) => {
-        // TODO More hackery
-        this.get('awards').forEach(function(award) {
-          let contest = response.get('contests').createRecord({
-            award: award
+        .then((response) => {
+          // TODO More hackery
+          this.get('awards').forEach(function (award) {
+            let contest = response.get('contests').createRecord({
+              award: award,
+              contestants: [],
+            });
+            contest.save();
           });
-          contest.save();
+          this.get('flashMessages').success('Success');
+          this.set('openModal', false);
         });
-        this.get('flashMessages').success('Success');
-        this.set('openModal', false);
-      });
     },
     clearSession() {
       this.get('model').deleteRecord();

@@ -6,6 +6,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').createRecord('award', {
       'status': 'Active',
       'isManual': false,
+      children: [],
+      contests: [],
     });
   },
 });

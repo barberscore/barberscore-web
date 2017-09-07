@@ -6,6 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').createRecord('member', {
       'status': 'Provisional',
       'group': this.modelFor('dashboard.group-manager.group'),
+      'participants': [],
     });
   },
 });

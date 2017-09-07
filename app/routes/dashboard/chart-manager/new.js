@@ -4,7 +4,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').createRecord('chart', {
-      'status': 'Active'
+      'status': 'Active',
+      repertories: [],
+      songs: [],
     });
   },
 });
