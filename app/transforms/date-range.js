@@ -2,15 +2,15 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Transform.extend({
-  serialize: function(value) {
+  serialize: function (value) {
     try {
-      if (value.get('lower') != null && value.get('upper')!=null) {
+      if (value.get('lower') != null && value.get('upper') != null) {
         return {
           lower: value.get('lower'),
           upper: value.get('upper'),
           bounds: "[)"
         };
-      } else if (value.get('lower') != null && value.get('upper')==null) {
+      } else if (value.get('lower') != null && value.get('upper') == null) {
         return {
           lower: value.get('lower'),
           upper: null,
@@ -19,15 +19,15 @@ export default DS.Transform.extend({
       } else {
         return {};
       }
-    } catch(err) {
+    } catch (err) {
       return {};
     }
   },
-  deserialize: function(value) {
+  deserialize: function (value) {
     if (value) {
       return Ember.Object.create({
-          lower: value['lower'],
-          upper: value['upper']
+        lower: value['lower'],
+        upper: value['upper']
       });
     } else {
       return null;
