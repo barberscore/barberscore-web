@@ -2504,7 +2504,7 @@ ember-cli-babel@^5.0.0, ember-cli-babel@^5.1.5, ember-cli-babel@^5.1.6, ember-cl
     ember-cli-version-checker "^1.0.2"
     resolve "^1.1.2"
 
-ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.0, ember-cli-babel@^6.8.1:
+ember-cli-babel@^6.0.0, ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.1.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.4.1, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2:
   version "6.8.2"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.8.2.tgz#eac2785964f4743f4c815cd53c6288f00cc087d7"
   dependencies:
@@ -2686,21 +2686,21 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.12.tgz#af2e77eba5dcb0d77f3308d3a6fd7d3450f6e537"
 
-ember-cli-moment-shim@^3.3.1:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.4.0.tgz#2fbe13d8654097da86abb64016cddf12ff19a3de"
+ember-cli-moment-shim@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.5.0.tgz#7ea8d42b0a04c767258287b30447681e52fba0c4"
   dependencies:
-    broccoli-funnel "^1.1.0"
+    broccoli-funnel "^2.0.0"
     broccoli-merge-trees "^2.0.0"
     broccoli-source "^1.1.0"
-    broccoli-stew "^1.4.0"
+    broccoli-stew "^1.5.0"
     chalk "^1.1.3"
-    ember-cli-babel "^6.6.0"
+    ember-cli-babel "^6.8.2"
     ember-cli-import-polyfill "^0.2.0"
     exists-sync "^0.0.4"
     lodash.defaults "^4.2.0"
     moment "^2.18.1"
-    moment-timezone "~0.5.11"
+    moment-timezone "^0.5.13"
 
 ember-cli-node-assets@^0.2.2:
   version "0.2.2"
@@ -2814,9 +2814,9 @@ ember-cli-version-checker@^2.0.0:
     resolve "^1.3.3"
     semver "^5.3.0"
 
-ember-cli@~2.15.0:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-2.15.0.tgz#4f282f85f0858dc96ed526e5f4724502c74fe26e"
+ember-cli@~2.15.1:
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-2.15.1.tgz#773add3cc18e5068f1c5f43a77544efa2712e47b"
   dependencies:
     amd-name-resolver "0.0.7"
     babel-plugin-transform-es2015-modules-amd "^6.24.0"
@@ -2926,15 +2926,15 @@ ember-cookies@^0.0.13:
     ember-cli-babel "^5.1.7"
     ember-getowner-polyfill "^1.2.2"
 
-ember-cp-validations@^3.3.2:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ember-cp-validations/-/ember-cp-validations-3.4.0.tgz#941a302b8396eb7a8d86e0fc283402a74c0dac6e"
+ember-cp-validations@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/ember-cp-validations/-/ember-cp-validations-3.4.1.tgz#8f70ba5f728527f54c3f5e0a24cf0c5a55ac295f"
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-version-checker "^2.0.0"
     ember-getowner-polyfill "^2.0.1"
     ember-require-module "^0.1.2"
-    ember-string-ishtmlsafe-polyfill "^1.1.0"
+    ember-string-ishtmlsafe-polyfill "^2.0.0"
     ember-validators "1.0.3"
     exists-sync "0.0.4"
     walk-sync "^0.3.1"
@@ -3221,11 +3221,10 @@ ember-source@~2.15.0:
     simple-dom "^0.3.0"
     simple-html-tokenizer "^0.4.1"
 
-ember-string-ishtmlsafe-polyfill@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-string-ishtmlsafe-polyfill/-/ember-string-ishtmlsafe-polyfill-1.1.0.tgz#ecde33419ff912b91dd8acf0640eb74b9758408e"
+ember-string-ishtmlsafe-polyfill@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-string-ishtmlsafe-polyfill/-/ember-string-ishtmlsafe-polyfill-2.0.0.tgz#38f17038c3451999e9f1db748e424d8831e85863"
   dependencies:
-    ember-cli-babel "^5.1.7"
     ember-cli-version-checker "^1.2.0"
 
 ember-test-helpers@^0.6.3:
@@ -5583,7 +5582,7 @@ moment-timezone@^0.4.0:
   dependencies:
     moment ">= 2.6.0"
 
-moment-timezone@~0.5.11:
+moment-timezone@^0.5.13:
   version "0.5.13"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.13.tgz#99ce5c7d827262eb0f1f702044177f60745d7b90"
   dependencies:
