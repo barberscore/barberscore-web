@@ -54,7 +54,7 @@ export default Ember.Controller.extend({
       this.set('deleteEntryModal', false);
       this.set('deleteEntryModalError', false);
       this.get('flashMessages').success("Deleted!");
-      this.transitionToRoute('dashboard.session-manager.session.entries.index');
+      this.transitionToRoute('dashboard.group-manager.group.entries.index');
     } catch(e) {
       this.set('deleteEntryModalError', true);
     }

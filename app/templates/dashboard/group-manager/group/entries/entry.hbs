@@ -144,6 +144,37 @@
 </section>
 <section>
   {{#bs-modal
+    open=deleteEntryModal
+    onHidden=(pipe-action (action (mut deleteEntryModal) false) (action (mut deleteEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Delete Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will delete the entry.  This should generally be used for errors or other cases where the entry should never have existed in the first place.)
+      </p>
+      {{#if deleteEntryModalError}}
+      <p class='text-danger'>
+        Could not delete entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='danger' onClick=(perform deleteEntry)}}
+        {{#if deleteEntry.isRunning}}
+          Deleting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Delete Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</section>
+<section>
+  {{#bs-modal
     open=submitEntryModal
     onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
     as |modal|
