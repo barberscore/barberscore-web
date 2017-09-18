@@ -21,9 +21,9 @@
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateRepertoryModal) true)}}Activate Repertory{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateRepertoryModal) true)}}Deactivate Repertory{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteRepertoryModal) true)}}Delete Repertory{{/bs-button}}</li>
           {{else if (eq model.status 'Active')}}
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deactivateRepertoryModal) true)}}Deactivate Repertory{{/bs-button}}</li>
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteRepertoryModal) true)}}Delete Repertory{{/bs-button}}</li>
           {{else if (eq model.status 'Inactive')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut activateRepertoryModal) true)}}Activate Repertory{{/bs-button}}</li>
           {{/if}}
@@ -66,30 +66,30 @@
 </section>
 <section>
   {{#bs-modal
-    open=deactivateRepertoryModal
-    onHidden=(pipe-action (action (mut deactivateRepertoryModal) false) (action (mut deactivateRepertoryModalError) false))
+    open=deleteRepertoryModal
+    onHidden=(pipe-action (action (mut deleteRepertoryModal) false) (action (mut deleteRepertoryModalError) false))
     as |modal|
   }}
     {{#modal.header}}
-      <h4>Deactivate Repertory</h4>
+      <h4>Delete Repertory</h4>
     {{/modal.header}}
     {{#modal.body}}
       <p>
-        By deactiving, you are indicating that you no longer have copyright clearance for this song.
+        This will delete your repertory entry.
       </p>
-      {{#if deactivateRepertoryModalError}}
+      {{#if deleteRepertoryModalError}}
       <p class='text-danger'>
-        Could not activate repertory.  Please contact support.
+        Could not delete repertory.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform deactivateRepertory)}}
-        {{#if deactivateRepertory.isRunning}}
-          Deactivating {{fa-icon "spinner" spin=true}}
+      {{#bs-button type='primary' onClick=(perform deleteRepertory)}}
+        {{#if deleteRepertory.isRunning}}
+          Deleting {{fa-icon "spinner" spin=true}}
         {{else}}
-          Deactivate Repertory
+          Delete Repertory
         {{/if}}
       {{/bs-button}}
     {{/modal.footer}}

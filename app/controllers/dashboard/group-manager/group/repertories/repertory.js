@@ -19,19 +19,19 @@ export default Ember.Controller.extend({
       this.set('activateRepertoryModalError', true);
     }
   }).drop(),
-  deactivateRepertoryModal: false,
-  deactivateRepertoryModalError: false,
-  deactivateRepertory: task(function *() {
+  deleteRepertoryModal: false,
+  deleteRepertoryModalError: false,
+  deleteRepertory: task(function *() {
     try {
-      let repertory = yield this.model.deactivate({
+      yield this.model.destroyRecord({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('repertory', repertory);
-      this.set('deactivateRepertoryModal', false);
-      this.set('deactivateRepertoryModalError', false);
-      this.get('flashMessages').success("Deactivated!");
+      this.set('deleteRepertoryModal', false);
+      this.set('deleteRepertoryModalError', false);
+      this.get('flashMessages').success("Deleted!");
+      this.transitionToRoute('dashboard.group-manager.group.repertories.index');
     } catch(e) {
-      this.set('deactivateRepertoryModalError', true);
+      this.set('deleteRepertoryModalError', true);
     }
   }).drop(),
 });
