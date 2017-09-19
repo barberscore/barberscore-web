@@ -21,6 +21,7 @@ export default Ember.Component.extend({
       let newParticipant = this.get('store').createRecord('participant', {
         member: this.get('member'),
         entry: this.get('model'),
+        part: this.get('member.part'),
       });
       try {
         yield newParticipant.save();
