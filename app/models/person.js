@@ -7,7 +7,7 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('person-status'),
   birthDate: DS.attr('isodate'),
-  duesThru: DS.attr('isodate'),
+  validThrough: DS.attr('isodate'),
   spouse: DS.attr('string', {defaultValue:''}),
   location: DS.attr('string', {defaultValue:''}),
   part: DS.attr('person-part'),
@@ -127,9 +127,9 @@ export default Model.extend({
   ),
   withExp: Ember.computed(
     'name',
-    'duesThru',
+    'validThrough',
     function() {
-      return this.get('name') + " " + this.get('duesThru');
+      return this.get('name') + " " + this.get('validThrough');
     }
   )
 });

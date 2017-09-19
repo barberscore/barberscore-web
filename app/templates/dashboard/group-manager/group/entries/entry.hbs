@@ -90,7 +90,7 @@
               <tr>
                 <th>Performing?</th>
                 <th>Name</th>
-                <th>Dues Thru</th>
+                <th>Valid Through</th>
               </tr>
             </thead>
             <tbody>
@@ -108,7 +108,7 @@
                         }}
                       </td>
                       <td>{{member.person.name}}</td>
-                      <td>{{moment-format member.person.duesThru 'LL'}}</td>
+                      <td>{{moment-format member.validThrough 'LL'}}</td>
                     {{/if}}
                   </tr>
               {{else}}
