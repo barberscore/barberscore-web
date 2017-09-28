@@ -38,7 +38,7 @@ export default Model.extend({
 
   announced: computed.equal(
     'status',
-    'Announced'
+    'Archived'
   ),
 
   notAnnounced: computed.not(

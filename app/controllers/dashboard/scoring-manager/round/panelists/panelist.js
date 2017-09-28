@@ -21,7 +21,7 @@ export default Ember.Controller.extend({
   ),
   isAnnounced: Ember.computed.equal(
     'model.round.status',
-    'Announced',
+    'Archived',
   ),
   isDisabled: Ember.computed.or(
     'isStarted',
