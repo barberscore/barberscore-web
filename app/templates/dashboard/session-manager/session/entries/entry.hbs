@@ -195,6 +195,40 @@
           </table>
         </div>
       </section>
+      <hr>
+      <section>
+        <div class='table-responsive'>
+          <p>
+            Activity
+          </p>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Transition</th>
+                <th>By</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.logs as |log|}}
+                <tr>
+                  {{#if log.isLoading}}
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{log.transition}}</td>
+                    <td>{{log.by}}</td>
+                    <td>{{moment-format log.timestamp 'LLL'}}</td>
+                  {{/if}}
+                </tr>
+              {{else}}
+                <tr>
+                  <td>(No activity logs.)</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>

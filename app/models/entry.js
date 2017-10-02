@@ -28,6 +28,7 @@ export default Model.extend({
   contestants: DS.hasMany('contestant', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
+  logs: DS.attr(),
 
   invite: memberAction({path: 'invite', type: 'post'}),
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
