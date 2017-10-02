@@ -125,11 +125,4 @@ export default Model.extend({
     'organizationKind',
     'Organization'
   ),
-  withExp: Ember.computed(
-    'name',
-    'validThrough',
-    function() {
-      return this.get('name') + " " + this.get('validThrough');
-    }
-  )
 });

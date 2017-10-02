@@ -14,11 +14,11 @@ export default Model.extend({
   partSort: Ember.computed.alias('member.partSort'),
 
   isExpiring: Ember.computed(
-    'member.validThrough',
+    'member.person.validThrough',
     'entry.group.isBhs',
     'entry.session.convention.endDate',
     function () {
-      let expiring = this.get('member.validThrough') < this.get('entry.session.convention.endDate');
+      let expiring = this.get('member.person.validThrough') < this.get('entry.session.convention.endDate');
       let isBhs = this.get('entry.group.isBhs');
       return (isBhs && expiring);
     }

@@ -9,7 +9,6 @@ export default Model.extend({
   part: DS.attr('member-part'),
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
-  validThrough: DS.attr('isodate'),
   isAdmin: DS.attr('boolean'),
   isCurrent: DS.attr('boolean'),
   group: DS.belongsTo('group', {async: true}),
@@ -70,5 +69,4 @@ export default Model.extend({
   groupKind: Ember.computed.alias('group.kindSort'),
   personName: Ember.computed.alias('person.name'),
   personLast: Ember.computed.alias('person.lastName'),
-  personNameExp: Ember.computed.alias('person.withExp')
 });
