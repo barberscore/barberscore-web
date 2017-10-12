@@ -1,15 +1,16 @@
-import Ember from 'ember';
+import { uniq, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   sortProperties: [
     'statusSort:asc',
     'organizationKindSort:asc',
     'nomen:asc',
   ],
-  uniqueSessions: Ember.computed.uniq(
+  uniqueSessions: uniq(
     'model',
   ),
-  sortedSessions: Ember.computed.sort(
+  sortedSessions: sort(
     'uniqueSessions',
     'sortProperties'
   ),

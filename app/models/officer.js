@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal, alias, not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -25,7 +26,7 @@ export default Model.extend({
   ],
 
   // Module Permissions
-  isActive: Ember.computed.equal(
+  isActive: equal(
     'status',
     'Active',
   ),
@@ -76,7 +77,7 @@ export default Model.extend({
   // ),
 
   // Sorts
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {
@@ -86,12 +87,12 @@ export default Model.extend({
 
 
 // Other
-  personName: Ember.computed.alias('person.name'),
-  officeShortName: Ember.computed.alias('office.shortName'),
-  officeSCJCSort: Ember.computed.alias('office.scjcSort'),
-  officeKind: Ember.computed.alias('office.kind'),
-  officeName: Ember.computed.alias('office.name'),
-  organizationName: Ember.computed.alias('organization.name'),
-  isOld: Ember.computed.not('isNew'),
+  personName: alias('person.name'),
+  officeShortName: alias('office.shortName'),
+  officeSCJCSort: alias('office.scjcSort'),
+  officeKind: alias('office.kind'),
+  officeName: alias('office.name'),
+  organizationName: alias('organization.name'),
+  isOld: not('isNew'),
 
 });

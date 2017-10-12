@@ -1,16 +1,18 @@
-import Ember from 'ember';
+import { filterBy, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   finishersSortProperties: [
     'entryTotPoints:desc',
   ],
-  filteredFinishers: Ember.computed.filterBy(
+  filteredFinishers: filterBy(
     'model.appearances',
     'isFinisher'
   ),
-  sortedFinishers: Ember.computed.sort(
+  sortedFinishers: sort(
     'filteredFinishers',
     'finishersSortProperties'
   ),

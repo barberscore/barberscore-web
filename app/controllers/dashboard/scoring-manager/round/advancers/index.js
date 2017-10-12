@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { filterBy, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   isSorting: false,
   advancersSortProperties: [
     'draw:asc',
   ],
-  filteredAdvancers: Ember.computed.filterBy(
+  filteredAdvancers: filterBy(
     'model.appearances',
     'isAdvancer'
   ),
-  sortedAdvancers: Ember.computed.sort(
+  sortedAdvancers: sort(
     'filteredAdvancers',
     'advancersSortProperties'
   ),

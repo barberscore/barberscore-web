@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
+  flashMessages: service(),
   verifyRound: task(function *() {
     let round = yield this.model.verify({
       'by': this.get('currentUser.user.id')

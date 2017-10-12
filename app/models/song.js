@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { sort, filterBy, mapBy, sum, alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-const {computed} = Ember;
 
 export default Model.extend({
   // Fields
@@ -33,13 +33,13 @@ export default Model.extend({
 
 
   ascSortProperties: ['points:asc',],
-  ascSortedScores: Ember.computed.sort(
+  ascSortedScores: sort(
     'scores',
     'ascSortProperties'
   ),
 
   descSortProperties: ['points:desc',],
-  descSortedScores: Ember.computed.sort(
+  descSortedScores: sort(
     'scores',
     'descSortProperties'
   ),
@@ -51,43 +51,43 @@ export default Model.extend({
     }
   ),
 
-  populatedScores: Ember.computed.filterBy(
+  populatedScores: filterBy(
     'scores',
     'notEmptyPoints'
   ),
 
-  totScores: Ember.computed.filterBy(
+  totScores: filterBy(
     'populatedScores',
     'kind',
     'Official'
   ),
-  perScores: Ember.computed.filterBy(
+  perScores: filterBy(
     'totScores',
     'category',
     'Performance'
   ),
-  musScores: Ember.computed.filterBy(
+  musScores: filterBy(
     'totScores',
     'category',
     'Music'
   ),
-  sngScores: Ember.computed.filterBy(
+  sngScores: filterBy(
     'totScores',
     'category',
     'Singing'
   ),
 
-  totRawPoints: computed.mapBy(
+  totRawPoints: mapBy(
     'totScores',
     'points'
   ),
-  totPointsCP: computed.sum(
+  totPointsCP: sum(
     'totRawPoints'
   ),
-  totCount: computed.alias(
+  totCount: alias(
     'totRawPoints.length'
   ),
-  totScoreCP: Ember.computed(
+  totScoreCP: computed(
     'totPoints',
     'totCount',
     function() {
@@ -95,17 +95,17 @@ export default Model.extend({
       }
    ),
 
-  musScoresPoints: computed.mapBy(
+  musScoresPoints: mapBy(
     'musScores',
     'points'
   ),
-  musPointsCP: computed.sum(
+  musPointsCP: sum(
     'musScoresPoints'
   ),
-  musCount: computed.alias(
+  musCount: alias(
     'musScoresPoints.length'
   ),
-  musScoreCP: Ember.computed(
+  musScoreCP: computed(
     'musPoints',
     'musCount',
     function() {
@@ -113,17 +113,17 @@ export default Model.extend({
       }
    ),
 
-  perScoresPoints: computed.mapBy(
+  perScoresPoints: mapBy(
     'perScores',
     'points'
   ),
-  perPointsCP: computed.sum(
+  perPointsCP: sum(
     'perScoresPoints'
   ),
-  perCount: computed.alias(
+  perCount: alias(
     'perScoresPoints.length'
   ),
-  perScoreCP: Ember.computed(
+  perScoreCP: computed(
     'perPoints',
     'perCount',
     function() {
@@ -131,17 +131,17 @@ export default Model.extend({
       }
    ),
 
-  sngScoresPoints: computed.mapBy(
+  sngScoresPoints: mapBy(
     'sngScores',
     'points'
   ),
-  sngPointsCP: computed.sum(
+  sngPointsCP: sum(
     'sngScoresPoints'
   ),
-  sngCount: computed.alias(
+  sngCount: alias(
     'sngScoresPoints.length'
   ),
-  sngScoreCP: Ember.computed(
+  sngScoreCP: computed(
     'sngPoints',
     'sngCount',
     function() {

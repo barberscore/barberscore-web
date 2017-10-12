@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -45,7 +45,7 @@ export default Model.extend({
     'SCJC SNG',
   ],
 
-  scjcSort: Ember.computed(
+  scjcSort: computed(
     'shortName',
     'scjcSortOptions',
     function() {

@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   sortedPanelistsProperties: [
     'categorySort',
     'kindSort',
     'personSort',
   ],
-  sortedPanelists: Ember.computed.sort(
+  sortedPanelists: sort(
     'model.panelists',
     'sortedPanelistsProperties'
   ),

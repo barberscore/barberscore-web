@@ -1,8 +1,15 @@
-import Ember from 'ember';
+import {
+  alias,
+  equal,
+  not,
+  filterBy,
+  sort,
+  mapBy
+} from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
-const {computed} = Ember;
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -31,14 +38,14 @@ export default Model.extend({
   announce: memberAction({path: 'announce', type: 'post'}),
   cursor: DS.belongsTo('appearance', {async: true}),
 
-  conventionStatus: Ember.computed.alias('convention.status'),
-  conventionIsActive: Ember.computed.alias('convention.isActive'),
+  conventionStatus: alias('convention.status'),
+  conventionIsActive: alias('convention.isActive'),
 
-  isArchived: Ember.computed.equal('status', 'Archived'),
-  isCurrent: Ember.computed.not('isArchived'),
+  isArchived: equal('status', 'Archived'),
+  isCurrent: not('isArchived'),
 
-  organizationKindSort: Ember.computed.alias('convention.organizationKindSort'),
-  organizationNomen: Ember.computed.alias('convention.organizationNomen'),
+  organizationKindSort: alias('convention.organizationKindSort'),
+  organizationNomen: alias('convention.organizationNomen'),
 
   statusOptions: [
     'New',
@@ -62,48 +69,48 @@ export default Model.extend({
     3,
   ],
 
-  newEntries: Ember.computed.filterBy(
+  newEntries: filterBy(
     'entries',
     'status',
     'New'
   ),
-  invitedEntries: Ember.computed.filterBy(
+  invitedEntries: filterBy(
     'entries',
     'status',
     'Invited'
   ),
-  withdrawnEntries: Ember.computed.filterBy(
+  withdrawnEntries: filterBy(
     'entries',
     'status',
     'Withdrawn'
   ),
-  submittedEntries: Ember.computed.filterBy(
+  submittedEntries: filterBy(
     'entries',
     'status',
     'Submitted'
   ),
-  approvedEntries: Ember.computed.filterBy(
+  approvedEntries: filterBy(
     'entries',
     'status',
     'Approved'
   ),
 
-  scratchedEntries: Ember.computed.filterBy(
+  scratchedEntries: filterBy(
     'entries',
     'status',
     'Scratched'
   ),
 
-  newEntriesCount: Ember.computed.alias('newEntries.length'),
-  invitedEntriesCount: Ember.computed.alias('invitedEntries.length'),
-  withdrawnEntriesCount: Ember.computed.alias('withdrawnEntries.length'),
-  submittedEntriesCount: Ember.computed.alias('submittedEntries.length'),
-  approvedEntriesCount: Ember.computed.alias('approvedEntries.length'),
-  scratchedEntriesCount: Ember.computed.alias('scratchedEntries.length'),
-  totalEntriesCount: Ember.computed.alias('entries.length'),
-  contestCount: computed.alias('contests.length'),
+  newEntriesCount: alias('newEntries.length'),
+  invitedEntriesCount: alias('invitedEntries.length'),
+  withdrawnEntriesCount: alias('withdrawnEntries.length'),
+  submittedEntriesCount: alias('submittedEntries.length'),
+  approvedEntriesCount: alias('approvedEntries.length'),
+  scratchedEntriesCount: alias('scratchedEntries.length'),
+  totalEntriesCount: alias('entries.length'),
+  contestCount: alias('contests.length'),
 
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {
@@ -111,7 +118,7 @@ export default Model.extend({
     }
   ),
 
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
@@ -119,7 +126,7 @@ export default Model.extend({
     }
   ),
 
-  ranks: Ember.computed('entries.@each.totPoints', function() {
+  ranks: computed('entries.@each.totPoints', function() {
     let lastScore = null;
     let lastRank = null;
     return this.get('entries').sortBy('totPoints').reverse().map((competitor, index) => {
@@ -136,11 +143,11 @@ export default Model.extend({
   currentAppearancesSort: [
     'num',
   ],
-  currentAppearances: Ember.computed.sort(
+  currentAppearances: sort(
     'current.appearances',
     'currentAppearancesSort'
   ),
-  conventionName: Ember.computed(
+  conventionName: computed(
     'convention.name',
     function() {
       return this.get('convention.name');
@@ -150,7 +157,7 @@ export default Model.extend({
     'contests.@each.award', function() {
       return this.get('contests');
   }),
-  selectedAwards: computed.mapBy(
+  selectedAwards: mapBy(
     'awardsArray',
     'award.id'
   ),

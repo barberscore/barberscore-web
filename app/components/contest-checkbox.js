@@ -1,16 +1,19 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import {
   task
 } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.equal(
+export default Component.extend({
+  store: service(),
+  flashMessages: service(),
+  isDisabled: equal(
     'model.status',
     'Published',
   ),
-  isSelected: Ember.computed(
+  isSelected: computed(
     'award',
     'contests.@each.award',
     function () {

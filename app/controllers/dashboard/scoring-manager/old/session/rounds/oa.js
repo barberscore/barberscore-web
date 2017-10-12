@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { all } from 'rsvp';
+import { sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
   appearanceSortProperties: ['num', 'entry.entryprivate.total_score:desc',],
-  sortedAppearances: Ember.computed.sort(
+  sortedAppearances: sort(
     'model.appearances',
     'appearanceSortProperties'
   ),
@@ -99,7 +102,7 @@ export default Ember.Controller.extend({
       .then(() => {
         this.get('flashMessages').success('Success');
         let reloaded =  this.get('model.appearances').map( appearance => appearance.reload() );
-        return Ember.RSVP.all(reloaded);
+        return all(reloaded);
       });
     },
     moveDown(appearance) {

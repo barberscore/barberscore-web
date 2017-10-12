@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import config from '../../../config/environment';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   uploadPhoto: task(function * (file) {
     try {
       const host = config.APP.API_HOST;

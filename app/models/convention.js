@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { equal, not, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
@@ -30,11 +30,11 @@ export default Model.extend(Validations, {
   publish: memberAction({path: 'publish', type: 'post'}),
   archive: memberAction({path: 'archive', type: 'post'}),
 
-  isAnnounced: Ember.computed.equal('status', 'Announced'),
-  isActive: Ember.computed.not('isAnnounced'),
+  isAnnounced: equal('status', 'Announced'),
+  isActive: not('isAnnounced'),
 
-  organizationKindSort: Ember.computed.alias('organization.kindSort'),
-  organizationNomen: Ember.computed.alias('organization.nomen'),
+  organizationKindSort: alias('organization.kindSort'),
+  organizationNomen: alias('organization.nomen'),
 
   statusOptions: [
     'New',

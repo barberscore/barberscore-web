@@ -1,21 +1,24 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, filterBy } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
   assignmentSortProperties: ['kind', 'category','slot',],
-  sortedAssignments: Ember.computed.sort(
+  sortedAssignments: sort(
     'model.cursor.round.session.assignments',
     'assignmentSortProperties'
   ),
   songSortProperties: ['num',],
-  sortedSongs: Ember.computed.sort(
+  sortedSongs: sort(
     'model.cursor.songs',
     'songSortProperties'
   ),
-  nextNum: Ember.computed(function(){
+  nextNum: computed(function(){
     return this.get('model.cursor.num') +1;
   }),
-  nextAppearances: Ember.computed.filterBy(
+  nextAppearances: filterBy(
     'model.cursor.round.appearances',
     'num',
     'nextNum'

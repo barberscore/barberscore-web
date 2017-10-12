@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -30,6 +30,6 @@ export default Model.extend({
     'Disqualified',
     'Announced',
   ],
-  entryTotPoints: Ember.computed.alias('entry.totPoints'),
+  entryTotPoints: alias('entry.totPoints'),
 
 });

@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   queryParams: [
     'kind',
   ],
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
     'kind',
     'status',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model',
     'sortProperties'
   ),

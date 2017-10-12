@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
   openModal: false,
-  flashMessages: Ember.inject.service(),
-  awardCall: Ember.computed(
+  flashMessages: service(),
+  awardCall: computed(
     'model.convention.id',
     function () {
       return this.get('store').query('award', {
@@ -12,7 +15,7 @@ export default Ember.Component.extend({
         'page_size': 100
       });
     }),
-  awardFilter: Ember.computed(
+  awardFilter: computed(
     'awardCall',
     'model.kind',
     function () {
@@ -26,7 +29,7 @@ export default Ember.Component.extend({
     'ageSort',
     'name',
   ],
-  awardOptions: Ember.computed.sort(
+  awardOptions: sort(
     'awardFilter',
     'awardSortProperties'
   ),

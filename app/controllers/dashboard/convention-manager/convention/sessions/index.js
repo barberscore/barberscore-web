@@ -1,13 +1,16 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, mapBy, max } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   openModal: false,
   sessionSortProperties: [
     'kindSort',
     'name:asc'
   ],
-  sortedSessions: Ember.computed.sort(
+  sortedSessions: sort(
     'model.sessions',
     'sessionSortProperties'
   ),
@@ -29,12 +32,12 @@ export default Ember.Controller.extend({
   booleanOptions: [
     true,
   ],
-  allRounds: Ember.computed.mapBy(
+  allRounds: mapBy(
     'awards',
     'rounds'
   ),
-  numRounds: Ember.computed.max('allRounds'),
-  awardCall: Ember.computed(function() {
+  numRounds: max('allRounds'),
+  awardCall: computed(function() {
     // TODO This is hack-central
     let awards = [];
     let season = {
@@ -75,7 +78,7 @@ export default Ember.Controller.extend({
     });
     return awards;
   }),
-  awardFilter: Ember.computed(
+  awardFilter: computed(
     'awardCall',
     'kind',
     function() {
@@ -89,7 +92,7 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  awardOptions: Ember.computed.sort(
+  awardOptions: sort(
     'awardFilter',
     'awardSortProperties'
   ),

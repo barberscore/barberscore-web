@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  currentUser: Ember.inject.service('current-user'),
+export default Controller.extend({
+  currentUser: service('current-user'),
   sortProperties: [
     'statusSort',
     'nomen',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model',
     'sortProperties'
   ),

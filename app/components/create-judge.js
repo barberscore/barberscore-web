@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+export default Component.extend({
+  store: service(),
   openModal: false,
-  flashMessages: Ember.inject.service(),
+  flashMessages: service(),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -13,7 +16,7 @@ export default Ember.Component.extend({
       })
       .then((data) => data);
   }),
-  officeCall: Ember.computed(function() {
+  officeCall: computed(function() {
     return this.get('store').query('office', {
       'is_cj': 'true', //TODO Hardcoded
       'page_size': 1000,
@@ -22,11 +25,11 @@ export default Ember.Component.extend({
   officeOptionsProperties: [
     'name:asc',
   ],
-  officeOptions: Ember.computed.sort(
+  officeOptions: sort(
     'officeCall',
     'officeOptionsProperties'
   ),
-  organizationCall: Ember.computed(function() {
+  organizationCall: computed(function() {
     return this.get('store').query('organization', {
       'kind__in': '11,21', //TODO Hardcoded
       'page_size': 1000,
@@ -35,7 +38,7 @@ export default Ember.Component.extend({
   organizationOptionsProperties: [
     'name:asc',
   ],
-  organizationOptions: Ember.computed.sort(
+  organizationOptions: sort(
     'organizationCall',
     'organizationOptionsProperties'
   ),

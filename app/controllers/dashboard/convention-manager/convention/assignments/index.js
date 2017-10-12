@@ -1,12 +1,13 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   assignmentSortProperties: [
     'categorySort:asc',
     'kindSort:asc',
     'personLastName:asc',
   ],
-  sortedAssignments: Ember.computed.sort(
+  sortedAssignments: sort(
     'model.assignments',
     'assignmentSortProperties'
   ),

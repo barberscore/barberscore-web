@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  store: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
+  store: service(),
   searchPerson: task(function* (term){
     yield timeout(600);
     let persons = yield this.get('store').query('person', {

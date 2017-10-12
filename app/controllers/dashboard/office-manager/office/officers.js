@@ -1,18 +1,21 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { sort, uniq } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   officerSortProperties: [
     'isNew',
     'kindSort:asc',
     'person.name:asc',
   ],
-  sortedOfficers: Ember.computed.sort(
+  sortedOfficers: sort(
     'model.officers',
     'officerSortProperties'
   ),
-  flashMessages: Ember.inject.service(),
-  adminCall: Ember.computed(function() {
+  flashMessages: service(),
+  adminCall: computed(function() {
     return this.get('store').query('person', {
       'officers__office__kind': 30, //TODO Hardcoded
       // 'judges__status': 1,
@@ -20,14 +23,14 @@ export default Ember.Controller.extend({
       'page_size': 1000,
     });
   }),
-  adminUniques: Ember.computed.uniq(
+  adminUniques: uniq(
     'adminCall'
   ),
   adminSortProperties: [
     'lastName:asc',
     'firstName:asc',
   ],
-  adminOptions: Ember.computed.sort(
+  adminOptions: sort(
     'adminUniques',
     'adminSortProperties'
   ),

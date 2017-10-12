@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import DS from 'ember-data';
 
 export default DS.Transform.extend({
@@ -25,7 +25,7 @@ export default DS.Transform.extend({
   },
   deserialize: function (value) {
     if (value) {
-      return Ember.Object.create({
+      return EmberObject.create({
         lower: value['lower'],
         upper: value['upper']
       });

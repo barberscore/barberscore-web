@@ -1,19 +1,22 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { filterBy, uniq, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  currentUser: Ember.inject.service(),
+export default Controller.extend({
+  currentUser: service(),
   sortedConventionsProperties: [
     'startDate:asc',
     'endDate:asc',
   ],
-  filteredConventions: Ember.computed.filterBy(
+  filteredConventions: filterBy(
     'model',
     'isActive'
   ),
-  uniqueConventions: Ember.computed.uniq(
+  uniqueConventions: uniq(
     'filteredConventions',
   ),
-  sortedConventions: Ember.computed.sort(
+  sortedConventions: sort(
     'uniqueConventions',
     'sortedConventionsProperties'
   ),
@@ -32,7 +35,7 @@ export default Ember.Controller.extend({
     'Quintuple',
   ],
 
-  organizationCall: Ember.computed(function() {
+  organizationCall: computed(function() {
     return this.get('store').query('organization', {
       'status': 10, //TODO Hardcoded
     });
@@ -41,7 +44,7 @@ export default Ember.Controller.extend({
     'kindSort:asc',
     'name:asc',
   ],
-  organizationOptions: Ember.computed.sort(
+  organizationOptions: sort(
     'organizationCall',
     'organizationOptionsProperties'
   ),

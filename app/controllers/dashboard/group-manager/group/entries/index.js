@@ -1,18 +1,20 @@
-import Ember from 'ember';
+import { not, filterBy, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  flashMessages: service(),
+  isDisabled: not(
     'model.permissions.write',
   ),
-  filteredEntries: Ember.computed.filterBy(
+  filteredEntries: filterBy(
     'model.entries',
     'notAnnounced'
   ),
   sortedEntriesProperties: [
     'statusSort',
   ],
-  sortedEntries: Ember.computed.sort(
+  sortedEntries: sort(
     'filteredEntries',
     'sortedEntriesProperties'
   ),

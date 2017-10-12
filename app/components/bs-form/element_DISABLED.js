@@ -1,7 +1,6 @@
-import Ember from 'ember';
+import { defineProperty, computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 import BsFormElement from 'ember-bootstrap/components/bs-form/element';
-
-const { computed, defineProperty, isPresent } = Ember;
 
 export default BsFormElement.extend({
   setupValidations() {

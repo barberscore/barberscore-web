@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
+import { not } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
-  isWrite: Ember.computed.not('model.permissions.write'),
-  flashMessages: Ember.inject.service(),
+  isDisabled: not('isEditing'),
+  isWrite: not('model.permissions.write'),
+  flashMessages: service(),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);

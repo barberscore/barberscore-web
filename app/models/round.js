@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -20,8 +21,8 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   announce: memberAction({path: 'announce', type: 'post'}),
 
-  conventionStatus: Ember.computed.alias('session.convention.status'),
-  conventionIsActive: Ember.computed.alias('session.convention.isActive'),
+  conventionStatus: alias('session.convention.status'),
+  conventionIsActive: alias('session.convention.isActive'),
   statusOptions: [
     'New',
     'Drawn',
@@ -35,13 +36,13 @@ export default Model.extend({
     'Semi-Finals',
     'Quarter-Finals',
   ],
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  sessionConventionStartDate: Ember.computed.alias('session.convention.startDate'),
-  sessionKindSort: Ember.computed.alias('session.kindSort'),
+  sessionConventionStartDate: alias('session.convention.startDate'),
+  sessionKindSort: alias('session.kindSort'),
 });

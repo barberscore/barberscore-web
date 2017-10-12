@@ -1,17 +1,20 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  store: Ember.inject.service(),
-  sessionCall: Ember.computed(function() {
+export default Controller.extend({
+  flashMessages: service(),
+  store: service(),
+  sessionCall: computed(function() {
     return this.get('store').query('session', {
       'status': 4, // TODO HARDCODED
       'is_invitational': false,
       'page_size': 100
     });
   }),
-  sessionFilter: Ember.computed(
+  sessionFilter: computed(
     'sessionCall.@each.kind',
     'model.group.kind',
     function() {
@@ -21,7 +24,7 @@ export default Ember.Controller.extend({
   sessionSortProperties: [
     'nomen',
   ],
-  sessionOptions: Ember.computed.sort(
+  sessionOptions: sort(
     'sessionFilter',
     'sessionSortProperties'
   ),

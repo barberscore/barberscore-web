@@ -1,9 +1,11 @@
-import Ember from 'ember';
+import { not, sort, filterBy } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  flashMessages: service(),
+  isDisabled: not(
     'model.permissions.write',
   ),
   contestSortProperties: [
@@ -13,11 +15,11 @@ export default Ember.Controller.extend({
     'awardAgeSort',
     'awardName',
   ],
-  contestOptions: Ember.computed.sort(
+  contestOptions: sort(
     'model.session.contests',
     'contestSortProperties'
   ),
-  filteredMembers: Ember.computed.filterBy(
+  filteredMembers: filterBy(
     'model.group.members',
     'canParticipate',
   ),
@@ -25,7 +27,7 @@ export default Ember.Controller.extend({
     'personLast',
     'nomen',
   ],
-  memberOptions: Ember.computed.sort(
+  memberOptions: sort(
     'filteredMembers',
     'memberSortProperties'
   ),

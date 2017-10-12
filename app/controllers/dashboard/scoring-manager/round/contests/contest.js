@@ -1,27 +1,29 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   sortedContestantsProperties: [
     'entryTotPoints:desc',
   ],
-  sortedContestants: Ember.computed.sort(
+  sortedContestants: sort(
     'model.contestants',
     'sortedContestantsProperties'
   ),
   contestsSortProperties: [
     'nomen',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.session.contests',
     'contestsSortProperties'
   ),
-  isPrevDisabled: Ember.computed(
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

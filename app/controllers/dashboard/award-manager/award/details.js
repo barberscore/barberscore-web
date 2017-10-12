@@ -1,11 +1,14 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  currentUser: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  organizationCall: Ember.computed(function() {
+export default Controller.extend({
+  store: service(),
+  currentUser: service(),
+  flashMessages: service(),
+  organizationCall: computed(function() {
     return this.get('store').query('organization', {
       'officers__person__user': this.get('currentUser.user.id'),
       'officers__person__is_award_manager': true,
@@ -16,7 +19,7 @@ export default Ember.Controller.extend({
     'kindSort:asc',
     'name:asc',
   ],
-  organizationOptions: Ember.computed.sort(
+  organizationOptions: sort(
     'organizationCall',
     'organizationOptionsProperties'
   ),

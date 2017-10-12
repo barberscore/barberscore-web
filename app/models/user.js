@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { not } from '@ember/object/computed';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -8,7 +8,7 @@ export default DS.Model.extend({
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
 
-  disabledAssignments: Ember.computed.not(
+  disabledAssignments: not(
     'person.assignments.length'
   )
 

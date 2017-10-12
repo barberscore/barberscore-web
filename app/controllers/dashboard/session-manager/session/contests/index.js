@@ -1,7 +1,10 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, uniq } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
   contestSortProperties: [
     'organizationKindSort',
     'awardQualifier',
@@ -9,7 +12,7 @@ export default Ember.Controller.extend({
     'awardAgeSort',
     'awardName',
   ],
-  sortedContests: Ember.computed.sort(
+  sortedContests: sort(
     'model.contests',
     'contestSortProperties'
   ),
@@ -20,7 +23,7 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  rawAwards: Ember.computed(
+  rawAwards: computed(
     'model',
     function() {
       return this.get('store').query('award', {
@@ -29,7 +32,7 @@ export default Ember.Controller.extend({
       });
     }
   ),
-  filteredAwards: Ember.computed(
+  filteredAwards: computed(
     'rawAwards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
@@ -37,10 +40,10 @@ export default Ember.Controller.extend({
       return this.get('rawAwards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
-  uniqueAwards: Ember.computed.uniq(
+  uniqueAwards: uniq(
     'filteredAwards',
   ),
-  sortedAwards: Ember.computed.sort(
+  sortedAwards: sort(
     'uniqueAwards',
     'awardSortProperties',
   ),

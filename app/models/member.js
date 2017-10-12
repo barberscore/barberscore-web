@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -19,7 +20,7 @@ export default Model.extend({
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
 
-  canParticipate: Ember.computed(
+  canParticipate: computed(
     'status', function() {
       let canParticipate = ['Active', 'Provisional',]
       return canParticipate.includes(this.get('status'));
@@ -32,7 +33,7 @@ export default Model.extend({
     'Active',
     'Inactive',
   ],
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {
@@ -46,14 +47,14 @@ export default Model.extend({
     'Bass',
     'Director',
   ],
-  partSort: Ember.computed(
+  partSort: computed(
     'part',
     'partOptions',
     function() {
       return this.get('partOptions').indexOf(this.get('part'));
     }
   ),
-  personDetail: Ember.computed(
+  personDetail: computed(
     'person.nomen',
     'part',
     function() {
@@ -64,9 +65,9 @@ export default Model.extend({
       return this.get('person.nomen') + " - " + partOut;
     }
   ),
-  groupStatus: Ember.computed.alias('group.statusSort'),
-  groupName: Ember.computed.alias('group.name'),
-  groupKind: Ember.computed.alias('group.kindSort'),
-  personName: Ember.computed.alias('person.name'),
-  personLast: Ember.computed.alias('person.lastName'),
+  groupStatus: alias('group.statusSort'),
+  groupName: alias('group.name'),
+  groupKind: alias('group.kindSort'),
+  personName: alias('person.name'),
+  personLast: alias('person.lastName'),
 });

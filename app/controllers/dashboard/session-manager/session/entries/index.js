@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   entrySortProperties: [
     'nomen:asc',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.entries',
     'entrySortProperties'
   ),

@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { validator, buildValidations } from 'ember-cp-validations';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 const Validations = buildValidations({
   title: validator('presence', true),
@@ -25,7 +25,7 @@ export default Model.extend(Validations, {
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
-  chartPre: Ember.computed(function() {
+  chartPre: computed(function() {
     if (this.get('image')) {
       return this.get('image')+'.png';
     } else {
@@ -41,7 +41,7 @@ export default Model.extend(Validations, {
     'Active',
     'Inactive',
   ],
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {

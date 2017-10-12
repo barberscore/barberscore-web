@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -13,21 +14,21 @@ export default Model.extend({
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
 
-  categorySort: Ember.computed(
+  categorySort: computed(
     'category',
     'categoryOptions',
     function() {
       return this.get('categoryOptions').indexOf(this.get('category'));
     }
   ),
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  personSort: Ember.computed.alias('person.lastName'),
+  personSort: alias('person.lastName'),
   statusOptions: [
     'New',
     'Active',

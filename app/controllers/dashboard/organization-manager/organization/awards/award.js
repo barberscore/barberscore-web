@@ -1,11 +1,13 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  awardManager: Ember.inject.controller('dashboard.organization-manager.organization.awards'),
-  sortedItems: Ember.computed('awardManager.sortedItems'),
+export default Controller.extend({
+  store: service(),
+  flashMessages: service(),
+  awardManager: controller('dashboard.organization-manager.organization.awards'),
+  sortedItems: computed('awardManager.sortedItems'),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

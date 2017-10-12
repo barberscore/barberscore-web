@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { not, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  flashMessages: service(),
+  isDisabled: not(
     'model.permissions.write',
   ),
   activateAssignmentModal: false,
@@ -74,16 +77,16 @@ export default Ember.Controller.extend({
     'kindSort',
     'personSort',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.round.panelists',
     'panelistSortProperties'
   ),
-  isPrevDisabled: Ember.computed(
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

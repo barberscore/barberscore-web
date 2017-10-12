@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   actions: {
     sortEntriesBy(entrySortProperties) {
       this.set('entrySortProperties', [entrySortProperties]);
@@ -13,7 +14,7 @@ export default Ember.Controller.extend({
     'entry.entryprivate.rank:asc',
     'group.nomen:asc',
   ],
-  sortedEntries: Ember.computed.sort(
+  sortedEntries: sort(
     'model.entries',
     'entrySortProperties'
   ),

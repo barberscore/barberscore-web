@@ -1,36 +1,40 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { computed } from '@ember/object';
+import { sort, mapBy, sum } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   openModal: false,
-  flashMessages: Ember.inject.service(),
+  flashMessages: service(),
   sortedSongsProperties: [
     'num',
   ],
-  sortedSongs: Ember.computed.sort(
+  sortedSongs: sort(
     'model.songs',
     'sortedSongsProperties'
   ),
   sortedItemsProperties: [
     'num',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.round.appearances',
     'sortedItemsProperties'
   ),
-  isPrevDisabled: Ember.computed(
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');
   }),
-  scoresCall: Ember.computed(
+  scoresCall: computed(
     'model.songs', function() {
-    let out = Ember.A();
+    let out = A();
     this.get('model.songs').then((data) => {
       let foo = data;
       foo.forEach(function(item) {
@@ -45,7 +49,7 @@ export default Ember.Controller.extend({
   sortedPanelistsProperties: [
     'kind',
   ],
-  sortedPanelists: Ember.computed.sort(
+  sortedPanelists: sort(
     'model.round.panelists',
     'sortedPanelistsProperties'
   ),
@@ -55,22 +59,22 @@ export default Ember.Controller.extend({
     'panelistName',
     'songNum',
   ],
-  sortedScores: Ember.computed.sort(
+  sortedScores: sort(
     'scoresCall',
     'sortedScoresProperties'
   ),
-  mappedScores: Ember.computed.mapBy(
+  mappedScores: mapBy(
     'sortedScores',
     'points'
   ),
-  sumScores: Ember.computed.sum(
+  sumScores: sum(
     'mappedScores'
   ),
-  scoresVariance: Ember.computed.mapBy(
+  scoresVariance: mapBy(
     'scoresCall',
     'hasVariance'
   ),
-  hasVariance: Ember.computed(
+  hasVariance: computed(
     'scoresVariance', function() {
       return this.get('scoresVariance').any(
         function(item) {

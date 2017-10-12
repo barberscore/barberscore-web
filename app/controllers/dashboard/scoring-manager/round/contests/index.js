@@ -1,13 +1,15 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   isSorting: false,
   sortedContestsProperties: [
     'nomen',
   ],
-  sortedContests: Ember.computed.sort(
+  sortedContests: sort(
     'model.session.contests',
     'sortedContestsProperties'
   ),

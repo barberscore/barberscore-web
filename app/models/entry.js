@@ -1,8 +1,15 @@
-import Ember from 'ember';
+import {
+  equal,
+  not,
+  filterBy,
+  alias,
+  mapBy,
+  sum
+} from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
-const {computed} = Ember;
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -37,21 +44,21 @@ export default Model.extend({
   scratch: memberAction({path: 'scratch', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
-  announced: computed.equal(
+  announced: equal(
     'status',
     'Archived'
   ),
 
-  notAnnounced: computed.not(
+  notAnnounced: not(
     'announced'
   ),
 
-  expiringMembers: computed.filterBy(
+  expiringMembers: filterBy(
     'participants',
     'isExpiring'
   ),
 
-  expiringMembersCount: computed.alias(
+  expiringMembersCount: alias(
     'expiringMembers.length'
   ),
 
@@ -73,21 +80,21 @@ export default Model.extend({
   ],
 
 
-  contestantCount: computed.alias('contestants.length'),
-  participantCount: computed.alias('participants.length'),
-  repertoryCount: computed.alias('group.repertories.length'),
-  tp: computed.mapBy(
+  contestantCount: alias('contestants.length'),
+  participantCount: alias('participants.length'),
+  repertoryCount: alias('group.repertories.length'),
+  tp: mapBy(
     'appearances',
     'totPoints'
   ),
-  tc: computed.mapBy(
+  tc: mapBy(
     'appearances',
     'stc'
   ),
-  totPointsCP: computed.sum(
+  totPointsCP: sum(
     'tp'
   ),
-  stc: computed.sum(
+  stc: sum(
     'tc'
   ),
   totScoreCP: computed(
@@ -97,18 +104,18 @@ export default Model.extend({
       return (this.get('totPoints') / this.get('stc')).toFixed(1);
     }
   ),
-  mp: computed.mapBy(
+  mp: mapBy(
     'appearances',
     'musPoints'
   ),
-  mc: computed.mapBy(
+  mc: mapBy(
     'appearances',
     'smc'
   ),
-  musPointsCP: computed.sum(
+  musPointsCP: sum(
     'mp'
   ),
-  smc: computed.sum(
+  smc: sum(
     'mc'
   ),
   musScoreCP: computed(
@@ -118,18 +125,18 @@ export default Model.extend({
       return (this.get('musPoints') / this.get('smc')).toFixed(1);
     }
   ),
-  pp: computed.mapBy(
+  pp: mapBy(
     'appearances',
     'perPoints'
   ),
-  pc: computed.mapBy(
+  pc: mapBy(
     'appearances',
     'spc'
   ),
-  perPointsCP: computed.sum(
+  perPointsCP: sum(
     'pp'
   ),
-  spc: computed.sum(
+  spc: sum(
     'pc'
   ),
   perScoreCP: computed(
@@ -139,18 +146,18 @@ export default Model.extend({
       return (this.get('perPoints') / this.get('spc')).toFixed(1);
     }
   ),
-  sp: computed.mapBy(
+  sp: mapBy(
     'appearances',
     'sngPoints'
   ),
-  sc: computed.mapBy(
+  sc: mapBy(
     'appearances',
     'ssc'
   ),
-  sngPointsCP: computed.sum(
+  sngPointsCP: sum(
     'sp'
   ),
-  ssc: computed.sum(
+  ssc: sum(
     'sc'
   ),
   sngScoreCP: computed(
@@ -175,11 +182,11 @@ export default Model.extend({
     'participants.@each.member', function() {
       return this.get('participants');
   }),
-  selectedContests: computed.mapBy(
+  selectedContests: mapBy(
     'contestsArray',
     'contest.id'
   ),
-  selectedMembers: computed.mapBy(
+  selectedMembers: mapBy(
     'membersArray',
     'member.id'
   ),

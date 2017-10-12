@@ -1,8 +1,4 @@
-import Ember from 'ember';
-
-const {
-  getProperties
-} = Ember;
+import { getProperties } from '@ember/object';
 
 export function getUser(owner) {
   const currentUser = owner.lookup('service:current-user').get('user');

@@ -1,21 +1,23 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, alias } from '@ember/object/computed';
+import Controller, { inject as controller } from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   contestantSortProperties: [
     'nomen:asc',
   ],
-  sortedContestants: Ember.computed.sort(
+  sortedContestants: sort(
     'model.contestants',
     'contestantSortProperties'
   ),
-  contestManager: Ember.inject.controller('dashboard.session-manager.session.contests.index'),
-  sortedItems: Ember.computed.alias('contestManager.sortedContests'),
-  isPrevDisabled: Ember.computed(
+  contestManager: controller('dashboard.session-manager.session.contests.index'),
+  sortedItems: alias('contestManager.sortedContests'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -28,9 +28,9 @@ export default Model.extend({
     'Qualifier',
   ],
 
-  organizationKindSort: Ember.computed.alias('award.organization.kindSort'),
-  awardQualifier: Ember.computed.alias('award.isQualifier'),
-  awardPrimary: Ember.computed.alias('award.isPrimary'),
-  awardAgeSort: Ember.computed.alias('award.ageSort'),
-  awardName: Ember.computed.alias('award.name'),
+  organizationKindSort: alias('award.organization.kindSort'),
+  awardQualifier: alias('award.isQualifier'),
+  awardPrimary: alias('award.isPrimary'),
+  awardAgeSort: alias('award.ageSort'),
+  awardName: alias('award.name'),
 });

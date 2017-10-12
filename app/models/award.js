@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -77,43 +78,43 @@ export default Model.extend({
     3,
   ],
 
-  isChampionship: Ember.computed.equal(
+  isChampionship: equal(
     'level',
     'Championship',
   ),
 
-  organizationParent: Ember.computed.alias('organization.parent'),
-  organizationKindSort: Ember.computed.alias('organization.kindSort'),
-  organizationNameSort: Ember.computed.alias('organization.shortName'),
-  statusSort: Ember.computed(
+  organizationParent: alias('organization.parent'),
+  organizationKindSort: alias('organization.kindSort'),
+  organizationNameSort: alias('organization.shortName'),
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {
       return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  levelSort: Ember.computed(
+  levelSort: computed(
     'level',
     'levelOptions',
     function() {
       return this.get('levelOptions').indexOf(this.get('level'));
     }
   ),
-  seasonSort: Ember.computed(
+  seasonSort: computed(
     'season',
     'seasonOptions',
     function() {
       return this.get('seasonOptions').indexOf(this.get('season'));
     }
   ),
-  ageSort: Ember.computed(
+  ageSort: computed(
     'age',
     'ageOptions',
     function() {

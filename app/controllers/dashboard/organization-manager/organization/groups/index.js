@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
+  flashMessages: service(),
   sortProperties: [
     'statusSort:asc',
     'kindSort:asc',
     'name:asc',
   ],
-  sortedGroups: Ember.computed.sort(
+  sortedGroups: sort(
     'model.groups',
     'sortProperties'
   ),

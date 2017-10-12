@@ -1,15 +1,18 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { not, alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 import config from '../../../config/environment';
 import {
   task,
   timeout
 } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  currentUser: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  store: service(),
+  currentUser: service(),
+  flashMessages: service(),
+  isDisabled: not(
     'model.permissions.write'
   ),
   uploadPhoto: task(function* (file) {
@@ -59,15 +62,15 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
-  chartManager: Ember.inject.controller('dashboard.chart-manager'),
-  sortedItems: Ember.computed.alias('chartManager.sortedItems'),
-  isPrevDisabled: Ember.computed(
+  chartManager: controller('dashboard.chart-manager'),
+  sortedItems: alias('chartManager.sortedItems'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems',
     function () {
       return this.model == this.get('sortedItems.firstObject');
     }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems',
     function () {

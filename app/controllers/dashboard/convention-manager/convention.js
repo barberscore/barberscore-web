@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  currentUser: Ember.inject.service(),
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  currentUser: service(),
+  store: service(),
+  flashMessages: service(),
   publishConventionModal: false,
   publishConventionModalError: false,
   publishConvention: task(function *() {
@@ -35,17 +38,17 @@ export default Ember.Controller.extend({
       this.set('archiveConventionModalError', true);
     }
   }).drop(),
-  conventionManager: Ember.inject.controller('dashboard.convention-manager.index'),
+  conventionManager: controller('dashboard.convention-manager.index'),
   conventionSortProperties: [
     'nomen',
   ],
-  sortedItems: Ember.computed.alias('conventionManager.sortedConventions'),
-  isPrevDisabled: Ember.computed(
+  sortedItems: alias('conventionManager.sortedConventions'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

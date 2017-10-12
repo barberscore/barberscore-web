@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  flashMessages: Ember.inject.service(),
-  store: Ember.inject.service(),
+export default Component.extend({
+  flashMessages: service(),
+  store: service(),
   openModal: false,
   searchPerson: task(function* (term){
     yield timeout(600);
@@ -13,7 +16,7 @@ export default Ember.Component.extend({
       })
       .then((data) => data);
   }),
-  officeCall: Ember.computed(function() {
+  officeCall: computed(function() {
     return this.get('store').query('office', {
       'kind': 32, //TODO hard-coded
       'page_size': 1000,
@@ -22,7 +25,7 @@ export default Ember.Component.extend({
   officeOptionsProperties: [
     'name:asc',
   ],
-  officeOptions: Ember.computed.sort(
+  officeOptions: sort(
     'officeCall',
     'officeOptionsProperties'
   ),

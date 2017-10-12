@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { filterBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -120,7 +120,7 @@ export default Model.extend({
     'Non-Member',
     'Associate',
   ],
-  filteredMembers: Ember.computed.filterBy(
+  filteredMembers: filterBy(
     'members',
     'organizationKind',
     'Organization'

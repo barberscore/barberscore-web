@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { sort, filterBy } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   isRaw: false,
   entrySortProperties: [
     'entryprivate.total_points:desc',
@@ -8,7 +9,7 @@ export default Ember.Controller.extend({
     'entryprivate.mus_points:desc',
     'entryprivate.per_points:desc',
   ],
-  sortedEntries: Ember.computed.sort(
+  sortedEntries: sort(
     'model.entries',
     'entrySortProperties'
   ),
@@ -19,12 +20,12 @@ export default Ember.Controller.extend({
     'awardAgeSort',
     'awardName',
   ],
-  championshipContests: Ember.computed.filterBy(
+  championshipContests: filterBy(
     'model.contests',
     'is_qualifier',
     false
   ),
-  sortedContests: Ember.computed.sort(
+  sortedContests: sort(
     'championshipContests',
     'contestSortProperties'
   ),

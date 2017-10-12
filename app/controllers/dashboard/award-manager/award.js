@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
+import Controller, { inject as controller } from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   activateAward: task(function *() {
     try {
       let award = yield this.model.activate({
@@ -24,14 +26,14 @@ export default Ember.Controller.extend({
       this.get('flashMessages').danger("Please check that all fields are entered!");
     }
   }).drop(),
-  awardManager: Ember.inject.controller('dashboard.award-manager.index'),
-  sortedItems: Ember.computed.alias('awardManager.sortedItems'),
-  isPrevDisabled: Ember.computed(
+  awardManager: controller('dashboard.award-manager.index'),
+  sortedItems: alias('awardManager.sortedItems'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

@@ -1,29 +1,30 @@
-import Ember from 'ember';
+import { filterBy, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   sortedOfficersProperties: [
     'nomen',
     'partSort',
   ],
-  filteredOfficers: Ember.computed.filterBy(
+  filteredOfficers: filterBy(
     'model.officers',
     'isOld'
   ),
-  activeOfficers: Ember.computed.filterBy(
+  activeOfficers: filterBy(
     'filteredOfficers',
     'status',
     'Active'
   ),
-  inactiveOfficers: Ember.computed.filterBy(
+  inactiveOfficers: filterBy(
     'filteredOfficers',
     'status',
     'Active'
   ),
-  sortedOfficers: Ember.computed.sort(
+  sortedOfficers: sort(
     'activeOfficers',
     'sortedOfficersProperties'
   ),
-  sortedInactiveOfficers: Ember.computed.sort(
+  sortedInactiveOfficers: sort(
     'inactiveOfficers',
     'sortedOfficersProperties'
   ),

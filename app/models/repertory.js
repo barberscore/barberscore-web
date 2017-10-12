@@ -1,6 +1,6 @@
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 import { validator, buildValidations } from 'ember-cp-validations';
 

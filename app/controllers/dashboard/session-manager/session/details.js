@@ -1,10 +1,13 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { not, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
+  flashMessages: service(),
   isEditing: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  isDisabled: not('isEditing'),
   sortedContestsProperties: [
     'organizationKindSort',
     'awardQualifier',
@@ -12,11 +15,11 @@ export default Ember.Controller.extend({
     'awardAgeSort',
     'awardName',
   ],
-  sortedContests: Ember.computed.sort(
+  sortedContests: sort(
     'model.contests',
     'sortedContestsProperties'
   ),
-  primaryCP: Ember.computed(
+  primaryCP: computed(
     'sortedContests', function() {
     return this.get('sortedContests.firstObject');
   }),

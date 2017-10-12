@@ -1,13 +1,14 @@
-import Ember from 'ember';
+import { not, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  isDisabled: not(
     'model.permissions.write',
   ),
   sortedRepertoriesProperties: [
     'nomen',
   ],
-  sortedRepertories: Ember.computed.sort(
+  sortedRepertories: sort(
     'model.repertories',
     'sortedRepertoriesProperties'
   ),

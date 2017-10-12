@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { filterBy, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  filteredRounds: Ember.computed.filterBy(
+export default Controller.extend({
+  filteredRounds: filterBy(
     'model',
     'conventionIsActive'
   ),
@@ -10,7 +11,7 @@ export default Ember.Controller.extend({
     'sessionKindSort',
     'kindSort:desc',
   ],
-  sortedRounds: Ember.computed.sort(
+  sortedRounds: sort(
     'filteredRounds',
     'sortedRoundsProperties'
   ),

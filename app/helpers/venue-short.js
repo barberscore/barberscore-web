@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function venueShort(params) {
   if (params[0].get('city')) {
@@ -8,4 +8,4 @@ export function venueShort(params) {
   }
 }
 
-export default Ember.Helper.helper(venueShort);
+export default helper(venueShort);

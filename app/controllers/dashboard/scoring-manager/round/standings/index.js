@@ -1,11 +1,12 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   finishersSortProperties: [
     'entryTotPoints:desc',
   ],
-  sortedAppearances: Ember.computed.sort(
+  sortedAppearances: sort(
     'model.appearances',
     'finishersSortProperties'
   ),

@@ -1,10 +1,11 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   sortedScoresProperties: [
     'songNum',
   ],
-  sortedScores: Ember.computed.sort(
+  sortedScores: sort(
     'scores',
     'sortedScoresProperties'
   ),

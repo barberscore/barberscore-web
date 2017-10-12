@@ -1,17 +1,19 @@
-import Ember from 'ember';
+import { not } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
   isEditing: false,
   openModal: false,
-  isDisabled: Ember.computed.not('isEditing'),
+  isDisabled: not('isEditing'),
   searchTask: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {'nomen__icontains': term})
       .then((data) => data);
   }),
-  flashMessages: Ember.inject.service(),
+  flashMessages: service(),
   actions: {
     createJudge(){
       let judge = this.get('store').createRecord('judge', {

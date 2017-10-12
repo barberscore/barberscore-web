@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import { uniq, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-    currentUser: Ember.inject.service('current-user'),
+export default Controller.extend({
+    currentUser: service('current-user'),
     sortProperties: [
         'statusSort',
         'organizationKindSort',
@@ -11,10 +13,10 @@ export default Ember.Controller.extend({
         'levelSort',
         'name',
     ],
-    uniqueItems: Ember.computed.uniq(
+    uniqueItems: uniq(
         'model',
     ),
-    sortedItems: Ember.computed.sort(
+    sortedItems: sort(
         'uniqueItems',
         'sortProperties'
     ),

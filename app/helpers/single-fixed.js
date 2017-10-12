@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function singleFixed(params) {
   if (params[0]) {
@@ -8,4 +8,4 @@ export function singleFixed(params) {
   }
 }
 
-export default Ember.Helper.helper(singleFixed);
+export default helper(singleFixed);

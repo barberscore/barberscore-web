@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -15,16 +16,16 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
-  personLastName: Ember.computed.alias('person.lastName'),
+  personLastName: alias('person.lastName'),
 
-  categorySort: Ember.computed(
+  categorySort: computed(
     'category',
     'categoryOptions',
     function() {
       return this.get('categoryOptions').indexOf(this.get('category'));
     }
   ),
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {

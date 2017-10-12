@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { alias, notEmpty, or } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-const {computed} = Ember;
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -55,8 +55,8 @@ export default Model.extend({
     }
   ),
 
-  panelistName: computed.alias('panelist.person.lastName'),
-  songNum: computed.alias('song.num'),
+  panelistName: alias('panelist.person.lastName'),
+  songNum: alias('song.num'),
   lowReview: computed(
     'song.ascSortedScores',
     function() {
@@ -93,7 +93,7 @@ export default Model.extend({
           return false;
       }
   }),
-  notEmptyPoints: computed.notEmpty(
+  notEmptyPoints: notEmpty(
     'points'
   ),
   musVar: computed(
@@ -132,7 +132,7 @@ export default Model.extend({
       }
     }
   ),
-  hasVariance: computed.or(
+  hasVariance: or(
     'lowReview',
     'highReview',
     'musVar',

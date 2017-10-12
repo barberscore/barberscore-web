@@ -1,8 +1,9 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 // import { validator, buildValidations } from 'ember-cp-validations';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 // const Validations = buildValidations({
 //   email: validator('format', {
@@ -47,7 +48,7 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
-  isActive: Ember.computed.equal(
+  isActive: equal(
     'status',
     'Active',
   ),
@@ -57,7 +58,7 @@ export default Model.extend({
     'Chorus',
   ],
 
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
@@ -70,7 +71,7 @@ export default Model.extend({
     'Inactive',
   ],
 
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {

@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { filterBy, sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Component.extend({
-  flashMessages: Ember.inject.service(),
-  store: Ember.inject.service(),
+export default Component.extend({
+  flashMessages: service(),
+  store: service(),
   openModal: false,
   searchPerson: task(function* (term){
     yield timeout(600);
@@ -13,12 +16,12 @@ export default Ember.Component.extend({
       })
       .then((data) => data);
   }),
-  sessionCall: Ember.computed(function() {
+  sessionCall: computed(function() {
     return this.get('store').query('session', {
         'status': 4
       });
   }),
-  sessionFilter: Ember.computed.filterBy(
+  sessionFilter: filterBy(
     'sessionCall',
     'kind',
     'Chorus'
@@ -26,11 +29,11 @@ export default Ember.Component.extend({
   sessionSortProperties: [
     'nomen:asc',
   ],
-  sessionOptions: Ember.computed.sort(
+  sessionOptions: sort(
     'sessionFilter',
     'sessionSortProperties'
   ),
-  representingCall: Ember.computed(function() {
+  representingCall: computed(function() {
     return this.get('store').query('organization', {
         'kind__lt': '20',
         'page_size': 100,
@@ -39,7 +42,7 @@ export default Ember.Component.extend({
   representingSortProperties: [
     'nomen:asc',
   ],
-  representingOptions: Ember.computed.sort(
+  representingOptions: sort(
     'representingCall',
     'representingSortProperties'
   ),

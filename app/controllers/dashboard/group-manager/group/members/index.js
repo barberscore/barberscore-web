@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { not, filterBy, sort } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  isDisabled: not(
     'model.permissions.write',
   ),
   sortedMembersProperties: [
@@ -9,12 +10,12 @@ export default Ember.Controller.extend({
     'personLast',
     'nomen',
   ],
-  filteredMembers: Ember.computed.filterBy(
+  filteredMembers: filterBy(
     'model.members',
     'status',
     'Active',
   ),
-  sortedMembers: Ember.computed.sort(
+  sortedMembers: sort(
     'filteredMembers',
     'sortedMembersProperties'
   ),

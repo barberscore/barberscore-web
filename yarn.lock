@@ -2546,9 +2546,9 @@ ember-cli-dependency-checker@^2.0.0:
     is-git-url "^1.0.0"
     semver "^5.3.0"
 
-ember-cli-deploy-bugsnag@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-deploy-bugsnag/-/ember-cli-deploy-bugsnag-0.1.1.tgz#32013f62d71bcf10b324d48c1b35d066b16b6c20"
+ember-cli-deploy-bugsnag@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/ember-cli-deploy-bugsnag/-/ember-cli-deploy-bugsnag-0.1.2.tgz#f08b427adf6e11311101daa524e119f4972ead4c"
   dependencies:
     ember-cli-babel "^6.0.0"
     ember-cli-deploy-plugin "^0.2.9"

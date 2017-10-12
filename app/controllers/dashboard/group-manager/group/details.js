@@ -1,10 +1,12 @@
-import Ember from 'ember';
+import { not } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import config from '../../../../config/environment';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not(
+export default Controller.extend({
+  flashMessages: service(),
+  isDisabled: not(
     'model.permissions.write',
   ),
   uploadPhoto: task(function * (file) {

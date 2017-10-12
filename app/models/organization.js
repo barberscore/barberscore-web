@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 // import { validator, buildValidations } from 'ember-cp-validations';
-import {memberAction} from 'ember-api-actions';
+import { memberAction } from 'ember-api-actions';
 
 // const Validations = buildValidations({
 //   email: validator('format', {
@@ -55,7 +55,7 @@ export default Model.extend({
     'Division',
     'Chapter',
   ],
-  kindSort: Ember.computed(
+  kindSort: computed(
     'kind',
     'kindOptions',
     function() {
@@ -68,7 +68,7 @@ export default Model.extend({
     'Active',
     'Inactive',
   ],
-  statusSort: Ember.computed(
+  statusSort: computed(
     'status',
     'statusOptions',
     function() {

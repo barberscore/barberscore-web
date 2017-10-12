@@ -1,14 +1,16 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, filterBy } from '@ember/object/computed';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   participantsSortProperties: [
     'partSort',
   ],
-  sortedParticipants: Ember.computed.sort(
+  sortedParticipants: sort(
     'model.entry.participants',
     'participantsSortProperties'
   ),
-  filteredDirectors: Ember.computed.filterBy(
+  filteredDirectors: filterBy(
     'model.entry.participants',
     'part',
     'Director',
@@ -16,16 +18,16 @@ export default Ember.Controller.extend({
   sortedItemsProperties: [
     'num',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.round.appearances',
     'sortedItemsProperties'
   ),
-  isPrevDisabled: Ember.computed(
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

@@ -1,12 +1,11 @@
-import Ember from 'ember';
+import { notEmpty } from '@ember/object/computed';
+import { Promise as EmberPromise } from 'rsvp';
 import BsForm from 'ember-bootstrap/components/bs-form';
 
-const { computed } = Ember;
-
 export default BsForm.extend({
-  hasValidator: computed.notEmpty('model.validate'),
+  hasValidator: notEmpty('model.validate'),
 
   validate(/*model*/) {
-    return new Ember.RSVP.Promise();
+    return new EmberPromise();
   }
 });

@@ -1,8 +1,8 @@
-import Ember from 'ember';
+import { alias, gt, lt, mapBy, sort, sum } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import {memberAction} from 'ember-api-actions';
-const {computed} = Ember;
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -49,34 +49,34 @@ export default Model.extend({
   ],
 
 
-  entryTotPoints: Ember.computed.alias(
+  entryTotPoints: alias(
     'entry.totPoints'
   ),
-  entryRank: Ember.computed.alias(
+  entryRank: alias(
     'entry.rank'
   ),
-  isAdvancer: Ember.computed.gt(
+  isAdvancer: gt(
     'draw',
     0,
   ),
-  isFinisher: Ember.computed.lt(
+  isFinisher: lt(
     'draw',
     0,
   ),
-  slotNum: Ember.computed.alias(
+  slotNum: alias(
     'slot.num'
   ),
-  repertoriesFiltered: Ember.computed.alias(
+  repertoriesFiltered: alias(
     'entry.group.repertories'
   ),
-  chartsMapped: Ember.computed.mapBy(
+  chartsMapped: mapBy(
     'repertoriesFiltered',
     'chart'
   ),
   chartOptionsProperties: [
     'title',
   ],
-  chartOptions: Ember.computed.sort(
+  chartOptions: sort(
     'chartsMapped',
     'chartOptionsProperties'
   ),
@@ -102,18 +102,18 @@ export default Model.extend({
   //     }
   //  ),
 
-  tp: computed.mapBy(
+  tp: mapBy(
     'songs',
     'totPoints'
   ),
-  tc: computed.mapBy(
+  tc: mapBy(
     'songs',
     'totCount'
   ),
-  totPointsCP: computed.sum(
+  totPointsCP: sum(
     'tp'
   ),
-  stc: computed.sum(
+  stc: sum(
     'tc'
   ),
   totScoreCP: computed(
@@ -123,18 +123,18 @@ export default Model.extend({
       return (this.get('totPoints') / this.get('stc')).toFixed(1);
     }
   ),
-  mp: computed.mapBy(
+  mp: mapBy(
     'songs',
     'musPoints'
   ),
-  mc: computed.mapBy(
+  mc: mapBy(
     'songs',
     'musCount'
   ),
-  musPointsCP: computed.sum(
+  musPointsCP: sum(
     'mp'
   ),
-  smc: computed.sum(
+  smc: sum(
     'mc'
   ),
   musScoreCP: computed(
@@ -144,18 +144,18 @@ export default Model.extend({
       return (this.get('musPoints') / this.get('smc')).toFixed(1);
     }
   ),
-  pp: computed.mapBy(
+  pp: mapBy(
     'songs',
     'perPoints'
   ),
-  pc: computed.mapBy(
+  pc: mapBy(
     'songs',
     'perCount'
   ),
-  perPointsCP: computed.sum(
+  perPointsCP: sum(
     'pp'
   ),
-  spc: computed.sum(
+  spc: sum(
     'pc'
   ),
   perScoreCP: computed(
@@ -165,18 +165,18 @@ export default Model.extend({
       return (this.get('perPoints') / this.get('spc')).toFixed(1);
     }
   ),
-  sp: computed.mapBy(
+  sp: mapBy(
     'songs',
     'sngPoints'
   ),
-  sc: computed.mapBy(
+  sc: mapBy(
     'songs',
     'sngCount'
   ),
-  sngPointsCP: computed.sum(
+  sngPointsCP: sum(
     'sp'
   ),
-  ssc: computed.sum(
+  ssc: sum(
     'sc'
   ),
   sngScoreCP: computed(

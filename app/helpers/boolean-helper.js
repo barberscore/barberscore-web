@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function yesNo(params) {
   let value = params[0];
@@ -16,4 +16,4 @@ export function yesNo(params) {
   return out;
 }
 
-export default Ember.Helper.helper(yesNo);
+export default helper(yesNo);

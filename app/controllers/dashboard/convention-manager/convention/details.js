@@ -1,11 +1,14 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { not, sort } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  isDisabled: Ember.computed.not('model.permissions.write'),
-  organizationCall: Ember.computed(function() {
+export default Controller.extend({
+  store: service(),
+  flashMessages: service(),
+  isDisabled: not('model.permissions.write'),
+  organizationCall: computed(function() {
     return this.get('store').query('organization', {
       'kind__lt': 20, //TODO Hardcoded
       'page_size': 100,
@@ -15,7 +18,7 @@ export default Ember.Controller.extend({
     'kindSort:asc',
     'name:asc',
   ],
-  organizationOptions: Ember.computed.sort(
+  organizationOptions: sort(
     'organizationCall',
     'organizationOptionsProperties'
   ),

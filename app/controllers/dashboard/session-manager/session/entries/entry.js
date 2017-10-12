@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { sort, filterBy, alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import Controller, { inject as controller } from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  isDisabled: Ember.computed(
+export default Controller.extend({
+  isDisabled: computed(
     'model.status',
     function(){
       let disabled = [
@@ -15,11 +17,11 @@ export default Ember.Controller.extend({
   sortedRepertoriesProperties: [
     'nomen',
   ],
-  sortedRepertories: Ember.computed.sort(
+  sortedRepertories: sort(
     'model.group.repertories',
     'sortedRepertoriesProperties'
   ),
-  filteredMembers: Ember.computed.filterBy(
+  filteredMembers: filterBy(
     'model.group.members',
     'status',
     'Active'
@@ -28,7 +30,7 @@ export default Ember.Controller.extend({
     'personLast',
     'nomen',
   ],
-  memberOptions: Ember.computed.sort(
+  memberOptions: sort(
     'filteredMembers',
     'memberSortProperties'
   ),
@@ -39,18 +41,18 @@ export default Ember.Controller.extend({
     'awardAgeSort',
     'awardName',
   ],
-  contestOptions: Ember.computed.sort(
+  contestOptions: sort(
     'model.session.contests',
     'contestSortProperties'
   ),
   sortedContactsProperties: [
     'nomen',
   ],
-  filteredContacts: Ember.computed.filterBy(
+  filteredContacts: filterBy(
     'model.group.members',
     'isAdmin'
   ),
-  sortedContacts: Ember.computed.sort(
+  sortedContacts: sort(
     'filteredContacts',
     'sortedContactsProperties'
   ),
@@ -156,14 +158,14 @@ export default Ember.Controller.extend({
       })
     }
   }).restartable(),
-  entryManager: Ember.inject.controller('dashboard.session-manager.session.entries.index'),
-  sortedItems: Ember.computed.alias('entryManager.sortedItems'),
-  isPrevDisabled: Ember.computed(
+  entryManager: controller('dashboard.session-manager.session.entries.index'),
+  sortedItems: alias('entryManager.sortedItems'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

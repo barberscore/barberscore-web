@@ -1,6 +1,7 @@
-import Ember from 'ember';
+import { sort } from '@ember/object/computed';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   sortedContestsProperties: [
     'organizationKindSort',
     'awardQualifier',
@@ -8,7 +9,7 @@ export default Ember.Component.extend({
     'awardAgeSort',
     'awardName',
   ],
-  sortedContests: Ember.computed.sort(
+  sortedContests: sort(
     'session.contests',
     'sortedContestsProperties'
   ),

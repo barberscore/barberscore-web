@@ -1,36 +1,38 @@
-import Ember from 'ember';
+import { alias, not } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
-  session: Ember.inject.service(),
-  currentUser: Ember.inject.service('current-user'),
-  sessionIsDisabled: Ember.computed.alias(
+export default Controller.extend({
+  session: service(),
+  currentUser: service('current-user'),
+  sessionIsDisabled: alias(
     'currentUser.user.disabledAssignments'
   ),
-  isConventionManagerDisabled: Ember.computed.not(
+  isConventionManagerDisabled: not(
     'currentUser.user.person.isConventionManager'
   ),
-  isSessionManagerDisabled: Ember.computed.not(
+  isSessionManagerDisabled: not(
     'currentUser.user.person.isSessionManager'
   ),
-  isScoringManagerDisabled: Ember.computed.not(
+  isScoringManagerDisabled: not(
     'currentUser.user.person.isScoringManager'
   ),
-  isOrganizationManagerDisabled: Ember.computed.not(
+  isOrganizationManagerDisabled: not(
     'currentUser.user.person.isOrganizationManager'
   ),
-  isGroupManagerDisabled: Ember.computed.not(
+  isGroupManagerDisabled: not(
     'currentUser.user.person.isGroupManager'
   ),
-  isPersonManagerDisabled: Ember.computed.not(
+  isPersonManagerDisabled: not(
     'currentUser.user.person.isPersonManager'
   ),
-  isAwardManagerDisabled: Ember.computed.not(
+  isAwardManagerDisabled: not(
     'currentUser.user.person.isAwardManager'
   ),
-  isJudgeManagerDisabled: Ember.computed.not(
+  isJudgeManagerDisabled: not(
     'currentUser.user.person.isJudgeManager'
   ),
-  isChartManagerDisabled: Ember.computed.not(
+  isChartManagerDisabled: not(
     'currentUser.user.person.isChartManager'
   ),
 });

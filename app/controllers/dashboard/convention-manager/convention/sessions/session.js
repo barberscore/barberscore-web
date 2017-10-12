@@ -1,17 +1,20 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { equal, and, not, sort, alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller, { inject as controller } from '@ember/controller';
 import {
   task
 } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  currentUser: Ember.inject.service(),
-  flashMessages: Ember.inject.service(),
-  isNew: Ember.computed.equal('model.status', 'New'),
-  isEditable: Ember.computed.and(
+export default Controller.extend({
+  currentUser: service(),
+  flashMessages: service(),
+  isNew: equal('model.status', 'New'),
+  isEditable: and(
     'model.permissions.write',
     'isNew',
   ),
-  isDisabled: Ember.computed.not(
+  isDisabled: not(
     'isEditable',
   ),
   awardSortProperties: [
@@ -21,7 +24,7 @@ export default Ember.Controller.extend({
     'ageSort',
     'name',
   ],
-  filteredAwards: Ember.computed(
+  filteredAwards: computed(
     'model.convention.organization.awards.@each.{kind,season}',
     'model.kind',
     'model.convention.season',
@@ -29,7 +32,7 @@ export default Ember.Controller.extend({
       return this.get('model.convention.organization.awards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }
   ),
-  sortedAwards: Ember.computed.sort(
+  sortedAwards: sort(
     'filteredAwards',
     'awardSortProperties',
   ),
@@ -40,18 +43,18 @@ export default Ember.Controller.extend({
     this.store.pushPayload('session', session);
     this.get('flashMessages').success("Published!");
   }).drop(),
-  sessionManager: Ember.inject.controller('dashboard.convention-manager.convention.sessions.index'),
+  sessionManager: controller('dashboard.convention-manager.convention.sessions.index'),
   sessionSortProperties: [
     'nomen',
   ],
-  sortedItems: Ember.computed.alias('sessionManager.sortedSessions'),
-  isPrevDisabled: Ember.computed(
+  sortedItems: alias('sessionManager.sortedSessions'),
+  isPrevDisabled: computed(
     'model',
     'sortedItems',
     function () {
       return this.model == this.get('sortedItems.firstObject');
     }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems',
     function () {

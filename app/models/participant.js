@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -10,10 +11,10 @@ export default Model.extend({
   member: DS.belongsTo('member', {async: true}),
   permissions: DS.attr(),
 
-  nameSort: Ember.computed.alias('member.person.lastName'),
-  partSort: Ember.computed.alias('member.partSort'),
+  nameSort: alias('member.person.lastName'),
+  partSort: alias('member.partSort'),
 
-  isExpiring: Ember.computed(
+  isExpiring: computed(
     'member.person.validThrough',
     'entry.group.isBhs',
     'entry.session.convention.endDate',

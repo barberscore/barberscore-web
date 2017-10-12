@@ -1,38 +1,40 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { sort, equal, or } from '@ember/object/computed';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   panelistSortProperties: [
     'categorySort',
     'kindSort',
     'personSort',
   ],
-  sortedItems: Ember.computed.sort(
+  sortedItems: sort(
     'model.round.panelists',
     'panelistSortProperties'
   ),
-  isStarted: Ember.computed.equal(
+  isStarted: equal(
     'model.round.status',
     'Started',
   ),
-  isFinished: Ember.computed.equal(
+  isFinished: equal(
     'model.round.status',
     'Finished',
   ),
-  isAnnounced: Ember.computed.equal(
+  isAnnounced: equal(
     'model.round.status',
     'Archived',
   ),
-  isDisabled: Ember.computed.or(
+  isDisabled: or(
     'isStarted',
     'isFinished',
   ),
-  isPrevDisabled: Ember.computed(
+  isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.firstObject');
   }),
-  isNextDisabled: Ember.computed(
+  isNextDisabled: computed(
     'model',
     'sortedItems', function() {
     return this.model == this.get('sortedItems.lastObject');

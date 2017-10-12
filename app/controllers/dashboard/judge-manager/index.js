@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import { sort, filterBy } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  store: Ember.inject.service(),
+export default Controller.extend({
+  store: service(),
   queryParams: [
     'office__is_cj',
     'ordering',
@@ -21,41 +23,41 @@ export default Ember.Controller.extend({
     'officeShortName',
     'personName',
   ],
-  sortedJudges: Ember.computed.sort(
+  sortedJudges: sort(
     'model',
     'sortedJudgesProperties'
   ),
-  sortedSCJC: Ember.computed.filterBy(
+  sortedSCJC: filterBy(
     'sortedJudges',
     'officeShortName',
     'SCJC'
   ),
-  sortedDRCJ: Ember.computed.filterBy(
+  sortedDRCJ: filterBy(
     'sortedJudges',
     'officeShortName',
     'DRCJ'
   ),
-  sortedCA: Ember.computed.filterBy(
+  sortedCA: filterBy(
     'sortedJudges',
     'officeShortName',
     'CA'
   ),
-  sortedMUS: Ember.computed.filterBy(
+  sortedMUS: filterBy(
     'sortedJudges',
     'officeShortName',
     'MUS'
   ),
-  sortedPER: Ember.computed.filterBy(
+  sortedPER: filterBy(
     'sortedJudges',
     'officeShortName',
     'PER'
   ),
-  sortedSNG: Ember.computed.filterBy(
+  sortedSNG: filterBy(
     'sortedJudges',
     'officeShortName',
     'SNG'
   ),
-  sortedAdmin: Ember.computed.filterBy(
+  sortedAdmin: filterBy(
     'sortedJudges',
     'officeShortName',
     'Admin'

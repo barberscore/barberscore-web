@@ -1,8 +1,11 @@
-import Ember from 'ember';
+import { uniq, sort } from '@ember/object/computed';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 
-export default Ember.Controller.extend({
-  flashMessages: Ember.inject.service(),
+export default Controller.extend({
+  flashMessages: service(),
   saveAward: task(function *() {
     try {
       let award = yield this.get('model').save();
@@ -14,7 +17,7 @@ export default Ember.Controller.extend({
       })
     }
   }).drop(),
-  organizationCall: Ember.computed(function() {
+  organizationCall: computed(function() {
     return this.get('store').query('organization', {
       'officers__person__user': this.get('currentUser.user.id'),
       'officers__office__is_award_manager': true,
@@ -25,10 +28,10 @@ export default Ember.Controller.extend({
     'kindSort:asc',
     'name:asc',
   ],
-  organizationUniqs: Ember.computed.uniq(
+  organizationUniqs: uniq(
     'organizationCall',
   ),
-  organizationOptions: Ember.computed.sort(
+  organizationOptions: sort(
     'organizationUniqs',
     'organizationOptionsProperties'
   ),

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-export default Ember.Component.extend({
+export default Component.extend({
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
