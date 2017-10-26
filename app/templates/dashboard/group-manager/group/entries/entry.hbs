@@ -36,7 +36,7 @@
             {{/bs-button-group}}
           {{/form.element}}
           {{#if (eq model.group.kind 'Chorus')}}
-            {{form.element controlType='text' disabled=false placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
+            {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
           {{/if}}
         {{/bs-form}}
       </section>

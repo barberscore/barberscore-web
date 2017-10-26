@@ -8,14 +8,9 @@ export default DS.Transform.extend({
       7: 'Withdrawn',
       10: 'Submitted',
       20: 'Approved',
-      30: 'Rejected',
-      50: 'Verified',
       52: 'Scratched',
       55: 'Disqualified',
-      57: 'Started',
-      60: 'Finished',
-      70: 'Completed',
-      90: 'Announced',
+      57: 'Final',
       95: 'Archived',
     };
     return map[serialized];
@@ -28,14 +23,9 @@ export default DS.Transform.extend({
       'Withdrawn': 7,
       'Submitted': 10,
       'Approved': 20,
-      'Rejected': 30,
-      'Verified': 50,
       'Scratched': 52,
       'Disqualified': 55,
-      'Started': 576,
-      'Finished': 60,
-      'Completed': 70,
-      'Announced': 90,
+      'Final': 57,
       'Archived': 95,
 };
     return map[deserialized];
