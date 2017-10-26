@@ -11,7 +11,6 @@ export default Model.extend({
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
   isAdmin: DS.attr('boolean'),
-  isCurrent: DS.attr('boolean'),
   group: DS.belongsTo('group', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   participants: DS.hasMany('participant', {async: true}),
