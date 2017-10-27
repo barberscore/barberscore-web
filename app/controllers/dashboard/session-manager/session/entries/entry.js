@@ -10,7 +10,7 @@ export default Controller.extend({
       let disabled = [
         'Withdrawn',
         'Scratched',
-        'Announced',
+        'Final',
       ]
       return disabled.includes(this.get('model.status'));
   }),

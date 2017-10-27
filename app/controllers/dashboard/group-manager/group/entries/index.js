@@ -9,7 +9,7 @@ export default Controller.extend({
   ),
   filteredEntries: filterBy(
     'model.entries',
-    'notAnnounced'
+    'notArchived'
   ),
   sortedEntriesProperties: [
     'statusSort',

@@ -14,6 +14,7 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('entry-status'),
+  isArchived: DS.attr('boolean'),
   isEvaluation: DS.attr('boolean'),
   isPrivate: DS.attr('boolean'),
   draw: DS.attr('number'),
@@ -44,13 +45,8 @@ export default Model.extend({
   scratch: memberAction({path: 'scratch', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
 
-  announced: equal(
-    'status',
-    'Archived'
-  ),
-
-  notAnnounced: not(
-    'announced'
+  notArchived: not(
+    'isArchived'
   ),
 
   expiringMembers: filterBy(
@@ -69,14 +65,9 @@ export default Model.extend({
     'Withdrawn',
     'Submitted',
     'Approved',
-    'Rejected',
-    'Withdrew',
-    'Verified',
     'Scratched',
+    'Final',
     'Disqualified',
-    'Started',
-    'Finished',
-    'Announced',
   ],
 
 
