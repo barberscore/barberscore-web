@@ -1,5 +1,4 @@
 import {
-  equal,
   not,
   filterBy,
   alias,
