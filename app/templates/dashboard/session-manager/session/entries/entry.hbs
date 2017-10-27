@@ -248,6 +248,10 @@
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Approved')}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Withdrawn')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Re-Approve Entry{{/bs-button}}</li>
+          {{else if (eq model.status 'Scratched')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut approveEntryModal) true)}}Re-Approve Entry{{/bs-button}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
