@@ -8,7 +8,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').query('session', {
       'convention__assignments__person__user': this.get('currentUser.user.id'),
       'page_size': 100,
-      'status__lt': 95,
+      'is_archived': 'False',
       'convention__assignments__category': 5,
     });
   },

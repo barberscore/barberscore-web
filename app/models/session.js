@@ -1,6 +1,5 @@
 import {
   alias,
-  equal,
   not,
   filterBy,
   sort,
@@ -14,6 +13,7 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('session-status'),
+  isArchived: DS.attr('boolean'),
   kind: DS.attr('session-kind'),
   isInvitational: DS.attr('boolean'),
   scoresheet: DS.attr('string'),
@@ -41,8 +41,7 @@ export default Model.extend({
   conventionStatus: alias('convention.status'),
   conventionIsActive: alias('convention.isActive'),
 
-  isArchived: equal('status', 'Archived'),
-  isCurrent: not('isArchived'),
+  notArchived: not('isArchived'),
 
   organizationKindSort: alias('convention.organizationKindSort'),
   organizationNomen: alias('convention.organizationNomen'),
@@ -50,13 +49,10 @@ export default Model.extend({
   statusOptions: [
     'New',
     'Opened',
-    'Restricted',
     'Closed',
     'Verified',
     'Started',
     'Finished',
-    'Announced',
-    'Archived',
   ],
   kindOptions: [
     'Quartet',
