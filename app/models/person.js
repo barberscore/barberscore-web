@@ -7,7 +7,7 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('person-status'),
   birthDate: DS.attr('isodate'),
-  validThrough: DS.attr('isodate'),
+  currentThrough: DS.attr('isodate'),
   spouse: DS.attr('string', {defaultValue:''}),
   location: DS.attr('string', {defaultValue:''}),
   part: DS.attr('person-part'),

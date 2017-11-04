@@ -15,11 +15,11 @@ export default Model.extend({
   partSort: alias('member.partSort'),
 
   isExpiring: computed(
-    'member.person.validThrough',
+    'member.person.currentThrough',
     'entry.group.isBhs',
     'entry.session.convention.endDate',
     function () {
-      let expiring = this.get('member.person.validThrough') < this.get('entry.session.convention.endDate');
+      let expiring = this.get('member.person.currentThrough') < this.get('entry.session.convention.endDate');
       let isBhs = this.get('entry.group.isBhs');
       return (isBhs && expiring);
     }
