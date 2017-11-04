@@ -2,6 +2,7 @@ import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -14,6 +15,9 @@ export default Model.extend({
   nameSort: alias('member.person.lastName'),
   partSort: alias('member.partSort'),
 
+  include: memberAction({path: 'include', type: 'post'}),
+  exclude: memberAction({path: 'exclude', type: 'post'}),
+
   isExpiring: computed(
     'member.person.currentThrough',
     'entry.group.isBhs',
@@ -25,7 +29,9 @@ export default Model.extend({
     }
   ),
   statusOptions: [
+    'Excluded',
     'New',
+    'Included',
   ],
 
 
