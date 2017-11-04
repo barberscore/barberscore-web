@@ -7,20 +7,22 @@
             <caption>Available Awards</caption>
             <thead>
               <tr>
-                <th>Include?</th>
+                <th>Status</th>
                 <th {{action 'sortByAward' 'name'}}>Name</th>
                 <th>Rounds</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {{#each sortedAwards as |award|}}
+              {{#each sortedContests as |contest|}}
                   <tr>
-                    {{#if award.isLoading}}
+                    {{#if contest.award.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>{{contest-checkbox award=award contests=model.contests model=model}}</td>
-                      <td>{{award.name}}</td>
-                      <td>{{award.rounds}}</td>
+                      <td>{{contest.status}}</td>
+                      <td>{{contest.award.nomen}}</td>
+                      <td>{{contest.award.rounds}}</td>
+                      <td>{{toggle-contest model=contest}}</td>
                     {{/if}}
                   </tr>
               {{else}}

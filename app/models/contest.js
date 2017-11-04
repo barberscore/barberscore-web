@@ -1,6 +1,7 @@
 import { alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -12,14 +13,13 @@ export default Model.extend({
   award: DS.belongsTo('award', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
+  include: memberAction({path: 'include', type: 'post'}),
+  exclude: memberAction({path: 'exclude', type: 'post'}),
 
   statusOptions: [
     'New',
-    'Opened',
-    'Closed',
-    'Validated',
-    'Finished',
-    'Announced',
+    'Included',
+    'Excluded',
   ],
 
   kindOptions: [

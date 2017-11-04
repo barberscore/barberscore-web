@@ -1,0 +1,17 @@
+{{#if model.isLoading}}
+  <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+{{else}}
+   {{!-- {{#bs-button-group
+      value=model.status
+      type='radio'
+      as |bg|
+    }}
+      {{#bg.button type='default' value='Included' onClick=(perform includeContest) disabled=isIncluded}}Included{{/bg.button}}
+      {{#bg.button type='default' value='Excluded' onClick=(perform excludeContest) disabled=isExcluded}}Excluded{{/bg.button}}
+    {{/bs-button-group}} --}}
+    {{#if (eq model.status 'Included')}}
+      {{#bs-button type='default' onClick=(perform excludeContest) disabled=isDisabled}}Exclude{{/bs-button}}
+    {{else if (eq model.status 'Excluded')}}
+      {{#bs-button type='default' onClick=(perform includeContest) disabled=isDisabled}}Include{{/bs-button}}
+    {{/if}}
+{{/if}}
