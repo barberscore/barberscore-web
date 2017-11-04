@@ -48,7 +48,6 @@ export default Component.extend({
       this.get('store').pushPayload('contest', contest);
       this.get('flashMessages').success("Included!");
     } catch(e) {
-      console.log(e);
       this.get('flashMessages').danger("Problem!");
     }
   }).drop(),
@@ -60,7 +59,6 @@ export default Component.extend({
       this.get('store').pushPayload('contest', contest);
       this.get('flashMessages').success("Excluded!");
     } catch(e) {
-      console.log(e);
       this.get('flashMessages').danger("Problem!");
     }
   }).drop(),

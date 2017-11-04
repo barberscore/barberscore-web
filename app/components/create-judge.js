@@ -49,9 +49,6 @@ export default Component.extend({
         this.set('openModal', false);
         this.get('flashMessages').success('Saved');
       });
-      // .catch((error) => {
-      //   console.log(error);
-      // });
     },
     clearJudge() {
       this.get('model').deleteRecord();
