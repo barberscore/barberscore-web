@@ -13,7 +13,6 @@ export default Model.extend({
   isAdmin: DS.attr('boolean'),
   group: DS.belongsTo('group', {async: true}),
   person: DS.belongsTo('person', {async: true}),
-  participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

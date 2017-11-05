@@ -86,25 +86,20 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Compete?</th>
+                <th>Status</th>
                 <th>Name</th>
               </tr>
             </thead>
             <tbody>
-              {{#each contestOptions as |contest|}}
+              {{#each sortedContestants as |contestant|}}
                   <tr>
-                    {{#if contest.isLoading}}
+                    {{#if contestant.isLoading}}
                       <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       <td>
-                        {{contestant-checkbox
-                          contest=contest
-                          contestants=model.contestants
-                          model=model
-                          isDisabled=isDisabled
-                        }}
+                        {{contestant.status}}
                       </td>
-                      <td>{{contest.nomen}}</td>
+                      <td>{{contestant.contest.award.nomen}}</td>
                     {{/if}}
                   </tr>
               {{else}}
@@ -125,38 +120,33 @@
           <table class='table'>
             <thead>
               <tr>
-                <th class='col-md-1'>Performing?</th>
+                <th class='col-md-1'>Status</th>
                 <th class='col-md-2'>Name</th>
                 <th class='col-md-1'>Part</th>
                 <th class='col-md-1'>Expires</th>
               </tr>
             </thead>
             <tbody>
-              {{#each memberOptions as |member|}}
+              {{#each sortedParticipants as |participant|}}
                   <tr>
-                    {{#if member.isLoading}}
+                    {{#if participant.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       <td>
-                        {{participant-checkbox
-                          member=member
-                          participants=model.participants
-                          model=model
-                          isDisabled=isDisabled
-                        }}
+                        {{participant.status}}
                       </td>
-                      {{#if member.person.isLoading}}
+                      {{#if participant.person.isLoading}}
                         <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                       {{else}}
-                        <td>{{member.person.name}}</td>
+                        <td>{{participant.person.name}}</td>
                       {{/if}}
-                      <td>{{member.part}}</td>
-                      <td>{{moment-format member.person.currentThrough 'LL'}}</td>
+                      <td>{{participant.part}}</td>
+                      <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
                     {{/if}}
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=2>No contests available</td>
+                  <td colspan=2>No members available</td>
                 </tr>
               {{/each}}
             </tbody>

@@ -8,28 +8,17 @@ export default Controller.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  contestSortProperties: [
-    'organizationKindSort',
-    'awardQualifier',
-    'awardPrimary:desc',
-    'awardAgeSort',
-    'awardName',
+  contestantSortProperties: [
   ],
-  contestOptions: sort(
-    'model.session.contests',
-    'contestSortProperties'
+  sortedContestants: sort(
+    'model.contestants',
+    'contestantSortProperties'
   ),
-  filteredMembers: filterBy(
-    'model.group.members',
-    'canParticipate',
-  ),
-  memberSortProperties: [
-    'personLast',
-    'nomen',
+  participantSortProperties: [
   ],
-  memberOptions: sort(
-    'filteredMembers',
-    'memberSortProperties'
+  sortedParticipants: sort(
+    'model.participants',
+    'participantSortProperties'
   ),
   submitEntryModal: false,
   submitEntryModalError: false,

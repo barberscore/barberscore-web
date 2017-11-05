@@ -54,25 +54,20 @@
               </tr>
             </thead>
             <tbody>
-              {{#each contestOptions as |contest|}}
+              {{#each sortedContestants as |contestant|}}
                   <tr>
-                    {{#if contest.isLoading}}
+                    {{#if contestant.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       <td>
-                        {{contestant-checkbox
-                          contest=contest
-                          contestants=model.contestants
-                          model=model
-                          isDisabled=isDisabled
-                        }}
+                        {{contestant.status}}
                       </td>
-                      <td>{{contest.nomen}}</td>
+                      <td>{{contestant.contest.nomen}}</td>
                     {{/if}}
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=2>No contests available</td>
+                  <td colspan=2>No contestants available</td>
                 </tr>
               {{/each}}
             </tbody>
@@ -94,21 +89,16 @@
               </tr>
             </thead>
             <tbody>
-              {{#each memberOptions as |member|}}
+              {{#each sortedParticipants as |participant|}}
                   <tr>
-                    {{#if member.isLoading}}
+                    {{#if participant.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       <td>
-                        {{participant-checkbox
-                          member=member
-                          participants=model.participants
-                          model=model
-                          isDisabled=isDisabled
-                        }}
+                        {{participant.status}}
                       </td>
-                      <td>{{member.person.name}}</td>
-                      <td>{{moment-format member.person.currentThrough 'LL'}}</td>
+                      <td>{{participant.person.name}}</td>
+                      <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
                     {{/if}}
                   </tr>
               {{else}}

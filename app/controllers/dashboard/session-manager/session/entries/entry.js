@@ -21,29 +21,17 @@ export default Controller.extend({
     'model.group.repertories',
     'sortedRepertoriesProperties'
   ),
-  filteredMembers: filterBy(
-    'model.group.members',
-    'status',
-    'Active'
-  ),
-  memberSortProperties: [
-    'personLast',
-    'nomen',
+  participantSortProperties: [
   ],
-  memberOptions: sort(
-    'filteredMembers',
-    'memberSortProperties'
+  sortedParticipants: sort(
+    'model.participants',
+    'participantSortProperties'
   ),
-  contestSortProperties: [
-    'organizationKindSort',
-    'awardQualifier',
-    'awardPrimary:desc',
-    'awardAgeSort',
-    'awardName',
+  contestantSortProperties: [
   ],
-  contestOptions: sort(
-    'model.session.contests',
-    'contestSortProperties'
+  sortedContestants: sort(
+    'model.contestants',
+    'contestantSortProperties'
   ),
   sortedContactsProperties: [
     'nomen',

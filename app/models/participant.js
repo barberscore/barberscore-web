@@ -9,7 +9,7 @@ export default Model.extend({
   status: DS.attr('participant-status'),
   part: DS.attr('participant-part'),
   entry: DS.belongsTo('entry', {async: true}),
-  member: DS.belongsTo('member', {async: true}),
+  person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
 
   nameSort: alias('member.person.lastName'),

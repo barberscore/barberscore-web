@@ -26,7 +26,7 @@
               {{#each filteredDirectors as |participant|}}
                 Directed By:
                 <ul class='list-inline'>
-                  <li>{{participant.member.person.commonName}}</li>
+                  <li>{{participant.person.commonName}}</li>
                 </ul>
               {{/each}}
             </div>
@@ -34,7 +34,7 @@
             <div>
               {{#each sortedParticipants as |participant|}}
                 <ul class='list-unstyled'>
-                  <li>{{participant.member.person.commonName}}, {{participant.member.part}}</li>
+                  <li>{{participant.person.commonName}}, {{participant.person.part}}</li>
                 </ul>
               {{/each}}
             </div>

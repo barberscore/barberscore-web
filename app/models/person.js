@@ -35,6 +35,7 @@ export default Model.extend({
   members: DS.hasMany('member', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
+  participants: DS.hasMany('participant', {async: true}),
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
