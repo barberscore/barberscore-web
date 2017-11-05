@@ -38,7 +38,6 @@ export default Component.extend({
       })
       .catch(() => {
         this.get('flashMessages').danger('Error');
-        // console.log(error);
       });
     },
     clearOfficer() {
