@@ -39,23 +39,23 @@ export default Component.extend({
   //     }
   //   }
   // }).drop(),
-  includeContestant: task(function *() {
+  includeParticipant: task(function *() {
     try {
-      let contestant = yield this.model.include({
+      let participant = yield this.model.include({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('contestant', contestant);
+      this.get('store').pushPayload('participant', participant);
       this.get('flashMessages').success("Included!");
     } catch(e) {
       this.get('flashMessages').danger("Problem!");
     }
   }).drop(),
-  excludeContestant: task(function *() {
+  excludeParticipant: task(function *() {
     try {
-      let contestant = yield this.model.exclude({
+      let participant = yield this.model.exclude({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('contestant', contestant);
+      this.get('store').pushPayload('participant', participant);
       this.get('flashMessages').success("Excluded!");
     } catch(e) {
       this.get('flashMessages').danger("Problem!");

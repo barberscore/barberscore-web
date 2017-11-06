@@ -66,9 +66,7 @@
                       <td>
                         {{contestant.contest.nomen}}
                       </td>
-                      <td>
                       <td>{{toggle-contestant model=contestant}}</td>
-                      </td>
                     {{/if}}
                   </tr>
               {{else}}
@@ -89,9 +87,10 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Performing?</th>
+                <th>Status</th>
                 <th>Name</th>
                 <th>Valid Through</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -105,6 +104,7 @@
                       </td>
                       <td>{{participant.person.name}}</td>
                       <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
+                      <td>{{toggle-participant model=participant}}</td>
                     {{/if}}
                   </tr>
               {{else}}
