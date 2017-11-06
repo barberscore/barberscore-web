@@ -49,8 +49,9 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Compete?</th>
+                <th>Status</th>
                 <th>Name</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -62,7 +63,12 @@
                       <td>
                         {{contestant.status}}
                       </td>
-                      <td>{{contestant.contest.nomen}}</td>
+                      <td>
+                        {{contestant.contest.nomen}}
+                      </td>
+                      <td>
+                      <td>{{toggle-contestant model=contestant}}</td>
+                      </td>
                     {{/if}}
                   </tr>
               {{else}}
