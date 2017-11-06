@@ -4,11 +4,12 @@
       <table class='table'>
         <thead>
           <tr>
+            <th class='col-md-1'>Admin</th>
             <th class='col-md-4'>Person</th>
-            <th class='col-md-1'>Part</th>
+            <th class='col-md-6'>Part</th>
+            <th class='col-md-1'>Action</th>
             {{!-- <th>Start</th> --}}
             {{!-- <th>End</th> --}}
-            <th class='col-md-1'>Admin</th>
             {{!-- <th>Status</th> --}}
           </tr>
         </thead>
@@ -18,19 +19,23 @@
               {{#if member.isLoading}}
                 <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
+                <td>{{boolean-checkmark value=member.isAdmin}}</td>
                 <td>
                   {{#if member.person.isLoading}}
                     <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    {{#link-to 'dashboard.group-manager.group.members.member' member}}{{member.person.nomen}}{{/link-to}}
+                    {{member.person.nomen}}
                   {{/if}}
                 </td>
                 <td>
                   {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
                 </td>
+                <td>
+                  {{toggle-admin model=member}}
+                </td>
                 {{!-- <td>{{moment-format member.start_date 'LL'}}</td> --}}
                 {{!-- <td>{{moment-format member.end_date 'LL'}}</td> --}}
-                <td>{{boolean-checkmark value=member.isAdmin}}</td>
+
                 {{!-- <td>{{member.status}}</td> --}}
               {{/if}}
             </tr>
@@ -44,6 +49,9 @@
     </div>
   </section>
   <section>
+    <p>
+      <strong>Important:</strong>  You may not remove yourself as an admin; appoint another admin, and have them remove your access if necessary.
+    </p>
     <p>
       <strong>Note:</strong>  This information comes from the BHS Member Center and is updated every 24 hours.  To make changes to your group's membership please do so there.  Only currently Active members (as defined by the BHS Member Center) are shown.
     </p>

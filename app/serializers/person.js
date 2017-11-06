@@ -5,6 +5,9 @@ export default DS.JSONAPISerializer.extend({
       assignments: {
         serialize: true
       },
+      participants: {
+        serialize: true
+      },
       commonName: {
         serialize: false
       },

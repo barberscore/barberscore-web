@@ -20,6 +20,13 @@ export default Controller.extend({
     'model.participants',
     'participantSortProperties'
   ),
+  sortedRepertoriesProperties: [
+    'nomen',
+  ],
+  sortedRepertories: sort(
+    'model.group.repertories',
+    'sortedRepertoriesProperties'
+  ),
   submitEntryModal: false,
   submitEntryModalError: false,
   submitEntry: task(function *() {

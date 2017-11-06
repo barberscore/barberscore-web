@@ -1,4 +1,4 @@
-import { alias } from '@ember/object/computed';
+import { alias, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -27,5 +27,11 @@ export default Model.extend({
     'Included',
   ],
   entryTotPoints: alias('entry.totPoints'),
+
+  isIncluded: equal(
+    'status',
+    'Included',
+  )
+
 
 });

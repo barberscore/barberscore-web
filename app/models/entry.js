@@ -57,6 +57,24 @@ export default Model.extend({
     'expiringMembers.length'
   ),
 
+  includedContestants: filterBy(
+    'contestants',
+    'isIncluded'
+  ),
+
+  includedContestantsCount: alias(
+    'includedContestants.length'
+  ),
+
+  includedParticipants: filterBy(
+    'participants',
+    'isIncluded'
+  ),
+
+  includedParticipantsCount: alias(
+    'includedParticipants.length'
+  ),
+
 
   statusOptions: [
     'New',

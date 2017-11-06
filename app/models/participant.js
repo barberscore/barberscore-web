@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { alias } from '@ember/object/computed';
+import { alias, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -33,6 +33,9 @@ export default Model.extend({
     'New',
     'Included',
   ],
-
+  isIncluded: equal(
+    'status',
+    'Included',
+  )
 
 });

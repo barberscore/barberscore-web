@@ -43,15 +43,15 @@
       <hr>
       <section>
         <p>
-          Contests Entered: {{model.contestantCount}}
+          Contests Entered: {{model.includedContestantsCount}}
         </p>
         <div class='table-responsive'>
           <table class='table'>
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Name</th>
-                <th>Action</th>
+                <th class='col-md-2'>Status</th>
+                <th class='col-md-9'>Name</th>
+                <th class='col-md-1'>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +64,7 @@
                         {{contestant.status}}
                       </td>
                       <td>
-                        {{contestant.contest.nomen}}
+                        {{contestant.contest.award.nomen}}
                       </td>
                       <td>{{toggle-contestant model=contestant}}</td>
                     {{/if}}
@@ -81,38 +81,77 @@
       <hr>
       <section>
         <p>
-          Participants on Stage: {{model.participantCount}}
+          Participants on Stage: {{model.includedParticipantsCount}}
         </p>
         <div class='table-responsive'>
           <table class='table'>
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Name</th>
-                <th>Valid Through</th>
-                <th>Action</th>
+                <th class='col-md-2'>Status</th>
+                <th class='col-md-4'>Name</th>
+                <th class='col-md-2'>Part</th>
+                <th class='col-md-3'>Current Through</th>
+                <th class='col-md-1'>Action</th>
               </tr>
             </thead>
             <tbody>
               {{#each sortedParticipants as |participant|}}
                   <tr>
                     {{#if participant.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      <td colspan=12>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       <td>
                         {{participant.status}}
                       </td>
                       <td>{{participant.person.name}}</td>
+                      <td>{{participant.part}}</td>
                       <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
                       <td>{{toggle-participant model=participant}}</td>
                     {{/if}}
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=2>No contests available</td>
+                  <td colspan=2>No participants available.</td>
                 </tr>
               {{/each}}
             </tbody>
+          </table>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <div class='table-responsive'>
+          <p>
+            Song Repertory: {{model.repertoryCount}}
+          </p>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='col-md-6'>Title</th>
+                <th class='col-md-6'>Arranger(s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedRepertories as |repertory|}}
+                <tr>
+                  {{#if repertory.chart.isLoading}}
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{repertory.chart.title}}</td>
+                    <td>{{repertory.chart.arrangers}}</td>
+                  {{/if}}
+                </tr>
+              {{else}}
+                <tr>
+                  <td>
+                    No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+            <tfoot>
+              Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}
+            </tfoot>
           </table>
         </div>
       </section>
