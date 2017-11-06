@@ -1,4 +1,4 @@
-import { equal, not, alias } from '@ember/object/computed';
+import { not, alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import {

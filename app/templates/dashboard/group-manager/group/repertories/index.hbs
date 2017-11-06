@@ -4,8 +4,8 @@
       <thead>
         <tr>
           <th class='col-md-6'>Title</th>
-          <th>Arranger(s)</th>
-          <th>Status</th>
+          <th class='col-md-5'>Arranger(s)</th>
+          <th class='col-md-1'>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -14,9 +14,9 @@
             {{#if repertory.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{#link-to 'dashboard.group-manager.group.repertories.repertory' repertory}}{{repertory.chart.title}}{{/link-to}}</td>
+              <td>{{repertory.chart.title}}</td>
               <td>{{repertory.chart.arrangers}}</td>
-              <td>{{repertory.status}}</td>
+              <td>{{delete-repertory model=repertory}}</td>
             {{/if}}
           </tr>
         {{else}}
