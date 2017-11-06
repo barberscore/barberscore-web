@@ -31,7 +31,6 @@ export default Controller.extend({
   saveEntry: task(function* (){
     try {
       let entry = yield this.get('model').save();
-      // this.store.pushPayload('entry', entry);
       this.get('flashMessages').success('Saved');
       this.transitionToRoute('dashboard.group-manager.group.entries.entry', entry);
     } catch(e) {

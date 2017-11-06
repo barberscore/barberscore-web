@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return this.get('store').createRecord('entry', {
+    let entry = this.get('store').createRecord('entry', {
       'isEvaluation': true,
       'isPrivate': false,
       'group': this.modelFor('dashboard.group-manager.group'),
@@ -11,5 +11,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'contestants': [],
       'participants': [],
     });
+    return entry;
   },
 });
