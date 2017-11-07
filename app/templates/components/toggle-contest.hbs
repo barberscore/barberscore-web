@@ -13,5 +13,8 @@
       {{#bs-button type='default' onClick=(perform excludeContest) disabled=isDisabled}}Exclude{{/bs-button}}
     {{else if (eq model.status 'Excluded')}}
       {{#bs-button type='default' onClick=(perform includeContest) disabled=isDisabled}}Include{{/bs-button}}
+    {{else}}
+      {{#bs-button type='default' onClick=(perform includeContest) disabled=isDisabled}}Include{{/bs-button}}
+      {{#bs-button type='default' onClick=(perform excludeContest) disabled=isDisabled}}Exclude{{/bs-button}}
     {{/if}}
 {{/if}}

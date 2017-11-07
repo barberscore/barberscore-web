@@ -88,6 +88,7 @@
               <tr>
                 <th>Status</th>
                 <th>Name</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -100,6 +101,7 @@
                         {{contestant.status}}
                       </td>
                       <td>{{contestant.contest.award.nomen}}</td>
+                      <td>{{toggle-contestant model=contestant}}</td>
                     {{/if}}
                   </tr>
               {{else}}
@@ -124,6 +126,7 @@
                 <th class='col-md-2'>Name</th>
                 <th class='col-md-1'>Part</th>
                 <th class='col-md-1'>Expires</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -142,6 +145,7 @@
                       {{/if}}
                       <td>{{participant.part}}</td>
                       <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
+                      <td>{{toggle-participant model=participant}}</td>
                     {{/if}}
                   </tr>
               {{else}}
