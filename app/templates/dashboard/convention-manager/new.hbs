@@ -1,0 +1,92 @@
+<section>
+  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+</section>
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>
+        (New Convention)
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        {{#bs-form
+          model=model
+          formLayout='vertical'
+          onSubmit=(perform saveConvention)
+          as |form|
+        }}
+          {{form.element
+            controlType='text'
+            placeholder='Name'
+            property='name'
+          }}
+          {{#form.element property='organization' as |el|}}
+            {{#power-select
+              options=organizationOptions
+              searchField='nomen'
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Owning Organization"
+              allowClear=true
+              as |organization|
+            }}
+              Organization: {{organization.nomen}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='year' as |el|}}
+            {{#power-select
+              options=model.yearOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Year"
+              allowClear=true
+              as |year|
+            }}
+              Year: {{year}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='season' as |el|}}
+            {{#power-select
+              options=model.seasonOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Season"
+              allowClear=true
+              as |season|
+            }}
+              Season: {{season}}
+            {{/power-select}}
+          {{/form.element}}
+{{!--           {{#form.element property='panel' as |el|}}
+            {{#power-select
+              options=model.panelOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Choose Panel"
+              allowClear=true
+              as |panel|
+            }}
+              Panel: {{panel}}
+            {{/power-select}}
+          {{/form.element}}
+ --}}
+          {{!-- {{#form.element property='grantors' useIcons=false as |el|}}
+              Select Award Grantors for this Convention:<br><br>
+              {{#power-select-multiple
+                options=grantorOptions
+                selected=el.value
+                placeholder="select names"
+                onchange=(action (mut el.value))
+                as |grantors|
+              }}
+                {{grantors.name}}
+              {{/power-select-multiple}}
+          {{/form.element}} --}}
+          {{#bs-button type='default' onClick=(action "clearConvention")}}Cancel{{/bs-button}}
+          {{#bs-button type='success' buttonType='submit'}}Save{{/bs-button}}
+        {{/bs-form}}
+      </section>
+    </div>
+  </div>
+</section>

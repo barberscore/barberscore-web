@@ -25,6 +25,7 @@ export default Model.extend(Validations, {
   organization: DS.belongsTo('organization', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
+  grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
   publish: memberAction({path: 'publish', type: 'post'}),

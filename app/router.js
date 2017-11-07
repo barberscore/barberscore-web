@@ -41,6 +41,9 @@ Router.map(function() {
           });
         });
       });
+      this.route('new', {
+        path: 'new'
+      });
     });
     this.route('session-manager', {
       path: 'session-manager'
