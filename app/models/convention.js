@@ -48,20 +48,6 @@ export default Model.extend(Validations, {
     'Announced',
   ],
 
-  kindOptions: [
-    'International',
-    'District',
-    'Division',
-    'District and Division',
-  ],
-
-  levelOptions: [
-    'International',
-    'District',
-    'Division',
-    'Chapter',
-  ],
-
   seasonOptions: [
     'Summer',
     'Midwinter',
