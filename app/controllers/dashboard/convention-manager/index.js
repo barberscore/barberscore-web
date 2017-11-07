@@ -53,5 +53,8 @@ export default Controller.extend({
     sortBy(sortProperties) {
       this.set('sortProperties', [sortProperties]);
     },
+    createConvention() {
+      this.transitionToRoute('dashboard.convention-manager.new');
+    },
   },
 });
