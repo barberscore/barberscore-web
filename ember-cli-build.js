@@ -5,21 +5,23 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    fingerprint: {
+      enabled: false
+    },
+
+    sourcemaps: {
+      enabled: true, // This allows sourcemaps to be generated in all environments
+      extensions: ['js']
+    },
+
     'ember-bootstrap': {
-      'importBootstrapFont': true,
       'bootstrapVersion': 3,
+      'importBootstrapFont': true,
       'importBootstrapCSS': true
     },
     'ember-power-select': {
       theme: 'bootstrap'
     },
-    fingerprint: {
-      enabled: false
-    },
-    sourcemaps: {
-      enabled: true, // This allows sourcemaps to be generated in all environments
-      extensions: ['js']
-    }
   });
 
   // Use `app.import` to add additional libraries to the generated

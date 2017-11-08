@@ -1,9 +1,0 @@
-{{#bs-button-group
-  value=isSelected
-  type='radio'
-  onChange=(perform toggleParticipant 'members')
-  as |bg|
-}}
-  {{#bg.button type='default' value=true disabled=isDisabled}}Yes{{/bg.button}}
-  {{#bg.button type='default' value=false disabled=isDisabled}}No{{/bg.button}}
-{{/bs-button-group}}

@@ -16,6 +16,7 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "~2.16.2",
@@ -39,11 +40,9 @@
   },
   "dependencies": {
     "ember-api-actions": "^0.1.6",
-    "ember-bootstrap": "1.0.0-rc.3",
+    "ember-bootstrap": "^1.0.0-rc.3",
     "ember-bootstrap-cp-validations": "^1.0.0-alpha.0",
-    "ember-bootstrap-datetimepicker": "1.1.0",
     "ember-cli-bugsnag": "^1.2.0",
-    "ember-cli-daterangepicker": "^0.6.0",
     "ember-cli-deploy-bugsnag": "^0.1.2",
     "ember-cli-flash": "1.5.0",
     "ember-cli-moment-shim": "^3.5.0",
@@ -55,13 +54,11 @@
     "ember-file-upload": "^2.1.2",
     "ember-font-awesome": "3.0.5",
     "ember-moment": "^7.3.0",
-    "ember-multiselect-checkboxes": "0.10.3",
     "ember-power-select": "1.9.11",
     "ember-simple-auth": "1.4.0",
     "ember-simple-auth-auth0": "https://github.com/barberscore/ember-simple-auth-auth0.git#fix-webpack-dependency",
     "ember-sortable": "^1.10.0",
-    "ember-truth-helpers": "2.0.0",
-    "eonasdan-bootstrap-datetimepicker": "4.17.47"
+    "ember-truth-helpers": "2.0.0"
   },
   "engines": {
     "node": "^8.8.1",
