@@ -4,7 +4,12 @@ import DS from 'ember-data';
 
 export default Model.extend({
   nomen: DS.attr('string'),
-  name: DS.attr('string'),
+  // name: DS.attr('string'),
+  fullName: DS.attr('string'),
+  firstName: DS.attr('string'),
+  middleName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  nickName: DS.attr('string'),
   status: DS.attr('person-status'),
   birthDate: DS.attr('isodate'),
   currentThrough: DS.attr('isodate'),

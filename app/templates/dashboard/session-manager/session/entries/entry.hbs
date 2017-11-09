@@ -63,7 +63,7 @@
                     {{#if contact.person.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>{{contact.person.name}}</td>
+                      <td>{{contact.person.fullName}}</td>
                       <td><a href='mailto:{{contact.person.email}}'>{{contact.person.email}}</a></td>
                       <td><a href='tel:{{contact.person.cellPhone}}'>{{contact.person.cellPhone}}</a></td>
                     {{/if}}
@@ -141,7 +141,7 @@
                       {{#if participant.person.isLoading}}
                         <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                       {{else}}
-                        <td>{{participant.person.name}}</td>
+                        <td>{{participant.person.fullName}}</td>
                       {{/if}}
                       <td>{{participant.part}}</td>
                       <td>{{moment-format participant.person.currentThrough 'LL'}}</td>

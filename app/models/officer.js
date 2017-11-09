@@ -87,7 +87,7 @@ export default Model.extend({
 
 
 // Other
-  personName: alias('person.name'),
+  personName: alias('person.fullName'),
   officeShortName: alias('office.shortName'),
   officeSCJCSort: alias('office.scjcSort'),
   officeKind: alias('office.kind'),

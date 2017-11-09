@@ -66,6 +66,6 @@ export default Model.extend({
   groupStatus: alias('group.statusSort'),
   groupName: alias('group.name'),
   groupKind: alias('group.kindSort'),
-  personName: alias('person.name'),
+  personName: alias('person.fullName'),
   personLast: alias('person.lastName'),
 });
