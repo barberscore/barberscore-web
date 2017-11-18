@@ -9,30 +9,30 @@ export default Controller.extend({
     'currentUser.user.disabledAssignments'
   ),
   isConventionManagerDisabled: not(
-    'currentUser.user.person.isConventionManager'
+    'currentUser.user.isConventionManager'
   ),
   isSessionManagerDisabled: not(
-    'currentUser.user.person.isSessionManager'
+    'currentUser.user.isSessionManager'
   ),
   isScoringManagerDisabled: not(
-    'currentUser.user.person.isScoringManager'
+    'currentUser.user.isScoringManager'
   ),
   isOrganizationManagerDisabled: not(
-    'currentUser.user.person.isOrganizationManager'
+    'currentUser.user.isOrganizationManager'
   ),
   isGroupManagerDisabled: not(
-    'currentUser.user.person.isGroupManager'
+    'currentUser.user.isGroupManager'
   ),
   isPersonManagerDisabled: not(
-    'currentUser.user.person.isPersonManager'
+    'currentUser.user.isPersonManager'
   ),
   isAwardManagerDisabled: not(
-    'currentUser.user.person.isAwardManager'
+    'currentUser.user.isAwardManager'
   ),
   isJudgeManagerDisabled: not(
-    'currentUser.user.person.isJudgeManager'
+    'currentUser.user.isJudgeManager'
   ),
   isChartManagerDisabled: not(
-    'currentUser.user.person.isChartManager'
+    'currentUser.user.isChartManager'
   ),
 });

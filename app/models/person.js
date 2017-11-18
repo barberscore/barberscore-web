@@ -41,15 +41,6 @@ export default Model.extend({
 
 
   // Module Permissions CPs
-  isConventionManager: DS.attr('boolean'),
-  isSessionManager: DS.attr('boolean'),
-  isScoringManager: DS.attr('boolean'),
-  isOrganizationManager: DS.attr('boolean'),
-  isGroupManager: DS.attr('boolean'),
-  isPersonManager: DS.attr('boolean'),
-  isAwardManager: DS.attr('boolean'),
-  isJudgeManager: DS.attr('boolean'),
-  isChartManager: DS.attr('boolean'),
   // isConventionManager: Ember.computed(
   //   'officers.@each.isConventionManager', function(){
   //   let officers = this.get('officers');
