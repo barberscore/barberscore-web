@@ -31,7 +31,6 @@ export default Model.extend({
   twitter: DS.attr('string'),
   email: DS.attr('string'),
   phone: DS.attr('string'),
-  image: DS.attr('string'),
   img: DS.attr('string'),
   description: DS.attr('string'),
   bhsId: DS.attr('number'),

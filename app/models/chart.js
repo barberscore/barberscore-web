@@ -19,19 +19,11 @@ export default Model.extend(Validations, {
   composers: DS.attr('string'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  image: DS.attr('string'),
+  img: DS.attr('string'),
   holders: DS.attr('string', {defaultValue:''}),
   repertories: DS.hasMany('repertory', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
-
-  chartPre: computed(function() {
-    if (this.get('image')) {
-      return this.get('image')+'.png';
-    } else {
-      return null;
-    }
-  }),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
