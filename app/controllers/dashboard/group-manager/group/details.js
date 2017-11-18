@@ -15,11 +15,9 @@ export default Controller.extend({
       const namespace = config.APP.API_NAMESPACE;
       const target = this.get('model.id');
       let response = yield file.upload(`${host}/${namespace}/group/${target}/img`);
-      console.log(response);
       this.set('model.img', response.body.image);
       this.get('flashMessages').success("Saved!");
     } catch (e) {
-      console.log(e);
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
