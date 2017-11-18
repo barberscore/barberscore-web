@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { equal } from '@ember/object/computed';
+import { equal, notEmpty } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 // import { validator, buildValidations } from 'ember-cp-validations';
@@ -33,7 +33,6 @@ export default Model.extend({
   phone: DS.attr('string'),
   image: DS.attr('string'),
   description: DS.attr('string'),
-  isBhs: DS.attr('boolean'),
   bhsId: DS.attr('number'),
   orgSort: DS.attr('number'),
   organization: DS.belongsTo('organization', {async: true}),
@@ -70,6 +69,10 @@ export default Model.extend({
     'Active',
     'Inactive',
   ],
+
+  isBhs: notEmpty(
+    'bhsId',
+  ),
 
   statusSort: computed(
     'status',
