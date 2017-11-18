@@ -14,11 +14,12 @@ export default Controller.extend({
       const host = config.APP.API_HOST;
       const namespace = config.APP.API_NAMESPACE;
       const target = this.get('model.id');
-      let response = yield file.upload(`${host}/${namespace}/group/${target}/image`);
-      this.set('model.image', response.body.image);
-      yield this.get('model').save();
+      let response = yield file.upload(`${host}/${namespace}/group/${target}/img`);
+      console.log(response);
+      this.set('model.img', response.body.image);
       this.get('flashMessages').success("Saved!");
     } catch (e) {
+      console.log(e);
       this.get('flashMessages').danger("Upload Failed!");
     }
   }).drop(),
