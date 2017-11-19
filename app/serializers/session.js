@@ -2,9 +2,6 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     attrs: {
-      scoresheet: {
-        serialize: false
-      },
       bbscoresReport: {
         serialize: false
       },

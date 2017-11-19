@@ -16,7 +16,6 @@ export default Model.extend({
   isArchived: DS.attr('boolean'),
   kind: DS.attr('session-kind'),
   isInvitational: DS.attr('boolean'),
-  scoresheet: DS.attr('string'),
   bbscoresReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
   adminsReport: DS.attr('string'),
