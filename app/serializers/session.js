@@ -5,10 +5,13 @@ export default DS.JSONAPISerializer.extend({
       scoresheet: {
         serialize: false
       },
-      bbscores: {
+      bbscoresReport: {
         serialize: false
       },
       drcjReport: {
+        serialize: false
+      },
+      adminsReport: {
         serialize: false
       },
       contests: {
