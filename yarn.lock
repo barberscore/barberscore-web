@@ -3176,9 +3176,9 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     ember-cli-babel "^6.0.0"
     ember-cli-version-checker "^1.1.6"
 
-"ember-simple-auth-auth0@https://github.com/barberscore/ember-simple-auth-auth0.git#fix-webpack-dependency":
-  version "3.0.1"
-  resolved "https://github.com/barberscore/ember-simple-auth-auth0.git#2a6def870ea82ea95a612f6fdd53c5c6e7f48476"
+ember-simple-auth-auth0@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ember-simple-auth-auth0/-/ember-simple-auth-auth0-3.1.0.tgz#365ed4047afc2b82770e09ead169399f13d29877"
   dependencies:
     auth0-js "^8.2.0"
     auth0-lock "^10.10.1"
@@ -3186,6 +3186,8 @@ ember-runtime-enumerable-includes-polyfill@^2.0.0:
     broccoli-webpack "^1.0.0"
     ember-cli-babel "^6.0.0"
     ember-simple-auth "^1.3.0"
+    react "^0.14.0"
+    react-dom "^0.14.0"
     rsvp "^3.3.3"
 
 ember-simple-auth@1.4.0, ember-simple-auth@^1.3.0:
