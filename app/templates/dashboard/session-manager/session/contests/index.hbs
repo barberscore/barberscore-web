@@ -44,12 +44,14 @@
           <thead>
             <tr>
               <th  {{action 'sortBy' 'organizationKindSort'}} class='col-md-6'>Name</th>
+              <th>Count</th>
             </tr>
           </thead>
           <tbody>
             {{#each sortedContests as |contest|}}
               <tr>
                 <td>{{#link-to 'dashboard.session-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+                <td>{{contest.includedContestantsCount}}
               </tr>
             {{else}}
               <tr>
