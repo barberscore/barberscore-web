@@ -6,7 +6,7 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.group.name}}&nbsp;({{model.group.organization.shortName}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
+        {{model.group.name}}&nbsp;({{model.group.district}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}
       </h4>
     </div>
     <div class='panel-body'>
