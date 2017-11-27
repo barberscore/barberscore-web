@@ -16,7 +16,11 @@
         {{#each sortedSessions as |session|}}
           <tr>
             <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.nomen}}{{/link-to}}</td>
-            <td>{{session.organizationNomen}}</td>
+            {{#if session.organizationNomen.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{session.organizationNomen}}</td>
+            {{/if}}
             <td>{{session.status}}</td>
           </tr>
         {{else}}

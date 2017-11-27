@@ -15,6 +15,7 @@ export default Model.extend({
   status: DS.attr('session-status'),
   isArchived: DS.attr('boolean'),
   kind: DS.attr('session-kind'),
+  gender: DS.attr('session-gender'),
   isInvitational: DS.attr('boolean'),
   bbscoresReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
@@ -58,6 +59,19 @@ export default Model.extend({
     'Chorus',
   ],
 
+  genderOptions: [
+    'Male',
+    'Female',
+    'Mixed',
+  ],
+
+  genderSort: computed(
+    'gender',
+    'genderOptions',
+    function() {
+      return this.get('genderOptions').indexOf(this.get('gender'));
+    }
+  ),
   numOptions: [
     1,
     2,

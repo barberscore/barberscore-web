@@ -25,12 +25,12 @@
           Withdrawn Entries
         </li>
         <li class="list-group-item">
-          <span class="badge">{{model.approvedEntriesCount}}</span>
-          Approved Entries
-        </li>
-        <li class="list-group-item">
           <span class="badge">{{model.scratchedEntriesCount}}</span>
           Scratched Entries
+        </li>
+        <li class="list-group-item">
+          <span class="badge">{{model.approvedEntriesCount}}</span>
+          Approved Entries
         </li>
         <li class="list-group-item">
           <span class="badge">{{model.totalEntriesCount}}</span>
@@ -42,7 +42,7 @@
 </section>
 <section>
     <h5>
-      Downloads
+      Downloads  <small>(Available after Verified)</small>
     </h5>
     <ul class='list-unstyled'>
       {{#if model.bbscoresReport}}

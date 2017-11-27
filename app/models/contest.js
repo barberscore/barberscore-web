@@ -1,4 +1,4 @@
-import { alias } from '@ember/object/computed';
+import { alias, filterBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -27,6 +27,16 @@ export default Model.extend({
     'Championship',
     'Qualifier',
   ],
+
+  includedContestants: filterBy(
+    'contestants',
+    'isIncluded'
+  ),
+
+  includedContestantsCount: alias(
+    'includedContestants.length'
+  ),
+
 
   organizationKindSort: alias('award.organization.kindSort'),
   awardQualifier: alias('award.isQualifier'),
