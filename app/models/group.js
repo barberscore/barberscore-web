@@ -21,6 +21,7 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('group-status'),
   kind: DS.attr('group-kind'),
+  gender: DS.attr('group-gender'),
   shortName: DS.attr('string'),
   code: DS.attr('string'),
   startDate: DS.attr('isodate'),
@@ -66,6 +67,19 @@ export default Model.extend({
     'kindOptions',
     function() {
       return this.get('kindOptions').indexOf(this.get('kind'));
+    }
+  ),
+  genderOptions: [
+    'Male',
+    'Female',
+    'Mixed',
+  ],
+
+  genderSort: computed(
+    'gender',
+    'genderOptions',
+    function() {
+      return this.get('genderOptions').indexOf(this.get('gender'));
     }
   ),
   statusOptions: [
