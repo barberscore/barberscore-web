@@ -36,14 +36,6 @@
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
         {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' onClick=(perform verifyRound)}}
-            {{#if verifyRound.isRunning}}
-              Verifying {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Verify Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Verified')}}
           {{#bs-button type='primary' onClick=(perform startRound)}}
             {{#if startRound.isRunning}}
               Starting {{fa-icon "spinner" spin=true}}
@@ -52,19 +44,19 @@
             {{/if}}
           {{/bs-button}}
         {{else if (eq model.status 'Started')}}
+          {{#bs-button type='primary' onClick=(perform reviewRound)}}
+            {{#if reviewRound.isRunning}}
+              Reviewing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Review Round
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Reviewed')}}
           {{#bs-button type='primary' onClick=(perform finishRound)}}
             {{#if finishRound.isRunning}}
               Finishing {{fa-icon "spinner" spin=true}}
             {{else}}
               Finish Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Finished')}}
-          {{#bs-button type='primary' onClick=(perform announceRound)}}
-            {{#if announceRound.isRunning}}
-              Announcing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Announce Round
             {{/if}}
           {{/bs-button}}
         {{/if}}
