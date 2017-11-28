@@ -54,7 +54,7 @@
     "ember-file-upload": "^2.1.2",
     "ember-font-awesome": "3.0.5",
     "ember-moment": "^7.3.0",
-    "ember-power-select": "1.10.1",
+    "ember-power-select": "1.10.3",
     "ember-simple-auth": "1.4.0",
     "ember-simple-auth-auth0": "3.1.0",
     "ember-sortable": "^1.10.0",
