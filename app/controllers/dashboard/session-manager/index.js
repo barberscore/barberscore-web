@@ -1,4 +1,4 @@
-import { uniq, sort } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -7,11 +7,8 @@ export default Controller.extend({
     'organizationKindSort:asc',
     'nomen:asc',
   ],
-  uniqueSessions: uniq(
-    'model',
-  ),
   sortedSessions: sort(
-    'uniqueSessions',
+    'model',
     'sortProperties'
   ),
   actions: {
