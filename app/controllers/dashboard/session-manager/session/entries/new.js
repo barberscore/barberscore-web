@@ -14,7 +14,7 @@ export default Controller.extend({
     let kindInt = kindOptions[kindModel];
     let groups = yield this.get('store').query('group', {
         'nomen__icontains': term,
-        'status': 10,
+        'status__gt': 0,
         'page_size': 1000,
         'kind': kindInt,
       });
