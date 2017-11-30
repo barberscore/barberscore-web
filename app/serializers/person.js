@@ -14,17 +14,5 @@ export default DS.JSONAPISerializer.extend({
       fullName: {
         serialize: false
       },
-      formalName: {
-        serialize: false
-      },
-      firstName: {
-        serialize: false
-      },
-      lastName: {
-        serialize: false
-      },
-      nickName: {
-        serialize: false
-      },
     }
 });
