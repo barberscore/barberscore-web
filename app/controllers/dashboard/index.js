@@ -1,13 +1,10 @@
-import { alias, not } from '@ember/object/computed';
+import { not } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
   session: service(),
   currentUser: service('current-user'),
-  sessionIsDisabled: alias(
-    'currentUser.user.disabledAssignments'
-  ),
   isConventionManagerDisabled: not(
     'currentUser.user.isConventionManager'
   ),

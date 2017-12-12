@@ -2,7 +2,7 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-<p>Welcome {{currentUser.user.person.commonName}}</p>
+<p>Welcome {{currentUser.user.name}}</p>
 <div class='row'>
     <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.group-manager' tagName='button' class='btn btn-default launcher' disabled=isGroupManagerDisabled}}
