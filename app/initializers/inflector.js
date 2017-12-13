@@ -9,6 +9,7 @@ export function initialize(/* application */) {
   inflector.uncountable('contest');
   inflector.uncountable('contestant');
   inflector.uncountable('convention');
+  inflector.uncountable('competitor');
   inflector.uncountable('entry');
   inflector.uncountable('grantor');
   inflector.uncountable('group');

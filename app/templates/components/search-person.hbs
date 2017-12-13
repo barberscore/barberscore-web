@@ -1,0 +1,10 @@
+{{#power-select
+  search=(perform searchPerson)
+  selected=model.person
+  onchange=(perform autosave 'person')
+  placeholder="Search by Name or Member Number"
+  allowClear=true
+  as |person|
+}}
+  Person: {{person.nomen}}
+{{/power-select}}

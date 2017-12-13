@@ -4,11 +4,11 @@ import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  sortedAppearancesProperties: [
-    'num',
+  sortedCompetitorsProperties: [
+    'name',
   ],
-  sortedAppearances: sort(
-    'model.appearances',
-    'sortedAppearancesProperties'
+  sortedCompetitors: sort(
+    'model.session.competitors',
+    'sortedCompetitorsProperties'
   ),
 });

@@ -65,6 +65,13 @@ Router.map(function() {
             path: ':panelist_id'
           });
         });
+        this.route('competitors', {
+          path: 'competitors'
+        }, function () {
+          this.route('competitor', {
+            path: ':competitor_id'
+          });
+        });
         this.route('appearances', {
           path: 'appearances'
         }, function () {

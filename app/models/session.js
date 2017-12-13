@@ -24,6 +24,7 @@ export default Model.extend({
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
+  competitors: DS.hasMany('competitor', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
   grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),

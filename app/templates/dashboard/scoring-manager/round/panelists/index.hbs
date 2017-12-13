@@ -4,7 +4,7 @@
       <table class='table'>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Person</th>
             <th>Category</th>
             <th>Kind</th>
           </tr>
@@ -13,7 +13,7 @@
           {{#each sortedPanelists as |panelist|}}
             <tr>
               <td>
-                  {{#link-to  'dashboard.scoring-manager.round.panelists.panelist' panelist}}{{panelist.person.commonName}}{{/link-to}}
+                {{search-person model=panelist}}
               </td>
               <td>
                 {{panelist.category}}
@@ -24,7 +24,7 @@
             </tr>
           {{else}}
             <tr>
-              <td>No appearances.</td>
+              <td>Panel is initialized when the session is started.</td>
             </tr>
           {{/each}}
         </tbody>

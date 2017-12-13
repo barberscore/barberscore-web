@@ -24,7 +24,7 @@ export default Model.extend({
   varPdf: DS.attr('string'),
 
   round: DS.belongsTo('round', {async: true}),
-  entry: DS.belongsTo('entry', {async: true}),
+  competitor: DS.belongsTo('competitor', {async: true}),
   slot: DS.belongsTo('slot', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
