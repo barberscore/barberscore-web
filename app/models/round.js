@@ -12,7 +12,7 @@ export default Model.extend({
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
-  slots: DS.hasMany('slot', {async: true}),
+  grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
   annPdf: DS.attr('string'),
 

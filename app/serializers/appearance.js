@@ -5,8 +5,5 @@ export default DS.JSONAPISerializer.extend({
     songs: {
       serialize: true
     },
-    slot: {
-      serialize: true
-    },
   }
 });

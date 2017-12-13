@@ -12,6 +12,7 @@ export function initialize(/* application */) {
   inflector.uncountable('competitor');
   inflector.uncountable('entry');
   inflector.uncountable('grantor');
+  inflector.uncountable('grid');
   inflector.uncountable('group');
   inflector.uncountable('member');
   inflector.uncountable('office');
@@ -24,7 +25,6 @@ export function initialize(/* application */) {
   inflector.uncountable('round');
   inflector.uncountable('score');
   inflector.uncountable('session');
-  inflector.uncountable('slot');
   inflector.uncountable('song');
   inflector.uncountable('user');
   inflector.uncountable('venue');

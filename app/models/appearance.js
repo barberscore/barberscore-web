@@ -25,7 +25,6 @@ export default Model.extend({
 
   round: DS.belongsTo('round', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
-  slot: DS.belongsTo('slot', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
@@ -62,9 +61,6 @@ export default Model.extend({
   isFinisher: lt(
     'draw',
     0,
-  ),
-  slotNum: alias(
-    'slot.num'
   ),
   repertoriesFiltered: alias(
     'entry.group.repertories'
