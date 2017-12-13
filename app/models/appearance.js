@@ -25,6 +25,7 @@ export default Model.extend({
 
   round: DS.belongsTo('round', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
+  grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
@@ -48,11 +49,11 @@ export default Model.extend({
   ],
 
 
-  entryTotPoints: alias(
-    'entry.totPoints'
+  competitorTotPoints: alias(
+    'competitor.totPoints'
   ),
-  entryRank: alias(
-    'entry.rank'
+  competitorRank: alias(
+    'competitor.rank'
   ),
   isAdvancer: gt(
     'draw',
@@ -63,7 +64,7 @@ export default Model.extend({
     0,
   ),
   repertoriesFiltered: alias(
-    'entry.group.repertories'
+    'competitor.group.repertories'
   ),
   chartsMapped: mapBy(
     'repertoriesFiltered',

@@ -8,7 +8,8 @@ export default Model.extend({
   onstage: DS.attr('date'),
   start: DS.attr('date'),
   round: DS.belongsTo('round', {async: true}),
-  competitor: DS.hasMany('competitors', {async: true}),
+  appearance: DS.belongsTo('appearance', {async: true}),
+  competitor: DS.belongsTo('competitor', {async: true}),
   permissions: DS.attr(),
 
   statusOptions: [

@@ -15,16 +15,16 @@
           {{#each sortedAppearances as |appearance|}}
             <tr>
               <td>
-                {{appearance.num}}
+                {{appearance.grid.num}}
               </td>
               <td>
                 {{moment-format appearance.grid.onstage 'HH:mm'}}
               </td>
               <td>
-                {{moment-format appearance.actualStart 'HH:mm'}}
+                {{moment-format appearance.grid.start 'HH:mm'}}
               </td>
               <td>
-                {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.entry.group.name}}{{/link-to}}
+                {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.competitor.group.name}}{{/link-to}}
               </td>
               <td>
                 {{appearance.status}}

@@ -6,7 +6,7 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.entry.group.name}}
+        {{model.competitor.group.name}}
         {{#if (and hasVariance (eq model.status 'Finished'))}}
           {{#bs-button type='danger'  size='xs' onClick=(perform printVar)}}
             {{#if printVar.isRunning}}
@@ -23,8 +23,8 @@
     </div>
     <div class='panel-body'>
       <ul class='list-inline'>
-        <li>Grid:  {{moment-format model.slot.onstage "HH:mm"}}</li>
-        <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
+        <li>Grid:  {{moment-format model.grid.onstage "HH:mm"}}</li>
+        <li>Actual:  {{moment-format model.grid.start "HH:mm"}}</li>
         {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
       </ul>
       <div class='table-responsive'>
@@ -115,7 +115,7 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
-        {{#if (eq model.status 'Published')}}
+        {{#if (eq model.status 'New')}}
           {{#bs-button type='primary' onClick=(perform startAppearance)}}
             {{#if startAppearance.isRunning}}
               Starting {{fa-icon "spinner" spin=true}}
