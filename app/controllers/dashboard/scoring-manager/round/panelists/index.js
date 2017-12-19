@@ -12,4 +12,13 @@ export default Controller.extend({
     'model.panelists',
     'sortedPanelistsProperties'
   ),
+  sortedAssignmentsProperties: [
+    'categorySort',
+    'kindSort',
+    'personSort',
+  ],
+  sortedAssignments: sort(
+    'model.session.convention.assignments',
+    'sortedAssignmentsProperties'
+  ),
 });
