@@ -6,6 +6,7 @@ export default Model.extend({
   status: DS.attr('grid-status'),
   num: DS.attr('number'),
   onstage: DS.attr('date'),
+  renditions: DS.attr(),
   start: DS.attr('date'),
   round: DS.belongsTo('round', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
