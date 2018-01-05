@@ -52,7 +52,7 @@
     "ember-cp-validations": "3.5.1",
     "ember-crumbly": "1.0.8",
     "ember-file-upload": "2.2.4",
-    "ember-font-awesome": "3.0.5",
+    "ember-font-awesome": "^4.0.0-rc.2",
     "ember-moment": "7.5.0",
     "ember-power-select": "1.10.3",
     "ember-simple-auth": "1.4.2",
