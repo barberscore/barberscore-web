@@ -34,8 +34,7 @@ export default Controller.extend({
   ),
   filteredAwards: computed(
     'rawAwards.@each.{kind,season}',
-    'model.kind',
-    'model.convention.season',
+    'model.{kind,convention.season}',
     function() {
       return this.get('rawAwards').filterBy('kind', this.get('model.kind')).filterBy('season', this.get('model.convention.season'));
     }

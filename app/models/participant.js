@@ -20,8 +20,7 @@ export default Model.extend({
 
   isExpiring: computed(
     'member.person.currentThrough',
-    'entry.group.isBhs',
-    'entry.session.convention.endDate',
+    'entry.{group.isBhs,session.convention.endDate}',
     function () {
       let expiring = this.get('member.person.currentThrough') < this.get('entry.session.convention.endDate');
       let isBhs = this.get('entry.group.isBhs');
