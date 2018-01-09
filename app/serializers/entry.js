@@ -11,5 +11,8 @@ export default DS.JSONAPISerializer.extend({
     participants: {
       serialize: true
     },
+    competitor: {
+      serialize: true
+    },
   }
 });
