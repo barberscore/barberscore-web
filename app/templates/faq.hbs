@@ -1,39 +1,226 @@
-    <div class="page-header">
-      <h1>Frequently Asked Questions</h1>
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-
-        <h4>
-          Why did you create this?
-        </h4>
-        <p id='faq-01' >
-          We just wanted a simple, mobile-optimized site to see the schedule, scores, and detailed information on each contestant.  It's free, and we don't use your information or anything like that.  Just barbershoppers helping barbershoppers.
-        </p>
-
-        <h4>
-          Why did you disable public access?
-        </h4>
-        <p id='faq-07' >
-          This started as a hobby project.  However, we have since been asked to build an application to potentially replace the existing scoring software.  It's a bit too difficult to manage both projects at once, and so we're focusing on scoring project first.  When that is done (or reasonably stable) we'll re-enable public access.
-        </p>
-
-        {{!-- <h4>Is there an iOS or Android version?</h4>
-        <p id='faq-02' >No, there aren't dedicated apps.  However, you can access it quite easily through a web browser on either platform.  This is backed by a RESTful API, so if you know what that means and want to create an app then let us know and we'll send you a key!</p>
-
-        <h4>When do you update information?</h4>
-        <p id='faq-03' >We are adding information like song titles and scores just as soon as they become available.</p>
-
-        <h4>What about historical scores?</h4>
-        <p id='faq-04' >We are adding history every day, but will only report scores back to 1994 (when the current scoring system was put into place.)</p>
-
-        <h4>What if I find some bad information?</h4>
-        <p id='faq-05' >Send us an <a href='mailto://russkibass@barbershopharmony.org'>email</a> so we can fix it! </p> --}}
-
-        <h4>Who are you guys, anyway?</h4>
-        <p id='faq-06' >We are <a href='http://dbinetti.com'>David Binetti</a> (developer) and <a href='https://twitter.com/russkibasstampa'>Alexander Boltenko</a> (data-master).  </p>
-
-
-      </div><!--/col-grid-->
-    </div><!-- /row-->
+<p>
+    <strong>
+        <em>
+            As a reminder - you should also read and review the
+            <a href="https://www.barberscore.com/assets/group.pdf">
+                Competitor Instructions
+            </a>
+            tutorial PDF slide deck in addition to reading this list of
+            frequently asked questions.
+        </em>
+    </strong>
+</p>
+<p>
+    <strong><u></u></strong>
+</p>
+<p align="center">
+    <strong><u>Competitor FAQs – Contest Entry in Barberscore</u></strong>
+</p>
+<p>
+    <strong><u></u></strong>
+</p>
+<p>
+    <strong>I don't see my group in Group Manager – what is the issue?</strong>
+</p>
+<p>
+    Most likely, you have not yet been designated as an “admin” for your group.
+    Initially (by default), every quartet will have one admin based on the
+    “contact person” designation in Member Center. Initially (by default),
+    every chorus will have 3 admins defined from the Member Center chapter
+    officer information (President, Secretary, and Treasurer). Additional
+    admins can be designated by an existing group admin via Group Manager in
+Barberscore. (This process is illustrated in the    <em>Competitor Instructions</em> tutorial PDF located here:
+    <a href="https://www.barberscore.com/assets/group.pdf">
+        https://www.barberscore.com/assets/group.pdf
+    </a>
+    ). If this approach is not possible, requests to be designated as a group
+    admin should be submitted to:
+    <a href="mailto:customerservice@barbershop.org">
+        customerservice@barbershop.org
+    </a>
+    .
+</p>
+<p>
+    <strong>I can't even login to Barberscore – what is the issue?</strong>
+</p>
+<p>
+    Fortunately, this is now a rare occurrence. Today the most common problems
+    are:
+</p>
+<ul type="disc">
+    <li>
+        You are not using the correct email address associated with your BHS
+        Member Center record.
+    </li>
+    <li>
+        You have not read the <em>Login Instructions</em> tutorial PDF, and/or
+        you haven’t watched the additional short videos explaining how to
+        troubleshoot login issues.
+    </li>
+</ul>
+<p>
+    If those resources don’t help, please request assistance from:
+    <a href="mailto:customerservice@barbershop.org">
+        customerservice@barbershop.org
+    </a>
+    .
+</p>
+<p>
+    <strong>
+        How long does it take changes that I make in Member Center to get
+        reflected in Barberscore?
+    </strong>
+</p>
+<p>
+    We run a background sync process every 10 minutes. Therefore, any new data
+    (or changed data) in the Member Center should be reflected in Barberscore
+    within 15 minutes. Please remember that data is not refreshed in your
+    browser window automatically in Barberscore. To ensure you’re viewing the
+    most recent data, perform an explicit “reload” or “refresh” of the web
+    page. If you suspect that a data sync issue has occurred involving member
+    or group info, please submit the query to:
+    <a href="mailto:customerservice@barbershop.org">
+        customerservice@barbershop.org
+    </a>
+    .
+</p>
+<p>
+    However, there is an exception. Please be aware that brand-new quartets are
+    not “completed” in the Member Center until BHS headquarters has: approved
+    their quartet name; collected their subscription fee; and finished the
+    final validation. <u>This process can take up to 5 business days</u>.
+</p>
+<p>
+    <strong>How do I enter a non-BHS group into a contest session?</strong>
+</p>
+<p>
+    Groups other than a chorus that represents a BHS chapter or an officially
+    registered BHS quartet will not be able to enter any contest until they
+    have been added manually via the backend API by a Barberscore Admin.
+    “Non-BHS groups” include the following: VLQs, Mixed Harmony quartets, Mixed
+    Harmony choruses, Youth quartets, Youth choruses, community or school
+    choirs, and female quartets or choruses (regardless of whether or not they
+    are registered with HI or SAI). If you wish to enter a contest session for
+    score and/or evaluation, the process is the same. Simply gather the
+    following information about your group:
+</p>
+<ul type="disc">
+    <li>
+        The “official” group name (it does not have to be unique or
+        “registered” anywhere)
+    </li>
+    <li>
+        Location (City, State/Province) of the group
+    </li>
+    <li>
+        Contact person (that will serve as the group admin for contest entry)
+        full name &amp; email. If they are a BHS member or BHS associate,
+        provide their BHS ID number.
+    </li>
+    <li>
+        Director name (for choruses or choirs). If they are a BHS member or BHS
+        associate, provide their BHS ID number.
+    </li>
+    <li>
+        For quartets – the name of each singer and their voice part. If they
+        are a BHS member or BHS associate, provide their BHS ID number.
+    </li>
+</ul>
+<p>
+    …then email your request (with this information) to have your group added
+    to Barberscore to:
+    <a href="mailto:customerservice@barbershop.org">
+        customerservice@barbershop.org
+    </a>
+</p>
+<p>
+    Once we have added the information into Barberscore, the group admin can
+    “enter” the contest via Group Manager in Barberscore just the same as any
+    other competitor. Of course they should be selecting only the applicable
+    awards (if any) for the group, otherwise it would be for score/eval only.
+</p>
+<p>
+    <strong>
+        Does the mic-tester quartet need to "enter" the contest session via
+        Barberscore?
+    </strong>
+</p>
+<p>
+    No. However, if any performing quartet or chorus serving as a mic-tester or
+    mic-cooler desires scores from the judging panel (and/or evaluations) –
+    then they need to “enter” the contest session via Group Manager in
+    Barberscore just as any other competitor for score/eval only.
+</p>
+<p>
+    <strong>
+        How do I enter my quartet or chorus into a contest for score/eval only?
+    </strong>
+</p>
+<p>
+    All contest session competitors enter the contest session via Group Manager
+    in Barberscore in the same manner. For those groups that are not eligible
+    for any of the available awards/contests – or perhaps they are, but they
+    simply prefer to NOT compete for any award – you simply ensure that all
+    awards are selected as “COMPETE? NO” prior to submitting your entry.
+</p>
+<p>
+There is an additional toggle button for you to choose to    <em>Keep Score Private</em>. If that is selected, it is a signal to the
+    Contest Administrators that you do not want your scores to appear on the
+    Official Scoring Summary (OSS) that is distributed to the public, but
+    instead, you only wish to receive a Contest Scoring Analysis (CSA) sheet
+    instead.
+</p>
+<p>
+    Please note: For any group that is actually competing for one or more
+    awards, selecting the <em>Keep Score Private</em> option will be ignored.
+    Those scores must be included on the OSS.
+</p>
+<p>
+    <strong>
+        What is the process for entering my quartet into another district’s
+        International preliminary contest?
+    </strong>
+</p>
+<p>
+    Per the official BHS Contest &amp; Judging rules, you must first obtain the
+    appropriate permissions in advance to compete outside of your designated
+    home district. These instructions are available in the
+    <a
+        href="http://www.barbershop.org/files/documents/contestandjudging/C&amp;J%20Handbook.pdf"
+    >
+        BHS Contest Rules
+    </a>
+    (Article I.A.4).
+</p>
+<p>
+    Once approved (and once that district’s contest session is open for
+    competitor entry) – go to Group Manager in Barberscore, and select the
+    contest you have been approved to enter (you will see a drop-down list of
+    ALL contest sessions that are open for competitor entry). Of course the
+    only contest award you should select will be the International quartet
+    preliminary contest. You are not eligible to compete for any district level
+    awards. If your quartet scores a 76+, it will be listed along with all of
+    the other quartets in that district that qualified for International.
+</p>
+<p>
+    <strong></strong>
+</p>
+<p>
+    <strong>
+        Can I enter my quartet or chorus into a different division contest
+        within my district?
+    </strong>
+</p>
+<p>
+    Normally yes. To be clear, most districts allow for quartets or choruses to
+    enter and compete in a different division contest, however, some require
+    approval in advance, some do not. First, check with your District
+    Representative for Contest and Judging (DRCJ). If it is allowed/approved
+    then you should go to Group Manager in Barberscore, and simply select the
+    contest you wish to enter (you will see a drop-down list of ALL contest
+    sessions that are open for submitting competitor entries – even those that
+    are in other districts). The rest of the entry process remains the same.
+    However, the only contest awards you should select will be those that
+    involve qualifying for some future District-level contest or award. You may
+    not select to compete for any “division-level” awards.
+</p>
