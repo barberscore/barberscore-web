@@ -47,6 +47,9 @@
       Downloads  <small>(Available after Verified)</small>
     </h5>
     <ul class='list-unstyled'>
+      {{#if model.activesReport}}
+        <li>Active Groups Excel Export: &nbsp;<a href='{{model.activesReport}}'>{{fa-icon 'file-excel-o'}}</a></li>
+      {{/if}}
       {{#if model.bbscoresReport}}
         <li>BBScores Excel Export: &nbsp;<a href='{{model.bbscoresReport}}'>{{fa-icon 'file-excel-o'}}</a></li>
       {{/if}}
