@@ -24,3 +24,7 @@ package.json.ember-try
 
 jsconfig.json
 .DS_Store
+.venv/.Python
+/.venv
+Pipfile.lock
+Pipfile
