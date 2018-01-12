@@ -1,6 +1,8 @@
 <section>
   <div class='row'>
     <div class='col-md-4'>
+      <p>Invitational: {{boolean-helper model.isInvitational}}</p>
+
       {{!-- <ul class='list-unstyled'>
         <li>Primary Award: {{primaryCP.award.name}}</li>
       </ul> --}}
@@ -42,9 +44,12 @@
 </section>
 <section>
     <h5>
-      Downloads  <small>(Available after Verified)</small>
+      Downloads
     </h5>
     <ul class='list-unstyled'>
+      {{#if model.activesReport}}
+        <li>Active Groups Excel Export: &nbsp;<a href='{{model.activesReport}}'>{{fa-icon 'file-excel-o'}}</a></li>
+      {{/if}}
       {{#if model.bbscoresReport}}
         <li>BBScores Excel Export: &nbsp;<a href='{{model.bbscoresReport}}'>{{fa-icon 'file-excel-o'}}</a></li>
       {{/if}}

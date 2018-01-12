@@ -34,8 +34,8 @@ export default Controller.extend({
       this.get('flashMessages').success('Saved');
       this.transitionToRoute('dashboard.group-manager.group.entries.entry', entry);
     } catch(e) {
-      e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+      e.errors.forEach((e) => {
+        this.get('flashMessages').danger(e.detail);
       })
     }
   }),

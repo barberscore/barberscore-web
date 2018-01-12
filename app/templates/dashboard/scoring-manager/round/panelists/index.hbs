@@ -1,34 +1,74 @@
-<section>
-  <div class='row'>
-    <div class='col-md-12'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th>Person</th>
-            <th>Category</th>
-            <th>Kind</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedPanelists as |panelist|}}
+{{#if (eq model.status 'New')}}
+  <section>
+    <div class='row'>
+      <div class='col-md-12'>
+        <table class='table'>
+          <caption>
+            The Panelists are created from the Assignments when the Round is started.  You can't change the assignments, but you will be able to add/edit/remove panelists as needed.  Here are the currently confirmed assignments:
+          </caption>
+          <thead>
             <tr>
-              <td>
-                {{search-person model=panelist}}
-              </td>
-              <td>
-                {{panelist.category}}
-              </td>
-              <td>
-                {{panelist.kind}}
-              </td>
+              <th>Person</th>
+              <th>Category</th>
+              <th>Kind</th>
             </tr>
-          {{else}}
-            <tr>
-              <td>Panel is initialized when the session is started.</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {{#each sortedAssignments as |assignment|}}
+              <tr>
+                <td>
+                  {{assignment.person.commonName}}
+                </td>
+                <td>
+                  {{assignment.category}}
+                </td>
+                <td>
+                  {{assignment.kind}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No assignments.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+{{else}}
+  <section>
+    <div class='row'>
+      <div class='col-md-12'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th>Person</th>
+              <th>Category</th>
+              <th>Kind</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedPanelists as |panelist|}}
+              <tr>
+                <td>
+                  {{search-person model=panelist}}
+                </td>
+                <td>
+                  {{panelist.category}}
+                </td>
+                <td>
+                  {{panelist.kind}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No panelists created.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{{/if}}

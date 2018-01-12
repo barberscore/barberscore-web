@@ -20,6 +20,7 @@ export default Model.extend({
   bbscoresReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
   adminsReport: DS.attr('string'),
+  activesReport: DS.attr('string'),
   numRounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),

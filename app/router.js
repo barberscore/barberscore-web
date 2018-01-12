@@ -20,6 +20,9 @@ Router.map(function() {
         this.route('details', {
           path: 'details'
         });
+        this.route('convention', {
+          path: 'convention'
+        });
         this.route('awards', {
           path: 'awards'
         }, function () {

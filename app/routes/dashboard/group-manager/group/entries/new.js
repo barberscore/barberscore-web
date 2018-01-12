@@ -10,6 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'appearances': [],
       'contestants': [],
       'participants': [],
+      'competitor': null,
     });
     return entry;
   },

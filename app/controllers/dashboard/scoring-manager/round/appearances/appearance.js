@@ -134,6 +134,12 @@ export default Controller.extend({
       .then(() => {
         this.get('flashMessages').success('Success');
       });
+      let songs = this.get('model.songs');
+      let titles = songs.mapBy('title');
+      this.get('model.grid').then(grid => {
+        grid.set('renditions', titles);
+        grid.save();
+      });
     },
     saveScores() {
       this.get('sortedScores').invoke('save');
