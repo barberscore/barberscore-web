@@ -7,7 +7,7 @@ module.exports = function(deployTarget) {
   if (deployTarget === 'production') {
     ENV.bugsnag = {
       apiKey: process.env.BUGSNAG_API_KEY,
-      publicUrl: "https://www.barberscore.com"
+      publicUrl: process.env.BUGSNAG_PUBLIC_URL
     };
   };
 
