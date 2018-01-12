@@ -85,10 +85,6 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.currentRevision = process.env.SOURCE_VERSION;
-    ENV.bugsnag = {
-      apiKey: process.env.BUGSNAG_API_KEY,
-      publicUrl: "https://www.barberscore.com"
-    };
   }
   return ENV;
 };
