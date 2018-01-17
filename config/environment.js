@@ -11,7 +11,9 @@ module.exports = function(environment) {
       allowEmpty: true // default: false
     },
     bugsnag: {
-      apiKey: 'a231990acfb72a00bf3951369ad75390',
+      apiKey: process.env.BUGSNAG_API_KEY,
+      publicUrl: process.env.BUGSNAG_PUBLIC_URL,
+      releaseStage: process.env.BUGSNAG_RELEASE_STAGE,
       notifyReleaseStages: ['production']
     },
     contentSecurityPolicy: {
