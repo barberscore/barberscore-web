@@ -10,6 +10,10 @@ module.exports = function(environment) {
       outputFormat: 'LL',
       allowEmpty: true // default: false
     },
+    bugsnag: {
+      apiKey: 'a231990acfb72a00bf3951369ad75390',
+      notifyReleaseStages: ['production']
+    },
     contentSecurityPolicy: {
       'font-src': [
         'data:',
@@ -48,8 +52,11 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+      API_HOST: process.env.API_HOST,
+      API_NAMESPACE: process.env.API_NAMESPACE
     },
   };
+
   ENV['ember-simple-auth'] = {
     authenticationRoute: 'login',
     routeAfterAuthentication: 'dashboard',
@@ -59,9 +66,6 @@ module.exports = function(environment) {
       domain: process.env.AUTH0_DOMAIN,
     }
   };
-
-  ENV.APP.API_HOST = process.env.API_HOST;
-  ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
