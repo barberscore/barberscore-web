@@ -11,6 +11,9 @@ export default DS.JSONAPISerializer.extend({
       adminsReport: {
         serialize: false
       },
+      activesReport: {
+        serialize: false
+      },
       contests: {
         serialize: true
       },

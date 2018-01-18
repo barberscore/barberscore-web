@@ -17,6 +17,8 @@ export default Model.extend({
   kind: DS.attr('session-kind'),
   gender: DS.attr('session-gender'),
   isInvitational: DS.attr('boolean'),
+  description: DS.attr('string'),
+  notes: DS.attr('string'),
   bbscoresReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
   adminsReport: DS.attr('string'),
