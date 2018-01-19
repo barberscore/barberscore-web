@@ -23,8 +23,8 @@
     </div>
     <div class='panel-body'>
       <ul class='list-inline'>
-        <li>Grid:  {{moment-format model.grid.onstage "HH:mm"}}</li>
-        <li>Actual:  {{moment-format model.grid.start "HH:mm"}}</li>
+        <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
+        <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
         {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
       </ul>
       <div class='table-responsive'>
@@ -96,7 +96,7 @@
                   {{score.kind}}
                 </td>
                 <td>
-                  {{score.panelist.num}} - {{score.song.num}}
+                  {{score.song.num}}
                 </td>
                 <td>
                   {{enter-score score=score}}

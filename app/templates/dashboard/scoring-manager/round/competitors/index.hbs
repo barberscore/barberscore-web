@@ -2,10 +2,13 @@
   <div class='row'>
     <div class='col-md-12'>
       <table class='table'>
+        <caption>
+          This is the listing of all competitors, regardless of Round.
+        </caption>
         <thead>
           <tr>
             <th class='col-md-6'>Competitor</th>
-            <th class='col-md-1'>Status</th>
+            {{!-- <th class='col-md-1'>Status</th> --}}
             {{!-- <th class='col-md-1'>Action</th> --}}
           </tr>
         </thead>
@@ -15,9 +18,9 @@
                 <td>
                   {{competitor.group.name}}
                 </td>
-                <td>
+                {{!-- <td>
                   {{competitor.status}}
-                </td>
+                </td> --}}
                 {{!-- <td>
                   {{#bs-button size='xs'}}Action{{/bs-button}}
                 </td> --}}

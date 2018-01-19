@@ -11,16 +11,16 @@
             </tr>
           </thead>
             <tbody>
-              {{#each sortedAppearances as |appearance|}}
+              {{#each sortedCompetitors as |competitor|}}
                 <tr>
-                  <td>{{appearance.entry.totRank}}</td>
-                  <td>{{appearance.entry.group.name}}</td>
-                  <td>{{appearance.entry.totPoints}}</td>
-                  <td>{{appearance.entry.totScore}}</td>
+                  <td>{{competitor.totRank}}</td>
+                  <td>{{competitor.group.name}}</td>
+                  <td>{{competitor.totPoints}}</td>
+                  <td>{{competitor.totScore}}</td>
                 </tr>
               {{else}}
                 <tr>
-                  <td>(Standings not currently available.)</td>
+                  <td colspan=4>(Standings not currently available.)</td>
                 </tr>
               {{/each}}
             </tbody>
