@@ -61,57 +61,7 @@
           </tbody>
         </table>
       </div>
-      <div class='table-responsive'>
-        <table class='table'>
-          <caption>Scores Total: {{sumScores}}</caption>
-          <thead>
-            <tr>
-              <th class='col-md-3'>
-                Panelist
-              </th>
-              <th class='col-md-2'>
-                Category
-              </th>
-              <th class='col-md-5'>
-                Kind
-              </th>
-              <th class='col-md-1'>
-                Num
-              </th>
-              <th class='col-md-1'>
-                Points
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedScores as |score|}}
-              <tr class={{score.rowClass}}>
-                <td>
-                  {{score.panelist.person.commonName}}
-                </td>
-                <td>
-                  {{score.category}}
-                </td>
-                <td>
-                  {{score.kind}}
-                </td>
-                <td>
-                  {{score.song.num}}
-                </td>
-                <td>
-                  {{enter-score score=score}}
-                </td>
-              </tr>
-            {{else}}
-              <tr>
-                <td>
-                  (No scores.)
-                </td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
+     {{score-panel appearance=model}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
       {{#if model.permissions.write}}
