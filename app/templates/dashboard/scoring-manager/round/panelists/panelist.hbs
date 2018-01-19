@@ -1,10 +1,10 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
-      <ul class='list-inline pull-right'>
+      {{!-- <ul class='list-inline pull-right'>
         <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-      </ul>
+      </ul> --}}
       <h4>
         {{model.person.commonName}}
       </h4>
@@ -30,52 +30,75 @@
                 Person: {{person.nomen}}
               {{/power-select}}
           {{/form.element}}
+          {{#form.element property='category' useIcons=false as |el|}}
+            {{#power-select
+              options=categoryOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Category"
+              disabled=isDisabled
+              allowClear=true
+              as |category|
+            }}
+              Category: {{category}}
+            {{/power-select}}
+          {{/form.element}}
+          {{#form.element property='kind' useIcons=false as |el|}}
+            {{#power-select
+              options=kindOptions
+              selected=el.value
+              onchange=(action (mut el.value))
+              placeholder="Enter Kind"
+              disabled=isDisabled
+              allowClear=true
+              as |kind|
+            }}
+              Kind: {{kind}}
+            {{/power-select}}
+          {{/form.element}}
         {{/bs-form}}
       </div>
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{!-- {{#if model.permissions.write}}
-        {{#unless isDisabled}}
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            {{#bs-button type='primary' onClick=(perform inviteEntry)}}
-              {{#if inviteEntry.isRunning}}
-                Inviting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Invite Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Invited')}}
-            {{#bs-button type='primary' onClick=(perform submitEntry)}}
-              {{#if submitEntry.isRunning}}
-                Submitting {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Submit Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Submitted')}}
-            {{#bs-button type='primary' onClick=(perform approveEntry)}}
-              {{#if approveEntry.isRunning}}
-                Approving {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Approve Entry
-              {{/if}}
-            {{/bs-button}}
-          {{else if (eq model.status 'Approved')}}
-            {{#bs-button type='danger' onClick=(perform scratchEntry)}}
-              {{#if scratchEntry.isRunning}}
-                Scratching {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Scratch Entry
-              {{/if}}
-            {{/bs-button}}
+            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deletePanelistModal) true)}}Delete Panelist{{/bs-button}}</li>
           {{/if}}
-        {{/unless}}
-      {{/if}} --}}
-      <div class='pull-right'>
-        <h4>
-          Panelist Status: <strong>{{model.status}}</strong>
-        </h4>
-      </div>
+        {{/if}}
+        {{!-- <li class='pull-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li> --}}
+      </ul>
     </div>
   </div>
+</section>
+<section>
+  {{#bs-modal
+    open=deletePanelistModal
+    onHidden=(pipe-action (action (mut deletePanelistModal) false) (action (mut deletePanelistModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Delete Panelist</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        This will delete the panelist.  This should generally be used for errors or other cases where the panelist should never have existed in the first place.  If you don't have a full panel other errors will occur that aren't easily fixed.  Please be certain.
+      </p>
+      {{#if deletePanelistModalError}}
+      <p class='text-danger'>
+        Could not delete panelist.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='danger' onClick=(perform deletePanelist)}}
+        {{#if deletePanelist.isRunning}}
+          Deleting {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Delete Panelist
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
 </section>

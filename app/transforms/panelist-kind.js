@@ -5,7 +5,7 @@ export default DS.Transform.extend({
     var map = {
       10: 'Official',
       20: 'Practice',
-      30: 'Composite',
+      30: 'Observer',
     };
     return map[serialized];
   },
@@ -14,7 +14,7 @@ export default DS.Transform.extend({
     var map = {
       'Official': 10,
       'Practice': 20,
-      'Composite': 30,
+      'Observer': 30,
     };
     return map[deserialized];
   }

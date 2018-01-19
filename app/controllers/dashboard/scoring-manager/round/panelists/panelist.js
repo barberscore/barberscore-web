@@ -1,44 +1,7 @@
-import { computed } from '@ember/object';
-import { sort, equal, or } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  panelistSortProperties: [
-    'categorySort',
-    'kindSort',
-    'personSort',
-  ],
-  sortedItems: sort(
-    'model.round.panelists',
-    'panelistSortProperties'
-  ),
-  isStarted: equal(
-    'model.round.status',
-    'Started',
-  ),
-  isFinished: equal(
-    'model.round.status',
-    'Finished',
-  ),
-  isAnnounced: equal(
-    'model.round.status',
-    'Archived',
-  ),
-  isDisabled: or(
-    'isStarted',
-    'isFinished',
-  ),
-  isPrevDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
   searchPerson: task(function* (term){
     yield timeout(600);
     return this.get('store').query('person', {
@@ -47,18 +10,21 @@ export default Controller.extend({
       })
       .then((data) => data);
   }),
-  autosave: task(function* (property, value){
-    this.get('model').set(property, value);
-    yield timeout(1000);
+  deletePanelistModal: false,
+  deletePanelistModalError: false,
+  deletePanelist: task(function *() {
     try {
-      yield this.get('model').save();
-      this.get('flashMessages').success("Saved");
+      yield this.model.destroyRecord({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.set('deletePanelistModal', false);
+      this.set('deletePanelistModalError', false);
+      this.get('flashMessages').success("Deleted!");
+      this.transitionToRoute('dashboard.scoring-manager.round.panelists.index');
     } catch(e) {
-      e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
-      })
+      this.set('deletePanelistModalError', true);
     }
-  }).restartable(),
+  }).drop(),
   actions: {
     previousItem(cursor) {
       let nowCur = this.get('sortedItems').indexOf(cursor);

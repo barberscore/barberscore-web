@@ -67,6 +67,9 @@ Router.map(function() {
           this.route('panelist', {
             path: ':panelist_id'
           });
+          this.route('new', {
+            path: 'new'
+          });
         });
         this.route('competitors', {
           path: 'competitors'

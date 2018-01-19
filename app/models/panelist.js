@@ -44,5 +44,6 @@ export default Model.extend({
   kindOptions: [
     'Official',
     'Practice',
+    'Observer',
   ],
 });

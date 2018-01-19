@@ -21,4 +21,9 @@ export default Controller.extend({
     'model.session.convention.assignments',
     'sortedAssignmentsProperties'
   ),
+  actions: {
+    createPanelist() {
+      this.transitionToRoute('dashboard.scoring-manager.round.panelists.new');
+    },
+  }
 });
