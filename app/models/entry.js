@@ -85,7 +85,6 @@ export default Model.extend({
     'Submitted',
     'Approved',
     'Scratched',
-    'Final',
     'Disqualified',
   ],
 
