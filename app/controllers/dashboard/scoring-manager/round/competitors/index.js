@@ -5,7 +5,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   sortedCompetitorsProperties: [
-    'name',
+    'nomen',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',
