@@ -80,6 +80,14 @@
               Confirm Appearance
             {{/if}}
           {{/bs-button}}
+        {{else if (eq model.status 'Confirmed')}}
+          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
+            {{#if confirmAppearance.isRunning}}
+              Confirming {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Re-Confirm Appearance
+            {{/if}}
+          {{/bs-button}}
         {{/if}}
       {{/if}}
       <div class='pull-right'>
