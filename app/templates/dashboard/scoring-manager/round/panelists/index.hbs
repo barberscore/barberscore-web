@@ -59,7 +59,11 @@
             {{#each sortedPanelists as |panelist|}}
               <tr>
                 <td>
-                  {{#link-to 'dashboard.scoring-manager.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}
+                  {{#if (eq model.status 'New')}}
+                    {{#link-to 'dashboard.scoring-manager.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}
+                  {{else}}
+                    {{panelist.person.fullName}}
+                  {{/if}}
                 </td>
                 <td>
                   {{panelist.category}}
@@ -78,7 +82,9 @@
       </div>
     </div>
   </section>
-  <section>
-    {{#bs-button onClick=(action "createPanelist") type='success'}}Create New Panelist{{/bs-button}}
-  </section>
+  {{#if (eq model.status 'New')}}
+    <section>
+      {{#bs-button onClick=(action "createPanelist") type='success'}}Create New Panelist{{/bs-button}}
+    </section>
+  {{/if}}
 {{/if}}

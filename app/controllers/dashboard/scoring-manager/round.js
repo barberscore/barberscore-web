@@ -10,6 +10,7 @@ export default Controller.extend({
       'by': this.get('currentUser.user.id')
     });
     this.store.pushPayload('round', round);
+    this.transitionToRoute('dashboard.scoring-manager.round.appearances');
     this.get('flashMessages').success("Started!");
   }).drop(),
   reviewRound: task(function *() {

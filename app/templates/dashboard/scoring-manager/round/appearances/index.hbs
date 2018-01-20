@@ -21,7 +21,11 @@
                 {{appearance.num}}
               </td>
               <td>
-                {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.competitor.group.name}}{{/link-to}}
+                {{#if (eq model.status 'New')}}
+                  {{appearance.competitor.group.name}}
+                {{else}}
+                  {{#link-to 'dashboard.scoring-manager.round.appearances.appearance' appearance}}{{appearance.competitor.group.name}}{{/link-to}}
+                {{/if}}
               </td>
               <td>
                 {{#if appearance.grid.onstage}}{{moment-format appearance.grid.onstage 'HH:mm'}}{{else}}N/A{{/if}}
