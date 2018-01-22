@@ -8,6 +8,24 @@
     <div class='panel-body'>
       <section>
         <p>Preferences</p>
+        <p>
+          {{#bs-button class='btn btn-link' onClick=(toggle 'collapsed' this)}}
+            Looking for Evaluation-Only?  Click Here.
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=collapsed}}
+            <p>
+              The Barberscore system does not have an "Evaluation Only" award as in years past.  If you wish to perform for 'Evaluation-Only', take the following steps on this entry form:
+              <ol>
+                <li>Click "Include Eval".</li>
+                <li>Click "Keep Scores Private"</li>
+                <li>Under "Contests Entered", click the "Exclude" button for every award.  The "Contests Entered" button should read zero.</li>
+                <li>Ensure your Repertory and Participant lists are up to date.</li>
+                <li>Click "Submit" -- You're Done!</li>
+              </ol>
+            </p>
+        {{/bs-collapse}}
+
         {{#bs-form
           formLayout="vertical"
           model=model
