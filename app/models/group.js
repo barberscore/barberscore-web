@@ -22,6 +22,7 @@ export default Model.extend({
   status: DS.attr('group-status'),
   kind: DS.attr('group-kind'),
   gender: DS.attr('group-gender'),
+  isSenior: DS.attr('boolean'),
   shortName: DS.attr('string'),
   code: DS.attr('string'),
   startDate: DS.attr('isodate'),
