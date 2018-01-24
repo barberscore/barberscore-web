@@ -92,7 +92,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each sortedContestants as |contestant|}}
+              {{#each model.contestants as |contestant|}}
                   <tr>
                     {{#if contestant.isLoading}}
                       <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -130,7 +130,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each sortedParticipants as |participant|}}
+              {{#each model.participants as |participant|}}
                   <tr>
                     {{#if participant.isLoading}}
                       <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
