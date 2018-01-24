@@ -22,7 +22,6 @@ export default Model.extend({
   sngScore: DS.attr('number'),
   totScore: DS.attr('number'),
   varianceReport: DS.attr('string'),
-  varPdf: DS.attr('string'),
 
   round: DS.belongsTo('round', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
@@ -36,7 +35,6 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   confirm: memberAction({path: 'confirm', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
-  printVar: memberAction({path: 'print_var', type: 'post'}),
 
   statusOptions: [
     'New',

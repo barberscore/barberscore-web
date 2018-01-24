@@ -1,6 +1,5 @@
  <div class='table-responsive'>
   <table class='table'>
-    <caption>Scores Total: {{sumScores}}</caption>
     <thead>
       <tr>
         <th class='col-md-3'>
@@ -48,4 +47,8 @@
       {{/each}}
     </tbody>
   </table>
+  <div class='pull-right'>
+    Score Total: {{sumScores}}
+    {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
+  </div>
 </div>

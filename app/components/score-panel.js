@@ -1,7 +1,8 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
-import { sort, mapBy, sum } from '@ember/object/computed';
+import { sort, mapBy } from '@ember/object/computed';
+import { task } from 'ember-concurrency';
 
 export default Component.extend({
   scoresCall: computed(
@@ -15,7 +16,7 @@ export default Component.extend({
       });
     });
     return out;
-  }), 
+  }),
   sortedPanelistsProperties: [
     'kind',
   ],
@@ -37,9 +38,14 @@ export default Component.extend({
     'sortedScores',
     'points'
   ),
-  sumScores: sum(
-    'mappedScores'
-  ),
+  sumScores: computed(
+    'mappedScores', function() {
+      let out = 0;
+      this.get('mappedScores').forEach(function(item) {
+        out += parseInt(item);
+      });
+      return out;
+  }),
   scoresVariance: mapBy(
     'scoresCall',
     'hasVariance'
@@ -50,5 +56,13 @@ export default Component.extend({
         function(item) {
           return item;
         });
-  })
+  }),
+  saveScores: task(function *() {
+    // yield this.get('sortedScores').forEach(function(score) {
+    //   console.log(score);
+    //   score.save();
+    // })
+    yield this.get('sortedScores').invoke('save');
+    this.get('flashMessages').success("Saved!");
+  }).drop(),
 });

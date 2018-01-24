@@ -103,7 +103,6 @@ export default Controller.extend({
     this.get('flashMessages').success("Finished!");
   }).drop(),
   confirmAppearance: task(function *() {
-    yield this.get('sortedScores').invoke('save');
     let appearance = yield this.model.confirm({
       'by': this.get('currentUser.user.id')
     });
