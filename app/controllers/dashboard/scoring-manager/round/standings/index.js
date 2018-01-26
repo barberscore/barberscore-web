@@ -1,17 +1,13 @@
-import { sort, filterBy } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import Controller from '@ember/controller';
 // import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  sortedCompetitorsProperties: [
+  sortedAppearancesProperties: [
     'totPoints:desc',
   ],
-  filteredCompetitors: filterBy(
-    'model.session.competitors',
-    'totPoints'
-  ),
-  sortedCompetitors: sort(
-    'filteredCompetitors',
-    'sortedCompetitorsProperties'
+  sortedAppearances: sort(
+    'model.appearances',
+    'sortedAppearancesProperties'
   ),
 });

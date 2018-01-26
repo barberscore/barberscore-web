@@ -11,12 +11,12 @@
             </tr>
           </thead>
             <tbody>
-              {{#each sortedCompetitors as |competitor|}}
+              {{#each sortedAppearances as |appearance|}}
                 <tr>
-                  <td>{{competitor.totRank}}</td>
-                  <td>{{competitor.group.name}}</td>
-                  <td>{{competitor.totPoints}}</td>
-                  <td>{{competitor.totScore}}</td>
+                  <td>{{appearance.totRank}}</td>
+                  <td>{{appearance.competitor.group.name}}</td>
+                  <td>{{appearance.totPoints}}</td>
+                  <td>{{single-fixed appearance.totScore}}</td>
                 </tr>
               {{else}}
                 <tr>
