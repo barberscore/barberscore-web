@@ -150,22 +150,22 @@ export default Controller.extend({
   isPrevDisabled: computed(
     'model',
     'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
+    return this.model == this.get('model.session.entries.firstObject');
   }),
   isNextDisabled: computed(
     'model',
     'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
+    return this.model == this.get('model.session.entries.lastObject');
   }),
   actions: {
     previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
+      let nowCur = this.get('model.session.entries').indexOf(cursor);
+      let newCur = this.get('model.session.entries').objectAt(nowCur-1);
       this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
     },
     nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
+      let nowCur = this.get('model.session.entries').indexOf(cursor);
+      let newCur = this.get('model.session.entries').objectAt(nowCur+1);
       this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
     },
   }
