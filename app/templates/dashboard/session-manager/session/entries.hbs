@@ -6,8 +6,13 @@
     </h4>
   </section>
 {{else}}
-  {{#bs-button class='btn btn-link' onClick=(toggle 'collapsed' this)}}
-    collapse 
+<br/>
+  {{#bs-button class='btn btn-xs' onClick=(toggle 'collapsed' this)}}
+    {{#if collapsed}}
+      Show entries
+    {{else}}
+      Hide entries
+    {{/if}} 
   {{/bs-button}}
 
   {{#bs-collapse collapsed=collapsed}}
