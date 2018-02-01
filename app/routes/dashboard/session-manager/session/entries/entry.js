@@ -6,7 +6,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   actions: {
       didTransition() {
         Ember.run.scheduleOnce('afterRender', this, function(){
-          let scrollTop = document.getElementById('entry-detail').getBoundingClientRect().top
+          let scrollTop = window.pageYOffset + document.getElementById('entry-detail').getBoundingClientRect().top
           window.scrollTo(0, scrollTop);
         });
       }
