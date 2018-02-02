@@ -67,5 +67,6 @@ export default Model.extend({
   groupName: alias('group.name'),
   groupKind: alias('group.kindSort'),
   personName: alias('person.fullName'),
+  personNomen: alias('person.nomen'),
   personLast: alias('person.lastName'),
 });

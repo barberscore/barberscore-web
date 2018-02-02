@@ -89,6 +89,7 @@ export default Model.extend({
   ],
 
 
+  allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
   participantCount: alias('participants.length'),
   repertoryCount: alias('group.repertories.length'),
