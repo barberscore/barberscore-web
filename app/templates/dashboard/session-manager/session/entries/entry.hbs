@@ -128,6 +128,7 @@
                 <th class='col-md-1'>Status</th>
                 <th class='col-md-3'>Name</th>
                 <th class='col-md-1'>Part</th>
+                <th class='col-md-1'>DOB</th>
                 <th class='col-md-2'>Expires</th>
                 <th class='col-md-2'>Actions</th>
               </tr>
@@ -147,6 +148,7 @@
                         <td>{{participant.person.fullName}}</td>
                       {{/if}}
                       <td>{{participant.part}}</td>
+                      <td>{{moment-format participant.person.birthDate 'LL'}}
                       <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
                       <td>{{toggle-participant model=participant}}</td>
                     {{/if}}
