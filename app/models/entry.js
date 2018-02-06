@@ -20,6 +20,7 @@ export default Model.extend({
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   rank: DS.attr('number'),
+  mos: DS.attr('number'),
   description: DS.attr('string'),
   directors: DS.attr('string', {defaultValue: ''}),
   representing: DS.attr('string', {defaultValue: ''}),
@@ -36,7 +37,6 @@ export default Model.extend({
   competitor: DS.belongsTo('competitor', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
-  participants: DS.hasMany('participant', {async: true}),
   permissions: DS.attr(),
   logs: DS.attr(),
 
@@ -51,15 +51,6 @@ export default Model.extend({
     'isArchived'
   ),
 
-  expiringMembers: filterBy(
-    'participants',
-    'isExpiring'
-  ),
-
-  expiringMembersCount: alias(
-    'expiringMembers.length'
-  ),
-
   includedContestants: filterBy(
     'contestants',
     'isIncluded'
@@ -68,16 +59,6 @@ export default Model.extend({
   includedContestantsCount: alias(
     'includedContestants.length'
   ),
-
-  includedParticipants: filterBy(
-    'participants',
-    'isIncluded'
-  ),
-
-  includedParticipantsCount: alias(
-    'includedParticipants.length'
-  ),
-
 
   statusOptions: [
     'New',

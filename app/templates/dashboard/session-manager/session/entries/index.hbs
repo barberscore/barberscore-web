@@ -15,8 +15,7 @@
               <th class='col-md-1' {{action "sortBy" "nomen"}}>Representing</th>
               <th class='col-md-1' {{action "sortBy" "includedContestantsCount:desc"}}>Contests Entered</th>
               <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
-              <th class='col-md-1' {{action "sortBy" "includedParticipantsCount:desc"}}>Men on Stage</th>
-              <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
+              <th class='col-md-1' {{action "sortBy" "mos:desc"}}>Men on Stage</th>
               <th class='col-md-1' {{action "sortBy" "prelim:desc"}}>Prelim</th>
               <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
             </tr>
@@ -35,8 +34,7 @@
                   <td>{{entry.representing}}</td>
                   <td>{{entry.includedContestantsCount}}</td>
                   <td>{{entry.repertoryCount}}</td>
-                  <td>{{entry.includedParticipantsCount}}</td>
-                  <td>{{entry.expiringMembersCount}}</td>
+                  <td>{{#if entry.mos}}{{entry.mos}}{{else}}N/A{{/if}}</td>
                   <td>{{single-fixed entry.prelim}}</td>
                   <td>{{entry.status}}</td>
                 {{/if}}

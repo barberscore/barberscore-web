@@ -9,7 +9,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'session': this.modelFor('dashboard.session-manager.session'),
       'appearances': [],
       'contestants': [],
-      'participants': [],
     });
   },
 });

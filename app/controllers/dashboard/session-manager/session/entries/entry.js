@@ -20,11 +20,12 @@ export default Controller.extend({
     'model.group.repertories',
     'sortedRepertoriesProperties'
   ),
-  participantSortProperties: [
+  sortedMembersProperties: [
+    'partSort',
   ],
-  sortedParticipants: sort(
-    'model.participants',
-    'participantSortProperties'
+  sortedMembers: sort(
+    'model.group.members',
+    'sortedMembersProperties'
   ),
   contestantSortProperties: [
   ],

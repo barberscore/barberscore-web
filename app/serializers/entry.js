@@ -8,8 +8,5 @@ export default DS.JSONAPISerializer.extend({
     appearances: {
       serialize: true
     },
-    participants: {
-      serialize: true
-    },
   }
 });

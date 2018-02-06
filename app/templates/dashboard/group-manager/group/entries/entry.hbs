@@ -20,7 +20,7 @@
                 <li>Click "Include Eval".</li>
                 <li>Click "Keep Scores Private"</li>
                 <li>Under "Contests Entered", click the "Exclude" button for every award.  The "Contests Entered" button should read zero.</li>
-                <li>Ensure your Repertory and Participant lists are up to date.</li>
+                <li>Ensure your Repertory and Member lists are accurate.</li>
                 <li>Click "Submit" -- You're Done!</li>
               </ol>
             </p>
@@ -55,6 +55,7 @@
           {{/form.element}}
           {{#if (eq model.group.kind 'Chorus')}}
             {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
+            {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated Men-On-Stage' label='Men-On-Stage' property='mos' onChange=(perform autosave 'mos')}}
           {{/if}}
         {{/bs-form}}
       </section>
@@ -99,40 +100,43 @@
       <hr>
       <section>
         <p>
-          Participants on Stage: {{model.includedParticipantsCount}}
+          Active Members
         </p>
         <div class='table-responsive'>
           <table class='table'>
             <thead>
               <tr>
-                <th class='col-md-2'>Status</th>
-                <th class='col-md-4'>Name</th>
-                <th class='col-md-2'>Part</th>
-                <th class='col-md-3'>Current Through</th>
-                <th class='col-md-1'>Action</th>
+                <th class='col-md-3'>Name</th>
+                <th class='col-md-1'>Part</th>
+                {{!-- <th class='col-md-1'>DOB</th> --}}
+                <th class='col-md-2'>Expires</th>
               </tr>
             </thead>
             <tbody>
-              {{#each sortedParticipants as |participant|}}
+              {{#each sortedMembers as |member|}}
                   <tr>
-                    {{#if participant.isLoading}}
-                      <td colspan=12>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{#if member.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>
-                        {{participant.status}}
-                      </td>
-                      <td>{{participant.person.fullName}}</td>
-                      <td>{{participant.part}}</td>
-                      <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
-                      <td>{{toggle-participant model=participant}}</td>
+                      {{#if member.person.isLoading}}
+                        <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        <td>{{member.person.fullName}}</td>
+                      {{/if}}
+                      <td>{{member.part}}</td>
+                      {{!-- <td>{{moment-format member.person.birthDate 'L'}}</td> --}}
+                      <td>{{moment-format member.person.currentThrough 'L'}}</td>
                     {{/if}}
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=2>No participants available.</td>
+                  <td colspan=2>No members available</td>
                 </tr>
               {{/each}}
             </tbody>
+            <tfoot colspan=10>
+              Memberships can be updated in the new <a href='https://members.barbershop.org'>Member Center</a>.  Changes may take up to 24 hours to update in Barberscore.
+            </tfoot>
           </table>
         </div>
       </section>
