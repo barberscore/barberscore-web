@@ -20,6 +20,7 @@ export default Model.extend({
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   rank: DS.attr('number'),
+  description: DS.attr('string'),
   directors: DS.attr('string', {defaultValue: ''}),
   representing: DS.attr('string', {defaultValue: ''}),
   musPoints: DS.attr('number'),

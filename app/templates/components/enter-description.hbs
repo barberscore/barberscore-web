@@ -1,8 +1,10 @@
 <div class='form-group'>
-  <input
-  value={{session.description}}
-  oninput={{perform autosave value='target.value'}}
-  class='form-control'
-  type='text'
->
+  <textarea
+    value={{model.description}}
+    oninput={{perform autosave value='target.value'}}
+    class='form-control'
+    rows='3'
+    placeholder='Enter any additional notes/requests.'
+  >
+</textarea>
 </div>
