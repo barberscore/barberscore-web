@@ -1,52 +1,6 @@
-<div class='col-md-10'>
-  <section>
-    <div class='table-responsive'>
-      <table class='table'>
-        <thead>
-          <tr>
-            <th class='col-md-6'>Person</th>
-            {{#if (eq model.kind 'Quartet')}}
-              <th class='col-md-2'>Part</th>
-            {{/if}}
-            <th>BHS ID</th>
-            <th>BHS Status</th>
-            <th>Current Through</th>
-            {{!-- <th class='col-md-1'>Action</th> --}}
-            {{!-- <th>Start</th> --}}
-            {{!-- <th>End</th> --}}
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedMembers as |member|}}
-            <tr>
-              {{#if member.isLoading}}
-                <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                {{#if member.person.isLoading}}
-                  <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                {{else}}
-                  <td>{{member.person.fullName}}</td>
-                {{/if}}
-                {{#if (eq model.kind 'Quartet')}}
-                  <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
-                {{/if}}
-                <td>{{member.person.bhsId}}</td>
-                <td>{{member.person.status}}</td>
-                <td>{{moment-format member.person.currentThrough 'L'}}</td>
-              {{/if}}
-            </tr>
-          {{else}}
-            <tr>
-              <td colspan=3>(No active members)</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-  </section>
-  <section>
-    <p>
-        <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
-    </p>
-  </section>
-</div>
+{{group-members model=model}}
+<section>
+  <p>
+    <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
+  </p>
+</section>

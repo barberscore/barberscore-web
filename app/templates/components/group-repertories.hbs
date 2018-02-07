@@ -1,0 +1,28 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-6'>Title</th>
+        <th class='col-md-6'>Arranger(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedRepertories as |repertory|}}
+        <tr>
+          {{#if repertory.chart.isLoading}}
+            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>{{repertory.chart.title}}</td>
+            <td>{{repertory.chart.arrangers}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>
+            No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

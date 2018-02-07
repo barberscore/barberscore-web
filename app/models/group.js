@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { equal, notEmpty, filterBy } from '@ember/object/computed';
+import { equal, notEmpty, filterBy, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 // import { validator, buildValidations } from 'ember-cp-validations';
@@ -53,6 +53,16 @@ export default Model.extend({
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
+
+  repertoriesCount: alias('repertories.length'),
+
+  activeMembers: filterBy(
+    'members',
+    'status',
+    'Active'
+  ),
+
+  activesCount: alias('activeMembers.length'),
 
   isActive: equal(
     'status',

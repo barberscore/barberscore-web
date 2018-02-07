@@ -117,57 +117,10 @@
           {{/bs-button}}
         </p>
         {{#bs-collapse collapsed=membersCollapsed}}
-          <div class='table-responsive'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th class='col-md-4'>Name</th>
-                  {{#if (eq model.group.kind 'Quartet')}}
-                    <th class='col-md-1'>Part</th>
-                  {{/if}}
-                  <th class='col-md-2'>Email</th>
-                  <th class='col-md-2'>Phone</th>
-                  <th class='col-md-1'>BHS ID</th>
-                  <th class='col-md-1'>BHS Status</th>
-                  <th class='col-md-2'>Expires</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each sortedMembers as |member|}}
-                    <tr>
-                      {{#if member.isLoading}}
-                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                      {{else}}
-                        {{#if member.person.isLoading}}
-                          <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                        {{else}}
-                          <td>{{member.person.fullName}}</td>
-                        {{/if}}
-                        {{#if model.group.kind }}
-                          <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
-                        {{/if}}
-                        <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
-                        <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
-                        <td>{{member.person.bhsId}}</td>
-                        <td>{{member.person.status}}</td>
-                        <td>{{moment-format member.person.currentThrough 'L'}}</td>
-                      {{/if}}
-                    </tr>
-                {{else}}
-                  <tr>
-                    <td colspan=2>(No active members)</td>
-                  </tr>
-                {{/each}}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan=10>
-                    <em>Memberships can be updated in the new <a href='https://members.barbershop.org'>Member Center</a>.  Changes may take up to 24 hours to update in Barberscore.</em>
-                   </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+          {{group-members model=model.group}}
+          <p>
+            <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
+          </p>
         {{/bs-collapse}}
       </section>
       <hr>
@@ -179,41 +132,10 @@
           {{/bs-button}}
         </p>
         {{#bs-collapse collapsed=repertoryCollapsed}}
-          <div class='table-responsive'>
-            <table class='table'>
-              <thead>
-                <tr>
-                  <th class='col-md-6'>Title</th>
-                  <th class='col-md-6'>Arranger(s)</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each sortedRepertories as |repertory|}}
-                  <tr>
-                    {{#if repertory.chart.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>{{repertory.chart.title}}</td>
-                      <td>{{repertory.chart.arrangers}}</td>
-                    {{/if}}
-                  </tr>
-                {{else}}
-                  <tr>
-                    <td>
-                      No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
-                    </td>
-                  </tr>
-                {{/each}}
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan=10>
-                    <em>Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}.</em>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
+          {{group-repertories model=model.group}}
+          <p>
+            <em>Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}.</em>
+          </p>
         {{/bs-collapse}}
       </section>
       <hr>
