@@ -58,7 +58,6 @@ export default Component.extend({
     }
   }).drop(),
   toggleContestant: task(function *(value) {
-    console.log(value);
     if (value) {
       try {
         let contestant = yield this.model.include({
