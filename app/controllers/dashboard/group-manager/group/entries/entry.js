@@ -1,4 +1,4 @@
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
@@ -12,6 +12,11 @@ export default Controller.extend({
     'model.permissions.write',
   ),
   contestantSortProperties: [
+    'contestOrganizationKindSort',
+    'contestAwardQualifier',
+    'contestAwardPrimary',
+    'contestAwardAgeSort',
+    'contestAwardName',
   ],
   sortedContestants: sort(
     'model.contestants',
@@ -20,8 +25,13 @@ export default Controller.extend({
   sortedMembersProperties: [
     'partSort',
   ],
-  sortedMembers: sort(
+  filteredMembers: filterBy(
     'model.group.members',
+    'status',
+    'Active',
+  ),
+  sortedMembers: sort(
+    'filteredMembers',
     'sortedMembersProperties'
   ),
   sortedRepertoriesProperties: [

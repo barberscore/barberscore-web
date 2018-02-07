@@ -23,9 +23,16 @@ export default Controller.extend({
   ),
   sortedMembersProperties: [
     'partSort',
+    'personLast',
+    'personFull',
   ],
-  sortedMembers: sort(
+  filteredMembers: filterBy(
     'model.group.members',
+    'status',
+    'Active',
+  ),
+  sortedMembers: sort(
+    'filteredMembers',
     'sortedMembersProperties'
   ),
   contestantSortProperties: [
