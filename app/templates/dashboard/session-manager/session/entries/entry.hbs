@@ -101,6 +101,7 @@
                 <th class='col-md-1'>Part</th>
                 <th class='col-md-2'>Email</th>
                 <th class='col-md-2'>Phone</th>
+                <th class='col-md-1'>BHS ID</th>
                 <th class='col-md-1'>DOB</th>
                 <th class='col-md-2'>Expires</th>
               </tr>
@@ -119,6 +120,7 @@
                       <td>{{member.part}}</td>
                       <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
                       <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
+                      <td>{{member.person.bhsId}}</td>
                       <td>{{moment-format member.person.birthDate 'L'}}</td>
                       <td>{{moment-format member.person.currentThrough 'L'}}</td>
                     {{/if}}
