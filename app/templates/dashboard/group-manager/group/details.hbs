@@ -27,21 +27,24 @@
     }}
       {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description - Write a few words to describe your group, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
       {{!-- {{form.element controlType='text' disabled=true placeholder='Group Name' property='name'}} --}}
-      {{#form.element property='organization' useIcons=false as |el|}}
+      {{!-- {{#form.element property='district' useIcons=false as |el|}}
           {{#power-select
             options=representingOptions
             selected=el.value
             searchField='name'
-            onchange=(perform autosave 'organization')
             placeholder="Enter 'Home' District/Division/Affiliate"
+            onchange=(perform autosave 'organization')
             allowClear=true
             disabled=true
             as |organization|
           }}
-            Representing: {{organization.name}}
+            District: {{#if district}}{{district}}{{else}}N/A{{/if}}
           {{/power-select}}
-      {{/form.element}}
+      {{/form.element}} --}}
       {{!-- {{form.element controlType='text' disabled=true placeholder='Location' property='location' onChange=(perform autosave 'location')}} --}}
+      {{form.element controlType='text' disabled=true label='District' placeholder='N/A' property='district'}}
+      {{form.element controlType='text' disabled=true label='Division' placeholder='N/A' property='division'}}
+      {{form.element controlType='text' disabled=true label='Chapter' placeholder='N/A' property='chapter'}}
       {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
       {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
       {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
