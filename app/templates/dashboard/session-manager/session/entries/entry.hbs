@@ -90,9 +90,9 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Status</th>
-                <th>Name</th>
-                <th>Actions</th>
+                <th class='col-md-1'>Include</th>
+                <th class='col-md-5'>Name</th>
+                <th class='col-md-6'>Description</th>
               </tr>
             </thead>
             <tbody>
@@ -101,11 +101,17 @@
                     {{#if contestant.isLoading}}
                       <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>
-                        {{contestant.status}}
-                      </td>
-                      <td>{{contestant.contest.award.nomen}}</td>
                       <td>{{toggle-contestant model=contestant}}</td>
+                      <td>
+                        {{contestant.contest.award.nomen}}
+                      </td>
+                      <td>
+                        {{#if contestant.contest.award.description}}
+                          {{contestant.contest.award.description}}
+                        {{else}}
+                          (No description available)
+                        {{/if}}
+                      </td>
                     {{/if}}
                   </tr>
               {{else}}

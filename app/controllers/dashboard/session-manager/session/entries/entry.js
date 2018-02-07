@@ -4,6 +4,7 @@ import Controller, { inject as controller } from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
+  isCollapsedDescription: true,
   isDisabled: computed(
     'model.status',
     function(){

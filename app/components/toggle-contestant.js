@@ -12,10 +12,6 @@ export default Component.extend({
     'model.status',
     'Included',
   ),
-  isExcluded: equal(
-    'model.status',
-    'Excluded',
-  ),
   // toggleContest: task(function *() {
   //   if (this.isIncluded) {
   //     try {
@@ -59,6 +55,30 @@ export default Component.extend({
       this.get('flashMessages').success("Excluded!");
     } catch(e) {
       this.get('flashMessages').danger("Problem!");
+    }
+  }).drop(),
+  toggleContestant: task(function *(value) {
+    console.log(value);
+    if (value) {
+      try {
+        let contestant = yield this.model.include({
+          'by': this.get('currentUser.user.id'),
+        });
+        this.get('store').pushPayload('contestant', contestant);
+        this.get('flashMessages').success("Included!");
+      } catch(e) {
+        this.get('flashMessages').danger("Problem!");
+      }
+    } else {
+      try {
+        let contestant = yield this.model.exclude({
+          'by': this.get('currentUser.user.id'),
+        });
+        this.get('store').pushPayload('contestant', contestant);
+        this.get('flashMessages').success("Excluded!");
+      } catch(e) {
+        this.get('flashMessages').danger("Problem!");
+      }
     }
   }).drop(),
 });

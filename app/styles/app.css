@@ -83,3 +83,8 @@ section {
   width: 200px;
   height: 200px;
 }
+
+input[type=checkbox] {
+  transform: scale(2.0);
+}
+

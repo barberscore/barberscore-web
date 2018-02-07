@@ -19,7 +19,7 @@
               <ol>
                 <li>Click "Include Eval".</li>
                 <li>Click "Keep Scores Private"</li>
-                <li>Under "Contests Entered", click the "Exclude" button for every award.  The "Contests Entered" button should read zero.</li>
+                <li>Under "Contests Entered", be sure that all the awards are unchecked.  The "Contests Entered" button should read zero.</li>
                 <li>Ensure your Repertory and Member lists are accurate.</li>
                 <li>Click "Submit" -- You're Done!</li>
               </ol>
@@ -68,29 +68,33 @@
           <table class='table'>
             <thead>
               <tr>
-                <th class='col-md-2'>Status</th>
-                <th class='col-md-9'>Name</th>
-                <th class='col-md-1'>Action</th>
+                <th class='col-md-1'>Include</th>
+                <th class='col-md-5'>Name</th>
+                <th class='col-md-6'>Description</th>
               </tr>
             </thead>
             <tbody>
-              {{#each sortedContestants as |contestant|}}
+              {{#each model.contestants as |contestant|}}
                   <tr>
                     {{#if contestant.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
-                      <td>
-                        {{contestant.status}}
-                      </td>
+                      <td>{{toggle-contestant model=contestant}}</td>
                       <td>
                         {{contestant.contest.award.nomen}}
                       </td>
-                      <td>{{toggle-contestant model=contestant}}</td>
+                      <td>
+                        {{#if contestant.contest.award.description}}
+                          {{contestant.contest.award.description}}
+                        {{else}}
+                          (No description available)
+                        {{/if}}
+                      </td>
                     {{/if}}
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=2>No contestants available</td>
+                  <td colspan=2>No contests available</td>
                 </tr>
               {{/each}}
             </tbody>
