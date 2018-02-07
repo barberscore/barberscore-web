@@ -7,6 +7,8 @@ export default Controller.extend({
   ),
   sortedMembersProperties: [
     'partSort',
+    'personLast',
+    'personName',
   ],
   filteredMembers: filterBy(
     'model.members',

@@ -5,13 +5,16 @@
         <thead>
           <tr>
             <th class='col-md-6'>Person</th>
-            {{#if (eq model.group.kind 'Quartet')}}
+            {{#if (eq model.kind 'Quartet')}}
               <th class='col-md-2'>Part</th>
             {{/if}}
+            <th>BHS ID</th>
+            <th>BHS Status</th>
+            <th>Current Through</th>
             {{!-- <th class='col-md-1'>Action</th> --}}
             {{!-- <th>Start</th> --}}
             {{!-- <th>End</th> --}}
-            {{!-- <th>Status</th> --}}
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -20,30 +23,22 @@
               {{#if member.isLoading}}
                 <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>
-                  {{#if member.person.isLoading}}
-                    <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    {{member.person.nomen}}
-                  {{/if}}
-                </td>
-                  {{#if (eq model.group.kind 'Quartet')}}
-                    {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
-                  {{/if}}
-                <td>
-                </td>
-                {{!-- <td>
-                  {{toggle-admin model=member}}
-                </td> --}}
-                {{!-- <td>{{moment-format member.start_date 'LL'}}</td> --}}
-                {{!-- <td>{{moment-format member.end_date 'LL'}}</td> --}}
-
-                {{!-- <td>{{member.status}}</td> --}}
+                {{#if member.person.isLoading}}
+                  <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  <td>{{member.person.fullName}}</td>
+                {{/if}}
+                {{#if (eq model.kind 'Quartet')}}
+                  <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
+                {{/if}}
+                <td>{{member.person.bhsId}}</td>
+                <td>{{member.person.status}}</td>
+                <td>{{moment-format member.person.currentThrough 'L'}}</td>
               {{/if}}
             </tr>
           {{else}}
             <tr>
-              <td colspan=3>(No members.)</td>
+              <td colspan=3>(No active members)</td>
             </tr>
           {{/each}}
         </tbody>
