@@ -8,6 +8,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'isPrivate': false,
       'group': this.modelFor('dashboard.group-manager.group'),
       'contestants': [],
+      'description': '',
       'competitor': null,
     });
     return entry;
