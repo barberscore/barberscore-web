@@ -9,11 +9,11 @@
       <section>
         <p>Preferences</p>
         <p>
-          {{#bs-button class='btn btn-link' onClick=(toggle 'collapsed' this)}}
+          {{#bs-button class='btn btn-link' onClick=(toggle 'evalCollapsed' this)}}
             Looking for Evaluation-Only?  Click Here.
           {{/bs-button}}
         </p>
-        {{#bs-collapse collapsed=collapsed}}
+        {{#bs-collapse collapsed=evalCollapsed}}
             <p>
               The Barberscore system does not have an "Evaluation Only" award as in years past.  If you wish to perform for 'Evaluation-Only', take the following steps on this entry form:
               <ol>
@@ -98,88 +98,113 @@
                 </tr>
               {{/each}}
             </tbody>
+            <tfoot>
+              <tr>
+                <td colspan=10>
+                   <em>Click on all the awards for which you wish to compete.</em>
+                 </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </section>
       <hr>
       <section>
         <p>
-          Active Members
+          Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+            {{if membersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
         </p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-3'>Name</th>
-                <th class='col-md-1'>Part</th>
-                {{!-- <th class='col-md-1'>DOB</th> --}}
-                <th class='col-md-2'>Expires</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedMembers as |member|}}
-                  <tr>
-                    {{#if member.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      {{#if member.person.isLoading}}
-                        <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                      {{else}}
-                        <td>{{member.person.fullName}}</td>
-                      {{/if}}
-                      <td>{{member.part}}</td>
-                      {{!-- <td>{{moment-format member.person.birthDate 'L'}}</td> --}}
-                      <td>{{moment-format member.person.currentThrough 'L'}}</td>
-                    {{/if}}
-                  </tr>
-              {{else}}
+        {{#bs-collapse collapsed=membersCollapsed}}
+          <div class='table-responsive'>
+            <table class='table'>
+              <thead>
                 <tr>
-                  <td colspan=2>No members available</td>
+                  <th class='col-md-3'>Name</th>
+                  <th class='col-md-1'>Part</th>
+                  {{!-- <th class='col-md-1'>DOB</th> --}}
+                  <th class='col-md-2'>Expires</th>
                 </tr>
-              {{/each}}
-            </tbody>
-            <tfoot colspan=10>
-              Memberships can be updated in the new <a href='https://members.barbershop.org'>Member Center</a>.  Changes may take up to 24 hours to update in Barberscore.
-            </tfoot>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {{#each sortedMembers as |member|}}
+                    <tr>
+                      {{#if member.isLoading}}
+                        <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      {{else}}
+                        {{#if member.person.isLoading}}
+                          <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                        {{else}}
+                          <td>{{member.person.fullName}}</td>
+                        {{/if}}
+                        <td>{{member.part}}</td>
+                        {{!-- <td>{{moment-format member.person.birthDate 'L'}}</td> --}}
+                        <td>{{moment-format member.person.currentThrough 'L'}}</td>
+                      {{/if}}
+                    </tr>
+                {{else}}
+                  <tr>
+                    <td colspan=2>No members available</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan=10>
+                    <em>Memberships can be updated in the new <a href='https://members.barbershop.org'>Member Center</a>.  Changes may take up to 24 hours to update in Barberscore.</em>
+                   </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        {{/bs-collapse}}
       </section>
       <hr>
       <section>
-        <div class='table-responsive'>
           <p>
-            Song Repertory: {{model.repertoryCount}}
-          </p>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-6'>Title</th>
-                <th class='col-md-6'>Arranger(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedRepertories as |repertory|}}
+            Song Repertory: {{model.repertoryCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoryCollapsed' this)}}
+            {{if repertoryCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=repertoryCollapsed}}
+          <div class='table-responsive'>
+            <table class='table'>
+              <thead>
                 <tr>
-                  {{#if repertory.chart.isLoading}}
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{repertory.chart.title}}</td>
-                    <td>{{repertory.chart.arrangers}}</td>
-                  {{/if}}
+                  <th class='col-md-6'>Title</th>
+                  <th class='col-md-6'>Arranger(s)</th>
                 </tr>
-              {{else}}
+              </thead>
+              <tbody>
+                {{#each sortedRepertories as |repertory|}}
+                  <tr>
+                    {{#if repertory.chart.isLoading}}
+                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                    {{else}}
+                      <td>{{repertory.chart.title}}</td>
+                      <td>{{repertory.chart.arrangers}}</td>
+                    {{/if}}
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td>
+                      No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+              <tfoot>
                 <tr>
-                  <td>
-                    No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
+                  <td colspan=10>
+                    <em>Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}.</em>
                   </td>
                 </tr>
-              {{/each}}
-            </tbody>
-            <tfoot>
-              Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}
-            </tfoot>
-          </table>
-        </div>
+              </tfoot>
+            </table>
+          </div>
+        {{/bs-collapse}}
       </section>
       <hr>
       <section>

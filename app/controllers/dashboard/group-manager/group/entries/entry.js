@@ -5,7 +5,9 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
   flashMessages: service(),
-  collapsed: true,
+  evalCollapsed: true,
+  membersCollapsed: true,
+  repertoryCollapsed: true,
   isDisabled: not(
     'model.permissions.write',
   ),

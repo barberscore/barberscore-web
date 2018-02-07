@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { equal, notEmpty } from '@ember/object/computed';
+import { equal, notEmpty, filterBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 // import { validator, buildValidations } from 'ember-cp-validations';
@@ -84,6 +84,12 @@ export default Model.extend({
       return this.get('genderOptions').indexOf(this.get('gender'));
     }
   ),
+  activeMembers: filterBy(
+    'members',
+    'status',
+    'Active'
+  ),
+
   statusOptions: [
     'New',
     'Active',

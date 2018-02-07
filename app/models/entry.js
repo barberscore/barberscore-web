@@ -73,7 +73,7 @@ export default Model.extend({
 
   allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
-  participantCount: alias('participants.length'),
+  activeMembersCount: alias('group.activeMembers.length'),
   repertoryCount: alias('group.repertories.length'),
   tp: mapBy(
     'appearances',

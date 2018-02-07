@@ -6,9 +6,7 @@ export default Controller.extend({
     'model.permissions.write',
   ),
   sortedMembersProperties: [
-    'statusSort',
-    'personLast',
-    'nomen',
+    'partSort',
   ],
   filteredMembers: filterBy(
     'model.members',

@@ -4,7 +4,6 @@
       <table class='table'>
         <thead>
           <tr>
-            <th class='col-md-1'>Admin</th>
             <th class='col-md-6'>Person</th>
             <th class='col-md-2'>Part</th>
             {{!-- <th class='col-md-1'>Action</th> --}}
@@ -19,7 +18,6 @@
               {{#if member.isLoading}}
                 <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{boolean-checkmark value=member.isAdmin}}</td>
                 <td>
                   {{#if member.person.isLoading}}
                     <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -50,10 +48,7 @@
   </section>
   <section>
     <p>
-      <strong>Note:</strong>  You can not directly remove yourself as a Barberscore admin for your group. If you wish to do so, ask another group admin to login to Barberscore and remove you as admin.
-    </p>
-    <p>
-      <strong>Important:</strong>  This information comes from the BHS Member Center which is updated into Barberscore every 10 minutes.  To make changes to your group's membership, you must do so there.  Only currently Active members (as defined by the BHS Member Center) are shown. If you enounter any issues or have questions, please email customerservice@barbershop.org or call 800.876.7464.
+        <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
     </p>
   </section>
 </div>
