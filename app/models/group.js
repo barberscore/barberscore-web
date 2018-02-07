@@ -94,12 +94,6 @@ export default Model.extend({
       return this.get('genderOptions').indexOf(this.get('gender'));
     }
   ),
-  activeMembers: filterBy(
-    'members',
-    'status',
-    'Active'
-  ),
-
   statusOptions: [
     'New',
     'Active',
