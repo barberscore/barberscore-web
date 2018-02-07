@@ -48,41 +48,6 @@
       </section>
       <hr>
       <section>
-        <p>Group Contacts</p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedContacts as |contact|}}
-                  <tr>
-                    {{#if contact.person.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>{{contact.person.fullName}}</td>
-                      <td><a href='mailto:{{contact.person.email}}'>{{contact.person.email}}</a></td>
-                      <td><a href='tel:{{contact.person.cellPhone}}'>{{contact.person.cellPhone}}</a></td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No contacts available</td>
-                </tr>
-              {{/each}}
-            </tbody>
-            <tfoot>
-              {{!-- {{enter-admin model=model}} --}}
-            </tfoot>
-          </table>
-        </div>
-      </section>
-      <hr>
-      <section>
         <p>
           Contests Entered: {{model.includedContestantsCount}}
         </p>
@@ -96,7 +61,7 @@
               </tr>
             </thead>
             <tbody>
-              {{#each model.contestants as |contestant|}}
+              {{#each sortedContestants as |contestant|}}
                   <tr>
                     {{#if contestant.isLoading}}
                       <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -126,14 +91,16 @@
       <hr>
       <section>
         <p>
-          Active Members
+          Group Members
         </p>
         <div class='table-responsive'>
           <table class='table'>
             <thead>
               <tr>
-                <th class='col-md-3'>Name</th>
+                <th class='col-md-4'>Name</th>
                 <th class='col-md-1'>Part</th>
+                <th class='col-md-2'>Email</th>
+                <th class='col-md-2'>Phone</th>
                 <th class='col-md-1'>DOB</th>
                 <th class='col-md-2'>Expires</th>
               </tr>
@@ -142,14 +109,16 @@
               {{#each sortedMembers as |member|}}
                   <tr>
                     {{#if member.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                      <td colspan=10>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                     {{else}}
                       {{#if member.person.isLoading}}
-                        <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                        <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                       {{else}}
                         <td>{{member.person.fullName}}</td>
                       {{/if}}
                       <td>{{member.part}}</td>
+                      <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
+                      <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
                       <td>{{moment-format member.person.birthDate 'L'}}</td>
                       <td>{{moment-format member.person.currentThrough 'L'}}</td>
                     {{/if}}

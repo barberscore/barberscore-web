@@ -31,7 +31,12 @@ export default Model.extend({
   isIncluded: equal(
     'status',
     'Included',
-  )
+  ),
 
+  contestOrganizationKindSort: alias('contest.award.organization.kindSort'),
+  contestAwardQualifier: alias('contest.award.isQualifier'),
+  contestAwardPrimary: alias('contest.award.isPrimary'),
+  contestAwardAgeSort: alias('contest.award.ageSort'),
+  contestAwardName: alias('contest.award.name'),
 
 });

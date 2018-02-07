@@ -29,6 +29,11 @@ export default Controller.extend({
     'sortedMembersProperties'
   ),
   contestantSortProperties: [
+    'contestOrganizationKindSort',
+    'contestAwardQualifier',
+    'contestAwardPrimary',
+    'contestAwardAgeSort',
+    'contestAwardName',
   ],
   sortedContestants: sort(
     'model.contestants',
