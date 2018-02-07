@@ -5,7 +5,9 @@
         <thead>
           <tr>
             <th class='col-md-6'>Person</th>
-            <th class='col-md-2'>Part</th>
+            {{#if (eq model.group.kind 'Quartet')}}
+              <th class='col-md-2'>Part</th>
+            {{/if}}
             {{!-- <th class='col-md-1'>Action</th> --}}
             {{!-- <th>Start</th> --}}
             {{!-- <th>End</th> --}}
@@ -25,8 +27,10 @@
                     {{member.person.nomen}}
                   {{/if}}
                 </td>
+                  {{#if (eq model.group.kind 'Quartet')}}
+                    {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
+                  {{/if}}
                 <td>
-                  {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
                 </td>
                 {{!-- <td>
                   {{toggle-admin model=member}}
