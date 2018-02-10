@@ -122,9 +122,7 @@ Router.map(function() {
             path: 'new'
           });
         });
-        this.route('members', {
-          path: 'members'
-        }, function () {
+        this.route('members', {path: 'members'}, function () {
           this.route('member', {
             path: ':member_id'
           });
@@ -132,16 +130,7 @@ Router.map(function() {
             path: 'new'
           });
         });
-        this.route('repertories', {
-          path: 'repertories'
-        }, function () {
-          this.route('repertory', {
-            path: ':repertory_id'
-          });
-          this.route('new', {
-            path: 'new'
-          });
-        });
+        this.route('repertories', {path: 'repertories'}, function () {});
       });
     });
   });
