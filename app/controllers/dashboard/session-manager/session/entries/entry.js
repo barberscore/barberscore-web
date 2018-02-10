@@ -1,77 +1,27 @@
-import { sort, filterBy, alias } from '@ember/object/computed';
-import { computed } from '@ember/object';
 import Controller, { inject as controller } from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  membersCollapsed:true,
-  repertoriesCollapsed: true,
-  isCollapsedDescription: true,
-  isDisabled: computed(
-    'model.status',
-    function(){
-      let disabled = [
-        'Withdrawn',
-        'Scratched',
-      ]
-      return disabled.includes(this.get('model.status'));
-  }),
-  sortedRepertoriesProperties: [
-    'nomen',
-  ],
-  sortedRepertories: sort(
-    'model.group.repertories',
-    'sortedRepertoriesProperties'
-  ),
-  sortedMembersProperties: [
-    'partSort',
-    'personLast',
-    'personFull',
-  ],
-  filteredMembers: filterBy(
-    'model.group.members',
-    'status',
-    'Active',
-  ),
-  sortedMembers: sort(
-    'filteredMembers',
-    'sortedMembersProperties'
-  ),
-  contestantSortProperties: [
-    'contestOrganizationKindSort',
-    'contestAwardQualifier',
-    'contestAwardPrimary',
-    'contestAwardAgeSort',
-    'contestAwardName',
-  ],
-  sortedContestants: sort(
-    'model.contestants',
-    'contestantSortProperties'
-  ),
-  sortedContactsProperties: [
-    'nomen',
-  ],
-  filteredContacts: filterBy(
-    'model.group.members',
-    'isAdmin'
-  ),
-  sortedContacts: sort(
-    'filteredContacts',
-    'sortedContactsProperties'
-  ),
-  inviteEntryModal: false,
-  inviteEntryModalError: false,
-  inviteEntry: task(function *() {
+  flashMessages: service(),
+  evalCollapsed: true,
+  membersCollapsed: true,
+  repertoryCollapsed: true,
+  submitEntryModal: false,
+  submitEntryModalError: false,
+  submitEntry: task(function *() {
     try {
-      let entry = yield this.model.invite({
+      let entry = yield this.model.submit({
         'by': this.get('currentUser.user.id'),
       });
       this.store.pushPayload('entry', entry);
-      this.set('inviteEntryModal', false);
-      this.set('inviteEntryModalError', false);
-      this.get('flashMessages').success("Invited!");
+      this.set('submitEntryModal', false);
+      this.set('submitEntryModalError', false);
+      this.get('flashMessages').success("Submitted!");
     } catch(e) {
-      this.set('inviteEntryModalError', true);
+      this.set('submitEntryModalError', true);
     }
   }).drop(),
   deleteEntryModal: false,
@@ -84,7 +34,7 @@ export default Controller.extend({
       this.set('deleteEntryModal', false);
       this.set('deleteEntryModalError', false);
       this.get('flashMessages').success("Deleted!");
-      this.transitionToRoute('dashboard.session-manager.session.entries.index');
+      this.transitionToRoute('dashboard.group-manager.group.entries.index');
     } catch(e) {
       this.set('deleteEntryModalError', true);
     }
@@ -102,36 +52,6 @@ export default Controller.extend({
       this.get('flashMessages').success("Withdrawn!");
     } catch(e) {
       this.set('withdrawEntryModalError', true);
-    }
-  }).drop(),
-  submitEntryModal: false,
-  submitEntryModalError: false,
-  submitEntry: task(function *() {
-    try {
-      let entry = yield this.model.submit({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.store.pushPayload('entry', entry);
-      this.set('submitEntryModal', false);
-      this.set('submitEntryModalError', false);
-      this.get('flashMessages').success("Submitted!");
-    } catch(e) {
-      this.set('submitEntryModalError', true);
-    }
-  }).drop(),
-  approveEntryModal: false,
-  approveEntryModalError: false,
-  approveEntry: task(function *() {
-    try {
-      let entry = yield this.model.approve({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.store.pushPayload('entry', entry);
-      this.set('approveEntryModal', false);
-      this.set('approveEntryModalError', false);
-      this.get('flashMessages').success("Approved!");
-    } catch(e) {
-      this.set('approveEntryModalError', true);
     }
   }).drop(),
   scratchEntryModal: false,
