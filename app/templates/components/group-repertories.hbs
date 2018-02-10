@@ -3,7 +3,8 @@
     <thead>
       <tr>
         <th class='col-md-6'>Title</th>
-        <th class='col-md-6'>Arranger(s)</th>
+        <th class='col-md-5'>Arranger(s)</th>
+        <th class='col-md-1'>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,9 @@
           {{else}}
             <td>{{repertory.chart.title}}</td>
             <td>{{repertory.chart.arrangers}}</td>
+            <td>
+              {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=isDisabled}}Delete{{/bs-button}}
+            </td>
           {{/if}}
         </tr>
       {{else}}
