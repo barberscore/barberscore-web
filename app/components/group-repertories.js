@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { not, sort } from '@ember/object/computed';
-import { task } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
@@ -16,6 +16,15 @@ export default Component.extend({
     'sortedRepertoriesProperties'
   ),
   flashMessages: service(),
+  searchChart: task(function* (term){
+    yield timeout(600);
+    let charts = yield this.get('store').query('chart', {
+      'nomen__icontains': term,
+      'status': 10,
+      'page_size': 1000
+      });
+    return charts;
+  }),
   deleteRepertory: task(function *(repertory) {
     try {
       yield repertory.destroyRecord();
@@ -24,4 +33,20 @@ export default Component.extend({
       this.get('flashMessages').danger("Problem!");
     }
   }).drop(),
+  createRepertory: task(function *() {
+    yield this.get('store').createRecord('repertory', {
+      group: this.get('model'),
+      status: 10,
+    });
+  }).drop(),
+  saveRepertory: task(function* (repertory){
+    try {
+      yield repertory.save();
+      this.get('flashMessages').success('Saved');
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
+  }),
 });

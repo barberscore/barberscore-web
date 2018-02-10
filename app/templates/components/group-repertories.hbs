@@ -10,14 +10,33 @@
     <tbody>
       {{#each sortedRepertories as |repertory|}}
         <tr>
-          {{#if repertory.chart.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-          {{else}}
-            <td>{{repertory.chart.title}}</td>
-            <td>{{repertory.chart.arrangers}}</td>
-            <td>
-              {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=isDisabled}}Delete{{/bs-button}}
+          {{#if repertory.isNew}}
+            <td colspan=2>
+              {{#power-select
+                search=(perform searchChart)
+                selected=repertory.chart
+                onchange=(action (mut repertory.chart))
+                placeholder="Type in Title or Arranger"
+                allowClear=true
+                renderInPlace=true
+                as |chart|
+              }}
+                Song: {{chart.nomen}}
+              {{/power-select}}
             </td>
+            <td>
+                {{#bs-button type='success'  onClick=(perform saveRepertory repertory) disabled=isDisabled}}Save{{/bs-button}}
+            </td>
+          {{else}}
+            {{#if repertory.chart.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{repertory.chart.title}}</td>
+              <td>{{repertory.chart.arrangers}}</td>
+              <td>
+                {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=isDisabled}}Delete{{/bs-button}}
+              </td>
+            {{/if}}
           {{/if}}
         </tr>
       {{else}}
@@ -29,4 +48,8 @@
       {{/each}}
     </tbody>
   </table>
+  <p>
+    {{#bs-button disabled=isDisabled onClick=(perform createRepertory) type='success'}}Add Chart to Repertory{{/bs-button}}
+  </p>
 </div>
+
