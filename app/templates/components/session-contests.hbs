@@ -1,0 +1,64 @@
+{{#if (eq model.status 'New')}}
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Available Awards</caption>
+      <thead>
+        <tr>
+          <th class='col-md-1'>Status</th>
+          <th class='col-md-4'>Name</th>
+          <th class='col-md-6'>Description</th>
+          <th class='col-md-1'>Rounds</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedContests as |contest|}}
+            <tr>
+              {{#if contest.award.isLoading}}
+                <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={{contest.isIncluded}}
+                    onclick={{perform toggleContest contest value='target.checked'}}
+                  >
+                </td>
+                <td>{{contest.award.nomen}}</td>
+                <td>{{#if contest.award.description}}{{contest.award.nomen}}{{else}}(No description available.){{/if}}</td>
+                <td>{{contest.award.rounds}}</td>
+              {{/if}}
+            </tr>
+        {{else}}
+          <tr>
+            (No available awards.)
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class='col-md-4'>Name</th>
+          <th class='col-md-6'>Description</th>
+          <th>Count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each includedContests as |contest|}}
+          <tr>
+            <td>{{#link-to 'dashboard.session-manager.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+            <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
+            <td>{{contest.includedContestantsCount}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>No contests.</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{/if}}
