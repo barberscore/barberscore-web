@@ -1,6 +1,5 @@
-import { not, sort, filterBy } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
@@ -8,39 +7,6 @@ export default Controller.extend({
   evalCollapsed: true,
   membersCollapsed: true,
   repertoryCollapsed: true,
-  isDisabled: not(
-    'model.permissions.write',
-  ),
-  contestantSortProperties: [
-    'contestOrganizationKindSort',
-    'contestAwardQualifier',
-    'contestAwardPrimary',
-    'contestAwardAgeSort',
-    'contestAwardName',
-  ],
-  sortedContestants: sort(
-    'model.contestants',
-    'contestantSortProperties'
-  ),
-  sortedMembersProperties: [
-    'partSort',
-  ],
-  filteredMembers: filterBy(
-    'model.group.members',
-    'status',
-    'Active',
-  ),
-  sortedMembers: sort(
-    'filteredMembers',
-    'sortedMembersProperties'
-  ),
-  sortedRepertoriesProperties: [
-    'nomen',
-  ],
-  sortedRepertories: sort(
-    'model.group.repertories',
-    'sortedRepertoriesProperties'
-  ),
   submitEntryModal: false,
   submitEntryModalError: false,
   submitEntry: task(function *() {

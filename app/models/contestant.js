@@ -1,6 +1,6 @@
-import { alias, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { alias, equal } from '@ember/object/computed';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({

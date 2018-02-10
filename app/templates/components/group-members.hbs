@@ -1,51 +1,49 @@
-<section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-3'>Person</th>
+        {{#if (eq model.kind 'Quartet')}}
+          <th class='col-md-1'>Part</th>
+        {{/if}}
+        <th class='col-md-2'>Email</th>
+        <th class='col-md-2'>Phone</th>
+        <th class='col-md-1'>DOB</th>
+        <th class='col-md-1'>BHS ID</th>
+        <th class='col-md-1'>BHS Status</th>
+        <th class='col-md-1'>Current Through</th>
+        {{!-- <th class='col-md-1'>Action</th> --}}
+        {{!-- <th>Start</th> --}}
+        {{!-- <th>End</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedMembers as |member|}}
         <tr>
-          <th class='col-md-3'>Person</th>
-          {{#if (eq model.kind 'Quartet')}}
-            <th class='col-md-1'>Part</th>
-          {{/if}}
-          <th class='col-md-2'>Email</th>
-          <th class='col-md-2'>Phone</th>
-          <th class='col-md-1'>DOB</th>
-          <th class='col-md-1'>BHS ID</th>
-          <th class='col-md-1'>BHS Status</th>
-          <th class='col-md-1'>Current Through</th>
-          {{!-- <th class='col-md-1'>Action</th> --}}
-          {{!-- <th>Start</th> --}}
-          {{!-- <th>End</th> --}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedMembers as |member|}}
-          <tr>
-            {{#if member.isLoading}}
-              <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{#if member.isLoading}}
+            <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            {{#if member.person.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              {{#if member.person.isLoading}}
-                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                <td>{{member.person.fullName}}</td>
-              {{/if}}
-              {{#if (eq model.kind 'Quartet')}}
-                <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
-              {{/if}}
-              <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
-              <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
-              <td>{{moment-format member.person.birthDate 'L'}}</td>
-              <td>{{member.person.bhsId}}</td>
-              <td>{{member.person.status}}</td>
-              <td>{{moment-format member.person.currentThrough 'L'}}</td>
+              <td>{{member.person.fullName}}</td>
             {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td colspan=3>(No active members)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-</section>
+            {{#if (eq model.kind 'Quartet')}}
+              <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
+            {{/if}}
+            <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
+            <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
+            <td>{{moment-format member.person.birthDate 'L'}}</td>
+            <td>{{member.person.bhsId}}</td>
+            <td>{{member.person.status}}</td>
+            <td>{{moment-format member.person.currentThrough 'L'}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan=3>(No active members)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
