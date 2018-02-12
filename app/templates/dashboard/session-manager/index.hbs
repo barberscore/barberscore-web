@@ -8,7 +8,7 @@
       <thead>
         <tr>
           <th {{action 'sortBy' 'nomen'}}>Name</th>
-          <th {{action 'sortBy' 'organization'}}>Organization</th>
+          <th {{action 'sortBy' 'group'}}>Organization</th>
           <th {{action 'sortBy' 'statusSort'}}>Status</th>
         </tr>
       </thead>
@@ -16,10 +16,10 @@
         {{#each sortedSessions as |session|}}
           <tr>
             <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.nomen}}{{/link-to}}</td>
-            {{#if session.organizationNomen.isLoading}}
+            {{#if session.groupNomen.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{session.organizationNomen}}</td>
+              <td>{{session.groupNomen}}</td>
             {{/if}}
             <td>{{session.status}}</td>
           </tr>

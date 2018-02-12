@@ -4,7 +4,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   sortProperties: [
     'statusSort:asc',
-    'organizationKindSort:asc',
+    'groupKindSort:asc',
     'nomen:asc',
   ],
   sortedSessions: sort(

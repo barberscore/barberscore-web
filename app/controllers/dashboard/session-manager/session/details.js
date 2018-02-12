@@ -9,7 +9,7 @@ export default Controller.extend({
   isEditing: false,
   isDisabled: not('isEditing'),
   sortedContestsProperties: [
-    'organizationKindSort',
+    'groupKindSort',
     'awardQualifier',
     'awardPrimary:desc',
     'awardAgeSort',

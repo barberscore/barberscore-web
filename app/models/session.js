@@ -47,8 +47,8 @@ export default Model.extend({
 
   notArchived: not('isArchived'),
 
-  organizationKindSort: alias('convention.organizationKindSort'),
-  organizationNomen: alias('convention.organizationNomen'),
+  groupKindSort: alias('convention.groupKindSort'),
+  groupNomen: alias('convention.groupNomen'),
 
   statusOptions: [
     'New',

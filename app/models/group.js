@@ -41,7 +41,8 @@ export default Model.extend({
   district: DS.attr('string'),
   division: DS.attr('string'),
   chapter: DS.attr('string'),
-  organization: DS.belongsTo('organization', {async: true}),
+  parent: DS.belongsTo('group', {inverse:'children', async: true}),
+  children: DS.hasMany('group', {inverse:'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
@@ -69,18 +70,6 @@ export default Model.extend({
     'Active',
   ),
 
-  kindOptions: [
-    'Quartet',
-    'Chorus',
-  ],
-
-  kindSort: computed(
-    'kind',
-    'kindOptions',
-    function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
-    }
-  ),
   genderOptions: [
     'Male',
     'Female',
@@ -109,6 +98,24 @@ export default Model.extend({
     'statusOptions',
     function() {
       return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
+
+  kindOptions: [
+    'International',
+    'District',
+    'Noncompetitive',
+    'Affiliate',
+    'Division',
+    'Chapter',
+    'Chorus',
+    'Quartet',
+  ],
+  kindSort: computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
 });

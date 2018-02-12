@@ -26,7 +26,7 @@ export default Model.extend({
   threshold: DS.attr('number'),
   minimum: DS.attr('number'),
   advance: DS.attr('number'),
-  organization: DS.belongsTo('organization', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   parent: DS.belongsTo('award', {inverse:'children', async: true}),
   children: DS.hasMany('award', {inverse:'parent', async: true}),
@@ -84,9 +84,9 @@ export default Model.extend({
     'Championship',
   ),
 
-  organizationParent: alias('organization.parent'),
-  organizationKindSort: alias('organization.kindSort'),
-  organizationNameSort: alias('organization.shortName'),
+  groupParent: alias('group.parent'),
+  groupKindSort: alias('group.kindSort'),
+  groupNameSort: alias('group.name'),
   statusSort: computed(
     'status',
     'statusOptions',
