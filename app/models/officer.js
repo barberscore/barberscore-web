@@ -11,7 +11,7 @@ export default Model.extend({
   endDate: DS.attr('isodate'),
   office: DS.belongsTo('office', {async: true}),
   person: DS.belongsTo('person', {async: true}),
-  organization: DS.belongsTo('organization', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   permissions: DS.attr(),
 
   // Transitions
@@ -31,50 +31,6 @@ export default Model.extend({
     'Active',
   ),
 
-  // isConventionManager: Ember.computed.and(
-  //   'office.isConventionManager',
-  //   'isActive'
-  // ),
-  //
-  // isSessionManager: Ember.computed.and(
-  //   'office.isSessionManager',
-  //   'isActive'
-  // ),
-  //
-  // isScoringManager: Ember.computed.and(
-  //   'office.isScoringManager',
-  //   'isActive'
-  // ),
-  //
-  // isOrganizationManager: Ember.computed.and(
-  //   'office.isOrganizationManager',
-  //   'isActive'
-  // ),
-  //
-  // isGroupManager: Ember.computed.and(
-  //   'office.isGroupManager',
-  //   'isActive'
-  // ),
-  //
-  // isPersonManager: Ember.computed.and(
-  //   'office.isPersonManager',
-  //   'isActive'
-  // ),
-  //
-  // isAwardManager: Ember.computed.and(
-  //   'office.isAwardManager',
-  //   'isActive'
-  // ),
-  //
-  // isJudgeManager: Ember.computed.and(
-  //   'office.isJudgeManager',
-  //   'isActive'
-  // ),
-  //
-  // isChartManager: Ember.computed.and(
-  //   'office.isChartManager',
-  //   'isActive'
-  // ),
 
   // Sorts
   statusSort: computed(
@@ -92,7 +48,7 @@ export default Model.extend({
   officeSCJCSort: alias('office.scjcSort'),
   officeKind: alias('office.kind'),
   officeName: alias('office.name'),
-  organizationName: alias('organization.name'),
+  groupName: alias('group.name'),
   isOld: not('isNew'),
 
 });

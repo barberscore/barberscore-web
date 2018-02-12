@@ -14,9 +14,6 @@ export default Controller.extend({
   isScoringManagerDisabled: not(
     'currentUser.user.isScoringManager'
   ),
-  isOrganizationManagerDisabled: not(
-    'currentUser.user.isOrganizationManager'
-  ),
   isGroupManagerDisabled: not(
     'currentUser.user.isGroupManager'
   ),

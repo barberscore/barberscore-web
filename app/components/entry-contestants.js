@@ -10,7 +10,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   contestantSortProperties: [
-    'contestOrganizationKindSort',
+    'contestGroupKindSort',
     'contestAwardQualifier',
     'contestAwardPrimary',
     'contestAwardAgeSort',

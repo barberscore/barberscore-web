@@ -38,63 +38,6 @@ export default Model.extend({
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
-
-  // Module Permissions CPs
-  // isConventionManager: Ember.computed(
-  //   'officers.@each.isConventionManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isConventionManager', true).length);
-  // }),
-
-  // isSessionManager: Ember.computed(
-  // 'officers.@each.isSessionManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isSessionManager', true).length);
-  // }),
-  //
-  // isScoringManager: Ember.computed(
-  //   'officers.@each.isScoringManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isScoringManager', true).length);
-  // }),
-  //
-  // isOrganizationManager: Ember.computed(
-  //   'officers.@each.isOrganizationManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isOrganizationManager', true).length);
-  // }),
-  //
-  // isGroupManager: Ember.computed(
-  //   'officers.@each.isGroupManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isGroupManager', true).length);
-  // }),
-  //
-  // isPersonManager: Ember.computed(
-  //   'officers.@each.isPersonManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isPersonManager', true).length);
-  // }),
-  //
-  // isAwardManager: Ember.computed(
-  //   'officers.@each.isAwardManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isAwardManager', true).length);
-  // }),
-  //
-  // isJudgeManager: Ember.computed(
-  //   'officers.@each.isJudgeManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isJudgeManager', true).length);
-  // }),
-  //
-  // isChartManager: Ember.computed(
-  //   'officers.@each.isChartManager', function(){
-  //   let officers = this.get('officers');
-  //   return Boolean(officers.filterBy('isChartManager', true).length);
-  // }),
-
-
   statusOptions: [
     'New',
     'Active',
@@ -111,9 +54,4 @@ export default Model.extend({
     'Non-Member',
     'Associate',
   ],
-  filteredMembers: filterBy(
-    'members',
-    'organizationKind',
-    'Organization'
-  ),
 });

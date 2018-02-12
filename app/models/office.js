@@ -12,7 +12,6 @@ export default Model.extend({
   isConventionManager: DS.attr('boolean'),
   isSessionManager: DS.attr('boolean'),
   isScoringManager: DS.attr('boolean'),
-  isOrganizationManager: DS.attr('boolean'),
   isGroupManager: DS.attr('boolean'),
   isPersonManager: DS.attr('boolean'),
   isAwardManager: DS.attr('boolean'),

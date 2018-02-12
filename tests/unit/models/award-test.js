@@ -3,7 +3,7 @@ import { moduleForModel, test } from 'ember-qunit';
 moduleForModel('award', 'Unit | Model | award', {
   // Specify the other units that are required for this test.
   needs: [
-    'model:organization',
+    'model:group',
     'model:contest',
   ]
 });

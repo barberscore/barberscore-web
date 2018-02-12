@@ -42,7 +42,7 @@ export default Model.extend({
     'Included',
   ),
 
-  organizationKindSort: alias('award.organization.kindSort'),
+  groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
   awardPrimary: alias('award.isPrimary'),
   awardAgeSort: alias('award.ageSort'),
