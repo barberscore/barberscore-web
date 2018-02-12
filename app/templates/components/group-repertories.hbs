@@ -19,6 +19,7 @@
                 placeholder="Type in Title or Arranger"
                 allowClear=true
                 renderInPlace=true
+                noMatchesMessage="No Matches Found.  Please send an email with the first page of the chart to charts@barberscore.com.  It can be a PDF if you have it, or just a picture from your camera phone.  We'll add it to your repertory generally within 24 hours."
                 as |chart|
               }}
                 Song: {{chart.nomen}}
@@ -49,7 +50,13 @@
     </tbody>
   </table>
   <p>
-    {{#bs-button disabled=isDisabled onClick=(perform createRepertory) type='success'}}Add Chart to Repertory{{/bs-button}}
+    {{#bs-button
+      disabled=isDisabled
+      onClick=(perform createRepertory)
+      type='success'
+    }}
+      Add Chart to Repertory
+    {{/bs-button}}
   </p>
 </div>
 
