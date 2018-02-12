@@ -1,4 +1,3 @@
-import { filterBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
