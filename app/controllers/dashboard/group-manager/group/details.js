@@ -1,7 +1,7 @@
 import { not } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
-import config from '../../../../config/environment';
+// import config from '../../../../config/environment';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
