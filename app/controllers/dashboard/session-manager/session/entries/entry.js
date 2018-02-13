@@ -24,6 +24,21 @@ export default Controller.extend({
       this.set('submitEntryModalError', true);
     }
   }).drop(),
+  approveEntryModal: false,
+  approveEntryModalError: false,
+  approveEntry: task(function *() {
+    try {
+      let entry = yield this.model.approve({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('approveEntryModal', false);
+      this.set('approveEntryModalError', false);
+      this.get('flashMessages').success("Approved!");
+    } catch(e) {
+      this.set('approveEntryModalError', true);
+    }
+  }).drop(),
   deleteEntryModal: false,
   deleteEntryModalError: false,
   deleteEntry: task(function *() {
