@@ -9,18 +9,18 @@ export default Controller.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  uploadPhoto: task(function * (file) {
-    try {
-      const host = config.APP.API_HOST;
-      const namespace = config.APP.API_NAMESPACE;
-      const target = this.get('model.id');
-      let response = yield file.upload(`${host}/${namespace}/group/${target}/img`);
-      this.set('model.img', response.body.image);
-      this.get('flashMessages').success("Saved!");
-    } catch (e) {
-      this.get('flashMessages').danger("Upload Failed!");
-    }
-  }).drop(),
+  // uploadPhoto: task(function * (file) {
+  //   try {
+  //     const host = config.APP.API_HOST;
+  //     const namespace = config.APP.API_NAMESPACE;
+  //     const target = this.get('model.id');
+  //     let response = yield file.upload(`${host}/${namespace}/group/${target}/img`);
+  //     this.set('model.img', response.body.image);
+  //     this.get('flashMessages').success("Saved!");
+  //   } catch (e) {
+  //     this.get('flashMessages').danger("Upload Failed!");
+  //   }
+  // }).drop(),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);

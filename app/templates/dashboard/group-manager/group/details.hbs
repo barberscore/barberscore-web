@@ -1,10 +1,10 @@
 <div class='col-md-6'>
   <section>
-    {{#if uploadPhoto.isRunning}}
+    {{!-- {{#if uploadPhoto.isRunning}}
       Uploading {{fa-icon "spinner" size='5' spin=true}}
     {{else}}
-      {{#if model.img}}
-        <img src="{{model.img}}" class='img-responsive'>
+      {{#if model.image}}
+        <img src="{{model.image}}" class='img-responsive'>
       {{else}}
         <img src='/assets/no_image_available.jpg' class='img-responsive'>
       {{/if}}
@@ -17,9 +17,17 @@
         disabled=isDisabled
         onfileadd=(perform uploadPhoto)
       }}
-        <a id="upload-image" tabindex=0><small>Add/Replace Image (Max Size 20MB)</small></a>
+        <a id="upload-image" tabindex=0><small>Add/Replace Image (Max Size 10MB)</small></a>
       {{/file-upload}}
-    {{/unless}}
+    {{/unless}} --}}
+    {{#if model.image}}
+      <img src="{{model.image}}" class='img-responsive'>
+    {{else}}
+      <img src='/assets/no_image_available.jpg' class='img-responsive'>
+      <p>
+        <strong>Note:</strong>&nbsp;To Add/Replace Your Image, send the image to <a href='mailto:photos@barberscore.com'>images@barberscore.com</a>.  Please be sure to include your group name/BHS ID number in the email.
+      </p>
+    {{/if}}
     {{#bs-form
       model=model
       formLayout='vertical'
