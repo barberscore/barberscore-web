@@ -14,7 +14,11 @@
               <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>
-                <input type="checkbox" checked={{contestant.isIncluded}} onclick={{perform toggleContestant contestant value='target.checked'}}>
+                {{input
+                  type="checkbox"
+                  checked=contestant.isIncluded
+                  change=(perform toggleContestant contestant value='target.checked')
+                }}
               </td>
               <td>
                 {{contestant.contest.award.nomen}}
