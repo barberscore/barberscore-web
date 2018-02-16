@@ -5,6 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
+  customCollapsed: true,
   isDisabled: not(
     'model.permissions.write',
   ),
@@ -50,4 +51,9 @@ export default Component.extend({
       })
     }
   }),
+  actions: {
+    cancelRepertory(repertory){
+      repertory.deleteRecord();
+    },
+  }
 });
