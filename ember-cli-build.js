@@ -9,7 +9,7 @@ module.exports = function(defaults) {
     },
 
     sourcemaps: {
-      enabled: true, // This allows sourcemaps to be generated in all environments
+      enabled: false, // This allows sourcemaps to be generated in all environments
       extensions: ['js']
     },
 
