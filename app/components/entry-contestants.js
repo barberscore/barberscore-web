@@ -1,33 +1,16 @@
 import { inject as service } from '@ember/service';
-import { and, sort, equal, or, not } from '@ember/object/computed';
+import { sort, not, alias } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import Component from '@ember/component';
 
 export default Component.extend({
   store: service(),
   flashMessages: service(),
-  isNew: equal(
-    'model.status',
-    'New',
-  ),
-  isInvited: equal(
-    'model.status',
-    'Invited',
-  ),
-  isFungible: or(
-    'isNew',
-    'isInvited',
-  ),
-  isLocked: not(
-    'isFungible',
-  ),
-  isBadEvalOnly: and(
-    'model.isPrivate',
+  notWritable: not(
     'model.permissions.write',
   ),
-  isDisabled: or(
-    'isBadEvalOnly',
-    'isLocked',
+  isDisabled: alias(
+    'notWritable',
   ),
   contestantSortProperties: [
     'contestGroupKindSort',
