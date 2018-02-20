@@ -13,11 +13,11 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedMembers as |member|}}
+        {{#each sortedGroups as |group|}}
           <tr>
-            <td>{{#link-to 'dashboard.group-manager.group.details' member.group}}{{member.group.name}}{{/link-to}}</td>
-            <td>{{member.group.kind}}</td>
-            <td>{{member.group.status}}</td>
+            <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{group.kind}}</td>
+            <td>{{group.status}}</td>
           </tr>
         {{else}}
           <tr>

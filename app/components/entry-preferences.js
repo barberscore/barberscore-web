@@ -2,23 +2,11 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 // import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
-import { not, or,  equal } from '@ember/object/computed';
+import { not } from '@ember/object/computed';
 
 export default Component.extend({
-  isNew: equal(
-    'model.status',
-    'New',
-  ),
-  isInvited: equal(
-    'model.status',
-    'Invited',
-  ),
-  isFungible: or(
-    'isNew',
-    'isInvited',
-  ),
   isDisabled: not(
-    'isFungible',
+    'model.permissions.write',
   ),
   flashMessages: service(),
   autosave: task(function* (property, value){
