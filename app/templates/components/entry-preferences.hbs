@@ -21,8 +21,8 @@
       onChange=(perform autosave 'isPrivate')
       as |bg|
     }}
-      {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-      {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
+      {{#bg.button type='default' value=false disabled=isDisabled}}Compete for Award(s){{/bg.button}}
+      {{#bg.button type='default' value=true disabled=isDisabled}}Score/Eval Only{{/bg.button}}
     {{/bs-button-group}}
   {{/form.element}}
   {{#if (eq model.group.kind 'Chorus')}}
