@@ -1,7 +1,11 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
+import { not } from '@ember/object/computed';
 
 export default Component.extend({
+  isDisabled: not(
+    'model.permissions.write',
+  ),
   autosave: task(function* (value){
     this.get('model').set('description', value);
     yield timeout(1000);
