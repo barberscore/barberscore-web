@@ -43,6 +43,9 @@ Router.map(function() {
           this.route('entry', {
             path: ':entry_id'
           });
+          this.route('new', {
+            path: 'new'
+          });
         });
         this.route('draw', {
           path: 'draw'
@@ -114,9 +117,6 @@ Router.map(function() {
         }, function () {
           this.route('entry', {
             path: ':entry_id'
-          });
-          this.route('new', {
-            path: 'new'
           });
         });
         this.route('members', {path: 'members'}, function () {});
