@@ -69,6 +69,13 @@ export default Model.extend({
     'Scratched',
     'Disqualified',
   ],
+  statusSort: computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
 
 
   allMembers: alias('group.members'),

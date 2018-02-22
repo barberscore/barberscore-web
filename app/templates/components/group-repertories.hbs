@@ -26,8 +26,8 @@
               {{/power-select}}
             </td>
             <td colspan=2>
-                {{#bs-button onClick=(action 'cancelRepertory' repertory) type="default"}}Cancel{{/bs-button}}
-                {{#bs-button type='success'  onClick=(perform saveRepertory repertory) disabled=isDisabled}}Save{{/bs-button}}
+              {{#bs-button onClick=(action 'cancelRepertory' repertory) type="default"}}Cancel{{/bs-button}}
+              {{#bs-button type='success'  onClick=(perform saveRepertory repertory) disabled=isDisabled}}Save{{/bs-button}}
             </td>
           {{else}}
             {{#if repertory.chart.isLoading}}

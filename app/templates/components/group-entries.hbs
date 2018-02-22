@@ -1,0 +1,72 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-4'>Convention</th>
+        <th class='col-md-4'>Venue</th>
+        <th class='col-md-2'>Dates</th>
+        <th class='col-md-2'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedEntries as |entry|}}
+        <tr>
+          {{#if entry.isNew}}
+            <td colspan=3>
+              {{#power-select
+                options=sessionOptions
+                selected=entry.session
+                onchange=(action (mut entry.session))
+                searchField='nomen'
+                placeholder="Choose Session"
+                allowClear=true
+                noMatchesMessage="We Could Not Find an Open Session with that Name"
+                as |session|
+              }}
+                {{session.convention.name}} {{session.convention.venue.nomen}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
+              {{/power-select}}
+            </td>
+            <td>
+              {{#bs-button type='default' onClick=(action "cancelEntry" entry)}}Cancel{{/bs-button}}
+              {{#bs-button type='success'  onClick=(perform saveEntry entry) disabled=isDisabled}}Save{{/bs-button}}
+            </td>
+        {{else}}
+            {{#if entry.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
+              </td>
+              <td>
+                {{entry.session.convention.venue.nomen}}
+              </td>
+              <td>
+                {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
+              </td>
+              <td>
+                {{entry.status}}
+              </td>
+            {{/if}}
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>
+            (No current entries.)
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div>
+  <p>
+    {{#bs-button
+      disabled=isDisabled
+      onClick=(perform createEntry)
+      type='success'
+    }}
+      Create New Entry
+    {{/bs-button}}
+  </p>
+</div>
