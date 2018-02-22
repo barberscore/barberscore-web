@@ -43,29 +43,29 @@ export default Component.extend({
     'sessionCall',
     'sessionSortProperties'
   ),
-  saveEntry: task(function* (entry){
+  createEntryModal: false,
+  createEntryModalError: false,
+  saveEntry: task(function* (session){
     try {
-      yield entry.save();
-      entry.get('contestants').then(function(contestants) {
-        return contestants.reload();
-      });
-      this.get('flashMessages').success('Saved');
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', entry);
+      let entry = yield this.get('store').createRecord('entry', {
+        group: this.get('model'),
+        session: session,
+        description: '',
+        contestants: [],
+        isEvaluation: true,
+        isPrivate: false,
+        competitor: null,
+      }).save();
+      this.set('createEntryModal', false);
+      this.set('createEntryModalError', false);
+      this.get('flashMessages').success("Created!");
+      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', this.get('model'), entry);
     } catch(e) {
       e.errors.forEach((e) => {
+        this.set('deleteEntryModalError', true);
         this.get('flashMessages').danger(e.detail);
       })
     }
-  }),
-  createEntry: task(function *() {
-    yield this.get('store').createRecord('entry', {
-      group: this.get('model'),
-      description: '',
-      contestants: [],
-      isEvaluation: true,
-      isPrivate: false,
-      competitor: null,
-    });
   }).drop(),
   actions: {
     cancelEntry(entry){

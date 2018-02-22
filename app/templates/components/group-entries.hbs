@@ -11,42 +11,21 @@
     <tbody>
       {{#each sortedEntries as |entry|}}
         <tr>
-          {{#if entry.isNew}}
-            <td colspan=3>
-              {{#power-select
-                options=sessionOptions
-                selected=entry.session
-                onchange=(action (mut entry.session))
-                searchField='nomen'
-                placeholder="Choose Session"
-                allowClear=true
-                noMatchesMessage="We Could Not Find an Open Session with that Name"
-                as |session|
-              }}
-                {{session.convention.name}} {{session.convention.venue.nomen}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
-              {{/power-select}}
+          {{#if entry.isLoading}}
+            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
             </td>
             <td>
-              {{#bs-button type='default' onClick=(action "cancelEntry" entry)}}Cancel{{/bs-button}}
-              {{#bs-button type='success'  onClick=(perform saveEntry entry) disabled=isDisabled}}Save{{/bs-button}}
+              {{entry.session.convention.venue.nomen}}
             </td>
-        {{else}}
-            {{#if entry.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>
-                {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
-              </td>
-              <td>
-                {{entry.session.convention.venue.nomen}}
-              </td>
-              <td>
-                {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
-              </td>
-              <td>
-                {{entry.status}}
-              </td>
-            {{/if}}
+            <td>
+              {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
+            </td>
+            <td>
+              {{entry.status}}
+            </td>
           {{/if}}
         </tr>
       {{else}}
@@ -61,12 +40,48 @@
 </div>
 <div>
   <p>
-    {{#bs-button
-      disabled=isDisabled
-      onClick=(perform createEntry)
-      type='success'
-    }}
-      Create New Entry
-    {{/bs-button}}
+  {{#bs-button type='success' disabled=model.isError onClick=(action (mut createEntryModal) true)}}Create New Entry{{/bs-button}}
   </p>
 </div>
+  {{#bs-modal
+    open=createEntryModal
+    onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>New Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Please pick a Session to enter.
+      </p>
+      {{#power-select
+        options=sessionOptions
+        selected=session
+        onchange=(action (mut session))
+        searchField='nomen'
+        placeholder="Choose Session"
+        allowClear=true
+        renderInPlace=true
+        noMatchesMessage="We Could Not Find an Open Session with that Name"
+        as |session|
+      }}
+        {{session.convention.name}} {{session.convention.venue.nomen}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
+      {{/power-select}}
+      {{#if createEntryModalError}}
+      <p class='text-danger'>
+        Could not delete entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform saveEntry session) disabled=isDisabled}}
+        {{#if saveEntry.isRunning}}
+          Creating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Create Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
