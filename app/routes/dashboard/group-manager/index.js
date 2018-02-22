@@ -7,7 +7,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model: function() {
     return this.get('store').query('group', {
       'officers__person__user': this.get('currentUser.user.id'),
-      'page_size': 100,
+      'kind__gt': 30,
+      'status': 10,
     });
   },
 });
