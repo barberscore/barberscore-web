@@ -43,6 +43,13 @@ export default Model.extend({
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
+  statusSort: computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
   sessionConventionStartDate: alias('session.convention.startDate'),
   sessionKindSort: alias('session.kindSort'),
 });
