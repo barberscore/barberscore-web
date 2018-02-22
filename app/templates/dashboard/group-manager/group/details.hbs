@@ -25,9 +25,16 @@
     {{else}}
       <img src='/assets/no_image_available.jpg' class='img-responsive'>
     {{/if}}
-      <p>
-        <strong>Note:</strong>&nbsp;To Add/Replace/Remove Your Image, send the image to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  Please be sure to include your group name/BHS ID number in the email.
-      </p>
+    <p>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
+        Want to Add/Replace/Remove your image?  Click here.
+      {{/bs-button}}
+    </p>
+      {{#bs-collapse collapsed=customCollapsed}}
+        <p>
+          To Add/Replace/Remove Your Image, send the image to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
+        </p>
+      {{/bs-collapse}}
     {{#bs-form
       model=model
       formLayout='vertical'
@@ -45,8 +52,8 @@
     {{/bs-form}}
   </section>
   <section>
-      <p>
-        <strong>Note:</strong>  You may only edit your picture and description.  To make changes to other fields please do so in the new <a href='https://members.barbershop.org'>Member Center</a>; they will be updated here generally within 24 hours.
-      </p>
+    <p>
+      <strong>Note:</strong>  You may only edit your picture and description.  To make changes to other fields please do so in the new <a href='https://members.barbershop.org'>Member Center</a>; they will be updated here generally within 24 hours.
+    </p>
   </section>
 </div>

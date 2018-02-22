@@ -9,6 +9,7 @@ export default Controller.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
+  customCollapsed: true,
   // uploadPhoto: task(function * (file) {
   //   try {
   //     const host = config.APP.API_HOST;
