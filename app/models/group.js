@@ -36,7 +36,7 @@ export default Model.extend({
   image: DS.attr('string'),
   description: DS.attr('string'),
   bhsId: DS.attr('number'),
-  orgSort: DS.attr('number'),
+  treeSort: DS.attr('number'),
   international: DS.attr('string'),
   district: DS.attr('string'),
   division: DS.attr('string'),
