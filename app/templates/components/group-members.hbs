@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-      {{!-- {{#each sortedMembers as |member|}}
+      {{#each sortedMembers as |member|}}
         <tr>
           {{#if member.isLoading}}
             <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -39,11 +39,11 @@
             <td>{{moment-format member.person.currentThrough 'L'}}</td>
           {{/if}}
         </tr>
-      {{else}} --}}
+      {{else}}
         <tr>
           <td colspan=3>Membership Lists Temporarily Unavailable!  Please check on the <a href='https://members.barbershop.org'>Member Center</a> for current membership.  (You may still enter the contest as normal.) </td>
         </tr>
-      {{!-- {{/each}} --}}
+      {{/each}}
     </tbody>
   </table>
 </div>
