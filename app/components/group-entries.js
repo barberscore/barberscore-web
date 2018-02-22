@@ -1,4 +1,4 @@
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
@@ -11,11 +11,15 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
+  filteredEntries: filterBy(
+    'model.entries',
+    'notArchived'
+  ),
   sortedEntriesProperties: [
     'statusSort:desc',
   ],
   sortedEntries: sort(
-    'model.entries',
+    'filteredEntries',
     'sortedEntriesProperties'
   ),
   sessionCall: computed(
