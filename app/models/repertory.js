@@ -2,13 +2,7 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
-import { validator, buildValidations } from 'ember-cp-validations';
-
-const Validations = buildValidations({
-  chart: validator('presence', true),
-  });
-
-export default Model.extend(Validations, {
+export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('repertory-status'),
   group: DS.belongsTo('group', {async: true}),

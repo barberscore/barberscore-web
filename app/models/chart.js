@@ -1,17 +1,9 @@
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-import { validator, buildValidations } from 'ember-cp-validations';
 import { memberAction } from 'ember-api-actions';
 
-const Validations = buildValidations({
-  title: validator('presence', true),
-  composers: validator('presence', true),
-  lyricists: validator('presence', true),
-  arrangers: validator('presence', true),
-  });
-
-export default Model.extend(Validations, {
+export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('chart-status'),
   title: DS.attr('string'),

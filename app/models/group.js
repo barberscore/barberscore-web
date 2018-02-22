@@ -2,19 +2,7 @@ import { computed } from '@ember/object';
 import { equal, notEmpty, filterBy, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-// import { validator, buildValidations } from 'ember-cp-validations';
 import { memberAction } from 'ember-api-actions';
-
-// const Validations = buildValidations({
-//   email: validator('format', {
-//     type: 'email',
-//     allowBlank: true
-//   }),
-//   website: validator('format', {
-//     type: 'url',
-//     allowBlank: true
-//   }),
-// });
 
 export default Model.extend({
   nomen: DS.attr('string'),
