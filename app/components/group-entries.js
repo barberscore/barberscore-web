@@ -62,6 +62,9 @@ export default Component.extend({
       group: this.get('model'),
       description: '',
       contestants: [],
+      isEvaluation: true,
+      isPrivate: false,
+      competitor: null,
     });
   }).drop(),
   actions: {
