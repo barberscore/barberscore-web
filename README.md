@@ -1,57 +1,52 @@
-# barberscore-web
+# Barberscore Web
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is the front-end web application that powers the new contest entry and scoring system for the [Barbershop Harmony Society](http://www.barbershop.org).  The application can be found at [https://www.barberscore.com].
 
-## Prerequisites
+## Getting Started
 
-You will need the following things properly installed on your computer.
+This web application is based on [Ember.js](http://www.emberjs.com).  Here are the steps to set up your local environment.
+
+### Prerequisites
+
+You will need the latest versions of the following core dependencies properly installed on your computer.
 
 * [Git](https://git-scm.com/)
 * [Node.js](https://nodejs.org/)
 * [Yarn](https://yarnpkg.com/)
 * [Ember CLI](https://ember-cli.com/)
 * [Google Chrome](https://google.com/chrome/)
+* [Barberscore API](https://github.com/barberscore/barberscore-api)
 
-## Installation
+### Installation
 
-* `git clone <repository-url>` this repository
+* `git clone https://github.com/barberscore/barberscore-web.git` (this repo)
 * `cd barberscore-web`
 * `yarn install`
 
-## Running / Development
+
+### Configuration
+
+Set the following Environment Variables:
+
+```
+API_HOST=http://localhost:8000
+API_NAMESPACE=api
+
+AUTH0_DOMAIN=barberscore-dev.auth0.com
+AUTH0_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
+```
+
+### Running
 
 * `ember serve`
 * Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
 
-### Code Generators
 
-Make use of the many generators for code, try `ember help generate` for more details
+### Support
+Get useful information about Ember here:
 
-### Running Tests
+* [Ember.js](https://emberjs.com/)
+* [Ember CLI](https://ember-cli.com/)
 
-* `ember test`
-* `ember test --server`
+If you have any questions let us know at admin@barberscore.com!
 
-### Linting
-
-* `npm run lint:js`
-* `npm run lint:js -- --fix`
-
-### Building
-
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
