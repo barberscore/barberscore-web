@@ -7,12 +7,6 @@ module.exports = function(defaults) {
     fingerprint: {
       enabled: false
     },
-
-    sourcemaps: {
-      enabled: false, // This allows sourcemaps to be generated in all environments
-      extensions: ['js']
-    },
-
     'ember-bootstrap': {
       'bootstrapVersion': 3,
       'importBootstrapFont': true,

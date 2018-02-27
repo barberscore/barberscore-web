@@ -10,12 +10,6 @@ module.exports = function(environment) {
       outputFormat: 'LL',
       allowEmpty: true // default: false
     },
-    bugsnag: {
-      apiKey: process.env.BUGSNAG_API_KEY,
-      publicUrl: process.env.BUGSNAG_PUBLIC_URL,
-      releaseStage: process.env.BUGSNAG_RELEASE_STAGE,
-      notifyReleaseStages: ['production']
-    },
     contentSecurityPolicy: {
       'font-src': [
         'data:',
