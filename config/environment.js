@@ -10,28 +10,39 @@ module.exports = function(environment) {
       outputFormat: 'LL',
       allowEmpty: true // default: false
     },
+    sentry: {
+      dsn: process.env.SENTRY_DSN,
+      development: environment === 'development',
+    },
     contentSecurityPolicy: {
       'font-src': [
         'data:',
-        'https://*.auth0.com',
+        '*.auth0.com',
       ].join(' '),
       'style-src': [
-        '\'unsafe-inline\'',
+        "'unsafe-inline'",
       ].join(' '),
       'script-src': [
-        '\'unsafe-eval\'',
-        'http://localhost:4200',
-        'https://*.auth0.com',
+        "'self'",
+        "'unsafe-inline'",
+        "'unsafe-eval'",
+        'cdn.ravenjs.com',
+        'localhost:4200',
+        '*.auth0.com',
+
       ].join(' '),
       'img-src': [
         'data:',
+        '*.getsentry.com',
         '*.gravatar.com',
         '*.wp.com',
-        'https://*.auth0.com',
+        '*.auth0.com',
       ].join(' '),
       'connect-src': [
-        'http://localhost:4200',
-        'https://*.auth0.com',
+        "'self'",
+        'localhost:4200',
+        '*.auth0.com',
+        '*.getsentry.com',
       ].join(' ')
     },
     EmberENV: {
