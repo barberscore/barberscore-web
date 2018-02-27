@@ -11,7 +11,7 @@ module.exports = function(environment) {
       allowEmpty: true // default: false
     },
     sentry: {
-      dsn: process.env.SENTRY_DSN,
+      dsn: 'https://e221a00f63e5411680e1a91ddd38c6b2@sentry.io/294985',
       development: environment === 'development',
     },
     contentSecurityPolicy: {
