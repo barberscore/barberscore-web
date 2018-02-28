@@ -88,6 +88,7 @@
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Submitted')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Re-Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Approved')}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
