@@ -1,6 +1,7 @@
 'use strict';
 
 module.exports = function(environment) {
+  let deployTarget = process.env.DEPLOY_TARGET;
   let ENV = {
     modulePrefix: 'barberscore-web',
     environment,
@@ -64,12 +65,12 @@ module.exports = function(environment) {
     },
   };
 
-  if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
-    // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
-    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+  if (deployTarget === 'development') {
+    ENV.APP.LOG_RESOLVER = false;
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_TRANSITIONS = false;
+    ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.APP.API_HOST = 'http://localhost:8000';
     ENV.APP.API_NAMESPACE = 'api';
     ENV['ember-simple-auth'] = {
@@ -83,22 +84,32 @@ module.exports = function(environment) {
     };
   }
 
-  if (environment === 'test') {
-    // Testem prefers this...
+  if (deployTarget === 'test') {
     ENV.locationType = 'none';
-
-    // keep test console output quieter
-    ENV.APP.LOG_ACTIVE_GENERATION = false;
-    ENV.APP.LOG_VIEW_LOOKUPS = false;
-
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
-    ENV.APP.API_HOST = null;
-    ENV.APP.API_NAMESPACE = null;
-    ENV['ember-simple-auth'] = null;
+    ENV.APP.LOG_ACTIVE_GENERATION = false;
+    ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV.APP.API_HOST = '';
+    ENV.APP.API_NAMESPACE = '';
+    ENV['ember-simple-auth'] = {};
   }
 
-  if (environment === 'production') {
+  if (deployTarget === 'staging') {
+    ENV.APP.API_HOST = 'https://api.staging.barberscore.com';
+    ENV.APP.API_NAMESPACE = 'api';
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'login',
+      routeAfterAuthentication: 'dashboard',
+      routeIfAlreadyAuthenticated: 'dashboard',
+      auth0: {
+        clientID: 'Xn5FtWgltna8tvrMdIPwMYS1Vp5HQvcq',
+        domain: 'barberscore-staging.auth0.com',
+      }
+    };
+  }
+
+  if (deployTarget === 'production') {
     ENV.APP.API_HOST = 'https://api.barberscore.com';
     ENV.APP.API_NAMESPACE = 'api';
     ENV['ember-simple-auth'] = {
