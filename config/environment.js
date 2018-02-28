@@ -59,19 +59,7 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-      API_HOST: process.env.API_HOST,
-      API_NAMESPACE: process.env.API_NAMESPACE
     },
-  };
-
-  ENV['ember-simple-auth'] = {
-    authenticationRoute: 'login',
-    routeAfterAuthentication: 'dashboard',
-    routeIfAlreadyAuthenticated: 'dashboard',
-    auth0: {
-      clientID: process.env.AUTH0_CLIENT_ID,
-      domain: process.env.AUTH0_DOMAIN,
-    }
   };
 
   if (environment === 'development') {
@@ -80,6 +68,17 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.APP.API_HOST = 'http://localhost:8000';
+    ENV.APP.API_NAMESPACE = 'api';
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'login',
+      routeAfterAuthentication: 'dashboard',
+      routeIfAlreadyAuthenticated: 'dashboard',
+      auth0: {
+        clientID: 'C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF',
+        domain: 'barberscore-dev.auth0.com',
+      }
+    };
   }
 
   if (environment === 'test') {
@@ -92,10 +91,23 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV.APP.API_HOST = null;
+    ENV.APP.API_NAMESPACE = null;
+    ENV['ember-simple-auth'] = null;
   }
 
   if (environment === 'production') {
-    ENV.currentRevision = process.env.SOURCE_VERSION;
+    ENV.APP.API_HOST = 'https://api.barberscore.com';
+    ENV.APP.API_NAMESPACE = 'api';
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'login',
+      routeAfterAuthentication: 'dashboard',
+      routeIfAlreadyAuthenticated: 'dashboard',
+      auth0: {
+        clientID: '0asRmTDrVcFf1DQfO9s51qyqDW5cneGk',
+        domain: 'barberscore.auth0.com',
+      }
+    };
   }
   return ENV;
 };
