@@ -11,7 +11,7 @@ module.exports = function(environment) {
       allowEmpty: true // default: false
     },
     sentry: {
-      dsn: 'https://deb5efb3e84548ee88393bbee137c4b9@sentry.io/295564',
+      dsn: 'https://4a9abb7157544f1b959cc120975c8a81@sentry.io/296102',
       development: environment === 'development',
     },
     contentSecurityPolicy: {
@@ -29,7 +29,9 @@ module.exports = function(environment) {
         'cdn.ravenjs.com',
         'localhost:4200',
         '*.auth0.com',
-
+      ].join(' '),
+      'report-uri': [
+        'https://sentry.io/api/296102/csp-report/?sentry_key=4a9abb7157544f1b959cc120975c8a81'
       ].join(' '),
       'img-src': [
         'data:',
