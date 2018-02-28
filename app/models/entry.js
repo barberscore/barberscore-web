@@ -40,6 +40,7 @@ export default Model.extend({
   permissions: DS.attr(),
   logs: DS.attr(),
 
+  build: memberAction({path: 'build', type: 'post'}),
   invite: memberAction({path: 'invite', type: 'post'}),
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),

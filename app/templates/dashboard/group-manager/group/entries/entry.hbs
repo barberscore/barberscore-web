@@ -81,7 +81,7 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
+          {{#if (or (eq model.status 'New') (eq model.status 'Built'))}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}

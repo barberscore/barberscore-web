@@ -56,10 +56,14 @@ export default Component.extend({
         isPrivate: false,
         competitor: null,
       }).save();
+      let payload = yield entry.build({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.get('store').pushPayload('entry', payload);
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', this.get('model'), entry);
+      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', this.get('model'), entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('deleteEntryModalError', true);
