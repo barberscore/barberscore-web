@@ -5,6 +5,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   session: service(),
   currentUser: service('current-user'),
+  algolia: service(),
   isConventionManagerDisabled: not(
     'currentUser.user.isConventionManager'
   ),
@@ -29,4 +30,9 @@ export default Controller.extend({
   isChartManagerDisabled: not(
     'currentUser.user.isChartManager'
   ),
+  actions: {
+    search() {
+      console.log(this.get('algolia'))
+    }
+  }
 });

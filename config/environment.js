@@ -57,6 +57,10 @@ module.exports = function(environment) {
         Date: false
       }
     },
+    'ember-algolia': {
+      algoliaId: 'GUKTE9MYCG',
+      algoliaKey: '9f41231c00e4a5b47e1832103fa5c98e'
+    },
 
     APP: {
       // Here you can pass flags/options to your application instance
