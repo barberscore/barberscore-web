@@ -4,7 +4,7 @@
 <section>
   <div class='table-responsive'>
     <table class='table'>
-      <caption>Your Groups</caption>
+      <caption>Your Active Groups</caption>
       <thead>
         <tr>
           <th>Name</th>
@@ -13,15 +13,15 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedMembers as |member|}}
+        {{#each sortedGroups as |group|}}
           <tr>
-            <td>{{#link-to 'dashboard.group-manager.group.details' member.group}}{{member.group.name}}{{/link-to}}</td>
-            <td>{{member.group.kind}}</td>
-            <td>{{member.group.status}}</td>
+            <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
+            <td>{{group.kind}}</td>
+            <td>{{group.status}}</td>
           </tr>
         {{else}}
           <tr>
-            <td>(You are not listed as an Admin for any group.  Please contact support for assistance.)</td>
+            <td>(You are not listed as an Officer/Manager for any group.  Please contact support for assistance.)</td>
           </tr>
         {{/each}}
       </tbody>
@@ -29,7 +29,14 @@
   </div>
 </section>
 <section>
-  <p>
-    <strong>Note:</strong>  These are the groups for which you have Admin access.  To get Admin access for a group, please contact an existing administrator or ask to be added as one through customerservice@barbershop.org.
-  </p>
+  <div class='row'>
+    <div class='col-md-6'>
+      <p>
+        <strong>Note:</strong> If your group is not listed, please review your memberships in the <a href='https://members.barbershop.org'>BHS Member Center</a> and ensure you are an active member of your quartet or a designated Chapter Leader of your chorus (limited to: President, Secretary, Director, Assistant or Associate Director, and Chorus Manager).
+      </p>
+      <p>
+        <strong>Note to New Quartets:</strong> Please be aware that newly registered quartets are not “completed” (fully registered) in the Member Center until BHS headquarters has: approved the quartet name; processed the subscription fee; and finished their final validation by updating the Member Center record. <em>This process can take up to 5 business days.</em>
+      </p>
+    </div>
+  </div>
 </section>

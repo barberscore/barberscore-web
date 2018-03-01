@@ -2,13 +2,12 @@ import { sort } from '@ember/object/computed';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-  sortedMembersProperties: [
-    'groupStatus',
-    'groupKind',
-    'groupName',
+  sortedGroupsProperties: [
+    'treeSort',
+    'name',
   ],
-  sortedMembers: sort(
+  sortedGroups: sort(
     'model',
-    'sortedMembersProperties'
+    'sortedGroupsProperties'
   ),
 });

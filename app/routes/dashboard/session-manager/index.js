@@ -7,8 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.get('store').query('session', {
       'convention__assignments__person__user': this.get('currentUser.user.id'),
-      'page_size': 100,
-      'is_archived': 'False',
+      'convention__status': 10,
       'convention__assignments__category': 5,
     });
   },

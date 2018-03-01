@@ -118,30 +118,9 @@ Router.map(function() {
           this.route('entry', {
             path: ':entry_id'
           });
-          this.route('new', {
-            path: 'new'
-          });
         });
-        this.route('members', {
-          path: 'members'
-        }, function () {
-          this.route('member', {
-            path: ':member_id'
-          });
-          this.route('new', {
-            path: 'new'
-          });
-        });
-        this.route('repertories', {
-          path: 'repertories'
-        }, function () {
-          this.route('repertory', {
-            path: ':repertory_id'
-          });
-          this.route('new', {
-            path: 'new'
-          });
-        });
+        this.route('members', {path: 'members'}, function () {});
+        this.route('repertories', {path: 'repertories'}, function () {});
       });
     });
   });

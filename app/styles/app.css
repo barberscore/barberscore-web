@@ -83,3 +83,22 @@ section {
   width: 200px;
   height: 200px;
 }
+
+input[type=checkbox] {
+  transform: scale(2.0);
+}
+
+.sortable-item {
+  transition: all .125s;
+  cursor: pointer;
+}
+
+.sortable-item.is-dragging {
+  transition-duration: 0s;
+  background: yellow;
+  z-index: 10;
+}
+
+.sortable-item.is-dropping {
+  z-index: 10;
+}

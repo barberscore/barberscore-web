@@ -1,4 +1,3 @@
-
 {{#if (eq model.status 'New')}}
   <section>
     <h4>
@@ -6,64 +5,56 @@
     </h4>
   </section>
 {{else}}
-<br/>
-  {{#bs-button class='btn btn-xs' onClick=(toggle 'collapsed' this)}}
-    {{#if collapsed}}
-      Show entries
-    {{else}}
-      Hide entries
-    {{/if}} 
-  {{/bs-button}}
-
-  {{#bs-collapse collapsed=collapsed}}
-    <section>
-      <div class='row'>
-        <div class='col-md-12'>
-          <table class='table'>
-            <thead>
+  <section>
+    <div class='row'>
+      <div class='col-md-12'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-4'>Name</th>
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Representing</th>
+              <th class='col-md-1'>Contests Entered</th>
+              <th class='col-md-1'>Songs in Repertory</th>
+              {{#if (eq model.kind 'Chorus')}}
+                <th class='col-md-1'>Participants on Stage</th>
+              {{/if}}
+              <th class='col-md-1'>Prelim</th>
+              <th class='col-md-1'>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedItems as |entry|}}
               <tr>
-                <th class='col-md-4' {{action "sortBy" "nomen"}}>Name</th>
-                <th class='col-md-1' {{action "sortBy" "nomen"}}>Representing</th>
-                <th class='col-md-1' {{action "sortBy" "includedContestantsCount:desc"}}>Contests Entered</th>
-                <th class='col-md-1' {{action "sortBy" "repertoryCount:desc"}}>Songs in Repertory</th>
-                <th class='col-md-1' {{action "sortBy" "includedParticipantsCount:desc"}}>Men on Stage</th>
-                <th class='col-md-1' {{action "sortBy" "expiringMembersCount:desc"}}>Expiring</th>
-                <th class='col-md-1' {{action "sortBy" "prelim:desc"}}>Prelim</th>
-                <th class='col-md-1' {{action "sortBy" "status"}}>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedItems as |entry|}}
-                <tr>
-                  {{#if entry.isLoading}}
-                    <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{#if entry.isLoading}}
+                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                    {{#if entry.group.isLoading}}
+                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                      {{#if entry.group.isLoading}}
-                      <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
-                    {{/if}}
-                    <td>{{entry.representing}}</td>
-                    <td>{{entry.includedContestantsCount}}</td>
-                    <td>{{entry.repertoryCount}}</td>
-                    <td>{{entry.includedParticipantsCount}}</td>
-                    <td>{{entry.expiringMembersCount}}</td>
-                    <td>{{single-fixed entry.prelim}}</td>
-                    <td>{{entry.status}}</td>
+                    <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
                   {{/if}}
-                </tr>
-              {{else}}
-                <tr>
-                  <td>(No groups currently entered for this session.)</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+                  <td>{{entry.group.status}}</td>
+                  <td>{{entry.representing}}</td>
+                  <td>{{entry.includedContestantsCount}}</td>
+                  <td>{{entry.repertoryCount}}</td>
+                  {{#if (eq model.kind 'Chorus')}}
+                    <td>{{#if entry.mos}}{{entry.mos}}{{else}}N/A{{/if}}</td>
+                  {{/if}}
+                  <td>{{single-fixed entry.prelim}}</td>
+                  <td>{{entry.status}}</td>
+                {{/if}}
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No groups currently entered for this session.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
       </div>
-    </section>
-
-  {{/bs-collapse}}
+    </div>
+  </section>
   <section>
     {{#unless (eq model.status 'Started')}}
       {{#bs-button onClick=(action "createEntry") type='success'}}Create New Entry{{/bs-button}}

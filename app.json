@@ -32,18 +32,6 @@
       "description": "The Auth0 Client endpoint.",
       "required": true
     },
-    "BUGSNAG_API_KEY": {
-      "description": "The Bugsnag API key.",
-      "required": true
-    },
-    "BUGSNAG_PUBLIC_URL": {
-      "description": "The public url.",
-      "required": true
-    },
-    "BUGSNAG_RELEASE_STAGE": {
-      "description": "The release stage.",
-      "required": true
-    },
     "NPM_CONFIG_PRODUCTION": {
       "description": "Required by Heroku.  Do not edit.",
       "value": "false",

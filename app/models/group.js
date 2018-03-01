@@ -1,20 +1,8 @@
 import { computed } from '@ember/object';
-import { equal, notEmpty } from '@ember/object/computed';
+import { equal, notEmpty, filterBy, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-// import { validator, buildValidations } from 'ember-cp-validations';
 import { memberAction } from 'ember-api-actions';
-
-// const Validations = buildValidations({
-//   email: validator('format', {
-//     type: 'email',
-//     allowBlank: true
-//   }),
-//   website: validator('format', {
-//     type: 'url',
-//     allowBlank: true
-//   }),
-// });
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -33,15 +21,16 @@ export default Model.extend({
   twitter: DS.attr('string'),
   email: DS.attr('string'),
   phone: DS.attr('string'),
-  img: DS.attr('string'),
+  image: DS.attr('string'),
   description: DS.attr('string'),
   bhsId: DS.attr('number'),
-  orgSort: DS.attr('number'),
+  treeSort: DS.attr('number'),
   international: DS.attr('string'),
   district: DS.attr('string'),
   division: DS.attr('string'),
   chapter: DS.attr('string'),
-  organization: DS.belongsTo('organization', {async: true}),
+  parent: DS.belongsTo('group', {inverse:'children', async: true}),
+  children: DS.hasMany('group', {inverse:'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
@@ -54,23 +43,21 @@ export default Model.extend({
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
+  repertoriesCount: alias('repertories.length'),
+
+  activeMembers: filterBy(
+    'members',
+    'status',
+    'Active'
+  ),
+
+  activesCount: alias('activeMembers.length'),
+
   isActive: equal(
     'status',
     'Active',
   ),
 
-  kindOptions: [
-    'Quartet',
-    'Chorus',
-  ],
-
-  kindSort: computed(
-    'kind',
-    'kindOptions',
-    function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
-    }
-  ),
   genderOptions: [
     'Male',
     'Female',
@@ -99,6 +86,24 @@ export default Model.extend({
     'statusOptions',
     function() {
       return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
+
+  kindOptions: [
+    'International',
+    'District',
+    'Noncompetitive',
+    'Affiliate',
+    'Division',
+    'Chapter',
+    'Chorus',
+    'Quartet',
+  ],
+  kindSort: computed(
+    'kind',
+    'kindOptions',
+    function() {
+      return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
 });

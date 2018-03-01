@@ -7,9 +7,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'isEvaluation': true,
       'isPrivate': false,
       'session': this.modelFor('dashboard.session-manager.session'),
-      'appearances': [],
       'contestants': [],
-      'participants': [],
+      'description': '',
+      'competitor': null,
     });
   },
 });

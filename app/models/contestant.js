@@ -1,6 +1,6 @@
-import { alias, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { alias, equal } from '@ember/object/computed';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
@@ -31,7 +31,12 @@ export default Model.extend({
   isIncluded: equal(
     'status',
     'Included',
-  )
+  ),
 
+  contestGroupKindSort: alias('contest.award.group.kindSort'),
+  contestAwardQualifier: alias('contest.award.isQualifier'),
+  contestAwardPrimary: alias('contest.award.isPrimary'),
+  contestAwardAgeSort: alias('contest.award.ageSort'),
+  contestAwardName: alias('contest.award.name'),
 
 });

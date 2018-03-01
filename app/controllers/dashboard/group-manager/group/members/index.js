@@ -6,9 +6,9 @@ export default Controller.extend({
     'model.permissions.write',
   ),
   sortedMembersProperties: [
-    'statusSort',
+    'partSort',
     'personLast',
-    'nomen',
+    'personName',
   ],
   filteredMembers: filterBy(
     'model.members',
@@ -19,9 +19,4 @@ export default Controller.extend({
     'filteredMembers',
     'sortedMembersProperties'
   ),
-  actions: {
-    createMember(){
-      this.transitionToRoute('dashboard.group-manager.group.members.new');
-    },
-  }
 });

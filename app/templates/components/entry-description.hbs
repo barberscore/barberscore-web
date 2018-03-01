@@ -1,0 +1,11 @@
+<div class='form-group'>
+  <textarea
+    value={{model.description}}
+    disabled={{isDisabled}}
+    oninput={{perform autosave value='target.value'}}
+    class='form-control'
+    rows='3'
+    placeholder='Enter any additional notes/requests.'
+  >
+  </textarea>
+</div>

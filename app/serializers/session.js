@@ -2,16 +2,16 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
     attrs: {
-      bbscoresReport: {
+      bbscoresReportNew: {
         serialize: false
       },
-      drcjReport: {
+      drcjReportNew: {
         serialize: false
       },
-      adminsReport: {
+      adminsReportNew: {
         serialize: false
       },
-      activesReport: {
+      activesReportNew: {
         serialize: false
       },
       contests: {

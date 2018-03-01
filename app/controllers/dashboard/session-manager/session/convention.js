@@ -1,4 +1,4 @@
-import { sort } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 import Controller from '@ember/controller';
 
 export default Controller.extend({
@@ -7,8 +7,13 @@ export default Controller.extend({
     'kindSort',
     'personSort',
   ],
-  sortedAssignments: sort(
+  activeAssignments: filterBy(
     'model.convention.assignments',
+    'status',
+    'Active',
+  ),
+  sortedAssignments: sort(
+    'activeAssignments',
     'sortedAssignmentsProperties'
   ),
 });

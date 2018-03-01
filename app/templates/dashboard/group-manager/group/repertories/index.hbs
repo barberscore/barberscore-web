@@ -1,37 +1,10 @@
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th class='col-md-6'>Title</th>
-          <th class='col-md-5'>Arranger(s)</th>
-          <th class='col-md-1'>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedRepertories as |repertory|}}
-          <tr>
-            {{#if repertory.isLoading}}
-              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>{{repertory.chart.title}}</td>
-              <td>{{repertory.chart.arrangers}}</td>
-              <td>{{delete-repertory model=repertory}}</td>
-            {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td>(No songs in repertory.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+  {{group-repertories model=model}}
 </section>
 {{#if model.permissions.write}}
   <section>
-    <p>{{#bs-button disabled=isDisabled onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}</p>
-    <p>
+{{!--     <p>{{#bs-button disabled=isDisabled onClick=(action 'createRepertory') type='success'}}Add Chart to Repertory{{/bs-button}}</p>
+ --}}    <p>
       <strong>Note:</strong>  You can add to your Repertory at any time (even after you submit your contest entry).  Remember that any song you sing on stage must be in your Repertory <em>before</em> your performance or you may be disqualified.  The Repertory saves all entries, so feel free to add every song for which you have copyright clearance; you won't need to do it again next contest.
     </p>
   </section>

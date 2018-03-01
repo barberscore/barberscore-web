@@ -6,187 +6,62 @@
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
       </ul>
       <h4>
-        {{model.group.name}}&nbsp;({{model.group.district}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Senior</span>{{/if}}
+        {{model.group.name}}&nbsp;({{model.representing}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
       </h4>
     </div>
     <div class='panel-body'>
       <section>
-        <p>Preferences</p>
-        {{#bs-form
-          formLayout="vertical"
-          model=model
-          as |form|
-        }}
-          {{#form.element property='isEvaluation' as |el|}}
-            {{#bs-button-group
-              value=el.value
-              type='radio'
-              onChange=(perform autosave 'isEvaluation')
-              disabled=isDisabled
-              as |bg|
-            }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
-            {{/bs-button-group}}
-          {{/form.element}}
-          {{#form.element property='isPrivate' as |el|}}
-            {{#bs-button-group
-              value=el.value
-              type='radio'
-              onChange=(perform autosave 'isPrivate')
-              as |bg|
-            }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
-            {{/bs-button-group}}
-          {{/form.element}}
-          {{#if (eq model.group.kind 'Chorus')}}
-            {{form.element controlType='text' disabled=false placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
-          {{/if}}
-        {{/bs-form}}
-      </section>
-      <hr>
-      <section>
-        <p>Group Contacts</p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedContacts as |contact|}}
-                  <tr>
-                    {{#if contact.person.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>{{contact.person.fullName}}</td>
-                      <td><a href='mailto:{{contact.person.email}}'>{{contact.person.email}}</a></td>
-                      <td><a href='tel:{{contact.person.cellPhone}}'>{{contact.person.cellPhone}}</a></td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No contacts available</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        <p>
+          Preferences
+        </p>
+        <p>
+          {{entry-preferences model=model}}
+        </p>
       </section>
       <hr>
       <section>
         <p>
           Contests Entered: {{model.includedContestantsCount}}
         </p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Status</th>
-                <th>Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each model.contestants as |contestant|}}
-                  <tr>
-                    {{#if contestant.isLoading}}
-                      <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>
-                        {{contestant.status}}
-                      </td>
-                      <td>{{contestant.contest.award.nomen}}</td>
-                      <td>{{toggle-contestant model=contestant}}</td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No contests available</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        <p>
+          {{entry-contestants model=model}}
+        </p>
       </section>
       <hr>
       <section>
         <p>
-          Participants on Stage: {{model.includedParticipantsCount}}
+          Group Members: {{model.group.activesCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+            {{if membersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
         </p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-1'>Status</th>
-                <th class='col-md-3'>Name</th>
-                <th class='col-md-1'>Part</th>
-                <th class='col-md-2'>Expires</th>
-                <th class='col-md-2'>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each model.participants as |participant|}}
-                  <tr>
-                    {{#if participant.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>
-                        {{participant.status}}
-                      </td>
-                      {{#if participant.person.isLoading}}
-                        <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                      {{else}}
-                        <td>{{participant.person.fullName}}</td>
-                      {{/if}}
-                      <td>{{participant.part}}</td>
-                      <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
-                      <td>{{toggle-participant model=participant}}</td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No members available</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        {{#bs-collapse collapsed=membersCollapsed}}
+          {{group-members model=model.group}}
+        {{/bs-collapse}}
       </section>
       <hr>
       <section>
-        <div class='table-responsive'>
-          <p>
-            Song Repertory: {{model.repertoryCount}}
-          </p>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Arranger(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedRepertories as |repertory|}}
-                <tr>
-                  {{#if repertory.chart.isLoading}}
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{repertory.chart.title}}</td>
-                    <td>{{repertory.chart.arrangers}}</td>
-                  {{/if}}
-                </tr>
-              {{else}}
-                <tr>
-                  <td>(No songs in Repertory.)</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
+        <p>
+          Repertory Songs: {{model.group.repertoriesCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoriesCollapsed' this)}}
+            {{if repertoriesCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=repertoriesCollapsed}}
+          {{group-repertories model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <div class='row'>
+          <div class='col-md-6'>
+            <p>
+              Additional Notes:
+            </p>
+            <p>
+              {{entry-description model=model}}
+            </p>
+          </div>
         </div>
       </section>
       <hr>

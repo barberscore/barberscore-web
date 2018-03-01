@@ -1,13 +1,18 @@
 import { computed } from '@ember/object';
-import { sort, alias } from '@ember/object/computed';
+import { sort, alias, filterBy } from '@ember/object/computed';
 import Controller, { inject as controller } from '@ember/controller';
 
 export default Controller.extend({
   contestantSortProperties: [
     'nomen:asc',
   ],
-  sortedContestants: sort(
+  filteredContestants: filterBy(
     'model.contestants',
+    'status',
+    'Included'
+  ),
+  sortedContestants: sort(
+    'filteredContestants',
     'contestantSortProperties'
   ),
   contestManager: controller('dashboard.session-manager.session.contests.index'),

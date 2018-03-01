@@ -1,0 +1,50 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-1'>Include</th>
+        <th class='col-md-5'>Name</th>
+        <th class='col-md-6'>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedContestants as |contestant|}}
+          <tr>
+            {{#if contestant.isLoading}}
+              <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                {{input
+                  type="checkbox"
+                  checked=contestant.isIncluded
+                  disabled=isDisabled
+                  change=(perform toggleContestant contestant value='target.checked')
+                }}
+              </td>
+              <td>
+                {{contestant.contest.award.nomen}}
+              </td>
+              <td>
+                {{#if contestant.contest.award.description}}
+                  {{contestant.contest.award.description}}
+                {{else}}
+                  (No description available)
+                {{/if}}
+              </td>
+            {{/if}}
+          </tr>
+      {{else}}
+        <tr>
+          <td colspan=2>No contests available</td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan=10>
+           <em>Click on all the awards for which you wish to compete.</em>
+         </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

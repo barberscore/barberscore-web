@@ -21,7 +21,7 @@ export default Model.extend({
   perScore: DS.attr('number'),
   sngScore: DS.attr('number'),
   totScore: DS.attr('number'),
-  varianceReport: DS.attr('string'),
+  varianceReportNew: DS.attr('string'),
 
   round: DS.belongsTo('round', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),

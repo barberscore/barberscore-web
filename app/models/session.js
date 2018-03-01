@@ -19,10 +19,10 @@ export default Model.extend({
   isInvitational: DS.attr('boolean'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  bbscoresReport: DS.attr('string'),
-  drcjReport: DS.attr('string'),
-  adminsReport: DS.attr('string'),
-  activesReport: DS.attr('string'),
+  bbscoresReportNew: DS.attr('string'),
+  drcjReportNew: DS.attr('string'),
+  adminsReportNew: DS.attr('string'),
+  activesReportNew: DS.attr('string'),
   numRounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
@@ -47,8 +47,8 @@ export default Model.extend({
 
   notArchived: not('isArchived'),
 
-  organizationKindSort: alias('convention.organizationKindSort'),
-  organizationNomen: alias('convention.organizationNomen'),
+  groupKindSort: alias('convention.groupKindSort'),
+  groupNomen: alias('convention.groupNomen'),
 
   statusOptions: [
     'New',

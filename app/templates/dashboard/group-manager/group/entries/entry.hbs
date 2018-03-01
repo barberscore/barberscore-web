@@ -7,170 +7,73 @@
     </div>
     <div class='panel-body'>
       <section>
-        <p>Preferences</p>
         <p>
-          {{#bs-button class='btn btn-link' onClick=(toggle 'collapsed' this)}}
+          Preferences
+        </p>
+        {{!-- <p>
+          {{#bs-button class='btn btn-link' onClick=(toggle 'evalCollapsed' this)}}
             Looking for Evaluation-Only?  Click Here.
           {{/bs-button}}
         </p>
-        {{#bs-collapse collapsed=collapsed}}
-            <p>
-              The Barberscore system does not have an "Evaluation Only" award as in years past.  If you wish to perform for 'Evaluation-Only', take the following steps on this entry form:
-              <ol>
-                <li>Click "Include Eval".</li>
-                <li>Click "Keep Scores Private"</li>
-                <li>Under "Contests Entered", click the "Exclude" button for every award.  The "Contests Entered" button should read zero.</li>
-                <li>Ensure your Repertory and Participant lists are up to date.</li>
-                <li>Click "Submit" -- You're Done!</li>
-              </ol>
-            </p>
-        {{/bs-collapse}}
-
-        {{#bs-form
-          formLayout="vertical"
-          model=model
-          as |form|
-        }}
-          {{#form.element property='isEvaluation' as |el|}}
-            {{#bs-button-group
-              value=el.value
-              type='radio'
-              onChange=(perform autosave 'isEvaluation')
-              as |bg|
-            }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
-            {{/bs-button-group}}
-          {{/form.element}}
-          {{#form.element property='isPrivate' as |el|}}
-            {{#bs-button-group
-              value=el.value
-              type='radio'
-              onChange=(perform autosave 'isPrivate')
-              as |bg|
-            }}
-              {{#bg.button type='default' value=false disabled=isDisabled}}Make Scores Public{{/bg.button}}
-              {{#bg.button type='default' value=true disabled=isDisabled}}Keep Scores Private{{/bg.button}}
-            {{/bs-button-group}}
-          {{/form.element}}
-          {{#if (eq model.group.kind 'Chorus')}}
-            {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
-          {{/if}}
-        {{/bs-form}}
+        {{#bs-collapse collapsed=evalCollapsed}}
+          <p>
+            The Barberscore system does not have an "Evaluation Only" award as in years past.  If you wish to perform for 'Evaluation-Only', take the following steps on this entry form:
+            <ol>
+              <li>Click "Include Eval".</li>
+              <li>Click "Keep Scores Private"</li>
+              <li>Under "Contests Entered", be sure that all the awards are unchecked.  The "Contests Entered" button should read zero.</li>
+              <li>Ensure your Repertory and Member lists are accurate.</li>
+              <li>Click "Submit" -- You're Done!</li>
+            </ol>
+          </p>
+        {{/bs-collapse}} --}}
+        <p>
+          {{entry-preferences model=model}}
+        </p>
       </section>
       <hr>
       <section>
         <p>
           Contests Entered: {{model.includedContestantsCount}}
         </p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-2'>Status</th>
-                <th class='col-md-9'>Name</th>
-                <th class='col-md-1'>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedContestants as |contestant|}}
-                  <tr>
-                    {{#if contestant.isLoading}}
-                      <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>
-                        {{contestant.status}}
-                      </td>
-                      <td>
-                        {{contestant.contest.award.nomen}}
-                      </td>
-                      <td>{{toggle-contestant model=contestant}}</td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No contestants available</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        <p>
+          {{entry-contestants model=model}}
+        </p>
       </section>
       <hr>
       <section>
         <p>
-          Participants on Stage: {{model.includedParticipantsCount}}
+          Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+            {{if membersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
         </p>
-        <div class='table-responsive'>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-2'>Status</th>
-                <th class='col-md-4'>Name</th>
-                <th class='col-md-2'>Part</th>
-                <th class='col-md-3'>Current Through</th>
-                <th class='col-md-1'>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedParticipants as |participant|}}
-                  <tr>
-                    {{#if participant.isLoading}}
-                      <td colspan=12>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                    {{else}}
-                      <td>
-                        {{participant.status}}
-                      </td>
-                      <td>{{participant.person.fullName}}</td>
-                      <td>{{participant.part}}</td>
-                      <td>{{moment-format participant.person.currentThrough 'LL'}}</td>
-                      <td>{{toggle-participant model=participant}}</td>
-                    {{/if}}
-                  </tr>
-              {{else}}
-                <tr>
-                  <td colspan=2>No participants available.</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        {{#bs-collapse collapsed=membersCollapsed}}
+          {{group-members model=model.group}}
+          <p>
+            <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
+          </p>
+        {{/bs-collapse}}
       </section>
       <hr>
       <section>
-        <div class='table-responsive'>
           <p>
-            Song Repertory: {{model.repertoryCount}}
-          </p>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th class='col-md-6'>Title</th>
-                <th class='col-md-6'>Arranger(s)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each sortedRepertories as |repertory|}}
-                <tr>
-                  {{#if repertory.chart.isLoading}}
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{repertory.chart.title}}</td>
-                    <td>{{repertory.chart.arrangers}}</td>
-                  {{/if}}
-                </tr>
-              {{else}}
-                <tr>
-                  <td>
-                    No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
-                  </td>
-                </tr>
-              {{/each}}
-            </tbody>
-            <tfoot>
-              Make changes to your {{#link-to 'dashboard.group-manager.group.repertories'}}Repertory{{/link-to}}
-            </tfoot>
-          </table>
+            Song Repertory: {{model.repertoryCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoryCollapsed' this)}}
+            {{if repertoryCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=repertoryCollapsed}}
+          {{group-repertories model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <p>
+          Additional Notes:
+        </p>
+        <div class='col-md-6'>
+          {{entry-description model=model}}
         </div>
       </section>
     </div>
@@ -178,13 +81,14 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
+          {{#if (or (eq model.status 'New') (eq model.status 'Built'))}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Submitted')}}
+            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Re-Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Approved')}}
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
@@ -248,7 +152,13 @@
           </ul>
       {{#if submitEntryModalError}}
         <p class='text-danger'>
-          Could not submit entry.  Please contact support.
+          Could not submit entry.  Please check to ensure:
+          <ul>
+            <li>Your group is Active.</li>
+            <li>You haven't selected an award while in Score/Eval-Only.</li>
+            <li>If a chorus, you've entered your Director(s) and estimated Participants-on-Stage.</li>
+          </ul>
+          If you've done all this and still can't submit, please contact support at {{customer-support}}.
         </p>
       {{/if}}
     {{/modal.body}}

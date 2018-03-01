@@ -1,93 +1,14 @@
-import { sort, filterBy, alias } from '@ember/object/computed';
-import { computed } from '@ember/object';
 import Controller, { inject as controller } from '@ember/controller';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
-  isDisabled: computed(
-    'model.status',
-    function(){
-      let disabled = [
-        'Withdrawn',
-        'Scratched',
-      ]
-      return disabled.includes(this.get('model.status'));
-  }),
-  sortedRepertoriesProperties: [
-    'nomen',
-  ],
-  sortedRepertories: sort(
-    'model.group.repertories',
-    'sortedRepertoriesProperties'
-  ),
-  participantSortProperties: [
-  ],
-  sortedParticipants: sort(
-    'model.participants',
-    'participantSortProperties'
-  ),
-  contestantSortProperties: [
-  ],
-  sortedContestants: sort(
-    'model.contestants',
-    'contestantSortProperties'
-  ),
-  sortedContactsProperties: [
-    'nomen',
-  ],
-  filteredContacts: filterBy(
-    'model.group.members',
-    'isAdmin'
-  ),
-  sortedContacts: sort(
-    'filteredContacts',
-    'sortedContactsProperties'
-  ),
-  inviteEntryModal: false,
-  inviteEntryModalError: false,
-  inviteEntry: task(function *() {
-    try {
-      let entry = yield this.model.invite({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.store.pushPayload('entry', entry);
-      this.set('inviteEntryModal', false);
-      this.set('inviteEntryModalError', false);
-      this.get('flashMessages').success("Invited!");
-    } catch(e) {
-      this.set('inviteEntryModalError', true);
-    }
-  }).drop(),
-  deleteEntryModal: false,
-  deleteEntryModalError: false,
-  deleteEntry: task(function *() {
-    try {
-      yield this.model.destroyRecord({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.set('deleteEntryModal', false);
-      this.set('deleteEntryModalError', false);
-      this.get('flashMessages').success("Deleted!");
-      this.transitionToRoute('dashboard.session-manager.session.entries.index');
-    } catch(e) {
-      this.set('deleteEntryModalError', true);
-    }
-  }).drop(),
-  withdrawEntryModal: false,
-  withdrawEntryModalError: false,
-  withdrawEntry: task(function *() {
-    try {
-      let entry = yield this.model.withdraw({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.store.pushPayload('entry', entry);
-      this.set('withdrawEntryModal', false);
-      this.set('withdrawEntryModalError', false);
-      this.get('flashMessages').success("Withdrawn!");
-    } catch(e) {
-      this.set('withdrawEntryModalError', true);
-    }
-  }).drop(),
+  flashMessages: service(),
+  evalCollapsed: true,
+  membersCollapsed: true,
+  repertoryCollapsed: true,
   submitEntryModal: false,
   submitEntryModalError: false,
   submitEntry: task(function *() {
@@ -116,6 +37,36 @@ export default Controller.extend({
       this.get('flashMessages').success("Approved!");
     } catch(e) {
       this.set('approveEntryModalError', true);
+    }
+  }).drop(),
+  deleteEntryModal: false,
+  deleteEntryModalError: false,
+  deleteEntry: task(function *() {
+    try {
+      yield this.model.destroyRecord({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.set('deleteEntryModal', false);
+      this.set('deleteEntryModalError', false);
+      this.get('flashMessages').success("Deleted!");
+      this.transitionToRoute('dashboard.group-manager.group.entries.index');
+    } catch(e) {
+      this.set('deleteEntryModalError', true);
+    }
+  }).drop(),
+  withdrawEntryModal: false,
+  withdrawEntryModalError: false,
+  withdrawEntry: task(function *() {
+    try {
+      let entry = yield this.model.withdraw({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.store.pushPayload('entry', entry);
+      this.set('withdrawEntryModal', false);
+      this.set('withdrawEntryModalError', false);
+      this.get('flashMessages').success("Withdrawn!");
+    } catch(e) {
+      this.set('withdrawEntryModalError', true);
     }
   }).drop(),
   scratchEntryModal: false,

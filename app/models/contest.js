@@ -1,4 +1,4 @@
-import { alias, filterBy } from '@ember/object/computed';
+import { alias, filterBy, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -37,8 +37,12 @@ export default Model.extend({
     'includedContestants.length'
   ),
 
+  isIncluded: equal(
+    'status',
+    'Included',
+  ),
 
-  organizationKindSort: alias('award.organization.kindSort'),
+  groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
   awardPrimary: alias('award.isPrimary'),
   awardAgeSort: alias('award.ageSort'),

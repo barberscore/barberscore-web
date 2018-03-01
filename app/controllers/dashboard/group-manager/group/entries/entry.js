@@ -1,33 +1,12 @@
-import { not, sort } from '@ember/object/computed';
-import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
   flashMessages: service(),
-  collapsed: true,
-  isDisabled: not(
-    'model.permissions.write',
-  ),
-  contestantSortProperties: [
-  ],
-  sortedContestants: sort(
-    'model.contestants',
-    'contestantSortProperties'
-  ),
-  participantSortProperties: [
-  ],
-  sortedParticipants: sort(
-    'model.participants',
-    'participantSortProperties'
-  ),
-  sortedRepertoriesProperties: [
-    'nomen',
-  ],
-  sortedRepertories: sort(
-    'model.group.repertories',
-    'sortedRepertoriesProperties'
-  ),
+  evalCollapsed: true,
+  membersCollapsed: true,
+  repertoryCollapsed: true,
   submitEntryModal: false,
   submitEntryModalError: false,
   submitEntry: task(function *() {

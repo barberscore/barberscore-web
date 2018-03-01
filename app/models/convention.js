@@ -2,13 +2,8 @@ import { equal, not, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
-import { validator, buildValidations } from 'ember-cp-validations';
 
-const Validations = buildValidations({
-  name: validator('presence', true),
-  });
-
-export default Model.extend(Validations, {
+export default Model.extend({
   nomen: DS.attr('string'),
   name: DS.attr('string'),
   status: DS.attr('convention-status'),
@@ -22,7 +17,7 @@ export default Model.extend(Validations, {
   location: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
   venue: DS.belongsTo('venue', {async: true}),
-  organization: DS.belongsTo('organization', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
   grantors: DS.hasMany('grantor', {async: true}),
@@ -34,8 +29,8 @@ export default Model.extend(Validations, {
   isAnnounced: equal('status', 'Announced'),
   isActive: not('isAnnounced'),
 
-  organizationKindSort: alias('organization.kindSort'),
-  organizationNomen: alias('organization.nomen'),
+  groupKindSort: alias('group.kindSort'),
+  groupNomen: alias('group.nomen'),
 
   statusOptions: [
     'New',
