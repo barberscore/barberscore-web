@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = function(environment) {
-  let deployTarget = process.env.DEPLOY_TARGET;
   let ENV = {
     modulePrefix: 'barberscore-web',
     environment,
@@ -65,26 +64,26 @@ module.exports = function(environment) {
     },
   };
 
-  if (deployTarget === 'development') {
+  if (environment === 'development') {
     ENV.APP.LOG_RESOLVER = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_TRANSITIONS = false;
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-    ENV.APP.API_HOST = 'http://localhost:8000';
-    ENV.APP.API_NAMESPACE = 'api';
+    ENV.APP.API_HOST = process.env.API_HOST;
+    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
-        clientID: 'C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF',
-        domain: 'barberscore-dev.auth0.com',
+        clientID: process.env.AUTH0_CLIENT_ID,
+        domain: process.env.AUTH0_DOMAIN,
       }
     };
   }
 
-  if (deployTarget === 'test') {
+  if (environment === 'test') {
     ENV.locationType = 'none';
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
@@ -95,30 +94,16 @@ module.exports = function(environment) {
     ENV['ember-simple-auth'] = {};
   }
 
-  if (deployTarget === 'staging') {
-    ENV.APP.API_HOST = 'https://api.staging.barberscore.com';
-    ENV.APP.API_NAMESPACE = 'api';
+  if (environment === 'production') {
+    ENV.APP.API_HOST = process.env.API_HOST;
+    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
-        clientID: 'Xn5FtWgltna8tvrMdIPwMYS1Vp5HQvcq',
-        domain: 'barberscore-staging.auth0.com',
-      }
-    };
-  }
-
-  if (deployTarget === 'production') {
-    ENV.APP.API_HOST = 'https://api.barberscore.com';
-    ENV.APP.API_NAMESPACE = 'api';
-    ENV['ember-simple-auth'] = {
-      authenticationRoute: 'login',
-      routeAfterAuthentication: 'dashboard',
-      routeIfAlreadyAuthenticated: 'dashboard',
-      auth0: {
-        clientID: '0asRmTDrVcFf1DQfO9s51qyqDW5cneGk',
-        domain: 'barberscore.auth0.com',
+        clientID: process.env.AUTH0_CLIENT_ID,
+        domain: process.env.AUTH0_DOMAIN,
       }
     };
   }
