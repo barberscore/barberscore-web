@@ -96,7 +96,7 @@ export default Controller.extend({
       })
     }
   }).restartable(),
-  entryManager: controller('dashboard.session-manager.session.entries.index'),
+  entryManager: controller('dashboard.session-manager.session.entries'),
   sortedItems: alias('entryManager.sortedItems'),
   isPrevDisabled: computed(
     'model',
