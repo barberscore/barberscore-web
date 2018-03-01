@@ -1,6 +1,5 @@
 import { sort } from '@ember/object/computed';
 import Controller from '@ember/controller';
-import { computed, observer } from '@ember/object';
 
 export default Controller.extend({
   collapsed: false,
