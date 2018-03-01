@@ -11,8 +11,9 @@ export default Service.extend({
     if (!isEmpty(userId)) {
       this.get('store').findRecord('user', userId).catch(err => {
         alert(err.errors[0].detail)
+        return RSVP.resolve()
       }).then((user) => {
-        this.set('user', user);
+        return this.set('user', user);
       });
     } else {
       return RSVP.resolve();
