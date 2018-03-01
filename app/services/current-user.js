@@ -7,9 +7,11 @@ export default Service.extend({
   store: service(),
 
   load() {
-    let userId = this.get('session.data.authenticated.profile.barberscore_id');
+    let userId = this.get('session.data.authenticated.profile.barberscore_id');  
     if (!isEmpty(userId)) {
-      return this.get('store').findRecord('user', userId).then((user) => {
+      this.get('store').findRecord('user', userId).catch(err => {
+        alert(err.errors[0].detail)
+      }).then((user) => {
         this.set('user', user);
       });
     } else {
