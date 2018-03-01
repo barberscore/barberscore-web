@@ -28,4 +28,3 @@ jsconfig.json
 /.venv
 Pipfile.lock
 Pipfile
-.env
