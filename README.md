@@ -49,3 +49,4 @@ Get useful information about Ember here:
 * [Ember CLI](https://ember-cli.com/)
 
 If you have any questions let us know at admin@barberscore.com!
+
