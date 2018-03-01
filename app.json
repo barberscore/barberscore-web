@@ -16,6 +16,14 @@
     }
   },
   "env": {
+    "ALGOLIASEARCH_API_KEY_SEARCH": {
+      "description": "Algolia Search key.",
+      "required": true
+    },
+    "ALGOLIASEARCH_APPLICATION_ID": {
+      "description": "Algolia Search app idQ.",
+      "required": true
+    },
     "API_HOST": {
       "description": "The host of the Barberscore API.",
       "required": true
