@@ -190,4 +190,5 @@ export default Model.extend({
     'membersArray',
     'member.id'
   ),
+  conventionStatus: alias('session.convention.status')
 });

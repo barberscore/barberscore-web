@@ -13,7 +13,8 @@ export default Component.extend({
   ),
   filteredEntries: filterBy(
     'model.entries',
-    'notArchived'
+    'conventionStatus',
+    'Active',
   ),
   sortedEntriesProperties: [
     'statusSort:desc',
