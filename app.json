@@ -6,7 +6,13 @@
   "stack": "heroku-16",
   "buildpacks": [
     {
-      "url": "https://codon-buildpacks.s3.amazonaws.com/buildpacks/heroku/emberjs.tgz"
+      "url": "https://github.com/heroku/heroku-buildpack-nodejs"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-ember-cli"
+    },
+    {
+      "url": "https://github.com/hone/heroku-buildpack-static"
     }
   ],
   "formation": {
@@ -17,11 +23,11 @@
   },
   "env": {
     "ALGOLIASEARCH_API_KEY_SEARCH": {
-      "description": "Algolia Search key.",
+      "description": "Algolia search key.",
       "required": true
     },
     "ALGOLIASEARCH_APPLICATION_ID": {
-      "description": "Algolia Search app idQ.",
+      "description": "Algolia app ID.",
       "required": true
     },
     "API_HOST": {

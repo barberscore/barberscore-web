@@ -1,4 +1,9 @@
 {
   "root": "dist/",
-  "https_only": true
+  "https_only": true,
+  "proxies": {
+    "/api/": {
+      "origin": "${API_HOST}/{$API_NAMESPACE}"
+    }
+  }
 }
