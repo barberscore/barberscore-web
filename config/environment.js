@@ -10,6 +10,7 @@ module.exports = function(environment) {
       outputFormat: 'LL',
       allowEmpty: true // default: false
     },
+    storeConfigInMeta: true,
     sentry: {
       dsn: 'https://4a9abb7157544f1b959cc120975c8a81@sentry.io/296102',
       development: environment === 'development',
