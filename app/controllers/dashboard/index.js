@@ -31,8 +31,8 @@ export default Controller.extend({
     'currentUser.user.isChartManager'
   ),
   actions: {
-    search() {
-      console.log(this.get('algolia'))
-    }
+    // search() {
+    //   console.log(this.get('algolia'))
+    // }
   }
 });
