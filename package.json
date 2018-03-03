@@ -63,7 +63,7 @@
   },
   "dependencies": {},
   "engines": {
-    "node": "9.6.1",
+    "node": "9.7.1",
     "yarn": "1.5.1"
   }
 }
