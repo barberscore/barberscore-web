@@ -67,17 +67,16 @@
         Select the group you wish to enter into the Session.
       </p>
       {{#power-select
-        options=groupOptions
+        search=(perform searchGroup)
         selected=group
         onchange=(action (mut group))
-        searchField='name'
-        placeholder="Choose Group"
+        placeholder="Enter Group Name"
         allowClear=true
         renderInPlace=true
         noMatchesMessage="We Could Not Find an Active Group with that Name"
         as |group|
       }}
-        {{group.name}}
+        Group: {{group.name}} {{#if group.parent.shortName}}({{group.parent.shortName}}){{/if}}
       {{/power-select}}
       {{#if createEntryModalError}}
       <p class='text-danger'>

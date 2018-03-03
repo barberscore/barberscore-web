@@ -1,8 +1,7 @@
 import { not, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { computed } from '@ember/object';
-import { task } from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
@@ -18,26 +17,22 @@ export default Component.extend({
     'model.entries',
     'sortedEntriesProperties'
   ),
-  groupCall: computed(
-    'model',
-    function() {
-      let kinds = {
-        'Chorus': 32,
-        'Quartet': 41,
-      };
-      return this.get('store').query('group', {
-        'status': 10, // TODO HARDCODED
-        'kind': kinds[this.get('model.kind')],
-        'page_size': 100
-    });
+  searchGroup: task(function* (term){
+    yield timeout(600);
+    let kindOptions = {
+      'Chorus': 32,
+      'Quartet': 41,
+    };
+    let kindModel = this.get('model.kind');
+    let kindInt = kindOptions[kindModel];
+    let groups = yield this.get('store').query('group', {
+        'nomen__icontains': term,
+        'status__gt': 0,
+        'page_size': 1000,
+        'kind': kindInt,
+      });
+    return groups
   }),
-  groupSortProperties: [
-    'name',
-  ],
-  groupOptions: sort(
-    'groupCall',
-    'groupSortProperties'
-  ),
   createEntryModal: false,
   createEntryModalError: false,
   saveEntry: task(function* (group){
@@ -61,7 +56,7 @@ export default Component.extend({
       this.get('router').transitionTo('dashboard.session-manager.session.entries.entry', this.get('model'), entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
-        this.set('deleteEntryModalError', true);
+        this.set('createEntryModalError', true);
         this.get('flashMessages').danger(e.detail);
       })
     }
