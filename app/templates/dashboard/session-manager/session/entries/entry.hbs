@@ -1,10 +1,10 @@
 <section id="entry-detail">
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
-      <ul class='list-inline pull-right'>
+      {{!-- <ul class='list-inline pull-right'>
         <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
         <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-      </ul>
+      </ul> --}}
       <h4>
         {{model.group.name}}&nbsp;({{model.representing}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
       </h4>
@@ -103,6 +103,7 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
+          {{else if (eq model.status 'Built')}}
             {{#if model.session.isInvitational}}
               <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut inviteEntryModal) true)}}Invite Entry{{/bs-button}}</li>
             {{else}}

@@ -10,23 +10,6 @@
         <p>
           Preferences
         </p>
-        {{!-- <p>
-          {{#bs-button class='btn btn-link' onClick=(toggle 'evalCollapsed' this)}}
-            Looking for Evaluation-Only?  Click Here.
-          {{/bs-button}}
-        </p>
-        {{#bs-collapse collapsed=evalCollapsed}}
-          <p>
-            The Barberscore system does not have an "Evaluation Only" award as in years past.  If you wish to perform for 'Evaluation-Only', take the following steps on this entry form:
-            <ol>
-              <li>Click "Include Eval".</li>
-              <li>Click "Keep Scores Private"</li>
-              <li>Under "Contests Entered", be sure that all the awards are unchecked.  The "Contests Entered" button should read zero.</li>
-              <li>Ensure your Repertory and Member lists are accurate.</li>
-              <li>Click "Submit" -- You're Done!</li>
-            </ol>
-          </p>
-        {{/bs-collapse}} --}}
         <p>
           {{entry-preferences model=model}}
         </p>
@@ -81,7 +64,7 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if model.permissions.write}}
-          {{#if (or (eq model.status 'New') (eq model.status 'Built'))}}
+          {{#if (eq model.status 'Built')}}
             <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
             <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
           {{else if (eq model.status 'Invited')}}

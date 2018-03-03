@@ -1,4 +1,4 @@
-import Controller, { inject as controller } from '@ember/controller';
+import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
@@ -96,7 +96,7 @@ export default Controller.extend({
       })
     }
   }).restartable(),
-  entryManager: controller('dashboard.session-manager.session.entries'),
+  // entryManager: controller('dashboard.session-manager.session.entries'),
   sortedItems: alias('entryManager.sortedItems'),
   isPrevDisabled: computed(
     'model',
