@@ -12,7 +12,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedEntriesProperties: [
-    'statusSort:desc',
+    'nomen',
   ],
   sortedEntries: sort(
     'model.entries',
