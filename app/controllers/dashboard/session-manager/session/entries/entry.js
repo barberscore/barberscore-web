@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { alias, sort } from '@ember/object/computed';
-import { computed } from '@ember/object';
+import { sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({

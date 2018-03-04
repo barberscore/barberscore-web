@@ -1,7 +1,0 @@
-{{#if model.isLoading}}
-  <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-{{else}}
-  {{#if model.permissions.write}}
-    {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory) disabled=isDisabled}}Delete{{/bs-button}}
-  {{/if}}
-{{/if}}

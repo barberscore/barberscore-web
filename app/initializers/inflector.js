@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import Inflector from 'ember-inflector';
 
 export function initialize(/* application */) {
-  var inflector = Ember.Inflector.inflector;
+  const inflector = Inflector.inflector;
   inflector.uncountable('appearance');
   inflector.uncountable('assignment');
   inflector.uncountable('award');
