@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
-import { alias } from '@ember/object/computed';
+import { alias, sort } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
@@ -96,28 +96,11 @@ export default Controller.extend({
       })
     }
   }).restartable(),
-  // entryManager: controller('dashboard.session-manager.session.entries'),
-  sortedItems: alias('entryManager.sortedItems'),
-  isPrevDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
-  actions: {
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.session-manager.session.entries.entry', newCur);
-    },
-  }
+  sortedEntriesProperties: [
+    'nomen',
+  ],
+  ents: sort(
+    'model.session.entries',
+    'sortedEntriesProperties',
+  ),
 });
