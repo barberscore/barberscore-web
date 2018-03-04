@@ -35,22 +35,29 @@ export default Component.extend({
       this.get('flashMessages').danger("Problem!");
     }
   }).drop(),
-  createRepertory: task(function *() {
-    yield this.get('store').createRecord('repertory', {
-      group: this.get('model'),
-      status: 10,
-    });
-  }).drop(),
-  saveRepertory: task(function* (repertory){
+  createRepertoryModal: false,
+  createRepertoryModalError: false,
+  saveRepertory: task(function* (chart){
     try {
-      yield repertory.save();
-      this.get('flashMessages').success('Saved');
+      let repertory = yield this.get('store').createRecord('repertory', {
+        chart: chart,
+        group: this.get('model'),
+      }).save();
+      let payload = yield repertory.activate({
+        'by': this.get('currentUser.user.id'),
+      });
+      this.get('store').pushPayload('repertory', payload);
+      this.set('createRepertoryModal', false);
+      this.set('createRepertoryModalError', false);
+      this.get('flashMessages').success("Created!");
+      // this.get('router').transitionTo('dashboard.group-manager.group.repertories.repertory', this.get('model'), repertory.get('id'));
     } catch(e) {
-      e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+      e.errors.forEach((e) => {
+        this.set('createRepertoryModalError', true);
+        this.get('flashMessages').danger(e.detail);
       })
     }
-  }),
+  }).drop(),
   actions: {
     cancelRepertory(repertory){
       repertory.deleteRecord();
