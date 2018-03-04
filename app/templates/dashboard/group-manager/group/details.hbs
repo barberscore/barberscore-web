@@ -1,25 +1,5 @@
 <div class='col-md-6'>
   <section>
-    {{!-- {{#if uploadPhoto.isRunning}}
-      Uploading {{fa-icon "spinner" size='5' spin=true}}
-    {{else}}
-      {{#if model.image}}
-        <img src="{{model.image}}" class='img-responsive'>
-      {{else}}
-        <img src='/assets/no_image_available.jpg' class='img-responsive'>
-      {{/if}}
-    {{/if}}
-    {{#unless isDisabled}}
-      {{#file-upload
-        name="photos"
-        accept="image/*"
-        multiple=false
-        disabled=isDisabled
-        onfileadd=(perform uploadPhoto)
-      }}
-        <a id="upload-image" tabindex=0><small>Add/Replace Image (Max Size 10MB)</small></a>
-      {{/file-upload}}
-    {{/unless}} --}}
     {{#if model.image}}
       <img src="{{model.image}}" class='img-responsive'>
     {{else}}
