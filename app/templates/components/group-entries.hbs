@@ -43,6 +43,7 @@
   {{#bs-button type='success' disabled=model.isError onClick=(action (mut createEntryModal) true)}}Create New Entry{{/bs-button}}
   </p>
 </div>
+<div>
   {{#bs-modal
     open=createEntryModal
     onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
@@ -85,3 +86,4 @@
       {{/bs-button}}
     {{/modal.footer}}
   {{/bs-modal}}
+</div>
