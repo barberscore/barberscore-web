@@ -1,0 +1,39 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut openSessionModal) true)
+}}
+  Open Session
+{{/bs-button}}
+{{#bs-modal
+  open=openSessionModal
+  onHidden=(pipe-action (action (mut openSessionModal) false) (action (mut openSessionModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Open Session</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      Opening the Session allows Groups to enter the contest. If this Session is by Invitation-Only then you will need to add Entries manually.  Otherwise, clicking open will send an email to all Active groups within the District indicating they can now enter the contest.
+    </p>
+    <p>
+      <strong>Important:</strong> Be sure you have selected all the awards that may be given out during this session prior to opening it.  You won't be able to change this later without significant effort.  See the "Contests" tab in the session manager to include awards in this session.
+    </p>
+    {{#if openSessionModalError}}
+    <p class='text-danger'>
+      Could not Open Session.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform openSession)}}
+      {{#if openSession.isRunning}}
+        Opening {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Open Session
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

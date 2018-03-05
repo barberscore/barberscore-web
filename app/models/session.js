@@ -27,6 +27,7 @@ export default Model.extend({
   permissions: DS.attr(),
 
   publish: memberAction({path: 'publish', type: 'post'}),
+  build: memberAction({path: 'build', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
