@@ -9,7 +9,7 @@ export default Controller.extend({
     let round = yield this.model.start({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('round', round);
+    this.get('store').pushPayload('round', round);
     this.transitionToRoute('dashboard.scoring-manager.round.appearances');
     this.get('flashMessages').success("Started!");
   }).drop(),
@@ -17,14 +17,14 @@ export default Controller.extend({
     let round = yield this.model.review({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('round', round);
+    this.get('store').pushPayload('round', round);
     this.get('flashMessages').success("Reviewed!");
   }).drop(),
   finishRound: task(function *() {
     let round = yield this.model.finish({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('round', round);
+    this.get('store').pushPayload('round', round);
     this.get('flashMessages').success("Finished!");
   }).drop(),
 });

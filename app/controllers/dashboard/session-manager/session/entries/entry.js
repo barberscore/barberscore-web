@@ -15,7 +15,7 @@ export default Controller.extend({
       let entry = yield this.model.submit({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('entry', entry);
+      this.get('store').pushPayload('entry', entry);
       this.set('submitEntryModal', false);
       this.set('submitEntryModalError', false);
       this.get('flashMessages').success("Submitted!");
@@ -30,7 +30,7 @@ export default Controller.extend({
       let entry = yield this.model.approve({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('entry', entry);
+      this.get('store').pushPayload('entry', entry);
       this.set('approveEntryModal', false);
       this.set('approveEntryModalError', false);
       this.get('flashMessages').success("Approved!");
@@ -60,7 +60,7 @@ export default Controller.extend({
       let entry = yield this.model.withdraw({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('entry', entry);
+      this.get('store').pushPayload('entry', entry);
       this.set('withdrawEntryModal', false);
       this.set('withdrawEntryModalError', false);
       this.get('flashMessages').success("Withdrawn!");
@@ -75,7 +75,7 @@ export default Controller.extend({
       let entry = yield this.model.scratch({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('entry', entry);
+      this.get('store').pushPayload('entry', entry);
       this.set('scratchEntryModal', false);
       this.set('scratchEntryModalError', false);
       this.get('flashMessages').success("Scratched!");

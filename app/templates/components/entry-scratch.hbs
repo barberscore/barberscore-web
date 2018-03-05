@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isError
+  onClick=(action (mut scratchEntryModal) true)
+}}
+  Scratch Entry
+{{/bs-button}}
+{{#bs-modal
+  open=scratchEntryModal
+  onHidden=(pipe-action (action (mut scratchEntryModal) false) (action (mut scratchEntryModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Scratch Entry</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This scratches the previously approved contest Entry.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ and is not guaranteed.
+    </p>
+    {{#if scratchEntryModalError}}
+    <p class='text-danger'>
+      Could not scratch entry.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' onClick=(perform scratchEntry)}}
+      {{#if scratchEntry.isRunning}}
+        Scratching {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Scratch Entry
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

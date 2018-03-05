@@ -15,7 +15,7 @@ export default Controller.extend({
       let session = yield this.model.close({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('session', session);
+      this.get('store').pushPayload('session', session);
       this.set('closeSessionModal', false);
       this.set('closeSessionModalError', false);
       this.get('flashMessages').success("Closed!");
@@ -30,7 +30,7 @@ export default Controller.extend({
       let session = yield this.model.verify({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('session', session);
+      this.get('store').pushPayload('session', session);
       this.set('verifySessionModal', false);
       this.set('verifySessionModalError', false);
       this.get('flashMessages').success("Verified!");
@@ -45,7 +45,7 @@ export default Controller.extend({
       let session = yield this.model.start({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('session', session);
+      this.get('store').pushPayload('session', session);
       this.set('startSessionModal', false);
       this.set('startSessionModalError', false);
       this.get('flashMessages').success("Started!");

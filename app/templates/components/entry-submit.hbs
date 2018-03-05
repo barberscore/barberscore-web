@@ -1,0 +1,49 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut submitEntryModal) true)
+}}
+  Submit Entry
+{{/bs-button}}
+{{#bs-modal
+  open=submitEntryModal
+  onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Submit Entry</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will formally submit your entry into the contest.
+    </p>
+    <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
+        <ul class='list-styled'>
+          <li>You agree to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which may be made of you and other quartets and/or groups during the contest.  You agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. You agree that the Society may record your portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of your portion of the contest on recordings to be manufactured and sold by the Society.</li>
+          <li>You certify that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
+          <li>You certify that you have complied with copyright law in the acquisition, arranging, and learning of our contest songs/arrangements and will perform only legally cleared songs in the contest. You understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
+          <li>You certify that you will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
+        </ul>
+    {{#if submitEntryModalError}}
+      <p class='text-danger'>
+        Could not submit entry.  Please check to ensure:
+        <ul>
+          <li>Your group is Active.</li>
+          <li>You haven't selected an award while in Score/Eval-Only.</li>
+          <li>If a chorus, you've entered your Director(s) and estimated Participants-on-Stage.</li>
+        </ul>
+        If you've done all this and still can't submit, please contact support at {{customer-support}}.
+      </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' onClick=(perform submitEntry)}}
+      {{#if submitEntry.isRunning}}
+        Submitting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Submit Entry
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

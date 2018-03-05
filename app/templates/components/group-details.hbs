@@ -1,0 +1,39 @@
+<div class='col-md-6'>
+  <section>
+    {{#if model.image}}
+      <img src="{{model.image}}" class='img-responsive'>
+    {{else}}
+      <img src='/assets/no_image_available.jpg' class='img-responsive'>
+    {{/if}}
+    <p>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
+        Want to Add/Replace/Remove your image?  Click here.
+      {{/bs-button}}
+    </p>
+      {{#bs-collapse collapsed=customCollapsed}}
+        <p>
+          To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
+        </p>
+      {{/bs-collapse}}
+    {{#bs-form
+      model=model
+      formLayout='vertical'
+      as |form|
+    }}
+      {{form.element controlType='textarea' rows=6 disabled=isDisabled placeholder='Description - Write a few words to describe your group, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
+      {{form.element controlType='text' disabled=true label='District' placeholder='N/A' property='district'}}
+      {{form.element controlType='text' disabled=true label='Division' placeholder='N/A' property='division'}}
+      {{form.element controlType='text' disabled=true label='Chapter' placeholder='N/A' property='chapter'}}
+      {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
+      {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
+      {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
+      {{form.element controlType='text' disabled=true placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}}
+      {{form.element controlType='text' disabled=true placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}}
+    {{/bs-form}}
+  </section>
+  <section>
+    <p>
+      <strong>Note:</strong>  You may only edit your picture and description.  To make changes to other fields please do so in the new <a href='https://members.barbershop.org'>Member Center</a>; they will be updated here generally within 24 hours.
+    </p>
+  </section>
+</div>

@@ -85,34 +85,34 @@ export default Controller.extend({
     let appearance = yield this.model.scratch({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('appearance', appearance);
+    this.get('store').pushPayload('appearance', appearance);
     this.get('flashMessages').success("Scratched!");
   }).drop(),
   startAppearance: task(function *() {
     let appearance = yield this.model.start({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('appearance', appearance);
+    this.get('store').pushPayload('appearance', appearance);
     this.get('flashMessages').success("Started!");
   }).drop(),
   finishAppearance: task(function *() {
     let appearance = yield this.model.finish({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('appearance', appearance);
+    this.get('store').pushPayload('appearance', appearance);
     this.get('flashMessages').success("Finished!");
   }).drop(),
   confirmAppearance: task(function *() {
     let appearance = yield this.model.confirm({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('appearance', appearance);
+    this.get('store').pushPayload('appearance', appearance);
     this.get('flashMessages').success("Confirmed!");
   }).drop(),
   printVar: task(function *() {
     try {
       let appearance = yield this.model.printVar();
-      this.store.pushPayload('appearance', appearance);
+      this.get('store').pushPayload('appearance', appearance);
       this.get('flashMessages').success("Activated!");
     } catch(e) {
       this.get('flashMessages').danger("Please check that all fields are entered!");

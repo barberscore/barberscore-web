@@ -1,5 +1,4 @@
-import { alias, gt, lt, mapBy, sort, sum } from '@ember/object/computed';
-import { computed } from '@ember/object';
+import { alias, gt, lt, mapBy, sort } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';

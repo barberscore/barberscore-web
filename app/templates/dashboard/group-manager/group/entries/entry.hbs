@@ -65,188 +65,20 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'Built')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Submit Entry{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut deleteEntryModal) true)}}Delete Entry{{/bs-button}}</li>
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-delete model=model}}</li>
           {{else if (eq model.status 'Invited')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Accept Entry{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut withdrawEntryModal) true)}}Withdraw Entry{{/bs-button}}</li>
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Submitted')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut submitEntryModal) true)}}Re-Submit Entry{{/bs-button}}</li>
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-scratch model=model}}</li>
           {{else if (eq model.status 'Approved')}}
-            <li>{{#bs-button type='danger' disabled=model.isError onClick=(action (mut scratchEntryModal) true)}}Scratch Entry{{/bs-button}}</li>
+            <li>{{entry-scratch model=model}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>
-</section>
-<section>
-  {{#bs-modal
-    open=deleteEntryModal
-    onHidden=(pipe-action (action (mut deleteEntryModal) false) (action (mut deleteEntryModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Delete Entry</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This will delete the entry.  This should generally be used for errors or other cases where the entry should never have existed in the first place.)
-      </p>
-      {{#if deleteEntryModalError}}
-      <p class='text-danger'>
-        Could not delete entry.  Please contact support.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='danger' onClick=(perform deleteEntry)}}
-        {{#if deleteEntry.isRunning}}
-          Deleting {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Delete Entry
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=submitEntryModal
-    onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Submit Entry</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This will formally submit your entry into the contest.
-      </p>
-      <p><strong>Note:</strong> By entering this contest you are agreeing/certifying to the following:</p>
-          <ul class='list-styled'>
-            <li>You agree to the public exhibition on one or more occasions of motion picture films or a television program or programs using live broadcasts, video tapes, or films, or a combination of two or more of these, which may be made of you and other quartets and/or groups during the contest.  You agree that all revenues received by the Society, or any of its affiliates, for same may be retained by the Society or affiliate. You agree that the Society may record your portion of the contest for Society archives and Society use. Included in this agreement is permission to the Society to use available segments of your portion of the contest on recordings to be manufactured and sold by the Society.</li>
-            <li>You certify that each member of the quartet or group (including director) holds, or shall hold, a convention registration for said contest.</li>
-            <li>You certify that you have complied with copyright law in the acquisition, arranging, and learning of our contest songs/arrangements and will perform only legally cleared songs in the contest. You understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
-            <li>You certify that you will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
-          </ul>
-      {{#if submitEntryModalError}}
-        <p class='text-danger'>
-          Could not submit entry.  Please check to ensure:
-          <ul>
-            <li>Your group is Active.</li>
-            <li>You haven't selected an award while in Score/Eval-Only.</li>
-            <li>If a chorus, you've entered your Director(s) and estimated Participants-on-Stage.</li>
-          </ul>
-          If you've done all this and still can't submit, please contact support at {{customer-support}}.
-        </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform submitEntry)}}
-        {{#if submitEntry.isRunning}}
-          Submitting {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Submit Entry
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=withdrawEntryModal
-    onHidden=(pipe-action (action (mut withdrawEntryModal) false) (action (mut withdrawEntryModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Withdraw Entry</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This will formally withdraw your entry in this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
-      </p>
-      {{#if submitEntryModalError}}
-      <p class='text-danger'>
-        Could not withdraw entry.  Please contact support.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform withdrawEntry)}}
-        {{#if withdrawEntry.isRunning}}
-          Declining {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Withdraw Entry
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=approveEntryModal
-    onHidden=(pipe-action (action (mut approveEntryModal) false) (action (mut approveEntryModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Approve Entry</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This approves the submission for the group.  They will receive an email notifying them that they are all set for the contest.
-      </p>
-      {{#if approveEntryModalError}}
-      <p class='text-danger'>
-        Could not approve entry.  Please contact support.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="success"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform approveEntry)}}
-        {{#if approveEntry.isRunning}}
-          Approving {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Approve Entry
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=scratchEntryModal
-    onHidden=(pipe-action (action (mut scratchEntryModal) false) (action (mut scratchEntryModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Scratch Entry</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This scratches the previously approved contest Entry.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ and is not guaranteed.
-      </p>
-      {{#if scratchEntryModalError}}
-      <p class='text-danger'>
-        Could not scratch entry.  Please contact support.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="danger"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' onClick=(perform scratchEntry)}}
-        {{#if scratchEntry.isRunning}}
-          Scratching {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Scratch Entry
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
 </section>
