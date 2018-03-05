@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import Controller from '@ember/controller';
 import { task, timeout } from 'ember-concurrency';
@@ -18,16 +17,6 @@ export default Controller.extend({
     'model.session.contests',
     'contestsSortProperties'
   ),
-  isPrevDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
@@ -40,16 +29,4 @@ export default Controller.extend({
       })
     }
   }).restartable(),
-  actions: {
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.scoring-manager.round.contests.contest', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.scoring-manager.round.contests.contest', newCur);
-    },
-  },
 });

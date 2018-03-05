@@ -1,5 +1,5 @@
 import { inject as service } from '@ember/service';
-import { not, sort, filterBy, equal } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import Component from '@ember/component';
 
@@ -8,13 +8,6 @@ export default Component.extend({
   flashMessages: service(),
   isDisabled: not(
     'model.permissions.write',
-  ),
-  isNew: equal(
-    'model.status',
-    'New',
-  ),
-  isOpened: not(
-    'isNew',
   ),
   sortedContestsProperties: [
     'groupKindSort',

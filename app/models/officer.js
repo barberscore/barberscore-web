@@ -49,6 +49,4 @@ export default Model.extend({
   officeKind: alias('office.kind'),
   officeName: alias('office.name'),
   groupName: alias('group.name'),
-  isOld: not('isNew'),
-
 });

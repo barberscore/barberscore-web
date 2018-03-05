@@ -10,7 +10,6 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedRepertoriesProperties: [
-    'isNew',
     'nomen',
   ],
   sortedRepertories: sort(

@@ -3,7 +3,7 @@
   disabled=model.isError
   onClick=(action (mut submitEntryModal) true)
 }}
-  Submit Entry
+  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Submitted'))}}Re-Submit Entry{{else}}Submit Entry{{/if}}
 {{/bs-button}}
 {{#bs-modal
   open=submitEntryModal

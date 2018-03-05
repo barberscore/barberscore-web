@@ -25,16 +25,4 @@ export default Controller.extend({
       this.set('deletePanelistModalError', true);
     }
   }).drop(),
-  actions: {
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.scoring-manager.round.panelists.panelist', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.scoring-manager.round.panelists.panelist', newCur);
-    },
-  },
 });

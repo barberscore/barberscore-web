@@ -1,7 +1,5 @@
-import { computed } from '@ember/object';
-import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import Controller, { inject as controller } from '@ember/controller';
+import Controller from '@ember/controller';
 import { task } from 'ember-concurrency';
 
 export default Controller.extend({
@@ -53,28 +51,4 @@ export default Controller.extend({
       this.set('startSessionModalError', true);
     }
   }).drop(),
-  sessionManager: controller('dashboard.session-manager.index'),
-  sortedItems: alias('sessionManager.sortedSessions'),
-  isPrevDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.firstObject');
-  }),
-  isNextDisabled: computed(
-    'model',
-    'sortedItems', function() {
-    return this.model == this.get('sortedItems.lastObject');
-  }),
-  actions: {
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.session-manager.session.details', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.session-manager.session.details', newCur);
-    },
-  }
 });

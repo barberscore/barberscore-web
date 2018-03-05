@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  store: service(),
   flashMessages: service(),
   scratchEntryModal: false,
   scratchEntryModalError: false,
@@ -16,6 +17,7 @@ export default Component.extend({
       this.set('scratchEntryModalError', false);
       this.get('flashMessages').success("Scratched!");
     } catch(e) {
+      console.log(e);
       this.set('scratchEntryModalError', true);
     }
   }).drop(),

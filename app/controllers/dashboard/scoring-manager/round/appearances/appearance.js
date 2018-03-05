@@ -119,16 +119,6 @@ export default Controller.extend({
     }
   }).drop(),
   actions: {
-    previousItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur-1);
-      this.transitionToRoute('dashboard.scoring-manager.round.appearances.appearance', newCur);
-    },
-    nextItem(cursor) {
-      let nowCur = this.get('sortedItems').indexOf(cursor);
-      let newCur = this.get('sortedItems').objectAt(nowCur+1);
-      this.transitionToRoute('dashboard.scoring-manager.round.appearances.appearance', newCur);
-    },
     saveSong(song) {
       song.save()
       .then(() => {

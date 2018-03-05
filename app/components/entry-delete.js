@@ -3,18 +3,20 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  router: service(),
+  store: service(),
   flashMessages: service(),
   deleteEntryModal: false,
   deleteEntryModalError: false,
   deleteEntry: task(function *() {
     try {
-      yield this.model.destroyRecord({
+      yield this.get('model').destroyRecord({
         'by': this.get('currentUser.user.id'),
       });
       this.set('deleteEntryModal', false);
       this.set('deleteEntryModalError', false);
       this.get('flashMessages').success("Deleted!");
-      this.transitionToRoute('dashboard.group-manager.group.entries.index');
+      this.get('router').transitionTo('dashboard.group-manager.group.entries.index');
     } catch(e) {
       this.set('deleteEntryModalError', true);
     }
