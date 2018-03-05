@@ -1,10 +1,4 @@
-import {
-  alias,
-  not,
-  filterBy,
-  sort,
-  mapBy
-} from '@ember/object/computed';
+import { alias, not, filterBy, sort } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -139,20 +133,6 @@ export default Model.extend({
     }
   ),
 
-  ranks: computed('entries.@each.totPoints', function() {
-    let lastScore = null;
-    let lastRank = null;
-    return this.get('entries').sortBy('totPoints').reverse().map((competitor, index) => {
-       let score = competitor.get('totPoints');
-       let rank = score === lastScore ? lastRank : index+1;
-       lastScore = score;
-       lastRank = rank;
-       return {
-           score: score,
-           rank: rank
-       };
-    });
-  }),
   currentAppearancesSort: [
     'num',
   ],
@@ -160,18 +140,5 @@ export default Model.extend({
     'current.appearances',
     'currentAppearancesSort'
   ),
-  conventionName: computed(
-    'convention.name',
-    function() {
-      return this.get('convention.name');
-    }
-  ),
-  awardsArray: computed(
-    'contests.@each.award', function() {
-      return this.get('contests');
-  }),
-  selectedAwards: mapBy(
-    'awardsArray',
-    'award.id'
-  ),
+  conventionName: alias('convention.name'),
 });
