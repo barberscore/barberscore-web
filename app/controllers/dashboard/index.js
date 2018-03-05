@@ -30,9 +30,4 @@ export default Controller.extend({
   isChartManagerDisabled: not(
     'currentUser.user.isChartManager'
   ),
-  actions: {
-    // search() {
-    //   console.log(this.get('algolia'))
-    // }
-  }
 });

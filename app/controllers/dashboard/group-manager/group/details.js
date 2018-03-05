@@ -1,7 +1,6 @@
 import { not } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Controller from '@ember/controller';
-// import config from '../../../../config/environment';
 import { task, timeout } from 'ember-concurrency';
 
 export default Controller.extend({
@@ -10,18 +9,6 @@ export default Controller.extend({
     'model.permissions.write',
   ),
   customCollapsed: true,
-  // uploadPhoto: task(function * (file) {
-  //   try {
-  //     const host = config.APP.API_HOST;
-  //     const namespace = config.APP.API_NAMESPACE;
-  //     const target = this.get('model.id');
-  //     let response = yield file.upload(`${host}/${namespace}/group/${target}/img`);
-  //     this.set('model.img', response.body.image);
-  //     this.get('flashMessages').success("Saved!");
-  //   } catch (e) {
-  //     this.get('flashMessages').danger("Upload Failed!");
-  //   }
-  // }).drop(),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);

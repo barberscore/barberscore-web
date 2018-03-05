@@ -4,38 +4,33 @@
       The Session can only be Drawn from the "Closed" or "Verified" state.
     </h4>
   {{else if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
-    <div class='row'>
-      <div class='col-md-12'>
-        <table class='table'>
-          <thead>
-            <tr>
-              <th class='col-md-1'>OA</th>
-              <th class='col-md-4'>Name</th>
-              <th class='col-md-1'>Status</th>
-              {{!-- <th class='col-md-1'>Rearrange</th> --}}
-            </tr>
-          </thead>
-          {{!-- <tbody> --}}
-            {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-              {{#each sortedEntries as |item|}}
-                {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
-                  <td>
-                    {{item.draw}}
-                  </td>
-                  <td>
-                    {{item.group.name}}
-                  </td>
-                  <td>{{item.status}}</td>
-                {{/sortable-item}}
-              {{else}}
-                <tr>
-                  <td>(No entries.)</td>
-                </tr>
-              {{/each}}
-            {{/sortable-group}}
-          {{!-- </tbody> --}}
-        </table>
-      </div>
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr>
+            <th class='col-md-1'>OA</th>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-1'>Status</th>
+          </tr>
+        </thead>
+          {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+            {{#each sortedEntries as |item|}}
+              {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
+                <td>
+                  {{item.draw}}
+                </td>
+                <td>
+                  {{item.group.name}}
+                </td>
+                <td>{{item.status}}</td>
+              {{/sortable-item}}
+            {{else}}
+              <tr>
+                <td>(No entries.)</td>
+              </tr>
+            {{/each}}
+          {{/sortable-group}}
+      </table>
     </div>
   {{else}}
     <div class='row'>

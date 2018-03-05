@@ -2,8 +2,32 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <ul class='list-inline pull-right'>
-        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+        {{#if (has-previous model sortedContestants)}}
+          <li>
+            {{#bs-button onClick=(action (mut model) (previous model sortedContestants))}}
+             Previous
+            {{/bs-button}}
+          </li>
+        {{else}}
+          <li>
+            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedContestants))}}
+               Previous
+            {{/bs-button}}
+          </li>
+        {{/if}}
+        {{#if (has-next model sortedContestants)}}
+          <li>
+            {{#bs-button onClick=(action (mut model) (next model sortedContestants))}}
+              Next
+            {{/bs-button}}
+          </li>
+        {{else}}
+          <li>
+            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedContestants))}}
+              Next
+            {{/bs-button}}
+          </li>
+        {{/if}}
       </ul>
       <h4>
         {{model.award.name}}

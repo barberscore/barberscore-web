@@ -40,9 +40,6 @@ export default Model.extend({
   repertories: DS.hasMany('repertory', {async: true}),
   permissions: DS.attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
-
   repertoriesCount: alias('repertories.length'),
 
   activeMembers: filterBy(
@@ -53,17 +50,11 @@ export default Model.extend({
 
   activesCount: alias('activeMembers.length'),
 
-  isActive: equal(
-    'status',
-    'Active',
-  ),
-
   genderOptions: [
     'Male',
     'Female',
     'Mixed',
   ],
-
   genderSort: computed(
     'gender',
     'genderOptions',
@@ -76,11 +67,6 @@ export default Model.extend({
     'Active',
     'Inactive',
   ],
-
-  isBhs: notEmpty(
-    'bhsId',
-  ),
-
   statusSort: computed(
     'status',
     'statusOptions',

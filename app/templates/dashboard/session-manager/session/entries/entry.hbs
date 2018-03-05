@@ -1,33 +1,29 @@
 <section id="entry-detail">
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
-      {{!-- <ul class='list-inline pull-right'>
-        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
-        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
-      </ul> --}}
       <ul class='list-inline pull-right'>
-        {{#if (has-previous model ents)}}
+        {{#if (has-previous model sortedEntries)}}
           <li>
-            {{#bs-button onClick=(action (mut model) (previous model ents))}}
+            {{#bs-button onClick=(action (mut model) (previous model sortedEntries))}}
              Previous
             {{/bs-button}}
           </li>
         {{else}}
           <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (previous model ents))}}
+            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedEntries))}}
                Previous
             {{/bs-button}}
           </li>
         {{/if}}
-        {{#if (has-next model ents)}}
+        {{#if (has-next model sortedEntries)}}
           <li>
-            {{#bs-button onClick=(action (mut model) (next model ents))}}
+            {{#bs-button onClick=(action (mut model) (next model sortedEntries))}}
               Next
             {{/bs-button}}
           </li>
         {{else}}
           <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (next model ents))}}
+            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedEntries))}}
               Next
             {{/bs-button}}
           </li>

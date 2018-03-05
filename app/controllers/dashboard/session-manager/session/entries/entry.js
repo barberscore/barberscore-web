@@ -98,7 +98,7 @@ export default Controller.extend({
   sortedEntriesProperties: [
     'nomen',
   ],
-  ents: sort(
+  sortedEntries: sort(
     'model.session.entries',
     'sortedEntriesProperties',
   ),
