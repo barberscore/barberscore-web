@@ -1,14 +1,5 @@
-// import {
-//   not,
-//   filterBy,
-//   alias,
-//   mapBy,
-//   sum
-// } from '@ember/object/computed';
-// import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
-// import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),

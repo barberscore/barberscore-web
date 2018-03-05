@@ -1,10 +1,4 @@
-import {
-  not,
-  filterBy,
-  alias,
-  mapBy,
-  sum
-} from '@ember/object/computed';
+import { not, filterBy, alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -77,118 +71,9 @@ export default Model.extend({
       return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
-
-
   allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
   activeMembersCount: alias('group.activeMembers.length'),
   repertoryCount: alias('group.repertories.length'),
-  tp: mapBy(
-    'appearances',
-    'totPoints'
-  ),
-  tc: mapBy(
-    'appearances',
-    'stc'
-  ),
-  totPointsCP: sum(
-    'tp'
-  ),
-  stc: sum(
-    'tc'
-  ),
-  totScoreCP: computed(
-    'totPoints',
-    'stc',
-    function() {
-      return (this.get('totPoints') / this.get('stc')).toFixed(1);
-    }
-  ),
-  mp: mapBy(
-    'appearances',
-    'musPoints'
-  ),
-  mc: mapBy(
-    'appearances',
-    'smc'
-  ),
-  musPointsCP: sum(
-    'mp'
-  ),
-  smc: sum(
-    'mc'
-  ),
-  musScoreCP: computed(
-    'musPoints',
-    'smc',
-    function() {
-      return (this.get('musPoints') / this.get('smc')).toFixed(1);
-    }
-  ),
-  pp: mapBy(
-    'appearances',
-    'perPoints'
-  ),
-  pc: mapBy(
-    'appearances',
-    'spc'
-  ),
-  perPointsCP: sum(
-    'pp'
-  ),
-  spc: sum(
-    'pc'
-  ),
-  perScoreCP: computed(
-    'perPoints',
-    'spc',
-    function() {
-      return (this.get('perPoints') / this.get('spc')).toFixed(1);
-    }
-  ),
-  sp: mapBy(
-    'appearances',
-    'sngPoints'
-  ),
-  sc: mapBy(
-    'appearances',
-    'ssc'
-  ),
-  sngPointsCP: sum(
-    'sp'
-  ),
-  ssc: sum(
-    'sc'
-  ),
-  sngScoreCP: computed(
-    'sngPoints',
-    'ssc',
-    function() {
-      return (this.get('sngPoints') / this.get('ssc')).toFixed(1);
-    }
-  ),
-  totRank: computed(
-    'session.ranks.@each.{score,rank}',
-    'totPoints',
-    function() {
-      return this.get('session.ranks').findBy('score', this.get('totPoints')).rank || null;
-    }
-  ),
-  contestsArray: computed(
-    'contestants.@each.contest', function() {
-      return this.get('contestants');
-  }),
-  membersArray: computed(
-    'participants.@each.member', function() {
-      return this.get('participants');
-  }),
-  selectedContests: mapBy(
-    'contestsArray',
-    'contest.id'
-  ),
-  selectedMembers: mapBy(
-    'membersArray',
-    'member.id'
-  ),
   conventionStatus: alias('session.convention.status')
 });
