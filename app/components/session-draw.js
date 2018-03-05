@@ -1,9 +1,8 @@
+import Component from '@ember/component';
 import { sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import Controller from '@ember/controller';
-// import { task, timeout } from 'ember-concurrency';
 
-export default Controller.extend({
+export default Component.extend({
   flashMessages: service(),
   entrySortProperties: [
     'draw:asc',

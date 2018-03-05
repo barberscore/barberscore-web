@@ -1,0 +1,156 @@
+<section id="entry-detail">
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <ul class='list-inline pull-right'>
+        {{#if (has-previous model sortedEntries)}}
+          <li>
+            {{#bs-button onClick=(action (mut model) (previous model sortedEntries))}}
+             Previous
+            {{/bs-button}}
+          </li>
+        {{else}}
+          <li>
+            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedEntries))}}
+               Previous
+            {{/bs-button}}
+          </li>
+        {{/if}}
+        {{#if (has-next model sortedEntries)}}
+          <li>
+            {{#bs-button onClick=(action (mut model) (next model sortedEntries))}}
+              Next
+            {{/bs-button}}
+          </li>
+        {{else}}
+          <li>
+            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedEntries))}}
+              Next
+            {{/bs-button}}
+          </li>
+        {{/if}}
+      </ul>
+      <h4>
+        {{model.group.name}}&nbsp;({{model.representing}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        <p>
+          Preferences
+        </p>
+        <p>
+          {{entry-preferences model=model}}
+        </p>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Contests Entered: {{model.includedContestantsCount}}
+        </p>
+        <p>
+          {{entry-contestants model=model}}
+        </p>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Group Members: {{model.group.activesCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+            {{if membersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=membersCollapsed}}
+          {{group-members model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <p>
+          Repertory Songs: {{model.group.repertoriesCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoriesCollapsed' this)}}
+            {{if repertoriesCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=repertoriesCollapsed}}
+          {{group-repertories model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <div class='row'>
+          <div class='col-md-6'>
+            <p>
+              Additional Notes:
+            </p>
+            <p>
+              {{entry-description model=model}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <hr>
+      <section>
+        <div class='table-responsive'>
+          <p>
+            Activity
+          </p>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Transition</th>
+                <th>By</th>
+                <th>Timestamp</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each model.logs as |log|}}
+                <tr>
+                  {{#if log.isLoading}}
+                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{log.transition}}</td>
+                    <td>{{log.by}}</td>
+                    <td>{{moment-format log.timestamp 'LLL'}}</td>
+                  {{/if}}
+                </tr>
+              {{else}}
+                <tr>
+                  <td>(No activity logs.)</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+          {{else if (eq model.status 'Built')}}
+            {{#if model.session.isInvitational}}
+              <li>{{entry-invite model=model}}</li>
+            {{else}}
+              <li>{{entry-approve model=model}}</li>
+            {{/if}}
+            <li>{{entry-delete model=model}}</li>
+          {{else if (eq model.status 'Invited')}}
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Submitted')}}
+            <li>{{entry-approve model=model}}</li>
+            <li>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Approved')}}
+            <li>{{entry-approve model=model}}</li>
+            <li>{{entry-scratch model=model}}</li>
+          {{else if (eq model.status 'Withdrawn')}}
+            <li>{{entry-approve model=model}}</li>
+          {{else if (eq model.status 'Scratched')}}
+            <li>{{entry-approve model=model}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

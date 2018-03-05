@@ -1,7 +1,7 @@
+import Component from '@ember/component';
 import { sort } from '@ember/object/computed';
-import Controller from '@ember/controller';
 
-export default Controller.extend({
+export default Component.extend({
   sortProperties: [
     'statusSort:asc',
     'groupKindSort:asc',
@@ -11,9 +11,4 @@ export default Controller.extend({
     'model',
     'sortProperties'
   ),
-  actions: {
-    sortBy(sortProperties) {
-      this.set('sortProperties', [sortProperties]);
-    },
-  }
 });

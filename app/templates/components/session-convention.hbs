@@ -1,0 +1,85 @@
+<section>
+  <p>Convention Details</p>
+  <div>
+    <ul class='list-unstyled'>
+      <li><strong>{{model.convention.venue.name}}</strong></li>
+      <li>{{model.convention.venue.city}}, {{model.convention.venue.state}}</li>
+      <li>Airport(s): {{model.convention.venue.airport}}</li>
+      <li>Timezone: {{model.convention.venue.timezone}}</li>
+    </ul>
+  </div>
+  <hr>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>
+        The Open and Close dates refer to the contest entry period.  The Start and End dates refer to the contest itself.
+      </caption>
+      <thead>
+        <tr>
+          <th>Event</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Open Date</td>
+          <td>{{moment-format model.convention.openDate 'LL'}}</td>
+        </tr>
+        <tr>
+          <td>Close Date</td>
+          <td>{{moment-format model.convention.closeDate 'LL'}}</td>
+        </tr>
+        <tr>
+          <td>Start Date</td>
+          <td>{{moment-format model.convention.startDate 'LL'}}</td>
+        </tr>
+        <tr>
+          <td>End Date</td>
+          <td>{{moment-format model.convention.endDate 'LL'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<hr>
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table'>
+        <caption>
+          These are the current Convention Assignments.  Please contact Chris Buechler and David Mills if any of these need to be updated.
+        </caption>
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>Category</th>
+            <th>Kind</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAssignments as |assignment|}}
+            <tr>
+              <td>
+                {{assignment.person.commonName}}
+              </td>
+              <td>
+                {{assignment.category}}
+              </td>
+              <td>
+                {{assignment.kind}}
+              </td>
+              <td>
+                {{assignment.status}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>(No assignments.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

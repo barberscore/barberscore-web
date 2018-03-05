@@ -2,33 +2,5 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Current Sessions</caption>
-      <thead>
-        <tr>
-          <th {{action 'sortBy' 'nomen'}}>Name</th>
-          <th {{action 'sortBy' 'group'}}>Organization</th>
-          <th {{action 'sortBy' 'statusSort'}}>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedSessions as |session|}}
-          <tr>
-            <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.nomen}}{{/link-to}}</td>
-            {{#if session.groupNomen.isLoading}}
-              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>{{session.groupNomen}}</td>
-            {{/if}}
-            <td>{{session.status}}</td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>No active Sessions currently assigned to you.</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+  {{session-index model=model}}
 </section>
