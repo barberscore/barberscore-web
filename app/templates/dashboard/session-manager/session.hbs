@@ -45,108 +45,15 @@
           {{else if (eq model.status 'Built')}}
             <li>{{session-open model=model}}</li>
           {{else if (eq model.status 'Opened')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut closeSessionModal) true)}}Close Session{{/bs-button}}</li>
+            <li>{{session-close model=model}}</li>
           {{else if (eq model.status 'Closed')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Verify Session{{/bs-button}}</li>
+            <li>{{session-verify model=model}}</li>
           {{else if (eq model.status 'Verified')}}
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut verifySessionModal) true)}}Re-Verify Session{{/bs-button}}</li>
-            <li>{{#bs-button type='primary' disabled=model.isError onClick=(action (mut startSessionModal) true)}}Start Session{{/bs-button}}</li>
+            <li>{{session-verify model=model}}</li>
+            <li>{{session-start model=model}}</li>
           {{/if}}
         </ul>
       {{/if}}
     </div>
   </div>
-</section>
-<section>
-  {{#bs-modal
-    open=closeSessionModal
-    onHidden=(pipe-action (action (mut closeSessionModal) false) (action (mut closeSessionModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Close Session</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        Prior to closing this session, ensure that all entries you wish to be included in the draw are now in the "Approved" status. This also closes the session to new entries (in the case of an "Open" session) and sets the initial draw randomly.  You will still be able to manually add entries or re-sort the draw.  Also, this is considered a "private" action; the draw and list of entries will not be made public until the next action (Verify) is taken.
-      </p>
-      {{#if closeSessionModalError}}
-      <p class='text-danger'>
-        Could not Close Session.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform closeSession)}}
-        {{#if closeSession.isRunning}}
-          Closing {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Close Session
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=verifySessionModal
-    onHidden=(pipe-action (action (mut verifySessionModal) false) (action (mut verifySessionModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Verify Session</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This action verifies a closed session and produces three XLSX files (which will be exposed via links on the Details tab). You can still manually add entries and/or rearrange the draw following verification if needed. If any changes are made, you should click "Re-Verify Session" to re-create those XLSX files.
-      </p>
-      {{#if verifySessionModalError}}
-      <p class='text-danger'>
-        Could not Verify Session.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform verifySession)}}
-        {{#if verifySession.isRunning}}
-          Verifying {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Verify Session
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</section>
-<section>
-  {{#bs-modal
-    open=startSessionModal
-    onHidden=(pipe-action (action (mut startSessionModal) false) (action (mut startSessionModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>Start Session</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        This officially starts the session and represents the official handoff from the DRCJ to the Contest Administrator.  After the session is started it is put into a locked down state; you won't be able to add, scratch, re-arrange the draw or take any actions.  Any changes subsequent to a session Start must be handled by the CA.
-      </p>
-      {{#if startSessionModalError}}
-      <p class='text-danger'>
-        Could not Start Session.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform startSession)}}
-        {{#if startSession.isRunning}}
-          Starting {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Start Session
-        {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
 </section>

@@ -6,19 +6,19 @@ export default Component.extend({
   currentUser: service(),
   store: service(),
   flashMessages: service(),
-  buildSessionModal: false,
-  buildSessionModalError: false,
-  buildSession: task(function *() {
+  startSessionModal: false,
+  startSessionModalError: false,
+  startSession: task(function *() {
     try {
-      let session = yield this.model.build({
+      let session = yield this.model.start({
         'by': this.get('currentUser.user.id')
       });
       this.get('store').pushPayload('session', session);
-      this.set('buildSessionModal', false);
-      this.set('buildSessionModalError', false);
-      this.get('flashMessages').success("Built!");
+      this.set('startSessionModal', false);
+      this.set('startSessionModalError', false);
+      this.get('flashMessages').success("Started!");
     } catch(e) {
-      this.set('buildSessionModalError', true);
+      this.set('startSessionModalError', true);
     }
   }).drop(),
 });
