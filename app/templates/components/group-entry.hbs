@@ -1,0 +1,86 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.nomen}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <section>
+        <p>
+          Preferences
+        </p>
+        <p>
+          {{entry-preferences model=model}}
+        </p>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Contests Entered: {{model.includedContestantsCount}}
+        </p>
+        <p>
+          {{entry-contestants model=model}}
+        </p>
+      </section>
+      <hr>
+      <section>
+        <p>
+          Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+            {{if membersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=membersCollapsed}}
+          {{group-members model=model.group}}
+          <p>
+            <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
+          </p>
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+          <p>
+            Song Repertory: {{model.repertoryCount}} &nbsp;&nbsp;
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoryCollapsed' this)}}
+            {{if repertoryCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=repertoryCollapsed}}
+          {{group-repertories model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <p>
+          Additional Notes:
+        </p>
+        <div class='col-md-6'>
+          {{entry-description model=model}}
+        </div>
+      </section>
+    </div>
+
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'Built')}}
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-delete model=model}}</li>
+          {{else if (eq model.status 'Invited')}}
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Withdrawn')}}
+            <li>{{entry-submit model=model}}</li>
+          {{else if (eq model.status 'Submitted')}}
+            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Approved')}}
+            <li>{{entry-scratch model=model}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

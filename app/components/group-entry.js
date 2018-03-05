@@ -1,7 +1,7 @@
-import Controller from '@ember/controller';
+import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
-export default Controller.extend({
+export default Component.extend({
   membersCollapsed: true,
   repertoryCollapsed: true,
   autosave: task(function* (property, value){

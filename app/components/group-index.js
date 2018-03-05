@@ -1,7 +1,7 @@
+import Component from '@ember/component';
 import { sort } from '@ember/object/computed';
-import Controller from '@ember/controller';
 
-export default Controller.extend({
+export default Component.extend({
   sortedGroupsProperties: [
     'treeSort',
     'name',

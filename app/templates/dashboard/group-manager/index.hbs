@@ -2,31 +2,7 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Your Active Groups</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Kind</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedGroups as |group|}}
-          <tr>
-            <td>{{#link-to 'dashboard.group-manager.group.details' group}}{{group.name}}{{/link-to}}</td>
-            <td>{{group.kind}}</td>
-            <td>{{group.status}}</td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>(You are not listed as an Officer/Manager for any group.  Please contact support for assistance.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+  {{group-index model=model}}
 </section>
 <section>
   <div class='row'>
