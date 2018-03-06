@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  router: service(),
   currentUser: service(),
   store: service(),
   flashMessages: service(),
@@ -17,6 +18,7 @@ export default Component.extend({
       this.set('buildSessionModal', false);
       this.set('buildSessionModalError', false);
       this.get('flashMessages').success("Built!");
+      this.get('router').transitionTo('dashboard.session-manager.session.contests');
     } catch(e) {
       this.set('buildSessionModalError', true);
     }

@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
-  router: service(),
   store: service(),
   flashMessages: service(),
   approveEntryModal: false,
@@ -17,7 +16,6 @@ export default Component.extend({
       this.set('approveEntryModal', false);
       this.set('approveEntryModalError', false);
       this.get('flashMessages').success("Approved!");
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.index');
     } catch(e) {
       this.set('approveEntryModalError', true);
     }

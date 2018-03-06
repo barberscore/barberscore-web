@@ -82,6 +82,11 @@ export default Model.extend({
     'status',
     'New'
   ),
+  builtEntries: filterBy(
+    'entries',
+    'status',
+    'Built'
+  ),
   invitedEntries: filterBy(
     'entries',
     'status',
@@ -103,18 +108,12 @@ export default Model.extend({
     'Approved'
   ),
 
-  scratchedEntries: filterBy(
-    'entries',
-    'status',
-    'Scratched'
-  ),
-
   newEntriesCount: alias('newEntries.length'),
+  builtEntriesCount: alias('builtEntries.length'),
   invitedEntriesCount: alias('invitedEntries.length'),
   withdrawnEntriesCount: alias('withdrawnEntries.length'),
   submittedEntriesCount: alias('submittedEntries.length'),
   approvedEntriesCount: alias('approvedEntries.length'),
-  scratchedEntriesCount: alias('scratchedEntries.length'),
   totalEntriesCount: alias('entries.length'),
   contestCount: alias('contests.length'),
 

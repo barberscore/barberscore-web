@@ -39,8 +39,6 @@ export default Model.extend({
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
-  scratch: memberAction({path: 'scratch', type: 'post'}),
-  complete: memberAction({path: 'complete', type: 'post'}),
 
   notArchived: not(
     'isArchived'

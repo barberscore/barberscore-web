@@ -5,20 +5,19 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
   flashMessages: service(),
-  scratchEntryModal: false,
-  scratchEntryModalError: false,
-  scratchEntry: task(function *() {
+  inviteEntryModal: false,
+  inviteEntryModalError: false,
+  inviteEntry: task(function *() {
     try {
-      let entry = yield this.model.scratch({
+      let entry = yield this.model.invite({
         'by': this.get('currentUser.user.id'),
       });
       this.get('store').pushPayload('entry', entry);
-      this.set('scratchEntryModal', false);
-      this.set('scratchEntryModalError', false);
-      this.get('flashMessages').success("Scratched!");
+      this.set('inviteEntryModal', false);
+      this.set('inviteEntryModalError', false);
+      this.get('flashMessages').success("Inviteted!");
     } catch(e) {
-      console.log(e);
-      this.set('scratchEntryModalError', true);
+      this.set('inviteEntryModalError', true);
     }
   }).drop(),
 });

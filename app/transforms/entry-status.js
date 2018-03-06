@@ -9,8 +9,6 @@ export default DS.Transform.extend({
       7: 'Withdrawn',
       10: 'Submitted',
       20: 'Approved',
-      52: 'Scratched',
-      55: 'Disqualified',
     };
     return map[serialized];
   },
@@ -23,8 +21,6 @@ export default DS.Transform.extend({
       'Withdrawn': 7,
       'Submitted': 10,
       'Approved': 20,
-      'Scratched': 52,
-      'Disqualified': 55,
 };
     return map[deserialized];
   }
