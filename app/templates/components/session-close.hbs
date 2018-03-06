@@ -27,7 +27,7 @@
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
     {{#bs-button type='primary' disabled=model.isError onClick=(perform closeSession)}}
       {{#if closeSession.isRunning}}
-        Closeing {{fa-icon "spinner" spin=true}}
+        Closing {{fa-icon "spinner" spin=true}}
       {{else}}
         Close Session
       {{/if}}
