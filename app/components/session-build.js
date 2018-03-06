@@ -11,7 +11,7 @@ export default Component.extend({
   buildSessionModalError: false,
   buildSession: task(function *() {
     try {
-      yield this.model.build({
+      yield this.get('model').build({
         'by': this.get('currentUser.user.id')
       });
       this.get('model').reload();
