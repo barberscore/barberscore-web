@@ -46,11 +46,11 @@ export default Component.extend({
         isPrivate: false,
         competitor: null,
       }).save();
-      yield entry.build({
+      let payload = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
+      this.get('store').pushPayload(payload);
       this.get('model').reload();
-      this.get('model').hasMany('entries').reload();
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");

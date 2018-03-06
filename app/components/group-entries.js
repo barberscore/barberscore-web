@@ -17,7 +17,7 @@ export default Component.extend({
     'Active',
   ),
   sortedEntriesProperties: [
-    'statusSort:desc',
+    'nomen',
   ],
   sortedEntries: sort(
     'filteredEntries',
@@ -60,7 +60,8 @@ export default Component.extend({
       let payload = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('entry', payload);
+      this.get('store').pushPayload(payload);
+      this.get('model').reload();
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");
