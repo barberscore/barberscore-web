@@ -9,10 +9,10 @@ export default Component.extend({
   approveEntryModalError: false,
   approveEntry: task(function *() {
     try {
-      let entry = yield this.model.approve({
+      yield this.model.approve({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('entry', entry);
+      this.get('model').reload();
       this.set('approveEntryModal', false);
       this.set('approveEntryModalError', false);
       this.get('flashMessages').success("Approved!");

@@ -11,10 +11,10 @@ export default Component.extend({
   openSessionModalError: false,
   openSession: task(function *() {
     try {
-      let session = yield this.model.open({
+      yield this.model.open({
         'by': this.get('currentUser.user.id')
       });
-      this.get('store').pushPayload('session', session);
+      this.get('model').reload();
       this.set('openSessionModal', false);
       this.set('openSessionModalError', false);
       this.get('flashMessages').success("Opened!");

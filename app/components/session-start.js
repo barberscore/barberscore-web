@@ -10,10 +10,10 @@ export default Component.extend({
   startSessionModalError: false,
   startSession: task(function *() {
     try {
-      let session = yield this.model.start({
+      yield this.model.start({
         'by': this.get('currentUser.user.id')
       });
-      this.get('store').pushPayload('session', session);
+      this.get('model').reload();
       this.set('startSessionModal', false);
       this.set('startSessionModalError', false);
       this.get('flashMessages').success("Started!");

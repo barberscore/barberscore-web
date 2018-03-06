@@ -11,10 +11,10 @@ export default Component.extend({
   buildSessionModalError: false,
   buildSession: task(function *() {
     try {
-      let session = yield this.model.build({
+      yield this.model.build({
         'by': this.get('currentUser.user.id')
       });
-      this.get('store').pushPayload('session', session);
+      this.get('model').reload();
       this.set('buildSessionModal', false);
       this.set('buildSessionModalError', false);
       this.get('flashMessages').success("Built!");
