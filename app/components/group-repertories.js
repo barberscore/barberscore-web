@@ -22,9 +22,7 @@ export default Component.extend({
   searchChart: task(function* (term){
     yield timeout(600);
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    
     let res = yield func({ indexName: 'Chart_dev', query: term})
-    
     return res.hits
   }),
   deleteRepertory: task(function *(repertory) {
@@ -44,7 +42,7 @@ export default Component.extend({
         chart: chart,
         group: this.get('model'),
       }).save();
-      let payload = yield repertory.activate({
+      yield repertory.activate({
         'by': this.get('currentUser.user.id'),
       });
       this.get('model').reload();
