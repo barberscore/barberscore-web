@@ -9,10 +9,10 @@ export default Component.extend({
   inviteEntryModalError: false,
   inviteEntry: task(function *() {
     try {
-      let entry = yield this.model.invite({
+      yield this.model.invite({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('entry', entry);
+      this.get('model').reload();
       this.set('inviteEntryModal', false);
       this.set('inviteEntryModalError', false);
       this.get('flashMessages').success("Inviteted!");
