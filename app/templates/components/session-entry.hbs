@@ -36,7 +36,7 @@
     <div class='panel-body'>
       <section>
         <p>
-          Preferences
+          <strong>Preferences</strong>
         </p>
         <p>
           {{entry-preferences model=model}}
@@ -45,7 +45,7 @@
       <hr>
       <section>
         <p>
-          Contests Entered: {{model.includedContestantsCount}}
+          <strong>Contests Entered: {{model.includedContestantsCount}}</strong>
         </p>
         <p>
           {{entry-contestants model=model}}
@@ -133,7 +133,7 @@
             {{else}}
               <li>{{entry-approve model=model}}</li>
             {{/if}}
-            <li>{{entry-delete model=model}}</li>
+            <li>{{entry-delete model=model callback='dashboard.session-manager.session.entries'}}</li>
           {{else if (eq model.status 'Invited')}}
             <li>{{entry-submit model=model}}</li>
             <li>{{entry-withdraw model=model}}</li>

@@ -1,4 +1,4 @@
-{{#if (eq model.status 'New')}}
+{{#if (or (eq model.status 'New') (eq model.status 'Built'))}}
   <h4>
     Entries can only be added once the Session has been Opened.
   </h4>

@@ -3,7 +3,7 @@
   disabled=model.isError
   onClick=(action (mut verifySessionModal) true)
 }}
-  Verify Session
+  {{#if (eq model.status 'Verified')}}Re-Verify Session{{else}}Verify Session{{/if}}
 {{/bs-button}}
 {{#bs-modal
   open=verifySessionModal

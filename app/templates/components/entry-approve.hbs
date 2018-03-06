@@ -3,7 +3,7 @@
   disabled=model.isError
   onClick=(action (mut approveEntryModal) true)
 }}
-  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Approveted'))}}Re-Approve Entry{{else}}Approve Entry{{/if}}
+  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Approved'))}}Re-Approve Entry{{else}}Approve Entry{{/if}}
 {{/bs-button}}
 {{#bs-modal
   open=approveEntryModal
@@ -15,7 +15,7 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-      This approves the submission for the group.  They will receive an email notifying them that they are all set for the contest.
+      This approves (or re-approves) the entry for the group.  They will receive an email notifying them that they are all set for the contest.
     </p>
   {{/modal.body}}
   {{#modal.footer}}

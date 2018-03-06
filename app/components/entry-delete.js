@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  router: service(),
   store: service(),
   flashMessages: service(),
   deleteEntryModal: false,
@@ -15,6 +16,7 @@ export default Component.extend({
       this.set('deleteEntryModal', false);
       this.set('deleteEntryModalError', false);
       this.get('flashMessages').success("Deleted!");
+      this.get('router').transitionTo(this.get('callback'));
     } catch(e) {
       this.set('deleteEntryModalError', true);
     }

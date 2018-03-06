@@ -1,7 +1,7 @@
 <section>
-  {{#if (or (eq model.status 'New')(eq model.status 'Opened'))}}
+  {{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Opened'))}}
     <h4>
-      The Session can only be Drawn from the "Closed" or "Verified" state.
+      The Draw can only be adjusted after the Session has been Closed.
     </h4>
   {{else if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
     <div class='table-responsive'>
@@ -9,8 +9,8 @@
         <thead>
           <tr>
             <th class='col-md-1'>OA</th>
-            <th class='col-md-4'>Name</th>
-            <th class='col-md-1'>Status</th>
+            <th class='col-md-3'>Name</th>
+            <th class='col-md-8'>Notes</th>
           </tr>
         </thead>
           {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
@@ -22,7 +22,7 @@
                 <td>
                   {{item.group.name}}
                 </td>
-                <td>{{item.status}}</td>
+                <td>{{item.description}}</td>
               {{/sortable-item}}
             {{else}}
               <tr>
@@ -32,6 +32,11 @@
           {{/sortable-group}}
       </table>
     </div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <strong>Note:</strong> To adjust the draw, simply grab a row and reposition it to where you want.  To confirm this initial (random) draw, then grab a row and return to its original position.  Each move reorders the list and saves automatically.
+      </div>
+    </div>
   {{else}}
     <div class='row'>
       <div class='col-md-12'>
@@ -40,7 +45,7 @@
             <tr>
               <th class='col-md-1'>OA</th>
               <th class='col-md-4'>Name</th>
-              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Notes</th>
             </tr>
           </thead>
           <tbody>
@@ -53,7 +58,7 @@
                   {{entry.group.name}}
                 </td>
                 <td>
-                  {{entry.status}}
+                  {{entry.description}}
                 </td>
               </tr>
             {{else}}
