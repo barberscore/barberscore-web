@@ -11,7 +11,7 @@ export default Component.extend({
   verifySessionModalError: false,
   verifySession: task(function *() {
     try {
-      yield this.model.verify({
+      yield this.get('model').verify({
         'by': this.get('currentUser.user.id')
       });
       this.get('model').reload();

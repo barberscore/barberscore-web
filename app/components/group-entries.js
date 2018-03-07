@@ -48,8 +48,7 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (session){
     try {
-      let entry = yield this.get('store').createRecord('entry', {
-        group: this.get('model'),
+      let entry = yield this.get('model').get('entries').createRecord({
         session: session,
         description: '',
         contestants: [],
@@ -61,11 +60,10 @@ export default Component.extend({
         'by': this.get('currentUser.user.id'),
       });
       this.get('store').pushPayload(payload);
-      this.get('model').reload();
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', this.get('model'), entry.get('id'));
+      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('deleteEntryModalError', true);
