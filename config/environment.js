@@ -59,8 +59,8 @@ module.exports = function(environment) {
       }
     },
     'ember-algolia': {
-      algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
-      algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
+      algoliaId: 'GUKTE9MYCG',
+      algoliaKey: '9f41231c00e4a5b47e1832103fa5c98e',
     },
 
     APP: {
