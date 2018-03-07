@@ -54,7 +54,6 @@ export default Component.extend({
       this.get('flashMessages').success("Created!");
       this.get('router').transitionTo('dashboard.session-manager.session.entries.entry', entry.get('id'));
     } catch(e) {
-      console.log(e);
       e.errors.forEach((e) => {
         this.set('createEntryModalError', true);
         this.get('flashMessages').danger(e.detail);

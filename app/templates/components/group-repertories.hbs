@@ -71,7 +71,7 @@
         noMatchesMessage="No Charts with that Title or Arranger Found."
         as |chart|
       }}
-        Song: {{chart.title}}
+        Song: {{chart.title}} [{{chart.arrangers}}]
       {{/power-select}}
       {{#if createRepertoryModalError}}
       <p class='text-danger'>
