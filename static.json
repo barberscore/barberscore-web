@@ -21,6 +21,8 @@
     "/crossdomain.xml": { "Cache-Control": "public, max-age=512000" }
   },
   "proxies": {
-    "origin": "https://api.staging.barberscore.com"
+    "/api/": {
+      "origin": "https://api.staging.barberscore.com/api/"
+    }
   }
 }
