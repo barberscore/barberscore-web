@@ -55,6 +55,7 @@
             <th>Category</th>
             <th>Kind</th>
             <th>Status</th>
+            <th>BHS Expires</th>
           </tr>
         </thead>
         <tbody>
@@ -71,6 +72,9 @@
               </td>
               <td>
                 {{assignment.status}}
+              </td>
+              <td>
+                {{moment-format assignment.person.currentThrough 'L'}}
               </td>
             </tr>
           {{else}}
