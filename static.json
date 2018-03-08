@@ -22,7 +22,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://api.staging.barberscore.com/"
+      "origin": "https://api.staging.barberscore.com"
     }
   }
 }
