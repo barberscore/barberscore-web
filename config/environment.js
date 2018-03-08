@@ -58,11 +58,6 @@ module.exports = function(environment) {
         Date: false
       }
     },
-    'ember-algolia': {
-      algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
-      algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
-    },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -77,6 +72,10 @@ module.exports = function(environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.APP.API_HOST = process.env.API_HOST;
     ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+    ENV['ember-algolia'] = {
+      algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
+      algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
+    };
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'dashboard',
@@ -94,15 +93,31 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-    ENV.APP.API_HOST = process.env.API_HOST;
-    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+    // ENV.APP.API_HOST = process.env.API_HOST;
+    // ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+    // ENV['ember-algolia'] = {
+    //   algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
+    //   algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
+    // };
+    // ENV['ember-simple-auth'] = {
+    //   authenticationRoute: 'login',
+    //   routeAfterAuthentication: 'dashboard',
+    //   routeIfAlreadyAuthenticated: 'dashboard',
+    //   auth0: {
+    //     clientID: process.env.AUTH0_CLIENT_ID,
+    //     domain: process.env.AUTH0_DOMAIN,
+    //   }
+    // };
+    ENV.APP.API_HOST = null;
+    ENV.APP.API_NAMESPACE = null;
+    ENV['ember-algolia'] = {
+      algoliaId: null,
+      algoliaKey: null,
+    };
     ENV['ember-simple-auth'] = {
-      authenticationRoute: 'login',
-      routeAfterAuthentication: 'dashboard',
-      routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
-        clientID: process.env.AUTH0_CLIENT_ID,
-        domain: process.env.AUTH0_DOMAIN,
+        clientID: null,
+        domain: null,
       }
     };
   }
@@ -110,6 +125,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.APP.API_HOST = process.env.API_HOST;
     ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+    ENV['ember-algolia'] = {
+      algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
+      algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
+    };
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'dashboard',
