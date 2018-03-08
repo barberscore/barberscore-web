@@ -94,9 +94,17 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-    ENV.APP.API_HOST = '';
-    ENV.APP.API_NAMESPACE = '';
-    ENV['ember-simple-auth'] = {};
+    ENV.APP.API_HOST = process.env.API_HOST;
+    ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
+    ENV['ember-simple-auth'] = {
+      authenticationRoute: 'login',
+      routeAfterAuthentication: 'dashboard',
+      routeIfAlreadyAuthenticated: 'dashboard',
+      auth0: {
+        clientID: process.env.AUTH0_CLIENT_ID,
+        domain: process.env.AUTH0_DOMAIN,
+      }
+    };
   }
 
   if (environment === 'production') {
