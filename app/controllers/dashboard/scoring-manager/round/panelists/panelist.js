@@ -10,19 +10,4 @@ export default Controller.extend({
       })
       .then((data) => data);
   }),
-  deletePanelistModal: false,
-  deletePanelistModalError: false,
-  deletePanelist: task(function *() {
-    try {
-      yield this.model.destroyRecord({
-        'by': this.get('currentUser.user.id'),
-      });
-      this.set('deletePanelistModal', false);
-      this.set('deletePanelistModalError', false);
-      this.get('flashMessages').success("Deleted!");
-      this.transitionToRoute('dashboard.scoring-manager.round.panelists.index');
-    } catch(e) {
-      this.set('deletePanelistModalError', true);
-    }
-  }).drop(),
 });

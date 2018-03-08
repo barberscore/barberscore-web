@@ -37,38 +37,22 @@
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' onClick=(perform startRound)}}
-            {{#if startRound.isRunning}}
-              Starting {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Start Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Started')}}
-          {{#bs-button type='primary' onClick=(perform reviewRound)}}
-            {{#if reviewRound.isRunning}}
-              Reviewing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Review Round
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Reviewed')}}
-          {{#bs-button type='primary' onClick=(perform finishRound)}}
-            {{#if finishRound.isRunning}}
-              Finishing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Finish Round
-            {{/if}}
-          {{/bs-button}}
-        {{/if}}
-      {{/if}}
       <div class='pull-right'>
         <h4>
           Round Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
+      {{#if model.permissions.write}}
+        <ul class='list-inline'>
+          {{#if (eq model.status 'Built')}}
+            <li>{{round-start model=model}}</li>
+          {{else if (eq model.status 'Opened')}}
+            <li>{{round-review model=model}}</li>
+          {{else if (eq model.status 'Closed')}}
+            <li>{{round-finish model=model}}</li>
+          {{/if}}
+        </ul>
+      {{/if}}
     </div>
   </div>
 </section>

@@ -1,0 +1,36 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut startRoundModal) true)
+}}
+  Start Round
+{{/bs-button}}
+{{#bs-modal
+  open=startRoundModal
+  onHidden=(pipe-action (action (mut startRoundModal) false) (action (mut startRoundModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Start Round</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This officially starts the round.  Be sure you've reviewed the panel before starting the round; you won't be able to change it after.
+    </p>
+    {{#if startRoundModalError}}
+    <p class='text-danger'>
+      Could not Start Round.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform startRound)}}
+      {{#if startRound.isRunning}}
+        Starting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Start Round
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

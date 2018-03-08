@@ -2,29 +2,5 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>Current Assignments</caption>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Kind</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedRounds as |round|}}
-          <tr>
-            <td>{{#link-to 'dashboard.scoring-manager.round.details' round}}{{round.nomen}}{{/link-to}}</td>
-            <td>{{round.kind}}</td>
-            <td>{{round.status}}</td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>No active Rounds currently assigned to you.</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+  {{round-index model=model}}
 </section>
