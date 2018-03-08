@@ -65,15 +65,15 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'Built')}}
-            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
             <li>{{entry-delete model=model callback='dashboard.group-manager.group.entries'}}</li>
           {{else if (eq model.status 'Invited')}}
-            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
             <li>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Withdrawn')}}
-            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
           {{else if (eq model.status 'Submitted')}}
-            <li>{{entry-submit model=model}}</li>
+            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
             <li>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Approved')}}
             <li>{{entry-withdraw model=model}}</li>

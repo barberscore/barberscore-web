@@ -3,7 +3,6 @@ import { sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
-  evalCollapsed: true,
   membersCollapsed: true,
   repertoryCollapsed: true,
   autosave: task(function* (property, value){

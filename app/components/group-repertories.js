@@ -2,9 +2,11 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { not, sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
+import { denodeify } from 'rsvp'
 
 export default Component.extend({
   store: service(),
+  algolia: service(),
   customCollapsed: true,
   isDisabled: not(
     'model.permissions.write',
@@ -19,12 +21,9 @@ export default Component.extend({
   flashMessages: service(),
   searchChart: task(function* (term){
     yield timeout(600);
-    let charts = yield this.get('store').query('chart', {
-      'nomen__icontains': term,
-      'status': 10,
-      'page_size': 1000
-      });
-    return charts;
+    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let res = yield func({ indexName: 'Chart_dev', query: term})
+    return res.hits
   }),
   deleteRepertory: task(function *(repertory) {
     try {
@@ -36,16 +35,17 @@ export default Component.extend({
   }).drop(),
   createRepertoryModal: false,
   createRepertoryModalError: false,
-  saveRepertory: task(function* (chart){
+  saveRepertory: task(function* (c){
     try {
+      let chart = yield this.get('store').findRecord('chart', c.objectID)
       let repertory = yield this.get('store').createRecord('repertory', {
         chart: chart,
         group: this.get('model'),
       }).save();
-      let payload = yield repertory.activate({
+      yield repertory.activate({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload('repertory', payload);
+      this.get('model').reload();
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
       this.get('flashMessages').success("Created!");
