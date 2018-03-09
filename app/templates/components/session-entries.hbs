@@ -51,7 +51,13 @@
   </div>
   <div>
     <p>
-    {{#bs-button type='success' disabled=model.isError onClick=(action (mut createEntryModal) true)}}Create New Entry{{/bs-button}}
+      {{#bs-button
+        type='success'
+        disabled=isDisabled
+        onClick=(action (mut createEntryModal) true)
+      }}
+        Create New Entry
+      {{/bs-button}}
     </p>
   </div>
   {{#bs-modal
