@@ -1,4 +1,4 @@
-import { alias, filterBy, equal } from '@ember/object/computed';
+import { alias, filterBy, equal, not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -15,6 +15,10 @@ export default Model.extend({
   permissions: DS.attr(),
   include: memberAction({path: 'include', type: 'post'}),
   exclude: memberAction({path: 'exclude', type: 'post'}),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',
