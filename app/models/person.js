@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -36,6 +37,10 @@ export default Model.extend({
   panelists: DS.hasMany('panelist', {async: true}),
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

@@ -1,4 +1,4 @@
-import { alias, gt, lt, mapBy, sort } from '@ember/object/computed';
+import { alias, gt, lt, mapBy, sort, not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -34,6 +34,10 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   confirm: memberAction({path: 'confirm', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

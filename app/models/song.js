@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -19,6 +20,10 @@ export default Model.extend({
   chart: DS.belongsTo('chart', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

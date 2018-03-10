@@ -37,6 +37,10 @@ export default Model.extend({
   announce: memberAction({path: 'announce', type: 'post'}),
   cursor: DS.belongsTo('appearance', {async: true}),
 
+  isDisabled: not(
+    'permissions.write'
+  ),
+
   conventionStatus: alias('convention.status'),
   conventionIsActive: alias('convention.isActive'),
 

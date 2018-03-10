@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -12,6 +13,10 @@ export default Model.extend({
   appearance: DS.belongsTo('appearance', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

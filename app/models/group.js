@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { filterBy, alias } from '@ember/object/computed';
+import { filterBy, not, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -38,6 +38,10 @@ export default Model.extend({
   officers: DS.hasMany('officer', {async: true}),
   repertories: DS.hasMany('repertory', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   repertoriesCount: alias('repertories.length'),
 

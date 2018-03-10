@@ -26,6 +26,10 @@ export default Model.extend({
   publish: memberAction({path: 'publish', type: 'post'}),
   archive: memberAction({path: 'archive', type: 'post'}),
 
+  isDisabled: not(
+    'permissions.write'
+  ),
+
   isAnnounced: equal('status', 'Announced'),
   isActive: not('isAnnounced'),
 

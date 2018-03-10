@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -18,6 +19,10 @@ export default Model.extend({
   isJudgeManager: DS.attr('boolean'),
   isChartManager: DS.attr('boolean'),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -12,6 +13,10 @@ export default Model.extend({
   timezone: DS.attr('string'),
   conventions: DS.hasMany('convention', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   timezoneChoices: [
     'US/Arizona',

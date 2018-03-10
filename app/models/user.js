@@ -1,3 +1,4 @@
+import { not } from '@ember/object/computed';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
@@ -15,5 +16,9 @@ export default DS.Model.extend({
   isAwardManager: DS.attr('boolean'),
   isJudgeManager: DS.attr('boolean'),
   isChartManager: DS.attr('boolean'),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
 });

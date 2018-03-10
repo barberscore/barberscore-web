@@ -1,4 +1,4 @@
-import { alias } from '@ember/object/computed';
+import { alias, not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -16,6 +16,10 @@ export default Model.extend({
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
   permissions: DS.attr(),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

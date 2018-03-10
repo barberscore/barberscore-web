@@ -1,4 +1,4 @@
-import { alias } from '@ember/object/computed';
+import { alias, not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -14,8 +14,13 @@ export default Model.extend({
   group: DS.belongsTo('group', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),
+
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
+
+  isDisabled: not(
+    'permissions.write'
+  ),
 
   statusOptions: [
     'New',

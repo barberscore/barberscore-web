@@ -40,6 +40,10 @@ export default Model.extend({
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
 
+  isDisabled: not(
+    'permissions.write'
+  ),
+
   notArchived: not(
     'isArchived'
   ),
