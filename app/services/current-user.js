@@ -7,9 +7,13 @@ export default Service.extend({
   store: service(),
 
   load() {
-    let userId = this.get('session.data.authenticated.profile.barberscore_id');  
-    if (!isEmpty(userId)) {
-      return this.get('store').findRecord('user', userId).catch(err => {
+    let accountId = this.get('session.data.authenticated.profile.sub');
+    if (!isEmpty(accountId)) {
+      return this.get('store').query('user', {
+        'account_id': accountId,
+      }).then(function(users) {
+        return users.get('firstObject');
+      }).catch(err => {
         alert(err.errors[0].detail)
         return RSVP.resolve()
       }).then((user) => {
