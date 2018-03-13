@@ -71,6 +71,7 @@ module.exports = function(environment) {
     ENV.APP.LOG_TRANSITIONS_INTERNAL = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV.APP.API_HOST = process.env.API_HOST;
+    ENV.APP.API_HOST_DIRECT = process.env.API_HOST_DIRECT;
     ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
     ENV['ember-algolia'] = {
       algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
@@ -123,6 +124,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.APP.API_HOST_DIRECT = process.env.API_HOST_DIRECT;
     ENV.APP.API_HOST = process.env.API_HOST;
     ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
     ENV['ember-algolia'] = {
