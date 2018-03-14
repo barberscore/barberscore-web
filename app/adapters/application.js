@@ -3,7 +3,7 @@ import ENV from '../config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
 export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
-  host: ENV.APP.API_HOST,
+  host: ENV.APP.API_HOST_DIRECT,
   namespace: ENV.APP.API_NAMESPACE,
   coalesceFindRequests: true,
   authorizer: 'authorizer:jwt',
