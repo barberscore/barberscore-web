@@ -54,7 +54,19 @@
       <hr>
       <section>
         <p>
-          Group Members: {{model.group.activesCount}} &nbsp;&nbsp;
+          Group Officers:
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'officersCollapsed' this)}}
+            {{if officersCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=officersCollapsed}}
+          {{group-officers model=model.group}}
+        {{/bs-collapse}}
+      </section>
+      <hr>
+      <section>
+        <p>
+          Group Members:
           {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
             {{if membersCollapsed 'Show' 'Hide'}}
           {{/bs-button}}

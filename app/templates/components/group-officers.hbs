@@ -1,0 +1,34 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-3'>Person</th>
+        <th class='col-md-2'>Office</th>
+        <th class='col-md-2'>Email</th>
+        <th class='col-md-2'>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedOfficers as |officer|}}
+        <tr>
+          {{#if officer.isLoading}}
+            <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            {{#if officer.person.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{officer.person.fullName}}</td>
+            {{/if}}
+            <td>{{officer.office.name}}</td>
+            <td><a href='mailto:{{officer.person.email}}'>{{officer.person.email}}</a></td>
+            <td><a href='tel:{{officer.person.cellPhone}}'>{{officer.person.cellPhone}}</a></td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td colspan=3>Officer Lists Temporarily Unavailable!  Please check on the <a href='https://members.barbershop.org'>Member Center</a> for current information.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
