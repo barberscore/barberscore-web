@@ -22,7 +22,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "https://${API_APP_NAME}.barberscore.com/api/"
+      "origin": "${API_HOST}/${API_NAMESPACE}/"
     }
   }
 }
