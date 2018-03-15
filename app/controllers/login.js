@@ -7,6 +7,11 @@ export default Controller.extend({
   actions: {
     login () {
       const lockOptions = {
+        allowedConnections: ['email'],
+        passwordlessMethod: 'link',
+        authParams: {
+          scope: 'openid profile user_metadata'
+        },
         autoclose: true,
         icon: '/assets/bhs_logo.png',
         closeable: true,
@@ -32,7 +37,6 @@ export default Controller.extend({
       };
       this.get('session').authenticate(
         'authenticator:auth0-lock-passwordless',
-        'magiclink',
         lockOptions
       );
     },
