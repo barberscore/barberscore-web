@@ -22,7 +22,7 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "${API_HOST}/api/"
+      "origin": "${API_PROXY}"
     }
   }
 }
