@@ -1,6 +1,6 @@
 {
   "name": "Barberscore Web",
-  "description": "Scoring software for the Barbershop Harmony Society",
+  "description": "Scoring and Contest Web UI for the Barbershop Harmony Society",
   "logo": "https://barberscore-api.herokuapp.com/static/api/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-web",
   "stack": "heroku-16",
@@ -22,14 +22,6 @@
     }
   },
   "env": {
-    "ALGOLIASEARCH_API_KEY_SEARCH": {
-      "description": "Algolia search key.",
-      "required": true
-    },
-    "ALGOLIASEARCH_APPLICATION_ID": {
-      "description": "Algolia app ID.",
-      "required": true
-    },
     "API_HOST": {
       "description": "The host of the Barberscore API.",
       "required": true
@@ -38,11 +30,15 @@
       "description": "The API version.",
       "required": true
     },
+    "API_PROXY": {
+      "description": "The API Proxy URL.",
+      "required": true
+    },
     "AUTH0_CLIENT_ID": {
       "description": "The Auth0 Client id.",
       "required": true
     },
-    "AUTH0_API_DOMAIN": {
+    "AUTH0_CLIENT_DOMAIN": {
       "description": "The Auth0 Client endpoint.",
       "required": true
     },
