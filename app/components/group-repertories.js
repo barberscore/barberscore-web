@@ -22,7 +22,7 @@ export default Component.extend({
   searchChart: task(function* (term){
     yield timeout(600);
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Chart_staging', query: term})
+    let res = yield func({ indexName: 'Chart', query: term})
     return res.hits
   }),
   deleteRepertory: task(function *(repertory) {
