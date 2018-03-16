@@ -2,9 +2,11 @@ import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
+import { denodeify } from 'rsvp'
 
 export default Component.extend({
   store: service(),
+  algolia: service(),
   flashMessages: service(),
   sortedPanelistsProperties: [
     'categorySort',
@@ -26,11 +28,9 @@ export default Component.extend({
   ),
   searchPerson: task(function* (term){
     yield timeout(600);
-    return this.get('store').query('person', {
-      'nomen__icontains': term,
-      'page_size': 1000
-      })
-      .then((data) => data);
+    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let res = yield func({ indexName: 'Person', query: term})
+    return res.hits
   }),
   createPanelistModal: false,
   createPanelistModalError: false,
