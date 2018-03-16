@@ -82,7 +82,7 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
         clientID: process.env.AUTH0_CLIENT_ID,
-        domain: process.env.AUTH0_DOMAIN,
+        domain: process.env.AUTH0_API_DOMAIN,
       }
     };
   }
@@ -118,7 +118,7 @@ module.exports = function(environment) {
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
         clientID: process.env.AUTH0_CLIENT_ID,
-        domain: process.env.AUTH0_DOMAIN,
+        domain: process.env.AUTH0_API_DOMAIN,
       }
     };
   }
