@@ -7,6 +7,7 @@ import { denodeify } from 'rsvp'
 export default Component.extend({
   flashMessages: service(),
   router: service(),
+  algolia: service(),
   store: service(),
   isDisabled: not(
     'model.permissions.write',
