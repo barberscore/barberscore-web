@@ -4,7 +4,6 @@ import DS from 'ember-data';
 
 export default Model.extend({
   // Fields
-  nomen: DS.attr('string'),
   status: DS.attr('song-status'),
   num: DS.attr('number'),
   rank: DS.attr('number'),

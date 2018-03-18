@@ -4,7 +4,6 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('panelist-status'),
   num: DS.attr('number'),
   kind: DS.attr('panelist-kind'),

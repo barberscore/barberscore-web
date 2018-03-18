@@ -18,7 +18,7 @@
               {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
             </td>
             <td>
-              {{entry.session.convention.venue.nomen}}
+              {{entry.session.convention.venue.name}}
             </td>
             <td>
               {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
@@ -67,7 +67,7 @@
         noMatchesMessage="We Could Not Find an Open Session with that Name"
         as |session|
       }}
-        {{session.convention.name}} {{session.convention.venue.nomen}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
+        {{session.convention.name}} {{session.convention.venue.name}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
       {{/power-select}}
       {{#if createEntryModalError}}
       <p class='text-danger'>

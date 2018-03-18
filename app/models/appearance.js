@@ -4,7 +4,6 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('appearance-status'),
   num: DS.attr('number'),
   draw: DS.attr('number'),

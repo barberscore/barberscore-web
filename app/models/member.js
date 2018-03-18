@@ -5,7 +5,6 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('member-status'),
   part: DS.attr('member-part'),
   startDate: DS.attr('isodate'),

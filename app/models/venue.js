@@ -3,7 +3,6 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   name: DS.attr('string'),
   status: DS.attr('venue-status'),
   location: DS.attr('string'),
