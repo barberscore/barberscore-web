@@ -44,9 +44,9 @@ export default Component.extend({
   // }),
   createEntryModal: false,
   createEntryModalError: false,
-  saveEntry: task(function* (g){
+  saveEntry: task(function* (obj){
     try {
-      let group = yield this.get('store').findRecord('group', g.objectID)
+      let group = yield this.get('store').findRecord('group', obj.objectID)
       let entry = yield this.get('model').get('entries').createRecord({
         group: group,
         description: '',
