@@ -4,22 +4,22 @@
     <caption>You are an active officer for the following groups:</caption>
     <thead>
       <tr>
-        <th class='col-md-1'>Image</th>
+        <th>Image</th>
         <th>Name</th>
+        <th>Office</th>
       </tr>
     </thead>
     <tbody>
-      {{#each sortedGroups as |group|}}
+      {{#each sortedOfficers as |officer|}}
         <tr>
           <td>
-            {{#if group.image}}
-              <img src={{group.image}} class='img-responsive img-rounded'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive'>
-            {{/if}}
+            <img src={{officer.group.image}} class='img-responsive img-rounded' width=64>
           </td>
           <td>
-            {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
+            {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}
+          </td>
+          <td>
+            {{officer.office.name}}
           </td>
         </tr>
       {{else}}

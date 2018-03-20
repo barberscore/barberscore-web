@@ -11,12 +11,12 @@ Router.map(function() {
   this.route('dashboard', {
     path: 'dashboard'
   }, function () {
-    this.route('session-manager', {
-      path: 'session-manager'
+    this.route('assignments', {
+      path: 'assignment'
     }, function () {
-      this.route('session', {
-        path: ':session_id'
-      }, function () {
+      this.route('assignment', {
+        path: ':assignment_id'
+      }, function() {
         this.route('details', {
           path: 'details'
         });
@@ -97,8 +97,8 @@ Router.map(function() {
         }, function () {});
       });
     });
-    this.route('group-manager', {
-      path: 'group-manager'
+    this.route('groups', {
+      path: 'group'
     }, function () {
       this.route('group', {
         path: ':group_id'

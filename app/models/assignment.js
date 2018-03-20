@@ -20,6 +20,7 @@ export default Model.extend({
   ),
 
   personLastName: alias('person.lastName'),
+  conventionStart: alias('convention.startDate'),
 
   categorySort: computed(
     'category',
@@ -42,10 +43,10 @@ export default Model.extend({
   ],
   categoryOptions: [
     'DRCJ',
-    'CA',
-    'Music',
-    'Performance',
-    'Singing',
+    'Contest Administrator',
+    'Music Judge',
+    'Performance Judge',
+    'Singing Judge',
   ],
   kindOptions: [
     'Official',

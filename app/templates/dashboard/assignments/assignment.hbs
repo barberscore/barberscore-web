@@ -11,23 +11,23 @@
     <div class='panel-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.group-manager.group.details"}}Details{{/nav.link-to}}
+          {{#nav.link-to "dashboard.assignments.assignment.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{!-- {{#nav.item}}
+          {{#nav.link-to "dashboard.assignments.assignment.members"}}Members{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.group-manager.group.members"}}Members{{/nav.link-to}}
+          {{#nav.link-to "dashboard.assignments.assignment.repertories"}}Repertory{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.group-manager.group.repertories"}}Repertory{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.group-manager.group.entries"}}Entries{{/nav.link-to}}
-        {{/nav.item}}
+          {{#nav.link-to "dashboard.assignments.assignment.entries"}}Entries{{/nav.link-to}}
+        {{/nav.item}} --}}
       {{/bs-nav}}
       {{outlet}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
-        <li class='pull-right'><h4>Group Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h4>Assignment Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

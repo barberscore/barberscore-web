@@ -49,7 +49,7 @@ export default Component.extend({
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
       this.get('flashMessages').success("Created!");
-      // this.get('router').transitionTo('dashboard.group-manager.group.repertories.repertory', this.get('model'), repertory.get('id'));
+      // this.get('router').transitionTo('dashboard.groups.group.repertories.repertory', this.get('model'), repertory.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createRepertoryModalError', true);

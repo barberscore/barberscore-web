@@ -48,8 +48,9 @@ export default Model.extend({
 // Other
   personName: alias('person.fullName'),
   officeShortName: alias('office.shortName'),
-  officeSCJCSort: alias('office.scjcSort'),
+  officeCodeSort: alias('office.codeSort'),
   officeKind: alias('office.kind'),
   officeName: alias('office.name'),
   groupName: alias('group.name'),
+  groupSort: alias('group.treeSort'),
 });

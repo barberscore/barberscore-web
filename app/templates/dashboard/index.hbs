@@ -2,35 +2,15 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
-  <p>Welcome {{currentUser.user.name}}</p>
-  <div class='row'>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.group-manager' tagName='button' class='btn btn-default launcher' disabled=isGroupManagerDisabled}}
-        {{fa-icon 'users' size='5'}}<br>
-        Group Manager
-      {{/link-to}}
-    </p>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.session-manager' tagName='button' class='btn btn-default launcher' disabled=isSessionManagerDisabled}}
-        {{fa-icon 'microphone' size='5'}}<br>
-        Session Manager
-      {{/link-to}}
-    </p>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.scoring-manager' tagName='button' class='btn btn-default launcher' disabled=isScoringManagerDisabled}}
-        {{fa-icon 'calculator' size='5'}}<br>
-        Scoring Manager
-      {{/link-to}}
-    </p>
-  </div>
-  <div>
-    <p>
-      <strong>Note:</strong> If you are unable to click on Group Manager, please review your memberships in the <a href='https://members.barbershop.org'>BHS Member Center</a> and ensure you are an active member of your Quartet, or a Chapter Leader of your chorus.
-    </p>
-    <p>
-      <strong>Note to New Quartets:</strong> Please be aware that newly registered quartets are not “completed” (fully registered) in the Member Center until BHS headquarters has: approved the quartet name; processed the subscription fee; and finished their final validation by updating the Member Center record. <em>This process can take up to 5 business days.</em>
-    </p>
-  </div>
+  <p>Welcome {{currentUser.user.name}}!</p>
 </section>
-{{!-- <div {{action 'search'}}>Search</div> --}}
+<section>
+  {{group-index model=model.activeGroups}}
+</section>
+<section>
+  {{convention-index model=model.activeConventions}}
+</section>
+<section>
+  {{assignment-index model=model.activeAssignments}}
+</section>
 {{outlet}}

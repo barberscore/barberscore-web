@@ -63,7 +63,7 @@ export default Component.extend({
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', entry.get('id'));
+      this.get('router').transitionTo('dashboard.groups.group.entries.entry', entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('deleteEntryModalError', true);

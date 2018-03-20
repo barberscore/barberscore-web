@@ -1,0 +1,42 @@
+<div class='table-responsive'>
+  <h3>
+    Your Assignments
+  </h3>
+  <table class='table'>
+    <caption>These are the conventions to which you are currently assigned.</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Kind</th>
+        <th>Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedAssignments as |assignment|}}
+        <tr>
+          <td>
+            {{#link-to 'dashboard.assignments.assignment' assignment}}{{assignment.convention.name}}{{/link-to}}
+          </td>
+          <td>
+            {{assignment.convention.venue.name}}
+          </td>
+          <td>
+            {{moment-format assignment.convention.startDate 'L'}}
+          </td>
+          <td>
+            {{assignment.kind}}
+          </td>
+          <td>
+            {{assignment.category}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

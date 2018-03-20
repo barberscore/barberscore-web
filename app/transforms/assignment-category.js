@@ -4,10 +4,10 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       5: 'DRCJ',
-      10: 'CA',
-      30: 'Music',
-      40: 'Performance',
-      50: 'Singing',
+      10: 'Contest Administrator',
+      30: 'Music Judge',
+      40: 'Performance Judge',
+      50: 'Singing Judge',
     };
     return map[serialized];
   },
@@ -15,10 +15,10 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'DRCJ': 5,
-      'CA': 10,
-      'Music': 30,
-      'Performance': 40,
-      'Singing': 50,
+      'Contest Administrator': 10,
+      'Music Judge': 30,
+      'Performance Judge': 40,
+      'Singing Judge': 50,
     };
     return map[deserialized];
   }
