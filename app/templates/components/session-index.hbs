@@ -11,7 +11,7 @@
     <tbody>
       {{#each sortedSessions as |session|}}
         <tr>
-          <td>{{#link-to 'dashboard.session-manager.session.details' session}}{{session.nomen}}{{/link-to}}</td>
+          <td>{{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.nomen}}{{/link-to}}</td>
           {{#if session.groupNomen.isLoading}}
             <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}

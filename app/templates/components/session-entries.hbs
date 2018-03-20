@@ -28,7 +28,7 @@
               {{#if entry.group.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{#link-to 'dashboard.session-manager.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
               {{/if}}
               <td>{{entry.group.status}}</td>
               <td>{{entry.representing}}</td>
