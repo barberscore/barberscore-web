@@ -1,1 +1,28 @@
-{{session-details model=model}}
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.kind}} Session
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.contests"}}Contests{{/nav.link-to}}
+        {{/nav.item}}
+{{!--         {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions"}}Sessions{{/nav.link-to}}
+        {{/nav.item}} --}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        <li class='pull-right'><h4>Session Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

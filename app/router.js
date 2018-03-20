@@ -73,13 +73,13 @@ Router.map(function() {
               this.route('details', {
                 path: 'details'
               });
-              // this.route('contests', {
-              //   path: 'contests'
-              // }, function () {
-              //   this.route('contest', {
-              //     path: ':contest_id'
-              //   });
-              // });
+              this.route('contests', {
+                path: 'contests'
+              }, function () {
+                this.route('contest', {
+                  path: ':contest_id'
+                });
+              });
               // this.route('entries', {
               //   path: 'entries'
               // }, function () {
