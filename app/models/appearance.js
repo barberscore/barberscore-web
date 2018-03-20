@@ -9,7 +9,6 @@ export default Model.extend({
   draw: DS.attr('number'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
-  isAdvancing: DS.attr('boolean'),
   rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
@@ -19,8 +18,6 @@ export default Model.extend({
   perScore: DS.attr('number'),
   sngScore: DS.attr('number'),
   totScore: DS.attr('number'),
-  varianceReportNew: DS.attr('string'),
-
   round: DS.belongsTo('round', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
