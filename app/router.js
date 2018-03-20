@@ -20,6 +20,9 @@ Router.map(function() {
         this.route('details', {
           path: 'details'
         });
+        this.route('colleagues', {
+          path: 'colleagues'
+        });
         this.route('convention', {
           path: 'convention'
         });
@@ -47,6 +50,48 @@ Router.map(function() {
         this.route('draw', {
           path: 'draw'
         }, function () {});
+      });
+    });
+    this.route('conventions', {
+      path: 'convention'
+    }, function () {
+      this.route('convention', {
+        path: ':convention_id'
+      }, function() {
+        this.route('details', {
+          path: 'details'
+        });
+        this.route('assignments', {
+          path: 'assignments'
+        });
+        this.route('sessions', {
+          path: 'sessions'
+        }, function() {
+          this.route('session', {
+            path: ':session_id'
+            }, function() {
+              this.route('details', {
+                path: 'details'
+              });
+              // this.route('contests', {
+              //   path: 'contests'
+              // }, function () {
+              //   this.route('contest', {
+              //     path: ':contest_id'
+              //   });
+              // });
+              // this.route('entries', {
+              //   path: 'entries'
+              // }, function () {
+              //   this.route('entry', {
+              //     path: ':entry_id'
+              //   });
+              // });
+              // this.route('draw', {
+              //   path: 'draw'
+              // }, function () {});
+          });
+        });
       });
     });
     this.route('scoring-manager', {

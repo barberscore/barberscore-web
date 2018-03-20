@@ -2,10 +2,10 @@
   <p>Convention Details</p>
   <div>
     <ul class='list-unstyled'>
-      <li><strong>{{model.convention.venue.name}}</strong></li>
-      <li>{{model.convention.venue.city}}, {{model.convention.venue.state}}</li>
-      <li>Airport(s): {{model.convention.venue.airport}}</li>
-      <li>Timezone: {{model.convention.venue.timezone}}</li>
+      <li><strong>{{model.venue.name}}</strong></li>
+      <li>{{model.venue.city}}, {{model.venue.state}}</li>
+      <li>Airport(s): {{model.venue.airport}}</li>
+      <li>Timezone: {{model.venue.timezone}}</li>
     </ul>
   </div>
   <hr>
@@ -23,19 +23,19 @@
       <tbody>
         <tr>
           <td>Open Date</td>
-          <td>{{moment-format model.convention.openDate 'LL'}}</td>
+          <td>{{moment-format model.openDate 'LL'}}</td>
         </tr>
         <tr>
           <td>Close Date</td>
-          <td>{{moment-format model.convention.closeDate 'LL'}}</td>
+          <td>{{moment-format model.closeDate 'LL'}}</td>
         </tr>
         <tr>
           <td>Start Date</td>
-          <td>{{moment-format model.convention.startDate 'LL'}}</td>
+          <td>{{moment-format model.startDate 'LL'}}</td>
         </tr>
         <tr>
           <td>End Date</td>
-          <td>{{moment-format model.convention.endDate 'LL'}}</td>
+          <td>{{moment-format model.endDate 'LL'}}</td>
         </tr>
       </tbody>
     </table>

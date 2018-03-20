@@ -8,7 +8,7 @@ export default Component.extend({
     'personSort',
   ],
   activeAssignments: filterBy(
-    'model.convention.assignments',
+    'model.assignments',
     'status',
     'Active',
   ),

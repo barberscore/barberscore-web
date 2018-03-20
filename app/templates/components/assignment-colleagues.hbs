@@ -1,0 +1,45 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table'>
+        <caption>
+          These are the other assignments for this Convention.
+        </caption>
+        <thead>
+          <tr>
+            <th>Person</th>
+            <th>Category</th>
+            <th>Kind</th>
+            <th>Status</th>
+            <th>BHS Expires</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAssignments as |assignment|}}
+            <tr>
+              <td>
+                {{assignment.person.commonName}}
+              </td>
+              <td>
+                {{assignment.category}}
+              </td>
+              <td>
+                {{assignment.kind}}
+              </td>
+              <td>
+                {{assignment.status}}
+              </td>
+              <td>
+                {{moment-format assignment.person.currentThrough 'L'}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>(No assignments.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
