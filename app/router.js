@@ -162,6 +162,44 @@ Router.map(function() {
         this.route('repertories', {path: 'repertories'}, function () {});
       });
     });
+    this.route('session-manager', {
+      path: 'session-manager'
+    }, function () {
+      this.route('session', {
+        path: ':session_id'
+      }, function () {
+        this.route('details', {
+          path: 'details'
+        });
+        this.route('convention', {
+          path: 'convention'
+        });
+        this.route('awards', {
+          path: 'awards'
+        }, function () {
+          this.route('award', {
+            path: ':award_id'
+          });
+        });
+        this.route('contests', {
+          path: 'contests'
+        }, function () {
+          this.route('contest', {
+            path: ':contest_id'
+          });
+        });
+        this.route('entries', {
+          path: 'entries'
+        }, function () {
+          this.route('entry', {
+            path: ':entry_id'
+          });
+        });
+        this.route('draw', {
+          path: 'draw'
+        }, function () {});
+      });
+    });
   });
   this.route('about');
   this.route('tutorials');
