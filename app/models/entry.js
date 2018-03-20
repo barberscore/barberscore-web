@@ -7,17 +7,16 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('entry-status'),
-  isArchived: DS.attr('boolean'),
   isEvaluation: DS.attr('boolean'),
   isPrivate: DS.attr('boolean'),
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
-  rank: DS.attr('number'),
-  mos: DS.attr('number'),
-  description: DS.attr('string'),
   directors: DS.attr('string', {defaultValue: ''}),
+  mos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
+  rank: DS.attr('number'),
+  description: DS.attr('string'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),
@@ -29,7 +28,6 @@ export default Model.extend({
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
-  appearances: DS.hasMany('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
   logs: DS.attr(),
@@ -42,10 +40,6 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
-  ),
-
-  notArchived: not(
-    'isArchived'
   ),
 
   includedContestants: filterBy(

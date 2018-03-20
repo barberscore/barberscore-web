@@ -15,8 +15,8 @@ export default Model.extend({
   grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
 
-  verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
+  review: memberAction({path: 'review', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   announce: memberAction({path: 'announce', type: 'post'}),
 

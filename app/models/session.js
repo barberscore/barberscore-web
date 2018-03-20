@@ -7,7 +7,6 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('session-status'),
-  isArchived: DS.attr('boolean'),
   kind: DS.attr('session-kind'),
   gender: DS.attr('session-gender'),
   isInvitational: DS.attr('boolean'),
@@ -17,24 +16,19 @@ export default Model.extend({
   drcj: DS.attr('string'),
   contact: DS.attr('string'),
   numRounds: DS.attr('number'),
+  competitors: DS.hasMany('competitor', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
-  competitors: DS.hasMany('competitor', {async: true}),
   rounds: DS.hasMany('round', {async: true}),
-  grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
-  publish: memberAction({path: 'publish', type: 'post'}),
   build: memberAction({path: 'build', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  draft: memberAction({path: 'draft', type: 'post'}),
-  announce: memberAction({path: 'announce', type: 'post'}),
-  cursor: DS.belongsTo('appearance', {async: true}),
 
   isDisabled: not(
     'permissions.write'

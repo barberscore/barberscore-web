@@ -5,7 +5,6 @@ import DS from 'ember-data';
 export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('venue-status'),
-  location: DS.attr('string'),
   city: DS.attr('string'),
   state: DS.attr('string'),
   airport: DS.attr('string'),

@@ -10,6 +10,7 @@ export default Model.extend({
   title: DS.attr('string'),
   arrangers: DS.attr('string'),
   composers: DS.attr('string'),
+  lyricists: DS.attr('string'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
   image: DS.attr('string'),

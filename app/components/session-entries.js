@@ -23,25 +23,9 @@ export default Component.extend({
     yield timeout(600);
     let kindModel = this.get('model.kind');
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel}` })
+    let res = yield func({ indexName: 'Group_dev', query: term}, { filters: `get_kind_display:${kindModel}` })
     return res.hits
   }),
-  // searchGroup: task(function* (term){
-  //   yield timeout(600);
-  //   let kindOptions = {
-  //     'Chorus': 32,
-  //     'Quartet': 41,
-  //   };
-  //   let kindModel = this.get('model.kind');
-  //   let kindInt = kindOptions[kindModel];
-  //   let groups = yield this.get('store').query('group', {
-  //       'nomen__icontains': term,
-  //       'status__gt': 0,
-  //       'page_size': 1000,
-  //       'kind': kindInt,
-  //     });
-  //   return groups
-  // }),
   createEntryModal: false,
   createEntryModalError: false,
   saveEntry: task(function* (obj){

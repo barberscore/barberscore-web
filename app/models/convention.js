@@ -22,8 +22,8 @@ export default Model.extend({
   grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
-  publish: memberAction({path: 'publish', type: 'post'}),
-  archive: memberAction({path: 'archive', type: 'post'}),
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'

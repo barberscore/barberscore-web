@@ -18,6 +18,7 @@ export default Model.extend({
   entry: DS.belongsTo('entry', {async: true}),
   contest: DS.belongsTo('contest', {async: true}),
   permissions: DS.attr(),
+
   include: memberAction({path: 'include', type: 'post'}),
   exclude: memberAction({path: 'exclude', type: 'post'}),
 

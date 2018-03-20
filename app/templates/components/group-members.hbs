@@ -6,8 +6,8 @@
         {{#if (eq model.kind 'Quartet')}}
           <th class='col-md-1'>Part</th>
         {{/if}}
-        <th class='col-md-2'>Email</th>
-        <th class='col-md-2'>Phone</th>
+        {{!-- <th class='col-md-2'>Email</th> --}}
+        {{!-- <th class='col-md-2'>Phone</th> --}}
         <th class='col-md-1'>DOB</th>
         <th class='col-md-1'>BHS ID</th>
         <th class='col-md-1'>BHS Status</th>
@@ -31,8 +31,8 @@
             {{#if (eq model.kind 'Quartet')}}
               <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
             {{/if}}
-            <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td>
-            <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td>
+            {{!-- <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td> --}}
+            {{!-- <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td> --}}
             <td>{{moment-format member.person.birthDate 'L'}}</td>
             <td>{{member.person.bhsId}}</td>
             <td>{{member.person.status}}</td>

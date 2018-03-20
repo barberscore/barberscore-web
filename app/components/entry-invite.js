@@ -15,7 +15,7 @@ export default Component.extend({
       this.get('model').reload();
       this.set('inviteEntryModal', false);
       this.set('inviteEntryModalError', false);
-      this.get('flashMessages').success("Inviteted!");
+      this.get('flashMessages').success("Invited!");
     } catch(e) {
       this.set('inviteEntryModalError', true);
     }

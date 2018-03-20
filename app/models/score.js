@@ -10,6 +10,7 @@ export default Model.extend({
   num: DS.attr('number'),
   points: DS.attr('number'),
   original: DS.attr('number'),
+  violation: DS.attr('number'),
   penalty: DS.attr('number'),
   isFlagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),

@@ -1,17 +1,16 @@
 import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
-  // name: DS.attr('string'),
   firstName: DS.attr('string'),
   middleName: DS.attr('string'),
   lastName: DS.attr('string'),
   nickName: DS.attr('string'),
   status: DS.attr('person-status'),
   birthDate: DS.attr('isodate'),
-  currentThrough: DS.attr('isodate'),
   spouse: DS.attr('string', {defaultValue:''}),
   location: DS.attr('string', {defaultValue:''}),
   part: DS.attr('person-part'),
@@ -19,7 +18,6 @@ export default Model.extend({
   facebook: DS.attr('string', {defaultValue:''}),
   twitter: DS.attr('string', {defaultValue:''}),
   email: DS.attr('string', {defaultValue:''}),
-  phone: DS.attr('string', {defaultValue:''}),
   address: DS.attr('string', {defaultValue:''}),
   homePhone: DS.attr('string', {defaultValue:''}),
   workPhone: DS.attr('string', {defaultValue:''}),
@@ -28,6 +26,7 @@ export default Model.extend({
   image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
   bhsId: DS.attr('number'),
+  currentThrough: DS.attr('isodate'),
   fullName: DS.attr('string'),
   commonName: DS.attr('string'),
   sortName: DS.attr('string'),
@@ -37,6 +36,9 @@ export default Model.extend({
   panelists: DS.hasMany('panelist', {async: true}),
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
+
+  activate: memberAction({path: 'activate', type: 'post'}),
+  deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'

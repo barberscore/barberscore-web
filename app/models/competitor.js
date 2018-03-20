@@ -4,7 +4,6 @@ import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('entry-status'),
-  isArchived: DS.attr('boolean'),
   rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),

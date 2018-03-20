@@ -6,13 +6,12 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('contest-status'),
-  isQualifier: DS.attr('boolean'),
-  kind: DS.attr('contest-kind'),
   champion: DS.belongsTo('entry', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   award: DS.belongsTo('award', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
+
   include: memberAction({path: 'include', type: 'post'}),
   exclude: memberAction({path: 'exclude', type: 'post'}),
 

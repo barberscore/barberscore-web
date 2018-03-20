@@ -7,8 +7,7 @@ export default Model.extend({
   name: DS.attr('string'),
   status: DS.attr('office-status'),
   kind: DS.attr('office-kind'),
-  shortName: DS.attr('string'),
-  officers: DS.hasMany('officer', {async: true}),
+  code: DS.attr('string'),
   isConventionManager: DS.attr('boolean'),
   isSessionManager: DS.attr('boolean'),
   isScoringManager: DS.attr('boolean'),
@@ -17,6 +16,7 @@ export default Model.extend({
   isAwardManager: DS.attr('boolean'),
   isJudgeManager: DS.attr('boolean'),
   isChartManager: DS.attr('boolean'),
+  officers: DS.hasMany('officer', {async: true}),
   permissions: DS.attr(),
 
   isDisabled: not(
