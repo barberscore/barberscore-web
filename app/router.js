@@ -89,12 +89,54 @@ Router.map(function() {
               });
               this.route('draw', {
                 path: 'draw'
-              }, function () {});
+              }, function () {
+              });
               this.route('rounds', {
                 path: 'rounds'
               }, function () {
                 this.route('round', {
                   path: ':round_id'
+                }, function () {
+                  this.route('details', {
+                    path: 'details'
+                  });
+                  this.route('panelists', {
+                    path: 'panelists'
+                  }, function () {
+                    this.route('panelist', {
+                      path: ':panelist_id'
+                    });
+                  });
+                  this.route('competitors', {
+                    path: 'competitors'
+                  }, function () {
+                    this.route('competitor', {
+                      path: ':competitor_id'
+                    });
+                  });
+                  this.route('appearances', {
+                    path: 'appearances'
+                  }, function () {
+                    this.route('appearance', {
+                      path: ':appearance_id'
+                    });
+                  });
+                  this.route('contests', {
+                    path: 'contests'
+                  }, function () {
+                    this.route('contest', {
+                      path: ':contest_id'
+                    });
+                  });
+                  this.route('advancers', {
+                    path: 'advancers'
+                  }, function () {});
+                  this.route('finishers', {
+                    path: 'finishers'
+                  }, function () {});
+                  this.route('standings', {
+                    path: 'standings'
+                  }, function () {});
                 });
               });
           });

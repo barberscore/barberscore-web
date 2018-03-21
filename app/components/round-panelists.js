@@ -50,7 +50,7 @@ export default Component.extend({
       this.set('createPanelistModal', false);
       this.set('createPanelistModalError', false);
       this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.rounds.round.panelists', this.get('model'), panelist.get('id'));
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.panelists', this.get('model'), panelist.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createPanelistModalError', true);

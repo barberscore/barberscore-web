@@ -11,27 +11,27 @@
     <div class='panel-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.details"}}Details{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.panelists"}}Panelists{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.panelists"}}Panelists{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.competitors"}}Competitors{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.competitors"}}Competitors{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.appearances"}}Appearances{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.standings"}}Standings{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.standings"}}Standings{{/nav.link-to}}
         {{/nav.item}}
         {{#unless (eq model.kind 'Finals')}}
           {{#nav.item}}
-            {{#nav.link-to "dashboard.rounds.round.advancers"}}Advancers{{/nav.link-to}}
+            {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.advancers"}}Advancers{{/nav.link-to}}
           {{/nav.item}}
         {{/unless}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.rounds.round.finishers"}}Finishers{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.finishers"}}Finishers{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}

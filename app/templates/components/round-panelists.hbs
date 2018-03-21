@@ -54,7 +54,7 @@
           <tr>
             <td>
               {{#if (eq model.status 'New')}}
-                {{#link-to 'dashboard.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}
               {{else}}
                 {{panelist.person.fullName}}
               {{/if}}
