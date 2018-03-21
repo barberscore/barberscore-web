@@ -1,0 +1,30 @@
+<section>
+    <div class='row'>
+      <div class='col-md-12'>
+        <table class='table'>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Rank</th>
+              <th class='col-md-4'>Name</th>
+              <th class='col-md-1'>Points</th>
+              <th class='col-md-1'>Score</th>
+            </tr>
+          </thead>
+            <tbody>
+              {{#each sortedAppearances as |appearance|}}
+                <tr>
+                  <td>{{appearance.totRank}}</td>
+                  <td>{{appearance.competitor.group.name}}</td>
+                  <td>{{appearance.totPoints}}</td>
+                  <td>{{single-fixed appearance.totScore}}</td>
+                </tr>
+              {{else}}
+                <tr>
+                  <td colspan=4>(Standings not currently available.)</td>
+                </tr>
+              {{/each}}
+            </tbody>
+        </table>
+      </div>
+    </div>
+</section>

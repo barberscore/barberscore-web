@@ -16,10 +16,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
         'assignments__person__user': this.get('currentUser.user.id'),
         'status': 10,
       }),
-      sessionAssignments:  this.get('store').query('assignment', {
+      activeAssignments:  this.get('store').query('assignment', {
         'person__user': this.get('currentUser.user.id'),
         'status': 10,
-        'kind': 5,
       }),
     });
   }

@@ -90,12 +90,19 @@ Router.map(function() {
               this.route('draw', {
                 path: 'draw'
               }, function () {});
+              this.route('rounds', {
+                path: 'rounds'
+              }, function () {
+                this.route('round', {
+                  path: ':round_id'
+                });
+              });
           });
         });
       });
     });
-    this.route('scoring-manager', {
-      path: 'scoring-manager'
+    this.route('rounds', {
+      path: 'rounds'
     }, function () {
       this.route('round', {
         path: ':round_id'

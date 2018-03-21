@@ -1,0 +1,37 @@
+<section>
+  <div class='row'>
+    <div class='col-md-12'>
+      <table class='table'>
+        <caption>
+          This is the listing of all competitors, regardless of Round.
+        </caption>
+        <thead>
+          <tr>
+            <th class='col-md-6'>Competitor</th>
+            {{!-- <th class='col-md-1'>Status</th> --}}
+            {{!-- <th class='col-md-1'>Action</th> --}}
+          </tr>
+        </thead>
+          <tbody>
+            {{#each sortedCompetitors as |competitor|}}
+              <tr>
+                <td>
+                  {{competitor.group.name}}
+                </td>
+                {{!-- <td>
+                  {{competitor.status}}
+                </td> --}}
+                {{!-- <td>
+                  {{#bs-button size='xs'}}Action{{/bs-button}}
+                </td> --}}
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No competitors.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+      </table>
+    </div>
+  </div>
+</section>
