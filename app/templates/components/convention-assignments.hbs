@@ -18,7 +18,7 @@
       {{#each sortedAssignments as |assignment|}}
         <tr>
           <td>
-            {{#if group.image}}
+            {{#if assignment.person.image}}
               <img src={{assignment.person.image}} class='img-responsive img-rounded'>
             {{else}}
               <img src='/assets/no_image_available.jpg' class='img-responsive'>
