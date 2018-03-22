@@ -1,7 +1,4 @@
 <section>
-    <h5>
-      Reports
-    </h5>
     {{#if (or (eq model.status 'Verified') (eq model.status 'Started'))}}
       <ul class='list-unstyled'>
         <li>BBScores Excel Export: &nbsp;<a href='{{legacy}}'>{{legacy}}&nbsp;{{fa-icon 'file-excel-o'}}</a></li>
@@ -9,6 +6,8 @@
         <li>Admin Emails Excel Export: <a href='{{contact}}'>&nbsp;{{contact}}&nbsp;{{fa-icon 'file-excel-o'}}</a></li>
       </ul>
     {{else}}
-      Reports are available after the session is verified.
+      <h4>
+        Reports are available after the session is Verified.
+      </h4>
     {{/if}}
 </section>

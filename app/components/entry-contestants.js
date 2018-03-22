@@ -13,11 +13,7 @@ export default Component.extend({
     'notWritable',
   ),
   contestantSortProperties: [
-    'contestGroupKindSort',
-    'contestAwardQualifier',
-    'contestAwardPrimary',
-    'contestAwardAgeSort',
-    'contestAwardName',
+    'awardSort',
   ],
   sortedContestants: sort(
     'model.contestants',
