@@ -13,6 +13,7 @@ export default Model.extend({
   closeDate: DS.attr('isodate'),
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
+  image: DS.attr('string'),
   location: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
   venue: DS.belongsTo('venue', {async: true}),

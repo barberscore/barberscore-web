@@ -1,42 +1,56 @@
-<div class='table-responsive'>
-  <h3>
-    Your Assignments
-  </h3>
-  <table class='table'>
-    <caption>These are the conventions to which you are currently assigned.</caption>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Venue</th>
-        <th>Date</th>
-        <th>Kind</th>
-        <th>Category</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedAssignments as |assignment|}}
-        <tr>
-          <td>
-            {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
-          </td>
-          <td>
-            {{assignment.convention.venue.name}}
-          </td>
-          <td>
-            {{moment-format assignment.convention.startDate 'L'}}
-          </td>
-          <td>
-            {{assignment.kind}}
-          </td>
-          <td>
-            {{assignment.category}}
-          </td>
-        </tr>
-      {{else}}
-        <tr>
-          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Your Assignments
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>These are the conventions to which you are currently assigned.</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Venue</th>
+            <th>Date</th>
+            <th>Kind</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAssignments as |assignment|}}
+            <tr>
+              <td>
+                {{#if assignment.convention.image}}
+                  <img src={{assignment.convention.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
+              </td>
+              <td>
+                {{assignment.convention.venue.name}}
+              </td>
+              <td>
+                {{moment-format assignment.convention.startDate 'L'}}
+              </td>
+              <td>
+                {{assignment.kind}}
+              </td>
+              <td>
+                {{assignment.category}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

@@ -1,52 +1,65 @@
-<div class='table-responsive'>
-  <h3>Your Groups</h3>
-  <table class='table'>
-    <caption>You are an active officer for the following groups:</caption>
-    <thead>
-      <tr>
-        <th class='col-md-1'>Image</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedGroups as |group|}}
-        <tr>
-          <td>
-            {{#if group.image}}
-              <img src={{group.image}} class='img-responsive img-rounded'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive'>
-            {{/if}}
-          </td>
-          <td>
-            {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
-          </td>
-        </tr>
-      {{else}}
-        <tr>
-          <td>(You are not listed as an officer for any active groups.  Please check the {{member-center}}.)</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Your Groups
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>You are an active officer for the following groups:</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Kind</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedGroups as |group|}}
+            <tr>
+              <td>
+                {{#if group.image}}
+                  <img src={{group.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
+              </td>
+              <td>
+                {{group.kind}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td>(You are not listed as an officer for any active groups.  Please check the {{member-center}}.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class='panel-footer'>
+    <p>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
+        Your group not listed? Click here.
+      {{/bs-button}}
+    </p>
+    {{#bs-collapse collapsed=collapsedNote}}
+      <p>
+        This is the list of currently active groups for which you are listed as an officer.  To update your officer records, check the {{member-center}} and update accordingly.  Also note that <em>newly registered quartets</em> will not show in Barberscore until BHS headquarters has:
+      </p>
+      <ul class='list-styled'>
+        <li>Approved the quartet name</li>
+        <li>Processed the subscription fee</li>
+        <li>Updated the Member Center record</li>
+      </ul>
+      <p>
+        <em>This process can take up to 5 business days.</em>
+      </p>
+    {{/bs-collapse}}
+  </div>
 </div>
-<section>
-  <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
-      Your group not showing up? Click here.
-    {{/bs-button}}
-  </p>
-  {{#bs-collapse collapsed=collapsedNote}}
-    <p>
-      This is the list of currently active groups for which you are listed as an officer.  To update your officer records, check the {{member-center}} and update accordingly.  Also note that <em>newly registered quartets</em> will not show in Barberscore until BHS headquarters has:
-    </p>
-    <ul class='list-styled'>
-      <li>Approved the quartet name</li>
-      <li>Processed the subscription fee</li>
-      <li>Updated the Member Center record</li>
-    </ul>
-    <p>
-      <em>This process can take up to 5 business days.</em>
-    </p>
-  {{/bs-collapse}}
-</section>
+

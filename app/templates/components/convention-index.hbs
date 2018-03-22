@@ -6,12 +6,20 @@
     <caption>These are the Conventions currently assigned to you.</caption>
     <thead>
       <tr>
+        <th>Image</th>
         <th>Name</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedConventions as |convention|}}
         <tr>
+          <td>
+            {{#if convention.image}}
+              <img src={{convention.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </td>
           <td>{{convention.name}}</td>
         </tr>
       {{else}}
