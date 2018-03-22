@@ -1,0 +1,47 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>
+      These are the current Convention Assignments.  Please contact Chris Buechler and David Mills if any of these need to be updated.
+    </caption>
+    <thead>
+      <tr>
+        <th>Person</th>
+        <th>Category</th>
+        <th>Kind</th>
+        <th>Status</th>
+        <th>BHS Expires</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedAssignments as |assignment|}}
+        <tr>
+          {{#if assignment.person.isLoading}}
+            <td>
+              Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+            </td>
+          {{else}}
+            <td>
+              {{assignment.person.commonName}}
+            </td>
+          {{/if}}
+          <td>
+            {{assignment.category}}
+          </td>
+          <td>
+            {{assignment.kind}}
+          </td>
+          <td>
+            {{assignment.status}}
+          </td>
+          <td>
+            {{moment-format assignment.person.currentThrough 'L'}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(No assignments.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

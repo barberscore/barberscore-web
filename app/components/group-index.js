@@ -1,13 +1,18 @@
 import Component from '@ember/component';
-import { sort } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 
 export default Component.extend({
   sortedGroupsProperties: [
     'treeSort',
     'name',
   ],
-  sortedGroups: sort(
+  filteredGroups: filterBy(
     'model',
+    'status',
+    'Active',
+  ),
+  sortedGroups: sort(
+    'filteredGroups',
     'sortedGroupsProperties'
   ),
 });

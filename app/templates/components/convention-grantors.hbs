@@ -1,0 +1,19 @@
+<ul class='list-styled'>
+  {{#each sortedGrantors as |grantor|}}
+    {{#if grantor.group.isLoading}}
+      <li>
+        Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+      </li>
+    {{else}}
+      <li>
+        {{grantor.group.name}}
+      </li>
+    {{/if}}
+    {{!-- {{#each grantor.group.children as |child|}} --}}
+      {{group-index model=grantor.group.children}}
+  {{else}}
+    <tr>
+      <td>(No grantors.)</td>
+    </tr>
+  {{/each}}
+</ul>

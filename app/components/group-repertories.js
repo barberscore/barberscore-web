@@ -12,7 +12,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedRepertoriesProperties: [
-    'title',
+    'chartTitle',
   ],
   sortedRepertories: sort(
     'model.repertories',

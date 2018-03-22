@@ -1,18 +1,11 @@
 <section>
   {{session-convention model=model}}
 </section>
-{{#unless model.isInvitational}}
-  <hr>
-  <section>
-    <p>
-      Following are the Active Groups within this Convention's District and/or Divisions.  The designated contacts for each of these groups will receive a notification when the Session is opened.
-    </p>
-    <br><br>
-    <ul>
-      {{#each model.convention.grantors as |grantor|}}
-        <h4>{{grantor.group.nomen}}</h4>
-        {{active-groups model=grantor}}
-      {{/each}}
-    </ul>
-  </section>
-{{/unless}}
+<hr>
+<section>
+  {{convention-assignments model=model.convention}}
+</section>
+<hr>
+{{!-- <section>
+  {{convention-grantors model=model.convention}}
+</section> --}}
