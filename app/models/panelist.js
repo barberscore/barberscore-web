@@ -31,7 +31,7 @@ export default Model.extend({
       return this.get('kindOptions').indexOf(this.get('kind'));
     }
   ),
-  personSort: alias('person.lastName'),
+  personSort: alias('person.sortName'),
   statusOptions: [
     'New',
     'Active',
