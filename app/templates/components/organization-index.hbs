@@ -12,6 +12,7 @@
           <tr>
             <th class='col-md-1'>Image</th>
             <th>Name</th>
+            <th>Kind</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,9 @@
               </td>
               <td>
                 {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
+              </td>
+              <td>
+                {{group.kind}}
               </td>
             </tr>
           {{else}}
