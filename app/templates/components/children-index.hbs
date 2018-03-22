@@ -1,11 +1,13 @@
+{{model}}
 <div class='table-responsive'>
-  <h3>Your Groups</h3>
+  <h3>Child Groups</h3>
   <table class='table'>
-    <caption>You are an active officer for the following groups:</caption>
+    <caption>The following groups are part of this Organization</caption>
     <thead>
       <tr>
         <th class='col-md-1'>Image</th>
         <th>Name</th>
+        <th>Kind</th>
       </tr>
     </thead>
     <tbody>
@@ -21,6 +23,9 @@
           <td>
             {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
           </td>
+          <td>
+            {{group.kind}}
+          </td>
         </tr>
       {{else}}
         <tr>
@@ -32,21 +37,14 @@
 </div>
 <section>
   <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
-      Your group not showing up? Click here.
-    {{/bs-button}}
+    <strong>Note to New Quartets:</strong> Please be aware that newly registered quartets will not show in Barberscore until BHS headquarters has:
   </p>
-  {{#bs-collapse collapsed=collapsedNote}}
-    <p>
-      This is the list of currently active groups for which you are listed as an officer.  To update your officer records, check the {{member-center}} and update accordingly.  Also note that <em>newly registered quartets</em> will not show in Barberscore until BHS headquarters has:
-    </p>
-    <ul class='list-styled'>
-      <li>Approved the quartet name</li>
-      <li>Processed the subscription fee</li>
-      <li>Updated the Member Center record</li>
-    </ul>
-    <p>
-      <em>This process can take up to 5 business days.</em>
-    </p>
-  {{/bs-collapse}}
+  <ul class='list-styled'>
+    <li>Approved the quartet name</li>
+    <li>Processed the subscription fee</li>
+    <li>Updated the Member Center record</li>
+  </ul>
+  <p>
+    <em>This process can take up to 5 business days.</em>
+  </p>
 </section>

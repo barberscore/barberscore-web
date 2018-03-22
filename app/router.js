@@ -64,6 +64,9 @@ Router.map(function() {
         this.route('assignments', {
           path: 'assignments'
         });
+        this.route('grantors', {
+          path: 'grantors'
+        });
         this.route('sessions', {
           path: 'sessions'
         }, function() {
@@ -209,6 +212,7 @@ Router.map(function() {
         });
         this.route('members', {path: 'members'}, function () {});
         this.route('repertories', {path: 'repertories'}, function () {});
+        this.route('children', {path: 'children'}, function () {});
       });
     });
     this.route('session-manager', {

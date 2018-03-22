@@ -9,8 +9,7 @@
         {{grantor.group.name}}
       </li>
     {{/if}}
-    {{!-- {{#each grantor.group.children as |child|}} --}}
-      {{group-index model=grantor.group.children}}
+    {{grantor-groups model=grantor}}
   {{else}}
     <tr>
       <td>(No grantors.)</td>

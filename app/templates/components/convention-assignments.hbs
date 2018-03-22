@@ -1,29 +1,31 @@
 <div class='table-responsive'>
   <h3>
-    Your Assignments
+    Assignments
   </h3>
   <table class='table'>
-    <caption>These are the conventions to which you are currently assigned.</caption>
+    <caption>These are the assignments for this convention.</caption>
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Venue</th>
-        <th>Date</th>
+        <th class='col-md-1'>Image</th>
+        <th>Person</th>
         <th>Kind</th>
         <th>Category</th>
+        <th>Email</th>
+        <th>Phone</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedAssignments as |assignment|}}
         <tr>
           <td>
-            {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
+            {{#if group.image}}
+              <img src={{assignment.person.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
           </td>
           <td>
-            {{assignment.convention.venue.name}}
-          </td>
-          <td>
-            {{moment-format assignment.convention.startDate 'L'}}
+            {{assignment.person.commonName}}
           </td>
           <td>
             {{assignment.kind}}
@@ -31,6 +33,8 @@
           <td>
             {{assignment.category}}
           </td>
+          <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
+          <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
         </tr>
       {{else}}
         <tr>

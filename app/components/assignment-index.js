@@ -1,14 +1,19 @@
 import Component from '@ember/component';
-import { sort } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 
 export default Component.extend({
+  filteredAssignments: filterBy(
+    'model',
+    'status',
+    'Active',
+  ),
   sortProperties: [
     'conventionStart',
     'kindSort',
     'categorySort',
   ],
   sortedAssignments: sort(
-    'model',
+    'filteredAssignments',
     'sortProperties'
   ),
 });

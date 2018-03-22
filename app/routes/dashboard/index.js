@@ -19,6 +19,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       activeAssignments:  this.get('store').query('assignment', {
         'person__user': this.get('currentUser.user.id'),
         'status': 10,
+        'convention__status': 10,
       }),
     });
   }

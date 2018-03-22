@@ -1,0 +1,32 @@
+<div class='table-responsive'>
+  <h3>Your Organization Memberships</h3>
+  <table class='table'>
+    <caption>You are an active officer for the following organizations:</caption>
+    <thead>
+      <tr>
+        <th class='col-md-1'>Image</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedGroups as |group|}}
+        <tr>
+          <td>
+            {{#if group.image}}
+              <img src={{group.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </td>
+          <td>
+            {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(You are not listed as an officer for any active groups.  Please check the {{member-center}}.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
