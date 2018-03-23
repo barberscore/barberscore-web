@@ -2,6 +2,9 @@
   {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
 </section>
 <section>
+  {{person-memberships model=currentUser.user.person}}
+</section>
+<section>
   {{group-index model=model.activeGroups}}
 </section>
 {{#if model.activeAssignments}}

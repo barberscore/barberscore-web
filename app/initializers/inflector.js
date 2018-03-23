@@ -24,6 +24,7 @@ export function initialize(/* application */) {
   inflector.uncountable('score');
   inflector.uncountable('session');
   inflector.uncountable('song');
+  inflector.uncountable('subscription');
   inflector.uncountable('user');
   inflector.uncountable('venue');
 }

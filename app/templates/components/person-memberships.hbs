@@ -1,0 +1,34 @@
+<div class='table-responsive'>
+  <h3>
+    Your Memberships
+  </h3>
+  <table class='table'>
+    <caption>These are your memberships.</caption>
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>Subscription</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedMembers as |member|}}
+        <tr>
+          <td>
+            {{member.group.name}}
+          </td>
+          <td>
+            {{member.subscription.name}}
+          </td>
+          <td>
+            {{member.status}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(You do not have any current memberships. </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
