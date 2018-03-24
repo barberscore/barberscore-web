@@ -35,12 +35,23 @@
     </div>
     <div class='panel-body'>
       <section>
-        <p>
-          <strong>Preferences</strong>
-        </p>
-        <p>
-          {{entry-preferences model=model}}
-        </p>
+        <div class='row'>
+          <div class='col-md-6'>
+            {{#if assignment.person.image}}
+              <img src={{assignment.person.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+            {{/if}}
+          </div>
+          <div class='col-md-6'>
+            <p>
+              <strong>Preferences</strong>
+            </p>
+            <p>
+              {{entry-preferences model=model}}
+            </p>
+          </div>
+        </div>
       </section>
       <hr>
       <section>

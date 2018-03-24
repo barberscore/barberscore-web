@@ -18,24 +18,32 @@
         </thead>
         <tbody>
           {{#each sortedOfficers as |officer|}}
-            <tr>
-              <td>
-                {{#if officer.group.image}}
-                  <img src={{officer.group.image}} class='img-responsive img-rounded'>
-                {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
-                {{/if}}
-              </td>
-              <td>
-                {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}
-              </td>
-              <td>
-                {{officer.group.kind}}
-              </td>
-              <td>
-                {{officer.office.name}}
-              </td>
-            </tr>
+            {{#if officer.group.isLoading}}
+              <tr>
+                <td colspan=4>
+                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>
+                  {{#if officer.group.image}}
+                    <img src={{officer.group.image}} class='img-responsive img-rounded'>
+                  {{else}}
+                    <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                  {{/if}}
+                </td>
+                <td>
+                  {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{officer.group.kind}}
+                </td>
+                <td>
+                  {{officer.office.name}}
+                </td>
+              </tr>
+            {{/if}}
           {{else}}
             <tr>
               <td></td>

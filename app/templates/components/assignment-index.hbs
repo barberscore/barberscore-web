@@ -32,10 +32,11 @@
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
               </td>
               <td>
-                {{assignment.convention.venue.name}}
+                {{assignment.convention.venue.name}}<br>
+                {{assignment.convention.venue.city}},  {{assignment.convention.venue.state}}
               </td>
               <td>
-                {{moment-format assignment.convention.startDate 'L'}}
+                {{moment-format assignment.convention.startDate 'L'}} - {{moment-format assignment.convention.endDate 'L'}}
               </td>
               <td>
                 {{assignment.kind}}
