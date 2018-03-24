@@ -23,7 +23,7 @@ export default Component.extend({
     yield timeout(600);
     let kindModel = this.get('model.kind');
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Group_dev', query: term}, { filters: `get_kind_display:${kindModel}` })
+    let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel}` })
     return res.hits
   }),
   createEntryModal: false,
