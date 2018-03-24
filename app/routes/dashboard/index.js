@@ -8,13 +8,10 @@ export default Route.extend(AuthenticatedRouteMixin, {
   store: service(),
   model() {
     return RSVP.hash({
-      activeGroups:  this.get('store').query('group', {
-        'officers__person__user': this.get('currentUser.user.id'),
+      activeOfficers:  this.get('store').query('officer', {
+        'person__user': this.get('currentUser.user.id'),
         'status': 10,
-      }),
-      activeConventions:  this.get('store').query('convention', {
-        'assignments__person__user': this.get('currentUser.user.id'),
-        'status': 10,
+        'group__status': 10,
       }),
       activeAssignments:  this.get('store').query('assignment', {
         'person__user': this.get('currentUser.user.id'),

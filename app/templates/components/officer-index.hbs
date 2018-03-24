@@ -1,0 +1,70 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Your Officer Roles
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>You are an active officer for the following groups:</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Kind</th>
+            <th>Office</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedOfficers as |officer|}}
+            <tr>
+              <td>
+                {{#if officer.group.image}}
+                  <img src={{officer.group.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}
+              </td>
+              <td>
+                {{officer.group.kind}}
+              </td>
+              <td>
+                {{officer.office.name}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td></td>
+              <td>(You are not listed as an officer for any active groups.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class='panel-footer'>
+    <p>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
+        Your group not listed? Click here.
+      {{/bs-button}}
+    </p>
+    {{#bs-collapse collapsed=collapsedNote}}
+      <p>
+        This is the list of currently active groups for which you are listed as an officer.  To update your officer records, check the {{member-center}} and update accordingly.  Also note that <em>newly registered quartets</em> will not show in Barberscore until BHS headquarters has:
+      </p>
+      <ul class='list-styled'>
+        <li>Approved the quartet name</li>
+        <li>Processed the subscription fee</li>
+        <li>Updated the Member Center record</li>
+      </ul>
+      <p>
+        <em>This process can take up to 5 business days.</em>
+      </p>
+    {{/bs-collapse}}
+  </div>
+</div>
+
