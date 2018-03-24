@@ -5,15 +5,13 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Kind</th>
           <th>Status</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedRounds as |round|}}
           <tr>
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.nomen}}{{/link-to}}</td>
-            <td>{{round.kind}}</td>
+            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
             <td>{{round.status}}</td>
           </tr>
         {{else}}

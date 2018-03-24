@@ -3,7 +3,7 @@ import { sort } from '@ember/object/computed';
 
 export default Component.extend({
   sortedGrantorsProperties: [
-    'nomen',
+    'groupName',
   ],
   sortedGrantors: sort(
     'model.grantors',

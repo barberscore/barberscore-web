@@ -3,19 +3,19 @@
     <caption>Current Sessions</caption>
     <thead>
       <tr>
-        <th {{action 'sortBy' 'nomen'}}>Name</th>
-        <th {{action 'sortBy' 'group'}}>Organization</th>
-        <th {{action 'sortBy' 'statusSort'}}>Status</th>
+        <th>Name</th>
+        <th>Organization</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedSessions as |session|}}
         <tr>
-          <td>{{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.nomen}}{{/link-to}}</td>
-          {{#if session.groupNomen.isLoading}}
+          <td>{{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}</td>
+          {{#if session.groupName.isLoading}}
             <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
-            <td>{{session.groupNomen}}</td>
+            <td>{{session.groupName}}</td>
           {{/if}}
           <td>{{session.status}}</td>
         </tr>

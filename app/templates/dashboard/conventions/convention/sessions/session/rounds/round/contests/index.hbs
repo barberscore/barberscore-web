@@ -16,7 +16,7 @@
         <tbody>
           {{#each sortedContests as |contest|}}
             <tr>
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.nomen}}{{/link-to}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
               <td>{{contest.status}}</td>
             </tr>
           {{else}}

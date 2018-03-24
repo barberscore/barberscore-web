@@ -34,7 +34,7 @@ export default Model.extend({
   isActive: not('isAnnounced'),
 
   groupKindSort: alias('group.kindSort'),
-  groupNomen: alias('group.nomen'),
+  groupName: alias('group.name'),
 
   statusOptions: [
     'New',

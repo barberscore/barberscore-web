@@ -28,7 +28,6 @@ export default Model.extend({
   division: DS.attr('string'),
   chapter: DS.attr('string'),
   treeSort: DS.attr('number'),
-  isOrg: DS.attr('boolean'),
   parent: DS.belongsTo('group', {inverse:'children', async: true}),
   children: DS.hasMany('group', {inverse:'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),

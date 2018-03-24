@@ -4,7 +4,6 @@ import { alias, not, equal } from '@ember/object/computed';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('contestant-status'),
   rank: DS.attr('number'),
   musPoints: DS.attr('number'),

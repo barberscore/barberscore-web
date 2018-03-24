@@ -5,7 +5,6 @@ export default Component.extend({
   sortProperties: [
     'statusSort:asc',
     'groupKindSort:asc',
-    'nomen:asc',
   ],
   sortedSessions: sort(
     'model',

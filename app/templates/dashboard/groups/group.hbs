@@ -16,7 +16,7 @@
         {{!-- {{#nav.item}}
           {{#nav.link-to "dashboard.groups.group.members"}}Members{{/nav.link-to}}
         {{/nav.item}} --}}
-        {{#if model.isOrg}}
+        {{#if (or (eq model.kind 'International') (eq model.kind 'District'))}}
           {{!-- {{#nav.item}}
             {{#nav.link-to "dashboard.groups.group.children"}}Groups{{/nav.link-to}}
           {{/nav.item}} --}}
