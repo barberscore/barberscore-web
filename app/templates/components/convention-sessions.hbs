@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
@@ -10,6 +11,9 @@
         <tr>
           <td>
             {{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}
+          </td>
+          <td>
+            {{session.status}}
           </td>
         </tr>
       {{else}}

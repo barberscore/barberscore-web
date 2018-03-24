@@ -13,7 +13,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedEntriesProperties: [
-    'conventionName',
+    'groupName',
   ],
   sortedEntries: sort(
     'model.entries',

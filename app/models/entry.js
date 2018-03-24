@@ -70,5 +70,6 @@ export default Model.extend({
   contestantCount: alias('contestants.length'),
   activeMembersCount: alias('group.activeMembers.length'),
   repertoryCount: alias('group.repertories.length'),
-  conventionStatus: alias('session.convention.status')
+  conventionStatus: alias('session.convention.status'),
+  groupName: alias('group.name')
 });

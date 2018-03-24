@@ -15,7 +15,6 @@
           {{#if (eq model.kind 'Chorus')}}
             <th class='col-md-1'>Participants on Stage</th>
           {{/if}}
-          <th class='col-md-1'>Prelim</th>
           <th class='col-md-1'>Status</th>
         </tr>
       </thead>
@@ -37,7 +36,6 @@
               {{#if (eq model.kind 'Chorus')}}
                 <td>{{#if entry.mos}}{{entry.mos}}{{else}}N/A{{/if}}</td>
               {{/if}}
-              <td>{{single-fixed entry.prelim}}</td>
               <td>{{entry.status}}</td>
             {{/if}}
           </tr>
