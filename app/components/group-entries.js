@@ -37,6 +37,7 @@ export default Component.extend({
     });
   }),
   sessionSortProperties: [
+    'conventionName',
   ],
   sessionOptions: sort(
     'sessionCall',
