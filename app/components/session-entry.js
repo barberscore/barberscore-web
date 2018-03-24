@@ -19,7 +19,6 @@ export default Component.extend({
     }
   }).restartable(),
   sortedEntriesProperties: [
-    'groupName',
   ],
   sortedEntries: sort(
     'model.session.entries',

@@ -17,7 +17,6 @@ export default Component.extend({
     'Active',
   ),
   sortedEntriesProperties: [
-    'groupName',
   ],
   sortedEntries: sort(
     'filteredEntries',
@@ -38,7 +37,6 @@ export default Component.extend({
     });
   }),
   sessionSortProperties: [
-    'groupName',
   ],
   sessionOptions: sort(
     'sessionCall',
