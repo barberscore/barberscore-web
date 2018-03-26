@@ -1,7 +1,6 @@
 import Component from '@ember/component';
-import { array } from 'ember-awesome-macros';
 import { inject as service } from '@ember/service';
-import { not, sort, or, alias, filterBy } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 import { computed } from '@ember/object';

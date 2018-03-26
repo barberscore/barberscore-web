@@ -8,8 +8,25 @@ export default Component.extend({
   flashMessages: service(),
   router: service(),
   store: service(),
+  currentUser: service(),
   isDisabled: not(
     'model.permissions.write',
+  ),
+  filteredOfficers: computed(
+    'model.officers.@each.person.id', function() {
+    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
+  }),
+  activeOfficers: filterBy(
+    'filteredOfficers',
+    'status',
+    'Active',
+  ),
+  allowedOfficers: filterBy(
+    'activeOfficers',
+    'isGroupManager',
+  ),
+  isCreateDisabled: not(
+    'allowedOfficers.length',
   ),
   filteredEntries: filterBy(
     'model.entries',
