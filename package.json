@@ -23,6 +23,7 @@
     "ember-ajax": "^3.0.0",
     "ember-algolia": "^0.0.10",
     "ember-api-actions": "0.1.8",
+    "ember-awesome-macros": "^0.41.0",
     "ember-bootstrap": "1.2.1",
     "ember-browserify": "^1.2.1",
     "ember-cli": "~3.0.0",

@@ -21,7 +21,7 @@ export default Model.extend({
 
   personLastName: alias('person.lastName'),
   conventionStart: alias('convention.startDate'),
-
+  conventionStatus: alias('convention.status'),
   categorySort: computed(
     'category',
     'categoryOptions',

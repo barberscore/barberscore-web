@@ -51,6 +51,7 @@ export default Model.extend({
   officeCodeSort: alias('office.codeSort'),
   officeKind: alias('office.kind'),
   officeName: alias('office.name'),
+  isChartManager: alias('office.isChartManager'),
   groupName: alias('group.name'),
   groupSort: alias('group.treeSort'),
 });

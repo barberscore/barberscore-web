@@ -1,0 +1,17 @@
+<p>
+  {{#power-select
+    search=(perform searchGroup)
+    selected=group
+    onchange=(action (mut group))
+    placeholder="Enter Group Name"
+    allowClear=true
+    renderInPlace=true
+    noMatchesMessage="We Could Not Find an Active Group with that Name"
+    as |group|
+  }}
+    Group: {{group.name}} {{#if group.parent.shortName}}({{group.parent.shortName}}){{/if}}
+  {{/power-select}}
+</p>
+<p>
+  {{group.name}}
+</p>

@@ -1,15 +1,34 @@
 import Component from '@ember/component';
+import { array } from 'ember-awesome-macros';
 import { inject as service } from '@ember/service';
-import { not, sort } from '@ember/object/computed';
+import { not, sort, or, alias, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
   algolia: service(),
+  currentUser: service(),
   customCollapsed: true,
   isDisabled: not(
     'model.permissions.write',
+  ),
+  filteredOfficers: computed(
+    'model.officers.@each.person.id', function() {
+    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
+  }),
+  activeOfficers: filterBy(
+    'filteredOfficers',
+    'status',
+    'Active',
+  ),
+  chartOfficers: filterBy(
+    'activeOfficers',
+    'isChartManager',
+  ),
+  isCreateDisabled: not(
+    'chartOfficers.length',
   ),
   sortedRepertoriesProperties: [
     'chartTitle',

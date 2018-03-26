@@ -1,15 +1,9 @@
 <section>
-  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-</section>
-{{!-- <section>
-  {{person-memberships model=currentUser.user.person}}
-</section> --}}
-<section>
-  {{officer-index model=model.activeOfficers}}
+  {{user-members model=currentUser.user}}
 </section>
 {{#if model.activeAssignments}}
   <section>
-    {{assignment-index model=model.activeAssignments}}
+    {{user-assignments model=currentUser.user}}
   </section>
 {{/if}}
 {{outlet}}
