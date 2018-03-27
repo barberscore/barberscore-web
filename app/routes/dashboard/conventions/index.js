@@ -8,6 +8,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').query('convention', {
       'assignments__person__user': this.get('currentUser.user.id'),
       'status': 10,
+      'assignments__status': 10,
     });
   },
 });

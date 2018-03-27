@@ -1,32 +1,50 @@
-<div class='table-responsive'>
-  <h3>
-    Your Conventions
-  </h3>
-  <table class='table'>
-    <caption>These are the Conventions currently assigned to you.</caption>
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedConventions as |convention|}}
-        <tr>
-          <td>
-            {{#if convention.image}}
-              <img src={{convention.image}} class='img-responsive img-rounded'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive'>
-            {{/if}}
-          </td>
-          <td>{{convention.name}}</td>
-        </tr>
-      {{else}}
-        <tr>
-          <td>No active Conventions currently assigned to you.</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Your Conventions
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>These are the conventions to which you are currently assigned.</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Venue</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedConventions as |convention|}}
+            <tr>
+              <td>
+                {{#if convention.image}}
+                  <img src={{convention.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.name}}{{/link-to}}
+              </td>
+              <td>
+                {{convention.venue.name}}<br>
+                {{convention.venue.city}},  {{convention.venue.state}}
+              </td>
+              <td>
+                {{moment-format convention.startDate 'L'}} - {{moment-format convention.endDate 'L'}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td></td>
+              <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

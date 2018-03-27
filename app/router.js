@@ -124,6 +124,7 @@ Router.map(function() {
             path: ':entry_id'
           });
         });
+        this.route('officers', {path: 'officers'}, function () {});
         this.route('members', {path: 'members'}, function () {});
         this.route('repertories', {path: 'repertories'}, function () {});
         this.route('children', {path: 'children'}, function () {});
