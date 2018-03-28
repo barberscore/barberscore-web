@@ -77,8 +77,8 @@
           </div>
           <div class='col-xs-10'>
             {{session.convention.name}}<br>
-            {{session.convention.venue.city}}, {{session.convention.venue.state}}<br>
-            {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
+            {{session.kind}} {{session.gender}} Session<br>
+            {{session.convention.venue.city}}, {{session.convention.venue.state}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
           </div>
         </div>
       {{/power-select}}

@@ -13,7 +13,7 @@ export default Controller.extend({
     'model.permissions.write',
   ),
   sortedEntriesProperties: [
-    'nomen',
+    'conventionStart',
   ],
   sortedEntries: sort(
     'model.entries',
