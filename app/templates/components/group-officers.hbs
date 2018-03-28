@@ -19,7 +19,11 @@
             {{else}}
               <td>{{officer.person.fullName}}</td>
             {{/if}}
-            <td>{{officer.office.name}}</td>
+            {{#if officer.office.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{officer.office.name}}</td>
+            {{/if}}
             <td><a href='mailto:{{officer.person.email}}'>{{officer.person.email}}</a></td>
             <td><a href='tel:{{officer.person.cellPhone}}'>{{officer.person.cellPhone}}</a></td>
           {{/if}}

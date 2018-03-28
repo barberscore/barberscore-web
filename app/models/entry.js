@@ -71,5 +71,6 @@ export default Model.extend({
   activeMembersCount: alias('group.activeMembers.length'),
   repertoryCount: alias('group.repertories.length'),
   conventionStatus: alias('session.convention.status'),
+  conventionStart: alias('session.convention.startDate'),
   groupName: alias('group.name')
 });

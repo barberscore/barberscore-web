@@ -26,9 +26,10 @@ export default Component.extend({
     'activeOfficers',
     'isChartManager',
   ),
-  isCreateDisabled: not(
-    'chartOfficers.length',
-  ),
+  // isCreateDisabled: not(
+  //   'chartOfficers.length',
+  // ),
+  isCreateDisabled: false,
   sortedRepertoriesProperties: [
     'chartTitle',
   ],

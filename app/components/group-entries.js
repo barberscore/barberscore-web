@@ -25,15 +25,18 @@ export default Component.extend({
     'activeOfficers',
     'isGroupManager',
   ),
-  isCreateDisabled: not(
-    'allowedOfficers.length',
-  ),
+  // isCreateDisabled: not(
+  //   'allowedOfficers.length',
+  // ),
+  isCreateDisabled: false,
   filteredEntries: filterBy(
     'model.entries',
     'conventionStatus',
     'Active',
   ),
   sortedEntriesProperties: [
+    'conventionStart',
+    'statusSort',
   ],
   sortedEntries: sort(
     'filteredEntries',
