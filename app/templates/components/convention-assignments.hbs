@@ -1,45 +1,44 @@
 <div class='table-responsive'>
+  <h3>
+    Assignments
+  </h3>
   <table class='table'>
-    <caption>
-      These are the current Convention Assignments.  Please contact Chris Buechler and David Mills if any of these need to be updated.
-    </caption>
+    <caption>These are the assignments for this convention.</caption>
     <thead>
       <tr>
+        <th class='col-md-1'>Image</th>
         <th>Person</th>
-        <th>Category</th>
         <th>Kind</th>
-        <th>Status</th>
-        <th>BHS Expires</th>
+        <th>Category</th>
+        <th>Email</th>
+        <th>Phone</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedAssignments as |assignment|}}
         <tr>
-          {{#if assignment.person.isLoading}}
-            <td>
-              Loading&nbsp;{{fa-icon 'spinner' spin=true}}
-            </td>
-          {{else}}
-            <td>
-              {{assignment.person.commonName}}
-            </td>
-          {{/if}}
           <td>
-            {{assignment.category}}
+            {{#if assignment.person.image}}
+              <img src={{assignment.person.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </td>
+          <td>
+            {{assignment.person.commonName}}
           </td>
           <td>
             {{assignment.kind}}
           </td>
           <td>
-            {{assignment.status}}
+            {{assignment.category}}
           </td>
-          <td>
-            {{moment-format assignment.person.currentThrough 'L'}}
-          </td>
+          <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
+          <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
         </tr>
       {{else}}
         <tr>
-          <td>(No assignments.)</td>
+          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
         </tr>
       {{/each}}
     </tbody>

@@ -15,7 +15,7 @@
             <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
             <td>
-              {{#link-to 'dashboard.group-manager.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
+              {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
             </td>
             <td>
               {{entry.session.convention.venue.name}}
@@ -40,7 +40,7 @@
 </div>
 <div>
   <p>
-  {{#bs-button type='success' disabled=model.isError onClick=(action (mut createEntryModal) true)}}Create New Entry{{/bs-button}}
+  {{#bs-button type='success' disabled=isCreateDisabled onClick=(action (mut createEntryModal) true)}}Create New Entry{{/bs-button}}
   </p>
 </div>
 <div>
@@ -60,14 +60,27 @@
         options=sessionOptions
         selected=session
         onchange=(action (mut session))
-        searchField='nomen'
         placeholder="Choose Session"
+        searchField='conventionName'
         allowClear=true
         renderInPlace=true
         noMatchesMessage="We Could Not Find an Open Session with that Name"
         as |session|
       }}
-        {{session.convention.name}} {{session.convention.venue.name}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}
+        <div class='row'>
+          <div class='col-xs-2'>
+            {{#if session.convention.image}}
+              <img src={{session.convention.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </div>
+          <div class='col-xs-10'>
+            {{session.convention.name}}<br>
+            {{session.kind}} {{session.gender}} Session<br>
+            {{session.convention.venue.city}}, {{session.convention.venue.state}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
+          </div>
+        </div>
       {{/power-select}}
       {{#if createEntryModalError}}
       <p class='text-danger'>

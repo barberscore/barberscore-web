@@ -2,7 +2,7 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <h4>
-        {{model.nomen}}
+        {{model.session.convention.name}} {{model.session.kind}}
       </h4>
     </div>
     <div class='panel-body'>
@@ -23,7 +23,7 @@
           {{entry-contestants model=model}}
         </p>
       </section>
-      {{!-- <hr>
+      <hr>
       <section>
         <p>
           Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
@@ -37,7 +37,7 @@
             <strong>Note:</strong>  If you need to make changes to your membership please do so through the new <a href='https://members.barbershop.org'>Member Center</a>, which will update here generally within 24 hours.
           </p>
         {{/bs-collapse}}
-      </section> --}}
+      </section>
       <hr>
       <section>
           <p>
@@ -65,15 +65,15 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'Built')}}
-            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
-            <li>{{entry-delete model=model callback='dashboard.group-manager.group.entries'}}</li>
+            <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
+            <li>{{entry-delete model=model callback='dashboard.groups.group.entries'}}</li>
           {{else if (eq model.status 'Invited')}}
-            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
+            <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
             <li>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Withdrawn')}}
-            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
+            <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
           {{else if (eq model.status 'Submitted')}}
-            <li>{{entry-submit model=model callback='dashboard.group-manager.group.entries'}}</li>
+            <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
             <li>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Approved')}}
             <li>{{entry-withdraw model=model}}</li>

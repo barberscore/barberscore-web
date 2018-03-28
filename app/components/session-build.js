@@ -18,7 +18,7 @@ export default Component.extend({
       this.set('buildSessionModal', false);
       this.set('buildSessionModalError', false);
       this.get('flashMessages').success("Built!");
-      this.get('router').transitionTo('dashboard.session-manager.session.contests');
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.contests');
     } catch(e) {
       this.set('buildSessionModalError', true);
     }

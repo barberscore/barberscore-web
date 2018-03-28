@@ -1,4 +1,4 @@
-import { not } from '@ember/object/computed';
+import { not, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -11,5 +11,6 @@ export default Model.extend({
   isDisabled: not(
     'permissions.write'
   ),
+  groupName: alias('group.name'),
 
 });

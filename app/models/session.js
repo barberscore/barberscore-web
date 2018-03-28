@@ -5,7 +5,6 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
   gender: DS.attr('session-gender'),
@@ -36,11 +35,12 @@ export default Model.extend({
 
   conventionStatus: alias('convention.status'),
   conventionIsActive: alias('convention.isActive'),
+  conventionName: alias('convention.name'),
 
   notArchived: not('isArchived'),
 
-  groupKindSort: alias('convention.groupKindSort'),
-  groupNomen: alias('convention.groupNomen'),
+  groupKindSort: alias('group.kindSort'),
+  groupName: alias('convention.groupName'),
 
   statusOptions: [
     'New',
@@ -137,5 +137,4 @@ export default Model.extend({
     'current.appearances',
     'currentAppearancesSort'
   ),
-  conventionName: alias('convention.name'),
 });

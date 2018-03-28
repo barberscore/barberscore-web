@@ -56,7 +56,7 @@ export default Model.extend({
       return this.get('person.nomen') + " - " + partOut;
     }
   ),
-  groupStatus: alias('group.statusSort'),
+  groupStatus: alias('group.status'),
   groupName: alias('group.name'),
   groupKind: alias('group.kindSort'),
   personName: alias('person.fullName'),

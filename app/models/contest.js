@@ -4,7 +4,6 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('contest-status'),
   champion: DS.belongsTo('entry', {async: true}),
   session: DS.belongsTo('session', {async: true}),

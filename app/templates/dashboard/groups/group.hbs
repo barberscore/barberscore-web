@@ -1,0 +1,40 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.officers"}}Officers{{/nav.link-to}}
+        {{/nav.item}}
+        {{#if (or (eq model.kind 'International') (eq model.kind 'District'))}}
+          {{!-- {{#nav.item}}
+            {{#nav.link-to "dashboard.groups.group.children"}}Groups{{/nav.link-to}}
+          {{/nav.item}} --}}
+        {{else}}
+          {{#nav.item}}
+            {{#nav.link-to "dashboard.groups.group.members"}}Members{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "dashboard.groups.group.repertories"}}Repertory{{/nav.link-to}}
+          {{/nav.item}}
+          {{#nav.item}}
+            {{#nav.link-to "dashboard.groups.group.entries"}}Entries{{/nav.link-to}}
+          {{/nav.item}}
+        {{/if}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <ul class='list-inline'>
+        <li class='pull-right'><h4>Group Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

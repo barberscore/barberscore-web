@@ -5,8 +5,5 @@ export default DS.JSONAPISerializer.extend({
     contestants: {
       serialize: true
     },
-    appearances: {
-      serialize: true
-    },
   }
 });

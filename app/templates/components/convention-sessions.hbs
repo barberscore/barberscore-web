@@ -1,0 +1,30 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Kind</th>
+        <th>Gender</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedSessions as |session|}}
+        <tr>
+          <td>
+            {{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}
+          </td>
+          <td>
+            {{#if session.gender}}{{session.gender}}{{else}}(Open){{/if}}
+          </td>
+          <td>
+            {{session.status}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

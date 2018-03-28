@@ -1,0 +1,55 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <h4>
+        {{model.kind}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#bs-nav type='tabs' as |nav|}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.panelists"}}Panelists{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.competitors"}}Competitors{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.standings"}}Standings{{/nav.link-to}}
+        {{/nav.item}}
+        {{#unless (eq model.kind 'Finals')}}
+          {{#nav.item}}
+            {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.advancers"}}Advancers{{/nav.link-to}}
+          {{/nav.item}}
+        {{/unless}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.finishers"}}Finishers{{/nav.link-to}}
+        {{/nav.item}}
+      {{/bs-nav}}
+      {{outlet}}
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      <div class='pull-right'>
+        <h4>
+          Round Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+      {{#if model.permissions.write}}
+        <ul class='list-inline'>
+          {{#if (eq model.status 'Built')}}
+            <li>{{round-start model=model}}</li>
+          {{else if (eq model.status 'Opened')}}
+            <li>{{round-review model=model}}</li>
+          {{else if (eq model.status 'Closed')}}
+            <li>{{round-finish model=model}}</li>
+          {{/if}}
+        </ul>
+      {{/if}}
+    </div>
+  </div>
+</section>

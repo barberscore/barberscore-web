@@ -18,7 +18,7 @@ export default Component.extend({
       this.set('closeSessionModal', false);
       this.set('closeSessionModalError', false);
       this.get('flashMessages').success("Closed!");
-      this.get('router').transitionTo('dashboard.session-manager.session.draw');
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.draw');
     } catch(e) {
       this.set('closeSessionModalError', true);
     }

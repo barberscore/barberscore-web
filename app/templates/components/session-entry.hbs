@@ -35,12 +35,23 @@
     </div>
     <div class='panel-body'>
       <section>
-        <p>
-          <strong>Preferences</strong>
-        </p>
-        <p>
-          {{entry-preferences model=model}}
-        </p>
+        <div class='row'>
+          <div class='col-md-6'>
+            {{#if entry.group.image}}
+              <img src={{entry.group.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+            {{/if}}
+          </div>
+          <div class='col-md-6'>
+            <p>
+              <strong>Preferences</strong>
+            </p>
+            <p>
+              {{entry-preferences model=model}}
+            </p>
+          </div>
+        </div>
       </section>
       <hr>
       <section>
@@ -102,37 +113,7 @@
       </section>
       <hr>
       <section>
-        <div class='table-responsive'>
-          <p>
-            Activity
-          </p>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>Transition</th>
-                <th>By</th>
-                <th>Timestamp</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{#each model.logs as |log|}}
-                <tr>
-                  {{#if log.isLoading}}
-                    <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{log.transition}}</td>
-                    <td>{{log.by}}</td>
-                    <td>{{moment-format log.timestamp 'LLL'}}</td>
-                  {{/if}}
-                </tr>
-              {{else}}
-                <tr>
-                  <td>(No activity logs.)</td>
-                </tr>
-              {{/each}}
-            </tbody>
-          </table>
-        </div>
+        {{log-index model=model}}
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>
@@ -145,7 +126,7 @@
             {{else}}
               <li>{{entry-approve model=model}}</li>
             {{/if}}
-            <li>{{entry-delete model=model callback='dashboard.session-manager.session.entries'}}</li>
+            <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
           {{else if (eq model.status 'Invited')}}
             <li>{{entry-submit model=model}}</li>
             <li>{{entry-withdraw model=model}}</li>

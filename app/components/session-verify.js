@@ -18,7 +18,7 @@ export default Component.extend({
       this.set('verifySessionModal', false);
       this.set('verifySessionModalError', false);
       this.get('flashMessages').success("Verified!");
-      this.get('router').transitionTo('dashboard.session-manager.session.details');
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.details');
     } catch(e) {
       this.set('verifySessionModalError', true);
     }

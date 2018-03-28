@@ -18,7 +18,7 @@ export default Component.extend({
       this.set('openSessionModal', false);
       this.set('openSessionModalError', false);
       this.get('flashMessages').success("Opened!");
-      this.get('router').transitionTo('dashboard.session-manager.session.entries');
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.entries');
     } catch(e) {
       this.set('openSessionModalError', true);
     }

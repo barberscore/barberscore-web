@@ -5,7 +5,6 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  nomen: DS.attr('string'),
   status: DS.attr('entry-status'),
   isEvaluation: DS.attr('boolean'),
   isPrivate: DS.attr('boolean'),
@@ -71,5 +70,7 @@ export default Model.extend({
   contestantCount: alias('contestants.length'),
   activeMembersCount: alias('group.activeMembers.length'),
   repertoryCount: alias('group.repertories.length'),
-  conventionStatus: alias('session.convention.status')
+  conventionStatus: alias('session.convention.status'),
+  conventionStart: alias('session.convention.startDate'),
+  groupName: alias('group.name')
 });

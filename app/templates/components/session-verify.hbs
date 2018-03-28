@@ -3,7 +3,7 @@
   disabled=model.isError
   onClick=(action (mut verifySessionModal) true)
 }}
-  {{#if (eq model.status 'Verified')}}Re-Verify Session{{else}}Verify Session{{/if}}
+  Verify Session
 {{/bs-button}}
 {{#bs-modal
   open=verifySessionModal
@@ -15,7 +15,7 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-        This action verifies a closed session and produces three XLSX files (which will be exposed via links on the Details tab). You can still manually add entries and/or rearrange the draw following verification if needed. If any changes are made, you should click "Re-Verify Session" to re-create those XLSX files.
+        This action verifies a closed session and produces three XLSX files (which will be exposed via links on the Reports tab). You can still manually add entries and/or rearrange the draw following verification if needed; the files will automatically update.
     </p>
     {{#if verifySessionModalError}}
     <p class='text-danger'>

@@ -9,8 +9,7 @@
     {{#navbar.nav type='pills' class='navbar-right' as |nav|}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}
-          {{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}
-            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout
+          {{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
           {{/bs-button}}
         {{/nav.item}}
       {{else}}
@@ -28,6 +27,9 @@
       {{flash-message flash=flash}}
     {{/each}}
   </div>
+  <section>
+    {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+  </section>
   {{outlet}}
   <div class="footer bottom-bar bottom-spacing">
   <hr>

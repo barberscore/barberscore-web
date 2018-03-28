@@ -11,97 +11,105 @@ Router.map(function() {
   this.route('dashboard', {
     path: 'dashboard'
   }, function () {
-    this.route('session-manager', {
-      path: 'session-manager'
+    this.route('conventions', {
+      path: 'convention'
     }, function () {
-      this.route('session', {
-        path: ':session_id'
-      }, function () {
+      this.route('convention', {
+        path: ':convention_id'
+      }, function() {
         this.route('details', {
           path: 'details'
         });
-        this.route('reports', {
-          path: 'reports'
+        this.route('assignments', {
+          path: 'assignments'
         });
-        this.route('convention', {
-          path: 'convention'
+        this.route('grantors', {
+          path: 'grantors'
         });
-        this.route('awards', {
-          path: 'awards'
-        }, function () {
-          this.route('award', {
-            path: ':award_id'
+        this.route('sessions', {
+          path: 'sessions'
+        }, function() {
+          this.route('session', {
+            path: ':session_id'
+            }, function() {
+              this.route('details', {
+                path: 'details'
+              });
+              this.route('contests', {
+                path: 'contests'
+              }, function () {
+                this.route('contest', {
+                  path: ':contest_id'
+                });
+              });
+              this.route('entries', {
+                path: 'entries'
+              }, function () {
+                this.route('entry', {
+                  path: ':entry_id'
+                });
+              });
+              this.route('draw', {
+                path: 'draw'
+              }, function () {
+              });
+              this.route('reports', {
+                path: 'reports'
+              });
+              this.route('rounds', {
+                path: 'rounds'
+              }, function () {
+                this.route('round', {
+                  path: ':round_id'
+                }, function () {
+                  this.route('details', {
+                    path: 'details'
+                  });
+                  this.route('panelists', {
+                    path: 'panelists'
+                  }, function () {
+                    this.route('panelist', {
+                      path: ':panelist_id'
+                    });
+                  });
+                  this.route('competitors', {
+                    path: 'competitors'
+                  }, function () {
+                    this.route('competitor', {
+                      path: ':competitor_id'
+                    });
+                  });
+                  this.route('appearances', {
+                    path: 'appearances'
+                  }, function () {
+                    this.route('appearance', {
+                      path: ':appearance_id'
+                    });
+                  });
+                  this.route('contests', {
+                    path: 'contests'
+                  }, function () {
+                    this.route('contest', {
+                      path: ':contest_id'
+                    });
+                  });
+                  this.route('advancers', {
+                    path: 'advancers'
+                  }, function () {});
+                  this.route('finishers', {
+                    path: 'finishers'
+                  }, function () {});
+                  this.route('standings', {
+                    path: 'standings'
+                  }, function () {});
+                });
+              });
           });
         });
-        this.route('contests', {
-          path: 'contests'
-        }, function () {
-          this.route('contest', {
-            path: ':contest_id'
-          });
-        });
-        this.route('entries', {
-          path: 'entries'
-        }, function () {
-          this.route('entry', {
-            path: ':entry_id'
-          });
-        });
-        this.route('draw', {
-          path: 'draw'
-        }, function () {});
       });
     });
-    this.route('scoring-manager', {
-      path: 'scoring-manager'
-    }, function () {
-      this.route('round', {
-        path: ':round_id'
-      }, function () {
-        this.route('details', {
-          path: 'details'
-        });
-        this.route('panelists', {
-          path: 'panelists'
-        }, function () {
-          this.route('panelist', {
-            path: ':panelist_id'
-          });
-        });
-        this.route('competitors', {
-          path: 'competitors'
-        }, function () {
-          this.route('competitor', {
-            path: ':competitor_id'
-          });
-        });
-        this.route('appearances', {
-          path: 'appearances'
-        }, function () {
-          this.route('appearance', {
-            path: ':appearance_id'
-          });
-        });
-        this.route('contests', {
-          path: 'contests'
-        }, function () {
-          this.route('contest', {
-            path: ':contest_id'
-          });
-        });
-        this.route('advancers', {
-          path: 'advancers'
-        }, function () {});
-        this.route('finishers', {
-          path: 'finishers'
-        }, function () {});
-        this.route('standings', {
-          path: 'standings'
-        }, function () {});
-      });
-    });
-    this.route('group-manager', {
-      path: 'group-manager'
+    this.route('groups', {
+      path: 'group'
     }, function () {
       this.route('group', {
         path: ':group_id'
@@ -116,8 +124,10 @@ Router.map(function() {
             path: ':entry_id'
           });
         });
+        this.route('officers', {path: 'officers'}, function () {});
         this.route('members', {path: 'members'}, function () {});
         this.route('repertories', {path: 'repertories'}, function () {});
+        this.route('children', {path: 'children'}, function () {});
       });
     });
   });

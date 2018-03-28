@@ -1,16 +1,35 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
   algolia: service(),
+  currentUser: service(),
   customCollapsed: true,
   isDisabled: not(
     'model.permissions.write',
   ),
+  filteredOfficers: computed(
+    'model.officers.@each.person.id', function() {
+    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
+  }),
+  activeOfficers: filterBy(
+    'filteredOfficers',
+    'status',
+    'Active',
+  ),
+  chartOfficers: filterBy(
+    'activeOfficers',
+    'isChartManager',
+  ),
+  // isCreateDisabled: not(
+  //   'chartOfficers.length',
+  // ),
+  isCreateDisabled: false,
   sortedRepertoriesProperties: [
     'chartTitle',
   ],
@@ -49,7 +68,7 @@ export default Component.extend({
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
       this.get('flashMessages').success("Created!");
-      // this.get('router').transitionTo('dashboard.group-manager.group.repertories.repertory', this.get('model'), repertory.get('id'));
+      // this.get('router').transitionTo('dashboard.groups.group.repertories.repertory', this.get('model'), repertory.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createRepertoryModalError', true);

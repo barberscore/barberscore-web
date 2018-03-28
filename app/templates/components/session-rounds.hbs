@@ -1,0 +1,29 @@
+{{#if (eq model.status 'Started')}}
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>Current Assignments</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedRounds as |round|}}
+          <tr>
+            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
+            <td>{{round.status}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>No active Rounds currently assigned to you.</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <h4>
+    The Rounds are only available after the Session has started.
+  </h4>
+{{/if}}

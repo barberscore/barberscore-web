@@ -1,36 +1,44 @@
-<section>
-  {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
+{{!-- <section>
+  {{user-members model=currentUser.user}}
 </section>
+{{#if model.activeAssignments}}
+  <section>
+    {{user-assignments model=currentUser.user}}
+  </section>
+{{/if}}
+{{outlet}}
+ --}}
+
 <section>
-  <p>Welcome {{currentUser.user.name}}</p>
+  <p>Welcome {{currentUser.user.person.commonName}}</p>
   <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.group-manager' tagName='button' class='btn btn-default launcher' disabled=isGroupManagerDisabled}}
+      {{#link-to 'dashboard.groups' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'users' size='5'}}<br>
         Group Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.session-manager' tagName='button' class='btn btn-default launcher' disabled=isSessionManagerDisabled}}
+      {{#link-to 'dashboard.conventions' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'microphone' size='5'}}<br>
         Session Manager
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.scoring-manager' tagName='button' class='btn btn-default launcher' disabled=isScoringManagerDisabled}}
+      {{#link-to 'dashboard.conventions' tagName='button' class='btn btn-default launcher'}}
         {{fa-icon 'calculator' size='5'}}<br>
         Scoring Manager
       {{/link-to}}
     </p>
   </div>
-  <div>
+  {{!-- <div>
     <p>
       <strong>Note:</strong> If you are unable to click on Group Manager, please review your memberships in the <a href='https://members.barbershop.org'>BHS Member Center</a> and ensure you are an active member of your Quartet, or a Chapter Leader of your chorus.
     </p>
     <p>
       <strong>Note to New Quartets:</strong> Please be aware that newly registered quartets are not “completed” (fully registered) in the Member Center until BHS headquarters has: approved the quartet name; processed the subscription fee; and finished their final validation by updating the Member Center record. <em>This process can take up to 5 business days.</em>
     </p>
-  </div>
+  </div> --}}
 </section>
 {{!-- <div {{action 'search'}}>Search</div> --}}
 {{outlet}}

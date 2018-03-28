@@ -22,7 +22,11 @@
                 }}
               </td>
               <td>
-                {{contestant.contest.award.name}}
+                {{#if contestant.contest.award.isLoading}}
+                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+                {{else}}
+                  {{contestant.contest.award.name}}
+                {{/if}}
               </td>
               <td>
                 {{#if contestant.contest.award.description}}

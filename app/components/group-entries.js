@@ -8,16 +8,35 @@ export default Component.extend({
   flashMessages: service(),
   router: service(),
   store: service(),
+  currentUser: service(),
   isDisabled: not(
     'model.permissions.write',
   ),
+  filteredOfficers: computed(
+    'model.officers.@each.person.id', function() {
+    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
+  }),
+  activeOfficers: filterBy(
+    'filteredOfficers',
+    'status',
+    'Active',
+  ),
+  allowedOfficers: filterBy(
+    'activeOfficers',
+    'isGroupManager',
+  ),
+  // isCreateDisabled: not(
+  //   'allowedOfficers.length',
+  // ),
+  isCreateDisabled: false,
   filteredEntries: filterBy(
     'model.entries',
     'conventionStatus',
     'Active',
   ),
   sortedEntriesProperties: [
-    'nomen',
+    'conventionStart',
+    'statusSort',
   ],
   sortedEntries: sort(
     'filteredEntries',
@@ -38,7 +57,7 @@ export default Component.extend({
     });
   }),
   sessionSortProperties: [
-    'nomen',
+    'conventionName',
   ],
   sessionOptions: sort(
     'sessionCall',
@@ -63,7 +82,7 @@ export default Component.extend({
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.group-manager.group.entries.entry', entry.get('id'));
+      this.get('router').transitionTo('dashboard.groups.group.entries.entry', entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('deleteEntryModalError', true);
