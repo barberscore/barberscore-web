@@ -6,6 +6,11 @@
       </h4>
     </div>
     <div class='panel-body'>
+      {{#if (eq model.status 'Approved')}}
+        <section>
+          Now that your entry has been approved by your DRCJ, you can no longer make edits to the entry itself.  (Changes to your repertory are always allowed.)  Please contact your DRCJ if you need to make any changes or wish to provide additional information.
+        </section>
+      {{/if}}
       <section>
         <p>
           Preferences
