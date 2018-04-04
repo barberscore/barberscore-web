@@ -1,52 +1,28 @@
-<div class="page-header">
-  <h1>Login</h1>
-</div>
-<div class='row'>
-  <div class='col-md-6'>
-    <p class='lead'>
-      Click this button to start the login process.<br><br>
-      {{#bs-button onClick=(action "login") type='primary' size='lg'}}Login{{/bs-button}}
-    </p>
-    <p><small>
-      <strong>Welcome:</strong> Barberscore is now operational for competitors wishing to perform in the Spring 2018 Contests. Edit permissions are only available to quartet contact administrators (for quartet entry), or pre-defined Chapter Leaders (for chorus entry). Please refer to competitor tutorials and FAQ (below) for more information.
-    </small></p>
-    <br>
-    <br>
-    <p>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsed' this)}}
-        Stuck in a loop?  Click Here.
-      {{/bs-button}}
-    </p>
-    {{#bs-collapse collapsed=collapsed}}
-        <p>
-          Some users have reported getting stuck in a loop where they are redirected back to the login page but aren't logged in.  If this happens to you, try this workaround:
-          <ol>
-            <li>Click on the login button.</li>
-            <li>Enter your email.</li>
-            <li>When the email arrives, click the sign in button.</li>
-            <li>When you come back to the login page <strong>don't click the login button again!</strong></li>
-            <li>Instead, click in the browser address bar (where the URL is) and hit enter/return.   Sometimes several key presses is necessary for the URL to register.</li>
-            <li>If this still doesn't work, then click the 'reload/refresh' icon to try to load the URL.</li>
-            <li>If the URL registers you should see the dashboard, indicating you're logged in.</li>
-          </ol>
-        </p>
-        <p>
-        Please watch this short video demonstrating this work-around:
-        </p>
-        <br>
-        <ul class='list-unstyled spacing'>
-          <li><iframe width="560" height="315" src="https://www.youtube.com/embed/XyyMluUWlrM" frameborder="0" allowfullscreen></iframe></li>
-        </ul>
-        <br>
-        <p>
-          If this process doesn't work then please try using a smartphone, tablet, or another computer (home/work/spouse/child).  We have found that Windows 7 in particular is causing people trouble.
-        </p>
-        <p>
-          We know this is very frustrating and we're working hard to isolate the cause.  Please don't hestiate to reach out to customerservice@barbershop.org for additional help.
-        </p>
-        <p>
-          <small>To explain what's happening, the sign in button in the email has a special access token embedded in the URL that allows you entry into the site.  However, in some cases the browser is simply not recognizing that there is a new URL, and so it sits there instead of processing the link.  This workaround is simply trying to force the browser to process the URL that is in the address bar.</small>
-        </p>
-    {{/bs-collapse}}
+<section>
+  <div class="page-header">
+    <h1>Login</h1>
+    <h3>You now have two ways to login</h3>
   </div>
-</div>
+</section>
+<section>
+  <div class='row'>
+    <div class='col-md-6'>
+      <p class='lead'>
+        Login with email and password<br><br>
+        {{#bs-button onClick=(action "password") type='primary' size='lg'}}Email and Password{{/bs-button}}
+      </p>
+      <p>
+        <strong>Important:</strong>If this is the first time using this approach, you'll need to create a new password by clicking the "Don't remember your password?" link and following those instructions.
+      </p>
+    </div>
+    <div class='col-md-6'>
+      <p class='lead'>
+        Login with a MagicLink (no password required)<br><br>
+        {{#bs-button onClick=(action "passwordless") type='primary' size='lg'}}Passwordless MagicLink{{/bs-button}}
+      </p>
+    </div>
+  </div>
+</section>
+<section>
+  <small><strong>Welcome:</strong> Barberscore is now operational for competitors wishing to perform in the Spring 2018 Contests. Edit permissions are only available to quartet contact administrators (for quartet entry), or pre-defined Chapter Leaders (for chorus entry). Please refer to competitor tutorials and FAQ (below) for more information.</small>
+</section>

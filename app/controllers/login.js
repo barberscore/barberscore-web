@@ -5,7 +5,7 @@ export default Controller.extend({
   session: service(),
   collapsed: true,
   actions: {
-    login () {
+    passwordless () {
       const lockOptions = {
         allowAutocomplete: true,
         allowedConnections: ['email'],
@@ -46,6 +46,40 @@ export default Controller.extend({
       };
       this.get('session').authenticate(
         'authenticator:auth0-lock-passwordless',
+        lockOptions
+      );
+    },
+    password () {
+      const lockOptions = {
+        allowAutocomplete: true,
+        allowedConnections: ['Default'],
+        autoclose: true,
+        avatar: null,
+        closeable: true,
+        rememberLastLogin: true,
+        theme: {
+          primaryColor: '#337ab7',
+          logo: '/assets/bhs_logo.png',
+          labeledSubmitButton: true,
+        },
+        auth: {
+          autoParseHash: true,
+          redirect: true,
+          responseType: 'token',
+          params: {
+            scope: 'openid profile email'
+          }
+        },
+        allowLogin: true,
+        allowForgotPassword: true,
+        allowSignUp: false,
+        initialScreen: 'login',
+        languageDictionary: {
+          title: "Barberscore",
+        },
+      };
+      this.get('session').authenticate(
+        'authenticator:auth0-lock',
         lockOptions
       );
     },
