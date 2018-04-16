@@ -31,10 +31,10 @@
   </table>
   <div>
     <p>
-    {{#bs-button type='success' disabled=true onClick=(action (mut createRepertoryModal) true)}}Create New Repertory{{/bs-button}}
+    {{#bs-button type='success' disabled=isCreateDisabled onClick=(action (mut createRepertoryModal) true)}}Create New Repertory{{/bs-button}}
     </p>
   </div>
-  {{!-- <p>
+  <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
       Have a custom chart?  Your chart not showing up in search? Click Here.
     {{/bs-button}}
@@ -47,17 +47,8 @@
     <p>
       If you have a new custom chart, or can't find your song despite your best efforts, then please send a copy of the sheet music or an image of the first page (with the title and arranger clearly visible) to <a href='mailto:charts@barberscore.com'>charts@barberscore.com</a>.  Our datamaster will get the information into the system as quickly as possible -- usually in less than 24 hours -- and then you'll be able to add that chart to your repertory.
     </p>
-  {{/bs-collapse}} --}}
-<p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
-      IMPORTANT NOTICE ON NEW REPERTORY: Click here.
-    {{/bs-button}}
-  </p>
-  {{#bs-collapse collapsed=customCollapsed}}
-    <p>
-      Our song repertory searches have been disabled until April 15th; if you can wait until then to add to your repertory we would appreciate it greatly.  If you can not wait, please send your chart name and group name to <a href='mailto:charts@barberscore.com'>charts@barberscore.com</a>.  Sorry for the inconvenience.
-    </p>
-  {{/bs-collapse}}</div>
+  {{/bs-collapse}}
+</div>
 <div>
   {{#bs-modal
     open=createRepertoryModal
@@ -78,7 +69,6 @@
         placeholder="Type in Title or Arranger"
         allowClear=true
         renderInPlace=true
-        disabled=true
         noMatchesMessage="No Charts with that Title or Arranger Found."
         as |chart|
       }}
