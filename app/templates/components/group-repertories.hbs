@@ -23,7 +23,7 @@
       {{else}}
         <tr>
           <td>
-            No songs in Repertory.  Please make sure to enter songs into your repertory before the Session is started or you may be disqualified.
+            No songs in Repertory.  Please make sure to enter your contest songs into your repertory at least 3 days prior to the start of the contest session.
           </td>
         </tr>
       {{/each}}
@@ -31,12 +31,12 @@
   </table>
   <div>
     <p>
-    {{#bs-button type='success' disabled=isCreateDisabled onClick=(action (mut createRepertoryModal) true)}}Create New Repertory{{/bs-button}}
+    {{#bs-button type='success' disabled=isCreateDisabled onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
     </p>
   </div>
   <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
-      Have a custom chart?  Your chart not showing up in search? Click Here.
+      Have a custom chart? Or the chart not showing up in your search? Click Here.
     {{/bs-button}}
   </p>
   {{#bs-collapse collapsed=customCollapsed}}
@@ -69,14 +69,14 @@
         placeholder="Type in Title or Arranger"
         allowClear=true
         renderInPlace=true
-        noMatchesMessage="No Charts with that Title or Arranger Found."
+        noMatchesMessage="No Charts with that Title or Arranger Found. Try typing a partial title"
         as |chart|
       }}
         Song: {{chart.title}} [{{chart.arrangers}}]
       {{/power-select}}
       {{#if createRepertoryModalError}}
       <p class='text-danger'>
-        Could not delete repertory.  Please contact support.
+        Could not delete chart.  Please contact support.
       </p>
       {{/if}}
     {{/modal.body}}
