@@ -66,6 +66,7 @@ export default Model.extend({
       return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
+  parentName: alias('group.parent.name'),
   allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
   activeMembersCount: alias('group.activeMembers.length'),
