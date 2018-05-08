@@ -25,10 +25,6 @@ export default Component.extend({
     'activeOfficers',
     'isGroupManager',
   ),
-  // isCreateDisabled: not(
-  //   'allowedOfficers.length',
-  // ),
-  isCreateDisabled: false,
   filteredEntries: filterBy(
     'model.entries',
     'conventionStatus',
