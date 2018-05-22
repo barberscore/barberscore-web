@@ -12,6 +12,9 @@ module.exports = function(defaults) {
     'ember-power-select': {
       theme: 'bootstrap'
     },
+    sourcemaps: {
+      enabled: true
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated
