@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
+  isEditing: false,
   entrySortProperties: [
     'draw:asc',
   ],
@@ -17,6 +18,9 @@ export default Component.extend({
     'Approved'
   ),
   actions: {
+    toggleDraw(){
+      this.toggleProperty('isEditing');
+    },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
         item.set('draw', index + 1);
