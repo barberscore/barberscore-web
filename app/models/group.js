@@ -21,6 +21,7 @@ export default Model.extend({
   email: DS.attr('string'),
   phone: DS.attr('string'),
   image: DS.attr('string'),
+  roster: DS.attr('string'),
   description: DS.attr('string'),
   bhsId: DS.attr('number'),
   international: DS.attr('string'),
