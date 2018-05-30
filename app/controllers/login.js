@@ -52,7 +52,9 @@ export default Controller.extend({
     password () {
       const lockOptions = {
         allowAutocomplete: true,
-        allowedConnections: ['Default'],
+        allowedConnections: [
+          'Default',
+        ],
         autoclose: true,
         avatar: null,
         closeable: true,
@@ -67,7 +69,7 @@ export default Controller.extend({
           redirect: true,
           responseType: 'token',
           params: {
-            scope: 'openid profile email'
+            scope: 'openid'
           }
         },
         allowLogin: true,
