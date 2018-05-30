@@ -53,7 +53,7 @@ export default Controller.extend({
       const lockOptions = {
         allowAutocomplete: true,
         allowedConnections: [
-          'BHS',
+          'Default',
         ],
         autoclose: true,
         avatar: null,
