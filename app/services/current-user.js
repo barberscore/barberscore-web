@@ -7,10 +7,10 @@ export default Service.extend({
   store: service(),
 
   load() {
-    let accountId = this.get('session.data.authenticated.profile.sub');
-    if (!isEmpty(accountId)) {
+    let username = this.get('session.data.authenticated.profile.sub');
+    if (!isEmpty(username)) {
       return this.get('store').query('user', {
-        'account_id': accountId,
+        'username': username,
       }).then(function(users) {
         return users.get('firstObject');
       }).catch(err => {
