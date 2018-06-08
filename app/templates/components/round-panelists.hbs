@@ -1,97 +1,63 @@
-{{#if (eq model.status 'New')}}
-  <div class='table-responsive'>
-    <table class='table'>
+<div class='table-responsive'>
+  <table class='table'>
+    {{#if (eq model.status 'New')}}
       <caption>
-        The Panelists (the actual seated judges) are created from the Assignments (who is scheduled).  You can not create the Panelists themselves until the Session has started.  Until then, please contact David Mills or Chris Buechler to change the Assignments. Once the DRCJ starts the Session, you'll be able to add/edit/remove panelists as needed.  Here are the currently confirmed assignments:
+        The Panelists (the actual seated judges) are created from the Assignments (who is scheduled).  You can not create the Panelists themselves until the DRCJ has started the Session.  View the current Assignments from the Convention tab.
       </caption>
-      <thead>
-        <tr>
-          <th>Person</th>
-          <th>Category</th>
-          <th>Kind</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedAssignments as |assignment|}}
-          <tr>
-            <td>
-              {{assignment.person.commonName}}
-            </td>
-            <td>
-              {{assignment.category}}
-            </td>
-            <td>
-              {{assignment.kind}}
-            </td>
-            <td>
-              {{assignment.status}}
-            </td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>(No assignments.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-{{else}}
-  <div class='table-responsive'>
-    <table class='table'>
+    {{else}}
       <caption>
         If you need to change any panelists please do so before you start the Round.  Once the Round is started, you will not be able to change the Panelists.
       </caption>
-      <thead>
+    {{/if}}
+    <thead>
+      <tr>
+        <th class='col-md-6'>Person</th>
+        <th class='col-md-2'>Category</th>
+        <th class='col-md-2'>Kind</th>
+        <th class='col-md-1'>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedPanelists as |panelist|}}
         <tr>
-          <th>Person</th>
-          <th>Category</th>
-          <th>Kind</th>
+          {{#if panelist.person.isLoading}}
+            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>{{panelist.person.fullName}}</td>
+            <td>{{panelist.category}}</td>
+            <td>{{panelist.kind}}</td>
+            <td>
+              {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
+            </td>
+          {{/if}}
         </tr>
-      </thead>
-      <tbody>
-        {{#each sortedPanelists as |panelist|}}
-          <tr>
-            <td>
-              {{#if (eq model.status 'New')}}
-                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}
-              {{else}}
-                {{panelist.person.fullName}}
-              {{/if}}
-            </td>
-            <td>
-              {{panelist.category}}
-            </td>
-            <td>
-              {{panelist.kind}}
-            </td>
-          </tr>
-        {{else}}
-          <tr>
-            <td>(No panelists created.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-  <div>
-    <p>
-    {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
-    </p>
-  </div>
-  <div>
-    {{#bs-modal
-      open=createPanelistModal
-      onHidden=(pipe-action (action (mut createPanelistModal) false) (action (mut createPanelistModalError) false))
-      as |modal|
-    }}
-      {{#modal.header}}
-        <h4>New Panelist</h4>
-      {{/modal.header}}
-      {{#modal.body}}
-        <p>
-          Select the person you wish to enter into the panel.
-        </p>
+      {{else}}
+        <tr>
+          <td>(No panelists created)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div>
+  <p>
+  {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
+  </p>
+</div>
+<div>
+  {{#bs-modal
+    open=createPanelistModal
+    onHidden=(pipe-action (action (mut createPanelistModal) false) (action (mut createPanelistModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>New Panelist</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Select the person you wish to enter into the panel.
+      </p>
+      <p>
         {{#power-select
           search=(perform searchPerson)
           selected=person
@@ -104,22 +70,48 @@
         }}
           Person: {{person.full_name}}
         {{/power-select}}
-        {{#if createPanelistModalError}}
-        <p class='text-danger'>
-          Could not create panelist.  Please contact support.
-        </p>
+      </p>
+      <p>
+        {{#power-select
+          options=categoryOptions
+          selected=category
+          onchange=(action (mut category))
+          placeholder="Choose Category"
+          allowClear=true
+          renderInPlace=true
+          as |category|
+        }}
+          {{category}}
+        {{/power-select}}
+      </p>
+      <p>
+        {{#power-select
+          options=kindOptions
+          selected=kind
+          onchange=(action (mut kind))
+          placeholder="Choose Kind"
+          allowClear=true
+          renderInPlace=true
+          as |kind|
+        }}
+          {{kind}}
+        {{/power-select}}
+      </p>
+      {{#if createPanelistModalError}}
+      <p class='text-danger'>
+        Could not create panelist.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform savePanelist person category kind) disabled=isDisabled}}
+        {{#if savePanelist.isRunning}}
+          Creating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Create Panelist
         {{/if}}
-      {{/modal.body}}
-      {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform savePanelist person) disabled=isDisabled}}
-          {{#if savePanelist.isRunning}}
-            Creating {{fa-icon "spinner" spin=true}}
-          {{else}}
-            Create Panelist
-          {{/if}}
-        {{/bs-button}}
-      {{/modal.footer}}
-    {{/bs-modal}}
-  </div>
-{{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</div>

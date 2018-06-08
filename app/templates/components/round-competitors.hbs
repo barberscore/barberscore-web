@@ -1,0 +1,82 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-4'>Name</th>
+        <th class='col-md-1'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedCompetitors as |competitor|}}
+        <tr>
+          {{#if competitor.isLoading}}
+            <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            {{#if competitor.group.isLoading}}
+              <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{competitor.group.name}}</td>
+            {{/if}}
+            <td>{{competitor.status}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>(No competitors currently entered for this session.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{!-- <div>
+  <p>
+    {{#bs-button
+      type='success'
+      disabled=isDisabled
+      onClick=(action (mut createEntryModal) true)
+    }}
+      Create New Entry
+    {{/bs-button}}
+  </p>
+</div>
+{{#bs-modal
+  open=createEntryModal
+  onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>New Entry</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      Select the group you wish to enter into the Session.
+    </p>
+    {{#power-select
+      search=(perform searchGroup)
+      selected=group
+      onchange=(action (mut group))
+      placeholder="Enter Group Name"
+      allowClear=true
+      renderInPlace=true
+      noMatchesMessage="We Could Not Find an Active Group with that Name"
+      as |group|
+    }}
+      Group: {{group.name}} {{#if group.parent.shortName}}({{group.parent.shortName}}){{/if}}
+    {{/power-select}}
+    {{#if createEntryModalError}}
+    <p class='text-danger'>
+      Could not create entry.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='success' onClick=(perform saveEntry group) disabled=isDisabled}}
+      {{#if saveEntry.isRunning}}
+        Creating {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Create Entry
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}} --}}
