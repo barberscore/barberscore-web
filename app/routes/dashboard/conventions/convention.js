@@ -6,7 +6,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
     return this.get('store').findRecord('convention', params.convention_id);
   },
-  afterModel(model) {
-      this.transitionTo('dashboard.conventions.convention.details', model.get('id'));
-  }
+  // afterModel(model) {
+  //     this.transitionTo('dashboard.conventions.convention.details', model.get('id'));
+  // }
 });
