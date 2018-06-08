@@ -15,7 +15,7 @@
             {{#if competitor.group.isLoading}}
               <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{competitor.group.name}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
             {{/if}}
             <td>{{competitor.status}}</td>
           {{/if}}

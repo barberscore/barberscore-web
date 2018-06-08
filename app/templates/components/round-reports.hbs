@@ -1,5 +1,5 @@
 <section>
-    {{#if (or (eq model.status 'Verified') (eq model.status 'Started'))}}
+    {{#if (eq model.status 'Started')}}
       <ul class='list-styled'>
         <li>BBScores Excel Export: &nbsp;<a href='{{legacy}}'>{{legacy}}&nbsp;{{fa-icon 'file-excel-o'}}</a></li>
         <li>DRCJ Report Excel Export: &nbsp;<a href='{{drcj}}'>{{drcj}}&nbsp;{{fa-icon 'file-excel-o'}}</a></li>
@@ -7,7 +7,7 @@
       </ul>
     {{else}}
       <h4>
-        Reports are available after the session is Verified.
+        Reports are available after the Round is Finished.
       </h4>
     {{/if}}
 </section>

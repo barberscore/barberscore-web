@@ -3,7 +3,7 @@ import Model from 'ember-data/model';
 import DS from 'ember-data';
 
 export default Model.extend({
-  status: DS.attr('entry-status'),
+  status: DS.attr('competitor-status'),
   rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
