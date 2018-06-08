@@ -37,92 +37,37 @@
      </h4>
     </div>
     <div class='panel-body'>
-      <ul class='list-inline'>
-        <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
-        <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
-        {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
-      </ul>
-      <div class='table-responsive'>
-        <table class='table'>
-          <caption>Songs</caption>
-          <thead>
-            <tr>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each sortedSongs as |song|}}
-              <tr>
-                <td>
-                  {{#power-select
-                    options=model.chartOptions
-                    selected=song.chart
-                    onchange=(action (mut song.chart))
-                    onclose=(action "saveSong" song)
-                    placeholder="Choose Chart Title"
-                    allowClear=true
-                    disabled=false
-                    as |chart|
-                  }}
-                    Song {{song.num}}: {{chart.title}}
-                  {{/power-select}}
-                </td>
-              </tr>
-            {{else}}
-              <tr>
-                <td>(No songs.)</td>
-              </tr>
-            {{/each}}
-          </tbody>
-        </table>
-      </div>
-      {{score-panel appearance=model}}
+      <section>
+        {{appearance-details model=model}}
+      </section>
       <hr>
       <section>
-        {{log-index model=model}}
+        {{appearance-songs model=model}}
       </section>
+      <hr>
+      <section>
+        {{score-panel appearance=model}}
+      </section>
+      {{!-- <hr>
+      <section>
+        {{log-index model=model}}
+      </section> --}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{#if model.permissions.write}}
-        {{#if (eq model.status 'New')}}
-          {{#bs-button type='primary' onClick=(perform startAppearance)}}
-            {{#if startAppearance.isRunning}}
-              Starting {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Start Appearance
-            {{/if}}
-          {{/bs-button}}
+      <ul class='list-inline'>
+        {{#if model.permissions.write}}
+          {{#if (eq model.status 'New')}}
+            <li>{{appearance-start model=model}}</li>
+          {{else if (eq model.status 'Built')}}
+            <li>{{appearance-start model=model}}</li>
           {{else if (eq model.status 'Started')}}
-          {{#bs-button type='primary' onClick=(perform finishAppearance)}}
-            {{#if finishAppearance.isRunning}}
-              Finishing {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Finish Appearance
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Finished')}}
-          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
-            {{#if confirmAppearance.isRunning}}
-              Confirming {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Confirm Appearance
-            {{/if}}
-          {{/bs-button}}
-        {{else if (eq model.status 'Confirmed')}}
-          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
-            {{#if confirmAppearance.isRunning}}
-              Confirming {{fa-icon "spinner" spin=true}}
-            {{else}}
-              Re-Confirm Appearance
-            {{/if}}
-          {{/bs-button}}
+            <li>{{appearance-finish model=model}}</li>
+          {{else if (eq model.status 'Finished')}}
+            <li>{{appearance-confirm model=model}}</li>
+          {{/if}}
         {{/if}}
-      {{/if}}
-      <div class='pull-right'>
-        <h4>
-          Appearance Status: <strong>{{model.status}}</strong>
-        </h4>
-      </div>
+        <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
     </div>
   </div>
 </section>

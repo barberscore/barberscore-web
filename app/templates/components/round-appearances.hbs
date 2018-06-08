@@ -2,6 +2,7 @@
   <table class='table'>
     <thead>
       <tr>
+        <th class='col-md-1'>Num</th>
         <th class='col-md-4'>Name</th>
         <th class='col-md-1'>Status</th>
       </tr>
@@ -12,6 +13,7 @@
           {{#if appearance.isLoading}}
             <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
+            <td>{{appearance.num}}</td>
             {{#if appearance.competitor.group.isLoading}}
               <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}

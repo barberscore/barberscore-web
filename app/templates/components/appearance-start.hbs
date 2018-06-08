@@ -1,0 +1,31 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut startAppearanceModal) true)
+}}
+  Start Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=startAppearanceModal
+  onHidden=(pipe-action (action (mut startAppearanceModal) false) (action (mut startAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Start Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will formally start the appearance.
+    </p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' onClick=(perform startAppearance)}}
+      {{#if startAppearance.isRunning}}
+        Starting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Start Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

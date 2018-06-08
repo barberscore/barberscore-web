@@ -1,0 +1,34 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>Songs</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedSongs as |song|}}
+        <tr>
+          <td>
+            {{#power-select
+              options=model.chartOptions
+              selected=song.chart
+              onchange=(action (mut song.chart))
+              onclose=(action "saveSong" song)
+              placeholder="Choose Chart Title"
+              allowClear=true
+              disabled=false
+              as |chart|
+            }}
+              Song {{song.num}}: {{chart.title}}
+            {{/power-select}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(No songs.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

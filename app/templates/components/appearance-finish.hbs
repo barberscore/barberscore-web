@@ -1,0 +1,31 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut finishAppearanceModal) true)
+}}
+  Finish Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=finishAppearanceModal
+  onHidden=(pipe-action (action (mut finishAppearanceModal) false) (action (mut finishAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Finish Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will formally finish the appearance.
+    </p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' onClick=(perform finishAppearance)}}
+      {{#if finishAppearance.isRunning}}
+        Finishing {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Finish Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

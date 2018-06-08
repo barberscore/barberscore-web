@@ -1,0 +1,100 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      <ul class='list-inline pull-right'>
+        <li>{{#bs-button disabled=isPrevDisabled onClick=(action 'previousItem' model)}}Previous{{/bs-button}}</li>
+        <li>{{#bs-button disabled=isNextDisabled onClick=(action 'nextItem' model)}}Next{{/bs-button}}</li>
+      </ul>
+      <h4>
+        #{{model.num}}: {{model.competitor.group.name}}
+        {{#if model.varianceReportNew}}
+          <a href={{model.varianceReportNew}}><span class="label label-danger">Variance Detected</span></a>
+        {{/if}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      <ul class='list-inline'>
+        <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
+        <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
+        {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
+      </ul>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>Songs</caption>
+          <thead>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedSongs as |song|}}
+              <tr>
+                <td>
+                  {{#power-select
+                    options=model.chartOptions
+                    selected=song.chart
+                    onchange=(action (mut song.chart))
+                    onclose=(action "saveSong" song)
+                    placeholder="Choose Chart Title"
+                    allowClear=true
+                    disabled=false
+                    as |chart|
+                  }}
+                    Song {{song.num}}: {{chart.title}}
+                  {{/power-select}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No songs.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+     {{score-panel appearance=model}}
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      {{#if model.permissions.write}}
+        {{#if (eq model.status 'New')}}
+          {{#bs-button type='primary' onClick=(perform startAppearance)}}
+            {{#if startAppearance.isRunning}}
+              Starting {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Start Appearance
+            {{/if}}
+          {{/bs-button}}
+          {{else if (eq model.status 'Started')}}
+          {{#bs-button type='primary' onClick=(perform finishAppearance)}}
+            {{#if finishAppearance.isRunning}}
+              Finishing {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Finish Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Finished')}}
+          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
+            {{#if confirmAppearance.isRunning}}
+              Confirming {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Confirm Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{else if (eq model.status 'Confirmed')}}
+          {{#bs-button type='primary' onClick=(perform confirmAppearance)}}
+            {{#if confirmAppearance.isRunning}}
+              Confirming {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Re-Confirm Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{/if}}
+      {{/if}}
+      <div class='pull-right'>
+        <h4>
+          Appearance Status: <strong>{{model.status}}</strong>
+        </h4>
+      </div>
+    </div>
+  </div>
+</section>
