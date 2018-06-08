@@ -20,15 +20,7 @@
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.standings"}}Standings{{/nav.link-to}}
-        {{/nav.item}}
-        {{#unless (eq model.kind 'Finals')}}
-          {{#nav.item}}
-            {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.advancers"}}Advancers{{/nav.link-to}}
-          {{/nav.item}}
-        {{/unless}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.finishers"}}Finishers{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.reports"}}Reports{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}

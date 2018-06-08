@@ -86,22 +86,9 @@ Router.map(function() {
                       path: ':appearance_id'
                     });
                   });
-                  this.route('contests', {
-                    path: 'contests'
-                  }, function () {
-                    this.route('contest', {
-                      path: ':contest_id'
-                    });
+                  this.route('reports', {
+                    path: 'reports'
                   });
-                  this.route('advancers', {
-                    path: 'advancers'
-                  }, function () {});
-                  this.route('finishers', {
-                    path: 'finishers'
-                  }, function () {});
-                  this.route('standings', {
-                    path: 'standings'
-                  }, function () {});
                 });
               });
           });
