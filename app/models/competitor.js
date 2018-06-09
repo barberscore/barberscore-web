@@ -1,6 +1,7 @@
 import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('competitor-status'),
@@ -20,6 +21,8 @@ export default Model.extend({
   grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
   logs: DS.attr(),
+
+  activate: memberAction({path: 'activate', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'
