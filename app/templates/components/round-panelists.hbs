@@ -27,7 +27,9 @@
             <td>{{panelist.category}}</td>
             <td>{{panelist.kind}}</td>
             <td>
-              {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
+              {{#if (eq model.status 'Built')}}
+                {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
+              {{/if}}
             </td>
           {{/if}}
         </tr>
@@ -40,9 +42,11 @@
   </table>
 </div>
 <div>
-  <p>
-  {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
-  </p>
+  {{#if (eq model.status 'Built')}}
+    <p>
+      {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
+    </p>
+  {{/if}}
 </div>
 <div>
   {{#bs-modal

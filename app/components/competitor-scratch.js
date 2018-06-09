@@ -15,7 +15,7 @@ export default Component.extend({
       this.get('model').reload();
       this.set('scratchCompetitorModal', false);
       this.set('scratchCompetitorModalError', false);
-      this.get('flashMessages').success("Disqualified!");
+      this.get('flashMessages').success("Scratched!");
     } catch(e) {
       this.set('scratchCompetitorModalError', true);
     }

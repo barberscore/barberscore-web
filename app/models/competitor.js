@@ -22,7 +22,10 @@ export default Model.extend({
   permissions: DS.attr(),
   logs: DS.attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
+  start: memberAction({path: 'start', type: 'post'}),
+  finish: memberAction({path: 'finish', type: 'post'}),
+  disqualify: memberAction({path: 'disqualify', type: 'post'}),
+  scratch: memberAction({path: 'scratch', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'
