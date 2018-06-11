@@ -1,7 +1,7 @@
 import { not, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-// import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 // import { denodeify } from 'rsvp'
 
 export default Component.extend({
@@ -21,6 +21,20 @@ export default Component.extend({
     'model.session.competitors',
     'sortedCompetitorsProperties'
   ),
+  refreshCompetitors: task(function *() {
+    // yield this.get('sortedScores').forEach(function(score) {
+    //   console.log(score);
+    //   score.save();
+    // })
+    let session = yield this.get('model.session');
+    try {
+      yield session.refresh();
+    } catch(e) {
+      console.log(e);
+    }
+    session.reload();
+    this.get('flashMessages').success("Refreshed!");
+  }).drop(),
   // searchGroup: task(function* (term){
   //   yield timeout(600);
   //   let kindModel = this.get('model.kind');

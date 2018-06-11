@@ -6,9 +6,10 @@
     <thead>
       <tr>
         <th class='col-md-4'>Name</th>
+        <th class='col-md-1'>Draw</th>
+        <th class='col-md-1'>Points</th>
         <th class='col-md-1'>Score</th>
         <th class='col-md-1'>Rank</th>
-        <th class='col-md-1'>Draw</th>
         <th class='col-md-1'>Status</th>
       </tr>
     </thead>
@@ -23,9 +24,10 @@
             {{else}}
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
             {{/if}}
-            <td>{{competitor.totPoints}}/{{competitor.totScore}}</td>
-            <td>{{competitor.rank}}</td>
             <td>{{competitor.draw}}</td>
+            <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
+            <td>{{single-fixed competitor.totScore}}</td>
+            <td>{{#if competitor.rank}}{{competitor.rank}}{{else}}N/A{{/if}}</td>
             <td>{{competitor.status}}</td>
           {{/if}}
         </tr>
@@ -36,6 +38,9 @@
       {{/each}}
     </tbody>
   </table>
+  {{!-- <div class='pull-right'>
+    {{#bs-button type='default' onClick=(perform refreshCompetitors)}}Refresh{{/bs-button}}
+  </div> --}}
 </div>
 {{!-- <div>
   <p>

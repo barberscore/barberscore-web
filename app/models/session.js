@@ -28,6 +28,7 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
+  refresh: memberAction({path: 'refresh', type: 'get'}),
 
   isDisabled: not(
     'permissions.write'
