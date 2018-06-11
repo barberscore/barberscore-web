@@ -3,8 +3,7 @@ import { sort } from '@ember/object/computed';
 
 export default Component.extend({
   sortedRoundsProperties: [
-    'statusSort',
-    'kindSort:desc',
+    'num',
   ],
   sortedRounds: sort(
     'model.rounds',

@@ -3,7 +3,7 @@ import { sort } from '@ember/object/computed';
 
 export default Component.extend({
   sortedSessionsProperties: [
-    'conventionName',
+    'kind:desc',
   ],
   sortedSessions: sort(
     'model.sessions',

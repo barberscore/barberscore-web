@@ -17,7 +17,6 @@ export default Component.extend({
       this.set('disqualifyCompetitorModalError', false);
       this.get('flashMessages').success("Disqualified!");
     } catch(e) {
-      console.log(e);
       this.set('disqualifyCompetitorModalError', true);
     }
   }).drop(),

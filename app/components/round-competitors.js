@@ -13,7 +13,9 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedCompetitorsProperties: [
+    'totPoints:desc',
     'draw',
+    'groupName',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',

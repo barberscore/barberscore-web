@@ -46,6 +46,8 @@
           {{appearance-songs model=model}}
         </section>
         <hr>
+      {{/unless}}
+      {{#unless (or (or (eq model.status 'New') (eq model.status 'Built'))(eq model.status 'Started'))}}
         <section>
           {{score-panel appearance=model}}
         </section>
