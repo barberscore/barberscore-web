@@ -35,7 +35,7 @@
         <ul class='list-inline'>
           {{#if (eq model.status 'Built')}}
             <li>{{round-start model=model}}</li>
-          {{else if (eq model.status 'Opened')}}
+          {{else if (eq model.status 'Started')}}
             <li>{{round-review model=model}}</li>
           {{else if (eq model.status 'Closed')}}
             <li>{{round-finish model=model}}</li>
