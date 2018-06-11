@@ -13,7 +13,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedCompetitorsProperties: [
-    'groupName',
+    'draw',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',

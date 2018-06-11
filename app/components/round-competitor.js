@@ -16,7 +16,7 @@ export default Component.extend({
     }
   }).restartable(),
   sortedCompetitorsProperties: [
-    'groupName',
+    'draw',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',

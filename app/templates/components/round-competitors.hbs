@@ -6,6 +6,7 @@
     <thead>
       <tr>
         <th class='col-md-4'>Name</th>
+        <th class='col-md-1'>Draw</th>
         <th class='col-md-1'>Status</th>
       </tr>
     </thead>
@@ -20,6 +21,7 @@
             {{else}}
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
             {{/if}}
+            <td>{{competitor.draw}}</td>
             <td>{{competitor.status}}</td>
           {{/if}}
         </tr>

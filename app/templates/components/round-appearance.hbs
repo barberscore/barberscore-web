@@ -41,13 +41,15 @@
         {{appearance-details model=model}}
       </section>
       <hr>
-      <section>
-        {{appearance-songs model=model}}
-      </section>
-      <hr>
-      <section>
-        {{score-panel appearance=model}}
-      </section>
+      {{#unless (or (eq model.status 'New') (eq model.status 'Built'))}}
+        <section>
+          {{appearance-songs model=model}}
+        </section>
+        <hr>
+        <section>
+          {{score-panel appearance=model}}
+        </section>
+      {{/unless}}
       {{!-- <hr>
       <section>
         {{log-index model=model}}
