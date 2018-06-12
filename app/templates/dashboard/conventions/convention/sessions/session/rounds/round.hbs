@@ -13,9 +13,9 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.panelists"}}Panelists{{/nav.link-to}}
         {{/nav.item}}
-        {{#nav.item}}
+        {{!-- {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.competitors"}}Competitors{{/nav.link-to}}
-        {{/nav.item}}
+        {{/nav.item}} --}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
@@ -36,9 +36,9 @@
           {{#if (eq model.status 'Built')}}
             <li>{{round-start model=model}}</li>
           {{else if (eq model.status 'Started')}}
-            <li>{{round-review model=model}}</li>
-          {{else if (eq model.status 'Closed')}}
             <li>{{round-finish model=model}}</li>
+          {{else if (eq model.status 'Finished')}}
+            <li>{{round-verify model=model}}</li>
           {{/if}}
         </ul>
       {{/if}}

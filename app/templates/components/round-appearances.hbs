@@ -1,4 +1,4 @@
-{{#if (eq model.status 'Started')}}
+{{!-- {{#if (eq model.status 'Started')}} --}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>
@@ -8,6 +8,9 @@
         <tr>
           <th class='col-md-1'>Num</th>
           <th class='col-md-4'>Name</th>
+          <th class='col-md-1'>Points</th>
+          <th class='col-md-1'>Score</th>
+          <th class='col-md-1'>Rank</th>
           <th class='col-md-1'>Status</th>
         </tr>
       </thead>
@@ -27,6 +30,9 @@
                   {{/link-to}}
                 </td>
               {{/if}}
+              <td>{{appearance.competitor.totPoints}}</td>
+              <td>{{appearance.competitor.totScore}}</td>
+              <td>{{appearance.competitor.rank}}</td>
               <td>{{appearance.status}}</td>
             {{/if}}
           </tr>
@@ -38,9 +44,9 @@
       </tbody>
     </table>
   </div>
-{{else}}
+{{!-- {{else}}
   Appearances are available after the Round has started.
-{{/if}}
+{{/if}} --}}
 {{!-- <div>
   <p>
     {{#bs-button

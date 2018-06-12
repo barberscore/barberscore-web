@@ -8,6 +8,7 @@ export default Model.extend({
   status: DS.attr('round-status'),
   kind: DS.attr('round-kind'),
   num: DS.attr('number'),
+  spots: DS.attr('number'),
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),

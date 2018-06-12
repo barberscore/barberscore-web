@@ -29,7 +29,8 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   confirm: memberAction({path: 'confirm', type: 'post'}),
-  complete: memberAction({path: 'complete', type: 'post'}),
+  include: memberAction({path: 'include', type: 'post'}),
+  exclude: memberAction({path: 'exclude', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'
@@ -41,8 +42,8 @@ export default Model.extend({
     'Started',
     'Finished',
     'Confirmed',
-    'Flagged',
-    'Cleared',
+    'Included',
+    'Excluded',
     'Announced',
   ],
 

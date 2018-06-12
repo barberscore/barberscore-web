@@ -1,0 +1,31 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut includeAppearanceModal) true)
+}}
+  Include Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=includeAppearanceModal
+  onHidden=(pipe-action (action (mut includeAppearanceModal) false) (action (mut includeAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Include Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will formally include the appearance.
+    </p>
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' onClick=(perform includeAppearance)}}
+      {{#if includeAppearance.isRunning}}
+        Includeing {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Include Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
