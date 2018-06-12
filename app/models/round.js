@@ -16,8 +16,8 @@ export default Model.extend({
 
   start: memberAction({path: 'start', type: 'post'}),
   review: memberAction({path: 'review', type: 'post'}),
+  verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  announce: memberAction({path: 'announce', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'

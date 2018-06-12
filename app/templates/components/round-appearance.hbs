@@ -61,13 +61,9 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
-            {{#if (eq model.round.status 'Started')}}
-              <li>{{appearance-start model=model}}</li>
-            {{/if}}
+            <li>{{appearance-start model=model}}</li>
           {{else if (eq model.status 'Built')}}
-            {{#if (eq model.round.status 'Started')}}
-              <li>{{appearance-start model=model}}</li>
-            {{/if}}
+            <li>{{appearance-start model=model}}</li>
           {{else if (eq model.status 'Started')}}
             <li>{{appearance-finish model=model}}</li>
           {{else if (eq model.status 'Finished')}}

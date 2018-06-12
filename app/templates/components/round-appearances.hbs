@@ -1,4 +1,4 @@
-{{#if (eq model.status 'Started')}}
+{{#if (or (eq model.status 'Reviewed')(eq model.status 'Started'))}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>
