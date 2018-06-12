@@ -1,0 +1,36 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut verifyRoundModal) true)
+}}
+  Verify Round
+{{/bs-button}}
+{{#bs-modal
+  open=verifyRoundModal
+  onHidden=(pipe-action (action (mut verifyRoundModal) false) (action (mut verifyRoundModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Verify Round</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This generates draft versions of the OSS, CSA and SA for the CA to verify.  They are not made public until the next step, so you are free to verify and re-verify as necessary until the reports are accurate.
+    </p>
+    {{#if verifyRoundModalError}}
+    <p class='text-danger'>
+      Could not Verify Round.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform verifyRound)}}
+      {{#if verifyRound.isRunning}}
+        Verifying {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Verify Round
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
