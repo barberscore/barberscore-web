@@ -4,25 +4,11 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   apiHost: config.APP.API_HOST,
-  legacy: computed(
+  ors: computed(
     'apiHost',
     'model',
     function() {
-      return this.get('apiHost')+this.get('model.legacy');
+      return this.get('apiHost')+this.get('model.ors');
     }
   ),
-  drcj: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.drcj');
-    }
-  ),
-  contact: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.contact');
-    }
-  )
 });
