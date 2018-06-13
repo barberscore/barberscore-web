@@ -13,6 +13,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedAppearancesProperties: [
+    'competitorRank',
     'num',
   ],
   sortedAppearances: sort(

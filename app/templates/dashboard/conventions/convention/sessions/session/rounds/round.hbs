@@ -20,6 +20,9 @@
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.draw"}}Draw{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.reports"}}Reports{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
@@ -35,12 +38,7 @@
         <ul class='list-inline'>
           {{#if (eq model.status 'Built')}}
             <li>{{round-start model=model}}</li>
-          {{else if (eq model.status 'Reviewed')}}
-            <li>{{round-review model=model}}</li>
-            <li>{{round-verify model=model}}</li>
-          {{else if (or (eq model.status 'Reviewed')(eq model.status 'Started'))}}
-            <li>{{round-review model=model}}</li>
-          {{else if (eq model.status 'Verified')}}
+          {{else if (eq model.status 'Started')}}
             <li>{{round-finish model=model}}</li>
           {{else if (eq model.status 'Finished')}}
             <li>{{round-verify model=model}}</li>

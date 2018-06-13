@@ -86,6 +86,10 @@ Router.map(function() {
                       path: ':appearance_id'
                     });
                   });
+                  this.route('draw', {
+                    path: 'draw'
+                  }, function () {
+                  });
                   this.route('reports', {
                     path: 'reports'
                   });
