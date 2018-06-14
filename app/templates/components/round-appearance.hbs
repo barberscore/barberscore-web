@@ -68,9 +68,6 @@
             <li>{{appearance-finish model=model}}</li>
           {{else if (eq model.status 'Finished')}}
             <li>{{appearance-confirm model=model}}</li>
-          {{else if (eq model.status 'Confirmed')}}
-            <li>{{appearance-include model=model}}</li>
-            <li>{{appearance-exclude model=model}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>

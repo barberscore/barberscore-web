@@ -1,7 +1,7 @@
 import { not, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-// import { task, timeout } from 'ember-concurrency';
+import { task } from 'ember-concurrency';
 // import { denodeify } from 'rsvp'
 
 export default Component.extend({
@@ -20,6 +20,32 @@ export default Component.extend({
     'model.appearances',
     'sortedAppearancesProperties'
   ),
+  // toggleCompetitor: task(function *(property, value) {
+  //   let comp = yield property.get('competitor');
+  //   if (value) {
+  //     try {
+  //       let competitor = yield comp.start({
+  //         'by': this.get('currentUser.user.id'),
+  //       });
+  //       this.get('store').pushPayload('competitor', competitor);
+  //       this.get('flashMessages').success("Included!");
+  //     } catch(e) {
+  //       console.log(e);
+  //       this.get('flashMessages').danger("Problem!");
+  //     }
+  //   } else {
+  //     try {
+  //       let competitor = yield comp.finish({
+  //         'by': this.get('currentUser.user.id'),
+  //       });
+  //       this.get('store').pushPayload('competitor', competitor);
+  //       this.get('flashMessages').success("Excluded!");
+  //     } catch(e) {
+  //       console.log(e);
+  //       this.get('flashMessages').danger("Problem!");
+  //     }
+  //   }
+  // }).drop(),
   // searchGroup: task(function* (term){
   //   yield timeout(600);
   //   let kindModel = this.get('model.kind');

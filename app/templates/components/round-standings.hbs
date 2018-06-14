@@ -1,0 +1,50 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>
+      The Overall Competitors.
+    </caption>
+    <thead>
+      <tr>
+        <th class='col-md-1'>Rank</th>
+        <th class='col-md-4'>Name</th>
+        <th class='col-md-1'>Points</th>
+        <th class='col-md-1'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedCompetitors as |competitor|}}
+        <tr>
+          {{#if competitor.isLoading}}
+            <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            {{!-- <td>
+              {{input
+                type='checkbox'
+                checked=appearance.competitor.isIncluded
+                disabled=appearance.competitor.isDisabled
+                change=(perform toggleCompetitor appearance value='target.checked')
+              }}
+            </td> --}}
+            <td>{{competitor.rank}}</td>
+            {{#if competitor.group.isLoading}}
+              <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                  {{competitor.group.name}}
+              </td>
+            {{/if}}
+            {{!-- <td>{{appearance.competitor.totPoints}}</td>
+            <td>{{single-fixed appearance.competitor.totScore}}</td>
+            <td>{{appearance.competitor.rank}}</td> --}}
+            <td>{{competitor.totPoints}}</td>
+            <td>{{competitor.status}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>(No competitors currently entered for this session.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

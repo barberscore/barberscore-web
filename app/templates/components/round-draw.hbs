@@ -17,19 +17,19 @@
           </tr>
         </thead>
           {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-            {{#each sortedAppearances as |item|}}
+            {{#each sortedCompetitors as |item|}}
               {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
                 <td>
                   {{item.draw}}
                 </td>
                 <td>
-                  {{item.competitor.group.name}}
+                  {{item.group.name}}
                 </td>
-                <td>{{item.competitor.description}}</td>
+                <td>{{item.description}}</td>
               {{/sortable-item}}
             {{else}}
               <tr>
-                <td>(No appearances.)</td>
+                <td>(No competitors.)</td>
               </tr>
             {{/each}}
           {{/sortable-group}}
@@ -61,21 +61,21 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedAppearances as |appearance|}}
+            {{#each sortedCompetitors as |competitor|}}
               <tr>
                 <td>
-                  {{appearance.draw}}
+                  {{competitor.draw}}
                 </td>
                 <td>
-                  {{appearance.competitor.group.name}}
+                  {{competitor.group.name}}
                 </td>
                 <td>
-                  {{appearance.competitor.description}}
+                  {{competitor.description}}
                 </td>
               </tr>
             {{else}}
               <tr>
-                <td>(No appearances.)</td>
+                <td>(No competitors.)</td>
               </tr>
             {{/each}}
           </tbody>

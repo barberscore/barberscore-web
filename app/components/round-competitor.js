@@ -16,7 +16,7 @@ export default Component.extend({
     }
   }).restartable(),
   sortedCompetitorsProperties: [
-    'draw',
+    'totPoints:desc',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',

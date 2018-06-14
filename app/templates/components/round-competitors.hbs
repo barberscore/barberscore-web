@@ -5,11 +5,10 @@
     </caption>
     <thead>
       <tr>
+        <th class='col-md-1'>Rank</th>
         <th class='col-md-4'>Name</th>
-        <th class='col-md-1'>Draw</th>
         <th class='col-md-1'>Points</th>
         <th class='col-md-1'>Score</th>
-        <th class='col-md-1'>Rank</th>
         <th class='col-md-1'>Status</th>
       </tr>
     </thead>
@@ -19,15 +18,14 @@
           {{#if competitor.isLoading}}
             <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
+            <td>{{#if competitor.rank}}{{competitor.rank}}{{else}}N/A{{/if}}</td>
             {{#if competitor.group.isLoading}}
               <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
             {{/if}}
-            <td>{{competitor.draw}}</td>
             <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
             <td>{{single-fixed competitor.totScore}}</td>
-            <td>{{#if competitor.rank}}{{competitor.rank}}{{else}}N/A{{/if}}</td>
             <td>{{competitor.status}}</td>
           {{/if}}
         </tr>
