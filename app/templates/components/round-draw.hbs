@@ -1,7 +1,7 @@
 <section>
   {{#if (or (eq model.status 'Built')(eq model.status 'Started'))}}
     <h4>
-      The Draw can only be adjusted after the Round has been Finished
+      The Draw can only be adjusted after the Round has been Verified
     </h4>
   {{else if (and isEditing (or (eq model.status 'Finished')(eq model.status 'Verified')))}}
     <div>
