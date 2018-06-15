@@ -1,7 +1,7 @@
 import { not, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-import { task } from 'ember-concurrency';
+// import { task } from 'ember-concurrency';
 // import { denodeify } from 'rsvp'
 
 export default Component.extend({
@@ -13,7 +13,6 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedAppearancesProperties: [
-    'competitorRank',
     'num',
   ],
   sortedAppearances: sort(

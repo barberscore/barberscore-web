@@ -15,6 +15,7 @@ export default Component.extend({
       });
       this.get('store').pushPayload('round', round);
       this.get('model.session.competitors').invoke('reload');
+      this.get('model.session.rounds').invoke('reload');
       this.get('model.appearances').invoke('reload');
       this.set('finishRoundModal', false);
       this.set('finishRoundModalError', false);
