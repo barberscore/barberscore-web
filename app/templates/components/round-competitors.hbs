@@ -1,9 +1,6 @@
-{{#if (or
-  (eq model.status 'Started')
-  (eq model.status 'Reviewed')
-  (eq model.status 'Verified')
-  (eq model.status 'Finished')
-)}}
+{{#if (eq model.status 'New')}}
+    <h3>The Competitors are available after the prior round is finished.</h3>
+{{else}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>
@@ -32,7 +29,7 @@
               {{/if}}
               <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
               <td>{{single-fixed competitor.totScore}}</td>
-              <td>{{competitor.status}}</td>
+              <td>{{competitor.status}}&nbsp;<a href='{{competitor.csa}}'>{{competitor.csa}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></td>
             {{/if}}
           </tr>
         {{else}}
@@ -43,8 +40,4 @@
       </tbody>
     </table>
   </div>
-{{else}}
-  <p>
-    The competitor standings are available after the Round has been Reviewed.
-  </p>
 {{/if}}

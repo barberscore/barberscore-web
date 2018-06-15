@@ -15,6 +15,7 @@ export default Model.extend({
   perScore: DS.attr('number'),
   sngScore: DS.attr('number'),
   totScore: DS.attr('number'),
+  csa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),

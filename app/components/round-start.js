@@ -16,6 +16,7 @@ export default Component.extend({
       this.model.reload();
       this.get('store').pushPayload('round', round);
       this.get('model.session.competitors').invoke('reload');
+      this.get('model.appearances').invoke('reload');
       this.set('startRoundModal', false);
       this.set('startRoundModalError', false);
       this.get('flashMessages').success("Started!");

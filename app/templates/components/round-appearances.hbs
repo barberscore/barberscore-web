@@ -1,4 +1,6 @@
-{{!-- {{#if (eq model.status 'Started')}} --}}
+{{#if (eq model.status 'New')}}
+    <h3>The Appearances are available after the prior round is finished.</h3>
+{{else}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>
@@ -49,6 +51,7 @@
       </tbody>
     </table>
   </div>
+{{/if}}
 {{!-- {{else}}
   Appearances are available after the Round has started.
 {{/if}} --}}

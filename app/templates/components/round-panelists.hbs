@@ -1,121 +1,119 @@
-<div class='table-responsive'>
-  <table class='table'>
-    {{#if (eq model.status 'New')}}
-      <caption>
-        The Panelists (the actual seated judges) are created from the Assignments (who is scheduled).  You can not create the Panelists themselves until the DRCJ has started the Session or the prior round is finished.  View the current Assignments from the Convention tab.
-      </caption>
-    {{else}}
+{{#if (eq model.status 'New')}}
+    <h3>The Panelists are available after the prior round is finished.</h3>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table'>
       <caption>
         If you need to change any panelists please do so before you start the Round.  Once the Round is started, you will not be able to change the Panelists.
       </caption>
-    {{/if}}
-    <thead>
-      <tr>
-        <th class='col-md-6'>Person</th>
-        <th class='col-md-2'>Category</th>
-        <th class='col-md-2'>Kind</th>
-        <th class='col-md-1'>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedPanelists as |panelist|}}
+      <thead>
         <tr>
-          {{#if panelist.person.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-          {{else}}
-            <td>{{panelist.person.fullName}}</td>
-            <td>{{panelist.category}}</td>
-            <td>{{panelist.kind}}</td>
-            <td>
-              {{#if (eq model.status 'Built')}}
-                {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
-              {{/if}}
-            </td>
-          {{/if}}
+          <th class='col-md-6'>Person</th>
+          <th class='col-md-2'>Category</th>
+          <th class='col-md-2'>Kind</th>
+          <th class='col-md-1'>Delete</th>
         </tr>
-      {{else}}
-        <tr>
-          <td>(No panelists created)</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
-<div>
-  {{#if (eq model.status 'Built')}}
-    <p>
-      {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
-    </p>
-  {{/if}}
-</div>
-<div>
-  {{#bs-modal
-    open=createPanelistModal
-    onHidden=(pipe-action (action (mut createPanelistModal) false) (action (mut createPanelistModalError) false))
-    as |modal|
-  }}
-    {{#modal.header}}
-      <h4>New Panelist</h4>
-    {{/modal.header}}
-    {{#modal.body}}
-      <p>
-        Select the person you wish to enter into the panel.
-      </p>
-      <p>
-        {{#power-select
-          search=(perform searchPerson)
-          selected=person
-          onchange=(action (mut person))
-          placeholder="Enter Person Name"
-          allowClear=true
-          renderInPlace=true
-          noMatchesMessage="We Could Not Find a person with that name"
-          as |person|
-        }}
-          Person: {{person.full_name}}
-        {{/power-select}}
-      </p>
-      <p>
-        {{#power-select
-          options=categoryOptions
-          selected=category
-          onchange=(action (mut category))
-          placeholder="Choose Category"
-          allowClear=true
-          renderInPlace=true
-          as |category|
-        }}
-          {{category}}
-        {{/power-select}}
-      </p>
-      <p>
-        {{#power-select
-          options=kindOptions
-          selected=kind
-          onchange=(action (mut kind))
-          placeholder="Choose Kind"
-          allowClear=true
-          renderInPlace=true
-          as |kind|
-        }}
-          {{kind}}
-        {{/power-select}}
-      </p>
-      {{#if createPanelistModalError}}
-      <p class='text-danger'>
-        Could not create panelist.  Please contact support.
-      </p>
-      {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='success' onClick=(perform savePanelist person category kind) disabled=isDisabled}}
-        {{#if savePanelist.isRunning}}
-          Creating {{fa-icon "spinner" spin=true}}
+      </thead>
+      <tbody>
+        {{#each sortedPanelists as |panelist|}}
+          <tr>
+            {{#if panelist.person.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{panelist.person.fullName}}</td>
+              <td>{{panelist.category}}</td>
+              <td>{{panelist.kind}}</td>
+              <td>
+                {{#if (eq model.status 'Built')}}
+                  {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
+                {{/if}}
+              </td>
+            {{/if}}
+          </tr>
         {{else}}
-          Create Panelist
+          <tr>
+            <td>(No panelists created)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    {{#if (eq model.status 'Built')}}
+      <p>
+        {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
+      </p>
+    {{/if}}
+  </div>
+  <div>
+    {{#bs-modal
+      open=createPanelistModal
+      onHidden=(pipe-action (action (mut createPanelistModal) false) (action (mut createPanelistModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>New Panelist</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Select the person you wish to enter into the panel.
+        </p>
+        <p>
+          {{#power-select
+            search=(perform searchPerson)
+            selected=person
+            onchange=(action (mut person))
+            placeholder="Enter Person Name"
+            allowClear=true
+            renderInPlace=true
+            noMatchesMessage="We Could Not Find a person with that name"
+            as |person|
+          }}
+            Person: {{person.full_name}}
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=categoryOptions
+            selected=category
+            onchange=(action (mut category))
+            placeholder="Choose Category"
+            allowClear=true
+            renderInPlace=true
+            as |category|
+          }}
+            {{category}}
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=kindOptions
+            selected=kind
+            onchange=(action (mut kind))
+            placeholder="Choose Kind"
+            allowClear=true
+            renderInPlace=true
+            as |kind|
+          }}
+            {{kind}}
+          {{/power-select}}
+        </p>
+        {{#if createPanelistModalError}}
+        <p class='text-danger'>
+          Could not create panelist.  Please contact support.
+        </p>
         {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
-</div>
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform savePanelist person category kind) disabled=isDisabled}}
+          {{#if savePanelist.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Panelist
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
+{{/if}}
