@@ -1,11 +1,11 @@
 <section>
-    {{#if (eq model.status 'Finished')}}
+    {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
       <ul class='list-styled'>
         <li>Official Scoring Summary: &nbsp;<a href='{{ors}}'>{{ors}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></li>
       </ul>
     {{else}}
       <h4>
-        Reports are available after the Round is Finished.
+        Reports are available after the Round is Verified.
       </h4>
     {{/if}}
 </section>

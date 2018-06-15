@@ -1,8 +1,13 @@
-{{#if (or (eq model.status 'Reviewed')(eq model.status 'Finished'))}}
+{{#if (or
+  (eq model.status 'Started')
+  (eq model.status 'Reviewed')
+  (eq model.status 'Verified')
+  (eq model.status 'Finished')
+)}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>
-        The current standings and status of each competitor.
+        All competitors, ranked by total points.  Ranking is available after the Round is reviewed.
       </caption>
       <thead>
         <tr>
