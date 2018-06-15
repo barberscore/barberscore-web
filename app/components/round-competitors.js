@@ -24,27 +24,12 @@ export default Component.extend({
   ),
   sortedCompetitorsProperties: [
     'totPoints:desc',
-    'draw',
     'groupName',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',
     'sortedCompetitorsProperties'
   ),
-  refreshCompetitors: task(function *() {
-    // yield this.get('sortedScores').forEach(function(score) {
-    //   console.log(score);
-    //   score.save();
-    // })
-    let session = yield this.get('model.session');
-    try {
-      yield session.refresh();
-    } catch(e) {
-      console.log(e);
-    }
-    session.reload();
-    this.get('flashMessages').success("Refreshed!");
-  }).drop(),
   // searchGroup: task(function* (term){
   //   yield timeout(600);
   //   let kindModel = this.get('model.kind');

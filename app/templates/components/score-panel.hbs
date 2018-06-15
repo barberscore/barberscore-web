@@ -35,7 +35,7 @@
             {{score.song.num}}
           </td>
           <td>
-            {{input class='form-control' value=score.points}}
+            {{input class='form-control' value=score.points disabled=score.isDisabled}}
           </td>
         </tr>
       {{else}}
@@ -47,8 +47,10 @@
       {{/each}}
     </tbody>
   </table>
-  <div class='pull-right'>
-    Score Total: {{sumScores}}
-    {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
-  </div>
+    <div class='pull-right'>
+      Score Total: {{sumScores}}
+      {{#unless (eq appearance.status 'Confirmed')}}
+        {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
+      {{/unless}}
+    </div>
 </div>

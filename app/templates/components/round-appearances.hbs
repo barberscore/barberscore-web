@@ -32,7 +32,10 @@
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
-                  {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance' appearance}}
+                  {{#link-to
+                    'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                    appearance
+                  }}
                     {{appearance.competitor.group.name}}
                   {{/link-to}}
                 </td>

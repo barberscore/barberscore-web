@@ -60,9 +60,7 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
-            <li>{{appearance-start model=model}}</li>
-          {{else if (eq model.status 'Built')}}
+          {{#if (eq model.status 'Built')}}
             <li>{{appearance-start model=model}}</li>
           {{else if (eq model.status 'Started')}}
             <li>{{appearance-finish model=model}}</li>

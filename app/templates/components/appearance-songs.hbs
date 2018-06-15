@@ -17,7 +17,7 @@
               onclose=(action "saveSong" song)
               placeholder="Choose Chart Title"
               allowClear=true
-              disabled=false
+              disabled=song.isDisabled
               as |chart|
             }}
               Song {{song.num}}: {{chart.title}}

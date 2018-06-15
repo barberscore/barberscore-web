@@ -29,7 +29,10 @@
               {{/if}}
               <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
               <td>{{single-fixed competitor.totScore}}</td>
-              <td>{{competitor.status}}&nbsp;<a href='{{competitor.csa}}'>{{competitor.csa}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></td>
+              <td>
+                {{competitor.status}}
+                {{#if (eq competitor.status 'Finished')}}&nbsp;<a href='{{competitor.csa}}'>{{fa-icon 'file-pdf-o'}}</a>{{/if}}
+              </td>
             {{/if}}
           </tr>
         {{else}}

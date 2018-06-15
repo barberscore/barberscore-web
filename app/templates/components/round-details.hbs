@@ -1,0 +1,15 @@
+<section>
+  {{#bs-form
+    formLayout="vertical"
+    model=model
+    as |form|
+  }}
+    {{form.element
+      controlType='tel'
+      disabled=isDisabled
+      label='Spots Available in Round (blank for unlimited).'
+      property='spots'
+      onChange=(perform autosave 'spots')}}
+  {{/bs-form}}
+</section>
+
