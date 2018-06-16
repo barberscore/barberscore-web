@@ -48,7 +48,7 @@
     </tbody>
   </table>
     <div class='pull-right'>
-      Score Total: {{sumScores}}
+      Score Total: {{allSumScores}}, {{officialSumScores}}
       {{#unless (eq appearance.status 'Confirmed')}}
         {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
       {{/unless}}

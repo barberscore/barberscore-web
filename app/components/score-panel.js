@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
 import { computed } from '@ember/object';
-import { sort, mapBy } from '@ember/object/computed';
+import { sort, mapBy, filterBy } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
@@ -30,18 +30,39 @@ export default Component.extend({
     'panelistName',
     'songNum',
   ],
-  sortedScores: sort(
+  officialScores: filterBy(
+    'scoresCall',
+    'kind',
+    'Official',
+  ),
+  officialSortedScores: sort(
+    'officialScores',
+    'sortedScoresProperties'
+  ),
+  officialMappedScores: mapBy(
+    'officialSortedScores',
+    'points'
+  ),
+  officialSumScores: computed(
+    'officialMappedScores', function() {
+      let out = 0;
+      this.get('officialMappedScores').forEach(function(item) {
+        out += parseInt(item);
+      });
+      return out;
+  }),
+  allSortedScores: sort(
     'scoresCall',
     'sortedScoresProperties'
   ),
-  mappedScores: mapBy(
-    'sortedScores',
+  allMappedScores: mapBy(
+    'allSortedScores',
     'points'
   ),
-  sumScores: computed(
-    'mappedScores', function() {
+  allSumScores: computed(
+    'allMappedScores', function() {
       let out = 0;
-      this.get('mappedScores').forEach(function(item) {
+      this.get('allMappedScores').forEach(function(item) {
         out += parseInt(item);
       });
       return out;
