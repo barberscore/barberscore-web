@@ -1,0 +1,24 @@
+<ul class='list-inline'>
+{{#if model.isLoading}}
+  <li colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</li>
+{{else}}
+  {{#if model.award.isLoading}}
+    <li>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</li>
+  {{else}}
+    <li>{{model.award.name}}</li>
+  {{/if}}
+  <li>
+    {{#power-select
+      search=(perform searchGroups)
+      selected=model.champion
+      onchange=(perform autosave)
+      renderInPlace=true
+      allowClear=true
+      disabled=isDisabled
+      as |group|
+    }}
+      Group: {{group.name}}
+    {{/power-select}}
+  </li>
+{{/if}}
+</ul>

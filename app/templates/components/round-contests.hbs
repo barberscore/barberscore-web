@@ -1,0 +1,31 @@
+{{#if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
+  {{!-- <div class='table-responsive'>
+    <table class='table'>
+      <caption>
+        You can pick the winner for each contest.
+      </caption>
+      <thead>
+        <tr>
+          <th class='col-md-4'>Contest</th>
+          <th class='col-md-4'>Winner</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedContests as |contest|}}
+          {{contest-champion model=contest}}
+        {{else}}
+          <tr>
+            <td>(No competitors currently entered for this session.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div> --}}
+        {{#each sortedContests as |contest|}}
+          {{contest-champion model=contest}}
+        {{/each}}
+  {{else}}
+    <h3>
+      The Competitors are available after the prior round is finished.
+    </h3>
+{{/if}}

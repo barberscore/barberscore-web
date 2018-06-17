@@ -86,6 +86,9 @@ Router.map(function() {
                       path: ':appearance_id'
                     });
                   });
+                  this.route('contests', {
+                    path: 'contest'
+                  });
                   this.route('reports', {
                     path: 'reports'
                   });

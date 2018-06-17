@@ -30,7 +30,7 @@ export default Model.extend({
     'New',
     'Included',
   ],
-  entryTotPoints: alias('entry.totPoints'),
+  competitorPoints: alias('competitor.totPoints'),
 
   isIncluded: equal(
     'status',
