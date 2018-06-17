@@ -1,13 +1,10 @@
-import { not, sort, filterBy } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 // import { task } from 'ember-concurrency';
 // import { denodeify } from 'rsvp'
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
-import config from '../config/environment';
-import { computed } from '@ember/object';
-import { A } from '@ember/array';
 
 export default Component.extend({
   flashMessages: service(),
