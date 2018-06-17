@@ -6,10 +6,12 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 import config from '../config/environment';
-// import { computed } from '@ember/object';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 export default Component.extend({
   flashMessages: service(),
+  algolia: service(),
   store: service(),
   // isDisabled: not(
   //   'model.permissions.write',
@@ -31,26 +33,17 @@ export default Component.extend({
     'model.session.competitors',
     'sortedContestsProperties'
   ),
-  group: null,
-
   searchGroup: task(function* (term){
     yield timeout(500);
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Group', query: term})
+    let res = yield func({ indexName: 'Group_dev', query: term})
     return res.hits
   }),
-  autosave: task(function* (value){
-    this.get('model').set('champion', value);
-    yield timeout(1000);
-    try {
-      yield this.get('model').save();
-      this.get('flashMessages').success("Saved");
-    } catch(e) {
-      e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
-      })
-    }
-  }).restartable(),
+  updateGroup: task(function* (contest, obj){
+    let group = yield this.get('store').findRecord('group', obj.objectID)
+    contest.set('group', group);
+    yield contest.save();
+  }),
 });
 
 

@@ -1,11 +1,11 @@
-import { alias, filterBy, equal, not } from '@ember/object/computed';
+import { mapBy, alias, filterBy, equal, not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('contest-status'),
-  champion: DS.belongsTo('entry', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   award: DS.belongsTo('award', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
