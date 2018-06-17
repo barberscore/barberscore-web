@@ -40,8 +40,12 @@ export default Component.extend({
     return res.hits
   }),
   updateGroup: task(function* (contest, obj){
-    let group = yield this.get('store').findRecord('group', obj.objectID)
-    contest.set('group', group);
+    if (obj) {
+      let group = yield this.get('store').findRecord('group', obj.objectID)
+      contest.set('group', group);
+    } else {
+      contest.set('group', null);
+    }
     yield contest.save();
   }),
 });
