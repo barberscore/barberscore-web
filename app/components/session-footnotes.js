@@ -1,6 +1,5 @@
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
-import { not } from '@ember/object/computed';
 
 export default Component.extend({
   // isDisabled: not(
