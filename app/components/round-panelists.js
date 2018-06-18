@@ -20,7 +20,7 @@ export default Component.extend({
   searchPerson: task(function* (term){
     yield timeout(600);
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Person_dev', query: term})
+    let res = yield func({ indexName: 'Person', query: term})
     return res.hits
   }),
   createPanelistModal: false,

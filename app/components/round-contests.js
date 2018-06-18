@@ -33,7 +33,7 @@ export default Component.extend({
   searchGroup: task(function* (term){
     yield timeout(500);
     let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
-    let res = yield func({ indexName: 'Group_dev', query: term})
+    let res = yield func({ indexName: 'Group', query: term})
     return res.hits
   }),
   updateGroup: task(function* (contest, obj){
