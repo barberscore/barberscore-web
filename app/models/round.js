@@ -9,6 +9,7 @@ export default Model.extend({
   kind: DS.attr('round-kind'),
   num: DS.attr('number'),
   spots: DS.attr('number'),
+  announcements: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),

@@ -11,4 +11,11 @@ export default Component.extend({
       return this.get('apiHost')+this.get('model.session.oss');
     }
   ),
+  announcements: computed(
+    'apiHost',
+    'model',
+    function() {
+      return this.get('apiHost')+this.get('model.announcements');
+    }
+  ),
 });
