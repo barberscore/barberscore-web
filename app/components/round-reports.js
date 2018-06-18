@@ -4,11 +4,11 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   apiHost: config.APP.API_HOST,
-  ors: computed(
+  oss: computed(
     'apiHost',
     'model',
     function() {
-      return this.get('apiHost')+this.get('model.ors');
+      return this.get('apiHost')+this.get('model.session.oss');
     }
   ),
 });

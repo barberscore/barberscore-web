@@ -1,0 +1,11 @@
+<div class='form-group'>
+  <textarea
+    value={{model.footnotes}}
+    disabled={{isDisabled}}
+    oninput={{perform autosave value='target.value'}}
+    class='form-control'
+    rows='3'
+    placeholder='Enter any footnotes associated with the Session.  Will print on the OSS.'
+  >
+  </textarea>
+</div>
