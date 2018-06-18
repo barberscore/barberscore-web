@@ -11,6 +11,13 @@ export default Component.extend({
       return this.get('apiHost')+this.get('model.session.oss');
     }
   ),
+  sa: computed(
+    'apiHost',
+    'model',
+    function() {
+      return this.get('apiHost')+this.get('model.session.sa');
+    }
+  ),
   announcements: computed(
     'apiHost',
     'model',

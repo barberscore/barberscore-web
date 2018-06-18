@@ -16,6 +16,7 @@ export default Model.extend({
   drcj: DS.attr('string'),
   contact: DS.attr('string'),
   oss: DS.attr('string'),
+  sa: DS.attr('string'),
   numRounds: DS.attr('number'),
   competitors: DS.hasMany('competitor', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
