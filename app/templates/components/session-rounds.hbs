@@ -1,4 +1,7 @@
-{{#if (eq model.status 'Started')}}
+{{#if (or
+    (eq model.status 'Started')
+    (eq model.status 'Finished')
+)}}
   <div class='table-responsive'>
     <table class='table'>
       <caption>Current Assignments</caption>
