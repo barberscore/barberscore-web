@@ -83,7 +83,7 @@ export default Component.extend({
     //   console.log(score);
     //   score.save();
     // })
-    yield this.get('sortedScores').invoke('save');
+    yield this.get('allSortedScores').invoke('save');
     this.get('flashMessages').success("Saved!");
   }).drop(),
 });
