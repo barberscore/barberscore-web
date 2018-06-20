@@ -49,4 +49,5 @@ export default Model.extend({
   awardPrimary: alias('award.isPrimary'),
   awardAgeSort: alias('award.ageSort'),
   awardName: alias('award.name'),
+  awardLevel: alias('award.level'),
 });
