@@ -1,10 +1,12 @@
 import { not, alias, equal } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('competitor-status'),
+  isRanked: DS.attr('boolean'),
   draw: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
@@ -41,7 +43,20 @@ export default Model.extend({
     'Started',
   ),
 
-  groupName: alias('group.name')
+  groupName: alias('group.name'),
+  statusOptions: [
+    'New',
+    'Started',
+    'Finished',
+    'Scratched',
+  ],
+  statusSort: computed(
+    'status',
+    'statusOptions',
+    function() {
+      return this.get('statusOptions').indexOf(this.get('status'));
+    }
+  ),
 
 });
 
