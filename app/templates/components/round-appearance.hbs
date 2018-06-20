@@ -31,7 +31,7 @@
       </ul>
       <h4>
         #{{model.num}}: {{model.competitor.group.name}}
-        {{#if (and (not (is-empty model.varianceReport)) (eq model.status 'Verified'))}}
+        {{#if (and (not-eq model.varianceReport '') (eq model.status 'Verified'))}}
           <a href={{model.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
         {{/if}}
      </h4>
