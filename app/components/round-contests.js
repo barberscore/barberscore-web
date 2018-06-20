@@ -17,8 +17,13 @@ export default Component.extend({
   sortedContestsProperties: [
     'tree_sort',
   ],
-  filteredContests: filterBy(
+  filteredChampionships: filterBy(
     'model.session.contests',
+    'awardLevel',
+    'Championship',
+  ),
+  filteredContests: filterBy(
+    'filteredChampionships',
     'status',
     'Included',
   ),
