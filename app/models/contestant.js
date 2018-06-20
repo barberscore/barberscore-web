@@ -5,7 +5,6 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('contestant-status'),
-  rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),

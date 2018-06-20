@@ -6,7 +6,6 @@ export default Model.extend({
   // Fields
   status: DS.attr('song-status'),
   num: DS.attr('number'),
-  rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),

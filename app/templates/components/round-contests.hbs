@@ -1,20 +1,24 @@
 {{#if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
-  <ul class='list-inline'>
+  <ul class='list-unstyled'>
     {{#each sortedContests as |contest|}}
-      <li>{{contest.award.name}}</li>
       <li>
-        {{#power-select
-          search=(perform searchGroup)
-          selected=contest.group
-          onchange=(perform updateGroup contest)
-          placeholder="Choose Group"
-          allowClear=true
-          renderInPlace=true
-          disabled=false
-          as |group|
-        }}
-          {{group.name}}
-        {{/power-select}}
+        <ul class='list-inline'>
+          <li>{{contest.award.name}}: {{contest.award.rounds}}</li>
+          <li>
+            {{#power-select
+              search=(perform searchGroup)
+              selected=contest.group
+              onchange=(perform updateGroup contest)
+              placeholder="Choose Group"
+              allowClear=true
+              renderInPlace=true
+              disabled=false
+              as |group|
+            }}
+              {{group.name}}
+            {{/power-select}}
+          </li>
+        </ul>
       </li>
     {{/each}}
   </ul>

@@ -38,11 +38,12 @@
                   }}
                     {{appearance.competitor.group.name}}
                   {{/link-to}}
+                  &nbsp;
+                  {{#if (and (not-eq appearance.varianceReport '') (eq appearance.status 'Verified'))}}
+                    <a href={{appearance.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
+                  {{/if}}
                 </td>
               {{/if}}
-              {{!-- <td>{{appearance.competitor.totPoints}}</td>
-              <td>{{single-fixed appearance.competitor.totScore}}</td>
-              <td>{{appearance.competitor.rank}}</td> --}}
               <td>{{appearance.status}}</td>
             {{/if}}
           </tr>
