@@ -14,7 +14,6 @@ export default Model.extend({
   directors: DS.attr('string', {defaultValue: ''}),
   mos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
-  rank: DS.attr('number'),
   description: DS.attr('string'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),

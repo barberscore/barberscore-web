@@ -21,7 +21,7 @@
             {{#if competitor.isLoading}}
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{#if competitor.rank}}{{competitor.rank}}{{else}}N/A{{/if}}</td>
+              <td>{{#if competitor.totRank}}{{competitor.totRank}}{{else}}N/A{{/if}}</td>
               {{#if competitor.group.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}

@@ -9,7 +9,6 @@ export default Model.extend({
   draw: DS.attr('number'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
-  rank: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),
@@ -57,7 +56,7 @@ export default Model.extend({
     'competitor.totPoints'
   ),
   competitorRank: alias(
-    'competitor.rank'
+    'competitor.totRank'
   ),
   isAdvancer: gt(
     'draw',
