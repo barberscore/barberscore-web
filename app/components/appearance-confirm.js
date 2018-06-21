@@ -12,11 +12,8 @@ export default Component.extend({
       yield this.model.confirm({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
-      this.get('model.songs').invoke('reload');
-      this.get('model.round.session.competitors').invoke('reload');
-      this.get('model.round.session.competitors').invoke('reload');
-      // this.get('model.session').hasMany('competitors').reload();
+      yield this.get('model').reload();
+      yield this.get('model.songs').invoke('reload');
       this.set('confirmAppearanceModal', false);
       this.set('confirmAppearanceModalError', false);
       this.get('flashMessages').success("Confirmed!");

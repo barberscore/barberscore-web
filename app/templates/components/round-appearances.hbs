@@ -39,7 +39,7 @@
                     {{appearance.competitor.group.name}}
                   {{/link-to}}
                   &nbsp;
-                  {{#if (and (not-eq appearance.varianceReport '') (eq appearance.status 'Verified'))}}
+                  {{#if appearance.isDetected}}
                     <a href={{appearance.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
                   {{/if}}
                 </td>

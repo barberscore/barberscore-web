@@ -1,4 +1,4 @@
-import { alias, gt, lt, mapBy, sort, not } from '@ember/object/computed';
+import { alias, gt, lt, mapBy, sort, not, notEmpty, equal, and } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -38,6 +38,20 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  varNotEmpty: notEmpty(
+    'varianceReport',
+  ),
+
+  isVerified: equal(
+    'status',
+    'Verified',
+  ),
+
+  isDetected: and(
+    'varNotEmpty',
+    'isVerified',
   ),
 
   statusOptions: [
