@@ -19,8 +19,7 @@ export default Component.extend({
   ],
   filteredChampionships: filterBy(
     'model.session.contests',
-    'awardLevel',
-    'Championship',
+    'notQualifier',
   ),
   filteredContests: filterBy(
     'filteredChampionships',

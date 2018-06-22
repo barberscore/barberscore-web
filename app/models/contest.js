@@ -44,6 +44,14 @@ export default Model.extend({
     'Included',
   ),
 
+  isAwardQualifier: equal(
+    'awardLevel',
+    'Qualifier',
+  ),
+  notQualifier: not(
+    'isAwardQualifier',
+  ),
+
   groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
   awardPrimary: alias('award.isPrimary'),
