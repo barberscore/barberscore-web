@@ -1,4 +1,7 @@
  <div class='table-responsive'>
+  <div class='pull-right'>
+    Score Total: {{allSumScores}}, {{officialSumScores}}
+  </div>
   <table class='table'>
     <thead>
       <tr>
@@ -47,10 +50,11 @@
       {{/each}}
     </tbody>
   </table>
-    <div class='pull-right'>
-      Score Total: {{allSumScores}}, {{officialSumScores}}
-      {{#unless (eq appearance.status 'Confirmed')}}
-        {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
-      {{/unless}}
-    </div>
+  <div class='pull-right'>
+    Score Total: {{allSumScores}}, {{officialSumScores}}
+    {{#unless (eq appearance.status 'Confirmed')}}
+      {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
+    {{/unless}}
+  </div>
 </div>
+
