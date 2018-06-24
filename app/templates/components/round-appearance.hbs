@@ -31,8 +31,12 @@
       </ul>
       <h4>
         #{{model.num}}: {{model.competitor.group.name}}
-        {{#if model.isDetected}}
-          <a href={{model.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
+        {{#if (eq model.status 'Verified')}}
+          {{#if model.isDetected}}
+            <a href={{model.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
+          {{else}}
+            <span class="label label-success">No Variance</span>
+          {{/if}}
         {{/if}}
      </h4>
     </div>
