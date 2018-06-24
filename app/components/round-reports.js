@@ -8,14 +8,14 @@ export default Component.extend({
     'apiHost',
     'model',
     function() {
-      return this.get('apiHost')+this.get('model.session.oss');
+      return this.get('apiHost')+this.get('model.oss');
     }
   ),
   sa: computed(
     'apiHost',
     'model',
     function() {
-      return this.get('apiHost')+this.get('model.session.sa');
+      return this.get('apiHost')+this.get('model.sa');
     }
   ),
   announcements: computed(
