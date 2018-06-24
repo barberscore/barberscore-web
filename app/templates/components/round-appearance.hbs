@@ -68,10 +68,8 @@
             <li>{{appearance-start model=model}}</li>
           {{else if (eq model.status 'Started')}}
             <li>{{appearance-finish model=model}}</li>
-          {{else if (eq model.status 'Finished')}}
+          {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
             <li>{{appearance-verify model=model}}</li>
-          {{else if (eq model.status 'Verified')}}
-            <li>{{appearance-confirm model=model}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
