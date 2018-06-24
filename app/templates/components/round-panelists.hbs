@@ -25,7 +25,7 @@
               <td>{{panelist.kind}}</td>
               <td>
                 {{#if (eq model.status 'Built')}}
-                  {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Delete{{/bs-button}}
+                  {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Remove From Panel{{/bs-button}}
                 {{/if}}
               </td>
             {{/if}}
