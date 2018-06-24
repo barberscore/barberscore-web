@@ -16,6 +16,7 @@
               onchange=(action (mut song.chart))
               onclose=(action "saveSong" song)
               placeholder="Choose Chart Title"
+              searchField='title'
               allowClear=true
               disabled=song.isDisabled
               as |chart|
