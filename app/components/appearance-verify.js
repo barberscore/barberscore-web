@@ -5,19 +5,19 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
   flashMessages: service(),
-  verifyAppearanceModal: false,
-  verifyAppearanceModalError: false,
   verifyAppearance: task(function *() {
     try {
+      let songs = yield this.get('model.songs');
+      yield songs.forEach(function(item) {
+        item.scores.invoke('save');
+      });
       yield this.model.verify({
         'by': this.get('currentUser.user.id'),
       });
       this.get('model').reload();
-      this.set('verifyAppearanceModal', false);
-      this.set('verifyAppearanceModalError', false);
       this.get('flashMessages').success("Verified!");
     } catch(e) {
-      this.set('verifyAppearanceModalError', true);
+      this.get('flashMessages').error(e);
     }
   }).drop(),
 });

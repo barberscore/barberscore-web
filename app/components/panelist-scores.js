@@ -1,8 +1,6 @@
 import Component from '@ember/component';
-import { A } from '@ember/array';
 import { computed } from '@ember/object';
-import { sort, mapBy, filterBy } from '@ember/object/computed';
-import { task } from 'ember-concurrency';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
