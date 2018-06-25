@@ -60,4 +60,5 @@ export default Model.extend({
 
   panelistName: alias('panelist.person.lastName'),
   songNum: alias('song.num'),
+  appearanceId: alias('song.appearance.id'),
 });

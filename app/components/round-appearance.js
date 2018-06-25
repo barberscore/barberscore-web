@@ -18,8 +18,15 @@ export default Component.extend({
   sortedAppearancesProperties: [
     'num',
   ],
+  sortedSongsProperties: [
+    'num',
+  ],
   sortedAppearances: sort(
     'model.round.appearances',
     'sortedAppearancesProperties',
   ),
+  sortedSongs: sort(
+    'model.songs',
+    'sortedSongsProperties',
+  )
 });

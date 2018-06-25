@@ -17,6 +17,19 @@ export default Model.extend({
     'permissions.write'
   ),
 
+  rowClass: computed(
+    'kind', function() {
+      if (this.get('category') === 'Music') {
+        return 'warning';
+      } else if (this.get('category') === 'Performance') {
+        return 'success';
+      } else if (this.get('category') === 'Singing') {
+        return 'info';
+      } else {
+        return null;
+      }
+    }
+  ),
   categorySort: computed(
     'category',
     'categoryOptions',

@@ -1,0 +1,44 @@
+ <div class='table-responsive'>
+  <table class='table table-condensed'>
+    <thead>
+      <tr>
+        <th class='col-md-3'>
+          Panelist
+        </th>
+        <th class='col-md-2'>
+          Category
+        </th>
+        <th class='col-md-5'>
+          Kind
+        </th>
+        <th class='col-md-1'>
+          Points
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedPanelists as |panelist|}}
+        <tr class={{panelist.rowClass}}>
+          <td>{{panelist.person.commonName}}</td>
+          <td>{{panelist.category}}</td>
+          <td>{{panelist.kind}}</td>
+          <td>{{panelist-scores model=panelist appearance=model}}</td>
+        </tr>
+      {{else}}
+        <tr>
+          (No panelists)
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan=3></td>
+        <td class='text-right'>{{model.songsSum}}</td>
+      </tr>
+    </tfoot>
+  </table>
+  <div class='pull-right'>
+    {{#bs-button type='default' onClick=(perform saveScores)}}Save{{/bs-button}}
+  </div>
+</div>
+
