@@ -35,7 +35,7 @@
           {{#if model.isDetected}}
             <a href={{model.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
           {{else}}
-            <span class="label label-success">No Variance</span>
+            {{fa-icon 'check-circle' class='text-success'}}
           {{/if}}
         {{/if}}
      </h4>
