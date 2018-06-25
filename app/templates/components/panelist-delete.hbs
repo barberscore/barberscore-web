@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isError
+  onClick=(action (mut deletePanelistModal) true)
+}}
+  Remove Panelist
+{{/bs-button}}
+{{#bs-modal
+  open=deletePanelistModal
+  onHidden=(pipe-action (action (mut deletePanelistModal) false) (action (mut deletePanelistModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Remove Panelist</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will remove the judge from the panel.
+    </p>
+    {{#if deletePanelistModalError}}
+    <p class='text-danger'>
+      Could not remove panelist.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform deletePanelist)}}
+      {{#if deletePanelist.isRunning}}
+        Removing {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Remove Panelist
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

@@ -11,7 +11,7 @@
           <th class='col-md-6'>Person</th>
           <th class='col-md-2'>Category</th>
           <th class='col-md-2'>Kind</th>
-          <th class='col-md-1'>Delete</th>
+          {{!-- <th class='col-md-1'>Status</th> --}}
         </tr>
       </thead>
       <tbody>
@@ -20,14 +20,10 @@
             {{#if panelist.person.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{panelist.person.fullName}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}</td>
               <td>{{panelist.category}}</td>
               <td>{{panelist.kind}}</td>
-              <td>
-                {{#if (eq model.status 'Built')}}
-                  {{#bs-button type='danger' size='xs' onClick=(perform deletePanelist panelist) disabled=isDisabled}}Remove From Panel{{/bs-button}}
-                {{/if}}
-              </td>
+              {{!-- <td>{{panelist.status}}</td> --}}
             {{/if}}
           </tr>
         {{else}}

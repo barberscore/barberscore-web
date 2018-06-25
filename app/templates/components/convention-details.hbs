@@ -8,12 +8,16 @@
       {{/if}}
     </div>
     <div class='col-md-10'>
-      <ul class='list-unstyled'>
-        <li><strong>{{model.venue.name}}</strong></li>
-        <li>{{model.venue.city}}, {{model.venue.state}}</li>
-        <li>Airport(s): {{model.venue.airport}}</li>
-        <li>Timezone: {{model.venue.timezone}}</li>
-      </ul>
+      {{#if model.venue}}
+        <ul class='list-unstyled'>
+          <li><strong>{{model.venue.name}}</strong></li>
+          <li>{{model.venue.city}}, {{model.venue.state}}</li>
+          <li>Airport(s): {{model.venue.airport}}</li>
+          <li>Timezone: {{model.venue.timezone}}</li>
+        </ul>
+      {{else}}
+        (No venue selected.)
+      {{/if}}
     </div>
   </div>
   <hr>
