@@ -4,6 +4,7 @@ import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('grid-status'),
+  period: DS.attr('grid-period'),
   num: DS.attr('number'),
   location: DS.attr('string'),
   photo: DS.attr('date'),
