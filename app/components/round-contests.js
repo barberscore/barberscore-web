@@ -15,7 +15,7 @@ export default Component.extend({
   // ),
   isDisabled: false,
   sortedContestsProperties: [
-    'tree_sort',
+    'awardTreeSort',
   ],
   filteredChampionships: filterBy(
     'model.session.contests',

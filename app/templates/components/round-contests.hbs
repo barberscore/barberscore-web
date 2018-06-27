@@ -1,29 +1,32 @@
 {{#if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
-  <ul class='list-unstyled'>
-    {{#each sortedContests as |contest|}}
-      <li>
-        <ul class='list-inline'>
-          <li>{{contest.award.name}}: {{contest.award.rounds}}</li>
-          <li>
-            {{#power-select
-              search=(perform searchGroup)
-              selected=contest.group
-              onchange=(perform updateGroup contest)
-              placeholder="Choose Group"
-              allowClear=true
-              renderInPlace=true
-              disabled=false
-              as |group|
-            }}
-              {{group.name}}
-            {{/power-select}}
-          </li>
-        </ul>
-      </li>
-    {{/each}}
-  </ul>
+  <div class='table-responsive'>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class='col-md-2'>Status</th>
+          <th class='col-md-2'>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedContests as |contest|}}
+          <tr>
+            <td>
+              {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.award.name}}{{/link-to}}
+            </td>
+            <td>
+              {{#if contest.group}}{{contest.group.name}}{{else}}(Not yet determined.){{/if}}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan=3>No contests.</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 {{else}}
-    <h3>
-      The Competitors are available after the prior round is finished.
-    </h3>
+  <h4>
+    Contests can only be selected after the Session has been Built.
+  </h4>
 {{/if}}

@@ -57,6 +57,7 @@ export default Component.extend({
     }
   }).drop(),
   categoryOptions: [
+    'CA',
     'Music',
     'Performance',
     'Singing',

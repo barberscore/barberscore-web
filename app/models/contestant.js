@@ -40,7 +40,8 @@ export default Model.extend({
     'Included',
   ),
 
-  entryGroup: alias('entry.group'),
+  group: alias('entry.group'),
+  groupName: alias('entry.group.name'),
   contestGroupKindSort: alias('contest.award.group.kindSort'),
   contestAwardQualifier: alias('contest.award.isQualifier'),
   contestAwardPrimary: alias('contest.award.isPrimary'),

@@ -87,7 +87,11 @@ Router.map(function() {
                     });
                   });
                   this.route('contests', {
-                    path: 'contest'
+                    path: 'contests'
+                  }, function () {
+                    this.route('contest', {
+                      path: ':contest_id'
+                    });
                   });
                   this.route('reports', {
                     path: 'reports'

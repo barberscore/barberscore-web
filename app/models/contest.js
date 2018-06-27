@@ -1,4 +1,4 @@
-import { alias, filterBy, equal, not } from '@ember/object/computed';
+import { alias, filterBy, equal, not, sort, mapBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -51,11 +51,24 @@ export default Model.extend({
   notQualifier: not(
     'isAwardQualifier',
   ),
+  mappedGroups: mapBy(
+    'includedContestants',
+    'group',
+  ),
+
+  contestantOptionsProperties: [
+    'name',
+  ],
+  groupOptions: sort(
+    'mappedGroups',
+    'contestantOptionsProperties'
+  ),
 
   groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
   awardPrimary: alias('award.isPrimary'),
   awardAgeSort: alias('award.ageSort'),
+  awardTreeSort: alias('award.treeSort'),
   awardName: alias('award.name'),
   awardLevel: alias('award.level'),
 });
