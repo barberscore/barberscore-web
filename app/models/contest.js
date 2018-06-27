@@ -5,6 +5,7 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('contest-status'),
+  num: DS.attr('number'),
   group: DS.belongsTo('group', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   award: DS.belongsTo('award', {async: true}),
