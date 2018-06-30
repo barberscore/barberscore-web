@@ -37,6 +37,12 @@ export default Model.extend({
       return this.get('categoryOptions').indexOf(this.get('category'));
     }
   ),
+  isScoring: computed(
+    'category',
+    function() {
+      return ['Singing', 'Music', 'Performance',].includes(this.get('category'));
+    }
+  ),
   kindSort: computed(
     'kind',
     'kindOptions',
