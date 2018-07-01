@@ -118,6 +118,13 @@ Router.map(function() {
             path: ':entry_id'
           });
         });
+        this.route('competitors', {
+          path: 'competitors'
+        }, function () {
+          this.route('competitor', {
+            path: ':competitor_id'
+          });
+        });
         this.route('officers', {path: 'officers'}, function () {});
         this.route('members', {path: 'members'}, function () {});
         this.route('repertories', {path: 'repertories'}, function () {});

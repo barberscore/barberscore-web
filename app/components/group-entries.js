@@ -31,7 +31,7 @@ export default Component.extend({
     'Active',
   ),
   sortedEntriesProperties: [
-    'conventionStart',
+    'conventionStart:desc',
     'statusSort',
   ],
   sortedEntries: sort(

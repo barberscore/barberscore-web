@@ -1,0 +1,30 @@
+  <td>
+    {{model.round.kind}}<br>
+    {{#each sortedSongs as |song|}}
+      {{song.chart.title}}<br>
+    {{/each}}
+  </td>
+  <td>
+    {{model.musPoints}}<br>
+    {{#each sortedSongs as |song|}}
+      {{song.musPoints}}<br>
+    {{/each}}
+  </td>
+  <td>
+    {{model.perPoints}}<br>
+    {{#each sortedSongs as |song|}}
+      {{song.perPoints}}<br>
+    {{/each}}
+  </td>
+  <td>
+    {{model.sngPoints}}<br>
+    {{#each sortedSongs as |song|}}
+      {{song.sngPoints}}<br>
+    {{/each}}
+  </td>
+  <td>
+    {{model.totPoints}}<br>
+    {{#each sortedSongs as |song|}}
+      {{song.totPoints}}<br>
+    {{/each}}
+  </td>

@@ -1,0 +1,108 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th class='col-md-4'>Convention</th>
+        <th class='col-md-4'>Venue</th>
+        <th class='col-md-2'>Dates</th>
+        <th class='col-md-2'>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedCompetitors as |competitor|}}
+        <tr>
+          {{#if competitor.isLoading}}
+            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{#link-to 'dashboard.groups.group.competitors.competitor' competitor}}{{competitor.session.convention.name}}{{/link-to}}
+            </td>
+            <td>
+              {{competitor.session.convention.venue.name}}
+            </td>
+            <td>
+              {{moment-format competitor.session.convention.startDate 'L'}} - {{moment-format competitor.session.convention.endDate 'L'}}
+            </td>
+            <td>
+              {{competitor.status}}
+            </td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>
+            (No current competitors.)
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div>
+  <p>
+    {{#bs-button
+      type='success'
+      disabled=isDisabled
+      onClick=(action (mut createCompetitorModal) true)
+    }}
+      Create New Competitor
+    {{/bs-button}}
+  </p>
+</div>
+<div>
+  {{#bs-modal
+    open=createCompetitorModal
+    onHidden=(pipe-action (action (mut createCompetitorModal) false) (action (mut createCompetitorModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>New Competitor</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Please pick a Session to enter.
+      </p>
+      {{#power-select
+        options=sessionOptions
+        selected=session
+        onchange=(action (mut session))
+        placeholder="Choose Session"
+        searchField='conventionName'
+        allowClear=true
+        renderInPlace=true
+        noMatchesMessage="We Could Not Find an Open Session with that Name"
+        as |session|
+      }}
+        <div class='row'>
+          <div class='col-xs-2'>
+            {{#if session.convention.image}}
+              <img src={{session.convention.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
+            {{/if}}
+          </div>
+          <div class='col-xs-10'>
+            {{session.convention.name}}<br>
+            {{session.kind}} {{session.gender}} Session<br>
+            {{session.convention.venue.city}}, {{session.convention.venue.state}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
+          </div>
+        </div>
+      {{/power-select}}
+      {{#if createCompetitorModalError}}
+      <p class='text-danger'>
+        Could not delete competitor.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform saveCompetitor session) disabled=isDisabled}}
+        {{#if saveCompetitor.isRunning}}
+          Creating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Create Competitor
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</div>

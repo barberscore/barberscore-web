@@ -1,0 +1,30 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
+      <h4>
+        {{model.session.convention.name}} {{model.session.kind}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{#if (eq model.status 'Finished')}}
+        <section>
+        </section>
+        <section>
+          <p>
+            Overall Rank: {{model.tot_rank}}
+          </p>
+        </section>
+        <hr>
+        <section>
+          {{competitor-results model=model}}
+        </section>
+      {{else}}
+        <section>
+          <p>
+            Competitor information available after round is completed.
+          </p>
+        </section>
+      {{/if}}
+    </div>
+  </div>
+</section>

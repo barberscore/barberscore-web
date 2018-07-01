@@ -6,7 +6,4 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model(params) {
     return this.get('store').findRecord('group', params.group_id);
   },
-  afterModel(model) {
-      this.transitionTo('dashboard.groups.group.details', model.get('id'));
-  }
 });

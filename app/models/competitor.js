@@ -43,6 +43,7 @@ export default Model.extend({
     'Started',
   ),
 
+  conventionStatus: alias('session.convention.status'),
   groupName: alias('group.name'),
   statusOptions: [
     'New',
