@@ -7,17 +7,121 @@
     </div>
     <div class='panel-body'>
       {{#if (eq model.status 'Finished')}}
-        <section>
-        </section>
-        <section>
-          <p>
-            Overall Rank: {{model.tot_rank}}
-          </p>
-        </section>
-        <hr>
-        <section>
-          {{competitor-results model=model}}
-        </section>
+        <h3>
+          Overall Rank: {{model.totRank}}
+        </h3>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='col-md-4'>Song</th>
+                <th class='col-md-1'>TOT</th>
+                <th class='col-md-1'>MUS</th>
+                <th class='col-md-1'>PER</th>
+                <th class='col-md-1'>SNG</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total</td>
+                <td>{{model.totPoints}} <em>({{single-fixed model.totScore}})</em></td>
+                <td>{{model.musPoints}} <em>({{single-fixed model.musScore}})</em></td>
+                <td>{{model.perPoints}} <em>({{single-fixed model.perScore}})</em></td>
+                <td>{{model.sngPoints}} <em>({{single-fixed model.sngScore}})</em></td>
+              </tr>
+              {{#each sortedAppearances as |appearance|}}
+                <tr>
+                  <td>
+                    {{appearance.round.kind}} (Rank: {{appearance.totRank}})<br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.chart.title}}<br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.totPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.totPoints}} <em>({{single-fixed song.totScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.musPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.musPoints}} <em>({{single-fixed song.musScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.perPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.perPoints}} <em>({{single-fixed song.perScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.sngPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.sngPoints}} <em>({{single-fixed song.sngScore}})</em><br>
+                    {{/each}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class='table-responsive'>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='col-md-4'>Song</th>
+                <th class='col-md-1'>TOT</th>
+                <th class='col-md-1'>MUS</th>
+                <th class='col-md-1'>PER</th>
+                <th class='col-md-1'>SNG</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Total</td>
+                <td>{{model.totPoints}} <em>({{single-fixed model.totScore}})</em></td>
+                <td>{{model.musPoints}} <em>({{single-fixed model.musScore}})</em></td>
+                <td>{{model.perPoints}} <em>({{single-fixed model.perScore}})</em></td>
+                <td>{{model.sngPoints}} <em>({{single-fixed model.sngScore}})</em></td>
+              </tr>
+              {{#each sortedAppearances as |appearance|}}
+                <tr>
+                  <td>
+                    {{appearance.round.kind}} (Rank: {{appearance.totRank}})<br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.chart.title}}<br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.totPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.totPoints}} <em>({{single-fixed song.totScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.musPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.musPoints}} <em>({{single-fixed song.musScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.perPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.perPoints}} <em>({{single-fixed song.perScore}})</em><br>
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{appearance.sngPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{#each (sort-by "num" appearance.songs) as |song|}}
+                      {{song.sngPoints}} <em>({{single-fixed song.sngScore}})</em><br>
+                    {{/each}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       {{else}}
         <section>
           <p>

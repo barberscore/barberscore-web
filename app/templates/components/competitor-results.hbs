@@ -1,23 +1,12 @@
-<section>
   <div class='table-responsive'>
     <table class='table'>
       <thead>
         <tr>
-          <th class='col-md-8'>
-            Song
-          </th>
-          <th class='col-md-1'>
-            MUS
-          </th>
-          <th class='col-md-1'>
-            PER
-          </th>
-          <th class='col-md-1'>
-            SNG
-          </th>
-          <th class='col-md-1'>
-            TOT
-          </th>
+          <th class='col-md-10'>Song</th>
+          <th>MUS</th>
+          <th>PER</th>
+          <th>SNG</th>
+          <th>TOT</th>
         </tr>
       </thead>
       <tbody>
@@ -32,31 +21,31 @@
           <tr>
             <td>
               {{appearance.round.kind}}<br>
-              {{#each appearance.songs as |song|}}
+              {{#each (sort-by "num" appearance.songs) as |song|}}
                 {{song.chart.title}}<br>
               {{/each}}
             </td>
             <td>
               {{appearance.musPoints}}<br>
-              {{#each appearance.songs as |song|}}
-                {{song.musPoints}}<br>
+              {{#each (sort-by "num" appearance.songs) as |song|}}
+                {{song.musPoints}} <em>({{single-fixed song.musScore}})</em><br>
               {{/each}}
             </td>
             <td>
               {{appearance.perPoints}}<br>
-              {{#each appearance.songs as |song|}}
+              {{#each (sort-by "num" appearance.songs) as |song|}}
                 {{song.perPoints}}<br>
               {{/each}}
             </td>
             <td>
               {{appearance.sngPoints}}<br>
-              {{#each appearance.songs as |song|}}
+              {{#each (sort-by "num" appearance.songs) as |song|}}
                 {{song.sngPoints}}<br>
               {{/each}}
             </td>
             <td>
               {{appearance.totPoints}}<br>
-              {{#each appearance.songs as |song|}}
+              {{#each (sort-by "num" appearance.songs) as |song|}}
                 {{song.totPoints}}<br>
               {{/each}}
             </td>
@@ -65,4 +54,3 @@
       </tbody>
     </table>
   </div>
-</section>

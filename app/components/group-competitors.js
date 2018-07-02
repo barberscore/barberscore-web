@@ -8,9 +8,10 @@ export default Component.extend({
     'Active',
   ),
   sortedCompetitorsProperties: [
+
   ],
   sortedCompetitors: sort(
-    'model.competitors',
+    'filteredCompetitors',
     'sortedCompetitorsProperties',
   ),
 });
