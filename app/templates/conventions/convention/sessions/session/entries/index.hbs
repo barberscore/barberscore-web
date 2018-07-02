@@ -1,0 +1,35 @@
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>
+        All entries into this session.
+      </caption>
+      <thead>
+        <tr>
+          <th class='col-md-4'>Name</th>
+          <th class='col-md-1'>Appearance</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedEntries as |entry|}}
+          <tr>
+            {{#if entry.isLoading}}
+              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              {{#if entry.group.isLoading}}
+                <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>{{#link-to 'conventions.convention.sessions.session.entries.entry' entry}}{{entry.group.name}}{{/link-to}}</td>
+              {{/if}}
+            {{/if}}
+            <td>{{entry.grid.onstage}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan=5>(There are no entries for this session.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

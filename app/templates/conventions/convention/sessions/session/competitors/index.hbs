@@ -1,0 +1,44 @@
+<section>
+  <div class='table-responsive'>
+    <table class='table'>
+      <caption>
+        All competitors, ranked by total points.  Ranking is available after the Round is finished.
+      </caption>
+      <thead>
+        <tr>
+          <th class='col-md-1'>Rank</th>
+          <th class='col-md-4'>Name</th>
+          <th class='col-md-1'>Points</th>
+          <th class='col-md-1'>Score</th>
+          <th class='col-md-1'>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedCompetitors as |competitor|}}
+          <tr>
+            {{#if competitor.isLoading}}
+              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{competitor.totRank}}</td>
+              {{#if competitor.group.isLoading}}
+                <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
+              {{/if}}
+              <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
+              <td>{{single-fixed competitor.totScore}}</td>
+              <td>
+                {{competitor.status}}
+                {{#if (eq competitor.status 'Finished')}}&nbsp;<a href='{{competitor.csa}}'>{{fa-icon 'file-pdf-o'}}</a>{{/if}}
+              </td>
+            {{/if}}
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan=5>(The Competitors are available after the prior round is finished.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>

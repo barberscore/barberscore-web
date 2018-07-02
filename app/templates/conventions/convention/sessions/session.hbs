@@ -11,28 +11,25 @@
     </div>
     <div class='panel-body'>
       {{#bs-nav type='tabs' as |nav|}}
+        {{!-- {{#nav.item}}
+          {{#nav.link-to "conventions.convention.sessions.session.details"}}Details{{/nav.link-to}}
+        {{/nav.item}} --}}
+        {{!-- {{#nav.item}}
+          {{#nav.link-to "conventions.convention.sessions.session.contests"}}Contests{{/nav.link-to}}
+        {{/nav.item}} --}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.details"}}Details{{/nav.link-to}}
+          {{#nav.link-to "conventions.convention.sessions.session.entries"}}Entries{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.contests"}}Contests{{/nav.link-to}}
+          {{#nav.link-to "conventions.convention.sessions.session.competitors"}}Competitors{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.entries"}}Entries{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.draw"}}Draw{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.reports"}}Reports{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds"}}Rounds{{/nav.link-to}}
+          {{#nav.link-to "conventions.convention.sessions.session.rounds"}}Rounds{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    {{!-- <div class='panel-footer fixed-panel-footer'>
       <div class='pull-right'>
         <h4>
           Session Status: <strong>{{model.status}}</strong>
@@ -53,6 +50,6 @@
           {{/if}}
         </ul>
       {{/if}}
-    </div>
+    </div> --}}
   </div>
 </section>

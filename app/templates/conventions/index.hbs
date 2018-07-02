@@ -1,0 +1,49 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Active Conventions
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>These are the currently active Conventions</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Venue</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedConventions as |convention|}}
+            <tr>
+              <td>
+                {{#if convention.image}}
+                  <img src={{convention.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'conventions.convention.details' convention}}{{convention.name}}{{/link-to}}
+              </td>
+              <td>
+                {{if convention.venue.name convention.venue.name '(Unknown)'}}<br>
+                {{if convention.venue.city convention.venue.city '(Unknown)'}},  {{if convention.venue.state convention.venue.state '(Unknown)'}}
+              </td>
+              <td>
+                {{moment-format convention.startDate 'L'}} - {{moment-format convention.endDate 'L'}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan=4>(There are no active Conventions.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
