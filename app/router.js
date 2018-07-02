@@ -8,54 +8,6 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('conventions', {
-    path: 'convention'
-  }, function () {
-    this.route('convention', {
-      path: ':convention_id'
-    }, function() {
-      this.route('details', {
-        path: 'details'
-      });
-      this.route('sessions', {
-        path: 'sessions'
-      }, function() {
-        this.route('session', {
-          path: ':session_id'
-          }, function() {
-            this.route('entries', {
-              path: 'entries'
-            }, function () {
-              this.route('entry', {
-                path: ':entry_id'
-              });
-            });
-            this.route('competitors', {
-              path: 'competitors'
-            }, function () {
-              this.route('competitor', {
-                path: ':competitor_id'
-              });
-            });
-            this.route('rounds', {
-              path: 'rounds'
-            }, function () {
-              this.route('round', {
-                path: ':round_id'
-              }, function () {
-                this.route('appearances', {
-                  path: 'appearances'
-                }, function () {
-                  this.route('appearance', {
-                    path: ':appearance_id'
-                  });
-                });
-              });
-            });
-        });
-      });
-    });
-  });
   this.route('dashboard', {
     path: 'dashboard'
   }, function () {
