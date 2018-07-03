@@ -51,6 +51,8 @@ export default Model.extend({
     }
   ),
   personSort: alias('person.sortName'),
+  personLastName: alias('person.lastName'),
+  personFirstName: alias('person.firstName'),
   statusOptions: [
     'New',
     'Active',
