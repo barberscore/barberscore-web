@@ -11,6 +11,7 @@ export default Component.extend({
         'by': this.get('currentUser.user.id'),
       });
       this.get('model').reload();
+      this.get('model.round.session.competitors').invoke('reload');
       this.get('flashMessages').success("Verified!");
     } catch(e) {
       this.get('flashMessages').error(e);
