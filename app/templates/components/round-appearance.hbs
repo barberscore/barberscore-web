@@ -44,14 +44,25 @@
       <section>
         {{appearance-details model=model}}
       </section>
-      <hr>
-      <section>
-        {{appearance-songs model=model}}
-      </section>
-      <hr>
-      <section>
-        {{appearance-panelists model=model}}
-      </section>
+      {{#if (or
+        (eq model.status 'Started')
+        (eq model.status 'Finished')
+        (eq model.status 'Verified')
+      )}}
+        <hr>
+        <section>
+          {{appearance-songs model=model}}
+        </section>
+      {{/if}}
+      {{#if (or
+        (eq model.status 'Finished')
+        (eq model.status 'Verified')
+      )}}
+        <hr>
+        <section>
+          {{appearance-panelists model=model}}
+        </section>
+      {{/if}}
       {{!-- <hr>
       <section>
         {{log-index model=model}}
