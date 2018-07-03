@@ -3,6 +3,8 @@
     class='form-control text-right'
     type='tel'
     value=score.points
+    min=0
+    max=100
     disabled=score.isDisabled
     change=(perform autosave score)
   }}
