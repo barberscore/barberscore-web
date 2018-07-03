@@ -7,10 +7,6 @@ export default Component.extend({
   flashMessages: service(),
   verifyAppearance: task(function *() {
     try {
-      let songs = yield this.get('model.songs');
-      yield songs.forEach(function(item) {
-        item.scores.invoke('save');
-      });
       yield this.model.verify({
         'by': this.get('currentUser.user.id'),
       });

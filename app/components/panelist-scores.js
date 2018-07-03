@@ -2,8 +2,10 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
+  flashMessages: service(),
   store: service(),
   sortedScoresProperties: [
     'songNum',
@@ -22,4 +24,14 @@ export default Component.extend({
     'scoresCall',
     'sortedScoresProperties'
   ),
+  autosave: task(function* (property){
+    yield timeout(200);
+    try {
+      yield property.save();
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
+  }).restartable(),
 });

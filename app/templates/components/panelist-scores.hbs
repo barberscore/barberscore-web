@@ -1,7 +1,9 @@
 {{#each sortedScores as |score|}}
   {{input
     class='form-control text-right'
+    type='tel'
     value=score.points
     disabled=score.isDisabled
+    change=(perform autosave score)
   }}
 {{/each}}
