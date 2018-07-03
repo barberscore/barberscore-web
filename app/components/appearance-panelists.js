@@ -7,6 +7,8 @@ export default Component.extend({
   sortedPanelistsProperties: [
     'category',
     'kind',
+    'person__last_name',
+    'person__first_name',
   ],
   filteredPanelists: filterBy(
     'model.round.panelists',
