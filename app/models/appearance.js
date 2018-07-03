@@ -1,5 +1,4 @@
 import { alias, gt, lt, mapBy, sort, not, notEmpty, equal, and, sum } from '@ember/object/computed';
-import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
