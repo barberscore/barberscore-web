@@ -1,4 +1,4 @@
-import { not } from '@ember/object/computed';
+import { not, sum, mapBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -25,6 +25,14 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  scoresPoints: mapBy(
+    'scores',
+    'points',
+  ),
+  sumScores: sum(
+    'scoresPoints',
   ),
 
   statusOptions: [
