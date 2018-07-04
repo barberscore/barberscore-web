@@ -10,6 +10,7 @@ export default Model.extend({
   num: DS.attr('number'),
   spots: DS.attr('number'),
   date: DS.attr('isodate'),
+  footnotes: DS.attr('string'),
   announcements: DS.attr('string'),
   oss: DS.attr('string'),
   sa: DS.attr('string'),
