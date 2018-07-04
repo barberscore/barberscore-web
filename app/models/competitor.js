@@ -44,6 +44,7 @@ export default Model.extend({
   ),
 
   conventionStatus: alias('session.convention.status'),
+  roundDate: alias('session.convention.startDate'),
   groupName: alias('group.name'),
   statusOptions: [
     'New',
