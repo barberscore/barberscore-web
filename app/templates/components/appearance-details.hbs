@@ -5,7 +5,7 @@
   <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
   <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
   {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
-  <li>
+  {{!-- <li>
     {{input
       class='form-control text-right'
       type='tel'
@@ -15,7 +15,7 @@
       placeholder='Participants on Stage'
       change=(perform autosave value='target.value')
     }}
-  </li>
+  </li> --}}
 </ul>
 <p>
   Competitor Scoring Analysis (PDF):&nbsp;<a href='{{model.competitor.csa}}'>{{fa-icon 'file-pdf-o'}}</a>
