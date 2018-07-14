@@ -7,7 +7,6 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
-  gender: DS.attr('session-gender'),
   isInvitational: DS.attr('boolean'),
   footnotes: DS.attr('string'),
   description: DS.attr('string'),
@@ -61,19 +60,6 @@ export default Model.extend({
     'Chorus',
   ],
 
-  genderOptions: [
-    'Male',
-    'Female',
-    'Mixed',
-  ],
-
-  genderSort: computed(
-    'gender',
-    'genderOptions',
-    function() {
-      return this.get('genderOptions').indexOf(this.get('gender'));
-    }
-  ),
   numOptions: [
     1,
     2,

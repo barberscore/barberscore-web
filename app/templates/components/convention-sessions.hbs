@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th>Kind</th>
-        <th>Gender</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -12,9 +11,6 @@
         <tr>
           <td>
             {{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}
-          </td>
-          <td>
-            {{#if session.gender}}{{session.gender}}{{else}}(Open){{/if}}
           </td>
           <td>
             {{session.status}}
