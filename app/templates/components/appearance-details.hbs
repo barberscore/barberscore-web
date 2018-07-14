@@ -17,6 +17,13 @@
     }}
   </li> --}}
 </ul>
+
+
+
 <p>
-  Competitor Scoring Analysis (PDF):&nbsp;<a href='{{model.competitor.csa}}'>{{fa-icon 'file-pdf-o'}}</a>
+  {{#if (eq model.status 'Verified')}}
+    Competitor Scoring Analysis (PDF):&nbsp;<a href='{{model.competitor.csa}}'>{{fa-icon 'file-pdf-o'}}</a>
+  {{else}}
+    (Competitor Scoring Analysis will be available when the Appearance is Verified.)
+  {{/if}}
 </p>
