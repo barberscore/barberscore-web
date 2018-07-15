@@ -23,6 +23,7 @@ export default Component.extend({
     }
   ),
   sortedCompetitorsProperties: [
+    'statusSort',
     'totPoints:desc',
     'groupName',
   ],
