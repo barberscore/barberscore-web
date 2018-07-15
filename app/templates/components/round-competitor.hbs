@@ -35,7 +35,15 @@
     </div>
     <div class='panel-body'>
       <section>
-        Body
+        <p>
+          Eval Only: {{model.entry.isEvaluation}}
+        </p>
+        <h3>Contests Entered</h3>
+        <ul class='list-unstyled'>
+          {{#each sortedContestants as |contestant|}}
+            <li>{{contestant.contest.award.name}}, {{contestant.contest.award.rounds}}</li>
+          {{/each}}
+        </ul>
       </section>
       {{!-- <hr>
       <section>

@@ -3,7 +3,7 @@ import { sort, filterBy } from '@ember/object/computed';
 
 export default Component.extend({
   contestantSortProperties: [
-    'contestAwardName:asc',
+    'groupName:asc',
   ],
   filteredContestants: filterBy(
     'model.contestants',

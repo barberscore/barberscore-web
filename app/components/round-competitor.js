@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { sort } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
@@ -21,5 +21,17 @@ export default Component.extend({
   sortedCompetitors: sort(
     'model.session.competitors',
     'sortedCompetitorsProperties',
+  ),
+  sortedContestantsProperties: [
+    'contestAwardName',
+  ],
+  filteredContestants: filterBy(
+    'model.entry.contestants',
+    'status',
+    'Included',
+  ),
+  sortedContestants: sort(
+    'filteredContestants',
+    'sortedContestantsProperties',
   ),
 });
