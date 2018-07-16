@@ -9,6 +9,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'officers__person__user': this.get('currentUser.user.id'),
       'status': 10,
       'officers__status': 10,
+      'kind__gt': 21,
     });
   },
 });
