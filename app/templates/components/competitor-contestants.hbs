@@ -1,0 +1,29 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>
+      Competitor is contesting these awards.
+    </caption>
+    <thead>
+      <tr>
+        <th class='col-md-5'>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedContestants as |contestant|}}
+          <tr>
+            <td>
+              {{#if contestant.contest.award.isLoading}}
+                Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+              {{else}}
+                {{contestant.contest.award.name}}
+              {{/if}}
+            </td>
+          </tr>
+      {{else}}
+        <tr>
+          <td colspan=2>Not contesting any award.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

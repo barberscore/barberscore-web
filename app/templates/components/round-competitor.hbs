@@ -30,20 +30,31 @@
         {{/if}}
       </ul>
       <h4>
-        {{model.group.name}}
-     </h4>
+        {{model.group.name}}&nbsp;({{model.entry.representing}})
+      </h4>
     </div>
     <div class='panel-body'>
       <section>
-        <p>
-          Eval Only: {{model.entry.isEvaluation}}
-        </p>
-        <h3>Contests Entered</h3>
-        <ul class='list-unstyled'>
-          {{#each sortedContestants as |contestant|}}
-            <li>{{contestant.contest.award.name}}, {{contestant.contest.award.rounds}}</li>
-          {{/each}}
-        </ul>
+        <div class='row'>
+          <div class='col-md-6'>
+            {{#if model.group.image}}
+              <img src={{model.group.image}} class='img-responsive img-rounded'>
+            {{else}}
+              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+            {{/if}}
+          </div>
+          <div class='col-md-6'>
+            <p>
+              <strong>Preferences</strong>
+            </p>
+            <p>
+              {{entry-preferences model=model.entry}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        {{competitor-contestants model=model}}
       </section>
       {{!-- <hr>
       <section>
