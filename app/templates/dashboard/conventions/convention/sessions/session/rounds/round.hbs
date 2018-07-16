@@ -41,6 +41,7 @@
           {{else if (eq model.status 'Started')}}
             <li>{{round-verify model=model}}</li>
           {{else if (eq model.status 'Verified')}}
+            <li>{{round-verify model=model}}</li>
             <li>{{round-finish model=model}}</li>
           {{/if}}
         </ul>
