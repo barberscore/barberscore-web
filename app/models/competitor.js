@@ -7,6 +7,7 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('competitor-status'),
   isRanked: DS.attr('boolean'),
+  isMulti: DS.attr('boolean'),
   draw: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
@@ -60,6 +61,5 @@ export default Model.extend({
       return this.get('statusOptions').indexOf(this.get('status'));
     }
   ),
-
 });
 
