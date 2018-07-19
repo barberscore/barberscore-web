@@ -5,17 +5,25 @@
   <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
   <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
   {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
-  {{!-- <li>
-    {{input
-      class='form-control text-right'
-      type='tel'
-      value=model.mos
-      min=0
-      max=100
-      placeholder='Participants on Stage'
-      change=(perform autosave value='target.value')
-    }}
-  </li> --}}
+  {{#if (or
+    (eq model.status 'Started')
+    (eq model.status 'Finished')
+    (eq model.status 'Verified')
+  )}}
+    {{#if (eq model.round.session.kind 'Chorus')}}
+      <li>
+        {{input
+          class='form-control text-right'
+          type='tel'
+          value=model.mos
+          min=0
+          max=100
+          placeholder='Participants on Stage'
+          change=(perform autosave value='target.value')
+        }}
+      </li>
+    {{/if}}
+  {{/if}}
 </ul>
 
 
