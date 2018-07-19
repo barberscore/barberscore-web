@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { sort } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
@@ -7,9 +7,18 @@ export default Component.extend({
   sortedContestsProperties: [
     'awardTreeSort',
   ],
-  sortedContests: sort(
+  filteredChampionships: filterBy(
     'model.session.contests',
-    'sortedContestsProperties',
+    'notQualifier',
+  ),
+  filteredContests: filterBy(
+    'filteredChampionships',
+    'status',
+    'Included',
+  ),
+  sortedContests: sort(
+    'filteredContests',
+    'sortedContestsProperties'
   ),
   actions: {
     saveModel(model){
