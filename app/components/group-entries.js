@@ -1,4 +1,4 @@
-import { not, sort, filterBy } from '@ember/object/computed';
+import { sort, filterBy, } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
@@ -9,9 +9,6 @@ export default Component.extend({
   router: service(),
   store: service(),
   currentUser: service(),
-  isDisabled: not(
-    'model.permissions.write',
-  ),
   filteredOfficers: computed(
     'model.officers.@each.person.id', function() {
     return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));

@@ -64,11 +64,9 @@ export default Component.extend({
       yield repertory.activate({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
       this.get('flashMessages').success("Created!");
-      // this.get('router').transitionTo('dashboard.groups.group.repertories.repertory', this.get('model'), repertory.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createRepertoryModalError', true);

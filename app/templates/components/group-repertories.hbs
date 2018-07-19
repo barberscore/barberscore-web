@@ -16,7 +16,7 @@
             <td>{{repertory.chart.title}}</td>
             <td>{{repertory.chart.arrangers}}</td>
             <td>
-              {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=isDisabled}}Delete{{/bs-button}}
+              {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=repertory.isDisabled}}Delete{{/bs-button}}
             </td>
           {{/if}}
         </tr>
@@ -31,7 +31,7 @@
   </table>
   <div>
     <p>
-    {{#bs-button type='success' disabled=isDisabled onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
+    {{#bs-button type='success' onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
     </p>
   </div>
   <p>
@@ -82,7 +82,7 @@
     {{/modal.body}}
     {{#modal.footer}}
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='success' onClick=(perform saveRepertory chart) disabled=isDisabled}}
+      {{#bs-button type='success' onClick=(perform saveRepertory chart) }}
         {{#if saveRepertory.isRunning}}
           Adding... {{fa-icon "spinner" spin=true}}
         {{else}}
