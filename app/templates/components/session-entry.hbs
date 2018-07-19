@@ -120,6 +120,7 @@
       <ul class='list-inline'>
         {{#if model.permissions.write}}
           {{#if (eq model.status 'New')}}
+            <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
           {{else if (eq model.status 'Built')}}
             {{#if model.session.isInvitational}}
               <li>{{entry-invite model=model}}</li>
