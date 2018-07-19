@@ -1,4 +1,4 @@
-import { alias, filterBy, equal, not, sort, mapBy } from '@ember/object/computed';
+import { alias, filterBy, equal, not, sort, mapBy, or } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -17,6 +17,28 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  sessionStatus: alias(
+    'session.status',
+  ),
+
+  isSessionNew: equal(
+    'sessionStatus',
+    'New',
+  ),
+  isSessionBuilt: equal(
+    'sessionStatus',
+    'Built',
+  ),
+
+  isSessionNewBuilt: or(
+    'isSessionNew',
+    'isSessionBuilt',
+  ),
+
+  isCheckboxDisabled: not(
+    'isSessionNewBuilt',
   ),
 
   statusOptions: [
