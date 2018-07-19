@@ -16,11 +16,13 @@ export default Component.extend({
     }
   }).restartable(),
   sortedCompetitorsProperties: [
+    'statusSort',
     'totPoints:desc',
+    'groupName',
   ],
   sortedCompetitors: sort(
     'model.session.competitors',
-    'sortedCompetitorsProperties',
+    'sortedCompetitorsProperties'
   ),
   sortedContestantsProperties: [
     'contestAwardName',
