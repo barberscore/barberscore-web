@@ -47,17 +47,19 @@
       </tbody>
     </table>
   </div>
-  <div>
-    <p>
-      {{#bs-button
-        type='success'
-        disabled=isDisabled
-        onClick=(action (mut createEntryModal) true)
-      }}
-        Create New Entry
-      {{/bs-button}}
-    </p>
-  </div>
+  {{#unless (or (eq model.status 'Started') (eq model.status 'Finished')) }}
+    <div>
+      <p>
+        {{#bs-button
+          type='success'
+          disabled=isDisabled
+          onClick=(action (mut createEntryModal) true)
+        }}
+          Create New Entry
+        {{/bs-button}}
+      </p>
+    </div>
+  {{/unless}}
   {{#bs-modal
     open=createEntryModal
     onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
