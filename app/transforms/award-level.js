@@ -4,9 +4,10 @@ export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
       10: 'Championship',
-      20: 'Award',
       30: 'Qualifier',
-      40: 'Sentinel',
+      40: 'Award',
+      50: 'Deferred',
+      60: 'Manual',
     };
     return map[serialized];
   },
@@ -14,9 +15,10 @@ export default DS.Transform.extend({
   serialize: function(deserialized) {
     var map = {
       'Championship': 10,
-      'Award': 20,
       'Qualifier': 30,
-      'Sentinel': 40,
+      'Award': 40,
+      'Deferred': 50,
+      'Manual': 60,
     };
     return map[deserialized];
   }
