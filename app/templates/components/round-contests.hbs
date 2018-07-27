@@ -7,6 +7,7 @@
       <thead>
         <tr>
           <th class='col-md-3'>Status</th>
+          <th class='col-md-1'>Is Manual</th>
           <th class='col-md-1'>Num Rounds</th>
           <th class='col-md-2'>Name</th>
         </tr>
@@ -16,6 +17,11 @@
           <tr>
             <td>
               {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.award.name}}{{/link-to}}
+            </td>
+            <td>
+              {{#if contest.award.isManual}}
+                {{fa-icon 'check-circle' class='text-success'}}
+              {{/if}}
             </td>
             <td>
               {{contest.award.rounds}}
