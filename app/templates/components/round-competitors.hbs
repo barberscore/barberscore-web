@@ -30,10 +30,14 @@
                 <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
               {{/if}}
               <td>
-                {{competitor.isRanked}}
+                {{#if competitor.isRanked}}
+                  {{fa-icon 'check-circle' class='text-success'}}
+                {{/if}}
               </td>
               <td>
-                {{competitor.isMulti}}
+                {{#if competitor.isMulti}}
+                  {{fa-icon 'check-circle' class='text-success'}}
+                {{/if}}
               </td>
               <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
               <td>{{single-fixed competitor.totScore}}</td>
