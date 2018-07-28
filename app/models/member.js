@@ -36,7 +36,6 @@ export default Model.extend({
     'Lead',
     'Baritone',
     'Bass',
-    'Director',
   ],
   partSort: computed(
     'part',

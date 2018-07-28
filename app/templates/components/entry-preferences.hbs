@@ -27,7 +27,9 @@
   {{/form.element}}
   {{#if (eq model.group.kind 'Chorus')}}
     {{form.element controlType='text' disabled=true placeholder='Chapter' label='Chapter' property='parentName'}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='directors' onChange=(perform autosave 'directors')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
     {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated Participants-On-Stage' label='Participants-On-Stage' property='pos' onChange=(perform autosave 'pos')}}
+  {{else}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBB, comma separated' label='Members(s)' property='participants' onChange=(perform autosave 'participants')}}
   {{/if}}
 {{/bs-form}}

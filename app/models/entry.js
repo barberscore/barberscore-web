@@ -11,7 +11,7 @@ export default Model.extend({
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
-  directors: DS.attr('string', {defaultValue: ''}),
+  participants: DS.attr('string', {defaultValue: ''}),
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
