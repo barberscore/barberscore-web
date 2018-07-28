@@ -5,7 +5,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   flashMessages: service(),
   autosave: task(function* (value){
-    this.get('model').set('mos', value);
+    this.get('model').set('pos', value);
     yield timeout(1000);
     try {
       yield this.get('model').save();

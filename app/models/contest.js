@@ -6,6 +6,7 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('contest-status'),
   num: DS.attr('number'),
+  isPrimary: DS.attr('boolean'),
   group: DS.belongsTo('group', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   award: DS.belongsTo('award', {async: true}),
@@ -89,7 +90,6 @@ export default Model.extend({
 
   groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
-  awardPrimary: alias('award.isPrimary'),
   awardAgeSort: alias('award.ageSort'),
   awardTreeSort: alias('award.treeSort'),
   awardName: alias('award.name'),

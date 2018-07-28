@@ -12,7 +12,7 @@ export default Model.extend({
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
   directors: DS.attr('string', {defaultValue: ''}),
-  mos: DS.attr('number'),
+  pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
   musPoints: DS.attr('number'),

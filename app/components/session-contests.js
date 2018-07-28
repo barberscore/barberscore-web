@@ -12,7 +12,7 @@ export default Component.extend({
   sortedContestsProperties: [
     'groupKindSort',
     'awardQualifier',
-    'awardPrimary:desc',
+    'isPrimary:desc',
     'awardAgeSort',
     'awardName',
   ],

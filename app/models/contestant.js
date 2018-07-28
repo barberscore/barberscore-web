@@ -44,7 +44,7 @@ export default Model.extend({
   groupName: alias('entry.group.name'),
   contestGroupKindSort: alias('contest.award.group.kindSort'),
   contestAwardQualifier: alias('contest.award.isQualifier'),
-  contestAwardPrimary: alias('contest.award.isPrimary'),
+  contestPrimary: alias('contest.isPrimary'),
   contestAwardAgeSort: alias('contest.award.ageSort'),
   contestAwardName: alias('contest.award.name'),
   awardSort: alias('contest.award.treeSort'),
