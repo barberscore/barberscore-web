@@ -5,10 +5,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   store: service(),
   sortedPanelistsProperties: [
-    'category',
-    'kind',
-    'personLastName',
-    'personFirstName',
+    'num',
   ],
   filteredPanelists: filterBy(
     'model.round.panelists',
