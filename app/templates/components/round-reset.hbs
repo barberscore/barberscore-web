@@ -1,0 +1,43 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isError
+  onClick=(action (mut resetRoundModal) true)
+}}
+  Reset Round
+{{/bs-button}}
+{{#bs-modal
+  open=resetRoundModal
+  onHidden=(pipe-action (action (mut resetRoundModal) false) (action (mut resetRoundModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Reset Round</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This Resets the Round, returning it to a "New" state. This deletes all information you have entered including Panelists, Appearances, Song Title, and Scores.
+    </p>
+    <p>
+      <span class='text-danger'><strong>BE ABSOLUTELY CERTAIN YOU WISH TO RESET THE ROUND!</strong></span>
+    </p>
+    <p>
+        This action is irreversible.  Once you click "Reset", you will need to Build the Round and re-confirm and re-enter all data.
+    </p>
+
+    {{#if resetRoundModalError}}
+    <p class='text-danger'>
+      Could not Reset Round.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' disabled=model.isError onClick=(perform resetRound)}}
+      {{#if resetRound.isRunning}}
+        Reseting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Reset Round
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

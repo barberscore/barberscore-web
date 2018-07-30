@@ -20,6 +20,8 @@ export default Model.extend({
   grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
 
+  reset: memberAction({path: 'reset', type: 'post'}),
+  build: memberAction({path: 'build', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   review: memberAction({path: 'review', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),

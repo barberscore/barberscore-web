@@ -1,0 +1,39 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isError
+  onClick=(action (mut buildRoundModal) true)
+}}
+  Build Round
+{{/bs-button}}
+{{#bs-modal
+  open=buildRoundModal
+  onHidden=(pipe-action (action (mut buildRoundModal) false) (action (mut buildRoundModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Build Round</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This officially builds the round.  This is typically only needed after a Reset.
+    </p>
+    <p>
+        Building the round sets the default apperances and panelists, allowing you to confirm before Starting the Round.
+    </p>
+    {{#if buildRoundModalError}}
+    <p class='text-danger'>
+      Could not Build Round.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform buildRound)}}
+      {{#if buildRound.isRunning}}
+        Building {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Build Round
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
