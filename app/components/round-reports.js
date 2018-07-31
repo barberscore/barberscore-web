@@ -25,4 +25,11 @@ export default Component.extend({
       return this.get('apiHost')+this.get('model.announcements');
     }
   ),
+  sung: computed(
+    'apiHost',
+    'model',
+    function() {
+      return this.get('apiHost')+this.get('model.sung');
+    }
+  ),
 });

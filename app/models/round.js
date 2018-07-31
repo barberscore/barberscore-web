@@ -12,6 +12,7 @@ export default Model.extend({
   date: DS.attr('isodate'),
   footnotes: DS.attr('string'),
   announcements: DS.attr('string'),
+  sung: DS.attr('string'),
   oss: DS.attr('string'),
   sa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
