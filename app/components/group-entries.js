@@ -1,4 +1,4 @@
-import { sort, filterBy, } from '@ember/object/computed';
+import { sort, filterBy, mapBy, alias, not} from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
@@ -9,18 +9,22 @@ export default Component.extend({
   router: service(),
   store: service(),
   currentUser: service(),
-  filteredOfficers: computed(
-    'model.officers.@each.person.id', function() {
-    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
-  }),
-  activeOfficers: filterBy(
-    'filteredOfficers',
-    'status',
-    'Active',
+  officerPersons: mapBy(
+    'model.officers',
+    'person.id',
   ),
-  allowedOfficers: filterBy(
-    'activeOfficers',
-    'isGroupManager',
+  currentPerson: alias(
+    'currentUser.user.person',
+  ),
+  isOfficer: computed(
+    'officerPersons',
+    'currentPerson',
+    function() {
+      return this.get('officerPersons').includes(this.get('currentPerson.id'));
+    }
+  ),
+  isCreate: not(
+    'isOfficer',
   ),
   filteredEntries: filterBy(
     'model.entries',

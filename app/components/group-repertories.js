@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { not, sort, filterBy } from '@ember/object/computed';
+import { not, sort, alias, mapBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 import { computed } from '@ember/object';
@@ -13,23 +13,23 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  filteredOfficers: computed(
-    'model.officers.@each.person.id', function() {
-    return this.get('model.officers').filterBy('person.id', this.get('currentUser.user.person.id'));
-  }),
-  activeOfficers: filterBy(
-    'filteredOfficers',
-    'status',
-    'Active',
+  officerPersons: mapBy(
+    'model.officers',
+    'person.id',
   ),
-  chartOfficers: filterBy(
-    'activeOfficers',
-    'isChartManager',
+  currentPerson: alias(
+    'currentUser.user.person',
   ),
-  // isCreateDisabled: not(
-  //   'chartOfficers.length',
-  // ),
-  isCreateDisabled: false,
+  isOfficer: computed(
+    'officerPersons',
+    'currentPerson',
+    function() {
+      return this.get('officerPersons').includes(this.get('currentPerson.id'));
+    }
+  ),
+  isCreate: not(
+    'isOfficer',
+  ),
   sortedRepertoriesProperties: [
     'chartTitle',
   ],

@@ -6,9 +6,9 @@ export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service('current-user'),
   model() {
     return this.get('store').query('group', {
-      'officers__person__user': this.get('currentUser.user.id'),
+      'members__person__user': this.get('currentUser.user.id'),
+      'members__status': 10,
       'status': 10,
-      'officers__status': 10,
       'kind__gt': 21,
     });
   },
