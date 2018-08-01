@@ -12,6 +12,9 @@
           Kind
         </th>
         <th class='col-md-1'>
+          Num
+        </th>
+        <th class='col-md-1'>
           Points
         </th>
       </tr>
@@ -22,6 +25,7 @@
           <td>{{panelist.person.commonName}}</td>
           <td>{{panelist.category}}</td>
           <td>{{panelist.kind}}</td>
+          <td>{{panelist.num}}</td>
           <td>{{panelist-scores model=panelist appearance=model}}</td>
         </tr>
       {{else}}
