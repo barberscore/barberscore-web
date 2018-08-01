@@ -65,7 +65,6 @@ export default Component.extend({
   kindOptions: [
     'Official',
     'Practice',
-    'Observer',
   ],
   actions: {
     cancelPanelist(panelist){
