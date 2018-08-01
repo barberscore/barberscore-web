@@ -13,10 +13,11 @@ export default Component.extend({
       let round = yield this.model.start({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
-      this.get('store').pushPayload('round', round);
-      this.get('model.session.competitors').invoke('reload');
-      this.get('model.appearances').invoke('reload');
+      yield this.model.reload();
+      yield this.get('store').pushPayload('round', round);
+      yield this.get('model.session.competitors').invoke('reload');
+      yield this.get('model.appearances').invoke('reload');
+      yield this.get('model.panelists').invoke('reload');
       this.set('startRoundModal', false);
       this.set('startRoundModalError', false);
       this.get('flashMessages').success("Started!");
