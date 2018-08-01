@@ -131,6 +131,7 @@ Router.map(function() {
         this.route('children', {path: 'children'}, function () {});
       });
     });
+    this.route('assignments', {path: 'assignment'}, function(){});
   });
   this.route('about');
   this.route('tutorials');

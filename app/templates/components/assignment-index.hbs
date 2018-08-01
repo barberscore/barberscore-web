@@ -12,10 +12,11 @@
           <tr>
             <th class='col-md-1'>Image</th>
             <th>Name</th>
+            <th>Category</th>
+            <th>Kind</th>
             <th>Venue</th>
             <th>Date</th>
-            <th>Kind</th>
-            <th>Category</th>
+            <th>Status</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +33,12 @@
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
               </td>
               <td>
+                {{assignment.category}}
+              </td>
+              <td>
+                {{assignment.kind}}
+              </td>
+              <td>
                 {{assignment.convention.venue.name}}<br>
                 {{assignment.convention.venue.city}},  {{assignment.convention.venue.state}}
               </td>
@@ -39,10 +46,7 @@
                 {{moment-format assignment.convention.startDate 'L'}} - {{moment-format assignment.convention.endDate 'L'}}
               </td>
               <td>
-                {{assignment.kind}}
-              </td>
-              <td>
-                {{assignment.category}}
+                {{assignment.status}}
               </td>
             </tr>
           {{else}}
