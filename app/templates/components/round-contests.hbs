@@ -27,7 +27,15 @@
               {{contest.award.rounds}}
             </td>
             <td>
-              {{#if contest.group}}{{contest.group.name}}{{else}}(Not yet determined.){{/if}}
+              {{#if contest.includedContestantsCount}}
+                {{#if contest.group}}
+                  {{contest.group.name}}
+                {{else}}
+                  (Not Yet Determined/Select Manually.)
+                {{/if}}
+              {{else}}
+                  (No contestants.)
+              {{/if}}
             </td>
           </tr>
         {{else}}
