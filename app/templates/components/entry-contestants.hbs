@@ -17,7 +17,7 @@
                 {{input
                   type="checkbox"
                   checked=contestant.isIncluded
-                  disabled=isDisabled
+                  disabled=contestant.isDisabled
                   change=(perform toggleContestant contestant value='target.checked')
                 }}
               </td>

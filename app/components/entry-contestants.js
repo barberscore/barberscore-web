@@ -1,16 +1,13 @@
 import { inject as service } from '@ember/service';
-import { sort, not, alias } from '@ember/object/computed';
+import { sort, not } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 import Component from '@ember/component';
 
 export default Component.extend({
   store: service(),
   flashMessages: service(),
-  notWritable: not(
+  isDisabled: not(
     'model.permissions.write',
-  ),
-  isDisabled: alias(
-    'notWritable',
   ),
   contestantSortProperties: [
     'awardSort',
