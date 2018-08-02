@@ -7,6 +7,8 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('member-status'),
   part: DS.attr('member-part'),
+  establishedDate: DS.attr('isodate'),
+  currentThrough: DS.attr('isodate'),
   group: DS.belongsTo('group', {async: true}),
   person: DS.belongsTo('person', {async: true}),
   permissions: DS.attr(),

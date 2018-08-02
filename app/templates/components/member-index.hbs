@@ -1,0 +1,53 @@
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3>
+      Your Memberships
+    </h3>
+  </div>
+  <div class='panel-body'>
+    <div class='table-responsive'>
+      <table class='table'>
+        <caption>These are the groups of which you are currently a member.</caption>
+        <thead>
+          <tr>
+            <th class='col-md-1'>Image</th>
+            <th>Name</th>
+            <th>Primary Voice Part</th>
+            <th>Established</th>
+            <th>Current Through</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedMembers as |member|}}
+            <tr>
+              <td>
+                {{#if member.group.image}}
+                  <img src={{member.group.image}} class='img-responsive img-rounded'>
+                {{else}}
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                {{/if}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.groups.group.details' member.group}}{{member.group.name}}{{/link-to}}
+              </td>
+              <td>
+                {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
+              </td>
+              <td>
+                {{moment-format member.establishedDate 'L'}}
+              </td>
+              <td>
+                {{moment-format member.currentThrough 'L'}}
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td></td>
+              <td>(You do not have any current membership.  Please check with the {{member-center}} if you believe this is in error.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

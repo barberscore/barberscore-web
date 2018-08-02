@@ -132,6 +132,7 @@ Router.map(function() {
       });
     });
     this.route('assignments', {path: 'assignment'}, function(){});
+    this.route('members', {path: 'member'}, function(){});
   });
   this.route('about');
   this.route('tutorials');
