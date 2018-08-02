@@ -13,8 +13,7 @@
             {{#power-select
               options=model.chartOptions
               selected=song.chart
-              onchange=(action (mut song.chart))
-              onclose=(action "saveSong" song)
+              onchange=(perform autosave song)
               placeholder="Choose Chart Title"
               searchField='title'
               allowClear=true
