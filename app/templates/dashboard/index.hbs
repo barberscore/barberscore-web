@@ -13,9 +13,10 @@
   <p>Welcome {{currentUser.user.person.commonName}}</p>
   <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-default launcher'}}
+      {{#link-to 'dashboard.members' tagName='button' disabled=true class='btn btn-default launcher'}}
         {{fa-icon 'users' size='5'}}<br>
-        Memberships<br>(Formerly "Group Manager")
+        Memberships<br>(Formerly "Group Manager")<br>
+        TEMPORARILY DISABLED
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
