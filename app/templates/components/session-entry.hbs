@@ -113,7 +113,11 @@
       </section>
       <hr>
       <section>
-        {{log-index model=model}}
+        {{#each model.logs as |log|}}
+          {{log.timestamp}}<br>
+        {{/each}}
+        {{!-- {{log-index model=model}} --}}
+
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>

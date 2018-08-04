@@ -29,7 +29,7 @@ export default Model.extend({
   appearances: DS.hasMany('appearance', {async: true}),
   grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
-  logs: DS.attr(),
+  // logs: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),

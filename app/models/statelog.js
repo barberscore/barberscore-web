@@ -5,4 +5,5 @@ export default DS.Model.extend({
   transition: DS.attr('string'),
   description: DS.attr('string'),
   by: DS.belongsTo('user', {async: true}),
+  entries: DS.belongsTo('entry', {async: true}),
 });

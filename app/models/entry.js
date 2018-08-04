@@ -32,7 +32,7 @@ export default Model.extend({
   competitor: DS.belongsTo('competitor', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
-  logs: DS.attr(),
+  logs: DS.hasMany('statelog', {async: true}),
 
   build: memberAction({path: 'build', type: 'post'}),
   invite: memberAction({path: 'invite', type: 'post'}),
