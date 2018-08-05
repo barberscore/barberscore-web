@@ -113,11 +113,7 @@
       </section>
       <hr>
       <section>
-        {{#each model.statelogs as |log|}}
-          {{log.timestamp}}<br>
-        {{/each}}
-        {{!-- {{log-index model=model}} --}}
-
+        {{model-statelogs model=model}}
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>
