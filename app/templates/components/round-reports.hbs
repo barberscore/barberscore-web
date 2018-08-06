@@ -1,10 +1,10 @@
 <section>
     {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
       <ul class='list-styled'>
-        <li>Announcements: &nbsp;<a href='{{announcements}}' target='_blank'>{{announcements}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></li>
-        <li>Official Scoring Summary: &nbsp;<a href='{{oss}}' target='_blank'>{{oss}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></li>
-        <li>Scoring Analysis: &nbsp;<a href='{{sa}}' target='_blank'>{{sa}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></li>
-        <li>Songs Sung Report: &nbsp;<a href='{{sung}}' target='_blank'>{{sung}}&nbsp;{{fa-icon 'file-pdf-o'}}</a></li>
+        <li>Announcements: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickAnnouncements') }}</li>
+        <li>Official Scoring Summary: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickOss') }}</li>
+        <li>Scoring Analysis: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickSa') }}</li>
+        <li>Songs Sung Report: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickSung') }}</li>
       </ul>
     {{else}}
       <h4>

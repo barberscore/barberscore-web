@@ -1,26 +1,14 @@
 import { not, sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-// import { task } from 'ember-concurrency';
-// import { denodeify } from 'rsvp'
-import config from '../config/environment';
-import { computed } from '@ember/object';
 
 export default Component.extend({
-  apiHost: config.APP.API_HOST,
   flashMessages: service(),
   router: service(),
   algolia: service(),
   store: service(),
   isDisabled: not(
     'model.permissions.write',
-  ),
-  csa: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.csa');
-    }
   ),
   sortedCompetitorsProperties: [
     'statusSort',

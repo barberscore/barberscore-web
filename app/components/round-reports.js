@@ -1,35 +1,31 @@
 import Component from '@ember/component';
 import config from '../config/environment';
-import { computed } from '@ember/object';
 
 export default Component.extend({
-  apiHost: config.APP.API_HOST,
-  oss: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.oss');
-    }
-  ),
-  sa: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.sa');
-    }
-  ),
-  announcements: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.announcements');
-    }
-  ),
-  sung: computed(
-    'apiHost',
-    'model',
-    function() {
-      return this.get('apiHost')+this.get('model.sung');
-    }
-  ),
+  actions: {
+    clickOss() {
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/oss`;
+     return window.open(url);
+    },
+    clickSa() {
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/sa`;
+     return window.open(url);
+    },
+    clickAnnouncements() {
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/announcements`;
+     return window.open(url);
+    },
+    clickSung() {
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/sung`;
+     return window.open(url);
+    },
+  }
 });
