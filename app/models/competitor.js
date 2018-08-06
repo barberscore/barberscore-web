@@ -21,7 +21,7 @@ export default Model.extend({
   perRank: DS.attr('number'),
   sngRank: DS.attr('number'),
   totRank: DS.attr('number'),
-  csaReport: DS.attr('string'),
+  csa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
