@@ -6,13 +6,13 @@ export default Component.extend({
     clickOss() {
       let apiHost = config.APP.API_HOST;
       let modelId = this.get('model.id');
-      let url = `${apiHost}/api/round/${modelId}/oss`;
+      let url = `${apiHost}/api/round/${modelId}/ossdraft`;
      return window.open(url);
     },
     clickSa() {
       let apiHost = config.APP.API_HOST;
       let modelId = this.get('model.id');
-      let url = `${apiHost}/api/round/${modelId}/sa`;
+      let url = `${apiHost}/api/round/${modelId}/sadraft`;
      return window.open(url);
     },
     clickAnnouncements() {
