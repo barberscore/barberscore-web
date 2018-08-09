@@ -27,5 +27,9 @@ export default Component.extend({
       let url = `${apiHost}/api/round/${modelId}/sung`;
      return window.open(url);
     },
+    clickCsa() {
+      let url = this.get('model.csa');
+      return window.open(url);
+    },
   }
 });

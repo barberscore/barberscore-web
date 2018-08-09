@@ -11,6 +11,7 @@ export default Model.extend({
   spots: DS.attr('number'),
   date: DS.attr('isodate'),
   footnotes: DS.attr('string'),
+  csa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
