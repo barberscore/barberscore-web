@@ -15,6 +15,7 @@ export default Model.extend({
   threshold: DS.attr('number'),
   minimum: DS.attr('number'),
   advance: DS.attr('number'),
+  spots: DS.attr('number'),
   description: DS.attr('string'),
   age: DS.attr('award-age'),
   size: DS.attr('award-size'),
