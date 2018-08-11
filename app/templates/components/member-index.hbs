@@ -40,6 +40,7 @@
                 {{moment-format member.currentThrough 'L'}}
               </td>
             </tr>
+            
           {{else}}
             <tr>
               <td></td>
@@ -49,5 +50,25 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class='panel-footer'>
+    <p>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
+        Your group not listed? Click here.
+      {{/bs-button}}
+    </p>
+    {{#bs-collapse collapsed=collapsedNote}}
+      <p>
+        This is the list of currently active groups for which you are listed as a member. Please check the {{member-center}} and check your group subscription status. Also note that <em>newly registered quartets</em> will not display in Barberscore until BHS headquarters has:
+      </p>
+      <ul class='list-styled'>
+        <li>Approved the quartet name</li>
+        <li>Processed the subscription fee</li>
+        <li>Updated your Member Center record</li>
+      </ul>
+      <p>
+        <em>This process can take up to 5 business days.</em>
+      </p>
+    {{/bs-collapse}}
   </div>
 </div>
