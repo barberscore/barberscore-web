@@ -49,36 +49,36 @@
     {{/bs-button}}
   </p>
 </div>
+<section>
+{{#if (eq model.kind 'Quartet')}}
 <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
-      Quartets: The green "Create New Entry" button is disabled? Click Here.
+      The green "Create New Entry" button is disabled? Click Here.
     {{/bs-button}}
 </p>
     {{#bs-collapse collapsed=customCollapsed2}}
 <p>
-<strong>For Quartets:</strong> You must be designated as your quartet contact (as indicated in the BHS Member Center) in order to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to call BHS Customer Service to convince them that the contact is unable to do so.
+  You must be designated as your quartet contact (as indicated in the BHS {{member-center}}) in order to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
 </p>
 <p>
-If you are the quartet contact (and you’re still not able to edit), submit an inquiry to report the situation to customerservice@barbershop.org.
+If you are the quartet contact (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
 </p>
     {{/bs-collapse}}
-
-<p></p>
+{{else}}
 <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed3' this)}}
-      Choruses: The green "Create New Entry" button is disabled? Click Here.
+      The green "Create New Entry" button is disabled? Click Here.
     {{/bs-button}}
 </p>
     {{#bs-collapse collapsed=customCollapsed3}}
 <p>
-<strong>For Choruses:</strong> Only the following Chapter Leader roles (as identified in the BHS Member Center) may enter their chorus into a contest: President, Secretary, Director, Associate or Assistant Director, or Chorus Manager. If you need to be added to one of those roles in MC, please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 roles have the necessary permissions to change or add Chapter Leaders in the BHS Member Center.
+Only the following Chapter Leader roles (as identified in the BHS {{member-center}}) may enter their chorus into a contest: President, Secretary, Director, Associate or Assistant Director, or Chorus Manager. If you need to be added to one of those roles in MC, please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 roles have the necessary permissions to change or add Chapter Leaders in the BHS Member Center.
 </p>
 <p>
-If you have been added to one of those roles (and you’re still not able to edit), submit an inquiry to report the situation to customerservice@barbershop.org.
+If you have been added to one of those roles (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
 </p>
     {{/bs-collapse}}
-
-<p></p>
+{{/if}}
 <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
       Need more info for contest entry? Click Here.
@@ -89,6 +89,7 @@ If you have been added to one of those roles (and you’re still not able to edi
 <strong>Invitational Contest Entries:</strong>
 </p>
 <p>You cannot enter this type of contest until your group has been invited by the DRCJ. Once invited, you should receive an invitation email, and you will then see a link to your contest session above. Just click on that link to start the contest entry process. Otherwise (if you feel you should have already been invited), please contact your DRCJ.
+</p>
 <p>
 <strong>Open Contest Entries:</strong>
 </p>
@@ -99,6 +100,7 @@ You simply click on the green "Create New Entry" button above. In the New Entry 
 If you cannot locate your convention, check with your DRCJ to see if it is open for contest entry. Or, if contest entry is now closed (perhaps you missed the entry deadline), you'll need to contact your DRCJ to see if a late entry exeption is possible.
 </p>
    {{/bs-collapse}}
+</section>
 <div>
   {{#bs-modal
     open=createEntryModal

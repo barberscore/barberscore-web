@@ -9,6 +9,9 @@ export default Component.extend({
   router: service(),
   store: service(),
   currentUser: service(),
+  customCollapsed: true,
+  customCollapsed2: true,
+  customCollapsed3: true,
   officerPersons: mapBy(
     'model.officers',
     'person.id',
