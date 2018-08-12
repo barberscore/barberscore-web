@@ -1,111 +1,354 @@
 <h2>Barberscore Frequently Asked Questions</h2>
+<p>
+	<em>As a reminder - you should also read and review the Competitor Instructions tutorial PDF slide decks in addition to reading this list of frequently asked questions...</em>
+</p>
+<p>
+	<a href="https://www.barberscore.com/assets/QuartetEntryTutorial.pdf">
+		<strong>Review this tutorial for quartet contest entry</strong>
+	</a>
+</p>
+<p>
+	<a href="https://www.barberscore.com/assets/ChorusEntryTutorial.pdf">
+		<strong>Review this tutorial for chorus contest entry</strong>
+	</a>
+</p>
 <p>&nbsp;</p>
-<p><em>As a reminder - you should also read and review the Competitor Instructions tutorial PDF slide decks in addition to reading this list of frequently asked questions... </em></p>
-<p><a href="https://www.barberscore.com/assets/QuartetEntryTutorial.pdf"><strong>Review this tutorial for quartet contest entry</strong></a></p>
-<p><a href="https://www.barberscore.com/assets/ChorusEntryTutorial.pdf"><strong>Review this tutorial for chorus contest entry</strong></a></p>
-<p>&nbsp;</p>
-<p><strong>Competitor FAQs &ndash; Contest Entry in Barberscore</strong></p>
-<p>&nbsp;</p>
-<p><strong>I liked the old CJ-20 Contest Manager system better than Barberscore &ndash; why did it get replaced, why can&rsquo;t we use it instead, what happened?</strong></p>
-<p>The previous Contest Manager (also known as the CJ-20 contest entry system) was purchased software commissioned by BHS several years ago and was developed to work with the previous BHS membership software system (eBiz &amp; Aptify). As BHS Headquarters prepared to retire the old Aptify system and rollout the new Member Center in July 2017 &ndash; an oversight was discovered. The Contest Manager would no longer work; therefore C&amp;J would no longer have a system for managing contests and contest entry.</p>
-<p>Fortunately, the Society Contest &amp; Judging Committee (SCJC) had already launched a project to create new software for Contest Administrators to handle the scoring of contests and generating contest results &ndash; called Barberscore. This was (and still is) an initiative that is being developed and maintained by volunteer barbershoppers donating thousands of hours of their time as a free service. Early in 2017 (once the oversight was discovered) &ndash; we rapidly shifted gears and expanded the development efforts to include what you see today in the <strong>Group Manager</strong> module (for competitors), and the <strong>Session Manager</strong> module (for DRCJs and other contest officials). The intent was to have something viable (to serve us for contest entries) for the Fall 2017 contest season and beyond.</p>
-<p>So (in summary) &ndash; we can&rsquo;t use the old system because it doesn&rsquo;t exist anymore. It no longer works now that the new BHS Member Center was launched replacing eBiz and Aptify. Instead (the good news), is we are grateful to our volunteers for stepping in and creating a new system that not only works &ndash; but has continued to evolve in features and functionality that will actually surpass what we had before. In fact, there are already implemented features and enhancements that did not exist in the old system. We are so thankful for these volunteers &ndash; most importantly: <strong>Dave Binetti</strong> (Lead Software Engineer) from FWD; <strong>Alexander Boltenko</strong> (Chart Repertory Manager) from SUN; and <strong>Chris Buechler</strong> (SCJC IT Administrator &amp; Datamaster).</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>I can't even login to Barberscore &ndash; what is the issue?</strong></p>
+<h2>
+	<strong>Competitor FAQs &ndash; Contest Entry in Barberscore</strong>
+	<strong>&nbsp;</strong>
+</h2>
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq1' this)}}
+I can't even login to Barberscore &ndash; what is the issue?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq1}}
+
 <p>Fortunately, this is now a rare occurrence. Today the most common problems are:</p>
 <ul>
-<li>You are not using the correct email address associated with your BHS Member Center record.</li>
-<li>You have not read the <em>Login Instructions</em> tutorial PDF, and/or you haven&rsquo;t watched the additional short videos explaining how to troubleshoot login issues.</li>
+	<li>You are not using the correct email address associated with your BHS Member Center record.</li>
+	<li>You have not read the&nbsp;
+		<em>Login Instructions</em>&nbsp;tutorial PDF, and/or you haven&rsquo;t watched the additional short videos explaining how to troubleshoot login issues.
+	</li>
 </ul>
-<p>If those resources don&rsquo;t help, please request assistance from: <a href="mailto:customerservice@barbershop.org">customerservice@barbershop.org</a>.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>I don't see my group in Group Manager &ndash; what is the issue?</strong></p>
-<p><em><strong>For Choruses</strong></em>: Please see the next FAQ below.</p>
-<p><em><strong>For Quartets</strong></em>: There are two common issues. (1) You must be designated as the quartet contact (as indicated in the Member Center) which puts you in the "Quartet Admin" role. (2) If your quartet was just recently registered in the Member Center, please be aware that newly registered quartets are not &ldquo;completed&rdquo; (fully registered) in the Member Center until BHS headquarters has: approved the quartet name; processed the subscription fee; and finished the final validation by updating their MC record. <em><strong>This process can take up to 5 business days</strong></em>.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>I don&rsquo;t seem to be able to edit or enter my chorus in contest via the Group Manager &ndash; what is the issue?</strong></p>
+<p>If those resources don&rsquo;t help, please request assistance from: {{customer-support}}.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq2' this)}}
+I don't see my group on the Your Memberships page &ndash; what is the issue?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq2}}
+
+<p>Please access the BHS {{member-center}} to check on your current group subcriptions.&nbsp;If you are an active member (but still don't see your group) &ndash; submit an inquiry to report the situation to {{customer-support}}.</p>
+<p>
+	<em>
+		<strong>For New Quartets</strong>
+	</em>: Please be aware that newly registered quartets are not &ldquo;completed&rdquo; (fully registered) in the Member Center until BHS headquarters has: approved the quartet name; processed the subscription fee; and finished the final validation by updating the MC record.&nbsp;
+	<em>
+		<strong>This process can take up to 5 business days</strong>
+	</em>.
+</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq3' this)}}
+I don't seem to have permissions to enter my chorus into a contest &ndash; what is the issue?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq3}}
+
 <p>Only the following Chapter Leader roles (as identified in the Member Center) have edit access for their chorus in Barberscore:</p>
 <ul>
-<li>Chapter President</li>
-<li>Chapter Secretary</li>
-<li>Chorus Director</li>
-<li>Chorus Associate or Assistant Director</li>
-<li>Chorus Manager</li>
+	<li>Chapter President</li>
+	<li>Chapter Secretary</li>
+	<li>Chorus Director</li>
+	<li>Chorus Associate or Assistant Director</li>
+	<li>Chorus Manager</li>
 </ul>
-<p>If you can&rsquo;t edit your chorus, most likely you have not been identified as one of those Chapter Leaders in the BHS Member Center. If needed &ndash; please communicate with your Chapter President, Secretary, or Treasurer &ndash; only those 3 roles have the permissions to actually change or add Chapter Leaders in the BHS Member Center.</p>
-<p>If you have been added to one of those roles (and you&rsquo;re still not able to edit) &ndash; submit an inquiry to report the situation to <a href="mailto:customerservice@barbershop.org">customerservice@barbershop.org</a>.</p>
-<p>&nbsp;</p>
-<p><strong>What is the policy for adding song titles to our Chart Repertory?</strong></p>
-<p>There is a reason why the DRCJ (or anyone else) can&rsquo;t just &ldquo;add&rdquo; a song to your repertory&hellip; you must &ldquo;vouch&rdquo; for the chart as having been &ldquo;legally&rdquo; obtained. You do that via the Barberscore Group Manager module. To be clear &ndash; just because a chart title is in our Barberscore database, or just because a chart has a BHS catalog number (from the Harmony Marketplace) does not mean the chart is legal <strong><em><u>for your group</u></em></strong>.</p>
-<p>Example #1: a legal BHS catalog arrangement must still be purchased by your group (or have been gifted to you by some other purchaser) for you to be able to &ldquo;claim&rdquo; it as a legal chart to be sung in contest. By adding that chart to your repertory, you are attesting to the fact that you own legal copies of the arrangement &ndash; (and not just obtained via a copy machine from someone else).</p>
-<p>Example #2: a custom arrangement that was granted copyright clearance for another group (via its arranger) and was added to that group&rsquo;s repertory to sing in a previous contest. While that chart may be listed as a title in our database - it may not be legal to be used by your group unless you have purchased it and have been granted clearance as well.</p>
-<p>Example #3: a chart that was legal many years ago may not be today. Again, it might be in our database (because it was sung legally in a previous contest) &ndash; but perhaps the copyright clearance permissions have now expired.</p>
+<p>If you can&rsquo;t edit your chorus, most likely you have not been identified as one of those Chapter Leaders in the BHS Member Center. If needed &ndash; please communicate with your Chapter President, Secretary, or Treasurer &ndash; as only those 3 individuals have the permissions to change or add Chapter Leaders in the BHS {{member-center}}.</p>
+<p>If you have been added to one of those roles (and you&rsquo;re still not able to edit) &ndash; submit an inquiry to report the situation to {{customer-support}}.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq4' this)}}
+I don't seem to have permissions to enter my quartet into a contest &ndash; what is the issue?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq4}}
+
+<p>You must be designated as your quartet contact (as indicated in the BHS {{member-center}} to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
+	<br />
+	<br />If you are the quartet contact (and you&rsquo;re still not able to edit), submit an inquiry to report the situation to: {{customer-support}}.
+</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq5' this)}}
+How long does it take changes that I make in Member Center to get reflected in Barberscore?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq5}}
+
+<p>We run a background sync process every night. Therefore, any new data (or changed data) in the Member Center should be reflected in Barberscore no later than the next day.</p>
+<p>
+	<strong>However, there is an exception</strong>. Please be aware that brand-new quartets are not &ldquo;completed&rdquo; in the Member Center until BHS headquarters has: approved their quartet name; processed their subscription fee; and finished the final validation.&nbsp;
+	<em>
+		<strong>This process can take up to 5 business days</strong>
+	</em>.
+</p>
+<p>
+	<strong>Also:</strong> Please be aware that data is not automatically refreshed in your browser window. To ensure you&rsquo;re viewing the most recent data, perform an explicit &ldquo;reload&rdquo; or &ldquo;refresh&rdquo; of the web page. If you suspect that a data sync issue has occurred involving member or group info, please submit the query to: {{customer-support}}.
+</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq6' this)}}
+Should I be concerned if I form a new quartet right before the contest entry deadline?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq6}}
+
+<p>
+	<strong>YES, (this is a critical issue)!</strong> Please be aware that newly registered quartets are not &ldquo;completed&rdquo; (fully registered) in the Member Center until BHS headquarters has: approved their quartet name; processed their subscription fee; and finished the final validation by updating their MC record.&nbsp;
+	<em>
+		<strong>This process can take up to 5 business days</strong>
+	</em>.
+</p>
+<p>Members that may be considering the formation of a new quartet should get their quartet registered in Member Center at least one week in advance of their 
+	<strong>contest entry deadline</strong>. Any new quartet failing to comply 
+	<strong>might</strong> still be allowed to compete 
+	<em>(depending on District policies)</em>, but could perhaps not be part of the official &ldquo;draw&rdquo; for singing order appearance. Please communicate with your DRCJ if you are having a problem or if you are anticipating an issue with this.
+</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq7' this)}}
+How do I know which awards/contests I should select?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq7}}
+
+<p>Prior to submission, your initial contest entry page will list all of the available awards/contests for that Contest Session, but none are selected. Most quartets and choruses will only be eligible for certain awards or contests &ndash; normally just one or two of them. Prior to submitting your entry, you should click the&nbsp;
+	<strong>check box</strong>&nbsp;next to those contests for which you are eligible. Please read the description text field next to each one to determine which may be appropriate for your group.
+</p>
+<p>If you&rsquo;re not sure, contact your DRCJ. There is also a notes/comments box on your entry submission that you can use to communicate information to your DRCJ. You can do this either before or after you submit your entry.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq8' this)}}
+How do I indicate the 4 members of the quartet that will be performing on stage for this contest entry?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq8}}
+
+<p>At the top of your entry form - in the 
+	<strong>Members</strong> text box - you must type in the preferred first and last names of those who will be performing on stage. They must be official members of your quartet, and must be listed in Tenor, Lead, Bari, Bass order - separated by commas. For example:
+</p>
+<ul>
+	<li>Roger Ross, Tony DeRosa, Mike McGee, Myron Whittlesey</li>
+</ul>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq9' this)}}
+What is the policy for adding song titles to our Chart Repertory?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq9}}
+
+<p>There is a reason why the DRCJ (or anyone else) can&rsquo;t just &ldquo;add&rdquo; a song to your repertory&hellip; you must &ldquo;vouch&rdquo; for the chart as having been &ldquo;legally&rdquo; obtained. You do that via the Barberscore Group Manager module. To be clear &ndash; just because a chart title is in our Barberscore database, or just because a chart has a BHS catalog number (from the Harmony Marketplace) does not mean the chart is legal&nbsp;
+	<strong>
+		<em>
+			<u>for your group</u>
+		</em>
+	</strong>.
+</p>
+<p>
+	<em>Example #1</em>: a legal BHS catalog arrangement must still be purchased by your group (or have been gifted to you by some other purchaser) for you to be able to &ldquo;claim&rdquo; it as a legal chart to be sung in contest. By adding that chart to your repertory, you are attesting to the fact that you own legal copies of the arrangement &ndash; (and not just obtained via a copy machine from someone else).
+</p>
+<p>
+	<em>Example #2</em>: a custom arrangement that was granted copyright clearance for another group (via its arranger) and was added to that group&rsquo;s repertory to sing in a previous contest. While that chart may be listed as a title in our database - it may not be legal to be used by your group unless you have purchased it and have been granted clearance as well.
+</p>
+<p>
+	<em>Example #3</em>: a chart that was legal many years ago may not be today. Again, it might be in our database (because it was sung legally in a previous contest) &ndash; but perhaps the copyright clearance permissions have now expired.
+</p>
 <p>Ultimately it is your group&rsquo;s responsibility to select charts to be added to your repertory that you feel meet the basic criteria for being &ldquo;legal&rdquo; to perform. While there are some rare exceptions, in general:</p>
 <ul>
-<li>If you have purchased copies of a chart for every member of your group via the Harmony Marketplace, you&rsquo;re all set. Another case may be older legally purchased copies that have since been gifted to you from someone else.</li>
-<li>If you are performing a song that is in the public domain, you&rsquo;re all set. (The exception would be if someone created a custom arrangement and your group has not purchased or sought permission from the arranger to perform that chart).</li>
-<li>If you are performing any other custom arrangement (not obtained via the Harmony Marketplace), normally the arranger has already secured copyright permissions. In these cases, it is still your group&rsquo;s responsibility to verify that the chart is legal (from the copyright holder&rsquo;s perspective) &ndash; and of course you should have obtained copies of the arrangement legally as well.</li>
+	<li>If you have purchased copies of a chart for every member of your group via the Harmony Marketplace, you&rsquo;re all set. Another case may be older legally purchased copies that have since been gifted to you from someone else.</li>
+	<li>If you are performing a song that is in the public domain, you&rsquo;re all set. (The exception would be if someone created a custom arrangement and your group has not purchased or sought permission from the arranger to perform that chart).</li>
+	<li>If you are performing any other custom arrangement (not obtained via the Harmony Marketplace), normally the arranger has already secured copyright permissions. In these cases, it is still your group&rsquo;s responsibility to verify that the chart is legal (from the copyright holder&rsquo;s perspective) &ndash; and of course you should have obtained copies of the arrangement legally as well.</li>
 </ul>
 <p>Finally &ndash; &ldquo;we&rdquo; (BHS, C&amp;J, and the Barberscore contest entry system) do not require any proof (in advance) that any chart you sing in a BHS contest is &ldquo;legal&rdquo; for your group. To be clear, it is every performer&rsquo;s responsibility for performing legally obtained music whether it is on a public show, a private performance, or a BHS contest. The only time the BHS Contest &amp; Judging system will become involved in seeking validation for the legality of a chart, would be if a complaint was registered by the copyright owner, or an arranger, or some other valid stakeholder &ndash; alleging that a chart performed in a contest was illegally obtained. At that point (within 30 days after the contest) &ndash; a clear violation of the copyright rules could lead to a group&rsquo;s disqualification for competing with that chart.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>How long does it take changes that I make in Member Center to get reflected in Barberscore?</strong></p>
-<p>We run a background sync process every night. Therefore, any new data (or changed data) in the Member Center should be reflected in Barberscore no later than the next day.</p>
-<p><strong>However, there is an exception</strong>. Please be aware that brand-new quartets are not &ldquo;completed&rdquo; in the Member Center until BHS headquarters has: approved their quartet name; processed their subscription fee; and finished the final validation. <em><strong>This process can take up to 5 business days</strong></em>.</p>
-<p>Please be aware that data is not refreshed in your browser window automatically in Barberscore. To ensure you&rsquo;re viewing the most recent data, perform an explicit &ldquo;reload&rdquo; or &ldquo;refresh&rdquo; of the web page. If you suspect that a data sync issue has occurred involving member or group info, please submit the query to: <a href="mailto:customerservice@barbershop.org">customerservice@barbershop.org</a>.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>Should I be concerned if I form a new quartet right before the contest entry deadline?</strong></p>
-<p>YES, (this is a critical issue)! Please be aware that newly registered quartets are not &ldquo;completed&rdquo; (fully registered) in the Member Center until BHS headquarters has: approved their quartet name; processed their subscription fee; and finished the final validation by updating their MC record. <em><strong>This process can take up to 5 business days</strong></em>.</p>
-<p>Members that may be considering the formation of a new quartet should be getting their quartet registered in Member Center at least one week in advance of their contest entry deadline. Any new quartet failing to comply might still be allowed to compete, but would perhaps not be part of the official &ldquo;draw&rdquo; for singing order appearance and might have to sing first (or last). Please communicate with your DRCJ if you are having a problem or if you are anticipating an issue with this.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>How do I know which awards/contests I should select?</strong></p>
-<p>Prior to submission, your initial contest entry page will list all of the available awards/contests for that Contest Session, but none are selected. Most quartets and choruses will only be eligible for certain awards or contests &ndash; normally just one or two of them. Prior to submitting your entry, you should click the <strong>check box</strong> next to those contests for which you are eligible. Please read the description text field next to each one to determine which may be appropriate for your group.</p>
-<p>If you&rsquo;re not sure, contact your DRCJ. There is also a notes/comments box on your entry submission that you can use to communicate information to your DRCJ. You can do this either before or after you submit your entry. If it is not correct, you can go back later in to adjust your entry to reflect the appropriate awards/contests for which your group is eligible.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>Do I have to add all of our contest songs to our repertory prior to submitting our contest entry?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq10' this)}}
+Do I have to add all of our contest songs to our repertory prior to submitting our contest entry?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq10}}
+
 <p>No. You can add songs to your chart repertory at any time. However, you are reminded that your songs must be added to your repertory prior to singing them on stage. Ideally, we would prefer that this is accomplished no later than one week before the contest, so that we can prepare to properly display the chart information on the Official Scoring Summary (OSS).</p>
 <p>Also &ndash; please remember that you are responsible for your charts. By adding the chart, you are declaring and verifying that your group has purchased or has otherwise legally obtained copies of this chart for every member of your group. Any copyright legality issues discovered after you have performed a chart at a contest could possibly lead to a post-contest disqualification.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>Our quartet has more than 4 songs in our repertory &ndash; do we have to tell you which 4 songs we plan to sing in contest?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq11' this)}}
+Our quartet has more than 4 songs in our repertory &ndash; do we have to tell you which 4 songs we plan to sing in contest?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq11}}
+
 <p>No. As long as the songs you do sing are among the list of charts in your repertory, you&rsquo;re good. However, it is a good idea to occasionally remove any extra charts that you will no longer perform in any future contest to minimize the &ldquo;clutter&rdquo; &ndash; but this is certainly not required.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>I don&rsquo;t know exactly which members of my chorus will be performing at contest yet &ndash; should I wait until I do to submit our contest entry?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq11a' this)}}
+I don&rsquo;t know exactly which members of my chorus will be performing at contest yet &ndash; should I wait until I do to submit our contest entry?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq11a}}
+
 <p>No. The list of chapter members is there for your reference and information only. It is the responsibility of the Chapter Secretary to verify with the DRCJ that everyone who performs on stage is: a member of your chapter; is current with their chapter, district, and BHS member dues; and has a full convention registration. This can be done at any time. With the exception of the International Chorus contest, you don&rsquo;t have to submit a specific list of names prior to the contest.</p>
-<p>&nbsp;</p>
-<p><strong>We have more than 4 current members in our quartet &ndash; how do we designate which 4 members will be performing on stage for this contest entry?</strong></p>
-<p>In the rare circumstance that your quartet is maintaining more than 4 members officially in the Member Center &ndash; all of those names will be listed on your contest entry page. It is your responsibility to identify which 4 members (and their voice parts) will be performing for this contest entry using the notes/comments box towards the bottom of your online contest entry. Please provide that information when you submit your entry. Your entry will not be approved until this has been clarified.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>One of our quartet members is missing on our contest entry page &ndash; what is the issue?</strong></p>
-<p>The members of your quartet are directly derived from the BHS Member Center. If someone is missing, they are likely not listed as a &ldquo;current&rdquo; member of you quartet in the Member Center, or perhaps their BHS membership has now expired. It is your responsibility to remedy the situation in the Member Center prior to submitting your contest entry.</p>
-<p>&nbsp;</p>
-<p><strong>One of our quartet members shows that he has an expired membership &ndash; can we still submit our contest entry?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq12' this)}}
+One of our quartet members is missing on our contest entry page &ndash; what is the issue?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq12}}
+
+<p>The members of your quartet are directly derived from the BHS {{member-center}}. If someone is missing, they are likely not listed as a &ldquo;current&rdquo; member of you quartet in the Member Center, or perhaps their BHS membership has now expired. It is your responsibility to remedy the situation in the Member Center prior to submitting your contest entry.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq13' this)}}
+One of our quartet members shows that he has an expired membership &ndash; can we still submit our contest entry?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq13}}
+
 <p>Yes. However it is important to get that situation resolved prior to your contest appearance. Your quartet will be disqualified if all 4 members are not active and current as of the day of contest.</p>
-<p>&nbsp;</p>
-<p><strong>One or more of our chapter members show that they have an expired membership &ndash; can we still submit our contest entry for our chorus?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq14' this)}}
+One or more of our chapter members show that they have an expired membership &ndash; can we still submit our contest entry for our chorus?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq14}}
+
 <p>Yes. Most chapters have inactive members from time to time with lapsed memberships. As long as none of those men appear on stage during your contest performance, all is fine. However, if any of those will be performing, it is important to get that situation resolved prior to your contest appearance. Your chorus will be disqualified if any performer is not an active and current member of your chapter as of the day of contest.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>How do I enter a non-BHS group (such as a Mixed Harmony quartet) into a contest session?</strong></p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq15' this)}}
+How do I enter a non-BHS group (such as a Mixed Harmony quartet) into a contest session?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq15}}
+
 <p>Groups other than a chorus that represents a BHS chapter or an officially registered BHS quartet will not be able to enter any contest until they have been added manually via the backend API by a Barberscore Admin. &ldquo;Non-BHS groups&rdquo; include the following: VLQs, Mixed Harmony quartets, Mixed Harmony choruses, Youth quartets, Youth choruses, community or school choirs, and female quartets or choruses (regardless of whether or not they are registered with HI or SAI).</p>
 <p>If you wish to enter a contest session for score and/or evaluation, the process is the same. Simply gather the following information about your group:</p>
 <ul>
-<li>The &ldquo;official&rdquo; group name (it does not have to be unique or &ldquo;registered&rdquo; anywhere)</li>
-<li>Location (City, State/Province) of the group</li>
-<li>Contact person (that will serve as the group admin for contest entry) full name &amp; email. If they are a BHS member or BHS associate, provide their BHS ID number.</li>
-<li>Director name (for choruses or choirs). If they are a BHS member or BHS associate, provide their BHS ID number.</li>
-<li>For quartets &ndash; the name of each singer and their voice part. If they are a BHS member or BHS associate, provide their BHS ID number &ndash; if not, provide their email address.</li>
+	<li>The &ldquo;official&rdquo; group name (it does not have to be unique or &ldquo;registered&rdquo; anywhere)</li>
+	<li>Location (City, State/Province) of the group</li>
+	<li>Contact person (that will serve as the group admin for contest entry) full name &amp; email. If they are a BHS member or BHS associate, provide their BHS ID number.</li>
+	<li>Director name (for choruses or choirs). If they are a BHS member or BHS associate, provide their BHS ID number.</li>
+	<li>For quartets &ndash; the name of each singer and their voice part. If they are a BHS member or BHS associate, provide their BHS ID number &ndash; if not, provide their email address.</li>
 </ul>
 <p>&hellip;then email your request (with this information) to have your group added to Barberscore to the DRCJ of the district where you plan to compete.</p>
-<p>Once we have added the information into Barberscore, the contact person can &ldquo;enter&rdquo; the contest via Group Manager in Barberscore just the same as any other competitor. Of course they should be selecting only the applicable awards (if any) for the group, otherwise it would be for score/eval only.</p>
-<p>&nbsp;</p>
-<p><strong>Does the mic-tester quartet need to "enter" the contest session via Barberscore?</strong></p>
-<p>No. However, if any performing quartet or chorus serving as a mic-tester or mic-cooler desires scores from the judging panel (and/or evaluations) &ndash; then they need to &ldquo;enter&rdquo; the contest session via Group Manager in Barberscore just as any other competitor would for score/eval only.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>How do I enter my quartet or chorus into a contest for score/eval only?</strong></p>
-<p>All competitors will enter the contest session via Group Manager in Barberscore in the same manner. For those groups that are not eligible for any of the available awards/contests &ndash; (or perhaps they are, but they simply prefer to NOT officially compete) &ndash; you simply don&rsquo;t select any award/contest prior to submitting your entry. In addition, you must select the <em>Score/Eval</em> button. Be aware that your scores will not appear on the Official Scoring Summary (OSS) that is distributed to the public, but your group will receive only a Contest Scoring Analysis (CSA) sheet instead.</p>
-<p>Please note: For any group that is actually competing for one or more awards, selecting the <em>Score/Eval</em> button will not be allowed.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>What is the process for entering my quartet into another district&rsquo;s International Preliminary Quartet contest? How do we register to compete OOD (out-of-district)?</strong></p>
-<p>Per the official BHS Contest &amp; Judging rules, you must first obtain the appropriate permissions in advance to compete outside of your designated home district. These instructions are available in the <a href="http://www.barbershop.org/files/documents/contestandjudging/C&amp;J%20Handbook.pdf">BHS Contest Rules</a> (Article I.A.4).</p>
+<p>Once we have added the information into Barberscore, the contact person can &ldquo;enter&rdquo; the contest in Barberscore just the same as any other competitor. Of course they should be selecting only the applicable awards (if any) for the group, otherwise it would be for score/eval only.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq16' this)}}
+Does the mic-tester quartet need to "enter" the contest session via Barberscore?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq16}}
+
+<p>No. However, if any performing quartet or chorus serving as a mic-tester or mic-cooler desires scores from the judging panel (and/or evaluations) &ndash; then they need to &ldquo;enter&rdquo; the contest session in Barberscore just as any other competitor would for score/eval only.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq16' this)}}
+How do I enter my quartet or chorus into a contest for score/eval only?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq16}}
+
+<p>All competitors will enter the contest session in Barberscore in the same manner. For those groups that are not eligible for any of the available awards/contests &ndash; (or perhaps they are, but they simply prefer to NOT officially compete) &ndash; you simply don&rsquo;t select any award/contest prior to submitting your entry. In addition, you must select the&nbsp;
+	<em>Score/Eval Only&nbsp;</em>button. Be aware that your scores will not appear on the Official Scoring Summary (OSS) that is distributed to the public, but your group will receive a Contest Scoring Analysis (CSA) sheet.
+</p>
+<p>Please note: For any group that is actually competing for one or more awards, selecting the&nbsp;
+	<em>Score/Eval Only</em>&nbsp;button will not be allowed.
+</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq17' this)}}
+What is the process for entering my quartet into another district&rsquo;s International Preliminary Quartet contest? How do we register to compete OOD (out-of-district)?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq17}}
+
+<p>Per the official BHS Contest &amp; Judging rules, you must first obtain the appropriate permissions in advance to compete outside of your designated home district. These instructions are available in the&nbsp;
+	<a href="http://www.barbershop.org/files/documents/contestandjudging/C&amp;J%20Handbook.pdf">BHS Contest Rules</a>&nbsp;(Article I.A.4).
+</p>
 <p>Once approved (and once that district&rsquo;s contest session is open for competitor entry) &ndash; go to Group Manager in Barberscore, and select the contest you have been approved to enter (you will see a drop-down list of ALL contest sessions that are open for competitor entry). Of course the only contest award you should select will be the International quartet preliminary contest. Your group is not eligible to compete for any other district awards. If your quartet scores a 76+, it will be listed along with all of the other quartets in that district that qualified for International.</p>
-<p><strong>&nbsp;</strong></p>
-<p><strong>Can I enter my quartet or chorus into a different division contest within my district?</strong></p>
-<p>Normally yes. Most districts allow for quartets or choruses to enter and compete in a different division contest, however, some require approval in advance, some do not. First, check with your District Representative for Contest and Judging (DRCJ). If it is allowed/approved then you should go to Group Manager in Barberscore, and simply select the contest you wish to enter (you will see a drop-down list of ALL contest sessions that are open for submitting competitor entries &ndash; even those that are in other districts). The rest of the entry process remains the same. However, the only contest awards you should select will be those that involve qualifying for some future District-level contest or award. You will not be allowed to compete for any &ldquo;division-level&rdquo; awards.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq18' this)}}
+Can I enter my quartet or chorus into a different division contest within my district?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq18}}
+
+<p>Normally yes. Most districts allow for quartets or choruses to enter and compete in a different division contest, however, some require approval in advance, some do not. First, check with your District Representative for Contest and Judging (DRCJ). If it is allowed/approved then you should go to Barberscore, and simply select the contest you wish to enter (you will see a drop-down list of ALL contest sessions that are open for submitting competitor entries &ndash; even those that are in other districts). The rest of the entry process remains the same. However, the only contest awards you should select will be those that involve qualifying for some future District-level contest or award. You will not be allowed to compete for any &ldquo;division-level&rdquo; awards.</p>
+{{/bs-collapse}}
+
+
+<p>
+{{#bs-button class='btn btn-link' onClick=(toggle 'faq19' this)}}
+I liked the old CJ-20 Contest Manager system better than Barberscore &ndash; why did it get replaced, why can&rsquo;t we use it instead, what happened?
+{{/bs-button}}
+</p>
+{{#bs-collapse collapsed=faq19}}
+
+<p>The previous Contest Manager (also known as the CJ-20 contest entry system) was purchased software commissioned by BHS several years ago and was developed to work with the previous BHS membership software system (eBiz &amp; Aptify). As BHS Headquarters prepared to retire the old Aptify system and rollout the new Member Center in July 2017 &ndash; an oversight was discovered. The Contest Manager would no longer work; therefore C&amp;J would no longer have a system for managing contests and contest entry.</p>
+<p>Fortunately, the Society Contest &amp; Judging Committee (SCJC) had already launched a project to create new software for Contest Administrators to handle the scoring of contests and generating contest results &ndash; called Barberscore. This was (and still is) an initiative that is being developed and maintained by volunteer barbershoppers donating thousands of hours of their time as a free service. Early in 2017 (once the oversight was discovered) &ndash; we rapidly shifted gears and expanded the development efforts to include what you see today in the&nbsp;
+	<strong>Memberships</strong>&nbsp;module (for competitors), and the&nbsp;
+	<strong>Assignments</strong>&nbsp;module (for DRCJs and other contest officials). The intent was to have something viable (to serve us for contest entries) for the Fall 2017 contest season and beyond.
+</p>
+<p>So (in summary) &ndash; we can&rsquo;t use the old system because it doesn&rsquo;t exist anymore. It no longer works now that the new BHS Member Center was launched replacing eBiz and Aptify. Instead (the good news), is we are grateful to our volunteers for stepping in and creating a new system that not only works &ndash; but has continued to evolve in features and functionality that will actually surpass what we had before. In fact, there are already implemented features and enhancements that did not exist in the old system. We are so thankful for these volunteers &ndash; most importantly:&nbsp;
+	<strong>Dave Binetti</strong>&nbsp;(Lead Software Engineer) from FWD;&nbsp;
+	<strong>Alexander Boltenko</strong>&nbsp;(Chart Repertory Manager) from SUN; and&nbsp;
+	<strong>Chris Buechler</strong>&nbsp;(SCJC IT Administrator) from M-AD.
+</p>
+{{/bs-collapse}}
+
+<p></p>
