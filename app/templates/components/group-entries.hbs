@@ -50,35 +50,6 @@
   </p>
 </div>
 <section>
-{{#if (eq model.kind 'Quartet')}}
-<p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
-      The green "Create New Entry" button is disabled? Click Here.
-    {{/bs-button}}
-</p>
-    {{#bs-collapse collapsed=customCollapsed2}}
-<p>
-  You must be designated as your quartet contact (as indicated in the BHS {{member-center}}) in order to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
-</p>
-<p>
-If you are the quartet contact (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
-</p>
-    {{/bs-collapse}}
-{{else}}
-<p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed3' this)}}
-      The green "Create New Entry" button is disabled? Click Here.
-    {{/bs-button}}
-</p>
-    {{#bs-collapse collapsed=customCollapsed3}}
-<p>
-Only the following Chapter Leader roles (as identified in the BHS {{member-center}}) may enter their chorus into a contest: President, Secretary, Director, Associate or Assistant Director, or Chorus Manager. If you need to be added to one of those roles in MC, please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 roles have the necessary permissions to change or add Chapter Leaders in the BHS Member Center.
-</p>
-<p>
-If you have been added to one of those roles (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
-</p>
-    {{/bs-collapse}}
-{{/if}}
 <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
       Need more info for contest entry? Click Here.
@@ -88,18 +59,47 @@ If you have been added to one of those roles (and you’re still not able to edi
 <p>
 <strong>Invitational Contest Entries:</strong>
 </p>
-<p>You cannot enter this type of contest until your group has been invited by the DRCJ. Once invited, you should receive an invitation email, and you will then see a link to your contest session above. Just click on that link to start the contest entry process. Otherwise (if you feel you should have already been invited), please contact your DRCJ.
+<p>You cannot enter this type of contest until your group has been invited by the DRCJ. Once invited, you should receive an invitation email, and you should also see a link to the contest session above. Just click on that link to start the contest entry process. Otherwise (if you feel you should have already been invited), please contact your DRCJ.
 </p>
 <p>
 <strong>Open Contest Entries:</strong>
 </p>
 <p>
-You simply click on the green "Create New Entry" button above. In the New Entry dialog box, click the drop-down menu to scroll through and locate your convention. Click the green "Create Entry" button to start the contest entry process.
+For these types of contests, simply click on the green "Create New Entry" button above. In the New Entry dialog box, click the drop-down menu to scroll through and locate your convention, then click the green "Create Entry" button to start the contest entry process.
 </p>
 <p>
-If you cannot locate your convention, check with your DRCJ to see if it is open for contest entry. Or, if contest entry is now closed (perhaps you missed the entry deadline), you'll need to contact your DRCJ to see if a late entry exeption is possible.
+If you cannot locate your convention, check with your DRCJ to see if it is open for contest entry. Or, if contest entry is now closed (perhaps you missed the entry deadline), you'll need to contact your DRCJ to see if a late entry exception is possible.
 </p>
    {{/bs-collapse}}
+{{#if (eq model.kind 'Quartet')}}
+<p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
+      "Create New Entry" button disabled? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=customCollapsed2}}
+<p>
+  You must be designated as your quartet contact (as indicated in the BHS {{member-center}}) to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
+</p>
+<p>
+If you are the quartet contact (and you’re still not able to enter), submit an inquiry to report the situation to {{customer-support}}.
+</p>
+    {{/bs-collapse}}
+{{else}}
+<p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed3' this)}}
+      "Create New Entry" button disabled? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=customCollapsed3}}
+<p>
+Only the following Chapter Leader roles (as identified in the BHS {{member-center}}) may enter their chorus into a contest: President, Secretary, Director, Associate or Assistant Director, or Chorus Manager. If you need to be added to one of those roles in MC, please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 individuals have the necessary permissions to change or add Chapter Leaders in the BHS Member Center.
+</p>
+<p>
+If you have been added to one of those roles (and you’re still not able to enter), submit an inquiry to report the situation to {{customer-support}}.
+</p>
+    {{/bs-collapse}}
+{{/if}}
 </section>
 <div>
   {{#bs-modal
