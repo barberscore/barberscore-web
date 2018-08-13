@@ -7,7 +7,7 @@
   <div class='panel-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>These are the groups of which you are currently a member. However, unless you are an admin for that group, you will not be able to enter that group into a contest, nor make any edits. Please read the tutorials or FAQs to learn more.</caption>
+        <caption>These are the groups of which you are currently a member. However, only those designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only permissions. Please read the tutorials or FAQ to learn more.</caption>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
@@ -40,7 +40,7 @@
                 {{moment-format member.currentThrough 'L'}}
               </td>
             </tr>
-            
+
           {{else}}
             <tr>
               <td></td>
@@ -59,12 +59,14 @@
     </p>
     {{#bs-collapse collapsed=collapsedNote}}
       <p>
-        This is the list of currently active groups for which you are listed as a member. Please check the {{member-center}} and check your group subscription status. Also note that <em>newly registered quartets</em> will not display in Barberscore until BHS headquarters has:
+        This is the list of currently active groups for which you are listed as a member. Please access the BHS {{member-center}} and check your group subscription status.
+      </p>
+      <p><strong>NOTE:</strong> Please be patient as <em>newly registered quartets</em> will not be displayed in Barberscore until BHS headquarters has:
       </p>
       <ul class='list-styled'>
         <li>Approved the quartet name</li>
         <li>Processed the subscription fee</li>
-        <li>Updated your Member Center record</li>
+        <li>Finalized the Member Center record</li>
       </ul>
       <p>
         <em>This process can take up to 5 business days.</em>

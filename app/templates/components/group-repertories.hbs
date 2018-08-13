@@ -34,6 +34,47 @@
     {{#bs-button type='success' disabled=isCreate onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
     </p>
   </div>
+  
+<p>
+	<strong>Please read before adding to your group's repertory:</strong>
+</p>
+<p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
+      What is the policy for adding a Chart? Click Here.
+    {{/bs-button}}
+  </p>
+  {{#bs-collapse collapsed=customCollapsed2}}
+  
+
+<p>There is a reason why only a group admin (and no one else) can add charts to your group's repertory… because you are indeed “vouching” for the legality of the chart. To be clear, just because you can find a chart title in our Barberscore database does NOT mean that the chart is legal 
+	<strong>for your group</strong>. Below are some examples for you to consider:
+</p>
+<p>
+	<em>Example #1:</em> A legal BHS Harmony Marketplace catalog arrangement 
+	<strong>must still be purchased by your group</strong> (or have been gifted to you by some other purchaser) for you to be able to “claim” it as a legal chart to be sung in contest. By adding that chart to your repertory, you are attesting to the fact that you own legal copies of the arrangement for every member of your group – 
+	<em>and not just obtained via a copy machine from someone else</em>.
+</p>
+<p>
+	<em>Example #2:</em> A custom arrangement that was granted copyright clearance for another group and was added to that group’s repertory to sing in a previous contest. While that chart may be listed in our database - 
+	<strong>it will not be legal</strong> to be used by your group unless you have purchased it and have been granted clearance as well.
+</p>
+<p>
+	<em>Example #3:</em> A chart that was legal many years ago may not be today. Again, it might be in our database because it was sung legally in a previous contest – but perhaps the copyright clearance permissions have now expired.
+</p>
+<p>Ultimately it is your group’s responsibility to select charts to be added to your repertory that you feel meet the basic criteria for being “legal” to perform. While there are some rare exceptions, here are the general guidelines:</p>
+<ul>
+	<li>If you have purchased copies of a chart for every member of your group via the Harmony Marketplace, you’re all set. 
+		<em>Or perhaps you now own older legally purchased copies that have since been gifted to you from someone else.</em>
+	</li>
+	<li>If you are performing a song that is in the public domain, you’re all set. 
+		<em>The exception would be if someone created a custom arrangement of that song for another group, and your group has not purchased or sought permission from the arranger to perform that chart</em>.
+	</li>
+	<li>If you are performing any other custom arrangement (not obtained via the Harmony Marketplace), normally the arranger has already secured copyright permissions. In these cases, it is still your group’s responsibility to verify that the chart is legal (from the copyright holder’s perspective) – and of course you have legal copies of the arrangement.</li>
+</ul>
+<strong>Final Note: </strong>"We” 
+<em>(BHS, C&J, and the Barberscore contest entry system)</em> do not require any proof (in advance) that any chart you sing in a BHS contest is “legal” for your group. To be clear, it is every group's responsibility for performing legally obtained music whether it is on a public show, a private performance, or a BHS contest. The only time the BHS Contest & Judging system will become involved in seeking validation for the legality of a chart, would be if a complaint was registered by the copyright owner, or an arranger, or some other valid stakeholder – alleging that a chart performed in a contest was illegally obtained. At that point (within 30 days after the contest) – a clear violation of the copyright rules could lead to a group’s disqualification for having competed with that chart.
+
+  {{/bs-collapse}}
   <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
       Have a new custom chart or parody? Or is your chart not showing up in your search? Click Here.
