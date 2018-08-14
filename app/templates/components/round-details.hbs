@@ -1,17 +1,19 @@
 <section>
-  {{#bs-form
-    formLayout="vertical"
-    model=model
-    as |form|
-  }}
-    {{form.element
-      controlType='tel'
-      disabled=isDisabled
-      label='Spots Available in Next Round (blank for unlimited).'
-      property='spots'
-      size=10
-      onChange=(perform autosave 'spots')}}
-  {{/bs-form}}
+  {{#if (not-eq model.kind 'Finals')}}
+    {{#bs-form
+      formLayout="vertical"
+      model=model
+      as |form|
+    }}
+      {{form.element
+        controlType='tel'
+        disabled=isDisabled
+        label='Spots Available in Next Round (blank for unlimited).'
+        property='spots'
+        size=10
+        onChange=(perform autosave 'spots')}}
+    {{/bs-form}}
+  {{/if}}
   Round Date: {{#if model.date}}{{moment-format model.date 'LL'}}{{else}}(Unknown){{/if}}
 </section>
 <section>
