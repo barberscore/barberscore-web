@@ -66,14 +66,29 @@ export default Model.extend({
   ],
 
 
+  isRanked: alias(
+    'competitor.isRanked'
+  ),
   roundNum: alias(
     'round.num'
   ),
   competitorTotPoints: alias(
     'competitor.totPoints'
   ),
-  competitorRank: alias(
+  competitorTotScore: alias(
+    'competitor.totScore'
+  ),
+  competitorTotRank: alias(
     'competitor.totRank'
+  ),
+  competitorStatus: alias(
+    'competitor.status'
+  ),
+  competitorGroupName: alias(
+    'competitor.groupName'
+  ),
+  competitorStatusSort: alias(
+    'competitor.statusSort'
   ),
   isAdvancer: gt(
     'draw',

@@ -102,3 +102,7 @@ input[type=checkbox] {
 .sortable-item.is-dropping {
   z-index: 10;
 }
+
+.border-top {
+  border-top: solid 10px black;
+}

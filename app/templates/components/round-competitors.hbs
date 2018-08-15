@@ -1,10 +1,27 @@
 {{#if (eq model.status 'New')}}
     <h4>The Competitors are available after the Round is Built.</h4>
 {{else}}
+  <section>
+    {{#if (not-eq model.kind 'Finals')}}
+      {{#bs-form
+        formLayout="vertical"
+        model=model
+        as |form|
+      }}
+        {{form.element
+          controlType='tel'
+          disabled=isDisabled
+          label='Spots Available in Next Round (blank for unlimited).'
+          property='spots'
+          size=10
+          onChange=(perform autosave 'spots')}}
+      {{/bs-form}}
+    {{/if}}
+  </section>
   <div class='table-responsive'>
     <table class='table'>
       <caption>
-        All competitors, ranked by total score.  Ranking is available after the Round is reviewed.
+        All ranked competitors, ordered by current total <strong>score</strong> (cumulative for all rounds).  Unranked and single-round competitors are listed after ranked competitors on this list, but will be ordered by total points on the OSS.
       </caption>
       <thead>
         <tr>
@@ -15,34 +32,38 @@
           <th class='col-md-1'>Points</th>
           <th class='col-md-1'>Score</th>
           <th class='col-md-1'>Status</th>
+          <th class='col-md-1'>Draw</th>
         </tr>
       </thead>
       <tbody>
-        {{#each sortedCompetitors as |competitor|}}
-          <tr>
-            {{#if competitor.isLoading}}
+        {{#each sortedAppearances as |appearance index|}}
+          <tr class="{{if (eq index model.spots) 'border-top'}}">
+            {{#if appearance.isLoading}}
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{competitor.totRank}}</td>
-              {{#if competitor.group.isLoading}}
+              <td>{{#if appearance.competitor.isRanked}}{{inc index}}{{/if}}</td>
+              {{#if appearance.competitor.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' competitor}}{{competitor.group.name}}{{/link-to}}</td>
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
               {{/if}}
               <td>
-                {{#if competitor.isRanked}}
+                {{#if appearance.competitor.isRanked}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
               </td>
               <td>
-                {{#if competitor.isMulti}}
+                {{#if appearance.competitor.isMulti}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
               </td>
-              <td>{{#if competitor.totPoints}}{{competitor.totPoints}}{{else}}N/A{{/if}}</td>
-              <td>{{single-fixed competitor.totScore}}</td>
+              <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
+              <td>{{single-fixed appearance.competitor.totScore}}</td>
               <td>
-                {{competitor.status}}
+                {{appearance.status}}
+              </td>
+              <td>
+                {{appearance.draw}}
               </td>
             {{/if}}
           </tr>
