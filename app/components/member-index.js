@@ -6,6 +6,7 @@ export default Component.extend({
     'groupKind',
     'groupName',
   ],
+  collapsedNote: true,
   sortedMembers: sort(
     'model',
     'sortProperties'
