@@ -38,14 +38,13 @@
 <p>
 	<strong>Please read before adding to your group's repertory:</strong>
 </p>
+<section>
 <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
       What is the policy for adding a Chart? Click Here.
     {{/bs-button}}
   </p>
   {{#bs-collapse collapsed=customCollapsed2}}
-  
-
 <p>There is a reason why only a group admin (and no one else) can add charts to your group's repertory… because you are indeed “vouching” for the legality of the chart. To be clear, just because you can find a chart title in our Barberscore database does NOT mean that the chart is legal 
 	<strong>for your group</strong>. Below are some examples for you to consider:
 </p>
@@ -73,11 +72,11 @@
 </ul>
 <strong>Final Note: </strong>"We” 
 <em>(BHS, C&J, and the Barberscore contest entry system)</em> do not require any proof (in advance) that any chart you sing in a BHS contest is “legal” for your group. To be clear, it is every group's responsibility for performing legally obtained music whether it is on a public show, a private performance, or a BHS contest. The only time the BHS Contest & Judging system will become involved in seeking validation for the legality of a chart, would be if a complaint was registered by the copyright owner, or an arranger, or some other valid stakeholder – alleging that a chart performed in a contest was illegally obtained. At that point (within 30 days after the contest) – a clear violation of the copyright rules could lead to a group’s disqualification for having competed with that chart.
-
+<p></p>
   {{/bs-collapse}}
   <p>
     {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
-      Have a new custom chart or parody? Or is your chart not showing up in your search? Click Here.
+      Have a new custom chart or parody? Or - is your chart not showing up in your search? Click Here.
     {{/bs-button}}
   </p>
   {{#bs-collapse collapsed=customCollapsed}}
@@ -89,6 +88,38 @@
       If you have a new custom arrangement or parody - (or you can't find your chart despite your best efforts) - then you must send a copy of the sheet music or an image of the first page (with the title, arranger, composer, and copyright info clearly visible) to <a href="mailto:charts@barberscore.com">charts@barberscore.com</a>. Our datamaster will get the information into the system as quickly as possible -- usually in less than 24 hours -- and add it to your repertory for you. If this chart is private or exclusive for your group, please indicate as such in your email, and we will mark it as "protected" in the Barberscore database.
     </p>
   {{/bs-collapse}}
+  </section>
+  <section>
+{{#if (eq model.kind 'Quartet')}}
+<p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed4' this)}}
+      "Add New Chart" button is disabled? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=customCollapsed4}}
+<p>
+  You must be designated as your quartet contact (as indicated in the BHS {{member-center}}) in order to add charts to your official quartet repertory. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
+</p>
+<p>
+If you are the quartet contact (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
+</p>
+    {{/bs-collapse}}
+{{else}}
+<p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed5' this)}}
+      "Add New Chart" button is disabled? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=customCollapsed5}}
+<p>
+Only the following Chapter Leader roles (as identified in the BHS {{member-center}}) may add charts to the official chorus repertory: President, Secretary, Director, Associate or Assistant Director, or Chorus Manager. If you need to be added to one of those roles in MC, please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 people have the necessary permissions to change or add Chapter Leaders in the BHS Member Center.
+</p>
+<p>
+If you have been added to one of those roles (and you’re still not able to edit), submit an inquiry to report the situation to {{customer-support}}.
+</p>
+    {{/bs-collapse}}
+{{/if}}
+</section>
 </div>
 <div>
   {{#bs-modal

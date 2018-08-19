@@ -10,6 +10,9 @@ export default Component.extend({
   algolia: service(),
   currentUser: service(),
   customCollapsed: true,
+  customCollapsed2: true,
+  customCollapsed4: true,
+  customCollapsed5: true,
   isDisabled: not(
     'model.permissions.write',
   ),
