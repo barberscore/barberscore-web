@@ -21,7 +21,7 @@ export default Model.extend({
   perRank: DS.attr('number'),
   sngRank: DS.attr('number'),
   totRank: DS.attr('number'),
-  allPoints: DS.attr('number'),
+  practicePoints: DS.attr('number'),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
