@@ -35,8 +35,8 @@
             {{!-- <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td> --}}
             <td>{{moment-format member.person.birthDate 'L'}}</td>
             <td>{{member.person.bhsId}}</td>
-            <td>{{member.person.status}}</td>
-            <td>{{moment-format member.person.currentThrough 'L'}}</td>
+            <td>{{member.person.user.status}}</td>
+            <td>{{moment-format member.person.user.currentThrough 'L'}}</td>
           {{/if}}
         </tr>
       {{else}}

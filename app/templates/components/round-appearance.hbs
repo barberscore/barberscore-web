@@ -77,8 +77,8 @@
             <li>{{appearance-finish model=model}}</li>
           {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
             <li>{{appearance-verify model=model}}</li>
-            <li>All Points: {{model.allPoints}}</li>
             <li>Official Points: {{model.totPoints}}</li>
+            <li>Practice Points: {{model.practicePoints}}</li>
           {{/if}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>

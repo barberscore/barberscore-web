@@ -26,7 +26,6 @@ export default Model.extend({
   image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
   bhsId: DS.attr('number'),
-  currentThrough: DS.attr('isodate'),
   fullName: DS.attr('string'),
   commonName: DS.attr('string'),
   sortName: DS.attr('string'),

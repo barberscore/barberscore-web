@@ -2,10 +2,14 @@ import { not } from '@ember/object/computed';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
+  status: DS.attr('user-status'),
   username: DS.attr('string'),
   isActive: DS.attr('boolean'),
   isStaff: DS.attr('boolean'),
   person: DS.belongsTo('person', {async: true}),
+  name: DS.attr('string'),
+  email: DS.attr('string'),
+  currentThrough: DS.attr('isodate'),
   permissions: DS.attr(),
   isDisabled: not(
     'permissions.write'
