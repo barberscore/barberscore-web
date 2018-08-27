@@ -16,6 +16,28 @@
           Preferences
         </p>
         <p>
+         {{#bs-button class='btn btn-link' onClick=(toggle 'whichChoice' this)}}
+      Which buttons should you select? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=whichChoice}}
+<p>
+<strong>Compete for Awards -OR- Score/Eval Only?</strong>
+</p>
+<p>Choose <em>Compete for Awards</em> if you are officially entering the contest session. You will then select to include one or more contests/awards (for which you are eligible) in the <strong>Contests Entered</strong> section below. Your group will be scored and appear on the Official Scoring Summary (OSS).
+</p>
+<p>
+Choose <em>Score/Eval Only</em> if you are NOT officially entering any contest. In this case, you cannot select ANY contests/awards below in the <strong>Contests Entered</strong> section. Instead, your group will be adjuducated by the judges and receive private unofficial score results. Your group will NOT appear on the Official Scoring Summary (OSS).
+</p>
+<p>
+<strong>Skip Eval -OR- Include Eval</strong>
+</p>
+<p>
+This is easy... does your group want to participate in an onsite evaluation by one or more judges after the contest? If you'd like to skip the evaluations, choose <em>Skip Eval</em>. If you want your group to be included in the post-contest evalation schedule, choose <em>Include Eval</em>.
+</p>
+   {{/bs-collapse}}
+        
+        <p>
           {{entry-preferences model=model}}
         </p>
       </section>
