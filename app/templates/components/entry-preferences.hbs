@@ -30,6 +30,20 @@
     {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
     {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated Participants-On-Stage' label='Participants-On-Stage' property='pos' onChange=(perform autosave 'pos')}}
   {{else}}
-    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBB, comma separated' label='Members(s)' property='participants' onChange=(perform autosave 'participants')}}
+    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' label='Members: T, L, Br, Bs' property='participants' onChange=(perform autosave 'participants')}}
+    <section>
+    <p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'memberHelp' this)}}
+      What is expected in the 'Members' box above? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=memberHelp}}
+<p>Please indicate the names of your quartet that will be performing, as you wish them to appear in the convention program. Names must be listed in order (T, L, Br, Bs) separted by commas. For example:
+</p>
+<p>
+<strong>Tim Waurick, Joe Connelly, Brandon Guyton, Brett Littlefield</strong>
+</p>
+   {{/bs-collapse}}
+</section>
   {{/if}}
 {{/bs-form}}
