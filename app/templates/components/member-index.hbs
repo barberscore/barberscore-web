@@ -13,8 +13,8 @@
             <th class='col-md-1'>Image</th>
             <th>Name</th>
             <th>Primary Voice Part</th>
-            <th>Established</th>
-            <th>Current Through</th>
+            <th>Start Date</th>
+            <th>End Date</th>
           </tr>
         </thead>
         <tbody>
@@ -34,10 +34,10 @@
                 {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
               </td>
               <td>
-                {{moment-format member.establishedDate 'L'}}
+                {{moment-format member.startDate 'L'}}
               </td>
               <td>
-                {{moment-format member.currentThrough 'L'}}
+                {{moment-format member.endDate 'L'}}
               </td>
             </tr>
 
