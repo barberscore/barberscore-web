@@ -1,6 +1,7 @@
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
+import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
   flashMessages: service(),
@@ -10,15 +11,36 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  sortedCompetitorsProperties: [
-    'statusSort',
-    'totPoints:desc',
+  sortedAppearancesProperties: [
+    'isRanked:desc',
+    'isMulti:desc',
+    'competitorTotScore:desc',
     'groupName',
   ],
-  sortedCompetitors: sort(
-    'model.session.competitors',
-    'sortedCompetitorsProperties'
+  sortedAppearances: sort(
+    'model.appearances',
+    'sortedAppearancesProperties'
   ),
+  rankedAppearances: filterBy(
+    'model.appearances',
+    'isRanked',
+  ),
+  sortedRanks: sort(
+    'rankedAppearances',
+    'sortedAppearancesProperties'
+  ),
+  autosave: task(function* (property, value){
+    this.get('model').set(property, value);
+    yield timeout(1000);
+    try {
+      yield this.get('model').save();
+      this.get('flashMessages').success("Saved");
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.get('flashMessages').danger(error.detail);
+      })
+    }
+  }).restartable(),
   // searchGroup: task(function* (term){
   //   yield timeout(600);
   //   let kindModel = this.get('model.kind');
