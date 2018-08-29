@@ -5,6 +5,7 @@ import { task, timeout } from 'ember-concurrency';
 import { not } from '@ember/object/computed';
 
 export default Component.extend({
+  memberHelp: true,
   isDisabled: not(
     'model.permissions.write',
   ),

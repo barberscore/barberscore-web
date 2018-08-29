@@ -7,14 +7,14 @@
   <div class='panel-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>These are the groups of which you are currently a member. However, only those designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only permissions. Please read the tutorials or FAQ to learn more.</caption>
+        <caption>These are the groups of which you are currently a member. However, only members designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only access. Please read the tutorials or FAQ to learn more.</caption>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
             <th>Name</th>
             <th>Primary Voice Part</th>
-            <th>Established</th>
-            <th>Current Through</th>
+            <th>Start Date</th>
+            <th>End Date</th>
           </tr>
         </thead>
         <tbody>
@@ -34,10 +34,10 @@
                 {{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}
               </td>
               <td>
-                {{moment-format member.establishedDate 'L'}}
+                {{moment-format member.startDate 'L'}}
               </td>
               <td>
-                {{moment-format member.currentThrough 'L'}}
+                {{moment-format member.endDate 'L'}}
               </td>
             </tr>
 
@@ -61,6 +61,9 @@
       <p>
         This is the list of currently active groups for which you are listed as a member. Please access the BHS {{member-center}} and check your group subscription status.
       </p>
+      <p>
+If the Member Center shows that you are a current member and your group is not listed, check again in 24 hours as your status may not have yet been synchronized. If after 24 hours (and a full browser refresh) your group still isn't listed, please submit an inquiry to report the situation to {{customer-support}}.
+</p>
       <p><strong>NOTE:</strong> Please be patient as <em>newly registered quartets</em> will not be displayed in Barberscore until BHS headquarters has:
       </p>
       <ul class='list-styled'>
@@ -69,7 +72,7 @@
         <li>Finalized the Member Center record</li>
       </ul>
       <p>
-        <em>This process can take up to 5 business days.</em>
+        <em>That process can take up to 5 business days.</em>
       </p>
     {{/bs-collapse}}
   </div>

@@ -4,6 +4,7 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   membersCollapsed: true,
   repertoryCollapsed: true,
+  whichChoice: true,
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
