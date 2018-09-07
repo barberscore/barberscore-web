@@ -5,6 +5,7 @@ import DS from 'ember-data';
 export default Model.extend({
   // Fields
   status: DS.attr('song-status'),
+  legacyChart: DS.attr('string'),
   num: DS.attr('number'),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
