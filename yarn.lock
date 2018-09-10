@@ -3254,8 +3254,8 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
 electron-to-chromium@^1.3.47:
-  version "1.3.63"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.63.tgz#6485f5f4f3375358aa8fa23c2029ada208483b8d"
+  version "1.3.64"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.64.tgz#39f5a93bf84ab7e10cfbb7522ccfc3f1feb756cf"
 
 elliptic@^6.0.0:
   version "6.4.0"
@@ -3428,7 +3428,7 @@ ember-cli-babel@6.12.0:
     ember-cli-version-checker "^2.1.0"
     semver "^5.4.1"
 
-ember-cli-babel@^6.0.0, ember-cli-babel@^6.12.0:
+ember-cli-babel@^6.0.0:
   version "6.16.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.16.0.tgz#623b4a2764ece72b65f1572fc8aeb5714a450228"
   dependencies:
@@ -3446,7 +3446,7 @@ ember-cli-babel@^6.0.0, ember-cli-babel@^6.12.0:
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.11.0, ember-cli-babel@^6.8.2:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.11.0, ember-cli-babel@^6.12.0, ember-cli-babel@^6.16.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.2:
   version "6.17.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.17.0.tgz#1f3e8ed9f4e2338caef6bc2c3d08d3c9928d0ddd"
   dependencies:
@@ -3464,7 +3464,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.11.0, ember-cli-babel@^6.8.2:
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.10.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.7.2, ember-cli-babel@^6.8.1, ember-cli-babel@^6.9.0:
+ember-cli-babel@^6.0.0-beta.7, ember-cli-babel@^6.10.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.7.2, ember-cli-babel@^6.8.1, ember-cli-babel@^6.9.0:
   version "6.14.1"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.14.1.tgz#796339229035910b625593caffbc2683792ada68"
   dependencies:
@@ -3554,6 +3554,15 @@ ember-cli-htmlbars@^2.0.2:
   dependencies:
     broccoli-persistent-filter "^1.0.3"
     hash-for-dep "^1.0.2"
+    json-stable-stringify "^1.0.0"
+    strip-bom "^3.0.0"
+
+ember-cli-htmlbars@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.0.0.tgz#4977b9eddbc725f8da25090ecdbba64533b2eadc"
+  dependencies:
+    broccoli-persistent-filter "^1.4.3"
+    hash-for-dep "^1.2.3"
     json-stable-stringify "^1.0.0"
     strip-bom "^3.0.0"
 
@@ -3836,7 +3845,7 @@ ember-composable-helpers@2.1.0:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^6.6.0"
 
-ember-concurrency@^0.8.14:
+ember-concurrency@^0.8.14, ember-concurrency@^0.8.19:
   version "0.8.20"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.20.tgz#2c4f84ed3eb86cd0c7be9c2d21dd23f560757ac7"
   dependencies:
@@ -3844,7 +3853,7 @@ ember-concurrency@^0.8.14:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
-ember-concurrency@^0.8.19, ember-concurrency@^0.8.7:
+ember-concurrency@^0.8.7:
   version "0.8.19"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.19.tgz#71b9c175ba077865310029cb4bdb880e17d5155e"
   dependencies:
@@ -4058,12 +4067,12 @@ ember-popper@^0.8.3:
     popper.js "^1.12.9"
 
 ember-power-select@^2.0.0-beta.2:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-2.0.5.tgz#a69079e86112d370d99f34f64d53c4db929e25a8"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-2.0.6.tgz#899d0a34860f09eabe4e05c188807f4ea8a66326"
   dependencies:
     ember-basic-dropdown "^1.0.0"
-    ember-cli-babel "^6.11.0"
-    ember-cli-htmlbars "^2.0.1"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
     ember-concurrency "^0.8.19"
     ember-text-measurer "^0.4.0"
     ember-truth-helpers "^2.0.0"
@@ -9645,8 +9654,8 @@ worker-farm@^1.5.2:
     errno "~0.1.7"
 
 workerpool@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-2.3.1.tgz#6872d3a749dd820d42b8390abaac20fb14ce4c81"
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/workerpool/-/workerpool-2.3.2.tgz#6bb17f31293e6b1e5e8dcdd5c2ad9122f471aaf3"
   dependencies:
     object-assign "4.1.1"
 
