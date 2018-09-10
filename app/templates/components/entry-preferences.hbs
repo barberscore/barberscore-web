@@ -28,7 +28,18 @@
   {{#if (eq model.group.kind 'Chorus')}}
     {{form.element controlType='text' disabled=true placeholder='Chapter' label='Chapter' property='parentName'}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
-    {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated Participants-On-Stage' label='Participants-On-Stage' property='pos' onChange=(perform autosave 'pos')}}
+    <section>
+    <p>
+    {{#bs-button class='btn btn-link' onClick=(toggle 'directorHelp' this)}}
+      What is expected in the 'Director(s)' box above? Click Here.
+    {{/bs-button}}
+</p>
+    {{#bs-collapse collapsed=directorHelp}}
+<p>Please indicate the name your director as you wish it to appear in the convention program. If you will have no director, you must type the word 'None'. If more than one director will be performing, separate the names by a comma and a space.
+</p>
+   {{/bs-collapse}}
+</section>
+    {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated number of participants' label='Participants-On-Stage' property='pos' onChange=(perform autosave 'pos')}}
   {{else}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' label='Members: T, L, Br, Bs' property='participants' onChange=(perform autosave 'participants')}}
     <section>
@@ -38,7 +49,7 @@
     {{/bs-button}}
 </p>
     {{#bs-collapse collapsed=memberHelp}}
-<p>Please indicate the names of your quartet that will be performing, as you wish them to appear in the convention program. Names must be listed in order (T, L, Br, Bs) separted by commas. For example:
+<p>Please indicate the names of your quartet that will be performing as you wish them to appear in the convention program. Names must be listed in order (T, L, Br, Bs) separated by commas. For example:
 </p>
 <p>
 <strong>Tim Waurick, Joe Connelly, Brandon Guyton, Brett Littlefield</strong>
