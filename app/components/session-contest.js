@@ -14,4 +14,15 @@ export default Component.extend({
     'filteredContestants',
     'contestantSortProperties'
   ),
+  sortedContestsProperties: [
+    'isPrimary:desc',
+    'groupKindSort',
+    'awardQualifier',
+    'awardAgeSort',
+    'awardName',
+  ],
+  sortedContests: sort(
+    'model.session.contests',
+    'sortedContestsProperties'
+  ),
 });
