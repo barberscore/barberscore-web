@@ -1,6 +1,6 @@
 {{#bs-button
   type='primary'
-  disabled=model.isError
+  disabled=model.isDisabled
   onClick=(action (mut inviteEntryModal) true)
 }}
   {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Invited'))}}Re-Invite Entry{{else}}Invite Entry{{/if}}

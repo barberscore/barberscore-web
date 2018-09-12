@@ -37,7 +37,7 @@
   <div>
     {{#if (eq model.status 'Built')}}
       <p>
-        {{#bs-button type='success' disabled=model.isError onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
+        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
       </p>
     {{/if}}
   </div>
