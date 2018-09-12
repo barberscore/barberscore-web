@@ -1,4 +1,4 @@
-{{#bs-button type='primary' onClick=(perform finishAppearance)}}
+{{#bs-button disabled=model.isDisabled type='primary' onClick=(perform finishAppearance)}}
   {{#if finishAppearance.isRunning}}
     Finishing {{fa-icon "spinner" spin=true}}
   {{else}}
