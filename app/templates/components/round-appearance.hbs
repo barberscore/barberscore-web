@@ -73,8 +73,10 @@
         {{#if model.permissions.write}}
           {{#if (eq model.status 'Built')}}
             <li>{{appearance-start model=model}}</li>
+            <li>{{#bs-button onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
           {{else if (eq model.status 'Started')}}
             <li>{{appearance-finish model=model}}</li>
+            <li>{{#bs-button onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
           {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
             <li>{{appearance-verify model=model}}</li>
             <li>Practice Points: {{model.practicePoints}}</li>
