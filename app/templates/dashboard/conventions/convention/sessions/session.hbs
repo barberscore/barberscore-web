@@ -38,7 +38,6 @@
           Session Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
-      {{#if model.permissions.write}}
         <ul class='list-inline'>
           {{#if (eq model.status 'New')}}
             <li>{{session-build model=model}}</li>
@@ -52,7 +51,6 @@
             <li>{{session-start model=model}}</li>
           {{/if}}
         </ul>
-      {{/if}}
     </div>
   </div>
 </section>

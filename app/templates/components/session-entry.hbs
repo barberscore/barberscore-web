@@ -118,30 +118,28 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
-        {{#if model.permissions.write}}
-          {{#if (eq model.status 'New')}}
-            <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
-          {{else if (eq model.status 'Built')}}
-            {{#if model.session.isInvitational}}
-              <li>{{entry-invite model=model}}</li>
-            {{else}}
-              <li>{{entry-approve model=model}}</li>
-            {{/if}}
-            <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
-          {{else if (eq model.status 'Invited')}}
-            <li>{{entry-submit model=model}}</li>
-            <li>{{entry-withdraw model=model}}</li>
-          {{else if (eq model.status 'Submitted')}}
-            <li>{{entry-approve model=model}}</li>
-            <li>{{entry-withdraw model=model}}</li>
-          {{else if (eq model.status 'Approved')}}
-            <li>{{entry-approve model=model}}</li>
-            <li>{{entry-withdraw model=model}}</li>
-          {{else if (eq model.status 'Withdrawn')}}
-            <li>{{entry-approve model=model}}</li>
-          {{else if (eq model.status 'Scratched')}}
+        {{#if (eq model.status 'New')}}
+          <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+        {{else if (eq model.status 'Built')}}
+          {{#if model.session.isInvitational}}
+            <li>{{entry-invite model=model}}</li>
+          {{else}}
             <li>{{entry-approve model=model}}</li>
           {{/if}}
+          <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+        {{else if (eq model.status 'Invited')}}
+          <li>{{entry-submit model=model}}</li>
+          <li>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Submitted')}}
+          <li>{{entry-approve model=model}}</li>
+          <li>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Approved')}}
+          <li>{{entry-approve model=model}}</li>
+          <li>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Withdrawn')}}
+          <li>{{entry-approve model=model}}</li>
+        {{else if (eq model.status 'Scratched')}}
+          <li>{{entry-approve model=model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
