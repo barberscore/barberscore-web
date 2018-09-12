@@ -17,6 +17,7 @@ export default Component.extend({
       this.set('startSessionModal', false);
       this.set('startSessionModalError', false);
       this.get('flashMessages').success("Started!");
+      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds');
     } catch(e) {
       this.set('startSessionModalError', true);
     }
