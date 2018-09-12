@@ -42,7 +42,7 @@
                   &nbsp;
                   {{#if (eq appearance.status 'Verified')}}
                     {{#if appearance.isDetected}}
-                      <a href={{appearance.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
+                      <a href={{appearance.varianceReport}} target="_blank" ><span class="label label-danger">Variance Detected</span></a>
                     {{else}}
                       {{fa-icon 'check-circle' class='text-success'}}
                     {{/if}}
