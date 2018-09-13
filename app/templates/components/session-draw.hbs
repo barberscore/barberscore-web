@@ -5,7 +5,7 @@
     </h4>
   {{else if (and isEditing (or (eq model.status 'Closed')(eq model.status 'Verified')))}}
     <div>
-      {{#bs-button onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+      {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
     <div class='table-responsive'>
       <table class='table'>
@@ -45,7 +45,7 @@
       {{#if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
         <div class='row'>
           <div class='col-md-6'>
-            {{#bs-button onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+            {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
           </div>
         </div>
       {{/if}}

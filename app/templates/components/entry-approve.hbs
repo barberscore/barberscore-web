@@ -1,6 +1,6 @@
 {{#bs-button
   type='primary'
-  disabled=model.isError
+  disabled=model.isDisabled
   onClick=(action (mut approveEntryModal) true)
 }}
   {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Approved'))}}Re-Approve Entry{{else}}Approve Entry{{/if}}

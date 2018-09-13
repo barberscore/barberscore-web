@@ -33,7 +33,7 @@
         #{{model.num}}: {{model.competitor.group.name}}
         {{#if (eq model.status 'Verified')}}
           {{#if model.isDetected}}
-            <a href={{model.varianceReport}}><span class="label label-danger">Variance Detected</span></a>
+            <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
           {{else}}
             {{fa-icon 'check-circle' class='text-success'}}
           {{/if}}
@@ -70,16 +70,16 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
-        {{#if model.permissions.write}}
-          {{#if (eq model.status 'Built')}}
-            <li>{{appearance-start model=model}}</li>
-          {{else if (eq model.status 'Started')}}
-            <li>{{appearance-finish model=model}}</li>
-          {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
-            <li>{{appearance-verify model=model}}</li>
-            <li>Practice Points: {{model.practicePoints}}</li>
-            <li>Official Points: {{model.totPoints}}</li>
-          {{/if}}
+        {{#if (eq model.status 'Built')}}
+          <li>{{appearance-start model=model}}</li>
+          <li>{{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
+        {{else if (eq model.status 'Started')}}
+          <li>{{appearance-finish model=model}}</li>
+          <li>{{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
+        {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
+          <li>{{appearance-verify model=model}}</li>
+          <li>Practice Points: {{model.practicePoints}}</li>
+          <li>Official Points: {{model.totPoints}}</li>
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

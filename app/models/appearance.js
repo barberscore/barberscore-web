@@ -35,6 +35,7 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   confirm: memberAction({path: 'confirm', type: 'post'}),
+  mock: memberAction({path: 'mock', type: 'get'}),
 
   isDisabled: not(
     'permissions.write'

@@ -1,0 +1,14 @@
+<p>
+  {{#power-select
+    search=(perform searchConvention)
+    selected=convention
+    onchange=(perform redirectConvention)
+    placeholder="Enter Convention Name"
+    allowClear=true
+    renderInPlace=true
+    noMatchesMessage="We Could Not Find a Convention with that Name"
+    as |convention|
+  }}
+    Convention: {{convention.name}}
+  {{/power-select}}
+</p>

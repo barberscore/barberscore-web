@@ -34,22 +34,20 @@
           Round Status: <strong>{{model.status}}</strong>
         </h4>
       </div>
-      {{#if model.permissions.write}}
-        <ul class='list-inline'>
-          {{#if (eq model.status 'New')}}
-            <li>{{round-build model=model}}</li>
-          {{else if (eq model.status 'Built')}}
-            <li>{{round-start model=model}}</li>
-            <li>{{round-reset model=model}}</li>
-          {{else if (eq model.status 'Started')}}
-            <li>{{round-verify model=model}}</li>
-            <li>{{round-reset model=model}}</li>
-          {{else if (eq model.status 'Verified')}}
-            <li>{{round-verify model=model}}</li>
-            <li>{{round-finish model=model}}</li>
-          {{/if}}
-        </ul>
-      {{/if}}
+      <ul class='list-inline'>
+        {{#if (eq model.status 'New')}}
+          <li>{{round-build model=model}}</li>
+        {{else if (eq model.status 'Built')}}
+          <li>{{round-start model=model}}</li>
+          <li>{{round-reset model=model}}</li>
+        {{else if (eq model.status 'Started')}}
+          <li>{{round-verify model=model}}</li>
+          <li>{{round-reset model=model}}</li>
+        {{else if (eq model.status 'Verified')}}
+          <li>{{round-verify model=model}}</li>
+          <li>{{round-finish model=model}}</li>
+        {{/if}}
+      </ul>
     </div>
   </div>
 </section>

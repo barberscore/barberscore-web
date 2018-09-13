@@ -6,6 +6,7 @@ import { not } from '@ember/object/computed';
 
 export default Component.extend({
   memberHelp: true,
+  directorHelp: true,
   isDisabled: not(
     'model.permissions.write',
   ),

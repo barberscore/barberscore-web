@@ -28,8 +28,10 @@ export default Component.extend({
      return window.open(url);
     },
     clickCsa() {
-      let url = this.get('model.csa');
-      return window.open(url);
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/csarounddraft`;
+     return window.open(url);
     },
   }
 });

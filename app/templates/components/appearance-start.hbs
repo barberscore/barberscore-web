@@ -1,4 +1,8 @@
-{{#bs-button type='primary' onClick=(perform startAppearance)}}
+{{#bs-button
+  disabled=model.isDisabled
+  type='primary'
+  onClick=(perform startAppearance)
+}}
   {{#if startAppearance.isRunning}}
     Starting {{fa-icon "spinner" spin=true}}
   {{else}}

@@ -2,28 +2,28 @@
   <div class='panel panel-default'>
     <div class='panel-heading'>
       <ul class='list-inline pull-right'>
-        {{#if (has-previous model sortedContestants)}}
+        {{#if (has-previous model sortedContests)}}
           <li>
-            {{#bs-button onClick=(action (mut model) (previous model sortedContestants))}}
+            {{#bs-button onClick=(action (mut model) (previous model sortedContests))}}
              Previous
             {{/bs-button}}
           </li>
         {{else}}
           <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedContestants))}}
+            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedContests))}}
                Previous
             {{/bs-button}}
           </li>
         {{/if}}
-        {{#if (has-next model sortedContestants)}}
+        {{#if (has-next model sortedContests)}}
           <li>
-            {{#bs-button onClick=(action (mut model) (next model sortedContestants))}}
+            {{#bs-button onClick=(action (mut model) (next model sortedContests))}}
               Next
             {{/bs-button}}
           </li>
         {{else}}
           <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedContestants))}}
+            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedContests))}}
               Next
             {{/bs-button}}
           </li>

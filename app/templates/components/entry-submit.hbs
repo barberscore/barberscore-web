@@ -1,6 +1,6 @@
 {{#bs-button
   type='primary'
-  disabled=model.isError
+  disabled=model.isDisabled
   onClick=(action (mut submitEntryModal) true)
 }}
   {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Submitted'))}}Re-Submit Entry{{else}}Submit Entry{{/if}}

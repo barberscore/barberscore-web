@@ -21,18 +21,23 @@
   <div class='table-responsive'>
     <table class='table'>
       <caption>
-        All ranked competitors, ordered by current total <strong>score</strong> (cumulative for all rounds).  Unranked and single-round competitors are listed after ranked competitors on this list, but will be ordered by total points on the OSS.
+        All ranked competitors, ordered by current total <strong>score</strong> (cumulative for all rounds).
+        {{#if (not-eq model.kind 'Finals')}}
+          Single-round competitors are not ranked in this list, but will appear appropriately on the OSS.
+        {{/if}}
       </caption>
       <thead>
         <tr>
           <th class='col-md-1'>Rank</th>
           <th class='col-md-4'>Name</th>
-          <th class='col-md-1'>Ranked</th>
-          <th class='col-md-1'>Multi</th>
+          {{!-- <th class='col-md-1'>Ranked</th> --}}
           <th class='col-md-1'>Points</th>
           <th class='col-md-1'>Score</th>
           <th class='col-md-1'>Status</th>
-          <th class='col-md-1'>Draw</th>
+          {{#if (not-eq model.kind 'Finals')}}
+            {{!-- <th class='col-md-1'>Multi</th> --}}
+            <th class='col-md-1'>Draw</th>
+          {{/if}}
         </tr>
       </thead>
       <tbody>
@@ -47,24 +52,26 @@
               {{else}}
                 <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
               {{/if}}
-              <td>
+              {{!-- <td>
                 {{#if appearance.competitor.isRanked}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
-              </td>
-              <td>
-                {{#if appearance.competitor.isMulti}}
-                  {{fa-icon 'check-circle' class='text-success'}}
-                {{/if}}
-              </td>
+              </td> --}}
               <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
               <td>{{single-fixed appearance.competitor.totScore}}</td>
               <td>
                 {{appearance.status}}
               </td>
-              <td>
-                {{appearance.draw}}
-              </td>
+              {{#if (not-eq model.kind 'Finals')}}
+                {{!-- <td>
+                  {{#if appearance.competitor.isMulti}}
+                    {{fa-icon 'check-circle' class='text-success'}}
+                  {{/if}}
+                </td> --}}
+                <td>
+                  {{appearance.draw}}
+                </td>
+              {{/if}}
             {{/if}}
           </tr>
         {{else}}

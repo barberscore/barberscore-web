@@ -41,9 +41,7 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.round.status 'Built')}}
-          {{#if model.permissions.write}}
-              <li>{{panelist-delete model=model}}</li>
-          {{/if}}
+          <li>{{panelist-delete model=model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
