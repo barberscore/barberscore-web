@@ -120,4 +120,7 @@ export default Model.extend({
   sumSongs: sum(
     'songScores',
   ),
+  groupName: alias(
+    'competitor.group.name',
+  ),
 });

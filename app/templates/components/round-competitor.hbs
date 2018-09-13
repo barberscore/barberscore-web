@@ -64,13 +64,13 @@
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
-          <li>{{competitor-start model=model}}</li>
+          {{!-- <li>{{competitor-start model=model}}</li> --}}
         {{else if (eq model.status 'Started')}}
-          <li>{{competitor-finish model=model}}</li>
+          {{!-- <li>{{competitor-finish model=model}}</li> --}}
           <li>{{competitor-scratch model=model}}</li>
           {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
         {{else if (eq model.status 'Finished')}}
-          <li>{{competitor-start model=model}}</li>
+          {{!-- <li>{{competitor-start model=model}}</li> --}}
           <li>{{competitor-scratch model=model}}</li>
           {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
         {{/if}}

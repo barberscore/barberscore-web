@@ -5,6 +5,7 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   currentUser: service(),
   store: service(),
+  router: service(),
   flashMessages: service(),
   verifyRoundModal: false,
   verifyRoundModalError: false,
