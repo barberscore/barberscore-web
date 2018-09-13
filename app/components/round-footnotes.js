@@ -2,10 +2,6 @@ import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
-  // isDisabled: not(
-  //  'model.permissions.write',
-  //),
-  isDisabled:false,
   autosave: task(function* (value){
     let round = yield this.get('model');
     round.set('footnotes', value);
