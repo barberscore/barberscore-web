@@ -17,9 +17,13 @@
     <p>
         This generates draft versions of the OSS, CSA and SA for the CA to verify.  They are not made public until the next step; you will be able to make changes as necessary until the Round is finished.
     </p>
-    {{#if (not-eq model.kind 'Finals')}}
+    {{#if (eq model.kind 'Finals')}}
       <p>
-          This will also draw the top <strong>{{model.spots}} multi-round competitors</strong> into the next round, plus set the top non-continuing finisher as Mic Tester at Draw 0.  If you wish to change the number of available spots, please cancel this window and change the Spots Available, and then Verify Round again.
+        Pay particular attenion to the contest winners for accuracy and completeness (you will need to select winners for any manual awards.)  If you need to make changes to the scores, be sure to re-verify before continuing.
+      </p>
+    {{else}}
+      <p>
+          This will draw the top <strong>{{model.spots}} multi-round competitors</strong> into the next round plus set the top non-continuing finisher as Mic Tester at Draw 0.  If you wish to change the number of available spots, please cancel this window and change the Spots Available, and then Verify Round again.
       </p>
     {{/if}}
     {{#if verifyRoundModalError}}
