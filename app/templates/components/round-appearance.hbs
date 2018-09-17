@@ -72,10 +72,26 @@
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
-          <li>{{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
-        {{else if (eq model.status 'Started')}}
+          <li>
+            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
+              {{#if mockAppearance.isRunning}}
+                Mocking {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Mock Appearance
+              {{/if}}
+            {{/bs-button}}
+          </li>
+          {{else if (eq model.status 'Started')}}
           <li>{{appearance-finish model=model}}</li>
-          <li>{{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}Mock{{/bs-button}}</li>
+          <li>
+            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
+              {{#if mockAppearance.isRunning}}
+                Mocking {{fa-icon "spinner" spin=true}}
+              {{else}}
+                Mock Appearance
+              {{/if}}
+            {{/bs-button}}
+          </li>
         {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
           <li>{{appearance-verify model=model}}</li>
           <li>Practice Points: {{model.practicePoints}}</li>
