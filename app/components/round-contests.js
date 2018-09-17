@@ -21,8 +21,12 @@ export default Component.extend({
     'model.session.contests',
     'notQualifier',
   ),
-  filteredContests: filterBy(
+  filteredContestsContestants: filterBy(
     'filteredChampionships',
+    'includedContestantsCount',
+  ),
+  filteredContests: filterBy(
+    'filteredContestsContestants',
     'status',
     'Included',
   ),
