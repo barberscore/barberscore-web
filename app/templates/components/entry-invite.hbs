@@ -18,6 +18,11 @@
       This will formally invite the group to participate in the Session your entry into the contest.  They will be sent an email with instructions how to accept or decline their invitation.
     </p>
   {{/modal.body}}
+    {{#if inviteEntryModalError}}
+      <p class='text-danger'>
+        Could not Invite Entry.  Check to ensure the entry is valid and try again.  Otherwise, contact support at {{customer-support}}.
+      </p>
+    {{/if}}
   {{#modal.footer}}
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
     {{#bs-button type='primary' onClick=(perform inviteEntry)}}
