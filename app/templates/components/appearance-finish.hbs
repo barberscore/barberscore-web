@@ -2,6 +2,10 @@
   {{#if finishAppearance.isRunning}}
     Finishing {{fa-icon "spinner" spin=true}}
   {{else}}
-    Finish Appearance
+    {{#if (eq model.status 'Started')}}
+      Finish Appearance
+    {{else if (eq model.status 'Verified')}}
+      Re-Open Appearance
+    {{/if}}
   {{/if}}
 {{/bs-button}}

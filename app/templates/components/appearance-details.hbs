@@ -19,6 +19,7 @@
           type='tel'
           value=model.pos
           min=0
+          disabled=model.isDisabled
           max=100
           placeholder='Participants on Stage'
           change=(perform autosave value='target.value')

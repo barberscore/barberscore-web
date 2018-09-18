@@ -4,14 +4,12 @@
   onClick=(perform verifyAppearance)
 }}
   {{#if verifyAppearance.isRunning}}
-    Verifying... {{fa-icon "spinner" spin=true}}
+    Checking... {{fa-icon "spinner" spin=true}}
   {{else}}
     {{#if (eq model.status 'Finished')}}
-      Verify Appearance
+      Check Appearance
     {{else if (eq model.status 'Variance')}}
-      Verify Variance
-    {{else if (eq model.status 'Verified')}}
-      Re-Verify Appearance
+      Verify Appearance
     {{/if}}
   {{/if}}
 {{/bs-button}}
