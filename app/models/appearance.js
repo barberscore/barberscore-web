@@ -21,7 +21,6 @@ export default Model.extend({
   perRank: DS.attr('number'),
   sngRank: DS.attr('number'),
   totRank: DS.attr('number'),
-  practicePoints: DS.attr('number'),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
@@ -102,14 +101,21 @@ export default Model.extend({
     'chartsMapped',
     'chartOptionsProperties'
   ),
-  songScores: mapBy(
-    'songs',
-    'sumScores',
-  ),
-  sumSongs: sum(
-    'songScores',
-  ),
   groupName: alias(
     'competitor.group.name',
+  ),
+  practiceSongScores: mapBy(
+    'songs',
+    'sumPracticeScores',
+  ),
+  officialSongScores: mapBy(
+    'songs',
+    'sumOfficialScores',
+  ),
+  sumPractice: sum(
+    'practiceSongScores',
+  ),
+  sumOfficial: sum(
+    'officialSongScores',
   ),
 });

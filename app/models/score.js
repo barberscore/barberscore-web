@@ -1,4 +1,4 @@
-import { alias, not } from '@ember/object/computed';
+import { alias, not, equal } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -19,6 +19,22 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  intPoints: computed(
+    'points', function() {
+      return parseInt(this.get('points'));
+    }
+  ),
+
+  isOfficial: equal(
+    'kind',
+    'Official',
+  ),
+
+  isPractice: equal(
+    'kind',
+    'Practice',
   ),
 
   statusOptions: [

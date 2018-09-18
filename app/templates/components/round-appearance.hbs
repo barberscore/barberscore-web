@@ -32,6 +32,12 @@
       )}}
         <section>
           {{appearance-panelists model=model}}
+          <div class='pull-right'>
+            <ul class='list-inline'>
+              <li>Practice Points: {{#if model.sumPractice}}{{model.sumPractice}}{{/if}}</li>
+              <li>Official Points: {{#if model.sumPractice}}{{model.sumOfficial}}{{/if}}</li>
+            </ul>
+          </div>
         </section>
       {{/if}}
       {{!-- <hr>

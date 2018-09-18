@@ -1,4 +1,4 @@
-import { not, sum, mapBy } from '@ember/object/computed';
+import { not, sum, mapBy, filterBy } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -28,12 +28,28 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  scoresPoints: mapBy(
+  practiceScores: filterBy(
     'scores',
-    'points',
+    'isPractice',
   ),
-  sumScores: sum(
-    'scoresPoints',
+  practiceScoresPoints: mapBy(
+    'practiceScores',
+    'intPoints',
+  ),
+  sumPracticeScores: sum(
+    'practiceScoresPoints',
+  ),
+
+  officialScores: filterBy(
+    'scores',
+    'isOfficial',
+  ),
+  officialScoresPoints: mapBy(
+    'officialScores',
+    'intPoints',
+  ),
+  sumOfficialScores: sum(
+    'officialScoresPoints',
   ),
 
   statusOptions: [
