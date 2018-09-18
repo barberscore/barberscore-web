@@ -1,0 +1,18 @@
+<ul class='list-inline pull-right'>
+  <li>
+    {{#bs-button
+      disabled=(not (has-previous model sortedArray))
+      onClick=(action 'trans' (previous model sortedArray))
+    }}
+     Previous
+    {{/bs-button}}
+  </li>
+  <li>
+    {{#bs-button
+      disabled=(not (has-next model sortedArray))
+      onClick=(action 'trans' (next model sortedArray))
+    }}
+      Next
+    {{/bs-button}}
+  </li>
+</ul>
