@@ -1,24 +1,7 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
-      <ul class='list-inline pull-right'>
-        <li>
-          {{#bs-button
-            disabled=(not (has-previous model sortedPanelists))
-            onClick=(action 'trans' (previous model sortedPanelists))
-          }}
-           Previous
-          {{/bs-button}}
-        </li>
-        <li>
-          {{#bs-button
-            disabled=(not (has-next model sortedPanelists))
-            onClick=(action 'trans' (next model sortedPanelists))
-          }}
-            Next
-          {{/bs-button}}
-        </li>
-      </ul>
+        {{prev-next model=model sortedArray=sortedPanelists}}
       <h4>
         {{model.person.commonName}}
       </h4>

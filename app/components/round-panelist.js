@@ -22,9 +22,4 @@ export default Component.extend({
     'model.round.panelists',
     'sortedPanelistsProperties',
   ),
-  actions: {
-    trans(panelist) {
-      return this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist', panelist.get('id'));
-    }
-  }
 });

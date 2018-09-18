@@ -1,34 +1,8 @@
 <section>
   <div class='panel panel-default'>
     <div class='panel-heading'>
-      <ul class='list-inline pull-right'>
-        {{#if (has-previous model sortedContests)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (previous model sortedContests))}}
-             Previous
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedContests))}}
-               Previous
-            {{/bs-button}}
-          </li>
-        {{/if}}
-        {{#if (has-next model sortedContests)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (next model sortedContests))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedContests))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{/if}}
-      </ul>
+      {{prev-next model=model sortedArray=sortedContests}}
+
       <h4>
         {{model.award.name}}
       </h4>

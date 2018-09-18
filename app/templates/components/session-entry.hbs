@@ -1,34 +1,7 @@
 <section id="entry-detail">
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
-      <ul class='list-inline pull-right'>
-        {{#if (has-previous model sortedEntries)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (previous model sortedEntries))}}
-             Previous
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedEntries))}}
-               Previous
-            {{/bs-button}}
-          </li>
-        {{/if}}
-        {{#if (has-next model sortedEntries)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (next model sortedEntries))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedEntries))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{/if}}
-      </ul>
+      {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
         {{model.group.name}}&nbsp;({{model.representing}}){{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
       </h4>
