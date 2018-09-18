@@ -30,6 +30,6 @@
 
 <p>
   {{#if (eq model.status 'Verified')}}
-    Competitor Scoring Analysis: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickCsa') }}
+    Competitor Scoring Analysis: {{#if model.competitor.csa}}<a href={{model.competitor.csa}} target='_blank'>{{fa-icon 'file-pdf-o'  size='2' }}</a>{{/if}}
   {{/if}}
 </p>
