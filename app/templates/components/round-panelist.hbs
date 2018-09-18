@@ -2,32 +2,22 @@
   <div class='panel panel-default'>
     <div class='panel-heading fixed-panel-header'>
       <ul class='list-inline pull-right'>
-        {{#if (has-previous model sortedPanelists)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (previous model sortedPanelists))}}
-             Previous
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (previous model sortedPanelists))}}
-               Previous
-            {{/bs-button}}
-          </li>
-        {{/if}}
-        {{#if (has-next model sortedPanelists)}}
-          <li>
-            {{#bs-button onClick=(action (mut model) (next model sortedPanelists))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{else}}
-          <li>
-            {{#bs-button disabled=true onClick=(action (mut model) (next model sortedPanelists))}}
-              Next
-            {{/bs-button}}
-          </li>
-        {{/if}}
+        <li>
+          {{#bs-button
+            disabled=(not (has-previous model sortedPanelists))
+            onClick=(action 'trans' (previous model sortedPanelists))
+          }}
+           Previous
+          {{/bs-button}}
+        </li>
+        <li>
+          {{#bs-button
+            disabled=(not (has-next model sortedPanelists))
+            onClick=(action 'trans' (next model sortedPanelists))
+          }}
+            Next
+          {{/bs-button}}
+        </li>
       </ul>
       <h4>
         {{model.person.commonName}}
