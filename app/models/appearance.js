@@ -1,4 +1,4 @@
-import { alias, gt, lt, mapBy, sort, not, notEmpty, equal, and, sum } from '@ember/object/computed';
+import { alias, gt, lt, mapBy, sort, not, equal, sum } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -30,29 +30,18 @@ export default Model.extend({
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
 
-  scratch: memberAction({path: 'scratch'}),
   start: memberAction({path: 'start', type: 'post'}),
-  verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  confirm: memberAction({path: 'confirm', type: 'post'}),
+  verify: memberAction({path: 'verify', type: 'post'}),
   mock: memberAction({path: 'mock', type: 'get'}),
 
   isDisabled: not(
     'permissions.write'
   ),
 
-  varNotEmpty: notEmpty(
-    'varianceReport',
-  ),
-
   isVerified: equal(
     'status',
     'Verified',
-  ),
-
-  isDetected: and(
-    'varNotEmpty',
-    'isVerified',
   ),
 
   statusOptions: [
