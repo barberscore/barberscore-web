@@ -4,12 +4,10 @@
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.competitor.group.name}}
-        {{#if (eq model.status 'Verified')}}
-          {{#if model.isDetected}}
-            <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
-          {{else}}
-            {{fa-icon 'check-circle' class='text-success'}}
-          {{/if}}
+        {{#if (eq model.status 'Variance')}}
+          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+        {{else}}
+          {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}
      </h4>
     </div>
@@ -20,6 +18,7 @@
       {{#if (or
         (eq model.status 'Started')
         (eq model.status 'Finished')
+        (eq model.status 'Variance')
         (eq model.status 'Verified')
       )}}
         <section>
@@ -27,6 +26,7 @@
         </section>
       {{/if}}
       {{#if (or
+        (eq model.status 'Variance')
         (eq model.status 'Finished')
         (eq model.status 'Verified')
       )}}
@@ -63,7 +63,9 @@
               {{/if}}
             {{/bs-button}}
           </li>
-        {{else if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
+        {{else if (eq model.status 'Finished')}}
+          <li>{{appearance-verify model=model}}</li>
+        {{else if (or (eq model.status 'Verified')(eq model.status 'Variance'))}}
           <li>{{appearance-verify model=model}}</li>
           <li>Practice Points: {{model.practicePoints}}</li>
           <li>Official Points: {{model.totPoints}}</li>

@@ -6,6 +6,12 @@
   {{#if verifyAppearance.isRunning}}
     Verifying... {{fa-icon "spinner" spin=true}}
   {{else}}
-    Verify Appearance
+    {{#if (eq model.status 'Finished')}}
+      Verify Appearance
+    {{else if (eq model.status 'Variance')}}
+      Verify Variance
+    {{else if (eq model.status 'Verified')}}
+      Re-Verify Appearance
+    {{/if}}
   {{/if}}
 {{/bs-button}}
