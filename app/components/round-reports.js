@@ -15,6 +15,12 @@ export default Component.extend({
       let url = `${apiHost}/api/round/${modelId}/sadraft`;
      return window.open(url);
     },
+    clickCsa() {
+      let apiHost = config.APP.API_HOST;
+      let modelId = this.get('model.id');
+      let url = `${apiHost}/api/round/${modelId}/csadraft`;
+     return window.open(url);
+    },
     clickAnnouncements() {
       let apiHost = config.APP.API_HOST;
       let modelId = this.get('model.id');
