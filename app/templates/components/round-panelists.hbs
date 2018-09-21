@@ -8,22 +8,22 @@
       </caption>
       <thead>
         <tr>
+          <th class='col-md-1'>Num</th>
           <th class='col-md-6'>Person</th>
           <th class='col-md-2'>Category</th>
           <th class='col-md-2'>Kind</th>
-          <th class='col-md-1'>Num</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedPanelists as |panelist|}}
           <tr>
+            <td>{{panelist.num}}</td>
             {{#if panelist.person.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}</td>
               <td>{{panelist.category}}</td>
               <td>{{panelist.kind}}</td>
-              <td>{{panelist.num}}</td>
             {{/if}}
           </tr>
         {{else}}

@@ -2,42 +2,40 @@
   <div class='table-responsive'>
     <table class='table'>
         <caption>
-          These are the contests for which you can select a winner.
+          These are the contests that will be determined this round.
         </caption>
       <thead>
         <tr>
-          <th class='col-md-3'>Status</th>
-          <th class='col-md-1'>Is Manual</th>
-          <th class='col-md-1'>Num Rounds</th>
-          <th class='col-md-2'>Name</th>
+          <th class='col-md-1'>Num</th>
+          <th class='col-md-5'>Name</th>
+          <th class='col-md-1'>Manual</th>
+          <th class='col-md-4'>Winner</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedContests as |contest|}}
-          <tr>
-            <td>
-              {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.award.name}}{{/link-to}}
-            </td>
-            <td>
-              {{#if (eq contest.award.level 'Manual')}}
-                {{fa-icon 'check-circle' class='text-success'}}
-              {{/if}}
-            </td>
-            <td>
-              {{contest.award.rounds}}
-            </td>
-            <td>
-              {{#if contest.includedContestantsCount}}
+          {{#if (lte contest.award.rounds model.num)}}
+            <tr>
+              <td>
+                {{contest.num}}
+              </td>
+              <td>
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.contests.contest' contest}}{{contest.award.name}}{{/link-to}}
+              </td>
+              <td>
+                {{#if (eq contest.award.level 'Manual')}}
+                  {{fa-icon 'check-circle' class='text-success'}}
+                {{/if}}
+              </td>
+              <td>
                 {{#if contest.group}}
                   {{contest.group.name}}
                 {{else}}
                   (Not Yet Determined/Select Manually.)
                 {{/if}}
-              {{else}}
-                  (No contestants.)
-              {{/if}}
-            </td>
-          </tr>
+              </td>
+            </tr>
+          {{/if}}
         {{else}}
           <tr>
             <td colspan=3>No contests.</td>

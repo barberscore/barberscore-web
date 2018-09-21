@@ -67,6 +67,12 @@ export default Model.extend({
   competitorTotPoints: alias(
     'competitor.totPoints'
   ),
+  competitorSngPoints: alias(
+    'competitor.sngPoints'
+  ),
+  competitorPerPoints: alias(
+    'competitor.perPoints'
+  ),
   competitorTotScore: alias(
     'competitor.totScore'
   ),

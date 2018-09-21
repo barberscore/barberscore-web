@@ -15,18 +15,23 @@ export default Component.extend({
   // ),
   isDisabled: false,
   sortedContestsProperties: [
-    'awardTreeSort',
+    'num',
   ],
   filteredChampionships: filterBy(
     'model.session.contests',
     'notQualifier',
   ),
-  filteredContestsContestants: filterBy(
+  singlesOnly: filterBy(
     'filteredChampionships',
     'includedContestantsCount',
+    1,
+  ),
+  numberedContests: filterBy(
+    'singlesOnly',
+    'num',
   ),
   filteredContests: filterBy(
-    'filteredContestsContestants',
+    'numberedContests',
     'status',
     'Included',
   ),

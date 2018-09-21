@@ -20,72 +20,169 @@
       {{/bs-form}}
     {{/if}}
   </section>
-  <div class='table-responsive'>
-    <table class='table'>
-      <caption>
-        All ranked competitors, ordered by current total <strong>score</strong> (cumulative for all rounds).
-        {{#if (not-eq model.kind 'Finals')}}
-          Single-round competitors are not ranked in this list, but will appear appropriately on the OSS.
-        {{/if}}
-      </caption>
-      <thead>
-        <tr>
-          <th class='col-md-1'>Rank</th>
-          <th class='col-md-8'>Name</th>
-          {{!-- <th class='col-md-1'>Ranked</th> --}}
-          <th class='col-md-1'>Points</th>
-          <th class='col-md-1'>Score</th>
-          <th class='col-md-1'>Status</th>
-          {{#if (not-eq model.kind 'Finals')}}
-            <th class='col-md-1'>Multi</th>
-            <th class='col-md-1'>Draw</th>
-          {{/if}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedAppearances as |appearance index|}}
-          <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
-            {{#if appearance.isLoading}}
-              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              {{#if appearance.competitor.totScore}}
-                <td>{{inc index}}</td>
-              {{else}}
-                <td></td>
-              {{/if}}
-              {{#if appearance.competitor.isLoading}}
-                <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
-              {{/if}}
-              {{!-- <td>
-                {{#if appearance.competitor.isRanked}}
-                  {{fa-icon 'check-circle' class='text-success'}}
-                {{/if}}
-              </td> --}}
-              <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
-              <td>{{single-fixed appearance.competitor.totScore}}</td>
-              <td>
-                {{appearance.status}}
-              </td>
-              {{#if (not-eq model.kind 'Finals')}}
-                <td>
-                  {{#if appearance.competitor.isMulti}}
-                    {{fa-icon 'check-circle' class='text-success'}}
+  {{#unless (eq model.kind 'Finals')}}
+    <section>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>
+            All multi-round competitors, ordered by rank.
+          </caption>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Rank</th>
+              <th class='col-md-8'>Name</th>
+              <th class='col-md-1'>Points</th>
+              <th class='col-md-1'>Score</th>
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'>Draw</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedAppearances as |appearance index|}}
+              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+                {{#if appearance.isLoading}}
+                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  {{#if appearance.competitor.totScore}}
+                    <td>{{inc index}}</td>
+                  {{else}}
+                    <td></td>
                   {{/if}}
-                </td>
-                <td>
-                  {{appearance.draw}}
-                </td>
-              {{/if}}
-            {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td>(No competitors currently entered for this session.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+                  {{#if appearance.competitor.isLoading}}
+                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                  {{/if}}
+                  {{!-- <td>
+                    {{#if appearance.competitor.isRanked}}
+                      {{fa-icon 'check-circle' class='text-success'}}
+                    {{/if}}
+                  </td> --}}
+                  <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
+                  <td>{{single-fixed appearance.competitor.totScore}}</td>
+                  <td>
+                    {{appearance.status}}
+                  </td>
+                  <td>
+                    {{appearance.draw}}
+                  </td>
+                {{/if}}
+              </tr>
+            {{else}}
+              <tr>
+                <td colspan=8>(No multi-round competitors.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>
+            All single-round competitors ordered by rank.
+          </caption>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Rank</th>
+              <th class='col-md-8'>Name</th>
+              <th class='col-md-1'>Points</th>
+              <th class='col-md-1'>Score</th>
+              <th class='col-md-1'>Status</th>
+              <th class='col-md-1'></th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each singleAppearances as |appearance index|}}
+              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+                {{#if appearance.isLoading}}
+                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  {{#if appearance.competitor.totScore}}
+                    <td>{{inc index}}</td>
+                  {{else}}
+                    <td></td>
+                  {{/if}}
+                  {{#if appearance.competitor.isLoading}}
+                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                  {{/if}}
+                  {{!-- <td>
+                    {{#if appearance.competitor.isRanked}}
+                      {{fa-icon 'check-circle' class='text-success'}}
+                    {{/if}}
+                  </td> --}}
+                  <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
+                  <td>{{single-fixed appearance.competitor.totScore}}</td>
+                  <td>
+                    {{appearance.status}}
+                  </td>
+                  <td></td>
+                {{/if}}
+              </tr>
+            {{else}}
+              <tr>
+                <td colspan=8>(No single-round competitors.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {{else}}
+    <section>
+      <div class='table-responsive'>
+        <table class='table'>
+          <caption>
+            All competitors in cumulative rank order.
+          </caption>
+          <thead>
+            <tr>
+              <th class='col-md-1'>Rank</th>
+              <th class='col-md-8'>Name</th>
+              <th class='col-md-1'>Points</th>
+              <th class='col-md-1'>Score</th>
+              <th class='col-md-1'>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each finalAppearances as |appearance index|}}
+              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+                {{#if appearance.isLoading}}
+                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  {{#if appearance.competitor.totScore}}
+                    <td>{{inc index}}</td>
+                  {{else}}
+                    <td></td>
+                  {{/if}}
+                  {{#if appearance.competitor.isLoading}}
+                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                  {{/if}}
+                  {{!-- <td>
+                    {{#if appearance.competitor.isRanked}}
+                      {{fa-icon 'check-circle' class='text-success'}}
+                    {{/if}}
+                  </td> --}}
+                  <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
+                  <td>{{single-fixed appearance.competitor.totScore}}</td>
+                  <td>
+                    {{appearance.status}}
+                  </td>
+                {{/if}}
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No competitors currently entered for this session.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {{/unless}}
 {{/if}}

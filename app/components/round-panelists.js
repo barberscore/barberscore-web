@@ -9,6 +9,7 @@ export default Component.extend({
   algolia: service(),
   flashMessages: service(),
   sortedPanelistsProperties: [
+    'num',
     'categorySort',
     'kindSort',
     'personSort',

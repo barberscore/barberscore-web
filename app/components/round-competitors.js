@@ -32,6 +32,17 @@ export default Component.extend({
     'rankedAppearances',
     'sortedAppearancesProperties'
   ),
+  finalRankSortProperties: [
+    'competitorTotPoints',
+    'competitorSngPoints',
+    'competitorPerPoints',
+    'groupName',
+  ],
+
+  finalAppearances: sort(
+    'multiAppearances',
+    'finalRankSortProperties'
+  ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);
     yield timeout(1000);
