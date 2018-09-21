@@ -12,13 +12,16 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedAppearancesProperties: [
-    'isRanked:desc',
     'isMulti:desc',
     'competitorTotScore:desc',
     'groupName',
   ],
-  sortedAppearances: sort(
+  multiAppearances: filterBy(
     'model.appearances',
+    'isMulti',
+  ),
+  sortedAppearances: sort(
+    'multiAppearances',
     'sortedAppearancesProperties'
   ),
   rankedAppearances: filterBy(

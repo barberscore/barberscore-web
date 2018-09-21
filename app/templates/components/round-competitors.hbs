@@ -37,7 +37,7 @@
           <th class='col-md-1'>Score</th>
           <th class='col-md-1'>Status</th>
           {{#if (not-eq model.kind 'Finals')}}
-            {{!-- <th class='col-md-1'>Multi</th> --}}
+            <th class='col-md-1'>Multi</th>
             <th class='col-md-1'>Draw</th>
           {{/if}}
         </tr>
@@ -69,11 +69,11 @@
                 {{appearance.status}}
               </td>
               {{#if (not-eq model.kind 'Finals')}}
-                {{!-- <td>
+                <td>
                   {{#if appearance.competitor.isMulti}}
                     {{fa-icon 'check-circle' class='text-success'}}
                   {{/if}}
-                </td> --}}
+                </td>
                 <td>
                   {{appearance.draw}}
                 </td>

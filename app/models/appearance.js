@@ -58,6 +58,9 @@ export default Model.extend({
   isRanked: alias(
     'competitor.isRanked'
   ),
+  isMulti: alias(
+    'competitor.isMulti'
+  ),
   roundNum: alias(
     'round.num'
   ),
