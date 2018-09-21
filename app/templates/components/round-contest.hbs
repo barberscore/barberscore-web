@@ -8,6 +8,7 @@
     </div>
     <div class='panel-body'>
       <section>
+      {{#if model.notQualifier }}
         {{#power-select
           options=model.groupOptions
           selected=model.group
@@ -21,7 +22,11 @@
         }}
           Winner: {{group.name}}
         {{/power-select}}
+      {{else}}
+        (Qualifiers are determined by rule and appear on the OSS)
+      {{/if }}
       </section>
+
       <section>
 
       </section>

@@ -38,6 +38,10 @@ export default Model.extend({
     'permissions.write'
   ),
 
+  isSingle: not(
+    'isMulti',
+  ),
+
   isIncluded: equal(
     'status',
     'Started',

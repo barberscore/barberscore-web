@@ -61,6 +61,9 @@ export default Model.extend({
   isMulti: alias(
     'competitor.isMulti'
   ),
+  isSingle: alias(
+    'competitor.isSingle'
+  ),
   roundNum: alias(
     'round.num'
   ),

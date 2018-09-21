@@ -11,37 +11,31 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  sortedAppearancesProperties: [
-    'isMulti:desc',
-    'competitorTotScore:desc',
+  rankSortProperties: [
+    'competitorTotPoints:desc',
+    'competitorSngPoints:desc',
+    'competitorPerPoints:desc',
     'groupName',
   ],
   multiAppearances: filterBy(
     'model.appearances',
     'isMulti',
   ),
-  sortedAppearances: sort(
-    'multiAppearances',
-    'sortedAppearancesProperties'
-  ),
-  rankedAppearances: filterBy(
+  singleAppearances: filterBy(
     'model.appearances',
-    'isRanked',
+    'isSingle',
   ),
-  sortedRanks: sort(
-    'rankedAppearances',
-    'sortedAppearancesProperties'
+  sortedAppearances: sort(
+    'model.appearances',
+    'rankSortProperties'
   ),
-  finalRankSortProperties: [
-    'competitorTotPoints',
-    'competitorSngPoints',
-    'competitorPerPoints',
-    'groupName',
-  ],
-
-  finalAppearances: sort(
+  sortedSingleAppearances: sort(
+    'singleAppearances',
+    'rankSortProperties'
+  ),
+  sortedMultiAppearances: sort(
     'multiAppearances',
-    'finalRankSortProperties'
+    'rankSortProperties'
   ),
   autosave: task(function* (property, value){
     this.get('model').set(property, value);

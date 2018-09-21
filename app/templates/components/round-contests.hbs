@@ -1,8 +1,8 @@
-{{#if (or (eq model.status 'Verified')(eq model.status 'Finished'))}}
+{{#unless (eq model.status 'New')}}
   <div class='table-responsive'>
     <table class='table'>
         <caption>
-          These are the contests that will be determined this round.
+          Contest winners are determined at Round Verification as appropriate (for the round, multi-round contestants, etc.)  The CA can override all determinations if necessary.  Only those contests with winners selected will appear on the announcements and OSS.
         </caption>
       <thead>
         <tr>
@@ -14,7 +14,6 @@
       </thead>
       <tbody>
         {{#each sortedContests as |contest|}}
-          {{#if (lte contest.award.rounds model.num)}}
             <tr>
               <td>
                 {{contest.num}}
@@ -31,11 +30,16 @@
                 {{#if contest.group}}
                   {{contest.group.name}}
                 {{else}}
-                  (Not Yet Determined/Select Manually.)
+                  {{#if (eq contest.award.level 'Manual')}}
+                    (Select Manually)
+                  {{else if (eq contest.award.level 'Qualfier')}}
+                    (Qualifiers Appear on OSS)
+                  {{else}}
+                    (Determined Automatically)
+                  {{/if}}
                 {{/if}}
               </td>
             </tr>
-          {{/if}}
         {{else}}
           <tr>
             <td colspan=3>No contests.</td>
@@ -46,6 +50,6 @@
   </div>
 {{else}}
   <h4>
-    Winners are determined after the Round is Verified.
+    Contests are available after the Round is Verified.
   </h4>
-{{/if}}
+{{/unless}}

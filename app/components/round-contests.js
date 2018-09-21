@@ -21,22 +21,12 @@ export default Component.extend({
     'model.session.contests',
     'notQualifier',
   ),
-  singlesOnly: filterBy(
-    'filteredChampionships',
-    'includedContestantsCount',
-    1,
-  ),
-  numberedContests: filterBy(
-    'singlesOnly',
+  includedContests: filterBy(
+    'model.session.contests',
     'num',
   ),
-  filteredContests: filterBy(
-    'numberedContests',
-    'status',
-    'Included',
-  ),
   sortedContests: sort(
-    'filteredContests',
+    'includedContests',
     'sortedContestsProperties'
   ),
   sortedContestants: sort(

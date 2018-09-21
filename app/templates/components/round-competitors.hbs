@@ -1,26 +1,22 @@
 {{#if (eq model.status 'New')}}
     <h4>Standings are available after the Round is Started.</h4>
-{{else if (eq model.status 'Built')}}
-    <h4>Standings are available after the Round is Started.</h4>
 {{else}}
-  <section>
-    {{#if (not-eq model.kind 'Finals')}}
-      {{#bs-form
-        formLayout="vertical"
-        model=model
-        as |form|
-      }}
-        {{form.element
-          controlType='tel'
-          disabled=isDisabled
-          label='Spots Available in Next Round (blank for unlimited).'
-          property='spots'
-          size=10
-          onChange=(perform autosave 'spots')}}
-      {{/bs-form}}
-    {{/if}}
-  </section>
   {{#unless (eq model.kind 'Finals')}}
+    <section>
+        {{#bs-form
+          formLayout="vertical"
+          model=model
+          as |form|
+        }}
+          {{form.element
+            controlType='tel'
+            disabled=isDisabled
+            label='Spots Available in Next Round (blank for unlimited).'
+            property='spots'
+            size=10
+            onChange=(perform autosave 'spots')}}
+        {{/bs-form}}
+    </section>
     <section>
       <div class='table-responsive'>
         <table class='table'>
@@ -38,7 +34,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedAppearances as |appearance index|}}
+            {{#each sortedMultiAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -94,7 +90,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each singleAppearances as |appearance index|}}
+            {{#each sortedSingleAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -131,7 +127,7 @@
         </table>
       </div>
     </section>
-  {{else}}
+  {{else}} {{!-- Finals --}}
     <section>
       <div class='table-responsive'>
         <table class='table'>
@@ -148,7 +144,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each finalAppearances as |appearance index|}}
+            {{#each sortedAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -177,7 +173,7 @@
               </tr>
             {{else}}
               <tr>
-                <td>(No competitors currently entered for this session.)</td>
+                <td colspan=8>(No competitors currently entered for this session.)</td>
               </tr>
             {{/each}}
           </tbody>

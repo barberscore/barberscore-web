@@ -12,9 +12,9 @@ export default Component.extend({
       });
       this.get('model').reload();
       if (this.get('model.varianceReport') == null) {
-        this.get('flashMessages').warning("VARIANCE!");
-      } else {
         this.get('flashMessages').success("Verified!");
+      } else {
+        this.get('flashMessages').warning("VARIANCE!");
       }
     } catch(e) {
       this.get('flashMessages').error(e);
