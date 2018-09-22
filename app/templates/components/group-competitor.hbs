@@ -7,9 +7,6 @@
     </div>
     <div class='panel-body'>
       {{#if (eq model.status 'Finished')}}
-        <h3>
-          Overall Rank: {{model.totRank}}
-        </h3>
         <div class='table-responsive'>
           <table class='table'>
             <thead>
@@ -32,7 +29,7 @@
               {{#each sortedAppearances as |appearance|}}
                 <tr>
                   <td>
-                    {{appearance.round.kind}} (Rank: {{appearance.totRank}})<br>
+                    {{appearance.round.kind}}{{!--  (Rank: {{appearance.totRank}}) --}}<br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
                       {{song.chart.title}}<br>
                     {{/each}}
