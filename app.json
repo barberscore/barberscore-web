@@ -3,7 +3,7 @@
   "description": "Scoring and Contest Web UI for the Barbershop Harmony Society",
   "logo": "https://barberscore-api.herokuapp.com/static/api/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-web",
-  "stack": "heroku-16",
+  "stack": "heroku-18",
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"
