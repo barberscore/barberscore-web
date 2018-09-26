@@ -7,6 +7,7 @@ export default Controller.extend({
   actions: {
     passwordless () {
       const lockOptions = {
+        configurationBaseUrl: 'https://cdn.auth0.com',
         allowAutocomplete: true,
         allowedConnections: ['email'],
         autoclose: true,
@@ -51,6 +52,7 @@ export default Controller.extend({
     },
     password () {
       const lockOptions = {
+        configurationBaseUrl: 'https://cdn.auth0.com',
         allowAutocomplete: true,
         allowedConnections: [
           'Default',
