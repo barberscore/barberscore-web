@@ -35,8 +35,12 @@
             {{!-- <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td> --}}
             <td>{{moment-format member.person.birthDate 'L'}}</td>
             <td>{{member.person.bhsId}}</td>
-            <td>{{member.person.user.status}}</td>
-            <td>{{moment-format member.person.user.currentThrough 'L'}}</td>
+            {{#if member.person.user.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{member.person.user.status}}</td>
+              <td>{{moment-format member.person.user.currentThrough 'L'}}</td>
+            {{/if}}
           {{/if}}
         </tr>
       {{else}}

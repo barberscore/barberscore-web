@@ -16,17 +16,25 @@
       <tbody>
         {{#each sortedContests as |contest|}}
           <tr>
-            <td>
-              {{input
-                type='checkbox'
-                checked=contest.isIncluded
-                disabled=contest.isCheckboxDisabled
-                change=(perform toggleContest contest value='target.checked')
-              }}
-            </td>
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}&nbsp;&nbsp;{{#if contest.isPrimary}}<span class="label label-success">Primary</span>{{/if}}</td>
-            <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
-            <td>{{contest.includedContestantsCount}}</td>
+            {{#if contest.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                {{input
+                  type='checkbox'
+                  checked=contest.isIncluded
+                  disabled=contest.isCheckboxDisabled
+                  change=(perform toggleContest contest value='target.checked')
+                }}
+              </td>
+              {{#if contest.award.isLoading}}
+                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}&nbsp;&nbsp;{{#if contest.isPrimary}}<span class="label label-success">Primary</span>{{/if}}</td>
+              {{/if}}
+              <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
+              <td>{{contest.includedContestantsCount}}</td>
+            {{/if}}
           </tr>
         {{else}}
           <tr>

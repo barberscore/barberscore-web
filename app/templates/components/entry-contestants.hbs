@@ -9,34 +9,30 @@
     </thead>
     <tbody>
       {{#each sortedContestants as |contestant|}}
-          <tr>
-            {{#if contestant.isLoading}}
-              <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+        <tr>
+          {{#if contestant.isLoading}}
+            <td colspan=3>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{input
+                type="checkbox"
+                checked=contestant.isIncluded
+                disabled=contestant.isDisabled
+                change=(perform toggleContestant contestant value='target.checked')
+              }}
+            </td>
+            {{#if contestant.contest.award.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>
-                {{input
-                  type="checkbox"
-                  checked=contestant.isIncluded
-                  disabled=contestant.isDisabled
-                  change=(perform toggleContestant contestant value='target.checked')
-                }}
-              </td>
-              <td>
-                {{#if contestant.contest.award.isLoading}}
-                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
-                {{else}}
-                  {{contestant.contest.award.name}}
-                {{/if}}
-              </td>
-              <td>
-                {{#if contestant.contest.award.description}}
-                  {{contestant.contest.award.description}}
-                {{else}}
-                  (No description available)
-                {{/if}}
-              </td>
+              <td>{{contestant.contest.award.name}}</td>
+              {{#if contestant.contest.award.description}}
+                <td>{{contestant.contest.award.description}}</td>
+              {{else}}
+                <td>(No description available)</td>
+              {{/if}}
             {{/if}}
-          </tr>
+          {{/if}}
+        </tr>
       {{else}}
         <tr>
           <td colspan=2>No contests available</td>

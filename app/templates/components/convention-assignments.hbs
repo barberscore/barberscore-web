@@ -17,24 +17,32 @@
     <tbody>
       {{#each sortedAssignments as |assignment|}}
         <tr>
-          <td>
-            {{#if assignment.person.image}}
-              <img src={{assignment.person.image}} class='img-responsive img-rounded'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive'>
-            {{/if}}
-          </td>
-          <td>
-            {{assignment.person.commonName}}
-          </td>
-          <td>
-            {{assignment.kind}}
-          </td>
-          <td>
-            {{assignment.category}}
-          </td>
-          <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
-          <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
+          {{#if assignment.isLoading}}
+            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{#if assignment.person.image}}
+                <img src={{assignment.person.image}} class='img-responsive img-rounded'>
+              {{else}}
+                <img src='/assets/no_image_available.jpg' class='img-responsive'>
+              {{/if}}
+            </td>
+          {{#if assignment.person.isLoading}}
+            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{assignment.person.commonName}}
+            </td>
+          {{/if}}
+            <td>
+              {{assignment.kind}}
+            </td>
+            <td>
+              {{assignment.category}}
+            </td>
+            <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
+            <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
+          {{/if}}
         </tr>
       {{else}}
         <tr>
