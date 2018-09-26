@@ -58,7 +58,7 @@
     "ember-power-select": "^2.0.0-beta.2",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.5.1",
-    "ember-simple-auth-auth0": "^4.0.0",
+    "ember-simple-auth-auth0": "4.2.0-beta.3",
     "ember-sortable": "^1.11.1",
     "ember-source": "~3.4.0",
     "ember-truth-helpers": "2.0.0",
