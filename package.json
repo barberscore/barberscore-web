@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
-    "@ember/optional-features": "^0.6.3",
+    "@ember/optional-features": "^0.7.0",
     "algoliasearch": "^3.24.12",
     "bootstrap": "3.3.7",
     "broccoli-asset-rev": "^3.0.0",
