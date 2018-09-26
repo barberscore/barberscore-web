@@ -26,14 +26,14 @@ export default Model.extend({
     'category',
     'categoryOptions',
     function() {
-      return this.get('categoryOptions').indexOf(this.get('category'));
+      return this.categoryOptions.indexOf(this.category);
     }
   ),
   kindSort: computed(
     'kind',
     'kindOptions',
     function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
+      return this.kindOptions.indexOf(this.kind);
     }
   ),
   statusOptions: [

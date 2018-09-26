@@ -12,10 +12,10 @@ export default Component.extend({
       yield this.model.withdraw({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('withdrawEntryModal', false);
       this.set('withdrawEntryModalError', false);
-      this.get('flashMessages').success("Withdrawn!");
+      this.flashMessages.success("Withdrawn!");
     } catch(e) {
       this.set('withdrawEntryModalError', true);
     }

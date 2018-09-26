@@ -10,10 +10,10 @@ export default Component.extend({
       yield this.model.finish({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
-      this.get('flashMessages').success("Finished!");
+      this.model.reload();
+      this.flashMessages.success("Finished!");
     } catch(e) {
-      this.get('flashMessages').error(e);
+      this.flashMessages.error(e);
     }
   }).drop(),
 });

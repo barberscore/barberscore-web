@@ -7,15 +7,15 @@ export default Component.extend({
   //),
   isDisabled:false,
   autosave: task(function* (value){
-    let session = yield this.get('model');
+    let session = yield this.model;
     session.set('footnotes', value);
     yield timeout(1000);
     try {
       yield session.save();
-      this.get('flashMessages').success("Saved");
+      this.flashMessages.success("Saved");
     } catch(e) {
       e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+        this.flashMessages.danger(error.detail);
       })
     }
   }).restartable(),

@@ -66,7 +66,7 @@ export default Model.extend({
     'code',
     'codeOptions',
     function() {
-      return this.get('codeOptions').indexOf(this.get('code'));
+      return this.codeOptions.indexOf(this.code);
     }
   ),
 

@@ -105,7 +105,7 @@ export default Model.extend({
     'status',
     'statusOptions',
     function() {
-      return this.get('statusOptions').indexOf(this.get('status'));
+      return this.statusOptions.indexOf(this.status);
     }
   ),
 
@@ -113,7 +113,7 @@ export default Model.extend({
     'kind',
     'kindOptions',
     function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
+      return this.kindOptions.indexOf(this.kind);
     }
   ),
 

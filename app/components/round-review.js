@@ -13,11 +13,11 @@ export default Component.extend({
       let round = yield this.model.review({
         'by': this.get('currentUser.user.id')
       });
-      this.get('store').pushPayload('round', round);
+      this.store.pushPayload('round', round);
       this.get('model.session.competitors').invoke('reload');
       this.set('reviewRoundModal', false);
       this.set('reviewRoundModalError', false);
-      this.get('flashMessages').success("Reviewed!");
+      this.flashMessages.success("Reviewed!");
     } catch(e) {
       this.set('reviewRoundModalError', true);
     }

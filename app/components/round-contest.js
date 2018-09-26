@@ -23,7 +23,7 @@ export default Component.extend({
   actions: {
     saveModel(model){
       model.save();
-      this.get('flashMessages').success("Saved!");
+      this.flashMessages.success("Saved!");
     },
   }
 });

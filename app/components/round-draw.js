@@ -26,12 +26,12 @@ export default Component.extend({
         item.set('draw', index + 1);
       });
       itemModels.invoke('save');
-      this.get('flashMessages').success('Success');
+      this.flashMessages.success('Success');
     },
     saveOrder() {
-      this.get('sortedCompetitors').invoke('save');
+      this.sortedCompetitors.invoke('save');
       this.set('isSorting', false);
-      this.get('flashMessages').success('Success');
+      this.flashMessages.success('Success');
     }
   }
 });

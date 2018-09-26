@@ -14,7 +14,7 @@ export default Component.extend({
     'model',
     'appearance',
     function() {
-      return this.get('store').query('score', {
+      return this.store.query('score', {
         'panelist': this.get('model.id'),
         'song__appearance': this.get('appearance.id'),
         'page_size': 100
@@ -30,7 +30,7 @@ export default Component.extend({
       yield property.save();
     } catch(e) {
       e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+        this.flashMessages.danger(error.detail);
       })
     }
   }).restartable(),

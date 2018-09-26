@@ -7,14 +7,14 @@ export default Component.extend({
     'model.permissions.write',
   ),
   autosave: task(function* (value){
-    this.get('model').set('description', value);
+    this.model.set('description', value);
     yield timeout(1000);
     try {
-      yield this.get('model').save();
-      this.get('flashMessages').success("Saved");
+      yield this.model.save();
+      this.flashMessages.success("Saved");
     } catch(e) {
       e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+        this.flashMessages.danger(error.detail);
       })
     }
   }).restartable(),

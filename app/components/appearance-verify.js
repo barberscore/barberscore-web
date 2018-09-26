@@ -10,14 +10,14 @@ export default Component.extend({
       yield this.model.verify({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       if (this.get('model.varianceReport') == null) {
-        this.get('flashMessages').success("Verified!");
+        this.flashMessages.success("Verified!");
       } else {
-        this.get('flashMessages').warning("VARIANCE!");
+        this.flashMessages.warning("VARIANCE!");
       }
     } catch(e) {
-      this.get('flashMessages').error(e);
+      this.flashMessages.error(e);
     }
   }).drop(),
 });

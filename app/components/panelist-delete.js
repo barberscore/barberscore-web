@@ -10,13 +10,13 @@ export default Component.extend({
   deletePanelistModalError: false,
   deletePanelist: task(function *() {
     try {
-      yield this.get('model').destroyRecord({
+      yield this.model.destroyRecord({
         'by': this.get('currentUser.user.id'),
       });
       this.set('deletePanelistModal', false);
       this.set('deletePanelistModalError', false);
-      this.get('flashMessages').success("Deleted!");
-      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.panelists');
+      this.flashMessages.success("Deleted!");
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.panelists');
     } catch(e) {
       this.set('deletePanelistModalError', true);
     }

@@ -23,7 +23,7 @@ export default Model.extend({
 
   intPoints: computed(
     'points', function() {
-      return parseInt(this.get('points'));
+      return parseInt(this.points);
     }
   ),
 
@@ -62,11 +62,11 @@ export default Model.extend({
 
   rowClass: computed(
     'kind', function() {
-      if (this.get('category') === 'Music') {
+      if (this.category === 'Music') {
         return 'warning';
-      } else if (this.get('category') === 'Performance') {
+      } else if (this.category === 'Performance') {
         return 'success';
-      } else if (this.get('category') === 'Singing') {
+      } else if (this.category === 'Singing') {
         return 'info';
       } else {
         return null;

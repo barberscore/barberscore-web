@@ -14,11 +14,11 @@ export default Component.extend({
       yield this.model.open({
         'by': this.get('currentUser.user.id')
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('openSessionModal', false);
       this.set('openSessionModalError', false);
-      this.get('flashMessages').success("Opened!");
-      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.entries');
+      this.flashMessages.success("Opened!");
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
     } catch(e) {
       this.set('openSessionModalError', true);
     }

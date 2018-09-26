@@ -14,13 +14,13 @@ export default Component.extend({
         'by': this.get('currentUser.user.id')
       });
       this.model.reload();
-      this.get('store').pushPayload('round', round);
+      this.store.pushPayload('round', round);
       this.get('model.panelists').invoke('reload');
       this.get('model.appearances').invoke('reload');
       this.get('model.session.competitors').invoke('reload');
       this.set('resetRoundModal', false);
       this.set('resetRoundModalError', false);
-      this.get('flashMessages').success("Reset!");
+      this.flashMessages.success("Reset!");
     } catch(e) {
       this.set('resetRoundModalError', true);
     }

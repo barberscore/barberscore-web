@@ -34,20 +34,20 @@ export default Component.extend({
         let contest = yield property.include({
           'by': this.get('currentUser.user.id'),
         });
-        this.get('store').pushPayload('contest', contest);
-        this.get('flashMessages').success("Included!");
+        this.store.pushPayload('contest', contest);
+        this.flashMessages.success("Included!");
       } catch(e) {
-        this.get('flashMessages').danger("Problem!");
+        this.flashMessages.danger("Problem!");
       }
     } else {
       try {
         let contest = yield property.exclude({
           'by': this.get('currentUser.user.id'),
         });
-        this.get('store').pushPayload('contest', contest);
-        this.get('flashMessages').success("Excluded!");
+        this.store.pushPayload('contest', contest);
+        this.flashMessages.success("Excluded!");
       } catch(e) {
-        this.get('flashMessages').danger("Problem!");
+        this.flashMessages.danger("Problem!");
       }
     }
   }).drop(),

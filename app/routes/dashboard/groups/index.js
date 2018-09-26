@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return this.get('store').query('group', {
+    return this.store.query('group', {
       'status': 10,
       'kind__gt': 21,
     });

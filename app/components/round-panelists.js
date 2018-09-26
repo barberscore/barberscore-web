@@ -20,7 +20,7 @@ export default Component.extend({
   ),
   searchPerson: task(function* (term){
     yield timeout(600);
-    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Person', query: term})
     return res.hits
   }),
@@ -28,10 +28,10 @@ export default Component.extend({
   createPanelistModalError: false,
   savePanelist: task(function* (obj, category, kind){
     try {
-      let person = yield this.get('store').findRecord('person', obj.objectID)
-      yield this.get('store').createRecord('panelist', {
+      let person = yield this.store.findRecord('person', obj.objectID)
+      yield this.store.createRecord('panelist', {
         person: person,
-        round: this.get('model'),
+        round: this.model,
         category: category,
         kind: kind,
         scores: [],
@@ -41,20 +41,20 @@ export default Component.extend({
       this.set('person', null);
       this.set('category', null);
       this.set('kind', null);
-      this.get('flashMessages').success("Created!");
+      this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createPanelistModalError', true);
-        this.get('flashMessages').danger(e.detail);
+        this.flashMessages.danger(e.detail);
       })
     }
   }).drop(),
   deletePanelist: task(function *(panelist) {
     try {
       yield panelist.destroyRecord();
-      this.get('flashMessages').success("Deleted!");
+      this.flashMessages.success("Deleted!");
     } catch(e) {
-      this.get('flashMessages').danger("Problem!");
+      this.flashMessages.danger("Problem!");
     }
   }).drop(),
   categoryOptions: [

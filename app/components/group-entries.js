@@ -1,4 +1,4 @@
-import { sort, filterBy, mapBy, alias, not} from '@ember/object/computed';
+import { sort, filterBy, mapBy, alias, not } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
@@ -23,7 +23,7 @@ export default Component.extend({
     'officerPersons',
     'currentPerson',
     function() {
-      return this.get('officerPersons').includes(this.get('currentPerson.id'));
+      return this.officerPersons.includes(this.get('currentPerson.id'));
     }
   ),
   isCreate: not(
@@ -49,7 +49,7 @@ export default Component.extend({
         'Chorus': 32,
         'Quartet': 41,
       };
-      return this.get('store').query('session', {
+      return this.store.query('session', {
         'status': 4, // TODO HARDCODED
         'kind': kinds[this.get('model.kind')],
         'is_invitational': false,
@@ -67,7 +67,7 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (session){
     try {
-      let entry = yield this.get('model').get('entries').createRecord({
+      let entry = yield this.model.get('entries').createRecord({
         session: session,
         description: '',
         contestants: [],
@@ -78,15 +78,15 @@ export default Component.extend({
       let payload = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('store').pushPayload(payload);
+      this.store.pushPayload(payload);
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
-      this.get('flashMessages').success("Created!");
-      this.get('router').transitionTo('dashboard.groups.group.entries.entry', entry.get('id'));
+      this.flashMessages.success("Created!");
+      this.router.transitionTo('dashboard.groups.group.entries.entry', entry.get('id'));
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('deleteEntryModalError', true);
-        this.get('flashMessages').danger(e.detail);
+        this.flashMessages.danger(e.detail);
       })
     }
   }).drop(),

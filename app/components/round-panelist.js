@@ -8,9 +8,9 @@ export default Component.extend({
   deletePanelist: task(function *(panelist) {
     try {
       yield panelist.destroyRecord();
-      this.get('flashMessages').success("Deleted!");
+      this.flashMessages.success("Deleted!");
     } catch(e) {
-      this.get('flashMessages').danger("Problem!");
+      this.flashMessages.danger("Problem!");
     }
   }).drop(),
   sortedPanelistsProperties: [

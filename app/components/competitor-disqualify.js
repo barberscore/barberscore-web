@@ -12,10 +12,10 @@ export default Component.extend({
       yield this.model.disqualify({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('disqualifyCompetitorModal', false);
       this.set('disqualifyCompetitorModalError', false);
-      this.get('flashMessages').success("Disqualified!");
+      this.flashMessages.success("Disqualified!");
     } catch(e) {
       this.set('disqualifyCompetitorModalError', true);
     }

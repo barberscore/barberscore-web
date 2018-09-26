@@ -35,13 +35,13 @@ export default Component.extend({
   ),
   searchGroup: task(function* (term){
     yield timeout(500);
-    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Group', query: term})
     return res.hits
   }),
   updateGroup: task(function* (contest, obj){
     if (obj) {
-      let group = yield this.get('store').findRecord('group', obj.objectID)
+      let group = yield this.store.findRecord('group', obj.objectID)
       contest.set('group', group);
     } else {
       contest.set('group', null);

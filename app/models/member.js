@@ -30,7 +30,7 @@ export default Model.extend({
     'status',
     'statusOptions',
     function() {
-      return this.get('statusOptions').indexOf(this.get('status'));
+      return this.statusOptions.indexOf(this.status);
     }
   ),
   partOptions: [
@@ -43,7 +43,7 @@ export default Model.extend({
     'part',
     'partOptions',
     function() {
-      return this.get('partOptions').indexOf(this.get('part'));
+      return this.partOptions.indexOf(this.part);
     }
   ),
   personDetail: computed(
@@ -51,8 +51,8 @@ export default Model.extend({
     'part',
     function() {
       let partOut = "(Unknown Part)";
-      if (this.get('part')) {
-        partOut = this.get('part');
+      if (this.part) {
+        partOut = this.part;
       }
       return this.get('person.nomen') + " - " + partOut;
     }

@@ -22,20 +22,20 @@ export default Component.extend({
         let contestant = yield property.include({
           'by': this.get('currentUser.user.id'),
         });
-        this.get('store').pushPayload('contestant', contestant);
-        this.get('flashMessages').success("Included!");
+        this.store.pushPayload('contestant', contestant);
+        this.flashMessages.success("Included!");
       } catch(e) {
-        this.get('flashMessages').danger("Problem!");
+        this.flashMessages.danger("Problem!");
       }
     } else {
       try {
         let contestant = yield property.exclude({
           'by': this.get('currentUser.user.id'),
         });
-        this.get('store').pushPayload('contestant', contestant);
-        this.get('flashMessages').success("Excluded!");
+        this.store.pushPayload('contestant', contestant);
+        this.flashMessages.success("Excluded!");
       } catch(e) {
-        this.get('flashMessages').danger("Problem!");
+        this.flashMessages.danger("Problem!");
       }
     }
   }).drop(),

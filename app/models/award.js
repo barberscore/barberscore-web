@@ -89,35 +89,35 @@ export default Model.extend({
     'status',
     'statusOptions',
     function() {
-      return this.get('statusOptions').indexOf(this.get('status'));
+      return this.statusOptions.indexOf(this.status);
     }
   ),
   kindSort: computed(
     'kind',
     'kindOptions',
     function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
+      return this.kindOptions.indexOf(this.kind);
     }
   ),
   levelSort: computed(
     'level',
     'levelOptions',
     function() {
-      return this.get('levelOptions').indexOf(this.get('level'));
+      return this.levelOptions.indexOf(this.level);
     }
   ),
   seasonSort: computed(
     'season',
     'seasonOptions',
     function() {
-      return this.get('seasonOptions').indexOf(this.get('season'));
+      return this.seasonOptions.indexOf(this.season);
     }
   ),
   ageSort: computed(
     'age',
     'ageOptions',
     function() {
-      return this.get('ageOptions').indexOf(this.get('age'));
+      return this.ageOptions.indexOf(this.age);
     }
   ),
 });

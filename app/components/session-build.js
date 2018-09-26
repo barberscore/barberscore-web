@@ -11,14 +11,14 @@ export default Component.extend({
   buildSessionModalError: false,
   buildSession: task(function *() {
     try {
-      yield this.get('model').build({
+      yield this.model.build({
         'by': this.get('currentUser.user.id')
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('buildSessionModal', false);
       this.set('buildSessionModalError', false);
-      this.get('flashMessages').success("Built!");
-      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.contests');
+      this.flashMessages.success("Built!");
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.contests');
     } catch(e) {
       this.set('buildSessionModalError', true);
     }

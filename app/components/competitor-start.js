@@ -12,10 +12,10 @@ export default Component.extend({
       yield this.model.start({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('startCompetitorModal', false);
       this.set('startCompetitorModalError', false);
-      this.get('flashMessages').success("Started!");
+      this.flashMessages.success("Started!");
     } catch(e) {
       this.set('startCompetitorModalError', true);
     }

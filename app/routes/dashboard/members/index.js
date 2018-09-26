@@ -5,7 +5,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service('current-user'),
   model() {
-    return this.get('store').query('member', {
+    return this.store.query('member', {
       'person__user': this.get('currentUser.user.id'),
       'status': 10,
       'group__status': 10,

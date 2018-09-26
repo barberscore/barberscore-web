@@ -27,7 +27,7 @@ export default Component.extend({
     'officerPersons',
     'currentPerson',
     function() {
-      return this.get('officerPersons').includes(this.get('currentPerson.id'));
+      return this.officerPersons.includes(this.get('currentPerson.id'));
     }
   ),
   isCreate: not(
@@ -43,37 +43,37 @@ export default Component.extend({
   flashMessages: service(),
   searchChart: task(function* (term){
     yield timeout(600);
-    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Chart', query: term})
     return res.hits
   }),
   deleteRepertory: task(function *(repertory) {
     try {
       yield repertory.destroyRecord();
-      this.get('flashMessages').success("Deleted!");
+      this.flashMessages.success("Deleted!");
     } catch(e) {
-      this.get('flashMessages').danger("Problem!");
+      this.flashMessages.danger("Problem!");
     }
   }).drop(),
   createRepertoryModal: false,
   createRepertoryModalError: false,
   saveRepertory: task(function* (c){
     try {
-      let chart = yield this.get('store').findRecord('chart', c.objectID)
-      let repertory = yield this.get('store').createRecord('repertory', {
+      let chart = yield this.store.findRecord('chart', c.objectID)
+      let repertory = yield this.store.createRecord('repertory', {
         chart: chart,
-        group: this.get('model'),
+        group: this.model,
       }).save();
       yield repertory.activate({
         'by': this.get('currentUser.user.id'),
       });
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
-      this.get('flashMessages').success("Created!");
+      this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createRepertoryModalError', true);
-        this.get('flashMessages').danger(e.detail);
+        this.flashMessages.danger(e.detail);
       })
     }
   }).drop(),

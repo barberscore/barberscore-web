@@ -12,10 +12,10 @@ export default Component.extend({
       yield this.model.approve({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('approveEntryModal', false);
       this.set('approveEntryModalError', false);
-      this.get('flashMessages').success("Approved!");
+      this.flashMessages.success("Approved!");
     } catch(e) {
       this.set('approveEntryModalError', true);
     }

@@ -1,4 +1,12 @@
-import { alias, filterBy, equal, not, sort, mapBy, or } from '@ember/object/computed';
+import {
+  alias,
+  filterBy,
+  equal,
+  not,
+  sort,
+  mapBy,
+  or
+} from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';

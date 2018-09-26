@@ -14,12 +14,12 @@ export default Component.extend({
         'by': this.get('currentUser.user.id')
       });
       this.model.reload();
-      this.get('store').pushPayload('round', round);
+      this.store.pushPayload('round', round);
       this.get('model.appearances').invoke('reload');
       this.get('model.panelists').invoke('reload');
       this.set('buildRoundModal', false);
       this.set('buildRoundModalError', false);
-      this.get('flashMessages').success("Built!");
+      this.flashMessages.success("Built!");
     } catch(e) {
       this.set('buildRoundModalError', true);
     }

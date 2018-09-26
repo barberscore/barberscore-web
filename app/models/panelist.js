@@ -19,11 +19,11 @@ export default Model.extend({
 
   rowClass: computed(
     'kind', function() {
-      if (this.get('category') === 'Music') {
+      if (this.category === 'Music') {
         return 'warning';
-      } else if (this.get('category') === 'Performance') {
+      } else if (this.category === 'Performance') {
         return 'success';
-      } else if (this.get('category') === 'Singing') {
+      } else if (this.category === 'Singing') {
         return 'info';
       } else {
         return null;
@@ -34,20 +34,20 @@ export default Model.extend({
     'category',
     'categoryOptions',
     function() {
-      return this.get('categoryOptions').indexOf(this.get('category'));
+      return this.categoryOptions.indexOf(this.category);
     }
   ),
   isScoring: computed(
     'category',
     function() {
-      return ['Singing', 'Music', 'Performance',].includes(this.get('category'));
+      return ['Singing', 'Music', 'Performance',].includes(this.category);
     }
   ),
   kindSort: computed(
     'kind',
     'kindOptions',
     function() {
-      return this.get('kindOptions').indexOf(this.get('kind'));
+      return this.kindOptions.indexOf(this.kind);
     }
   ),
   personSort: alias('person.sortName'),

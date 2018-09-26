@@ -9,7 +9,7 @@ export default Service.extend({
   load() {
     let username = this.get('session.data.authenticated.profile.sub');
     if (!isEmpty(username)) {
-      return this.get('store').query('user', {
+      return this.store.query('user', {
         'username': username,
       }).then(function(users) {
         return users.get('firstObject');

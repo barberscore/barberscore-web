@@ -12,10 +12,10 @@ export default Component.extend({
       yield this.model.invite({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('inviteEntryModal', false);
       this.set('inviteEntryModalError', false);
-      this.get('flashMessages').success("Invited!");
+      this.flashMessages.success("Invited!");
     } catch(e) {
       this.set('inviteEntryModalError', true);
     }

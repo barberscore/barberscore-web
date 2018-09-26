@@ -10,7 +10,7 @@ export default Component.extend({
   store: service(),
   searchGroup: task(function* (term){
     yield timeout(500);
-    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Group', query: term})
     return res.hits
   }),

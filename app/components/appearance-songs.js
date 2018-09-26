@@ -14,10 +14,10 @@ export default Component.extend({
     song.set('chart', chart);
     try {
       yield song.save();
-      this.get('flashMessages').success("Saved");
+      this.flashMessages.success("Saved");
     } catch(e) {
       e.errors.forEach((error) => {
-        this.get('flashMessages').danger(error.detail);
+        this.flashMessages.danger(error.detail);
       })
     }
   }).restartable(),

@@ -13,11 +13,11 @@ export default Component.extend({
       yield this.model.submit({
         'by': this.get('currentUser.user.id'),
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('submitEntryModal', false);
       this.set('submitEntryModalError', false);
-      this.get('flashMessages').success("Submitted!");
-      this.get('router').transitionTo(this.get('callback'));
+      this.flashMessages.success("Submitted!");
+      this.router.transitionTo(this.callback);
     } catch(e) {
       this.set('submitEntryModalError', true);
     }

@@ -45,7 +45,7 @@ export default Controller.extend({
           }
         },
       };
-      this.get('session').authenticate(
+      this.session.authenticate(
         'authenticator:auth0-lock-passwordless',
         lockOptions
       );
@@ -82,7 +82,7 @@ export default Controller.extend({
           title: "Barberscore",
         },
       };
-      this.get('session').authenticate(
+      this.session.authenticate(
         'authenticator:auth0-lock',
         lockOptions
       );

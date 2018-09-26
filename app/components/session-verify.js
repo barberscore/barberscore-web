@@ -11,14 +11,14 @@ export default Component.extend({
   verifySessionModalError: false,
   verifySession: task(function *() {
     try {
-      yield this.get('model').verify({
+      yield this.model.verify({
         'by': this.get('currentUser.user.id')
       });
-      this.get('model').reload();
+      this.model.reload();
       this.set('verifySessionModal', false);
       this.set('verifySessionModalError', false);
-      this.get('flashMessages').success("Verified!");
-      this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.reports');
+      this.flashMessages.success("Verified!");
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.reports');
     } catch(e) {
       this.set('verifySessionModalError', true);
     }

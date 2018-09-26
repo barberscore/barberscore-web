@@ -10,12 +10,12 @@ export default Component.extend({
   store: service(),
   searchConvention: task(function* (term){
     yield timeout(500);
-    let func = denodeify(this.get('algolia').search.bind(this.get('algolia')))
+    let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Convention', query: term})
     return res.hits
   }),
   redirectConvention: task(function* (convention){
     let pk = yield convention.objectID;
-    return this.get('router').transitionTo('dashboard.conventions.convention.details', pk);
+    return this.router.transitionTo('dashboard.conventions.convention.details', pk);
   }),
 });

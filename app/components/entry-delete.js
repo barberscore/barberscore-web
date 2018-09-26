@@ -10,13 +10,13 @@ export default Component.extend({
   deleteEntryModalError: false,
   deleteEntry: task(function *() {
     try {
-      yield this.get('model').destroyRecord({
+      yield this.model.destroyRecord({
         'by': this.get('currentUser.user.id'),
       });
       this.set('deleteEntryModal', false);
       this.set('deleteEntryModalError', false);
-      this.get('flashMessages').success("Deleted!");
-      this.get('router').transitionTo(this.get('callback'));
+      this.flashMessages.success("Deleted!");
+      this.router.transitionTo(this.callback);
     } catch(e) {
       this.set('deleteEntryModalError', true);
     }

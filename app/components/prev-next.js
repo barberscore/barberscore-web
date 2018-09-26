@@ -5,7 +5,7 @@ export default Component.extend({
   router: service(),
   actions: {
     trans(model) {
-      return this.get('router').transitionTo(this.currentRouteName, model.get('id'));
+      return this.router.transitionTo(this.currentRouteName, model.get('id'));
     }
   }
 });
