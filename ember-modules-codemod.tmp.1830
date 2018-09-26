@@ -1,1 +1,0 @@
-[2,"K",4,"tests/helpers/flash-message.js","import FlashObject from 'ember-cli-flash/flash/object';\n\nconst { K } = Ember;\n\nFlashObject.reopen({ init: K });"]
