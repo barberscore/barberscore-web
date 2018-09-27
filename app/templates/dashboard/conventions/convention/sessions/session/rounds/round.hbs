@@ -1,11 +1,11 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       <h4>
         {{model.kind}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
@@ -28,25 +28,21 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
-      <div class='pull-right'>
-        <h4>
-          Round Status: <strong>{{model.status}}</strong>
-        </h4>
-      </div>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li>{{round-build model=model}}</li>
+          <li class='list-inline-item'>{{round-build model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li>{{round-start model=model}}</li>
-          <li>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-start model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-verify model=model}}</li>
-          <li>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-verify model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Verified')}}
-          <li>{{round-verify model=model}}</li>
-          <li>{{round-finish model=model}}</li>
+          <li class='list-inline-item'>{{round-verify model=model}}</li>
+          <li class='list-inline-item'>{{round-finish model=model}}</li>
         {{/if}}
+        <li class='list-inline-item float-right'>Round Status: <strong>{{model.status}}</strong></li>
       </ul>
     </div>
   </div>

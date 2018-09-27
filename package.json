@@ -21,12 +21,12 @@
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.7.0",
     "algoliasearch": "^3.24.12",
-    "bootstrap": "3.3.7",
+    "bootstrap": "^4.0.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-ajax": "^3.1.0",
     "ember-algolia": "^0.0.10",
     "ember-api-actions": "^0.1.0",
-    "ember-bootstrap": "1.2.1",
+    "ember-bootstrap": "^2.1.2",
     "ember-browserify": "^1.2.1",
     "ember-cli": "~3.4.3",
     "ember-cli-app-version": "^3.2.0",
@@ -40,6 +40,7 @@
     "ember-cli-moment-shim": "^3.7.0",
     "ember-cli-pagination": "^3.1.0",
     "ember-cli-qunit": "^4.3.2",
+    "ember-cli-sass": "^8.0.1",
     "ember-cli-sentry": "^3.0.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-string-helpers": "^1.8.0",
@@ -63,7 +64,8 @@
     "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.0"
+    "qunit-dom": "^0.8.0",
+    "sass": "^1.14.0"
   },
   "engines": {
     "node": "^10.0.0",

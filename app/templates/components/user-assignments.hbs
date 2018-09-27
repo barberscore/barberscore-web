@@ -1,13 +1,13 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Assignments
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>These are the conventions to which you are currently assigned.</caption>
+        <h6 class='card-title'>These are the conventions to which you are currently assigned.</h6>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
@@ -23,9 +23,9 @@
             <tr>
               <td>
                 {{#if assignment.convention.image}}
-                  <img src={{assignment.convention.image}} class='img-responsive img-rounded'>
+                  <img src={{assignment.convention.image}} class='img-fluid rounded'>
                 {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                  <img src='/assets/no_image_available.jpg' class='img-fluid'>
                 {{/if}}
               </td>
               <td>

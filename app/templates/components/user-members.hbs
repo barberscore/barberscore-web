@@ -1,13 +1,13 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Memberships
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>You are a member of the following groups:</caption>
+        <h6 class='card-title'>You are a member of the following groups:</h6>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
@@ -20,9 +20,9 @@
             <tr>
               <td>
                 {{#if member.group.image}}
-                  <img src={{member.group.image}} class='img-responsive img-rounded'>
+                  <img src={{member.group.image}} class='img-fluid rounded'>
                 {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                  <img src='/assets/no_image_available.jpg' class='img-fluid'>
                 {{/if}}
               </td>
               <td>
@@ -42,7 +42,7 @@
       </table>
     </div>
   </div>
-  <div class='panel-footer'>
+  <div class='card-footer'>
     <p>
       {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.

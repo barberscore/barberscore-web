@@ -1,51 +1,51 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Assignments
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
+    <h6 class='card-title'>These are the conventions to which you are currently assigned.</h6>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>These are the conventions to which you are currently assigned.</caption>
         <thead>
-          <tr>
-            <th class='col-md-1'>Image</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Kind</th>
-            <th>Venue</th>
-            <th>Date</th>
-            <th>Status</th>
+          <tr class='d-flex'>
+            <th scope='col' class='col-1'>Image</th>
+            <th scope='col' class='col-4'>Name</th>
+            <th scope='col' class='col-2'>Category</th>
+            <th scope='col' class='col-2'>Kind</th>
+            <th scope='col' class='col-3'>Venue</th>
+            <th scope='col' class='col-2'>Date</th>
+            <th scope='col' class='col-1'>Status</th>
           </tr>
         </thead>
         <tbody>
           {{#each sortedAssignments as |assignment|}}
-            <tr>
-              <td>
+            <tr class='d-flex'>
+              <td class='col-1'>
                 {{#if assignment.convention.image}}
-                  <img src={{assignment.convention.image}} class='img-responsive img-rounded'>
+                  <img src={{assignment.convention.image}} class='img-fluid rounded'>
                 {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
+                  <img src='/assets/no_image_available.jpg' class='img-fluid'>
                 {{/if}}
               </td>
-              <td>
+              <td class='col-4'>
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
               </td>
-              <td>
+              <td class='col-2'>
                 {{assignment.category}}
               </td>
-              <td>
+              <td class='col-2'>
                 {{assignment.kind}}
               </td>
-              <td>
+              <td class='col-3'>
                 {{assignment.convention.venue.name}}<br>
                 {{assignment.convention.venue.city}},  {{assignment.convention.venue.state}}
               </td>
-              <td>
+              <td class='col-2'>
                 {{moment-format assignment.convention.startDate 'L'}} - {{moment-format assignment.convention.endDate 'L'}}
               </td>
-              <td>
+              <td class='col-1'>
                 {{assignment.status}}
               </td>
             </tr>

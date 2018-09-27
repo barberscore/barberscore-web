@@ -1,47 +1,49 @@
-{{#if (eq model.status 'New')}}
-  <h4>
-    Contests can only be selected after the Session has been Built.
-  </h4>
-{{else}}
-  <div class='table-responsive'>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th class='col-md-1'>Status</th>
-          <th class='col-md-4'>Name</th>
-          <th class='col-md-5'>Description</th>
-          <th class='col-md-1'>Count</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedContests as |contest|}}
-          <tr>
-            {{#if contest.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>
-                {{input
-                  type='checkbox'
-                  checked=contest.isIncluded
-                  disabled=contest.isCheckboxDisabled
-                  change=(perform toggleContest contest value='target.checked')
-                }}
-              </td>
-              {{#if contest.award.isLoading}}
+<section class='py-4'>
+  {{#if (eq model.status 'New')}}
+    <h4>
+      Contests can only be selected after the Session has been Built.
+    </h4>
+  {{else}}
+    <div class='table-responsive'>
+      <table class='table'>
+        <thead>
+          <tr class='d-flex'>
+            <th class='col-md-1'>Status</th>
+            <th class='col-md-4'>Name</th>
+            <th class='col-md-6'>Description</th>
+            <th class='col-md-1'>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedContests as |contest|}}
+            <tr class='d-flex'>
+              {{#if contest.isLoading}}
                 <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}&nbsp;&nbsp;{{#if contest.isPrimary}}<span class="label label-success">Primary</span>{{/if}}</td>
+                <td class='col-md-1'>
+                  {{input
+                    type='checkbox'
+                    checked=contest.isIncluded
+                    disabled=contest.isCheckboxDisabled
+                    change=(perform toggleContest contest value='target.checked')
+                  }}
+                </td>
+                {{#if contest.award.isLoading}}
+                  <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  <td class='col-md-4'>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}&nbsp;&nbsp;{{#if contest.isPrimary}}<span class="badge badge-success">Primary</span>{{/if}}</td>
+                {{/if}}
+                <td class='col-md-6'>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
+                <td class='col-md-1'>{{contest.includedContestantsCount}}</td>
               {{/if}}
-              <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
-              <td>{{contest.includedContestantsCount}}</td>
-            {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td colspan=3>No contests.</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-{{/if}}
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan=3>No contests.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</section>

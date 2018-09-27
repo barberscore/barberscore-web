@@ -1,19 +1,19 @@
 <section id="appearance-detail">
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedCompetitors}}
       <h4>
         {{model.group.name}}&nbsp;({{model.entry.representing}})
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <section>
         <div class='row'>
           <div class='col-md-6'>
             {{#if model.group.image}}
-              <img src={{model.group.image}} class='img-responsive img-rounded'>
+              <img src={{model.group.image}} class='img-fluid rounded'>
             {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
+              <img src='/assets/no_image_available.jpg' class='img-fluid rounded'>
             {{/if}}
           </div>
           <div class='col-md-6'>
@@ -34,20 +34,15 @@
         {{log-index model=model}}
       </section> --}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
-          {{!-- <li>{{competitor-start model=model}}</li> --}}
         {{else if (eq model.status 'Started')}}
-          {{!-- <li>{{competitor-finish model=model}}</li> --}}
-          <li>{{competitor-scratch model=model}}</li>
-          {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
+          <li class='list-inline-item'>{{competitor-scratch model=model}}</li>
         {{else if (eq model.status 'Finished')}}
-          {{!-- <li>{{competitor-start model=model}}</li> --}}
-          <li>{{competitor-scratch model=model}}</li>
-          {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
+          <li class='list-inline-item'>{{competitor-scratch model=model}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Competitor Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='list-inline-item float-right'><h4>Competitor Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

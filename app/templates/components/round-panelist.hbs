@@ -1,22 +1,22 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
         {{prev-next model=model sortedArray=sortedPanelists}}
       <h4>
         {{model.person.commonName}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <section>
         {{model.category}}
       </section>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.round.status 'Built')}}
-          <li>{{panelist-delete model=model}}</li>
+          <li class='list-inline-item'>{{panelist-delete model=model}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='list-inline-item float-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

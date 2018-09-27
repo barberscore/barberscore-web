@@ -1,5 +1,5 @@
-<ul class='list-inline pull-right'>
-  <li>
+<ul class='list-inline float-right'>
+  <li class='list-inline-item'>
     {{#bs-button
       disabled=(not (has-previous model sortedArray))
       onClick=(action 'trans' (previous model sortedArray))
@@ -7,7 +7,7 @@
      Previous
     {{/bs-button}}
   </li>
-  <li>
+  <li class='list-inline-item'>
     {{#bs-button
       disabled=(not (has-next model sortedArray))
       onClick=(action 'trans' (next model sortedArray))

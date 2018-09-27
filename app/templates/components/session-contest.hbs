@@ -1,16 +1,16 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedContests}}
 
       <h4>
         {{model.award.name}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <div class='table-responsive'>
         <table class='table'>
-          <caption>Contestants: {{model.includedContestantsCount}}</caption>
+          <h6 class='card-title'>Contestants: {{model.includedContestantsCount}}</h6>
           <thead>
             <tr>
               <th>Name</th>

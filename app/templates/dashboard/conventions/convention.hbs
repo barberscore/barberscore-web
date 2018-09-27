@@ -1,11 +1,11 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
+  <div class='card'>
+    <div class='card-header'>
       <h4>
         {{model.name}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.details"}}Details{{/nav.link-to}}
@@ -22,9 +22,9 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
-        <li class='pull-right'><h4>Convention Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='list-inline-item float-right'><h4>Convention Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

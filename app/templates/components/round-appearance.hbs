@@ -1,17 +1,17 @@
 <section id="appearance-detail">
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.competitor.group.name}}
         {{#if (eq model.status 'Variance')}}
-          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+          <a href={{model.varianceReport}} target="_blank"><span class="badge badge-danger">Variance Detected</span></a>
         {{else}}
           {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}
      </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <section>
         {{appearance-details model=model}}
       </section>
@@ -32,12 +32,10 @@
       )}}
         <section>
           {{appearance-panelists model=model}}
-          <div class='pull-right'>
-            <ul class='list-inline'>
-              <li>Practice Points: {{#if model.sumPractice}}{{model.sumPractice}}{{/if}}</li>
-              <li>Official Points: {{#if model.sumPractice}}{{model.sumOfficial}}{{/if}}</li>
-            </ul>
-          </div>
+          <ul class='list-inline float-right'>
+            <li class='list-inline-item'>Practice Points: {{#if model.sumPractice}}{{model.sumPractice}}{{/if}}</li>
+            <li class='list-inline-item'>Official Points: {{#if model.sumPractice}}{{model.sumOfficial}}{{/if}}</li>
+          </ul>
         </section>
       {{/if}}
       {{!-- <hr>
@@ -45,11 +43,11 @@
         {{log-index model=model}}
       </section> --}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
-          <li>{{appearance-start model=model}}</li>
-          <li>
+          <li class='list-inline-item'>{{appearance-start model=model}}</li>
+          <li class='list-inline-item'>
             {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
               {{#if mockAppearance.isRunning}}
                 Mocking {{fa-icon "spinner" spin=true}}
@@ -59,8 +57,8 @@
             {{/bs-button}}
           </li>
           {{else if (eq model.status 'Started')}}
-          <li>{{appearance-finish model=model}}</li>
-          <li>
+          <li class='list-inline-item'>{{appearance-finish model=model}}</li>
+          <li class='list-inline-item'>
             {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
               {{#if mockAppearance.isRunning}}
                 Mocking {{fa-icon "spinner" spin=true}}
@@ -70,11 +68,11 @@
             {{/bs-button}}
           </li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
-          <li>{{appearance-verify model=model}}</li>
+          <li class='list-inline-item'>{{appearance-verify model=model}}</li>
         {{else if (eq model.status 'Verified')}}
-          <li>{{appearance-finish model=model}}</li>
+          <li class='list-inline-item'>{{appearance-finish model=model}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='list-inline-item float-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>
