@@ -1,13 +1,13 @@
-<div class='card'>
-  <div class='card-header'>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
     <h3>
       Your Groups
     </h3>
   </div>
-  <div class='card-body'>
+  <div class='panel-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <h6 class='card-title'>You are an active officer for the following groups:</h6>
+        <caption>You are an active officer for the following groups:</caption>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
@@ -28,9 +28,9 @@
               <tr>
                 <td>
                   {{#if officer.group.image}}
-                    <img src={{officer.group.image}} class='img-fluid rounded'>
+                    <img src={{officer.group.image}} class='img-responsive img-rounded'>
                   {{else}}
-                    <img src='/assets/no_image_available.jpg' class='img-fluid'>
+                    <img src='/assets/no_image_available.jpg' class='img-responsive'>
                   {{/if}}
                 </td>
                 <td>
@@ -54,7 +54,7 @@
       </table>
     </div>
   </div>
-  <div class='card-footer'>
+  <div class='panel-footer'>
     <p>
       {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.

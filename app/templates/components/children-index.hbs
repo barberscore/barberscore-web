@@ -2,7 +2,7 @@
 <div class='table-responsive'>
   <h3>Child Groups</h3>
   <table class='table'>
-    <h6 class='card-title'>The following groups are part of this Organization</h6>
+    <caption>The following groups are part of this Organization</caption>
     <thead>
       <tr>
         <th class='col-md-1'>Image</th>
@@ -15,9 +15,9 @@
         <tr>
           <td>
             {{#if group.image}}
-              <img src={{group.image}} class='img-fluid rounded'>
+              <img src={{group.image}} class='img-responsive img-rounded'>
             {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-fluid'>
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
             {{/if}}
           </td>
           <td>

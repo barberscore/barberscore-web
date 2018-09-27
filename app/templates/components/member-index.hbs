@@ -1,13 +1,13 @@
-<div class='card'>
-  <div class='card-header'>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
     <h3>
       Your Memberships
     </h3>
   </div>
-  <div class='card-body'>
+  <div class='panel-body'>
     <div class='table-responsive'>
       <table class='table'>
-        <h6 class='card-title'>These are the groups of which you are currently a member. However, only members designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only access. Please read the tutorials or FAQ to learn more.</h6>
+        <caption>These are the groups of which you are currently a member. However, only members designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only access. Please read the tutorials or FAQ to learn more.</caption>
         <thead>
           <tr>
             <th class='col-md-1'>Image</th>
@@ -22,9 +22,9 @@
             <tr>
               <td>
                 {{#if member.group.image}}
-                  <img src={{member.group.image}} class='img-fluid rounded'>
+                  <img src={{member.group.image}} class='img-responsive img-rounded'>
                 {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-fluid'>
+                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
                 {{/if}}
               </td>
               <td>
@@ -51,7 +51,7 @@
       </table>
     </div>
   </div>
-  <div class='card-footer'>
+  <div class='panel-footer'>
     <p>
       {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.

@@ -128,14 +128,14 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
         as |session|
       }}
         <div class='row'>
-          <div class='col-2'>
+          <div class='col-xs-2'>
             {{#if session.convention.image}}
-              <img src={{session.convention.image}} class='img-fluid rounded'>
+              <img src={{session.convention.image}} class='img-responsive img-rounded'>
             {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-fluid'>
+              <img src='/assets/no_image_available.jpg' class='img-responsive'>
             {{/if}}
           </div>
-          <div class='col-10'>
+          <div class='col-xs-10'>
             {{session.convention.name}}<br>
             {{session.kind}} Session<br>
             {{session.convention.venue.city}}, {{session.convention.venue.state}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>

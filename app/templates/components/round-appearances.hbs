@@ -3,9 +3,9 @@
 {{else}}
   <div class='table-responsive'>
     <table class='table'>
-      <h6 class='card-title'>
+      <caption>
         The Order of Appearance for all competitors in this Round.  Click on a Competitor to enter scores.
-      </h6>
+      </caption>
       <thead>
         <tr>
           <th class='col-md-1'>OA</th>
@@ -44,7 +44,7 @@
                   {{#if (eq appearance.status 'Verified')}}
                     {{fa-icon 'check-circle' class='text-success'}}
                   {{else if (eq appearance.status 'Variance')}}
-                    <a href={{appearance.varianceReport}} target="_blank" ><span class="badge badge-danger">Variance Detected</span></a>
+                    <a href={{appearance.varianceReport}} target="_blank" ><span class="label label-danger">Variance Detected</span></a>
                   {{/if}}
                 </td>
               {{/if}}

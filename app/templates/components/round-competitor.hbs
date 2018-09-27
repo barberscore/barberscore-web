@@ -1,19 +1,19 @@
 <section id="appearance-detail">
-  <div class='card'>
-    <div class='card-header'>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
       {{prev-next model=model sortedArray=sortedCompetitors}}
       <h4>
         {{model.group.name}}&nbsp;({{model.entry.representing}})
       </h4>
     </div>
-    <div class='card-body'>
+    <div class='panel-body'>
       <section>
         <div class='row'>
           <div class='col-md-6'>
             {{#if model.group.image}}
-              <img src={{model.group.image}} class='img-fluid rounded'>
+              <img src={{model.group.image}} class='img-responsive img-rounded'>
             {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-fluid rounded'>
+              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
             {{/if}}
           </div>
           <div class='col-md-6'>
@@ -34,15 +34,20 @@
         {{log-index model=model}}
       </section> --}}
     </div>
-    <div class='card-footer'>
+    <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
+          {{!-- <li>{{competitor-start model=model}}</li> --}}
         {{else if (eq model.status 'Started')}}
-          <li class='list-inline-item'>{{competitor-scratch model=model}}</li>
+          {{!-- <li>{{competitor-finish model=model}}</li> --}}
+          <li>{{competitor-scratch model=model}}</li>
+          {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
         {{else if (eq model.status 'Finished')}}
-          <li class='list-inline-item'>{{competitor-scratch model=model}}</li>
+          {{!-- <li>{{competitor-start model=model}}</li> --}}
+          <li>{{competitor-scratch model=model}}</li>
+          {{!-- <li>{{competitor-disqualify model=model}}</li> --}}
         {{/if}}
-        <li class='list-inline-item float-right'><h4>Competitor Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h4>Competitor Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

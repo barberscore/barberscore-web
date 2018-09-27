@@ -10,38 +10,22 @@
  --}}
 
 <section>
-  <h4 class='display-4'>
-    Welcome {{currentUser.user.person.commonName}}
-  </h4>
-  {{!-- <div class='row p-5'>
-    <p class='col-md'>
-      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-light launcher'}}
+  <p>Welcome {{currentUser.user.person.commonName}}</p>
+  <div class='row'>
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-default launcher'}}
         {{fa-icon 'users' size='5'}}<br>
         Memberships<br>(Formerly "Group Manager")
       {{/link-to}}
     </p>
-    <p class='col-md'>
-      {{#link-to 'dashboard.assignments' tagName='button' disabled=assignmentDisabled class='btn btn-light launcher'}}
+    <p class='col-md-3 text-center spacing'>
+      {{#link-to 'dashboard.assignments' tagName='button' disabled=assignmentDisabled class='btn btn-default launcher'}}
         {{fa-icon 'legal' size='5'}}<br>
         Assignments<br>(Formerly "Session Manager")
       {{/link-to}}
     </p>
-  </div> --}}
-    <ul class='list-inline pt-5'>
-      <li class='list-inline-item'>
-        {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-light'}}
-          {{fa-icon 'users' size='5'}}<br>
-          Memberships
-        {{/link-to}}
-      </li>
-      <li class='list-inline-item'>
-        {{#link-to 'dashboard.assignments' tagName='button' disabled=assignmentDisabled class='btn btn-light'}}
-          {{fa-icon 'legal' size='5'}}<br>
-          Assignments
-        {{/link-to}}
-      </li>
-    </ul>
-{{!-- <div>
+  </div>
+  {{!-- <div>
     <p>
       <strong>Note:</strong> If you are unable to click on Group Manager, please review your memberships in the <a href='https://members.barbershop.org'>BHS Member Center</a> and ensure you are an active member of your Quartet, or a Chapter Leader of your chorus.
     </p>

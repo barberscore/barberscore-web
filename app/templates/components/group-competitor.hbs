@@ -1,11 +1,11 @@
 <section>
-  <div class='card'>
-    <div class='card-header'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
       <h4>
         {{model.session.convention.name}} {{model.session.kind}}
       </h4>
     </div>
-    <div class='card-body'>
+    <div class='panel-body'>
       {{#if (eq model.status 'Finished')}}
         <div class='table-responsive'>
           <table class='table'>

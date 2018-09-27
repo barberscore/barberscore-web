@@ -1,18 +1,19 @@
 
-<h6 class='card-title'>
+<caption>
   Details
-</h6>
+</caption>
 
 <ul class='list-inline'>
-  <li class='list-inline-item'>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
-  <li class='list-inline-item'>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
+  <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
+  <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
+  {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
   {{#if (or
     (eq model.status 'Started')
     (eq model.status 'Finished')
     (eq model.status 'Verified')
   )}}
     {{#if (eq model.round.session.kind 'Chorus')}}
-      <li class='list-inline-item'>
+      <li>
         {{input
           class='form-control text-right'
           type='tel'
@@ -27,3 +28,6 @@
     {{/if}}
   {{/if}}
 </ul>
+
+<p>
+ </p>

@@ -1,7 +1,7 @@
 <div class='table-responsive'>
   <h3>Your Groups</h3>
   <table class='table'>
-    <h6 class='card-title'>You are an active officer for the following groups:</h6>
+    <caption>You are an active officer for the following groups:</caption>
     <thead>
       <tr>
         <th>Image</th>
@@ -14,7 +14,7 @@
       {{#each sortedOfficers as |officer|}}
         <tr>
           <td>
-            <img src={{officer.group.image}} class='img-fluid rounded' width=64>
+            <img src={{officer.group.image}} class='img-responsive img-rounded' width=64>
           </td>
           <td>
             {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}

@@ -1,14 +1,14 @@
-<div class='card'>
-  <div class='card-header'>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
     <h3>
       Conventions
     </h3>
   </div>
-  <div class='card-body'>
+  <div class='panel-body'>
     <section>
       <div class='table-responsive'>
         <table class='table'>
-          <h6 class='card-title'>These are the active conventions.</h6>
+          <caption>These are the active conventions.</caption>
           <thead>
             <tr>
               <th class='col-md-1'>Image</th>
@@ -22,9 +22,9 @@
               <tr>
                 <td>
                   {{#if convention.image}}
-                    <img src={{convention.image}} class='img-fluid rounded'>
+                    <img src={{convention.image}} class='img-responsive img-rounded'>
                   {{else}}
-                    <img src='/assets/no_image_available.jpg' class='img-fluid'>
+                    <img src='/assets/no_image_available.jpg' class='img-responsive'>
                   {{/if}}
                 </td>
                 <td>

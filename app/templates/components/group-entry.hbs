@@ -1,11 +1,11 @@
 <section>
-  <div class='card'>
-    <div class='card-header'>
+  <div class='panel panel-default'>
+    <div class='panel-heading'>
       <h4>
         {{model.session.convention.name}} {{model.session.kind}}
       </h4>
     </div>
-    <div class='card-body'>
+    <div class='panel-body'>
       {{#if (eq model.status 'Approved')}}
         <section>
           Now that your entry has been approved by your DRCJ, you can no longer make edits to the entry itself. <em>However, updates to your repertory are allowed at any time.</em> Please contact your DRCJ directly if you need to make any other changes or wish to provide additional information.
@@ -91,23 +91,23 @@ This is easy... does your group want to participate in an onsite evaluation by o
       </section>
     </div>
 
-    <div class='card-footer'>
+    <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
-          <li class='list-inline-item'>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
-          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.groups.group.entries'}}</li>
+          <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
+          <li>{{entry-delete model=model callback='dashboard.groups.group.entries'}}</li>
         {{else if (eq model.status 'Invited')}}
-          <li class='list-inline-item'>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
+          <li>{{entry-withdraw model=model}}</li>
         {{else if (eq model.status 'Withdrawn')}}
-          <li class='list-inline-item'>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
+          <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
         {{else if (eq model.status 'Submitted')}}
-          <li class='list-inline-item'>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          <li>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
+          <li>{{entry-withdraw model=model}}</li>
         {{else if (eq model.status 'Approved')}}
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          <li>{{entry-withdraw model=model}}</li>
         {{/if}}
-        <li class='list-inline-item float-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

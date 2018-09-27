@@ -1,13 +1,15 @@
 <section>
-  <div class='media p-5'>
-    {{#if model.image}}
-      <img src={{model.image}} class='img-fluid' width=100>
-    {{else}}
-      <img src='/assets/no_image_available.jpg' class='align-self-center mr-3'>
-    {{/if}}
-    <div class='media-body'>
+  <div class='row'>
+    <div class='col-md-2'>
+      {{#if model.image}}
+        <img src={{model.image}} class='img-responsive img-rounded'>
+      {{else}}
+        <img src='/assets/no_image_available.jpg' class='img-responsive'>
+      {{/if}}
+    </div>
+    <div class='col-md-10'>
       {{#if model.venue}}
-        <ul class='list-unstyled pl-4'>
+        <ul class='list-unstyled'>
           <li><strong>{{model.venue.name}}</strong></li>
           <li>{{model.venue.city}}, {{model.venue.state}}</li>
           <li>Airport(s): {{model.venue.airport}}</li>
@@ -18,11 +20,12 @@
       {{/if}}
     </div>
   </div>
-  <h6>
-    The Open and Close dates refer to the contest entry period.  The Start and End dates refer to the contest itself.
-  </h6>
+  <hr>
   <div class='table-responsive'>
     <table class='table'>
+      <caption>
+        The Open and Close dates refer to the contest entry period.  The Start and End dates refer to the contest itself.
+      </caption>
       <thead>
         <tr>
           <th>Event</th>

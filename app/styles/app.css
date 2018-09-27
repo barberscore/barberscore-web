@@ -1,4 +1,4 @@
-/*.active {
+.active {
   font-weight: bold;
 }
 
@@ -35,20 +35,53 @@
 .fixed-panel-header {
   min-height: 60px;
   max-height: 60px;
+  /*overflow-y: scroll;*/
 }
 
 .fixed-panel-footer {
   min-height: 55px;
   max-height: 55px;
+  /*overflow-y: scroll;*/
 }
+
+
+/*.ember-power-select-placeholder {
+  min-width: 200px;
+}
+*/
 
 .assignment-width {
   min-width: 300px;
 }
-*/
-.border-top {
-  /* uses cut-line*/
-  border-top: solid 10px black;
+
+section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.panel-heading .img-responsive {
+  display: block;
+  width: auto;
+  max-height: 100px;
+}
+
+.alerts {
+  position: fixed;
+  top: 5px;
+  right: 50px;
+}
+
+.smallbox {
+  max-height: 200px;
+}
+
+.navcenter {
+  margin-top: 8px;
+}
+
+.launcher {
+  width: 200px;
+  height: 200px;
 }
 
 input[type=checkbox] {
@@ -70,3 +103,6 @@ input[type=checkbox] {
   z-index: 10;
 }
 
+.border-top {
+  border-top: solid 10px black;
+}
