@@ -25,8 +25,12 @@ export default Component.extend({
     'model.appearances',
     'isSingle',
   ),
-  sortedAppearances: sort(
+  finalAppearances: filterBy(
     'model.appearances',
+    'notMT',
+  ),
+  sortedAppearances: sort(
+    'finalAppearances',
     'rankSortProperties'
   ),
   sortedSingleAppearances: sort(
