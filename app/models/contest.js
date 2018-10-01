@@ -14,7 +14,7 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('contest-status'),
   num: DS.attr('number'),
-  isPrimary: DS.attr('boolean'),
+  result: DS.attr('string'),
   group: DS.belongsTo('group', {async: true}),
   session: DS.belongsTo('session', {async: true}),
   award: DS.belongsTo('award', {async: true}),
