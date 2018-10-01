@@ -86,11 +86,11 @@ Router.map(function() {
                       path: ':appearance_id'
                     });
                   });
-                  this.route('contests', {
-                    path: 'contests'
+                  this.route('outcomes', {
+                    path: 'outcomes'
                   }, function () {
-                    this.route('contest', {
-                      path: ':contest_id'
+                    this.route('outcome', {
+                      path: ':outcome_id'
                     });
                   });
                   this.route('reports', {

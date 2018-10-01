@@ -48,5 +48,5 @@ export default Model.extend({
   contestAwardAgeSort: alias('contest.award.ageSort'),
   contestAwardName: alias('contest.award.name'),
   awardSort: alias('contest.award.treeSort'),
-
+  competitorTotPoints: alias('entry.competitor.totPoints'),
 });

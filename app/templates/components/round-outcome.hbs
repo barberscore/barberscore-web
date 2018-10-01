@@ -1,0 +1,85 @@
+<section>
+  <div class='panel panel-default'>
+    <div class='panel-heading fixed-panel-header'>
+      {{prev-next model=model sortedArray=sortedOutcomes}}
+      <h4>
+        {{model.contest.award.name}}
+      </h4>
+    </div>
+    <div class='panel-body'>
+      {{!-- <section>
+      {{#if model.contest.notQualifier }}
+        {{#power-select
+          options=model.contest.groupOptions
+          selected=model.contest.group
+          onchange=(action (mut model.contest.group))
+          onclose=(action "saveModel" model.contest)
+          placeholder="Choose Award Winner"
+          searchField='name'
+          allowClear=true
+          disabled=model.contest.isDisabled
+          as |group|
+        }}
+          Winner: {{group.name}}
+        {{/power-select}}
+      {{else}}
+        (Qualifiers are determined by rule and appear on the OSS)
+      {{/if }}
+      </section> --}}
+
+      <section>
+          <p>
+            <label>Result as Printed on OSS: </label>
+            {{input
+              class='form-control'
+              type='text'
+              value=model.name
+              disabled=model.isDisabled
+              change=(perform autosave model)
+            }}
+          </p>
+      </section>
+      <section>
+        <div class='table-responsive'>
+          <table class='table'>
+              <caption>
+                Standings for this particular award.
+              </caption>
+            <thead>
+              <tr>
+                <th class='col-md-5'>Num</th>
+                <th class='col-md-1'>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each sortedContestants as |contestant|}}
+                  <tr>
+                    <td>
+                      {{contestant.entry.group.name}}
+                    </td>
+                    <td>
+                      {{contestant.entry.competitor.totPoints}}
+                    </td>
+                  </tr>
+              {{else}}
+                <tr>
+                  <td colspan=3>No contests.</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
+      {{!-- <ul class='list-inline'>
+        {{#if (eq model.round.status 'Built')}}
+          {{#if model.permissions.write}}
+              <li>{{contest-delete model=model}}</li>
+          {{/if}}
+        {{/if}}
+        <li class='pull-right'><h4>Contest Status: <strong>{{model.status}}</strong></h4></li>
+      </ul> --}}
+    </div>
+  </div>
+</section>
