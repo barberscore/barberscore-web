@@ -17,6 +17,7 @@ export default Model.extend({
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
   grids: DS.hasMany('grid', {async: true}),
+  outcomes: DS.hasMany('outcome', {async: true}),
   permissions: DS.attr(),
 
   reset: memberAction({path: 'reset', type: 'post'}),
