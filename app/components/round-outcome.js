@@ -37,6 +37,7 @@ export default Component.extend({
     yield timeout(200);
     try {
       yield property.save();
+      this.flashMessages.success("Saved!");
     } catch(e) {
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
