@@ -70,6 +70,14 @@ export default Model.extend({
     }
   ),
   parentName: alias('group.parent.name'),
+  code: alias('group.parent.code'),
+  chapterCode: computed(
+    'parentName',
+    'code',
+    function() {
+      return `${this.parentName} (${this.code})`;
+    }
+  ),
   allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
   activeMembersCount: alias('group.activeMembers.length'),
