@@ -37,7 +37,6 @@ export default Component.extend({
         contestants: [],
         isEvaluation: true,
         isPrivate: false,
-        competitor: null,
       }).save();
       let p = yield entry.build({
         'by': this.get('currentUser.user.id'),
