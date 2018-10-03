@@ -15,8 +15,8 @@ export default Component.extend({
         'by': this.get('currentUser.user.id')
       });
       yield this.store.pushPayload('round', round);
-      yield this.get('model.appearances').invoke('reload');
-      yield this.get('model.session.contests').invoke('reload');
+      yield this.get('model.session.competitors').invoke('reload');
+      yield this.get('model.session.outcomes').invoke('reload');
       this.set('verifyRoundModal', false);
       this.set('verifyRoundModalError', false);
       this.flashMessages.success("Verified!");
