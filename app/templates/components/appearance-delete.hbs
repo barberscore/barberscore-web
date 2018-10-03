@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isDisabled
+  onClick=(action (mut deleteAppearanceModal) true)
+}}
+  Delete Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=deleteAppearanceModal
+  onHidden=(pipe-action (action (mut deleteAppearanceModal) false) (action (mut deleteAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Delete Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will delete the appearance.  Generally used to remove a Mic Tester or other group that doesn't wish to be scored for this particular appearance.  To SCRATCH the competitor completely (removing all awards and scores from prior rounds) click the Competitors tab.
+    </p>
+    {{#if deleteAppearanceModalError}}
+    <p class='text-danger'>
+      Could not delete appearance.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform deleteAppearance)}}
+      {{#if deleteAppearance.isRunning}}
+        Deleting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Delete Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

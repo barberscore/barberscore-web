@@ -49,6 +49,7 @@
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
+          <li>{{appearance-delete model=model}}</li>
           <li>
             {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
               {{#if mockAppearance.isRunning}}
