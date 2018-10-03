@@ -60,7 +60,19 @@
                     {{appearance.status}}
                   </td>
                   <td>
-                    {{appearance.draw}}
+                    {{#if (eq model.status 'Verified')}}
+                      {{input
+                        class='form-control text-right'
+                        type='tel'
+                        value=appearance.draw
+                        min=0
+                        disabled=model.isDisabled
+                        max=100
+                        change=(perform autosave value='target.value')
+                      }}
+                    {{else}}
+                      {{appearance.draw}}
+                    {{/if}}
                   </td>
                 {{/if}}
               </tr>
