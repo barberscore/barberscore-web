@@ -22,7 +22,6 @@ export default Component.extend({
       this.flashMessages.success("Verified!");
       // this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.competitors');
     } catch(e) {
-      console.log(e);
       this.set('verifyRoundModalError', true);
     }
   }).drop(),
