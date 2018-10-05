@@ -10,11 +10,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   sortedContestsProperties: [
-    'isPrimary:desc',
-    'groupKindSort',
-    'awardQualifier',
-    'awardAgeSort',
-    'awardName',
+    'awardTreeSort',
   ],
   sortedContests: sort(
     'model.contests',
