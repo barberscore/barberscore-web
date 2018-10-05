@@ -60,7 +60,7 @@
                     {{appearance.status}}
                   </td>
                   <td>
-                    {{#if (eq model.status 'V')}}
+                    {{#if (eq model.status 'Verified')}}
                       {{input
                         class='form-control text-right'
                         type='tel'
@@ -68,7 +68,7 @@
                         min=0
                         disabled=model.isDisabled
                         max=100
-                        change=(perform autosave value='target.value')
+                        change=(perform autosaveDraw appearance value='target.value')
                       }}
                     {{else}}
                       {{appearance.draw}}
