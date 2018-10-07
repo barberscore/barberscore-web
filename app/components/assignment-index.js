@@ -9,6 +9,7 @@ export default Component.extend({
   ),
   sortProperties: [
     'conventionStart',
+    'groupName',
     'kindSort',
     'categorySort',
   ],
