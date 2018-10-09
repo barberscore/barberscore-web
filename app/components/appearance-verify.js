@@ -17,7 +17,7 @@ export default Component.extend({
         this.flashMessages.warning("VARIANCE!");
       }
     } catch(e) {
-      this.flashMessages.error(e);
+      this.flashMessages.danger(e.errors.status);
     }
   }).drop(),
 });
