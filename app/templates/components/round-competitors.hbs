@@ -26,11 +26,11 @@
           <thead>
             <tr>
               <th class='col-md-1'>Rank</th>
-              <th class='col-md-8'>Name</th>
+              <th class='col-md-7'>Name</th>
               <th class='col-md-1'>Points</th>
               <th class='col-md-1'>Score</th>
               <th class='col-md-1'>Status</th>
-              <th class='col-md-1'>Draw</th>
+              <th class='col-md-2'>Draw</th>
             </tr>
           </thead>
           <tbody>
@@ -62,7 +62,7 @@
                   <td>
                     {{#if (eq model.status 'Verified')}}
                       {{input
-                        class='form-control text-right'
+                        class='form-control text-right input-sm'
                         type='tel'
                         value=appearance.draw
                         min=0

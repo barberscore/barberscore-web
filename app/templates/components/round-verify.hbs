@@ -19,11 +19,11 @@
     </p>
     {{#if (eq model.kind 'Finals')}}
       <p>
-        Pay particular attenion to the contest winners for accuracy and completeness (you will need to select winners for any manual awards.)  If you need to make changes to the scores, be sure to re-verify before continuing.
+        Pay particular attenion to the Outcomes tab for accuracy and completeness, making manual adjustments as necesary.
       </p>
     {{else}}
       <p>
-          This will draw the top <strong>{{model.spots}} multi-round competitors</strong> into the next round.  If you change the number of available spots, please Verify Round again to re-Draw.
+        Verifying the Round will draw the top <strong>{{model.spots}} multi-round competitors</strong> into the next round and place the Mic Tester at draw 0 (represented by the thick "Cut Line" on the Competitors tab.). Once verified, you'll be able to change the draw manually if necessary.
       </p>
     {{/if}}
     {{#if verifyRoundModalError}}
