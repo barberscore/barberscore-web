@@ -7,10 +7,10 @@ export default Component.extend({
   flashMessages: service(),
   verifyAppearance: task(function *() {
     try {
-      yield this.model.verify({
+      let appearance = yield this.model.verify({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      this.store.pushPayload('appearance', appearance);
       if (this.get('model.varianceReport') == null) {
         this.flashMessages.success("Verified!");
       } else {
@@ -19,5 +19,6 @@ export default Component.extend({
     } catch(e) {
       this.flashMessages.danger(e.errors.status);
     }
+    yield this.model.competitor.reload();
   }).drop(),
 });
