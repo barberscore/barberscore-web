@@ -23,6 +23,17 @@
             <p>
               {{entry-preferences model=model}}
             </p>
+            <p>
+              {{#bs-button-group
+                value=model.isMt
+                type='radio'
+                onChange=(perform autosave 'isMt')
+                as |bg|
+              }}
+                {{#bg.button type='default' value=false disabled=model.isDisabled}}Not MicTester{{/bg.button}}
+                {{#bg.button type='default' value=true disabled=model.isDisabled}}Is MicTester{{/bg.button}}
+              {{/bs-button-group}}
+            </p>
           </div>
         </div>
       </section>

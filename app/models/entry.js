@@ -8,6 +8,7 @@ export default Model.extend({
   status: DS.attr('entry-status'),
   isEvaluation: DS.attr('boolean'),
   isPrivate: DS.attr('boolean'),
+  isMt: DS.attr('boolean'),
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
@@ -42,6 +43,10 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  notMt: not(
+    'isMt'
   ),
 
   includedContestants: filterBy(

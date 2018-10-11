@@ -8,14 +8,18 @@ export default Component.extend({
   entrySortProperties: [
     'draw:asc',
   ],
+  notMt: filterBy(
+    'model.entries',
+    'notMt',
+  ),
+  filteredEntries: filterBy(
+    'notMt',
+    'status',
+    'Approved'
+  ),
   sortedEntries: sort(
     'filteredEntries',
     'entrySortProperties'
-  ),
-  filteredEntries: filterBy(
-    'model.entries',
-    'status',
-    'Approved'
   ),
   actions: {
     toggleDraw(){
