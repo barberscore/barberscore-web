@@ -11,10 +11,10 @@ export default Component.extend({
         'by': this.get('currentUser.user.id'),
       });
       this.store.pushPayload('appearance', appearance);
-      if (this.get('model.varianceReport') == null) {
-        this.flashMessages.success("Verified!");
-      } else {
+      if (this.model.status === 'Variance') {
         this.flashMessages.warning("VARIANCE!");
+      } else {
+        this.flashMessages.success("Verified");
       }
     } catch(e) {
       this.flashMessages.danger(e.errors.status);

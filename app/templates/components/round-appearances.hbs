@@ -30,7 +30,7 @@
                 }}
               </td> --}}
               <td>{{appearance.num}}</td>
-              {{#if appearance.competitor.group.isLoading}}
+              {{#if appearance.competitor.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
@@ -38,7 +38,7 @@
                     'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                     appearance
                   }}
-                    {{appearance.competitor.group.name}}
+                    {{appearance.competitor.groupName}}
                   {{/link-to}}
                   &nbsp;
                   {{#if (eq appearance.status 'Verified')}}

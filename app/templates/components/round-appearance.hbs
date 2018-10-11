@@ -34,8 +34,8 @@
           {{appearance-panelists model=model}}
           <div class='pull-right'>
             <ul class='list-inline'>
-              <li><h4>Practice Points: {{#if model.sumPractice}}<strong>{{model.sumPractice}}</strong>{{/if}}</h4></li>
-              <li><h4>Official Points: {{#if model.sumPractice}}<strong>{{model.sumOfficial}}</strong>{{/if}}</h4></li>
+              <li><h4>Practice Points: {{#if model.sumPractice}}<strong>{{model.sumPractice}}</strong>{{else}}N/A{{/if}}</h4></li>
+              <li><h4>Official Points: {{#if model.sumOfficial}}<strong>{{model.sumOfficial}}</strong>{{/if}}</h4></li>
             </ul>
           </div>
         </section>
