@@ -4,13 +4,15 @@ import { task } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
+  router: service(),
   flashMessages: service(),
   verifyAppearance: task(function *() {
     try {
       let appearance = yield this.model.verify({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('appearance', appearance);
+      yield this.store.pushPayload('appearance', appearance);
+      yield this.model.competitor.reload();
       if (this.model.status === 'Variance') {
         this.flashMessages.warning("VARIANCE!");
       } else {
@@ -19,6 +21,5 @@ export default Component.extend({
     } catch(e) {
       this.flashMessages.danger(e.errors.status);
     }
-    yield this.model.competitor.reload();
   }).drop(),
 });
