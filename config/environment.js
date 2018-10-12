@@ -12,7 +12,7 @@ module.exports = function(environment) {
     },
     storeConfigInMeta: true,
     sentry: {
-      dsn: 'https://4a9abb7157544f1b959cc120975c8a81@sentry.io/296102',
+      dsn: 'https://7878190e210947428cf54df69d99e469@sentry.io/1300033',
       development: environment === 'development',
     },
     contentSecurityPolicy: {
@@ -32,7 +32,7 @@ module.exports = function(environment) {
         '*.auth0.com',
       ].join(' '),
       'report-uri': [
-        'https://sentry.io/api/296102/csp-report/?sentry_key=4a9abb7157544f1b959cc120975c8a81'
+        'https://sentry.io/api/1300033/csp-report/?sentry_key=7878190e210947428cf54df69d99e469'
       ].join(' '),
       'img-src': [
         'data:',
