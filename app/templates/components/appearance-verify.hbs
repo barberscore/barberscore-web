@@ -8,6 +8,8 @@
   {{else}}
     {{#if (eq model.status 'Finished')}}
       Check Appearance
+    {{else if (eq model.status 'Verified')}}
+      Re-Verify Appearance
     {{else if (eq model.status 'Variance')}}
       Verify Appearance
     {{/if}}
