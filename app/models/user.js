@@ -9,7 +9,6 @@ export default DS.Model.extend({
   person: DS.belongsTo('person', {async: true}),
   name: DS.attr('string'),
   email: DS.attr('string'),
-  currentThrough: DS.attr('isodate'),
   permissions: DS.attr(),
   isDisabled: not(
     'permissions.write'
