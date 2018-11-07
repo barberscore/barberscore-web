@@ -76,7 +76,7 @@ export default Controller.extend({
         },
         allowLogin: true,
         allowForgotPassword: true,
-        allowSignUp: true,
+        allowSignUp: false,
         initialScreen: 'login',
         languageDictionary: {
           title: "Barberscore",
