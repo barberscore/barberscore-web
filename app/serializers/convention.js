@@ -8,8 +8,5 @@ export default DS.JSONAPISerializer.extend({
       assignments: {
         serialize: true
       },
-      grantors: {
-        serialize: true
-      },
     }
 });

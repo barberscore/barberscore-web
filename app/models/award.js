@@ -17,6 +17,7 @@ export default Model.extend({
   advance: DS.attr('number'),
   spots: DS.attr('number'),
   description: DS.attr('string'),
+  divizion: DS.attr('award-division'),
   age: DS.attr('award-age'),
   size: DS.attr('award-size'),
   scope: DS.attr('award-scope'),

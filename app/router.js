@@ -23,9 +23,6 @@ Router.map(function() {
         this.route('assignments', {
           path: 'assignments'
         });
-        this.route('grantors', {
-          path: 'grantors'
-        });
         this.route('sessions', {
           path: 'sessions'
         }, function() {

@@ -11,7 +11,6 @@ export function initialize(/* application */) {
   inflector.uncountable('convention');
   inflector.uncountable('competitor');
   inflector.uncountable('entry');
-  inflector.uncountable('grantor');
   inflector.uncountable('grid');
   inflector.uncountable('group');
   inflector.uncountable('member');

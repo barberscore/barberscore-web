@@ -1,9 +1,0 @@
-<ul class='list-styled'>
-  {{#each sortedGroups as |group|}}
-    {{#if (eq group.kind 'Chapter')}}
-      <li>{{group.name}}, {{group.code}}</li>
-    {{else}}
-      <li>{{group.name}}</li>
-    {{/if}}
-  {{/each}}
-</ul>

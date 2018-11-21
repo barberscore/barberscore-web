@@ -20,7 +20,6 @@ export default Model.extend({
   group: DS.belongsTo('group', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
-  grantors: DS.hasMany('grantor', {async: true}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),

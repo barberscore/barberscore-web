@@ -7,7 +7,6 @@ export default DS.Transform.extend({
       11: 'District',
       12: 'Noncompetitive',
       13: 'Affiliate',
-      21: 'Division',
       32: 'Chapter',
     };
     return map[serialized];
@@ -19,7 +18,6 @@ export default DS.Transform.extend({
       'District': 11,
       'Noncompetitive': 12,
       'Affiliate': 13,
-      'Division': 21,
       'Chapter': 32,
     };
     return map[deserialized];
