@@ -10,7 +10,7 @@ export default Model.extend({
   status: DS.attr('group-status'),
   kind: DS.attr('group-kind'),
   gender: DS.attr('group-gender'),
-  divizion: DS.attr('group-division'),
+  division: DS.attr('group-division'),
   isSenior: DS.attr('boolean'),
   code: DS.attr('string'),
   startDate: DS.attr('isodate'),

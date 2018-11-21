@@ -3,7 +3,7 @@
     <div class='panel-heading fixed-panel-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{model.group.name}}&nbsp;({{model.representing}})&nbsp;{{#if model.group.bhsId}}[{{model.group.bhsId}}]{{/if}}{{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if model.group.divizion}}<span class="label label-info">{{model.group.divizion}}</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
+        {{model.group.name}}&nbsp;({{model.representing}})&nbsp;{{#if model.group.bhsId}}[{{model.group.bhsId}}]{{/if}}{{#if model.prelim}}&nbsp;&mdash;&nbsp;{{single-fixed model.prelim}}{{/if}}&nbsp;{{#if model.group.isSenior}}<span class="label label-warning">Seniors</span>{{/if}}&nbsp;{{#if model.group.division}}<span class="label label-info">{{model.group.division}}</span>{{/if}}&nbsp;{{#if (eq model.group.status 'Active')}}<span class="label label-success">Active</span>{{else}}<span class="label label-danger">Inactive</span>{{/if}}
       </h4>
     </div>
     <div class='panel-body'>
