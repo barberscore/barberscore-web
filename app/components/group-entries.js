@@ -71,7 +71,7 @@ export default Component.extend({
         session: session,
         description: '',
         contestants: [],
-        isEvaluation: true,
+        isEvaluation: false,
         isPrivate: false,
         competitor: null,
       }).save();

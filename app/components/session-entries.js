@@ -35,7 +35,7 @@ export default Component.extend({
         group: group,
         description: '',
         contestants: [],
-        isEvaluation: true,
+        isEvaluation: false,
         isPrivate: false,
       }).save();
       let p = yield entry.build({
