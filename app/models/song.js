@@ -64,5 +64,8 @@ export default Model.extend({
   penaltyOptions: [
     10,
     20,
+    30,
+    40,
+    50
   ],
 });

@@ -1,14 +1,18 @@
-<div class='table-responsive'>
+{{!-- <div class='table-responsive'> --}}
   <table class='table'>
     <caption>Penalties</caption>
     <thead>
       <tr>
-        <th>Name</th>
+        <th class='col-md-4'>Song</th>
+        <th class='col-md-8'>Violation</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedSongs as |song|}}
         <tr>
+          <td>
+            {{song.chart.title}}
+          </td>
           <td>
             {{#power-select-multiple
               options=song.penaltyOptions
@@ -19,7 +23,7 @@
               disabled=song.isDisabled
               as |penalties|
             }}
-              Penalty {{penalties}}
+              {{map-penalty penalties}}
             {{/power-select-multiple}}
           </td>
         </tr>
@@ -30,4 +34,4 @@
       {{/each}}
     </tbody>
   </table>
-</div>
+{{!-- </div> --}}
