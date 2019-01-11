@@ -9,9 +9,6 @@ export default Model.extend({
   kind: DS.attr('score-kind'),
   num: DS.attr('number'),
   points: DS.attr('number'),
-  original: DS.attr('number'),
-  violation: DS.attr('number'),
-  penalty: DS.attr('number'),
   isFlagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
@@ -54,10 +51,6 @@ export default Model.extend({
     'Official',
     'Practice',
     'Composite',
-  ],
-
-  violationOptions: [
-    'General',
   ],
 
   rowClass: computed(
