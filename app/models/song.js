@@ -7,6 +7,7 @@ export default Model.extend({
   status: DS.attr('song-status'),
   legacyChart: DS.attr('string'),
   num: DS.attr('number'),
+  penalties: DS.attr(),
   musPoints: DS.attr('number'),
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),
@@ -59,5 +60,9 @@ export default Model.extend({
     'Confirmed',
     'Final',
     'Announced',
+  ],
+  penaltyOptions: [
+    10,
+    20,
   ],
 });

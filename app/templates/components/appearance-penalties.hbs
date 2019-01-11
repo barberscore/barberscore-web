@@ -1,0 +1,33 @@
+<div class='table-responsive'>
+  <table class='table'>
+    <caption>Penalties</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedSongs as |song|}}
+        <tr>
+          <td>
+            {{#power-select-multiple
+              options=song.penaltyOptions
+              selected=song.penalties
+              onchange=(perform autosave song)
+              placeholder="(No Penalties)"
+              allowClear=true
+              disabled=song.isDisabled
+              as |penalties|
+            }}
+              Penalty {{penalties}}
+            {{/power-select-multiple}}
+          </td>
+        </tr>
+      {{else}}
+        <tr>
+          <td>(No songs.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
