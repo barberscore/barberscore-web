@@ -12,6 +12,7 @@ export default Model.extend({
   gender: DS.attr('group-gender'),
   division: DS.attr('group-division'),
   isSenior: DS.attr('boolean'),
+  isYouth: DS.attr('boolean'),
   code: DS.attr('string'),
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
