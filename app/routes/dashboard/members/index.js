@@ -9,7 +9,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'person__user': this.get('currentUser.user.id'),
       'status': 10,
       'group__status': 10,
-      'group__kind__gt': 21,
+      'group__kind__gt': 30,
     });
   },
 });
