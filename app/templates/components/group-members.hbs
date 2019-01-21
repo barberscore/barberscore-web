@@ -10,7 +10,7 @@
         {{!-- <th class='col-md-2'>Phone</th> --}}
         <th class='col-md-1'>DOB</th>
         <th class='col-md-1'>BHS ID</th>
-        {{!-- <th class='col-md-1'>BHS Status</th> --}}
+        <th class='col-md-1'>BHS Status</th>
         <th class='col-md-1'>BHS Current Through</th>
         {{!-- <th class='col-md-1'>Action</th> --}}
         {{!-- <th>Start</th> --}}
@@ -38,7 +38,7 @@
             {{#if member.person.user.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              {{!-- <td>{{member.person.user.status}}</td> --}}
+              <td>{{#if member.person.currentStatus}}Active{{else}}<span class='text-danger' >Inactive</span>{{/if}}</td>
               <td>{{moment-format member.person.currentThrough 'L'}}</td>
             {{/if}}
           {{/if}}
