@@ -23,6 +23,7 @@ export default Model.extend({
   ],
 
   chartTitle: alias('chart.title'),
+  chartArrangers: alias('chart.arrangers'),
 
 });
 

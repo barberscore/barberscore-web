@@ -10,11 +10,11 @@
     <tbody>
       {{#each model.repertories as |repertory|}}
         <tr>
-          {{#if repertory.chart.isLoading}}
+          {{#if repertory.isLoading}}
             <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
-            <td>{{repertory.chart.title}}</td>
-            <td>{{repertory.chart.arrangers}}</td>
+            <td>{{repertory.chartTitle}}</td>
+            <td>{{repertory.chartArrangers}}</td>
             <td>
               {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=repertory.isDisabled}}Delete{{/bs-button}}
             </td>
