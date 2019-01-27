@@ -1,8 +1,4 @@
-<p>
-  Temporarily Disabled
-</p>
-
-{{!-- <div class='table-responsive'>
+<div class='table-responsive'>
   <table class='table'>
     <thead>
       <tr>
@@ -12,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each model.repertories as |repertory|}}
+      {{#each sortedRepertories as |repertory|}}
         <tr>
           {{#if repertory.isLoading}}
             <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
@@ -167,4 +163,4 @@ If you have been added to one of those roles (and you’re still not able to edi
       {{/bs-button}}
     {{/modal.footer}}
   {{/bs-modal}}
-</div> --}}
+</div>
