@@ -16,6 +16,6 @@ export default Component.extend({
   }),
   redirectConvention: task(function* (convention){
     let pk = yield convention.objectID;
-    return this.router.transitionTo('dashboard.conventions.convention.details', pk);
+    this.router.transitionTo('dashboard.conventions.convention.details', pk);
   }),
 });
