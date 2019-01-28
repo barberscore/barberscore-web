@@ -12,3 +12,10 @@ const App = Application.extend({
 loadInitializers(App, config.modulePrefix);
 
 export default App;
+
+import * as Sentry from '@sentry/browser'
+Sentry.init({
+  dsn: 'https://7878190e210947428cf54df69d99e469@sentry.io/1300033',
+  integrations: [new Sentry.Integrations.Ember()]
+});
+

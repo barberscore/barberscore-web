@@ -11,10 +11,6 @@ module.exports = function(environment) {
       allowEmpty: true // default: false
     },
     storeConfigInMeta: true,
-    sentry: {
-      dsn: 'https://7878190e210947428cf54df69d99e469@sentry.io/1300033',
-      development: environment === 'development',
-    },
     contentSecurityPolicy: {
       'font-src': [
         'data:',
