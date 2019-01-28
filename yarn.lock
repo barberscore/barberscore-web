@@ -961,6 +961,11 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
+"@types/node@*":
+  version "10.12.18"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
+  integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
+
 "@types/node@^9.6.0":
   version "9.6.41"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.41.tgz#e57c3152eb2e7ec748c733cebd0c095b437c5d37"
@@ -3259,6 +3264,11 @@ builtin-modules@^1.0.0:
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
   integrity sha1-Jw8HbFpywC9bZaR9+Uxf46J4iS8=
 
+builtin-modules@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-2.0.0.tgz#60b7ef5ae6546bd7deefa74b08b62a43a232648e"
+  integrity sha512-3U5kUA5VPsRUA3nofm/BXX7GVHKfxz0hOBAPxXrIvHzlDRkQVqEn6yi8QJegxl4LzOHLdvb7XF5dVawa/VVYBg==
+
 builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
@@ -4690,6 +4700,23 @@ ember-cli-build-config-editor@0.5.0:
   integrity sha1-4ZoG9NouPlebQHlkty35+/ODn0s=
   dependencies:
     recast "^0.12.0"
+
+ember-cli-cjs-transform@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-cjs-transform/-/ember-cli-cjs-transform-1.3.0.tgz#73a24a9335067b83a4acac9c5fe4deb51a62391a"
+  integrity sha1-c6JKkzUGe4OkrKycX+TetRpiORo=
+  dependencies:
+    broccoli-debug "^0.6.4"
+    broccoli-plugin "^1.3.0"
+    ember-cli-babel "^6.6.0"
+    fs-extra "^5.0.0"
+    hash-for-dep "^1.2.3"
+    pkg-dir "^2.0.0"
+    resolve "^1.7.1"
+    rollup "^0.59.0"
+    rollup-plugin-commonjs "^9.1.0"
+    rollup-plugin-node-resolve "^3.3.0"
+    username "^3.0.0"
 
 ember-cli-dependency-checker@^3.0.0:
   version "3.1.0"
@@ -7632,6 +7659,11 @@ is-installed-globally@^0.1.0:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
 
+is-module@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-module/-/is-module-1.0.0.tgz#3258fb69f78c14d5b815d664336b4cffb6441591"
+  integrity sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=
+
 is-npm@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
@@ -8641,6 +8673,13 @@ magic-string@^0.24.0:
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.24.1.tgz#7e38e5f126cae9f15e71f0cf8e450818ca7d5a8f"
   integrity sha512-YBfNxbJiixMzxW40XqJEIldzHyh5f7CZKalo1uZffevyrPEX8Qgo9s0dmcORLHdV47UyvJg8/zD+6hQG3qvJrA==
+  dependencies:
+    sourcemap-codec "^1.4.1"
+
+magic-string@^0.25.1:
+  version "0.25.1"
+  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.1.tgz#b1c248b399cd7485da0fe7385c2fc7011843266e"
+  integrity sha512-sCuTz6pYom8Rlt4ISPFn6wuFodbKMIHUMv4Qko9P17dpxb7s52KJTmRuZZqHdGmLCK9AOcDare039nRIcfdkEg==
   dependencies:
     sourcemap-codec "^1.4.1"
 
@@ -10094,6 +10133,13 @@ pinkie@^2.0.0:
   resolved "https://registry.yarnpkg.com/pinkie/-/pinkie-2.0.4.tgz#72556b80cfa0d48a974e80e77248e80ed4f7f870"
   integrity sha1-clVrgM+g1IqXToDnckjoDtT3+HA=
 
+pkg-dir@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-2.0.0.tgz#f6d5d1109e19d63edf428e0bd57e12777615334b"
+  integrity sha1-9tXREJ4Z1j7fQo4L1X4Sd3YVM0s=
+  dependencies:
+    find-up "^2.1.0"
+
 pkg-dir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
@@ -10968,7 +11014,7 @@ resolve@1.5.0:
   dependencies:
     path-parse "^1.0.5"
 
-resolve@^1.1.3, resolve@^1.1.4, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.6.0, resolve@^1.7.1, resolve@^1.8.1, resolve@^1.9.0:
+resolve@^1.1.3, resolve@^1.1.4, resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.3.2, resolve@^1.3.3, resolve@^1.4.0, resolve@^1.5.0, resolve@^1.6.0, resolve@^1.7.1, resolve@^1.8.1, resolve@^1.9.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.10.0.tgz#3bdaaeaf45cc07f375656dfd2e54ed0810b101ba"
   integrity sha512-3sUr9aq5OfSg2S9pNtPA9hL1FVEAjvfOC4leW0SNf/mpnaakz2a9femSd6LqAww2RaFctwyf1lCqnTHuF1rxDg==
@@ -11034,7 +11080,26 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
     hash-base "^3.0.0"
     inherits "^2.0.1"
 
-rollup-pluginutils@^2.0.1:
+rollup-plugin-commonjs@^9.1.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-commonjs/-/rollup-plugin-commonjs-9.2.0.tgz#4604e25069e0c78a09e08faa95dc32dec27f7c89"
+  integrity sha512-0RM5U4Vd6iHjL6rLvr3lKBwnPsaVml+qxOGaaNUWN1lSq6S33KhITOfHmvxV3z2vy9Mk4t0g4rNlVaJJsNQPWA==
+  dependencies:
+    estree-walker "^0.5.2"
+    magic-string "^0.25.1"
+    resolve "^1.8.1"
+    rollup-pluginutils "^2.3.3"
+
+rollup-plugin-node-resolve@^3.3.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-3.4.0.tgz#908585eda12e393caac7498715a01e08606abc89"
+  integrity sha512-PJcd85dxfSBWih84ozRtBkB731OjXk0KnzN0oGp7WOWcarAFkVa71cV5hTJg2qpVsV2U8EUwrzHP3tvy9vS3qg==
+  dependencies:
+    builtin-modules "^2.0.0"
+    is-module "^1.0.0"
+    resolve "^1.1.6"
+
+rollup-pluginutils@^2.0.1, rollup-pluginutils@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-2.3.3.tgz#3aad9b1eb3e7fe8262820818840bf091e5ae6794"
   integrity sha512-2XZwja7b6P5q4RZ5FhyX1+f46xi1Z3qBKigLRZ6VTZjwbN0K1IFGMlwm06Uu0Emcre2Z63l77nq/pzn+KxIEoA==
@@ -11058,6 +11123,14 @@ rollup@^0.57.1:
     rollup-pluginutils "^2.0.1"
     signal-exit "^3.0.2"
     sourcemap-codec "^1.4.1"
+
+rollup@^0.59.0:
+  version "0.59.4"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.4.tgz#6f80f7017c22667ff1bf3e62adf8624a44cc44aa"
+  integrity sha512-ISiMqq/aJa+57QxX2MRcvLESHdJ7wSavmr6U1euMr+6UgFe6KM+3QANrYy8LQofwhTC1I7BcAdlLnDiaODs1BA==
+  dependencies:
+    "@types/estree" "0.0.39"
+    "@types/node" "*"
 
 rsvp@^3.0.14, rsvp@^3.0.17, rsvp@^3.0.18, rsvp@^3.0.21, rsvp@^3.0.6, rsvp@^3.1.0, rsvp@^3.3.3:
   version "3.6.2"
@@ -12533,6 +12606,14 @@ username@^1.0.1:
   integrity sha1-4fcilePljgbwAsYyfOBol6mc1n8=
   dependencies:
     meow "^3.4.0"
+
+username@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/username/-/username-3.0.0.tgz#b3dba982a72b4ce59d52f159fa1aeba266af5fc8"
+  integrity sha1-s9upgqcrTOWdUvFZ+hrromavX8g=
+  dependencies:
+    execa "^0.7.0"
+    mem "^1.1.0"
 
 util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
