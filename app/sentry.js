@@ -8,7 +8,7 @@ Sentry.init({
   integrations: [new Sentry.Integrations.Ember()],
   release: config.APP.HEROKU_RELEASE_VERSION,
   beforeSend: (event, hint) => {
-   if (config.environment !== 'production') {
+   if (config.environment !== 'production' || hint.originalException.name === 'TransitionAborted') {
     // eslint-disable-next-line
     console.error(hint.originalException || hint.syntheticException);
     return null; // this drops the event and nothing will be send to sentry
