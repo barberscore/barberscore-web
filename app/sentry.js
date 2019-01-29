@@ -17,5 +17,4 @@ Sentry.init({
   }
 });
 
-Sentry.captureMessage(`Env ${config.APP.SENTRY_DSN} is broken`);
 export default Sentry;
