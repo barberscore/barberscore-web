@@ -61,6 +61,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.LOG_RESOLVER = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_TRANSITIONS = false;
@@ -85,6 +86,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    ENV.APP.SENTRY_DSN = null;
     ENV.locationType = 'none';
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
@@ -103,6 +105,8 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
+    ENV.APP.HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
     ENV.APP.API_HOST = process.env.API_HOST;
     ENV.APP.API_NAMESPACE = process.env.API_NAMESPACE;
     ENV['ember-algolia'] = {
