@@ -71,7 +71,7 @@ export default Controller.extend({
           redirect: true,
           responseType: 'token',
           params: {
-            scope: 'openid'
+            scope: 'openid profile email'
           }
         },
         allowLogin: true,
