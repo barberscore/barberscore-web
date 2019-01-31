@@ -1,4 +1,4 @@
-import { not, alias, equal } from '@ember/object/computed';
+import { not, alias } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -25,9 +25,5 @@ export default Model.extend({
   chartTitle: alias('chart.title'),
   chartArrangers: alias('chart.arrangers'),
 
-  isActive: equal(
-    'status',
-    'Active',
-  ),
 });
 
