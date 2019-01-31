@@ -1,4 +1,4 @@
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy } from '@ember/object/computed';
 import Component from '@ember/component';
 
 export default Component.extend({
@@ -9,8 +9,12 @@ export default Component.extend({
     'personLast',
     'personName',
   ],
-  sortedOfficers: sort(
+  filteredOfficers: filterBy(
     'model.officers',
+    'isActive',
+  ),
+  sortedOfficers: sort(
+    'filteredOfficers',
     'sortedOfficersProperties'
   ),
 });

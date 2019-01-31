@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { not, sort, alias, mapBy } from '@ember/object/computed';
+import { not, sort, alias, mapBy, filterBy } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 import { computed } from '@ember/object';
@@ -36,8 +36,12 @@ export default Component.extend({
   sortedRepertoriesProperties: [
     'chartTitle',
   ],
-  sortedRepertories: sort(
+  filteredRepertories: filterBy(
     'model.repertories',
+    'isActive',
+  ),
+  sortedRepertories: sort(
+    'filteredRepertories',
     'sortedRepertoriesProperties'
   ),
   flashMessages: service(),
