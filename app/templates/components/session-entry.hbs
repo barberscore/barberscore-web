@@ -127,6 +127,38 @@
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>
+      {{prev-next model=model sortedArray=sortedEntries}}
+      <h4>
+        {{model.group.name}}&nbsp;({{model.representing}})&nbsp;
+          {{#if model.group.bhsId}}
+            [{{model.group.bhsId}}]&nbsp;
+          {{/if}}
+          {{#if model.prelim}}
+            {{single-fixed model.prelim}}&nbsp;
+          {{/if}}
+          {{#if model.group.isSenior}}
+            <span class="label label-warning">Seniors</span>&nbsp;
+          {{/if}}
+          {{#if model.group.isYouth}}
+            <span class="label label-warning">Youth</span>&nbsp;
+          {{/if}}
+          {{#if model.group.isMixed}}
+            <span class="label label-success">Mixed</span>&nbsp;
+          {{/if}}
+          {{#if model.group.isFemale}}
+            <span class="label label-primary">Female</span>&nbsp;
+          {{/if}}
+          {{#if model.group.division}}
+            <span class="label label-info">{{model.group.division}}</span>&nbsp;
+          {{/if}}
+          {{#if (eq model.group.status 'Active')}}
+            <span class="label label-success">Active</span>&nbsp;
+          {{else}}
+            <span class="label label-danger">Inactive</span>&nbsp;
+          {{/if}}
+      </h4>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
           <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
