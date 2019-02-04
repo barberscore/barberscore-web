@@ -27,9 +27,6 @@ module.exports = function(environment) {
         'localhost:4200',
         '*.auth0.com',
       ].join(' '),
-      'report-uri': [
-        'https://sentry.io/api/1300033/csp-report/?sentry_key=7878190e210947428cf54df69d99e469'
-      ].join(' '),
       'img-src': [
         'data:',
         '*.getsentry.com',

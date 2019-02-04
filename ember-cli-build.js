@@ -13,7 +13,8 @@ module.exports = function(defaults) {
       theme: 'bootstrap'
     },
     sourcemaps: {
-      enabled: true
+      enabled: true,
+      extensions: ['js']
     }
   });
 
