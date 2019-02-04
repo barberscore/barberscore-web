@@ -123,7 +123,15 @@
       </section>
       <hr>
       <section>
-        {{model-statelogs model=model}}
+        <p>
+          Activity Log:
+          {{#bs-button class='btn' size='xs' onClick=(toggle 'logsCollapsed' this)}}
+            {{if logsCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=logsCollapsed}}
+          {{model-statelogs model=model}}
+        {{/bs-collapse}}
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>

@@ -1,9 +1,8 @@
 <div class='table-responsive'>
   <table class='table'>
-    <caption>These are the state logs transitions.</caption>
     <thead>
       <tr>
-        <th class='col-md-1'>Transition</th>
+        <th class='col-md-1'>Action</th>
         <th class='col-md-2'>By</th>
         <th class='col-md-2'>Timestamp</th>
       </tr>
@@ -11,15 +10,21 @@
     <tbody>
       {{#each sortedStatelogs as |statelog|}}
         <tr>
-          <td>
-            {{capitalize-word statelog.transition}}
-          </td>
-          <td>
-            {{statelog.by.person.commonName}}
-          </td>
-          <td>
-            {{moment-format statelog.timestamp 'LLLL'}}
-          </td>
+          {{#if statelog.isLoading}}
+            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{capitalize-word statelog.transition}}
+            </td>
+            {{#if statelog.by.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{statelog.by.person.commonName}}</td>
+            {{/if}}
+            <td>
+              {{moment-format statelog.timestamp 'LLLL'}}
+            </td>
+          {{/if}}
         </tr>
       {{else}}
         <tr>

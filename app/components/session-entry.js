@@ -6,6 +6,7 @@ export default Component.extend({
   membersCollapsed: true,
   officersCollapsed: true,
   repertoriesCollapsed: true,
+  logsCollapsed: true,
   autosave: task(function* (property, value){
     this.model.set(property, value);
     yield timeout(1000);
