@@ -6,7 +6,8 @@ module.exports = function(deployTarget){
       sentryUrl: 'https://sentry.io',
       sentryOrganizationSlug: 'barberscore',
       sentryProjectSlug: 'web',
-      sentryBearerApiKey: process.env.SENTRY_API_KEY
+      sentryBearerApiKey: process.env.SENTRY_API_KEY.
+      enableRevisionTagging: false
     };
   }
   return ENV;
