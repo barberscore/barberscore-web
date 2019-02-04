@@ -20,6 +20,7 @@
   "devDependencies": {
     "@ember/jquery": "^0.6.0",
     "@ember/optional-features": "^0.7.0",
+    "@sentry/browser": "^4.5.3",
     "algoliasearch": "^3.24.12",
     "bootstrap": "3.3.7",
     "broccoli-asset-rev": "^3.0.0",
@@ -61,8 +62,7 @@
     "ember-truth-helpers": "^2.1.0",
     "eslint-plugin-ember": "^6.0.0",
     "loader.js": "^4.7.0",
-    "qunit-dom": "^0.8.0",
-    "@sentry/browser": "^4.5.3"
+    "qunit-dom": "^0.8.0"
   },
   "engines": {
     "node": "^10.0.0",
