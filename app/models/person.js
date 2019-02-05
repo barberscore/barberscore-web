@@ -27,6 +27,7 @@ export default Model.extend({
   description: DS.attr('string', {defaultValue:''}),
   currentThrough: DS.attr('isodate'),
   currentStatus: DS.attr('boolean'),
+  currentDistrict: DS.attr('boolean'),
   bhsId: DS.attr('number'),
   fullName: DS.attr('string'),
   commonName: DS.attr('string'),

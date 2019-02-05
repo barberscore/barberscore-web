@@ -12,6 +12,7 @@
         <th class='col-md-1'>BHS ID</th>
         <th class='col-md-1'>BHS Status</th>
         <th class='col-md-1'>BHS Current Through</th>
+        <th class='col-md-1'>District Member</th>
         {{!-- <th class='col-md-1'>Action</th> --}}
         {{!-- <th>Start</th> --}}
         {{!-- <th>End</th> --}}
@@ -40,6 +41,7 @@
             {{else}}
               <td>{{#if member.person.currentStatus}}Active{{else}}<span class='text-danger' >Inactive</span>{{/if}}</td>
               <td>{{moment-format member.person.currentThrough 'L'}}</td>
+              <td>{{boolean-helper member.person.currentDistrict 'L'}}</td>
             {{/if}}
           {{/if}}
         </tr>
