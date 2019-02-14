@@ -32,7 +32,7 @@
                 </td>
                 <td>
                   {{if convention.venue.name convention.venue.name '(Unknown)'}}<br>
-                  {{if convention.venue.city convention.venue.city '(Unknown)'}},  {{if convention.venue.state convention.venue.state '(Unknown)'}}
+                  {{convention.location}}
                 </td>
                 <td>
                   {{moment-format convention.startDate 'L'}} - {{moment-format convention.endDate 'L'}}

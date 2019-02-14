@@ -138,7 +138,7 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
           <div class='col-xs-10'>
             {{session.convention.name}}<br>
             {{session.kind}} Session<br>
-            {{session.convention.venue.city}}, {{session.convention.venue.state}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
+            {{session.convention.location}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
           </div>
         </div>
       {{/power-select}}

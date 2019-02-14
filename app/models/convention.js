@@ -15,6 +15,7 @@ export default Model.extend({
   endDate: DS.attr('isodate'),
   image: DS.attr('string'),
   location: DS.attr('string', {defaultValue: ''}),
+  timezone: DS.attr('string'),
   description: DS.attr('string'),
   venue: DS.belongsTo('venue', {async: true}),
   group: DS.belongsTo('group', {async: true}),
