@@ -4,6 +4,7 @@
       <tr>
         <th class='col-md-3'>Person</th>
         <th class='col-md-2'>Office</th>
+        <th class='col-md-2'>BHS ID</th>
         <th class='col-md-2'>Email</th>
         <th class='col-md-2'>Phone</th>
       </tr>
@@ -24,6 +25,7 @@
             {{else}}
               <td>{{officer.office.name}}</td>
             {{/if}}
+            <td>{{officer.person.bhsId}}</td>
             <td><a href='mailto:{{officer.person.email}}'>{{officer.person.email}}</a></td>
             <td><a href='tel:{{officer.person.cellPhone}}'>{{officer.person.cellPhone}}</a></td>
           {{/if}}

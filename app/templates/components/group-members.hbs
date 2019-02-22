@@ -1,5 +1,10 @@
 <div class='table-responsive'>
   <table class='table'>
+    {{#if (eq model.kind 'Chorus')}}
+      <caption>
+        <strong>NOTE:</strong>The list of members and their BHS status is provided below only as a courtesy. You may likely see names of former members of your chapter that are still active with BHS - please ignore these additional names. Instead, your official current chorus membership roster is available via the BHS Member Center. The chorus leadership must ensure that all participants on the contest stage are active (fully paid) members of your chapter - (this can be verified in the Member Center), and all have full convention registrations as of the day of the performance.
+      </caption>
+    {{/if}}
     <thead>
       <tr>
         <th class='col-md-3'>Person</th>
