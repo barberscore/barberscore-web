@@ -10,6 +10,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
       'status': 10,
       'group__status': 10,
       'group__kind__gt': 30,
+      'group__parent__kind__gt': 1,
     });
   },
 });
