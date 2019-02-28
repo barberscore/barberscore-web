@@ -5,9 +5,6 @@ import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('score-status'),
-  category: DS.attr('score-category'),
-  kind: DS.attr('score-kind'),
-  num: DS.attr('number'),
   points: DS.attr('number'),
   isFlagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
@@ -52,6 +49,10 @@ export default Model.extend({
     'Practice',
     'Composite',
   ],
+
+  kind: alias('panelist.kind'),
+  num: alias('panelist.num'),
+  category: alias('panelist.category'),
 
   rowClass: computed(
     'kind', function() {
