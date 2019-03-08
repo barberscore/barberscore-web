@@ -17,6 +17,9 @@
     <p>
         This generates draft versions of the OSS, CSA and SA for the CA to verify.  They are not made public until the next step; you will be able to make changes as necessary until the Round is finished.
     </p>
+    <p>
+        <strong>IMPORTANT:</strong>Verifying a Round is a time-consuming process, particuarly on slow networks.  Please be patient!  Allow the process to complete.  If you have waited several minutes and things still aren't working, please refresh and try again.
+    </p>
     {{#if (eq model.kind 'Finals')}}
       <p>
         Pay particular attenion to the Outcomes tab for accuracy and completeness, making manual adjustments as necesary.
@@ -29,6 +32,9 @@
     {{#if verifyRoundModalError}}
     <p class='text-danger'>
       Could not Verify Round.  Please ensure all Appearances have been verified.
+    </p>
+    <p>
+      If you are certain that the Appearances were verified try refreshing the page to see if things worked; otherwise contact support.
     </p>
     {{/if}}
   {{/modal.body}}
