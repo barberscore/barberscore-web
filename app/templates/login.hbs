@@ -1,31 +1,86 @@
 <section>
   <div class="page-header">
     <h1>Login</h1>
-    <h3>You now have two ways to login</h3>
   </div>
 </section>
 <section>
   <div class='row'>
     <div class='col-md-6'>
       <p class='lead'>
-        Login with email and password<br><br>
-        {{#bs-button onClick=(action "password") type='primary' size='lg'}}Email and Password{{/bs-button}}
-      </p>
-      <p>
-        <strong>Important:</strong>  If this is the first time using this approach, you'll need to create a new password by clicking the "Don't remember your password?" link and following those instructions.
-      </p>
-    </div>
-    <div class='col-md-6'>
-      <p class='lead'>
-        Login with a MagicLink (no password required)<br><br>
-        {{#bs-button onClick=(action "passwordless") type='primary' size='lg'}}Passwordless MagicLink{{/bs-button}}
-      </p>
-      <p>
-        <strong>DEPRECATION NOTICE:</strong>  Please note that the "MagicLink" login method will be deactivated on or after March 1.  Please move to the email/password login method at your earliest convenience.
+        {{#bs-button onClick=(action "password") type='primary' size='lg'}}Login with Email and Password{{/bs-button}}
       </p>
     </div>
   </div>
 </section>
 <section>
-  <small><strong>Welcome:</strong> Barberscore is now operational for all BHS members. Edit permissions are only available to quartet contacts (for quartet entry), or pre-defined Chapter Leaders (for chorus entry). Please refer to competitor tutorials and FAQ (below) for more information. All other members should be able to view information about the quartets and choruses to which you belong.</small>
+  <div class='row'>
+    <br>
+    <br>
+    <div class='col-md-6'>
+    <ul class='list-unstyled'>
+      <li>
+        {{#bs-button class='btn btn-link' onClick=(toggle 'faq1' this)}}
+          It says I have wrong email and password; what do I do?
+        {{/bs-button}}
+      </li>
+      {{#bs-collapse collapsed=faq1}}
+        <p>
+          There are three main ways to solve this:
+        </p>
+        <p>
+          First, be sure you are using the same email address you use to access the {{member-center}}. Only persons with a BHS account can access Barberscore.
+        </p>
+        <p>
+          Second, if this is the first time you're logging in to Barberscore, you need to create a password by choosing the "Forgot Your Password" link in the login form.  You'll be sent an email allowing you to create a new password.  This can be any password you like, including the same password you currently use on the {{member-center}} itself.  We're sorry to require this additional step, but for security purposes Barberscore and the Member Center do not share user passwords.
+        </p>
+        <p>
+          Finally, if you're sure you have the right email and have logged in before, it might just be that you're using the wrong password!  Click on the Forgot Password link to get a new one.
+        </p>
+      {{/bs-collapse}}
+      <li>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'faq2' this)}}
+        I've asked for a new password but never get the email.  What do I do?
+      {{/bs-button}}
+      </li>
+      {{#bs-collapse collapsed=faq2}}
+        <p>
+          First, be sure to check your spam or junk mail folders.
+        </p>
+        <p>
+          Second, there is a chance an errant report is blocking all email to your address.  If you have checked your spam/junk mail folder and still don't see our email, please reach out to {{customer-support}} to lift that block.
+        </p>
+      {{/bs-collapse}}
+      <li>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'faq3' this)}}
+        I've tried everything and still can't log in.
+      {{/bs-button}}
+      </li>
+      {{#bs-collapse collapsed=faq3}}
+        <p>
+          When all else fails, please contact {{customer-support}} and we'll do all we can to help.
+        </p>
+      {{/bs-collapse}}
+      <li>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'faq4' this)}}
+        Who can login to Barberscore?
+      {{/bs-button}}
+      </li>
+      {{#bs-collapse collapsed=faq4}}
+        <p>
+          Barberscore is accessible to all persons that have an account with the BHS {{member-center}}.  In Barberscore you'll have read-only access to all the active quartets and choruses with which you have a current membership.  Those who have administrative access (such as Quartet Admins and Chorus Managers) are also able to take actions such as enter contests or change musical repertory.
+        </p>
+      {{/bs-collapse}}
+      <li>
+      {{#bs-button class='btn btn-link' onClick=(toggle 'faq5' this)}}
+        I have another question -- where can I get it answered?
+      {{/bs-button}}
+      </li>
+      {{#bs-collapse collapsed=faq5}}
+        <p>
+          Be sure to check out the tutorials and FAQs below for even more detailed information.  If all else fails, reach out to {{customer-support}}.
+        </p>
+      {{/bs-collapse}}
+    </ul>
+  </div>
+  </div>
 </section>
