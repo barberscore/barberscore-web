@@ -42,6 +42,7 @@ export default Model.extend({
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  refresh: memberAction({path: 'refresh', type: 'get'}),
 
   isDisabled: not(
     'permissions.write'
