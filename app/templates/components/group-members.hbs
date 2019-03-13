@@ -1,17 +1,15 @@
 <div class='table-responsive'>
   <table class='table'>
-    {{#if (eq model.kind 'Chorus')}}
-      <caption>
-        Does this list look out of date?  Click to get the latest data: {{#bs-button disabled=refreshGroup.last.isSuccessful onClick=(perform refreshGroup) type="default" size='xs'}}
-          {{#if refreshGroup.isRunning}}
-            Refreshing {{fa-icon "spinner" spin=true}}
-          {{else}}
-            Refresh
-          {{/if}}
-        {{/bs-button}}
-        <br><strong>Important:</strong>If the data still look bad even after refreshing, please contact {{customer-support}}.
-      </caption>
-    {{/if}}
+    <caption>
+      Does this list look out of date?  Click to get the latest data: {{#bs-button disabled=refreshGroup.last.isSuccessful onClick=(perform refreshGroup) type="default" size='xs'}}
+        {{#if refreshGroup.isRunning}}
+          Refreshing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Refresh
+        {{/if}}
+      {{/bs-button}}
+      <br><strong>Important:</strong>  If the data still look bad even after refreshing, please contact {{customer-support}}. <br>DO NOT KEEP CLICKING REFRESH.  Nothing will happen except causing errors for other users.
+    </caption>
     <thead>
       <tr>
         <th class='col-md-3'>Person</th>

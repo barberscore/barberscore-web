@@ -1,5 +1,4 @@
 import { not, filterBy, sort } from '@ember/object/computed';
-import { not, filterBy, sort } from '@ember/object/computed';
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
@@ -26,13 +25,12 @@ export default Component.extend({
     'sortedMembersProperties'
   ),
   refreshGroup: task(function *() {
-
     try {
-      let group = yield this.model.refresh();
-      yield this.store.pushPayload('group', group);
-      yield this.get('model.members').invoke('reload');
+      let group = yield this.get('model');
+      yield group.refresh();
+      window.location.reload(true);
     } catch(e) {
-      console.log(e);
+      yield this.flashMessages.danger(e);
     }
     yield this.flashMessages.success("Refresh!");
   }).drop(),
