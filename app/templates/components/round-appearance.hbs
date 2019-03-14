@@ -49,6 +49,17 @@
       </section> --}}
     </div>
     <div class='panel-footer fixed-panel-footer'>
+      {{prev-next model=model sortedArray=sortedAppearances}}
+      <h4>
+        #{{model.num}}: {{model.competitor.group.name}}
+        {{#if (eq model.status 'Variance')}}
+          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+        {{else}}
+          {{fa-icon 'check-circle' class='text-success'}}
+        {{/if}}
+     </h4>
+    </div>
+    <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
