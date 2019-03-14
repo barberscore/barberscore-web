@@ -7,20 +7,20 @@ export default Component.extend({
   store: service(),
   router: service(),
   flashMessages: service(),
-  startSessionModal: false,
-  startSessionModalError: false,
-  startSession: task(function *() {
+  packageSessionModal: false,
+  packageSessionModalError: false,
+  packageSession: task(function *() {
     try {
-      yield this.model.start({
+      yield this.model.package({
         'by': this.get('currentUser.user.id')
       });
       this.model.reload();
-      this.set('startSessionModal', false);
-      this.set('startSessionModalError', false);
-      this.flashMessages.success("Started!");
+      this.set('packageSessionModal', false);
+      this.set('packageSessionModalError', false);
+      this.flashMessages.success("Packaged!");
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds');
     } catch(e) {
-      this.set('startSessionModalError', true);
+      this.set('packageSessionModalError', true);
     }
   }).drop(),
 });

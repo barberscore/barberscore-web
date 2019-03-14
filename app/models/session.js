@@ -25,7 +25,7 @@ export default Model.extend({
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
-  start: memberAction({path: 'start', type: 'post'}),
+  package: memberAction({path: 'package', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   refresh: memberAction({path: 'refresh', type: 'get'}),
 
@@ -47,7 +47,7 @@ export default Model.extend({
     'Opened',
     'Closed',
     'Verified',
-    'Started',
+    'Packaged',
     'Finished',
   ],
   kindOptions: [

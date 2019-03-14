@@ -47,7 +47,7 @@
       </tbody>
     </table>
   </div>
-  {{#unless (or (eq model.status 'Started') (eq model.status 'Finished')) }}
+  {{#unless (or (eq model.status 'Packaged') (eq model.status 'Finished')) }}
     <div>
       <p>
         {{#bs-button

@@ -1,5 +1,5 @@
 {{#if (or
-    (eq model.status 'Started')
+    (eq model.status 'Packaged')
     (eq model.status 'Finished')
 )}}
   <div class='table-responsive'>
@@ -26,6 +26,6 @@
   </div>
 {{else}}
   <h4>
-    The Rounds are only available after the Session has started.
+    The Rounds are only available after the Session has been packaged.
   </h4>
 {{/if}}

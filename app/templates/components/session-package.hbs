@@ -1,0 +1,36 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isDisabled
+  onClick=(action (mut packageSessionModal) true)
+}}
+  Package Session
+{{/bs-button}}
+{{#bs-modal
+  open=packageSessionModal
+  onHidden=(pipe-action (action (mut packageSessionModal) false) (action (mut packageSessionModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Package Session</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This packages the Session and represents the official handoff from the DRCJ to the Contest Administrator.  After the session is packaged it is put into a locked down state; you won't be able to add, withdraw, re-arrange the draw or take any actions.  Any further changes must be handled by the CA.
+    </p>
+    {{#if packageSessionModalError}}
+    <p class='text-danger'>
+      Could not Package Session.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform packageSession)}}
+      {{#if packageSession.isRunning}}
+        Packaging {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Package Session
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
