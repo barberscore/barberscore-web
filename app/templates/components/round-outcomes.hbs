@@ -19,10 +19,10 @@
                 {{outcome.num}}
               </td>
               <td>
-                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.contest.award.name}}{{/link-to}}
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.award.name}}{{/link-to}}
               </td>
               <td>
-                {{#if (eq outcome.contest.award.level 'Manual')}}
+                {{#if (eq outcome.award.level 'Manual')}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
               </td>

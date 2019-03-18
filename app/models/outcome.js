@@ -8,7 +8,7 @@ export default Model.extend({
   name: DS.attr('string'),
   legacyName: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
-  contest: DS.belongsTo('contest', {async: true}),
+  award: DS.belongsTo('award', {async: true}),
   permissions: DS.attr(),
 
   isDisabled: not(

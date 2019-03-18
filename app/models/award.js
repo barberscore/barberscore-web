@@ -26,6 +26,7 @@ export default Model.extend({
   parent: DS.belongsTo('award', {inverse:'children', async: true}),
   children: DS.hasMany('award', {inverse:'parent', async: true}),
   contests: DS.hasMany('contest', {async: true}),
+  outcomes: DS.hasMany('outcome', {async: true}),
   permissions: DS.attr(),
 
   // Transitions
