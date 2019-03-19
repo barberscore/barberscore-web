@@ -22,6 +22,7 @@ export default Model.extend({
   perPoints: DS.attr('number'),
   sngPoints: DS.attr('number'),
   totPoints: DS.attr('number'),
+  runPoints: DS.attr('number'),
   musScore: DS.attr('number'),
   perScore: DS.attr('number'),
   sngScore: DS.attr('number'),
@@ -30,10 +31,11 @@ export default Model.extend({
   perRank: DS.attr('number'),
   sngRank: DS.attr('number'),
   totRank: DS.attr('number'),
+  isMulti: DS.attr('boolean'),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
@@ -64,14 +66,8 @@ export default Model.extend({
   ],
 
 
-  isRanked: alias(
-    'competitor.isRanked'
-  ),
-  isMulti: alias(
-    'competitor.isMulti'
-  ),
-  isSingle: alias(
-    'competitor.isSingle'
+  isSingle: not(
+    'isMulti'
   ),
   notMT: gt(
     'num',

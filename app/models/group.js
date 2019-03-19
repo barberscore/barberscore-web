@@ -33,6 +33,7 @@ export default Model.extend({
   children: DS.hasMany('group', {inverse:'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),
   competitors: DS.hasMany('competitor', {async: true}),
+  appearances: DS.hasMany('appearance', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
   members: DS.hasMany('member', {async: true}),
