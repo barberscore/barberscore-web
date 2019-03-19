@@ -54,6 +54,7 @@
             </thead>
             <tbody>
               {{#each sortedAppearances as |appearance|}}
+                  {{#if (gt appearance.num 0)}}
                   <tr>
                     <td>
                       {{appearance.group.name}}
@@ -62,6 +63,7 @@
                       {{appearance.runPoints}}
                     </td>
                   </tr>
+                  {{/if}}
               {{else}}
                 <tr>
                   <td colspan=3>No contests.</td>

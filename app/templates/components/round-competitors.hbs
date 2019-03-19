@@ -98,7 +98,7 @@
           </thead>
           <tbody>
             {{#each sortedSingleAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+              <tr>
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
@@ -152,30 +152,31 @@
           </thead>
           <tbody>
             {{#each sortedAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+              <tr>
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitorTotScore}}
+                  {{#if appearance.runPoints}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
                   {{!-- <td>
                     {{#if appearance.competitor.isRanked}}
                       {{fa-icon 'check-circle' class='text-success'}}
                     {{/if}}
                   </td> --}}
-                  <td>{{#if appearance.competitorTotPoints}}{{appearance.competitorTotPoints}}{{else}}N/A{{/if}}</td>
-                  <td>{{single-fixed appearance.competitorTotScore}}</td>
+                  <td>{{#if appearance.runPoints}}{{appearance.runPoints}}{{else}}N/A{{/if}}</td>
+                  <td>{{single-fixed appearance.runScore}}</td>
                   <td>
                     {{appearance.status}}
                   </td>
+                  <td></td>
                 {{/if}}
               </tr>
             {{else}}
