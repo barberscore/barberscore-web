@@ -9,7 +9,7 @@ export default Component.extend({
     'num',
   ],
   sortedContestantsProperties: [
-    'competitorTotPoints:desc',
+    'competitorstats.tot.points:desc',
   ],
   filteredChampionships: filterBy(
     'model.session.contests',

@@ -1,4 +1,4 @@
-import { alias, not, equal } from '@ember/object/computed';
+import { alias, not, equal, and } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -6,10 +6,13 @@ import DS from 'ember-data';
 export default Model.extend({
   status: DS.attr('score-status'),
   points: DS.attr('number'),
-  isFlagged: DS.attr('boolean'),
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
   permissions: DS.attr(),
+
+  kind: alias('panelist.kind'),
+  num: alias('panelist.num'),
+  category: alias('panelist.category'),
 
   isDisabled: not(
     'permissions.write'
@@ -24,6 +27,26 @@ export default Model.extend({
   isOfficial: equal(
     'kind',
     'Official',
+  ),
+
+  isSinging: equal(
+    'category',
+    'Singing',
+  ),
+
+  isOfficialSinging: and(
+    'isOfficial',
+    'isSinging',
+  ),
+
+  isPerformance: equal(
+    'category',
+    'Performance',
+  ),
+
+  isOfficialPerformance: and(
+    'isOfficial',
+    'isPerformance',
   ),
 
   isPractice: equal(
@@ -49,10 +72,6 @@ export default Model.extend({
     'Practice',
     'Composite',
   ],
-
-  kind: alias('panelist.kind'),
-  num: alias('panelist.num'),
-  category: alias('panelist.category'),
 
   rowClass: computed(
     'kind', function() {

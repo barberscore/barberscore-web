@@ -12,9 +12,9 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
-    'competitorTotPoints:desc',
-    'competitorSngPoints:desc',
-    'competitorPerPoints:desc',
+    'competitorstats.tot.points:desc',
+    'competitorstats.sng.points:desc',
+    'competitorstats.per.points:desc',
     'groupName',
   ],
   multiAppearances: filterBy(

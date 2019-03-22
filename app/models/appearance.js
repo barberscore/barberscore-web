@@ -18,18 +18,7 @@ export default Model.extend({
   draw: DS.attr('number'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
-  musPoints: DS.attr('number'),
-  perPoints: DS.attr('number'),
-  sngPoints: DS.attr('number'),
-  totPoints: DS.attr('number'),
-  musScore: DS.attr('number'),
-  perScore: DS.attr('number'),
-  sngScore: DS.attr('number'),
-  totScore: DS.attr('number'),
-  musRank: DS.attr('number'),
-  perRank: DS.attr('number'),
-  sngRank: DS.attr('number'),
-  totRank: DS.attr('number'),
+  stats: DS.attr(),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
@@ -64,9 +53,6 @@ export default Model.extend({
   ],
 
 
-  isRanked: alias(
-    'competitor.isRanked'
-  ),
   isMulti: alias(
     'competitor.isMulti'
   ),
@@ -79,21 +65,6 @@ export default Model.extend({
   ),
   roundNum: alias(
     'round.num'
-  ),
-  competitorTotPoints: alias(
-    'competitor.totPoints'
-  ),
-  competitorSngPoints: alias(
-    'competitor.sngPoints'
-  ),
-  competitorPerPoints: alias(
-    'competitor.perPoints'
-  ),
-  competitorTotScore: alias(
-    'competitor.totScore'
-  ),
-  competitorTotRank: alias(
-    'competitor.totRank'
   ),
   competitorStatus: alias(
     'competitor.status'
@@ -133,14 +104,28 @@ export default Model.extend({
     'songs',
     'sumPracticeScores',
   ),
+  sumPractice: sum(
+    'practiceSongScores',
+  ),
   officialSongScores: mapBy(
     'songs',
     'sumOfficialScores',
   ),
-  sumPractice: sum(
-    'practiceSongScores',
-  ),
   sumOfficial: sum(
     'officialSongScores',
+  ),
+  officialSingingSongScores: mapBy(
+    'songs',
+    'sumOfficialSingingScores',
+  ),
+  sumOfficialSinging: sum(
+    'officialSingingSongScores',
+  ),
+  officialPerformanceSongScores: mapBy(
+    'songs',
+    'sumOfficialPerformanceScores',
+  ),
+  sumOfficialPerformance: sum(
+    'officialPerformanceSongScores',
   ),
 });

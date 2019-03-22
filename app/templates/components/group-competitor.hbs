@@ -21,41 +21,41 @@
             <tbody>
               <tr>
                 <td>Total</td>
-                <td>{{model.totPoints}} <em>({{single-fixed model.totScore}})</em></td>
-                <td>{{model.musPoints}} <em>({{single-fixed model.musScore}})</em></td>
-                <td>{{model.perPoints}} <em>({{single-fixed model.perScore}})</em></td>
-                <td>{{model.sngPoints}} <em>({{single-fixed model.sngScore}})</em></td>
+                <td>{{model.stats.tot.points}} <em>({{single-fixed model.stats.tot.score}})</em></td>
+                <td>{{model.stats.mus.points}} <em>({{single-fixed model.stats.mus.score}})</em></td>
+                <td>{{model.stats.per.points}} <em>({{single-fixed model.stats.per.score}})</em></td>
+                <td>{{model.stats.sng.points}} <em>({{single-fixed model.stats.sng.score}})</em></td>
               </tr>
               {{#each sortedAppearances as |appearance|}}
                 <tr>
                   <td>
-                    {{appearance.round.kind}}{{!--  (Rank: {{appearance.totRank}}) --}}<br>
+                    {{appearance.round.kind}}{{!--  (Rank: {{appearance.stats.tot.rank}}) --}}<br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
                       {{song.chart.title}}<br>
                     {{/each}}
                   </td>
                   <td>
-                    {{appearance.totPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{appearance.stats.tot.points}} <em>({{single-fixed appearance.stats.mus.score}})</em><br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
-                      {{song.totPoints}} <em>({{single-fixed song.totScore}})</em><br>
+                      {{song.stats.tot.points}} <em>({{single-fixed song.stats.tot.score}})</em><br>
                     {{/each}}
                   </td>
                   <td>
-                    {{appearance.musPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{appearance.stats.mus.points}} <em>({{single-fixed appearance.stats.mus.score}})</em><br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
-                      {{song.musPoints}} <em>({{single-fixed song.musScore}})</em><br>
+                      {{song.stats.mus.points}} <em>({{single-fixed song.stats.mus.score}})</em><br>
                     {{/each}}
                   </td>
                   <td>
-                    {{appearance.perPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{appearance.stats.per.points}} <em>({{single-fixed appearance.stats.mus.score}})</em><br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
-                      {{song.perPoints}} <em>({{single-fixed song.perScore}})</em><br>
+                      {{song.stats.per.points}} <em>({{single-fixed song.stats.per.score}})</em><br>
                     {{/each}}
                   </td>
                   <td>
-                    {{appearance.sngPoints}} <em>({{single-fixed appearance.musScore}})</em><br>
+                    {{appearance.stats.sng.points}} <em>({{single-fixed appearance.stats.mus.score}})</em><br>
                     {{#each (sort-by "num" appearance.songs) as |song|}}
-                      {{song.sngPoints}} <em>({{single-fixed song.sngScore}})</em><br>
+                      {{song.stats.sng.points}} <em>({{single-fixed song.stats.sng.score}})</em><br>
                     {{/each}}
                   </td>
                 </tr>

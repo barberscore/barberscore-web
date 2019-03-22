@@ -17,7 +17,7 @@ export default Component.extend({
   }).restartable(),
   sortedCompetitorsProperties: [
     'statusSort',
-    'totPoints:desc',
+    'stats.tot.points:desc',
     'groupName',
   ],
   sortedCompetitors: sort(

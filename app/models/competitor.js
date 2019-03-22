@@ -1,4 +1,4 @@
-import { not, alias, equal } from '@ember/object/computed';
+import { not, alias, equal, sum, mapBy } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -6,21 +6,9 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('competitor-status'),
-  isRanked: DS.attr('boolean'),
   isMulti: DS.attr('boolean'),
   draw: DS.attr('number'),
-  musPoints: DS.attr('number'),
-  perPoints: DS.attr('number'),
-  sngPoints: DS.attr('number'),
-  totPoints: DS.attr('number'),
-  musScore: DS.attr('number'),
-  perScore: DS.attr('number'),
-  sngScore: DS.attr('number'),
-  totScore: DS.attr('number'),
-  musRank: DS.attr('number'),
-  perRank: DS.attr('number'),
-  sngRank: DS.attr('number'),
-  totRank: DS.attr('number'),
+  stats: DS.attr(),
   csa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
@@ -62,6 +50,27 @@ export default Model.extend({
     function() {
       return this.statusOptions.indexOf(this.status);
     }
+  ),
+  officialAppearanceScores: mapBy(
+    'appearances',
+    'sumOfficial',
+  ),
+  sumOfficial: sum(
+    'officialAppearanceScores',
+  ),
+  officialSingingAppearanceScores: mapBy(
+    'appearances',
+    'sumOfficialSinging',
+  ),
+  sumOfficialSinging: sum(
+    'officialSingingAppearanceScores',
+  ),
+  officialPerformanceAppearanceScores: mapBy(
+    'appearances',
+    'sumOfficialPerformance',
+  ),
+  sumOfficialPerformance: sum(
+    'officialPerformanceAppearanceScores',
   ),
 });
 

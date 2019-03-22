@@ -59,12 +59,12 @@
                       {{contestant.entry.group.name}}
                     </td>
                     <td>
-                      {{contestant.entry.competitor.totPoints}}
+                      {{contestant.entry.competitor.stats.tot.points}}
                     </td>
                   </tr>
               {{else}}
                 <tr>
-                  <td colspan=3>No contests.</td>
+                  <td colspan=3>Standings not yet available.</td>
                 </tr>
               {{/each}}
             </tbody>

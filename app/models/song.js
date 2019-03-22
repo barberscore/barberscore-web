@@ -8,18 +8,7 @@ export default Model.extend({
   legacyChart: DS.attr('string'),
   num: DS.attr('number'),
   penalties: DS.attr(),
-  musPoints: DS.attr('number'),
-  perPoints: DS.attr('number'),
-  sngPoints: DS.attr('number'),
-  totPoints: DS.attr('number'),
-  musScore: DS.attr('number'),
-  perScore: DS.attr('number'),
-  sngScore: DS.attr('number'),
-  totScore: DS.attr('number'),
-  musRank: DS.attr('number'),
-  perRank: DS.attr('number'),
-  sngRank: DS.attr('number'),
-  totRank: DS.attr('number'),
+  stats: DS.attr(),
   appearance: DS.belongsTo('appearance', {async: true}),
   chart: DS.belongsTo('chart', {async: true}),
   scores: DS.hasMany('score', {async: true}),
@@ -53,6 +42,30 @@ export default Model.extend({
     'officialScoresPoints',
   ),
 
+  officialSingingScores: filterBy(
+    'scores',
+    'isOfficialSinging',
+  ),
+  officialSingingScoresPoints: mapBy(
+    'officialSingingScores',
+    'intPoints',
+  ),
+  sumOfficialSingingScores: sum(
+    'officialSingingScoresPoints',
+  ),
+
+  officialPerformanceScores: filterBy(
+    'scores',
+    'isOfficialPerformance',
+  ),
+  officialPerformanceScoresPoints: mapBy(
+    'officialPerformanceScores',
+    'intPoints',
+  ),
+  sumOfficialPerformanceScores: sum(
+    'officialPerformanceScoresPoints',
+  ),
+
   statusOptions: [
     'New',
     'Validated',
@@ -61,9 +74,9 @@ export default Model.extend({
     'Final',
     'Announced',
   ],
+
   penaltyOptions: [
     10,
-    20,
     30,
     40,
     50
