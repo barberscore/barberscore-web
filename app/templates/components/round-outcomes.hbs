@@ -19,7 +19,11 @@
                 {{outcome.num}}
               </td>
               <td>
-                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.award.name}}{{/link-to}}
+                {{#if outcome.award.isLoading}}
+                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+                {{else}}
+                  {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.award.name}}{{/link-to}}
+                {{/if}}
               </td>
               <td>
                 {{#if (eq outcome.award.level 'Manual')}}
