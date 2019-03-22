@@ -13,7 +13,6 @@ export default Model.extend({
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
-  appearances: DS.hasMany('appearance', {async: true}),
   grids: DS.hasMany('grid', {async: true}),
   permissions: DS.attr(),
 

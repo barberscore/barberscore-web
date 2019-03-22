@@ -19,10 +19,12 @@ export default Model.extend({
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
+  isMulti: DS.attr('boolean'),
+  contesting: DS.attr({ defaultValue: function() { return []; } }),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
+  group: DS.belongsTo('group', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
@@ -53,11 +55,8 @@ export default Model.extend({
   ],
 
 
-  isMulti: alias(
-    'competitor.isMulti'
-  ),
-  isSingle: alias(
-    'competitor.isSingle'
+  isSingle: not(
+    'isMulti'
   ),
   notMT: gt(
     'num',

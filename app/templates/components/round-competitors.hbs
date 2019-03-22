@@ -44,10 +44,10 @@
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
                   <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
@@ -107,10 +107,10 @@
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
                   <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
@@ -156,16 +156,17 @@
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
                   <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>
+                  <td></td>
                 {{/if}}
               </tr>
             {{else}}

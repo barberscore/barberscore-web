@@ -3,7 +3,7 @@
     <div class='panel-heading fixed-panel-header'>
       {{prev-next model=model sortedArray=sortedOutcomes}}
       <h4>
-        {{model.contest.award.name}}
+        {{model.award.name}}
       </h4>
     </div>
     <div class='panel-body'>
@@ -48,20 +48,22 @@
               </caption>
             <thead>
               <tr>
-                <th class='col-md-5'>Num</th>
+                <th class='col-md-5'>Name</th>
                 <th class='col-md-1'>Points</th>
               </tr>
             </thead>
             <tbody>
-              {{#each sortedContestants as |contestant|}}
+              {{#each sortedAppearances as |appearance|}}
+                  {{#if (gt appearance.num 0)}}
                   <tr>
                     <td>
-                      {{contestant.entry.group.name}}
+                      {{appearance.group.name}}
                     </td>
                     <td>
-                      {{contestant.entry.competitor.stats.tot.points}}
+                      {{appearance.competitor.sumOfficial}}
                     </td>
                   </tr>
+                  {{/if}}
               {{else}}
                 <tr>
                   <td colspan=3>Standings not yet available.</td>

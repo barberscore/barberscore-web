@@ -21,16 +21,8 @@
             {{#if appearance.isLoading}}
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              {{!-- <td>
-                {{input
-                  type='checkbox'
-                  checked=appearance.competitor.isIncluded
-                  disabled=appearance.competitor.isDisabled
-                  change=(perform toggleCompetitor appearance value='target.checked')
-                }}
-              </td> --}}
               <td>{{appearance.num}}</td>
-              {{#if appearance.competitor.isLoading}}
+              {{#if appearance.group.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
@@ -38,7 +30,7 @@
                     'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                     appearance
                   }}
-                    {{appearance.competitor.groupName}}
+                    {{appearance.group.name}}
                   {{/link-to}}
                   &nbsp;
                   {{#if (eq appearance.status 'Verified')}}
