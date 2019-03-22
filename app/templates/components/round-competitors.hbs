@@ -39,7 +39,7 @@
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitorstats.tot.score}}
+                  {{#if appearance.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -102,7 +102,7 @@
                 {{#if appearance.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitorstats.tot.score}}
+                  {{#if appearance.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -110,9 +110,9 @@
                   {{#if appearance.competitor.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
+                    <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}Foo{{/link-to}}</td>
                   {{/if}}
-                  <td>{{#if appearance.competitorstats.tot.points}}{{appearance.competitorstats.tot.points}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.sumOfficial}}{{appearance.sumOfficial}}{{else}}N/A{{/if}}</td>
                   <td>{{single-fixed appearance.competitorstats.tot.score}}</td>
                   <td>
                     {{appearance.status}}
@@ -141,17 +141,17 @@
               <th class='col-md-1'>Rank</th>
               <th class='col-md-8'>Name</th>
               <th class='col-md-1'>Points</th>
-              <th class='col-md-1'>Score</th>
+              {{!-- <th class='col-md-1'>Score</th> --}}
               <th class='col-md-1'>Status</th>
             </tr>
           </thead>
           <tbody>
             {{#each sortedAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
-                {{#if appearance.isLoading}}
+                {{#if appearance.competitor.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitorstats.tot.score}}
+                  {{#if appearance.competitor.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -161,8 +161,8 @@
                   {{else}}
                     <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.competitors.competitor' appearance.competitor}}{{appearance.competitor.groupName}}{{/link-to}}</td>
                   {{/if}}
-                  <td>{{#if appearance.competitorstats.tot.points}}{{appearance.competitorstats.tot.points}}{{else}}N/A{{/if}}</td>
-                  <td>{{single-fixed appearance.competitorstats.tot.score}}</td>
+                  <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>

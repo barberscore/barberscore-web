@@ -12,9 +12,9 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
-    'competitorstats.tot.points:desc',
-    'competitorstats.sng.points:desc',
-    'competitorstats.per.points:desc',
+    'sumOfficial:desc',
+    'sumOfficialSinging:desc',
+    'sumOfficialPerformance:desc',
     'groupName',
   ],
   multiAppearances: filterBy(
