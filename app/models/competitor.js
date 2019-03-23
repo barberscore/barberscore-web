@@ -14,6 +14,7 @@ export default Model.extend({
   group: DS.belongsTo('group', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
   grids: DS.hasMany('grid', {async: true}),
+  appearances: DS.hasMany('appearance', {async: true}),
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),
