@@ -22,7 +22,7 @@
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>{{appearance.num}}</td>
-              {{#if appearance.group.isLoading}}
+              {{#if appearance.competitor.group.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
@@ -30,7 +30,7 @@
                     'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                     appearance
                   }}
-                    {{appearance.group.name}}
+                    {{appearance.competitor.group.name}}
                   {{/link-to}}
                   &nbsp;
                   {{#if (eq appearance.status 'Verified')}}

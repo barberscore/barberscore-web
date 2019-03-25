@@ -53,17 +53,15 @@
               </tr>
             </thead>
             <tbody>
-              {{#each sortedAppearances as |appearance|}}
-                  {{#if (gt appearance.num 0)}}
+              {{#each sortedCompetitors as |competitor|}}
                   <tr>
                     <td>
-                      {{appearance.group.name}}
+                      {{competitor.group.name}}
                     </td>
                     <td>
-                      {{appearance.competitor.sumOfficial}}
+                      {{competitor.sumOfficial}}
                     </td>
                   </tr>
-                  {{/if}}
               {{else}}
                 <tr>
                   <td colspan=3>Standings not yet available.</td>

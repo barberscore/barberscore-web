@@ -24,7 +24,6 @@ export default Model.extend({
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
   round: DS.belongsTo('round', {async: true}),
-  group: DS.belongsTo('group', {async: true}),
   competitor: DS.belongsTo('competitor', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),

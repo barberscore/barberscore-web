@@ -3,7 +3,7 @@
     <div class='panel-heading fixed-panel-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.group.name}}
+        #{{model.num}}: {{model.competitor.group.name}}
         {{#if (eq model.status 'Variance')}}
           <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
         {{else if (eq model.status 'Verified')}}
@@ -51,7 +51,7 @@
     <div class='panel-footer fixed-panel-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.group.name}}
+        #{{model.num}}: {{model.competitor.group.name}}
         {{#if (eq model.status 'Variance')}}
           <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
         {{else if (eq model.status 'Verified')}}

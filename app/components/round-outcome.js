@@ -26,6 +26,24 @@ export default Component.extend({
     'filteredAppearances',
     'filteredAppearancesProperties'
   ),
+  rankSortProperties: [
+    'sumOfficial:desc',
+    'sumOfficialSinging:desc',
+    'sumOfficialPerformance:desc',
+    'groupName',
+  ],
+  filteredCompetitors: filter(
+    'model.round.session.competitors.@each.contesting',
+    function(competitor) {
+      if (competitor.get('contesting').includes(this.get('model.num'))) {
+        return competitor;
+      }
+    }
+  ),
+  sortedCompetitors: sort(
+    'filteredCompetitors',
+    'rankSortProperties',
+  ),
   autosave: task(function* (property){
     yield timeout(200);
     try {
