@@ -27,6 +27,8 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
 
+  ossdraft: memberAction({ path: 'ossdraft', type: 'get', ajaxOptions: { arraybuffer: true } }),
+
   isDisabled: not(
     'permissions.write'
   ),
