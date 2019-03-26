@@ -7,7 +7,7 @@ export default Component.extend({
       let pdf = yield this.model.ossdraft();
       this.saveFileAs('oss.pdf', pdf, 'application/pdf');
     } catch(e) {
-      console.log(e);
+      // console.log(e);
     }
   }).drop(),
 });
