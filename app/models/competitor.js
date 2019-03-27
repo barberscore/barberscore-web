@@ -9,7 +9,6 @@ export default Model.extend({
   isMulti: DS.attr('boolean'),
   draw: DS.attr('number'),
   stats: DS.attr(),
-  csa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   entry: DS.belongsTo('entry', {async: true}),
@@ -22,6 +21,8 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   disqualify: memberAction({path: 'disqualify', type: 'post'}),
   scratch: memberAction({path: 'scratch', type: 'post'}),
+
+  csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'

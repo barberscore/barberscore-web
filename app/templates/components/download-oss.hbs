@@ -1,6 +1,14 @@
 {{#bs-button
   type='primary'
-  onClick=(perform ossdraft)
+  onClick=(perform oss)
 }}
-  Download OSS
+  {{#if oss.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if oss.last.isSuccessful}}
+    Download Complete!
+  {{else if oss.last.isError}}
+    Error Downloading
+  {{else}}
+    Download OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
 {{/bs-button}}

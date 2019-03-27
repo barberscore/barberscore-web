@@ -11,8 +11,6 @@ export default Model.extend({
   spots: DS.attr('number'),
   date: DS.attr('isodate'),
   footnotes: DS.attr('string'),
-  oss: DS.attr('string'),
-  sa: DS.attr('string'),
   session: DS.belongsTo('session', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
@@ -27,7 +25,10 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
 
-  ossdraft: memberAction({ path: 'ossdraft', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  oss: memberAction({ path: 'oss', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  sung: memberAction({ path: 'sung', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  sa: memberAction({ path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  announcements: memberAction({ path: 'announcements', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'

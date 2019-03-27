@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform csa)
+}}
+  {{#if csa.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if csa.last.isSuccessful}}
+    Download Complete!
+  {{else if csa.last.isError}}
+    Error Downloading
+  {{else}}
+    Download CSA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

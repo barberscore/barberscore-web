@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform psa)
+}}
+  {{#if psa.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if psa.last.isSuccessful}}
+    Download Complete!
+  {{else if psa.last.isError}}
+    Error Downloading
+  {{else}}
+    Download PSA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

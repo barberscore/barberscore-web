@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform drcj)
+}}
+  {{#if drcj.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if drcj.last.isSuccessful}}
+    Download Complete!
+  {{else if drcj.last.isError}}
+    Error Downloading
+  {{else}}
+    Download DRCJ Report&nbsp;&nbsp;{{fa-icon 'file-excel-o'}}
+  {{/if}}
+{{/bs-button}}

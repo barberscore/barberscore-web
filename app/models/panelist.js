@@ -2,6 +2,7 @@ import { alias, not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
+import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('panelist-status'),
@@ -12,6 +13,8 @@ export default Model.extend({
   person: DS.belongsTo('person', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
+
+  psa: memberAction({ path: 'psa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'

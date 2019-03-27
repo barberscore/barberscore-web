@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform legacy)
+}}
+  {{#if legacy.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if legacy.last.isSuccessful}}
+    Download Complete!
+  {{else if legacy.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Legacy Report&nbsp;&nbsp;{{fa-icon 'file-excel-o'}}
+  {{/if}}
+{{/bs-button}}

@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform contact)
+}}
+  {{#if contact.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if contact.last.isSuccessful}}
+    Download Complete!
+  {{else if contact.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Group Contact Report&nbsp;&nbsp;{{fa-icon 'file-excel-o'}}
+  {{/if}}
+{{/bs-button}}

@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform announcements)
+}}
+  {{#if announcements.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if announcements.last.isSuccessful}}
+    Download Complete!
+  {{else if announcements.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Announcements&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform sung)
+}}
+  {{#if sung.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if sung.last.isSuccessful}}
+    Download Complete!
+  {{else if sung.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Songs Sung&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

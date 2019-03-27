@@ -11,8 +11,6 @@ export default Model.extend({
   footnotes: DS.attr('string'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  oss: DS.attr('string'),
-  sa: DS.attr('string'),
   legacyReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
   contactReport: DS.attr('string'),
@@ -31,6 +29,11 @@ export default Model.extend({
   package: memberAction({path: 'package', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   refresh: memberAction({path: 'refresh', type: 'get'}),
+
+  contact: memberAction({ path: 'contact', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  legacy: memberAction({ path: 'legacy', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  drcj: memberAction({ path: 'drcj', type: 'get', ajaxOptions: { arraybuffer: true } }),
+
 
   isDisabled: not(
     'permissions.write'
