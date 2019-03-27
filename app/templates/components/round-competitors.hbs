@@ -98,7 +98,7 @@
           </thead>
           <tbody>
             {{#each sortedSingleAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+              <tr>
                 {{#if appearance.competitor.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
@@ -147,7 +147,7 @@
           </thead>
           <tbody>
             {{#each sortedAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+              <tr>
                 {{#if appearance.competitor.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
