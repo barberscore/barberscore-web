@@ -24,6 +24,7 @@ export default Model.extend({
   phone: DS.attr('string'),
   image: DS.attr('string'),
   description: DS.attr('string'),
+  participants: DS.attr('string'),
   bhsId: DS.attr('number'),
   international: DS.attr('string'),
   district: DS.attr('string'),
