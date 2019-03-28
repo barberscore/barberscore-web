@@ -5,6 +5,7 @@ import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 export default Component.extend(FileSaverMixin,{
   legacy: task(function *() {
     let xlsx = yield this.model.legacy();
-    this.saveFileAs('legacy.xlsx', xlsx, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    let fileName = `${this.model.conventionName} ${this.model.kind} Session Legacy Report`;
+    this.saveFileAs(fileName, xlsx, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   }).drop(),
 });

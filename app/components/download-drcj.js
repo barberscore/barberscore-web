@@ -5,6 +5,7 @@ import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 export default Component.extend(FileSaverMixin,{
   drcj: task(function *() {
     let xlsx = yield this.model.drcj();
-    this.saveFileAs('drcj.xlsx', xlsx, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    let fileName = `${this.model.conventionName} ${this.model.kind} Session DRCJ Report`;
+    this.saveFileAs(fileName, xlsx, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
   }).drop(),
 });
