@@ -5,6 +5,7 @@ import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 export default Component.extend(FileSaverMixin,{
   sa: task(function *() {
     let pdf = yield this.model.sa();
-    this.saveFileAs('sa.pdf', pdf, 'application/pdf');
+    let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} SA`;
+    this.saveFileAs(fileName, pdf, 'application/pdf');
   }).drop(),
 });

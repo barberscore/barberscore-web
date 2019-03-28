@@ -1,0 +1,14 @@
+{{#bs-button
+  type='primary'
+  onClick=(perform titles)
+}}
+  {{#if titles.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if titles.last.isSuccessful}}
+    Download Complete!
+  {{else if titles.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Titles&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

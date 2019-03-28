@@ -6,7 +6,7 @@
         <li>Scoring Analysis: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickSa') }}</li>
         <li>Competitor Scoring Analyses: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickCsa') }}</li>
         {{#if (not-eq model.kind 'Finals')}}
-          <li>Songs Sung Report: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickSung') }}</li>
+          <li>Titles Report: {{fa-icon 'file-pdf-o'  size='2' click=(action 'clickSung') }}</li>
         {{/if}}
       </ul>
     {{else if (eq model.status 'Finished')}}

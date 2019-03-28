@@ -26,13 +26,16 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
 
   oss: memberAction({ path: 'oss', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  sung: memberAction({ path: 'sung', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  titles: memberAction({ path: 'titles', type: 'get', ajaxOptions: { arraybuffer: true } }),
   sa: memberAction({ path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } }),
   announcements: memberAction({ path: 'announcements', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'
   ),
+
+  conventionName: alias('session.convention.name'),
+  sessionKind: alias('session.kind'),
 
   conventionStatus: alias('session.convention.status'),
   conventionIsActive: alias('session.convention.isActive'),

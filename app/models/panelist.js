@@ -20,6 +20,11 @@ export default Model.extend({
     'permissions.write'
   ),
 
+  conventionName: alias('round.session.convention.name'),
+  sessionKind: alias('round.session.kind'),
+  roundKind: alias('round.kind'),
+  personName: alias('person.commonName'),
+
   rowClass: computed(
     'kind', function() {
       if (this.category === 'Music') {

@@ -37,6 +37,11 @@ export default Model.extend({
     'Started',
   ),
 
+  conventionName: alias('session.convention.name'),
+  sessionKind: alias('session.kind'),
+
+
+
   conventionStatus: alias('session.convention.status'),
   roundDate: alias('session.convention.startDate'),
   groupName: alias('group.name'),
