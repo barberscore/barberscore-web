@@ -1,8 +1,19 @@
 <section>
-  <ul class='list-unstyled'>
-    <li class='double'>{{download-oss model=model}}</li>
-    <li class='double'>{{download-sa model=model}}</li>
-    <li class='double'>{{download-titles model=model}}</li>
-    <li class='double'>{{download-announcements model=model}}</li>
-  </ul>
+  {{#if (eq model.status 'Verified')}}
+    <ul class='list-unstyled'>
+      <li class='double'>{{download-oss model=model}}</li>
+      <li class='double'>{{download-sa model=model}}</li>
+      <li class='double'>{{download-titles model=model}}</li>
+      <li class='double'>{{download-announcements model=model}}</li>
+    </ul>
+  {{else if (eq model.status 'Finished')}}
+    <ul class='list-styled'>
+      <li class='double'>{{download-oss model=model}}</li>
+      <li class='double'>{{download-sa model=model}}</li>
+    </ul>
+  {{else}}
+    <h4>
+      Reports are available after the Round is Verified.
+    </h4>
+  {{/if}}
 </section>

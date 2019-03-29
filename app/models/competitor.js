@@ -6,7 +6,7 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('competitor-status'),
-  isMulti: DS.attr('boolean'),
+  isSingle: DS.attr('boolean'),
   draw: DS.attr('number'),
   stats: DS.attr(),
   session: DS.belongsTo('session', {async: true}),
@@ -26,10 +26,6 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
-  ),
-
-  isSingle: not(
-    'isMulti',
   ),
 
   isIncluded: equal(

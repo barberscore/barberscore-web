@@ -19,7 +19,6 @@ export default Model.extend({
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
-  isMulti: DS.attr('boolean'),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
@@ -55,9 +54,8 @@ export default Model.extend({
   ],
 
 
-  isSingle: not(
-    'isMulti'
-  ),
+  isSingle: alias('competitor.isSingle'),
+  isMulti: not('isSingle'),
   notMT: gt(
     'num',
     0
