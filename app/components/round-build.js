@@ -16,7 +16,7 @@ export default Component.extend({
       this.model.reload();
       this.store.pushPayload('round', round);
       this.get('model.appearances').invoke('reload');
-      this.get('model.panelists').invoke('reload');
+      this.get('model.panelists.@each.person').invoke('reload');
       this.set('buildRoundModal', false);
       this.set('buildRoundModalError', false);
       this.flashMessages.success("Built!");

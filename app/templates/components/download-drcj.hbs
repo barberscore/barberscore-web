@@ -1,11 +1,9 @@
 {{#bs-button
-  type='primary'
+  type='success'
   onClick=(perform drcj)
 }}
   {{#if drcj.isRunning}}
     Downloading {{fa-icon "spinner" spin=true}}
-  {{else if drcj.last.isSuccessful}}
-    Download Complete!
   {{else if drcj.last.isError}}
     Error Downloading
   {{else}}

@@ -1,11 +1,9 @@
 {{#bs-button
-  type='primary'
+  type='success'
   onClick=(perform sa)
 }}
   {{#if sa.isRunning}}
     Downloading {{fa-icon "spinner" spin=true}}
-  {{else if sa.last.isSuccessful}}
-    Download Complete!
   {{else if sa.last.isError}}
     Error Downloading
   {{else}}

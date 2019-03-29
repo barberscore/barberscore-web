@@ -44,7 +44,9 @@
   /*overflow-y: scroll;*/
 }
 
-
+.score-height {
+  height: 80px;
+}
 /*.ember-power-select-placeholder {
   min-width: 200px;
 }
