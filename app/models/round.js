@@ -25,6 +25,9 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
 
+  mock: memberAction({path: 'mock', type: 'get'}),
+
+
   oss: memberAction({ path: 'oss', type: 'get', ajaxOptions: { arraybuffer: true } }),
   titles: memberAction({ path: 'titles', type: 'get', ajaxOptions: { arraybuffer: true } }),
   sa: memberAction({ path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } }),
