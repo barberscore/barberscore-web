@@ -76,6 +76,10 @@ Router.map(function() {
                       path: ':appearance_id'
                     });
                   });
+                  this.route('standings', {
+                    path: 'standings'
+                  }, function() {
+                  });
                   this.route('outcomes', {
                     path: 'outcomes'
                   }, function () {

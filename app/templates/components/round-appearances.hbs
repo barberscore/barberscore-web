@@ -4,7 +4,7 @@
   <div class='table-responsive'>
     <table class='table'>
       <caption>
-        The Order of Appearance for all competitors in this Round.  Click on a Competitor to enter scores.
+        The Order of Appearance for all groups in this Round.  Click on a group to enter scores.
       </caption>
       <thead>
         <tr>
@@ -22,7 +22,7 @@
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>{{appearance.num}}</td>
-              {{#if appearance.competitor.group.isLoading}}
+              {{#if appearance.group.isLoading}}
                 <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
@@ -30,7 +30,7 @@
                     'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                     appearance
                   }}
-                    {{appearance.competitor.group.name}}
+                    {{appearance.group.name}}
                   {{/link-to}}
                   &nbsp;
                   {{#if (eq appearance.status 'Verified')}}
@@ -47,7 +47,7 @@
           </tr>
         {{else}}
           <tr>
-            <td>(No competitors currently entered for this session.)</td>
+            <td>(No groups currently entered for this session.)</td>
           </tr>
         {{/each}}
       </tbody>

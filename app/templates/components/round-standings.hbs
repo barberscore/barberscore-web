@@ -1,5 +1,5 @@
 {{#if (eq model.status 'New')}}
-    <h4>Standings are available after the Round is Started.</h4>
+    <h4>Standings are available after the Round is Built.</h4>
 {{else}}
   {{#unless (eq model.kind 'Finals')}}
     <section>
@@ -21,7 +21,7 @@
       <div class='table-responsive'>
         <table class='table'>
           <caption>
-            All multi-round competitors, ordered by rank.
+            All multi-round groups, ordered by rank.
           </caption>
           <thead>
             <tr>
@@ -36,21 +36,21 @@
           <tbody>
             {{#each sortedMultiAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
-                {{#if appearance.competitor.group.isLoading}}
+                {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitor.sumOfficial}}
+                  {{#if appearance.group.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.group.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{appearance.competitor.group.name}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>
@@ -73,7 +73,7 @@
               </tr>
             {{else}}
               <tr>
-                <td colspan=8>(No multi-round competitors.)</td>
+                <td colspan=8>(No multi-round groups.)</td>
               </tr>
             {{/each}}
           </tbody>
@@ -84,7 +84,7 @@
       <div class='table-responsive'>
         <table class='table'>
           <caption>
-            All single-round competitors ordered by rank.
+            All single-round groups ordered by rank.
           </caption>
           <thead>
             <tr>
@@ -99,21 +99,21 @@
           <tbody>
             {{#each sortedSingleAppearances as |appearance index|}}
               <tr>
-                {{#if appearance.competitor.group.isLoading}}
+                {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitor.sumOfficial}}
+                  {{#if appearance.group.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.group.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{appearance.competitor.group.name}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>
@@ -122,7 +122,7 @@
               </tr>
             {{else}}
               <tr>
-                <td colspan=8>(No single-round competitors.)</td>
+                <td colspan=8>(No single-round groups.)</td>
               </tr>
             {{/each}}
           </tbody>
@@ -134,7 +134,7 @@
       <div class='table-responsive'>
         <table class='table'>
           <caption>
-            All competitors in cumulative rank order.
+            All groups in cumulative rank order.
           </caption>
           <thead>
             <tr>
@@ -148,21 +148,21 @@
           <tbody>
             {{#each sortedAppearances as |appearance index|}}
               <tr>
-                {{#if appearance.competitor.group.isLoading}}
+                {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.competitor.sumOfficial}}
+                  {{#if appearance.group.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
                   {{/if}}
-                  {{#if appearance.competitor.group.isLoading}}
+                  {{#if appearance.group.isLoading}}
                     <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                   {{else}}
-                    <td>{{appearance.competitor.group.name}}</td>
+                    <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.competitor.sumOfficial}}{{appearance.competitor.sumOfficial}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.competitorstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>
@@ -171,7 +171,7 @@
               </tr>
             {{else}}
               <tr>
-                <td colspan=8>(No competitors currently entered for this session.)</td>
+                <td colspan=8>(No groups currently entered for this session.)</td>
               </tr>
             {{/each}}
           </tbody>

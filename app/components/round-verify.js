@@ -20,7 +20,6 @@ export default Component.extend({
       this.set('verifyRoundModal', false);
       this.set('verifyRoundModalError', false);
       this.flashMessages.success("Verified!");
-      // this.get('router').transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.competitors');
     } catch(e) {
       this.set('verifyRoundModalError', true);
     }
