@@ -41,12 +41,13 @@
           <li>{{round-start model=model}}</li>
           <li>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-verify model=model}}</li>
+          <li>{{round-finish model=model}}</li>
           <li>{{round-reset model=model}}</li>
           <li>{{round-mock model=model}}</li>
-        {{else if (eq model.status 'Verified')}}
+        {{else if (eq model.status 'Finished')}}
           <li>{{round-verify model=model}}</li>
-          <li>{{round-finish model=model}}</li>
+        {{else if (eq model.status 'Verified')}}
+          <li>{{round-publish model=model}}</li>
         {{/if}}
       </ul>
     </div>

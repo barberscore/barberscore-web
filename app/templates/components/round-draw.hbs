@@ -1,9 +1,9 @@
 <section>
-  {{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started')(eq model.status 'Reviewed'))}}
+  {{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started')(eq model.status 'Finished'))}}
     <h4>
-      The Draw can only be adjusted after the Round has been Verified
+      The Draw can only be adjusted after the Round has been Finished
     </h4>
-  {{else if (and isEditing (eq model.status 'Verified'))}}
+  {{else if (and isEditing (eq model.status 'Finished'))}}
     <div>
       {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
