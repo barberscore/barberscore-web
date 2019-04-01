@@ -1,11 +1,13 @@
-{{#bs-button
-  type='default'
-  disabled=model.isDisabled
-  onClick=(perform mockRound)
-}}
-  {{#if mockRound.isRunning}}
-    Mocking... {{fa-icon "spinner" spin=true}}
-  {{else}}
-    Mock Round
-  {{/if}}
-{{/bs-button}}
+{{#unless isProduction}}
+  {{#bs-button
+    type='default'
+    disabled=model.isDisabled
+    onClick=(perform mockRound)
+  }}
+    {{#if mockRound.isRunning}}
+      Mocking... {{fa-icon "spinner" spin=true}}
+    {{else}}
+      Mock Round
+    {{/if}}
+  {{/bs-button}}
+{{/unless}}
