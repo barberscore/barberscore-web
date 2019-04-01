@@ -5,7 +5,7 @@
       <h4>
         #{{model.num}}: {{model.group.name}}
         {{#if (eq model.status 'Variance')}}
-          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+          {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
           {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}
@@ -53,7 +53,7 @@
       <h4>
         #{{model.num}}: {{model.group.name}}
         {{#if (eq model.status 'Variance')}}
-          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+          {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
           {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}

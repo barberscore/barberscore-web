@@ -36,7 +36,7 @@
                   {{#if (eq appearance.status 'Verified')}}
                     {{fa-icon 'check-circle' class='text-success'}}
                   {{else if (eq appearance.status 'Variance')}}
-                    <a href={{appearance.varianceReport}} target="_blank" ><span class="label label-danger">Variance Detected</span></a>
+                    {{download-variance model=appearance}}
                   {{/if}}
                 </td>
               {{/if}}

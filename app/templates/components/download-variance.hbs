@@ -1,0 +1,13 @@
+{{#bs-button
+  type='danger'
+  size='xs'
+  onClick=(perform variance)
+}}
+  {{#if variance.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if variance.last.isError}}
+    Error Downloading
+  {{else}}
+    Download Variance Report&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  {{/if}}
+{{/bs-button}}

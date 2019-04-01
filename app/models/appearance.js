@@ -22,7 +22,6 @@ export default Model.extend({
   contesting: DS.attr({ defaultValue: function() { return []; } }),
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
-  varianceReport: DS.attr('string'),
   group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
@@ -35,6 +34,7 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   mock: memberAction({path: 'mock', type: 'get'}),
 
+  variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),
   csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
