@@ -27,6 +27,7 @@ export default Model.extend({
   round: DS.belongsTo('round', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
+  contenders: DS.hasMany('contender', {async: true}),
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),

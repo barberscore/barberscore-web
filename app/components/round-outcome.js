@@ -40,8 +40,8 @@ export default Component.extend({
       }
     }
   ),
-  sortedCompetitors: sort(
-    'filteredCompetitors',
+  sortedContenders: sort(
+    'model.contenders',
     'rankSortProperties',
   ),
   autosave: task(function* (property){
