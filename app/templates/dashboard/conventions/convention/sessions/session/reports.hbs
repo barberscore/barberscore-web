@@ -1,7 +1,13 @@
 <section>
-  <ul class='list-unstyled'>
-    <li class='double'>{{download-drcj model=model}}</li>
-    <li class='double'>{{download-legacy model=model}}</li>
-    <li class='double'>{{download-contact model=model}}</li>
-  </ul>
+  {{#if (eq model.status 'Verified') }}
+    <ul class='list-unstyled'>
+      <li class='double'>{{download-drcj model=model}}</li>
+      <li class='double'>{{download-legacy model=model}}</li>
+      <li class='double'>{{download-contact model=model}}</li>
+    </ul>
+  {{else}}
+    <h4>
+      Reports are available after the session is Verified.
+    </h4>
+  {{/if}}
 </section>
