@@ -64,26 +64,10 @@
         {{#if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
           <li>{{appearance-delete model=model}}</li>
-          <li>
-            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
-              {{#if mockAppearance.isRunning}}
-                Mocking {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Mock Appearance
-              {{/if}}
-            {{/bs-button}}
-          </li>
-          {{else if (eq model.status 'Started')}}
+          <li>{{appearance-mock model=model}}</li>
+        {{else if (eq model.status 'Started')}}
           <li>{{appearance-finish model=model}}</li>
-          <li>
-            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
-              {{#if mockAppearance.isRunning}}
-                Mocking {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Mock Appearance
-              {{/if}}
-            {{/bs-button}}
-          </li>
+          <li>{{appearance-mock model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li>{{appearance-verify model=model}}</li>
         {{else if (eq model.status 'Verified')}}
