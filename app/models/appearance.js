@@ -35,6 +35,8 @@ export default Model.extend({
   verify: memberAction({path: 'verify', type: 'post'}),
   mock: memberAction({path: 'mock', type: 'get'}),
 
+  csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
+
   isDisabled: not(
     'permissions.write'
   ),
