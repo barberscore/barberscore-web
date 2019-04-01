@@ -35,7 +35,6 @@ export default Component.extend({
     let appearance = yield this.model.mock({
     });
     yield this.store.pushPayload('appearance', appearance);
-    yield this.model.competitor.reload();
     this.flashMessages.success("Mocked!");
   }).drop(),
 });

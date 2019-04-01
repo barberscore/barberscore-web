@@ -20,10 +20,11 @@ export default Model.extend({
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
+  isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
   varianceReport: DS.attr('string'),
+  group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   permissions: DS.attr(),
@@ -54,7 +55,6 @@ export default Model.extend({
   ],
 
 
-  isSingle: alias('competitor.isSingle'),
   isMulti: not('isSingle'),
   notMT: gt(
     'num',
@@ -63,14 +63,14 @@ export default Model.extend({
   roundNum: alias(
     'round.num'
   ),
-  competitorStatus: alias(
-    'competitor.status'
+  conventionName: alias(
+    'round.session.convention.name',
   ),
-  competitorGroupName: alias(
-    'competitor.groupName'
+  sessionKind: alias(
+    'round.session.kind',
   ),
-  competitorStatusSort: alias(
-    'competitor.statusSort'
+  groupName: alias(
+    'group.name'
   ),
   isAdvancer: gt(
     'draw',
@@ -81,7 +81,7 @@ export default Model.extend({
     0,
   ),
   repertoriesFiltered: alias(
-    'competitor.group.repertories'
+    'group.repertories'
   ),
   chartsMapped: mapBy(
     'repertoriesFiltered',
@@ -93,9 +93,6 @@ export default Model.extend({
   chartOptions: sort(
     'chartsMapped',
     'chartOptionsProperties'
-  ),
-  groupName: alias(
-    'competitor.group.name',
   ),
   practiceSongScores: mapBy(
     'songs',

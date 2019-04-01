@@ -22,7 +22,6 @@ export default Model.extend({
     'New',
     'Included',
   ],
-  competitorPoints: alias('competitor.stats.tot.points'),
 
   isIncluded: equal(
     'status',
