@@ -1,11 +1,14 @@
 import {
+  and,
   alias,
   gt,
+  gte,
   lt,
   mapBy,
   sort,
   not,
   equal,
+  notEmpty,
   sum
 } from '@ember/object/computed';
 import Model from 'ember-data/model';
@@ -41,6 +44,20 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  isNumber: notEmpty(
+    'draw',
+  ),
+
+  isGt: gt(
+    'draw',
+    0,
+  ),
+
+  isDrawn: and(
+    'isNumber',
+    'isGt',
   ),
 
   isVerified: equal(

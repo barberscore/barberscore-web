@@ -80,6 +80,9 @@ Router.map(function() {
                     path: 'standings'
                   }, function() {
                   });
+                  this.route('draw', {
+                    path: 'draw'
+                  });
                   this.route('outcomes', {
                     path: 'outcomes'
                   }, function () {
