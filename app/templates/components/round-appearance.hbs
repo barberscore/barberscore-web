@@ -64,14 +64,18 @@
         {{#if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
           <li>{{appearance-delete model=model}}</li>
+          <li>{{appearance-scratch model=model}}</li>
           <li>{{appearance-mock model=model}}</li>
         {{else if (eq model.status 'Started')}}
           <li>{{appearance-finish model=model}}</li>
+          <li>{{appearance-scratch model=model}}</li>
           <li>{{appearance-mock model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li>{{appearance-verify model=model}}</li>
+          <li>{{appearance-scratch model=model}}</li>
         {{else if (eq model.status 'Verified')}}
           <li>{{download-csa model=model}}</li>
+          <li>{{appearance-scratch model=model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

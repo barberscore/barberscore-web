@@ -32,6 +32,8 @@ export default Model.extend({
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
+  scratch: memberAction({path: 'scratch', type: 'post'}),
+
   mock: memberAction({path: 'mock', type: 'get'}),
 
   variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),

@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isDisabled
+  onClick=(action (mut scratchAppearanceModal) true)
+}}
+  Scratch Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=scratchAppearanceModal
+  onHidden=(pipe-action (action (mut scratchAppearanceModal) false) (action (mut scratchAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Scratch Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will formally scratch this competitor.
+    </p>
+    {{#if submitAppearanceModalError}}
+    <p class='text-danger'>
+      Could not scratch appearance.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform scratchAppearance)}}
+      {{#if scratchAppearance.isRunning}}
+        Scratching {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Scratch Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
