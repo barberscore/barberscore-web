@@ -13,10 +13,11 @@ export default Component.extend({
   ),
   mockAppearance: task(function *() {
     try {
-      yield this.model.mock({
+      let appearance = yield this.model.mock({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      this.store.pushPayload('appearance', appearance);
+      this.get('model.songs.@each.chart').invoke('reload');
       this.flashMessages.success("Mocked!");
     } catch(e) {
       this.flashMessages.error(e);
