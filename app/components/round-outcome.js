@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { sort, filter } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
@@ -11,30 +11,14 @@ export default Component.extend({
     'model.round.outcomes',
     'sortedContestsProperties'
   ),
-  filteredAppearancesProperties: [
-    'runPoints:desc',
-  ],
-  filteredAppearances: filter(
-    'model.round.appearances.@each.contesting',
-    function(appearance) {
-      if (appearance.get('contesting').includes(this.get('model.num'))) {
-        return appearance;
-      }
-    }
-  ),
-  sortedAppearances: sort(
-    'filteredAppearances',
-    'filteredAppearancesProperties'
-  ),
-  rankSortProperties: [
-    'sumOfficial:desc',
-    'sumOfficialSinging:desc',
-    'sumOfficialPerformance:desc',
-    'groupName',
+  sortedContendersProperties: [
+    'runSum:desc',
+    'runSng:desc',
+    'runPer:desc',
   ],
   sortedContenders: sort(
     'model.contenders',
-    'rankSortProperties',
+    'sortedContendersProperties'
   ),
   autosave: task(function* (property){
     yield timeout(200);
@@ -47,10 +31,4 @@ export default Component.extend({
       })
     }
   }).restartable(),
-  actions: {
-    saveModel(model){
-      model.save();
-      this.flashMessages.success("Saved!");
-    },
-  }
 });

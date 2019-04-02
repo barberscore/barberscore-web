@@ -42,30 +42,6 @@ export default Model.extend({
     'officialScoresPoints',
   ),
 
-  officialSingingScores: filterBy(
-    'scores',
-    'isOfficialSinging',
-  ),
-  officialSingingScoresPoints: mapBy(
-    'officialSingingScores',
-    'intPoints',
-  ),
-  sumOfficialSingingScores: sum(
-    'officialSingingScoresPoints',
-  ),
-
-  officialPerformanceScores: filterBy(
-    'scores',
-    'isOfficialPerformance',
-  ),
-  officialPerformanceScoresPoints: mapBy(
-    'officialPerformanceScores',
-    'intPoints',
-  ),
-  sumOfficialPerformanceScores: sum(
-    'officialPerformanceScoresPoints',
-  ),
-
   statusOptions: [
     'New',
     'Validated',

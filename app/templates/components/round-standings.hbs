@@ -28,7 +28,7 @@
               <th class='col-md-1'>Rank</th>
               <th class='col-md-8'>Name</th>
               <th class='col-md-1'>Points</th>
-              {{!-- <th class='col-md-1'>Score</th> --}}
+              <th class='col-md-1'>Score</th>
               <th class='col-md-1'>Status</th>
             </tr>
           </thead>
@@ -48,8 +48,8 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
                   <td>
                     {{appearance.status}}
                   </td>
@@ -95,8 +95,8 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
                   <td>
                     {{appearance.status}}
                   </td>
@@ -143,8 +143,8 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal}}{{else}}N/A{{/if}}</td>
-                  {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
+                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
                   <td>
                     {{appearance.status}}
                   </td>

@@ -22,7 +22,7 @@ export default Model.extend({
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
-  runTotal: DS.attr('number'),
+  runTotal: DS.attr(),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
@@ -130,19 +130,5 @@ export default Model.extend({
   ),
   sumOfficial: sum(
     'officialSongScores',
-  ),
-  officialSingingSongScores: mapBy(
-    'songs',
-    'sumOfficialSingingScores',
-  ),
-  sumOfficialSinging: sum(
-    'officialSingingSongScores',
-  ),
-  officialPerformanceSongScores: mapBy(
-    'songs',
-    'sumOfficialPerformanceScores',
-  ),
-  sumOfficialPerformance: sum(
-    'officialPerformanceSongScores',
   ),
 });

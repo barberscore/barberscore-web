@@ -53,13 +53,13 @@
               </tr>
             </thead>
             <tbody>
-              {{#each model.contenders as |contender|}}
+              {{#each sortedContenders as |contender|}}
                   <tr>
                     <td>
                       {{contender.groupName}}
                     </td>
                     <td>
-                      {{contender.sumOfficial}}
+                      {{contender.runSum}}
                     </td>
                   </tr>
               {{else}}

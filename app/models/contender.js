@@ -32,4 +32,14 @@ export default Model.extend({
   contestAwardAgeSort: alias('outcome.award.ageSort'),
   contestAwardName: alias('outcome.award.name'),
   awardSort: alias('outcome.award.treeSort'),
+
+  runSum: alias(
+    'appearance.runTotal.sum',
+  ),
+  runSng: alias(
+    'appearance.runTotal.sng',
+  ),
+  runPEr: alias(
+    'appearance.runTotal.per',
+  ),
 });
