@@ -7,11 +7,9 @@ export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   tagName: 'span',
   variance: task(function *() {
-    try {
-      let pdf = yield this.model.variance();
-      let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} ${this.model.groupName} Variance Report`;
-      this.saveFileAs(fileName, pdf, 'application/pdf');
-      this.flashMessages.success("Downloaded!");
-    } catch(e) {console.log(e);}
+    let pdf = yield this.model.variance();
+    let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} ${this.model.groupName} Variance Report`;
+    this.saveFileAs(fileName, pdf, 'application/pdf');
+    this.flashMessages.success("Downloaded!");
   }).drop(),
 });
