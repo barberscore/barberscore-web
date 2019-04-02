@@ -61,9 +61,10 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.status 'Built')}}
-          <li>{{appearance-start model=model}}</li>
+        {{#if (eq model.status 'New')}}
           <li>{{appearance-delete model=model}}</li>
+        {{else if (eq model.status 'Built')}}
+          <li>{{appearance-start model=model}}</li>
           {{!-- <li>{{appearance-scratch model=model}}</li> --}}
           <li>{{appearance-mock model=model}}</li>
         {{else if (eq model.status 'Started')}}

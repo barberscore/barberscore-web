@@ -53,4 +53,66 @@
       </tbody>
     </table>
   </div>
+  <div>
+    {{#if (eq model.status 'Built')}}
+      <p>
+        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+      </p>
+    {{/if}}
+  </div>
+  <div>
+    {{#bs-modal
+      open=createAppearanceModal
+      onHidden=(pipe-action (action (mut createAppearanceModal) false) (action (mut createAppearanceModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>New Appearance</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Enter the details for the Appearance.
+        </p>
+        <p>
+          {{input
+            class='form-control'
+            type='tel'
+            placeholder='Enter Draw'
+            value=this.num
+            min=-10
+            max=99
+          }}
+        </p>
+        <p>
+          {{#power-select
+            search=(perform searchGroup)
+            selected=group
+            onchange=(action (mut group))
+            placeholder="Enter Group Name"
+            allowClear=true
+            renderInPlace=true
+            noMatchesMessage="We Could Not Find a group with that name"
+            as |group|
+          }}
+            Group: {{group.name}}
+          {{/power-select}}
+        </p>
+        {{#if createAppearanceModalError}}
+        <p class='text-danger'>
+          Could not create appearance.  Be sure the draw numbers are unqiue!  Otherwise, please contact support.
+        </p>
+        {{/if}}
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveAppearance group num) disabled=isDisabled}}
+          {{#if saveAppearance.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Appearance
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
 {{/if}}
