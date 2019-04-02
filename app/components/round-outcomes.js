@@ -28,10 +28,6 @@ export default Component.extend({
     'model.outcomes',
     'sortedContestsProperties'
   ),
-  sortedContestants: sort(
-    'model.session.competitors',
-    'sortedContestsProperties'
-  ),
   searchGroup: task(function* (term){
     yield timeout(500);
     let func = denodeify(this.algolia.search.bind(this.algolia))

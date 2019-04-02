@@ -32,14 +32,6 @@ export default Component.extend({
     'sumOfficialPerformance:desc',
     'groupName',
   ],
-  filteredCompetitors: filter(
-    'model.round.session.competitors.@each.contesting',
-    function(competitor) {
-      if (competitor.get('contesting').includes(this.get('model.num'))) {
-        return competitor;
-      }
-    }
-  ),
   sortedContenders: sort(
     'model.contenders',
     'rankSortProperties',

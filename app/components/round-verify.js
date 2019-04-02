@@ -16,7 +16,7 @@ export default Component.extend({
       });
       yield this.store.pushPayload('round', round);
       yield this.get('model.appearances').invoke('reload');
-      yield this.get('model.outcomes').invoke('reload');
+      yield this.get('model.outcomes.@each.name').invoke('reload');
       this.set('verifyRoundModal', false);
       this.set('verifyRoundModalError', false);
       this.flashMessages.success("Verified!");
