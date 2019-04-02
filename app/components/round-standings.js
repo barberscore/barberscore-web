@@ -53,18 +53,6 @@ export default Component.extend({
       })
     }
   }).restartable(),
-  autosaveDraw: task(function* (model, value){
-    model.set('draw', value);
-    yield timeout(1000);
-    try {
-      yield model.save();
-      this.flashMessages.success("Saved");
-    } catch(e) {
-      e.errors.forEach((error) => {
-        this.flashMessages.danger(error.detail);
-      })
-    }
-  }).restartable(),
 });
 
 

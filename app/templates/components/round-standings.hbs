@@ -30,7 +30,6 @@
               <th class='col-md-1'>Points</th>
               {{!-- <th class='col-md-1'>Score</th> --}}
               <th class='col-md-1'>Status</th>
-              <th class='col-md-1'>Draw</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +38,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.group.sumOfficial}}
+                  {{#if appearance.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -49,25 +48,10 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.sumOfficial}}{{appearance.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
-                  </td>
-                  <td>
-                    {{#if (eq model.status 'Finished')}}
-                      {{input
-                        class='form-control text-right input-sm'
-                        type='tel'
-                        value=appearance.draw
-                        min=0
-                        disabled=model.isDisabled
-                        max=100
-                        change=(perform autosaveDraw appearance value='target.value')
-                      }}
-                    {{else}}
-                      {{appearance.draw}}
-                    {{/if}}
                   </td>
                 {{/if}}
               </tr>
@@ -93,7 +77,6 @@
               <th class='col-md-1'>Points</th>
               {{!-- <th class='col-md-1'>Score</th> --}}
               <th class='col-md-1'>Status</th>
-              <th class='col-md-1'></th>
             </tr>
           </thead>
           <tbody>
@@ -102,7 +85,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.group.sumOfficial}}
+                  {{#if appearance.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -112,12 +95,11 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.sumOfficial}}{{appearance.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
                   </td>
-                  <td></td>
                 {{/if}}
               </tr>
             {{else}}
@@ -151,7 +133,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.group.sumOfficial}}
+                  {{#if appearance.sumOfficial}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -161,7 +143,7 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.group.sumOfficial}}{{appearance.group.sumOfficial}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.sumOfficial}}{{appearance.sumOfficial}}{{else}}N/A{{/if}}</td>
                   {{!-- <td>{{single-fixed appearance.groupstats.tot.score}}</td> --}}
                   <td>
                     {{appearance.status}}
