@@ -2,7 +2,6 @@ import {
   and,
   alias,
   gt,
-  gte,
   lt,
   mapBy,
   sort,
