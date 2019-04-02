@@ -5,7 +5,7 @@
     </h4>
   {{else if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
     <h4>
-      The Draw can only be adjusted after the Round has Finished.
+      The Draw is available after the Round has Finished.
     </h4>
   {{else if (and isEditing (or (eq model.status 'Finished')(eq model.status 'Verified')))}}
     <div>

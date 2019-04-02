@@ -1,12 +1,14 @@
 <section>
-  {{#if (eq model.status 'Finished')}}
+  {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
-      <li class='double'>{{download-titles model=model}}</li>
       <li class='double'>{{download-announcements model=model}}</li>
+      {{#unless (eq model.kind 'Finals') }}
+        <li class='double'>{{download-titles model=model}}</li>
+      {{/unless}}
     </ul>
-  {{else if (or (eq model.status 'Verified')(eq model.status 'Published'))}}
+  {{else if (eq model.status 'Published')}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>

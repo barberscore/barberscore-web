@@ -1,5 +1,5 @@
-{{#if (eq model.status 'New')}}
-    <h4>Standings are available after the Round is Built.</h4>
+{{#if (or (eq model.status 'New')(eq model.status 'Built'))}}
+    <h4>Standings are available after the Round is Started.</h4>
 {{else}}
   {{#unless (eq model.kind 'Finals')}}
     <section>
@@ -75,7 +75,7 @@
               <th class='col-md-1'>Rank</th>
               <th class='col-md-8'>Name</th>
               <th class='col-md-1'>Points</th>
-              {{!-- <th class='col-md-1'>Score</th> --}}
+              <th class='col-md-1'>Score</th>
               <th class='col-md-1'>Status</th>
             </tr>
           </thead>
@@ -123,7 +123,7 @@
               <th class='col-md-1'>Rank</th>
               <th class='col-md-8'>Name</th>
               <th class='col-md-1'>Points</th>
-              {{!-- <th class='col-md-1'>Score</th> --}}
+              <th class='col-md-1'>Score</th>
               <th class='col-md-1'>Status</th>
             </tr>
           </thead>
