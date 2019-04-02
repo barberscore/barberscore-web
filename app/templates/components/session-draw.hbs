@@ -16,6 +16,20 @@
             <th class='col-md-8'>Notes</th>
           </tr>
         </thead>
+        {{!-- <tbody> --}}
+          {{#if mt}}
+            <tr>
+              <td>
+                MT
+              </td>
+              <td>
+                {{mt.0.group.name}}
+              </td>
+              <td>
+                {{mt.0.description}}
+              </td>
+            </tr>
+          {{/if}}
           {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
             {{#each sortedEntries as |item|}}
               {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
@@ -33,6 +47,7 @@
               </tr>
             {{/each}}
           {{/sortable-group}}
+        {{!-- </tbody> --}}
       </table>
     </div>
     <div class='row'>
@@ -61,6 +76,19 @@
             </tr>
           </thead>
           <tbody>
+            {{#if mt}}
+              <tr>
+                <td>
+                  MT
+                </td>
+                <td>
+                  {{mt.0.group.name}}
+                </td>
+                <td>
+                  {{mt.0.description}}
+                </td>
+              </tr>
+            {{/if}}
             {{#each sortedEntries as |entry|}}
               <tr>
                 <td>

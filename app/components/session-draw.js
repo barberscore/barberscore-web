@@ -8,6 +8,10 @@ export default Component.extend({
   entrySortProperties: [
     'draw:asc',
   ],
+  mt: filterBy(
+    'model.entries',
+    'isMt',
+  ),
   notMt: filterBy(
     'model.entries',
     'notMt',
