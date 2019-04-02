@@ -5,17 +5,26 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   flashMessages: service(),
   isEditing: false,
-  competitorSortProperties: [
+  mt: filterBy(
+    'model.appearances',
+    'draw',
+    0,
+  ),
+  appearanceSortProperties: [
     'draw:asc',
   ],
-  sortedCompetitors: sort(
-    'filteredCompetitors',
-    'competitorSortProperties'
+  drawnFilter: filterBy(
+    'model.appearances',
+    'isDrawn',
   ),
-  filteredCompetitors: filterBy(
-    'model.session.competitors',
+  filteredAppearances: filterBy(
+    'drawnFilter',
     'status',
-    'Started'
+    'Verified'
+  ),
+  sortedAppearances: sort(
+    'filteredAppearances',
+    'appearanceSortProperties'
   ),
   actions: {
     toggleDraw(){
@@ -29,7 +38,7 @@ export default Component.extend({
       this.flashMessages.success('Success');
     },
     saveOrder() {
-      this.sortedCompetitors.invoke('save');
+      this.sortedAppearances.invoke('save');
       this.set('isSorting', false);
       this.flashMessages.success('Success');
     }

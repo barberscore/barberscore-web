@@ -1,0 +1,13 @@
+{{#unless isProduction}}
+  {{#bs-button
+    type='default'
+    disabled=model.isDisabled
+    onClick=(perform mockAppearance)
+  }}
+    {{#if mockAppearance.isRunning}}
+      Mocking... {{fa-icon "spinner" spin=true}}
+    {{else}}
+      Mock Appearance
+    {{/if}}
+  {{/bs-button}}
+{{/unless}}

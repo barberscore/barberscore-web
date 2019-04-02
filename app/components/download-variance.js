@@ -5,9 +5,10 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
-  csa: task(function *() {
-    let pdf = yield this.model.csa();
-    let fileName = `${this.model.conventionName} ${this.model.sessionKind} Session ${this.model.groupName} CSA`;
+  tagName: 'span',
+  variance: task(function *() {
+    let pdf = yield this.model.variance();
+    let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} ${this.model.groupName} Variance Report`;
     this.saveFileAs(fileName, pdf, 'application/pdf');
     this.flashMessages.success("Downloaded!");
   }).drop(),

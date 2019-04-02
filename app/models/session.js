@@ -15,7 +15,6 @@ export default Model.extend({
   drcjReport: DS.attr('string'),
   contactReport: DS.attr('string'),
   numRounds: DS.attr('number'),
-  competitors: DS.hasMany('competitor', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),

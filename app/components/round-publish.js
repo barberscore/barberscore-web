@@ -6,22 +6,21 @@ export default Component.extend({
   currentUser: service(),
   store: service(),
   flashMessages: service(),
-  buildRoundModal: false,
-  buildRoundModalError: false,
-  buildRound: task(function *() {
+  publishRoundModal: false,
+  publishRoundModalError: false,
+  publishRound: task(function *() {
     try {
-      let round = yield this.model.build({
+      let round = yield this.model.publish({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
       this.store.pushPayload('round', round);
+      this.get('model.session.rounds').invoke('reload');
       this.get('model.appearances.@each.group').invoke('reload');
-      this.get('model.panelists.@each.person').invoke('reload');
-      this.set('buildRoundModal', false);
-      this.set('buildRoundModalError', false);
-      this.flashMessages.success("Built!");
+      this.set('publishRoundModal', false);
+      this.set('publishRoundModalError', false);
+      this.flashMessages.success("Published!");
     } catch(e) {
-      this.set('buildRoundModalError', true);
+      this.set('publishRoundModalError', true);
     }
   }).drop(),
 });

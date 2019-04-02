@@ -12,7 +12,6 @@ export default Component.extend({
         'by': this.get('currentUser.user.id'),
       });
       yield this.store.pushPayload('appearance', appearance);
-      yield this.model.competitor.reload();
       if (this.model.status === 'Variance') {
         this.flashMessages.warning("VARIANCE!");
       } else {

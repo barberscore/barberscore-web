@@ -19,7 +19,7 @@ export default Model.extend({
   stats: DS.attr(),
   session: DS.belongsTo('session', {async: true}),
   group: DS.belongsTo('group', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
+  appearance: DS.belongsTo('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
   statelogs: DS.hasMany('statelog', {async: true}),

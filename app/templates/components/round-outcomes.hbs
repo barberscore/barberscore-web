@@ -42,8 +42,70 @@
       </tbody>
     </table>
   </div>
+  <div>
+    {{#if (eq model.status 'Built')}}
+      <p>
+        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createOutcomeModal) true)}}Create New Outcome{{/bs-button}}
+      </p>
+    {{/if}}
+  </div>
+  <div>
+    {{#bs-modal
+      open=createOutcomeModal
+      onHidden=(pipe-action (action (mut createOutcomeModal) false) (action (mut createOutcomeModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>New Outcome</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Enter the details for the Outcome.
+        </p>
+        <p>
+          {{input
+            class='form-control'
+            type='tel'
+            placeholder='Enter Award Number'
+            value=this.num
+            min=-10
+            max=99
+          }}
+        </p>
+        <p>
+          {{#power-select
+            search=(perform searchAward)
+            selected=award
+            onchange=(action (mut award))
+            placeholder="Enter Award Name"
+            allowClear=true
+            renderInPlace=true
+            noMatchesMessage="We Could Not Find an Award with that Name"
+            as |award|
+          }}
+            Award: {{award.name}}
+          {{/power-select}}
+        </p>
+        {{#if createOutcomeModalError}}
+        <p class='text-danger'>
+          Could not create outcome.  Be sure the draw numbers are unqiue!  Otherwise, please contact support.
+        </p>
+        {{/if}}
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveOutcome award num) disabled=isDisabled}}
+          {{#if saveOutcome.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Outcome
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
 {{else}}
   <h4>
-    Outcomes are available after the Round is Verified.
+    Outcomes are available after the Round is Built.
   </h4>
 {{/unless}}

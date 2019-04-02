@@ -52,7 +52,17 @@
       {{/modal.header}}
       {{#modal.body}}
         <p>
-          Select the person you wish to enter into the panel.
+          Enter the details for the Panelist.
+        </p>
+        <p>
+          {{input
+            class='form-control'
+            type='tel'
+            placeholder='Enter Number'
+            value=this.num
+            min=1
+            max=99
+          }}
         </p>
         <p>
           {{#power-select
@@ -102,7 +112,7 @@
       {{/modal.body}}
       {{#modal.footer}}
         {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform savePanelist person category kind) disabled=isDisabled}}
+        {{#bs-button type='success' onClick=(perform savePanelist person category kind num) disabled=isDisabled}}
           {{#if savePanelist.isRunning}}
             Creating {{fa-icon "spinner" spin=true}}
           {{else}}

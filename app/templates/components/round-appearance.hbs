@@ -3,9 +3,9 @@
     <div class='panel-heading fixed-panel-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.competitor.group.name}}
+        #{{model.num}}: {{model.group.name}}
         {{#if (eq model.status 'Variance')}}
-          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+          {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
           {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}
@@ -51,9 +51,9 @@
     <div class='panel-footer fixed-panel-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.competitor.group.name}}
+        #{{model.num}}: {{model.group.name}}
         {{#if (eq model.status 'Variance')}}
-          <a href={{model.varianceReport}} target="_blank"><span class="label label-danger">Variance Detected</span></a>
+          {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
           {{fa-icon 'check-circle' class='text-success'}}
         {{/if}}
@@ -61,33 +61,22 @@
     </div>
     <div class='panel-footer fixed-panel-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.status 'Built')}}
-          <li>{{appearance-start model=model}}</li>
+        {{#if (eq model.status 'New')}}
           <li>{{appearance-delete model=model}}</li>
-          <li>
-            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
-              {{#if mockAppearance.isRunning}}
-                Mocking {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Mock Appearance
-              {{/if}}
-            {{/bs-button}}
-          </li>
-          {{else if (eq model.status 'Started')}}
+        {{else if (eq model.status 'Built')}}
+          <li>{{appearance-start model=model}}</li>
+          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
+          <li>{{appearance-mock model=model}}</li>
+        {{else if (eq model.status 'Started')}}
           <li>{{appearance-finish model=model}}</li>
-          <li>
-            {{#bs-button disabled=model.isDisabled onClick=(perform mockAppearance) type="default"}}
-              {{#if mockAppearance.isRunning}}
-                Mocking {{fa-icon "spinner" spin=true}}
-              {{else}}
-                Mock Appearance
-              {{/if}}
-            {{/bs-button}}
-          </li>
+          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
+          <li>{{appearance-mock model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li>{{appearance-verify model=model}}</li>
+          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
         {{else if (eq model.status 'Verified')}}
           <li>{{download-csa model=model}}</li>
+          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

@@ -16,7 +16,6 @@ export default Model.extend({
   renditions: DS.attr(),
   round: DS.belongsTo('round', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
   permissions: DS.attr(),
 
   isDisabled: not(

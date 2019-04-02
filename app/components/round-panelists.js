@@ -9,9 +9,9 @@ export default Component.extend({
   algolia: service(),
   flashMessages: service(),
   sortedPanelistsProperties: [
+    'kindSort',
     'num',
     'categorySort',
-    'kindSort',
     'personSort',
   ],
   sortedPanelists: sort(
@@ -26,10 +26,11 @@ export default Component.extend({
   }),
   createPanelistModal: false,
   createPanelistModalError: false,
-  savePanelist: task(function* (obj, category, kind){
+  savePanelist: task(function* (obj, category, kind, num){
     try {
       let person = yield this.store.findRecord('person', obj.objectID)
       yield this.store.createRecord('panelist', {
+        num: num,
         person: person,
         round: this.model,
         category: category,
@@ -38,6 +39,7 @@ export default Component.extend({
       }).save();
       this.set('createPanelistModal', false);
       this.set('createPanelistModalError', false);
+      this.set('num', null);
       this.set('person', null);
       this.set('category', null);
       this.set('kind', null);

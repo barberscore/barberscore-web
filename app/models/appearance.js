@@ -1,4 +1,5 @@
 import {
+  and,
   alias,
   gt,
   lt,
@@ -6,6 +7,7 @@ import {
   sort,
   not,
   equal,
+  notEmpty,
   sum
 } from '@ember/object/computed';
 import Model from 'ember-data/model';
@@ -19,22 +21,43 @@ export default Model.extend({
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
+  runTotal: DS.attr(),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
+  isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
-  varianceReport: DS.attr('string'),
+  group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
-  competitor: DS.belongsTo('competitor', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
+  contenders: DS.hasMany('contender', {async: true}),
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
+  scratch: memberAction({path: 'scratch', type: 'post'}),
+
   mock: memberAction({path: 'mock', type: 'get'}),
+
+  variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  isNumber: notEmpty(
+    'draw',
+  ),
+
+  isGt: gt(
+    'draw',
+    0,
+  ),
+
+  isDrawn: and(
+    'isNumber',
+    'isGt',
   ),
 
   isVerified: equal(
@@ -54,7 +77,6 @@ export default Model.extend({
   ],
 
 
-  isSingle: alias('competitor.isSingle'),
   isMulti: not('isSingle'),
   notMT: gt(
     'num',
@@ -63,14 +85,14 @@ export default Model.extend({
   roundNum: alias(
     'round.num'
   ),
-  competitorStatus: alias(
-    'competitor.status'
+  conventionName: alias(
+    'round.session.convention.name',
   ),
-  competitorGroupName: alias(
-    'competitor.groupName'
+  sessionKind: alias(
+    'round.session.kind',
   ),
-  competitorStatusSort: alias(
-    'competitor.statusSort'
+  groupName: alias(
+    'group.name'
   ),
   isAdvancer: gt(
     'draw',
@@ -81,7 +103,7 @@ export default Model.extend({
     0,
   ),
   repertoriesFiltered: alias(
-    'competitor.group.repertories'
+    'group.repertories'
   ),
   chartsMapped: mapBy(
     'repertoriesFiltered',
@@ -93,9 +115,6 @@ export default Model.extend({
   chartOptions: sort(
     'chartsMapped',
     'chartOptionsProperties'
-  ),
-  groupName: alias(
-    'competitor.group.name',
   ),
   practiceSongScores: mapBy(
     'songs',
@@ -110,19 +129,5 @@ export default Model.extend({
   ),
   sumOfficial: sum(
     'officialSongScores',
-  ),
-  officialSingingSongScores: mapBy(
-    'songs',
-    'sumOfficialSingingScores',
-  ),
-  sumOfficialSinging: sum(
-    'officialSingingSongScores',
-  ),
-  officialPerformanceSongScores: mapBy(
-    'songs',
-    'sumOfficialPerformanceScores',
-  ),
-  sumOfficialPerformance: sum(
-    'officialPerformanceSongScores',
   ),
 });

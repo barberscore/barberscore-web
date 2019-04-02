@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { sort, filter } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
@@ -11,38 +11,15 @@ export default Component.extend({
     'model.round.outcomes',
     'sortedContestsProperties'
   ),
-  filteredAppearancesProperties: [
-    'runPoints:desc',
+  sortedContendersProperties: [
+    'runSum:desc',
+    'runSng:desc',
+    'runPer:desc',
+    'groupName:asc',
   ],
-  filteredAppearances: filter(
-    'model.round.appearances.@each.contesting',
-    function(appearance) {
-      if (appearance.get('contesting').includes(this.get('model.num'))) {
-        return appearance;
-      }
-    }
-  ),
-  sortedAppearances: sort(
-    'filteredAppearances',
-    'filteredAppearancesProperties'
-  ),
-  rankSortProperties: [
-    'sumOfficial:desc',
-    'sumOfficialSinging:desc',
-    'sumOfficialPerformance:desc',
-    'groupName',
-  ],
-  filteredCompetitors: filter(
-    'model.round.session.competitors.@each.contesting',
-    function(competitor) {
-      if (competitor.get('contesting').includes(this.get('model.num'))) {
-        return competitor;
-      }
-    }
-  ),
-  sortedCompetitors: sort(
-    'filteredCompetitors',
-    'rankSortProperties',
+  sortedContenders: sort(
+    'model.contenders',
+    'sortedContendersProperties'
   ),
   autosave: task(function* (property){
     yield timeout(200);
@@ -55,10 +32,4 @@ export default Component.extend({
       })
     }
   }).restartable(),
-  actions: {
-    saveModel(model){
-      model.save();
-      this.flashMessages.success("Saved!");
-    },
-  }
 });

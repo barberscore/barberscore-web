@@ -17,10 +17,13 @@
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.competitors"}}Competitors{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.outcomes"}}Outcomes{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.outcomes"}}Outcomes{{/nav.link-to}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.standings"}}Standings{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.draw"}}Draw{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.reports"}}Reports{{/nav.link-to}}
@@ -41,11 +44,13 @@
           <li>{{round-start model=model}}</li>
           <li>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-verify model=model}}</li>
-          <li>{{round-reset model=model}}</li>
-        {{else if (eq model.status 'Verified')}}
-          <li>{{round-verify model=model}}</li>
           <li>{{round-finish model=model}}</li>
+          <li>{{round-reset model=model}}</li>
+          <li>{{round-mock model=model}}</li>
+        {{else if (eq model.status 'Finished')}}
+          <li>{{round-verify model=model}}</li>
+        {{else if (eq model.status 'Verified')}}
+          <li>{{round-publish model=model}}</li>
         {{/if}}
       </ul>
     </div>

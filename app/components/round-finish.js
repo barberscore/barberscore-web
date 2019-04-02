@@ -14,7 +14,6 @@ export default Component.extend({
         'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('round', round);
-      this.get('model.session.competitors').invoke('reload');
       this.get('model.session.rounds').invoke('reload');
       this.get('model.appearances').invoke('reload');
       this.set('finishRoundModal', false);

@@ -1,19 +1,21 @@
 <section>
-  {{#if (eq model.status 'Verified')}}
+  {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
-      <li class='double'>{{download-titles model=model}}</li>
       <li class='double'>{{download-announcements model=model}}</li>
+      {{#unless (eq model.kind 'Finals') }}
+        <li class='double'>{{download-titles model=model}}</li>
+      {{/unless}}
     </ul>
-  {{else if (eq model.status 'Finished')}}
+  {{else if (eq model.status 'Published')}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
     </ul>
   {{else}}
     <h4>
-      Reports are available after the Round is Verified.
+      Reports are available after the Round is Finished.
     </h4>
   {{/if}}
 </section>

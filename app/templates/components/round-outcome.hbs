@@ -35,7 +35,7 @@
               type='text'
               value=model.name
               disabled=model.isDisabled
-              placeholder='Result populated on Round Verify'
+              placeholder='Result populated on Round Finish'
               change=(perform autosave model)
             }}
           </p>
@@ -44,7 +44,7 @@
         <div class='table-responsive'>
           <table class='table'>
               <caption>
-                Standings for this particular award.
+                Contenders for this particular award.
               </caption>
             <thead>
               <tr>
@@ -53,13 +53,13 @@
               </tr>
             </thead>
             <tbody>
-              {{#each sortedCompetitors as |competitor|}}
+              {{#each sortedContenders as |contender|}}
                   <tr>
                     <td>
-                      {{competitor.group.name}}
+                      {{contender.groupName}}
                     </td>
                     <td>
-                      {{competitor.sumOfficial}}
+                      {{contender.runSum}}
                     </td>
                   </tr>
               {{else}}
@@ -73,14 +73,14 @@
       </section>
     </div>
     <div class='panel-footer fixed-panel-footer'>
-      {{!-- <ul class='list-inline'>
+      <ul class='list-inline'>
         {{#if (eq model.round.status 'Built')}}
           {{#if model.permissions.write}}
-              <li>{{contest-delete model=model}}</li>
+            <li>{{outcome-delete model=model}}</li>
           {{/if}}
         {{/if}}
-        <li class='pull-right'><h4>Contest Status: <strong>{{model.status}}</strong></h4></li>
-      </ul> --}}
+        {{!-- <li class='pull-right'><h4>Contest Status: <strong>{{model.status}}</strong></h4></li> --}}
+      </ul>
     </div>
   </div>
 </section>

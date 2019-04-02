@@ -1,52 +1,65 @@
-import { sort, filterBy } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
-// import { task } from 'ember-concurrency';
-// import { denodeify } from 'rsvp'
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 
 export default Component.extend({
   flashMessages: service(),
+  router: service(),
   algolia: service(),
   store: service(),
-  // isDisabled: not(
-  //   'model.permissions.write',
-  // ),
-  isDisabled: false,
-  sortedContestsProperties: [
+  sortedOutcomesProperties: [
     'num',
   ],
-  filteredChampionships: filterBy(
-    'model.session.contests',
-    'notQualifier',
-  ),
-  includedContests: filterBy(
-    'model.outcomes',
-  ),
   sortedOutcomes: sort(
     'model.outcomes',
-    'sortedContestsProperties'
+    'sortedOutcomesProperties'
   ),
-  sortedContestants: sort(
-    'model.session.competitors',
-    'sortedContestsProperties'
-  ),
-  searchGroup: task(function* (term){
-    yield timeout(500);
+  searchAward: task(function* (term){
+    yield timeout(600);
+    let kindModel = this.get('model.session.kind');
     let func = denodeify(this.algolia.search.bind(this.algolia))
-    let res = yield func({ indexName: 'Group', query: term})
+    let res = yield func({ indexName: 'Award', query: term}, { filters: `get_kind_display:${kindModel}` })
     return res.hits
   }),
-  updateGroup: task(function* (contest, obj){
-    if (obj) {
-      let group = yield this.store.findRecord('group', obj.objectID)
-      contest.set('group', group);
-    } else {
-      contest.set('group', null);
+  createOutcomeModal: false,
+  createOutcomeModalError: false,
+  saveOutcome: task(function* (obj, num){
+    try {
+      let award = yield this.store.findRecord('award', obj.objectID)
+      yield this.store.createRecord('outcome', {
+        num: num,
+        award: award,
+        round: this.model,
+        contenders: [],
+      }).save();
+      this.set('createOutcomeModal', false);
+      this.set('createOutcomeModalError', false);
+      this.set('num', null);
+      this.set('award', null);
+      this.set('contenders', null);
+      this.flashMessages.success("Created!");
+    } catch(e) {
+      e.errors.forEach((e) => {
+        this.set('createOutcomeModalError', true);
+        this.flashMessages.danger(e.detail);
+      })
     }
-    yield contest.save();
-  }),
+  }).drop(),
+  deleteOutcome: task(function *(outcome) {
+    try {
+      yield outcome.destroyRecord();
+      this.flashMessages.success("Deleted!");
+    } catch(e) {
+      this.flashMessages.danger("Problem!");
+    }
+  }).drop(),
+  actions: {
+    cancelOutcome(outcome){
+      outcome.deleteRecord();
+    },
+  }
 });
 
 

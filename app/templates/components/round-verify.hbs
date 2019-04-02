@@ -15,20 +15,12 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-        This generates draft versions of the OSS, CSA and SA for the CA to verify.  They are not made public until the next step; you will be able to make changes as necessary until the Round is finished.
+        Verifying the Round generates <strong>FINAL</strong> versions of the OSS, SA, Song Titles and Announcements.  They are not made public until the next step, but Verifying does mean that no further changes will be possible without administrative assistance. Pay particular attenion to the OSS for accuracy and completeness, making manual adjustments in the Appearances, Outcomes, and Draw as necesary.
+
     </p>
     <p>
-        <strong>IMPORTANT:</strong>Verifying a Round is a time-consuming process, particuarly on slow networks.  Please be patient!  Allow the process to complete.  If you have waited several minutes and things still aren't working, please refresh and try again.
+        <strong>IMPORTANT:</strong>&nbsp;&nbsp;Please take the time to review all the reports thoroughly!  This step can not be undone easily.
     </p>
-    {{#if (eq model.kind 'Finals')}}
-      <p>
-        Pay particular attenion to the Outcomes tab for accuracy and completeness, making manual adjustments as necesary.
-      </p>
-    {{else}}
-      <p>
-        Verifying the Round will draw the top <strong>{{model.spots}} multi-round competitors</strong> into the next round and place the Mic Tester at draw 0 (represented by the thick "Cut Line" on the Competitors tab.). Once verified, you'll be able to change the draw manually if necessary.
-      </p>
-    {{/if}}
     {{#if verifyRoundModalError}}
     <p class='text-danger'>
       Could not Verify Round.  Please ensure all Appearances have been verified.

@@ -5,19 +5,19 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   store: service(),
   flashMessages: service(),
-  scratchCompetitorModal: false,
-  scratchCompetitorModalError: false,
-  scratchCompetitor: task(function *() {
+  scratchAppearanceModal: false,
+  scratchAppearanceModalError: false,
+  scratchAppearance: task(function *() {
     try {
       yield this.model.scratch({
         'by': this.get('currentUser.user.id'),
       });
       this.model.reload();
-      this.set('scratchCompetitorModal', false);
-      this.set('scratchCompetitorModalError', false);
-      this.flashMessages.success("Scratched!");
+      this.set('scratchAppearanceModal', false);
+      this.set('scratchAppearanceModalError', false);
+      this.flashMessages.success("Scratchn!");
     } catch(e) {
-      this.set('scratchCompetitorModalError', true);
+      this.set('scratchAppearanceModalError', true);
     }
   }).drop(),
 });

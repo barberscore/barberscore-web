@@ -27,7 +27,7 @@
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
     {{#bs-button type='danger' onClick=(perform withdrawEntry)}}
       {{#if withdrawEntry.isRunning}}
-        Declining {{fa-icon "spinner" spin=true}}
+        Withdrawing {{fa-icon "spinner" spin=true}}
       {{else}}
         Withdraw Entry
       {{/if}}

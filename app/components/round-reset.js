@@ -17,7 +17,6 @@ export default Component.extend({
       this.store.pushPayload('round', round);
       this.get('model.panelists').invoke('reload');
       this.get('model.appearances').invoke('reload');
-      this.get('model.session.competitors.@each.group').invoke('reload');
       this.set('resetRoundModal', false);
       this.set('resetRoundModalError', false);
       this.flashMessages.success("Reset!");

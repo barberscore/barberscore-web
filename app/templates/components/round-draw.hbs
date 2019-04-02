@@ -1,9 +1,13 @@
 <section>
-  {{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started')(eq model.status 'Reviewed'))}}
+  {{#if (eq model.kind 'Finals')}}
     <h4>
-      The Draw can only be adjusted after the Round has been Verified
+      (There is no next round to Draw.)
     </h4>
-  {{else if (and isEditing (eq model.status 'Verified'))}}
+  {{else if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
+    <h4>
+      The Draw is available after the Round has Finished.
+    </h4>
+  {{else if (and isEditing (or (eq model.status 'Finished')(eq model.status 'Verified')))}}
     <div>
       {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
@@ -16,8 +20,18 @@
             <th class='col-md-8'>Notes</th>
           </tr>
         </thead>
+          <tr>
+            <td>
+              MT
+            </td>
+            <td>
+              {{mt.0.group.name}}
+            </td>
+            <td>
+            </td>
+          </tr>
           {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-            {{#each sortedCompetitors as |item|}}
+            {{#each sortedAppearances as |item|}}
               {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
                 <td>
                   {{item.draw}}
@@ -29,7 +43,7 @@
               {{/sortable-item}}
             {{else}}
               <tr>
-                <td>(No competitors.)</td>
+                <td>(No appearances.)</td>
               </tr>
             {{/each}}
           {{/sortable-group}}
@@ -42,7 +56,7 @@
     </div>
   {{else}}
     <div>
-      {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
+      {{#if (or (eq model.status 'Finished')(or (eq model.status 'Published') (eq model.status 'Verified')))}}
         <div class='row'>
           <div class='col-md-6'>
             {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
@@ -55,34 +69,44 @@
         <table class='table'>
           <thead>
             <tr>
-              <th class='col-md-1'>OA</th>
+              <th class='col-md-1'>Draw</th>
               <th class='col-md-3'>Name</th>
               <th class='col-md-8'>Notes</th>
             </tr>
           </thead>
           <tbody>
-            {{#each sortedCompetitors as |competitor|}}
+            <tr>
+              <td>
+                MT
+              </td>
+              <td>
+                {{mt.0.group.name}}
+              </td>
+              <td>
+              </td>
+            </tr>
+            {{#each sortedAppearances as |appearance|}}
               <tr>
                 <td>
-                  {{competitor.draw}}
+                  {{appearance.draw}}
                 </td>
                 <td>
-                  {{competitor.group.name}}
+                  {{appearance.group.name}}
                 </td>
                 <td>
-                  {{competitor.description}}
+                  {{appearance.description}}
                 </td>
               </tr>
             {{else}}
               <tr>
-                <td>(No competitors.)</td>
+                <td>(No appearances.)</td>
               </tr>
             {{/each}}
           </tbody>
         </table>
       </div>
     </div>
-    {{#if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
+    {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
       <div class='row'>
         <div class='col-md-6'>
           <p><strong>Note:</strong> If you wish to edit the draw, please click the "Unlock Draw" button.  You'll then be able to make adjustments, which will automatically save.</p>
