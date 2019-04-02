@@ -12,6 +12,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
+    'status:desc',
     'sumOfficial:desc',
     'sumOfficialSinging:desc',
     'sumOfficialPerformance:desc',
