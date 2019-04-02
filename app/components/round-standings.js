@@ -1,4 +1,4 @@
-import { not, sort, filterBy } from '@ember/object/computed';
+import { not, sort, filterBy} from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
@@ -13,9 +13,7 @@ export default Component.extend({
   ),
   rankSortProperties: [
     'status:desc',
-    'sumOfficial:desc',
-    'sumOfficialSinging:desc',
-    'sumOfficialPerformance:desc',
+    'runTotal:desc',
     'groupName',
   ],
   multiAppearances: filterBy(

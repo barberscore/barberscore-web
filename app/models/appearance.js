@@ -22,6 +22,7 @@ export default Model.extend({
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
+  runTotal: DS.attr('number'),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
