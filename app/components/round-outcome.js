@@ -15,6 +15,7 @@ export default Component.extend({
     'runSum:desc',
     'runSng:desc',
     'runPer:desc',
+    'groupName:asc',
   ],
   sortedContenders: sort(
     'model.contenders',
