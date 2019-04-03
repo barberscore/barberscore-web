@@ -83,20 +83,20 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
-    ENV.APP.SENTRY_DSN = null;
+    ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.locationType = 'none';
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
     ENV['ember-algolia'] = {
-      algoliaId: null,
-      algoliaKey: null,
+      algoliaId: 'foo',
+      algoliaKey: 'bar',
     };
     ENV['ember-simple-auth'] = {
       auth0: {
-        clientID: null,
-        domain: null,
+        clientID: 'foo',
+        domain: 'bar',
       }
     };
   }
