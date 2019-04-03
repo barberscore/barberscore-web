@@ -7,7 +7,7 @@
     <h4>
       The Draw is available after the Round has Finished.
     </h4>
-  {{else if (and isEditing (or (eq model.status 'Finished')(eq model.status 'Verified')))}}
+  {{else if (and isEditing (eq model.status 'Finished'))}}
     <div>
       {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
@@ -56,10 +56,16 @@
     </div>
   {{else}}
     <div>
-      {{#if (or (eq model.status 'Finished')(or (eq model.status 'Published') (eq model.status 'Verified')))}}
+      {{#if (eq model.status 'Finished')}}
         <div class='row'>
           <div class='col-md-6'>
             {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+          </div>
+        </div>
+      {{else}}
+        <div class='row'>
+          <div class='col-md-6'>
+            Once the Round is Verified further changes are not possible.
           </div>
         </div>
       {{/if}}
@@ -106,7 +112,7 @@
         </table>
       </div>
     </div>
-    {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
+    {{#if (eq model.status 'Finished')}}
       <div class='row'>
         <div class='col-md-6'>
           <p><strong>Note:</strong> If you wish to edit the draw, please click the "Unlock Draw" button.  You'll then be able to make adjustments, which will automatically save.</p>
