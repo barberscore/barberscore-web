@@ -23,7 +23,7 @@ export default Component.extend({
     'Verified'
   ),
   sortedAppearances: sort(
-    'filteredAppearances',
+    'drawnFilter',
     'appearanceSortProperties'
   ),
   actions: {
