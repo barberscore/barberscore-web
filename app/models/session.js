@@ -13,7 +13,6 @@ export default Model.extend({
   notes: DS.attr('string'),
   legacyReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
-  contactReport: DS.attr('string'),
   numRounds: DS.attr('number'),
   convention: DS.belongsTo('convention', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
@@ -29,7 +28,6 @@ export default Model.extend({
   finish: memberAction({path: 'finish', type: 'post'}),
   refresh: memberAction({path: 'refresh', type: 'get'}),
 
-  contact: memberAction({ path: 'contact', type: 'get', ajaxOptions: { arraybuffer: true } }),
   legacy: memberAction({ path: 'legacy', type: 'get', ajaxOptions: { arraybuffer: true } }),
   drcj: memberAction({ path: 'drcj', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
