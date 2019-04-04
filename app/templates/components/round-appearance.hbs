@@ -74,7 +74,7 @@
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li>{{appearance-verify model=model}}</li>
           {{!-- <li>{{appearance-scratch model=model}}</li> --}}
-        {{else if (eq model.status 'Verified')}}
+        {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
           <li>{{download-csa model=model}}</li>
           {{!-- <li>{{appearance-scratch model=model}}</li> --}}
         {{/if}}
