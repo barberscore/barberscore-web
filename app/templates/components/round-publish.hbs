@@ -15,14 +15,18 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-        This ends the round and makes the results public.  It generates and emails the final versions of the OSS, CSA, and SA reports for this round (where applicable.)
+        <strong>SPECIAL NOTE:</strong>&nbsp;The Publish Round functionality is disabled until testing is complete.
+    </p>
+    <p>
+        This ends the round and makes the results public.  It generates and emails the final versions of the OSS, SA, CSA, and PSA reports for this round (where applicable.)
     </p>
     <h4>
       The Round should not be "Published" until the announcements are over!
     </h4>
     {{#if publishRoundModalError}}
     <p class='text-danger'>
-      Could not Publish Round.  Please ensure all Manual Award Winners have been selected.  Otherwise, contact support.
+      {{!-- Could not Publish Round.  Please ensure all Manual Award Winners have been selected.  Otherwise, contact support. --}}
+      Round Publishing is disabled until testing is complete.
     </p>
     {{/if}}
   {{/modal.body}}
