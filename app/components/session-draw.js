@@ -36,10 +36,5 @@ export default Component.extend({
       itemModels.invoke('save');
       this.flashMessages.success('Success');
     },
-    saveOrder() {
-      this.sortedEntries.invoke('save');
-      this.set('isSorting', false);
-      this.flashMessages.success('Success');
-    }
   }
 });
