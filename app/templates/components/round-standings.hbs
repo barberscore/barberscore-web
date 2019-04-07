@@ -34,7 +34,7 @@
           </thead>
           <tbody>
             {{#each sortedMultiAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'border-top'}}">
+              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'cut-line'}}">
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
