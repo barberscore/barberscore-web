@@ -16,8 +16,8 @@ export default Component.extend({
       });
       yield this.model.reload();
       yield this.store.pushPayload('round', round);
-      yield this.get('model.appearances').invoke('reload');
-      yield this.get('model.panelists').invoke('reload');
+      yield this.get('model.appearances.@each.group').invoke('reload');
+      yield this.get('model.panelists.@each.person').invoke('reload');
       this.set('startRoundModal', false);
       this.set('startRoundModalError', false);
       this.flashMessages.success("Started!");
