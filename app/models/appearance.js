@@ -82,6 +82,15 @@ export default Model.extend({
     'num',
     0
   ),
+  runTot: alias(
+    'runTotal.sum',
+  ),
+  runSng: alias(
+    'runTotal.sum',
+  ),
+  runPer: alias(
+    'runTotal.sum',
+  ),
   roundNum: alias(
     'round.num'
   ),

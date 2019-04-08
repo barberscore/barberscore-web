@@ -13,9 +13,9 @@ export default Component.extend({
   ),
   rankSortProperties: [
     'status:desc',
-    'runTotal.sum:desc',
-    'runTotal.sng:desc',
-    'runTotal.per:desc',
+    'runSum:desc',
+    'runSng:desc',
+    'runPer:desc',
     'groupName',
   ],
   multiAppearances: filterBy(
