@@ -14,12 +14,13 @@ export default Component.extend({
     }
   }).drop(),
   sortedPanelistsProperties: [
-    'categorySort',
     'kindSort',
+    'num',
+    'categorySort',
     'personSort',
   ],
   sortedPanelists: sort(
     'model.round.panelists',
-    'sortedPanelistsProperties',
+    'sortedPanelistsProperties'
   ),
 });
