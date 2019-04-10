@@ -15,18 +15,14 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-        <strong>SPECIAL NOTE:</strong>&nbsp;The Publish Round functionality is disabled until testing is complete.
-    </p>
-    <p>
-        This ends the round and makes the results public.  It generates and emails the final versions of the OSS, SA, CSA, and PSA reports for this round (where applicable.)
+        This officially ends the round and makes the final reports public.  Currently, only the SA and PSA reports are distributed; once testing is complete it will also send the OSS and CSAs.
     </p>
     <h4>
       The Round should not be "Published" until the announcements are over!
     </h4>
     {{#if publishRoundModalError}}
     <p class='text-danger'>
-      {{!-- Could not Publish Round.  Please ensure all Manual Award Winners have been selected.  Otherwise, contact support. --}}
-      Round Publishing is disabled until testing is complete.
+      Could not Publish Round.  Please contact support.
     </p>
     {{/if}}
   {{/modal.body}}
