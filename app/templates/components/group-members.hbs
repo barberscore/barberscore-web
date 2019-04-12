@@ -17,7 +17,7 @@
           <th class='col-md-1'>Part</th>
         {{/if}}
         {{!-- <th class='col-md-2'>Email</th> --}}
-        {{!-- <th class='col-md-2'>Phone</th> --}}
+        <th class='col-md-1'>Gender</th>
         <th class='col-md-1'>DOB</th>
         <th class='col-md-1'>BHS ID</th>
         <th class='col-md-1'>BHS Status</th>
@@ -43,7 +43,7 @@
               <td>{{#if member.part}}{{member.part}}{{else}}(Unknown){{/if}}</td>
             {{/if}}
             {{!-- <td><a href='mailto:{{member.person.email}}'>{{member.person.email}}</a></td> --}}
-            {{!-- <td><a href='tel:{{member.person.cellPhone}}'>{{member.person.cellPhone}}</a></td> --}}
+            <td>{{member.person.gender}}</td>
             <td>{{moment-format member.person.birthDate 'L'}}</td>
             <td>{{member.person.bhsId}}</td>
             {{#if member.person.user.isLoading}}
