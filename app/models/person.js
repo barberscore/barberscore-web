@@ -22,6 +22,7 @@ export default Model.extend({
   homePhone: DS.attr('string', {defaultValue:''}),
   workPhone: DS.attr('string', {defaultValue:''}),
   cellPhone: DS.attr('string', {defaultValue:''}),
+  gender: DS.attr('person-gender'),
   airports: DS.attr(),
   image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
