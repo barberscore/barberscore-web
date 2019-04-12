@@ -2,13 +2,14 @@ import Component from '@ember/component';
 import { equal } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
-import ENV from '../config/environment';
+import config from '../config/environment';
 
 export default Component.extend({
   store: service(),
   flashMessages: service(),
+  currentEnvironment: config.environment,
   isProduction: equal(
-    ENV.environment,
+    'currentEnvironment',
     'production',
   ),
   mockRound: task(function *() {
