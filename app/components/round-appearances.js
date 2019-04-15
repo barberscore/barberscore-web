@@ -33,6 +33,7 @@ export default Component.extend({
       let group = yield this.store.findRecord('group', obj.objectID)
       yield this.store.createRecord('appearance', {
         num: num,
+        isPrivate: true,
         group: group,
         round: this.model,
         songs: [],

@@ -23,6 +23,7 @@ export default Model.extend({
   stats: DS.attr(),
   runTotal: DS.attr(),
   contesting: DS.attr({ defaultValue: function() { return []; } }),
+  isPrivate: DS.attr('boolean'),
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
   group: DS.belongsTo('group', {async: true}),
