@@ -26,6 +26,7 @@ export default Model.extend({
   isPrivate: DS.attr('boolean'),
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
+  participants: DS.attr('string'),
   group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),

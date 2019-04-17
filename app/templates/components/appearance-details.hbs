@@ -1,30 +1,63 @@
 
-<caption>
-  Details
-</caption>
-
-<ul class='list-inline'>
-  <li>Grid:  {{#if model.grid.onstage}}{{moment-format model.grid.onstage "HH:mm"}}{{else}}N/A{{/if}}</li>
-  <li>Actual:  {{moment-format model.actualStart "HH:mm"}}</li>
-  {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
-  {{#if (or
-    (eq model.status 'Started')
-    (eq model.status 'Finished')
-    (eq model.status 'Verified')
-  )}}
-    {{#if (eq model.round.session.kind 'Chorus')}}
-      <li>
-        {{input
-          class='form-control text-right'
-          type='tel'
-          value=model.pos
-          min=0
-          disabled=model.isDisabled
-          max=100
-          placeholder='Participants on Stage'
-          change=(perform autosave value='target.value')
-        }}
-      </li>
-    {{/if}}
+<section>
+  {{#if model.group.image}}
+    <img src={{model.group.image}} class='img-responsive img-rounded smallbox'>
+  {{else}}
+    <img src='/assets/no_image_available.jpg' class='img-responsive smallbox'>
   {{/if}}
-</ul>
+  {{#if (eq model.group.kind 'Quartet')}}
+    Participants: {{model.participants}}
+  {{else}}
+    Director(s): {{model.participants}}
+  {{/if}}
+</section>
+
+<div class='form-inline'>
+  <div class='form-group'>
+    {{input
+      class='form-control'
+      type='tel'
+      value=model.grid.onstage
+      disabled=true
+      placeholder='Grid Time N/A'
+    }}
+  </div>
+  <div class='form-group'>
+    {{bs-datetimepicker
+      date=model.actualStart
+      format="HH:mm"
+      showIcon=true
+      isTime=true
+      placeholder='Actual Start Time'
+      change=(perform autosave 'actualStart')
+    }}
+  </div>
+  <div class='form-group'>
+    {{bs-datetimepicker
+      date=model.actualFinish
+      format="HH:mm"
+      showIcon=true
+      isTime=true
+      placeholder='Actual Finish Time'
+      change=(perform autosave 'actualFinish')
+    }}
+  </div>
+  {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
+</div>
+{{#if (eq model.round.session.kind 'Chorus')}}
+  <br>
+  <div class='form-inline'>
+    <div class='form-group'>
+      {{input
+        class='form-control text-right'
+        type='tel'
+        value=model.pos
+        min=0
+        disabled=model.isDisabled
+        max=200
+        placeholder='Participants on Stage'
+        key-press=(perform autosave value='target.value')
+      }}
+    </div>
+  </div>
+{{/if}}
