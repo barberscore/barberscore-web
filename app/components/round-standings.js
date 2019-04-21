@@ -56,7 +56,7 @@ export default Component.extend({
     let round = yield this.model.finish({
       'by': this.get('currentUser.user.id')
     });
-    this.store.pushPayload('round', round);
+    yield this.store.pushPayload('round', round);
   }).restartable(),
 });
 

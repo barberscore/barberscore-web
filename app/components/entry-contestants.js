@@ -22,7 +22,7 @@ export default Component.extend({
         let contestant = yield property.include({
           'by': this.get('currentUser.user.id'),
         });
-        this.store.pushPayload('contestant', contestant);
+        yield this.store.pushPayload('contestant', contestant);
         this.flashMessages.success("Included!");
       } catch(e) {
         this.flashMessages.danger("Problem!");
@@ -32,7 +32,7 @@ export default Component.extend({
         let contestant = yield property.exclude({
           'by': this.get('currentUser.user.id'),
         });
-        this.store.pushPayload('contestant', contestant);
+        yield this.store.pushPayload('contestant', contestant);
         this.flashMessages.success("Excluded!");
       } catch(e) {
         this.flashMessages.danger("Problem!");

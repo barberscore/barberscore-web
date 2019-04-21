@@ -13,8 +13,7 @@ export default Component.extend({
       let round = yield this.model.reset({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
-      this.store.pushPayload('round', round);
+      yield this.store.pushPayload('round', round);
       this.set('resetRoundModal', false);
       this.set('resetRoundModalError', false);
       this.flashMessages.success("Reset!");

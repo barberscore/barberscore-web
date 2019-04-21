@@ -13,7 +13,7 @@ export default Component.extend({
       let round = yield this.model.publish({
         'by': this.get('currentUser.user.id')
       });
-      this.store.pushPayload('round', round);
+      yield this.store.pushPayload('round', round);
       this.set('publishRoundModal', false);
       this.set('publishRoundModalError', false);
       this.flashMessages.success("Published!");

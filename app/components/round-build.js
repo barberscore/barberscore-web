@@ -13,8 +13,7 @@ export default Component.extend({
       let round = yield this.model.build({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
-      this.store.pushPayload('round', round);
+      yield this.store.pushPayload('round', round);
       this.set('buildRoundModal', false);
       this.set('buildRoundModalError', false);
       this.flashMessages.success("Built!");

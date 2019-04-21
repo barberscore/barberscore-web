@@ -77,7 +77,7 @@ export default Component.extend({
       let payload = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload(payload);
+      yield this.store.pushPayload(payload);
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.flashMessages.success("Created!");

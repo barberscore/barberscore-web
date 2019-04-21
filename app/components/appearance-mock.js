@@ -19,8 +19,7 @@ export default Component.extend({
       let appearance = yield this.model.mock({
         'by': this.get('currentUser.user.id'),
       });
-      this.store.pushPayload('appearance', appearance);
-      this.get('model.songs.@each.chart').invoke('reload');
+      yield this.store.pushPayload('appearance', appearance);
       this.flashMessages.success("Mocked!");
     } catch(e) {
       this.flashMessages.error(e);
