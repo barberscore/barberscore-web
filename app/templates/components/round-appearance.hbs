@@ -67,7 +67,7 @@
           <li>{{appearance-delete model=model}}</li>
         {{else if (eq model.status 'Built')}}
           <li>{{appearance-start model=model}}</li>
-          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
+          <li>{{appearance-scratch model=model}}</li>
           <li>{{appearance-mock model=model}}</li>
         {{else if (eq model.status 'Started')}}
           <li>{{appearance-finish model=model}}</li>

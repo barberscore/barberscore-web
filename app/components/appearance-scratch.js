@@ -15,7 +15,7 @@ export default Component.extend({
       yield this.store.pushPayload('appearance', appearance);
       this.set('scratchAppearanceModal', false);
       this.set('scratchAppearanceModalError', false);
-      this.flashMessages.success("Scratchn!");
+      this.flashMessages.success("Scratched!");
     } catch(e) {
       this.set('scratchAppearanceModalError', true);
     }
