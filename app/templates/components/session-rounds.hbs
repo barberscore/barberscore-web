@@ -13,8 +13,12 @@
       <tbody>
         {{#each sortedRounds as |round|}}
           <tr>
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
-            <td>{{round.status}}</td>
+            {{#if round.isLoading}}
+              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
+              <td>{{round.status}}</td>
+            {{/if}}
           </tr>
         {{else}}
           <tr>
