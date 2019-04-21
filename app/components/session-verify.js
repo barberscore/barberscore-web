@@ -11,10 +11,10 @@ export default Component.extend({
   verifySessionModalError: false,
   verifySession: task(function *() {
     try {
-      yield this.model.verify({
+      let session = yield this.model.verify({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
+      yield this.store.pushPayload('session', session);
       this.set('verifySessionModal', false);
       this.set('verifySessionModalError', false);
       this.flashMessages.success("Verified!");

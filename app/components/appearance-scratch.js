@@ -9,10 +9,10 @@ export default Component.extend({
   scratchAppearanceModalError: false,
   scratchAppearance: task(function *() {
     try {
-      yield this.model.scratch({
+      let appearance = yield this.model.scratch({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      yield this.store.pushPayload('appearance', appearance);
       this.set('scratchAppearanceModal', false);
       this.set('scratchAppearanceModalError', false);
       this.flashMessages.success("Scratchn!");

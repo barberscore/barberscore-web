@@ -10,10 +10,10 @@ export default Component.extend({
   submitEntryModalError: false,
   submitEntry: task(function *() {
     try {
-      yield this.model.submit({
+      let entry = yield this.model.submit({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      yield this.store.pushPayload('entry', entry);
       this.set('submitEntryModal', false);
       this.set('submitEntryModalError', false);
       this.flashMessages.success("Submitted!");

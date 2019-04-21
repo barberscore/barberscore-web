@@ -9,10 +9,10 @@ export default Component.extend({
   withdrawEntryModalError: false,
   withdrawEntry: task(function *() {
     try {
-      yield this.model.withdraw({
+      let entry = yield this.model.withdraw({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      yield this.store.pushPayload('entry', entry);
       this.set('withdrawEntryModal', false);
       this.set('withdrawEntryModalError', false);
       this.flashMessages.success("Withdrawn!");

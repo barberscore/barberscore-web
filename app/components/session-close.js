@@ -11,10 +11,10 @@ export default Component.extend({
   closeSessionModalError: false,
   closeSession: task(function *() {
     try {
-      yield this.model.close({
+      let session = yield this.model.close({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
+      yield this.store.pushPayload('session', session);
       this.set('closeSessionModal', false);
       this.set('closeSessionModalError', false);
       this.flashMessages.success("Closed!");

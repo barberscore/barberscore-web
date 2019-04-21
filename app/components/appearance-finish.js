@@ -7,10 +7,10 @@ export default Component.extend({
   flashMessages: service(),
   finishAppearance: task(function *() {
     try {
-      yield this.model.finish({
+      let appearance = yield this.model.finish({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      yield this.store.pushPayload('appearance', appearance);
       this.flashMessages.success("Finished!");
     } catch(e) {
       this.flashMessages.error(e);

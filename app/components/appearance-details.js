@@ -16,9 +16,4 @@ export default Component.extend({
       })
     }
   }).restartable(),
-  actions: {
-    refresh() {
-      return this.model.reload();
-    }
-  },
 });

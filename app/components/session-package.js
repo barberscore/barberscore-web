@@ -11,10 +11,10 @@ export default Component.extend({
   packageSessionModalError: false,
   packageSession: task(function *() {
     try {
-      yield this.model.package({
+      let session = yield this.model.package({
         'by': this.get('currentUser.user.id')
       });
-      this.model.reload();
+      yield this.store.pushPayload('session', session);
       this.set('packageSessionModal', false);
       this.set('packageSessionModalError', false);
       this.flashMessages.success("Packaged!");
