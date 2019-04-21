@@ -14,8 +14,6 @@ export default Component.extend({
         'by': this.get('currentUser.user.id')
       });
       this.store.pushPayload('round', round);
-      this.get('model.session.rounds').invoke('reload');
-      this.get('model.appearances.@each.group').invoke('reload');
       this.set('publishRoundModal', false);
       this.set('publishRoundModalError', false);
       this.flashMessages.success("Published!");

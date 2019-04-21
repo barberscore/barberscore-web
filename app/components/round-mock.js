@@ -14,10 +14,10 @@ export default Component.extend({
   ),
   mockRound: task(function *() {
     try {
-      yield this.model.mock({
+      let round = yield this.model.mock({
         'by': this.get('currentUser.user.id'),
       });
-      this.model.reload();
+      yield this.store.pushPayload('round', round);
       this.flashMessages.success("Mocked!");
     } catch(e) {
       this.flashMessages.error(e);

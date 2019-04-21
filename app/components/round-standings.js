@@ -57,8 +57,6 @@ export default Component.extend({
       'by': this.get('currentUser.user.id')
     });
     this.store.pushPayload('round', round);
-    let appearances = yield this.model.get('appearances');
-    appearances.invoke('reload');
   }).restartable(),
 });
 

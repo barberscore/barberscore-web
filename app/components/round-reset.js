@@ -15,8 +15,6 @@ export default Component.extend({
       });
       this.model.reload();
       this.store.pushPayload('round', round);
-      this.get('model.panelists').invoke('reload');
-      this.get('model.appearances').invoke('reload');
       this.set('resetRoundModal', false);
       this.set('resetRoundModalError', false);
       this.flashMessages.success("Reset!");
