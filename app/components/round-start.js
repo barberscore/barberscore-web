@@ -14,10 +14,7 @@ export default Component.extend({
       let round = yield this.model.start({
         'by': this.get('currentUser.user.id')
       });
-      yield this.model.reload();
       yield this.store.pushPayload('round', round);
-      yield this.get('model.appearances.@each.group').invoke('reload');
-      yield this.get('model.panelists.@each.person').invoke('reload');
       this.set('startRoundModal', false);
       this.set('startRoundModalError', false);
       this.flashMessages.success("Started!");
