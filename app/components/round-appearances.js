@@ -36,6 +36,7 @@ export default Component.extend({
         isPrivate: true,
         group: group,
         round: this.model,
+        participants: "",
         songs: [],
       }).save();
       this.set('createAppearanceModal', false);
