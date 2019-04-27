@@ -12,7 +12,7 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
-    'status:desc',
+    'status:asc',
     'runSum:desc',
     'runSng:desc',
     'runPer:desc',
