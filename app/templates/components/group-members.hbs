@@ -1,14 +1,7 @@
 <div class='table-responsive'>
   <table class='table'>
     <caption>
-      Does this list look out of date?  Click to get the latest data: {{#bs-button disabled=refreshGroup.last.isSuccessful onClick=(perform refreshGroup) type="default" size='xs'}}
-        {{#if refreshGroup.isRunning}}
-          Refreshing {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Refresh
-        {{/if}}
-      {{/bs-button}}
-      <br><strong>Important:</strong>  If the data still looks inaccurate even after refreshing, please disregard. <br>DO NOT KEEP CLICKING REFRESH.  Nothing will happen except causing errors for other users. Instead, you should review the list of your group members in the Member Center. That is the official roster you should rely upon for contest eligibility - the member status list in Barberscore is provided as an extra convenience only.
+      <strong>Important:</strong>  The member status list in Barberscore is provided as convenience only; please note that for official status of your members please check the {{member-center}}.
     </caption>
     <thead>
       <tr>
