@@ -26,6 +26,6 @@
     },
     "/stage/": {
       "origin": "${API_PROXY_HOST}.herokuapp.com/"
-    },
+    }
   }
 }
