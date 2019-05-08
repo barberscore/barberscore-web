@@ -22,10 +22,10 @@
   },
   "proxies": {
     "/api/": {
-      "origin": "${API_PROXY_HOST}.herokuapp.com/"
+      "origin": "${API_PROXY_HOST}.herokuapp.com/api/"
     },
     "/stage/": {
-      "origin": "${API_PROXY_HOST}.herokuapp.com/"
+      "origin": "${API_PROXY_HOST}.herokuapp.com/stage/"
     }
   }
 }
