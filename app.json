@@ -26,11 +26,7 @@
       "description": "The host of the Barberscore API.",
       "required": true
     },
-    "API_NAMESPACE": {
-      "description": "The API version.",
-      "required": true
-    },
-    "API_PROXY": {
+    "API_PROXY_HOST": {
       "description": "The API Proxy URL.",
       "required": true
     },

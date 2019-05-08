@@ -5,7 +5,7 @@ import AdapterArrayBufferMixin from 'ember-cli-file-saver/mixins/adapter-arraybu
 
 export default DS.JSONAPIAdapter.extend(AdapterArrayBufferMixin, DataAdapterMixin, {
   host: ENV.APP.API_HOST,
-  namespace: ENV.APP.API_NAMESPACE,
+  namespace: 'api',
   coalesceFindRequests: false,
   authorizer: 'authorizer:jwt',
 });
