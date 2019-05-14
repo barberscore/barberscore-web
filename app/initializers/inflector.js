@@ -14,7 +14,6 @@ export function initialize(/* application */) {
   inflector.uncountable('grid');
   inflector.uncountable('group');
   inflector.uncountable('member');
-  inflector.uncountable('office');
   inflector.uncountable('officer');
   inflector.uncountable('outcome');
   inflector.uncountable('panelist');
