@@ -8,7 +8,8 @@ export default Model.extend({
   status: DS.attr('officer-status'),
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
-  office: DS.belongsTo('office', {async: true}),
+  office: DS.attr('officer-office'),
+
   person: DS.belongsTo('person', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   permissions: DS.attr(),
@@ -22,6 +23,36 @@ export default Model.extend({
   ),
 
   // Constants
+  officeOptions: [
+    'SCJC Chair',
+    'SCJC Chair Past',
+    'SCJC CA',
+    'SCJC MUS',
+    'SCJC PER',
+    'SCJC SNG',
+    'SCJC Chart',
+    'SCJC Admin',
+    'DRCJ',
+    'DRCJ Assistant',
+    'JUDGE CA',
+    'JUDGE MUS',
+    'JUDGE PER',
+    'JUDGE SNG',
+    'CPRES',
+    'CSEC',
+    'CDIR',
+    'CASS',
+    'CMAN',
+    'QADM',
+  ],
+
+  officeSort: computed(
+    'office',
+    'officeOptions',
+    function() {
+      return this.officeOptions.indexOf(this.office);
+    }
+  ),
   statusOptions: [
     'New',
     'Active',
@@ -49,12 +80,7 @@ export default Model.extend({
   personName: alias('person.fullName'),
   personLast: alias('person.lastName'),
   personFirst: alias('person.firstName'),
-  officeShortName: alias('office.shortName'),
-  officeCodeSort: alias('office.codeSort'),
-  officeKind: alias('office.kind'),
-  officeName: alias('office.name'),
-  isChartManager: alias('office.isChartManager'),
-  isGroupManager: alias('office.isGroupManager'),
+  officerOfficeSort: alias('officer.officeSort'),
   groupName: alias('group.name'),
   groupSort: alias('group.treeSort'),
 });

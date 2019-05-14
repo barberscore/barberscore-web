@@ -23,7 +23,7 @@
             {{#if officer.office.isLoading}}
               <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{officer.office.name}}</td>
+              <td>{{officer.office}}</td>
             {{/if}}
             <td>{{officer.person.bhsId}}</td>
             <td><a href='mailto:{{officer.person.email}}'>{{officer.person.email}}</a></td>
