@@ -28,6 +28,7 @@
       format="HH:mm"
       showIcon=true
       isTime=true
+      disabled=model.isDisabled
       placeholder='Actual Start Time'
       change=(perform autosave 'actualStart')
     }}
@@ -38,6 +39,7 @@
       format="HH:mm"
       showIcon=true
       isTime=true
+      disabled=model.isDisabled
       placeholder='Actual Finish Time'
       change=(perform autosave 'actualFinish')
     }}
