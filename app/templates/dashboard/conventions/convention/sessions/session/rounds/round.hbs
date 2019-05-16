@@ -44,10 +44,10 @@
           <li>{{round-start model=model}}</li>
           <li>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-finish model=model}}</li>
+          <li>{{round-complete model=model}}</li>
           <li>{{round-reset model=model}}</li>
           <li>{{round-mock model=model}}</li>
-        {{else if (eq model.status 'Finished')}}
+        {{else if (eq model.status 'Completed')}}
           <li>{{round-verify model=model}}</li>
         {{else if (eq model.status 'Verified')}}
           <li>{{round-publish model=model}}</li>

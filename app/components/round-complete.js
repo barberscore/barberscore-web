@@ -6,19 +6,19 @@ export default Component.extend({
   currentUser: service(),
   store: service(),
   flashMessages: service(),
-  finishRoundModal: false,
-  finishRoundModalError: false,
-  finishRound: task(function *() {
+  completeRoundModal: false,
+  completeRoundModalError: false,
+  completeRound: task(function *() {
     try {
-      let round = yield this.model.finish({
+      let round = yield this.model.complete({
         'by': this.get('currentUser.user.id')
       });
       yield this.store.pushPayload('round', round);
-      this.set('finishRoundModal', false);
-      this.set('finishRoundModalError', false);
-      this.flashMessages.success("Finished!");
+      this.set('completeRoundModal', false);
+      this.set('completeRoundModalError', false);
+      this.flashMessages.success("Completed!");
     } catch(e) {
-      this.set('finishRoundModalError', true);
+      this.set('completeRoundModalError', true);
     }
   }).drop(),
 });

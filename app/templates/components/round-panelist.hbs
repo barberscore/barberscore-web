@@ -26,7 +26,7 @@
           <li>{{panelist-delete model=model}}</li>
         {{else if (eq model.category 'CA')}}
           <li></li>
-        {{else if (or (eq model.round.status 'Finished')(eq model.round.status 'Verified')(eq model.round.status 'Published'))}}
+        {{else if (or (eq model.round.status 'Completed')(eq model.round.status 'Verified')(eq model.round.status 'Published'))}}
           <li>{{download-psa model=model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li>

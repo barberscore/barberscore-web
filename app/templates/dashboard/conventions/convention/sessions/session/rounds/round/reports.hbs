@@ -1,5 +1,5 @@
 <section>
-  {{#if (or (eq model.status 'Finished')(eq model.status 'Verified'))}}
+  {{#if (or (eq model.status 'Completed')(eq model.status 'Verified'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
@@ -15,7 +15,7 @@
     </ul>
   {{else}}
     <h4>
-      Reports are available after the Round is Finished.
+      Reports are available after the Round is Completed.
     </h4>
   {{/if}}
 </section>

@@ -1,0 +1,39 @@
+{{#bs-button
+  type='primary'
+  disabled=model.isDisabled
+  onClick=(action (mut completeRoundModal) true)
+}}
+  Complete Round
+{{/bs-button}}
+{{#bs-modal
+  open=completeRoundModal
+  onHidden=(pipe-action (action (mut completeRoundModal) false) (action (mut completeRoundModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Complete Round</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+        This concludes the scoring process.  Completing the Round will produce the <em>draft</em> reports, award winners, and draw for the next round (if applicable).  The CA will have the ability to make and any all adjustments to these private, draft results before publication.
+    </p>
+    <h4>
+      The Round should not be "Completed" until all Appearances have been Verified!
+    </h4>
+    {{#if completeRoundModalError}}
+      <p class='text-danger'>
+        Could not Complete Round.  Please ensure all Appearances have been Verified.  Otherwise, contact support.
+      </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform completeRound)}}
+      {{#if completeRound.isRunning}}
+        Completing {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Complete Round
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

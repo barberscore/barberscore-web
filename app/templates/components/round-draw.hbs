@@ -5,9 +5,9 @@
     </h4>
   {{else if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
     <h4>
-      The Draw is available after the Round has Finished.
+      The Draw is available after the Round has Completed.
     </h4>
-  {{else if (and isEditing (eq model.status 'Finished'))}}
+  {{else if (and isEditing (eq model.status 'Completed'))}}
     <div>
       {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
@@ -56,7 +56,7 @@
     </div>
   {{else}}
     <div>
-      {{#if (eq model.status 'Finished')}}
+      {{#if (eq model.status 'Completed')}}
         <div class='row'>
           <div class='col-md-6'>
             {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
@@ -112,7 +112,7 @@
         </table>
       </div>
     </div>
-    {{#if (eq model.status 'Finished')}}
+    {{#if (eq model.status 'Completed')}}
       <div class='row'>
         <div class='col-md-6'>
           <p><strong>Note:</strong> If you wish to edit the draw, please click the "Unlock Draw" button.  You'll then be able to make adjustments, which will automatically save.</p>

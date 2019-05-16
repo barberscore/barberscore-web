@@ -21,7 +21,7 @@ export default Model.extend({
   reset: memberAction({path: 'reset', type: 'post'}),
   build: memberAction({path: 'build', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
-  finish: memberAction({path: 'finish', type: 'post'}),
+  complete: memberAction({path: 'complete', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
@@ -46,7 +46,7 @@ export default Model.extend({
     'Drawn',
     'Validated',
     'Started',
-    'Finished',
+    'Completed',
     'Announced',
   ],
   kindOptions: [
