@@ -27,6 +27,9 @@
     "/bhs/": {
       "origin": "${API_PROXY_HOST}/bhs/"
     },
+    "/cmanager/": {
+      "origin": "${API_PROXY_HOST}/cmanager/"
+    },
     "/stage/": {
       "origin": "${API_PROXY_HOST}/stage/"
     }
