@@ -15,7 +15,7 @@
             <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
             <td>
-              {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.convention.name}}{{/link-to}}
+              {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.convention.nomen}}{{/link-to}}
             </td>
             <td>
               {{entry.session.convention.venue.name}}
@@ -136,7 +136,7 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
             {{/if}}
           </div>
           <div class='col-xs-10'>
-            {{session.convention.name}}<br>
+            {{session.convention.nomen}}<br>
             {{session.kind}} Session<br>
             {{session.convention.location}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
           </div>

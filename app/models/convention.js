@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import { equal, not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -5,6 +6,7 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   name: DS.attr('string'),
+  district: DS.attr('string'),
   status: DS.attr('convention-status'),
   season: DS.attr('convention-season'),
   panel: DS.attr('convention-panel'),
@@ -59,4 +61,12 @@ export default Model.extend({
     'Quadruple',
     'Quintiple',
   ],
+  nomen: computed(
+    'district',
+    'season',
+    'year',
+    'name',
+    function() {
+    return `${this.district} ${this.season} ${this.year} ${this.name}`;
+  })
 });

@@ -97,7 +97,7 @@ export default Model.extend({
     'round.num'
   ),
   conventionName: alias(
-    'round.session.convention.name',
+    'round.session.convention.nomen',
   ),
   sessionKind: alias(
     'round.session.kind',
