@@ -14,10 +14,11 @@
 
 <div class='form-inline'>
   <div class='form-group'>
-    {{input
-      class='form-control'
-      type='tel'
-      value=model.grid.onstage
+    {{bs-datetimepicker
+      date=model.onstage
+      format="HH:mm"
+      showIcon=true
+      isTime=true
       disabled=true
       placeholder='Grid Time N/A'
     }}
@@ -44,7 +45,7 @@
       change=(perform autosave 'actualFinish')
     }}
   </div>
-  {{!-- <li>Delta:  {{moment-diff model.slot.onstage model.actual_start}}</li> --}}
+  {{!-- <li>Delta:  {{moment-diff model.onstage model.actual_start precision='minutes'}} Minutes</li> --}}
 </div>
 {{#if (eq model.round.session.kind 'Chorus')}}
   <br>

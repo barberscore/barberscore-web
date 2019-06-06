@@ -18,6 +18,7 @@ export default Model.extend({
   status: DS.attr('appearance-status'),
   num: DS.attr('number'),
   draw: DS.attr('number'),
+  onstage: DS.attr('date'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
