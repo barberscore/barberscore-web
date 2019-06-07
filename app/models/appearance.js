@@ -28,6 +28,7 @@ export default Model.extend({
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
   participants: DS.attr('string'),
+  entry: DS.belongsTo('entry', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
@@ -99,6 +100,9 @@ export default Model.extend({
   ),
   conventionName: alias(
     'round.session.convention.nomen',
+  ),
+  entryPrelim: alias(
+    'entry.prelim',
   ),
   sessionKind: alias(
     'round.session.kind',

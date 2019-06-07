@@ -16,6 +16,7 @@ export default Component.extend({
     'runSum:desc',
     'runSng:desc',
     'runPer:desc',
+    'entryPrelim:desc',
     'groupName',
   ],
   multiAppearances: filterBy(
