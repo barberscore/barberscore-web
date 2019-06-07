@@ -30,6 +30,9 @@
     "/cmanager/": {
       "origin": "${API_PROXY_HOST}/cmanager/"
     },
+    "/smanager/": {
+      "origin": "${API_PROXY_HOST}/smanager/"
+    },
     "/stage/": {
       "origin": "${API_PROXY_HOST}/stage/"
     }
