@@ -28,7 +28,7 @@
                   {{/if}}
                 </td>
                 <td>
-                  {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.nomen}}{{/link-to}}
+                  {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.__str__}}{{/link-to}}
                 </td>
                 <td>
                   {{if convention.venue.name convention.venue.name '(Unknown)'}}<br>

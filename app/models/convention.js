@@ -5,6 +5,7 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
+  __str__: DS.attr('string'),
   name: DS.attr('string'),
   district: DS.attr('string'),
   status: DS.attr('convention-status'),
