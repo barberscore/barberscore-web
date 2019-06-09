@@ -18,6 +18,7 @@ export default Model.extend({
   status: DS.attr('appearance-status'),
   num: DS.attr('number'),
   draw: DS.attr('number'),
+  onstage: DS.attr('date'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
   stats: DS.attr(),
@@ -27,6 +28,7 @@ export default Model.extend({
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
   participants: DS.attr('string'),
+  entry: DS.belongsTo('entry', {async: true}),
   group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
   grid: DS.belongsTo('grid', {async: true}),
@@ -97,7 +99,10 @@ export default Model.extend({
     'round.num'
   ),
   conventionName: alias(
-    'round.session.convention.name',
+    'round.session.convention.nomen',
+  ),
+  entryPrelim: alias(
+    'entry.prelim',
   ),
   sessionKind: alias(
     'round.session.kind',

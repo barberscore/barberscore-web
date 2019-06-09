@@ -30,7 +30,7 @@
                 {{/if}}
               </td>
               <td>
-                {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.name}}{{/link-to}}
+                {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.__str__}}{{/link-to}}
               </td>
               <td>
                 {{assignment.category}}

@@ -38,7 +38,7 @@ export default Model.extend({
 
   conventionStatus: alias('convention.status'),
   conventionIsActive: alias('convention.isActive'),
-  conventionName: alias('convention.name'),
+  conventionName: alias('convention.nomen'),
 
   notArchived: not('isArchived'),
 

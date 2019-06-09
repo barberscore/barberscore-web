@@ -20,7 +20,7 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionName: alias('round.session.convention.name'),
+  conventionName: alias('round.session.convention.nomen'),
   sessionKind: alias('round.session.kind'),
   roundKind: alias('round.kind'),
   personName: alias('person.commonName'),

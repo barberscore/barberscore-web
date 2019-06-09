@@ -36,7 +36,7 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionName: alias('session.convention.name'),
+  conventionName: alias('session.convention.nomen'),
   sessionKind: alias('session.kind'),
 
   conventionStatus: alias('session.convention.status'),
