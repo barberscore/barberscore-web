@@ -117,6 +117,16 @@ module.exports = function(environment) {
         clientID: process.env.AUTH0_CLIENT_ID,
         domain: process.env.AUTH0_DOMAIN,
         enableImpersonation: true,
+        silentAuth : {
+          onSessionRestore: true,
+          onSessionExpire: true,
+          options: {
+            scope: 'openid profile email',
+            responseType: 'token id_token',
+            audience: 'https://barberscore.auth0.com/userinfo',
+            timeout: 5000
+          }
+        }
       }
     };
   }
