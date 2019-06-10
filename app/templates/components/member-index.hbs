@@ -21,11 +21,7 @@
           {{#each sortedMembers as |member|}}
             <tr>
               <td>
-                {{#if member.group.image}}
-                  <img src={{member.group.image}} class='img-responsive img-rounded'>
-                {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
-                {{/if}}
+                {{cloudinary-image member.group.imageId (hash width=64) class='img-responsive img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.groups.group.details' member.group}}{{member.group.name}}{{/link-to}}

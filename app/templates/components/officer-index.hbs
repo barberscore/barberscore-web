@@ -27,11 +27,7 @@
             {{else}}
               <tr>
                 <td>
-                  {{#if officer.group.image}}
-                    <img src={{officer.group.image}} class='img-responsive img-rounded'>
-                  {{else}}
-                    <img src='/assets/no_image_available.jpg' class='img-responsive'>
-                  {{/if}}
+                  {{cloudinary-image officer.group.imageId (hash width=64) class='img-responsive img-rounded'}}
                 </td>
                 <td>
                   {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}

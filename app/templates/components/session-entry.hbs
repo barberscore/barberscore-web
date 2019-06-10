@@ -36,11 +36,7 @@
       <section>
         <div class='row'>
           <div class='col-md-6'>
-            {{#if model.group.image}}
-              <img src={{model.group.image}} class='img-responsive img-rounded'>
-            {{else}}
-              <img src='/assets/no_image_available.jpg' class='img-responsive img-rounded'>
-            {{/if}}
+            {{cloudinary-image model.group.imageId (hash width=64) class='img-responsive img-rounded'}}
           </div>
           <div class='col-md-6'>
             <p>

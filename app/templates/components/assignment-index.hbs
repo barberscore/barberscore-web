@@ -10,7 +10,7 @@
         <caption>These are the conventions to which you are currently assigned.</caption>
         <thead>
           <tr>
-            <th class='col-md-1'>Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Category</th>
             <th>Kind</th>
@@ -23,11 +23,7 @@
           {{#each sortedAssignments as |assignment|}}
             <tr>
               <td>
-                {{#if assignment.convention.image}}
-                  <img src={{assignment.convention.image}} class='img-responsive img-rounded'>
-                {{else}}
-                  <img src='/assets/no_image_available.jpg' class='img-responsive'>
-                {{/if}}
+                {{cloudinary-image assignment.convention.imageId (hash width=64) class='img-responsive img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.__str__}}{{/link-to}}

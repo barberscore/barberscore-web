@@ -1,10 +1,6 @@
 <div class='col-md-6'>
   <section>
-    {{#if model.image}}
-      <img src="{{model.image}}" class='img-responsive'>
-    {{else}}
-      <img src='/assets/no_image_available.jpg' class='img-responsive'>
-    {{/if}}
+    {{cloudinary-image model.imageId (hash height=200) class='img-responsive img-rounded'}}
     <p>
       {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
         Want to Add/Replace/Remove your image?  Click here.

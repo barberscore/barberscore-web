@@ -23,6 +23,7 @@ export default Model.extend({
   email: DS.attr('string'),
   phone: DS.attr('string'),
   image: DS.attr('string'),
+  imageId: DS.attr('string'),
   description: DS.attr('string'),
   participants: DS.attr('string'),
   bhsId: DS.attr('number'),

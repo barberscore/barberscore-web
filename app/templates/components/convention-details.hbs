@@ -1,11 +1,7 @@
 <section>
   <div class='row'>
     <div class='col-md-2'>
-      {{#if model.image}}
-        <img src={{model.image}} class='img-responsive img-rounded'>
-      {{else}}
-        <img src='/assets/no_image_available.jpg' class='img-responsive'>
-      {{/if}}
+      {{cloudinary-image model.imageId (hash height=100) class='img-responsive img-rounded'}}
     </div>
     <div class='col-md-10'>
       {{#if model.venue}}
