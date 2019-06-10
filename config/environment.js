@@ -91,6 +91,9 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
+    ENV['cloudinary'] = {
+      cloudName: 'foobar',
+    };
     ENV['ember-algolia'] = {
       algoliaId: 'foo',
       algoliaKey: 'bar',
@@ -111,6 +114,9 @@ module.exports = function(environment) {
     ENV['ember-algolia'] = {
       algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
       algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
+    };
+    ENV['cloudinary'] = {
+      cloudName: 'barberscore',
     };
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
