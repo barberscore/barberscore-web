@@ -1,44 +1,26 @@
-{{#bs-navbar as |navbar|}}
-  <div class="navbar-header">
-    {{#navbar.toggle}}
-      {{fa-icon 'reorder'}}
-    {{/navbar.toggle}}
-    {{#link-to 'index' class='navbar-brand'}}<span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore{{/link-to}}
-  </div>
+{{#bs-navbar toggleBreakpoint=null position='sticky-top' as |navbar|}}
+  {{#link-to 'index' active=False class='navbar-brand'}}<span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore{{/link-to}}
   {{#navbar.content}}
-    {{#navbar.nav type='pills' class='navbar-right' as |nav|}}
+    {{#navbar.nav type='pills' class='ml-auto' as |nav|}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}
-          {{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
+          {{#bs-button type='outline-dark' onClick=(action "invalidateSession") }}
+            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
           {{/bs-button}}
         {{/nav.item}}
       {{else}}
         {{#nav.item}}
-          {{#link-to 'login'}}Login{{/link-to}}
+          {{#link-to 'login' active=False}}Login{{/link-to}}
         {{/nav.item}}
       {{/if}}
     {{/navbar.nav}}
   {{/navbar.content}}
 {{/bs-navbar}}
-
 <div class='container'>
   <div class='alerts'>
     {{#each flashMessages.queue as |flash|}}
       {{flash-message flash=flash}}
     {{/each}}
   </div>
-  {{!-- <section>
-    {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-  </section> --}}
   {{outlet}}
-  <div class="footer bottom-bar bottom-spacing">
-  <hr>
-    <ul class="nav nav-pills">
-      <li>{{#link-to 'about'}}About{{/link-to}}</li>
-      <li>{{#link-to 'faq'}}FAQ{{/link-to}}</li>
-      <li>{{#link-to 'tutorials'}}Tutorials{{/link-to}}</li>
-      {{!-- <li class='pull-right'><a width="150" height="50" href="https://auth0.com/?utm_source=oss&utm_medium=gp&utm_campaign=oss" target="_blank" alt="Single Sign On & Token Based Authentication - Auth0"><img width="150" height="50" alt="JWT Auth for open source projects" src="//cdn.auth0.com/oss/badges/a0-badge-light.png"/></a></li> --}}
-    </ul>
-  </div>
 </div>
-
