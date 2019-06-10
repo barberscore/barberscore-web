@@ -25,6 +25,7 @@ export default Model.extend({
   gender: DS.attr('person-gender'),
   airports: DS.attr(),
   image: DS.attr('string'),
+  imageId: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
   currentThrough: DS.attr('isodate'),
   currentStatus: DS.attr('boolean'),

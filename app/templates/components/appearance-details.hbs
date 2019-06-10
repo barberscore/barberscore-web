@@ -1,10 +1,6 @@
 
 <section>
-  {{#if model.group.image}}
-    <img src={{model.group.image}} class='img-responsive img-rounded smallbox'>
-  {{else}}
-    <img src='/assets/no_image_available.jpg' class='img-responsive smallbox'>
-  {{/if}}
+  {{cloudinary-image model.group.imageId (hash width=64) class='img-responsive img-rounded'}}
   {{#if (eq model.group.kind 'Quartet')}}
     Participants: {{model.participants}}
   {{else}}

@@ -21,11 +21,7 @@
             {{#each sortedConventions as |convention|}}
               <tr>
                 <td>
-                  {{#if convention.image}}
-                    <img src={{convention.image}} class='img-responsive img-rounded'>
-                  {{else}}
-                    <img src='/assets/no_image_available.jpg' class='img-responsive'>
-                  {{/if}}
+                  {{cloudinary-image convention.imageId (hash width=64) class='img-responsive img-rounded'}}
                 </td>
                 <td>
                   {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.__str__}}{{/link-to}}

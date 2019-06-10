@@ -14,6 +14,7 @@ export default Model.extend({
   description: DS.attr('string'),
   notes: DS.attr('string'),
   image: DS.attr('string'),
+  imageId: DS.attr('string'),
   holders: DS.attr('string', {defaultValue:''}),
   repertories: DS.hasMany('repertory', {async: true}),
   songs: DS.hasMany('song', {async: true}),

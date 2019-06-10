@@ -5,6 +5,9 @@ export default DS.JSONAPISerializer.extend({
       image: {
         serialize: false
       },
+      imageId: {
+        serialize: false
+      },
       entries: {
         serialize: true
       },
