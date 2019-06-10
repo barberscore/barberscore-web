@@ -11,7 +11,7 @@ export default Model.extend({
   status: DS.attr('convention-status'),
   season: DS.attr('convention-season'),
   panel: DS.attr('convention-panel'),
-  year: DS.attr('number', {defaultValue: 2018}),
+  year: DS.attr('number', {defaultValue: 2019}),
   openDate: DS.attr('isodate'),
   closeDate: DS.attr('isodate'),
   startDate: DS.attr('isodate'),
