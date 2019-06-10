@@ -17,6 +17,7 @@ export default Model.extend({
   startDate: DS.attr('isodate'),
   endDate: DS.attr('isodate'),
   image: DS.attr('string'),
+  imageId: DS.attr('string'),
   location: DS.attr('string', {defaultValue: ''}),
   timezone: DS.attr('string'),
   description: DS.attr('string'),

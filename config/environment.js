@@ -69,6 +69,9 @@ module.exports = function(environment) {
       algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
       algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,
     };
+    ENV['cloudinary'] = {
+      cloudName: 'barberscore',
+    };
     ENV['ember-simple-auth'] = {
       authenticationRoute: 'login',
       routeAfterAuthentication: 'dashboard',
