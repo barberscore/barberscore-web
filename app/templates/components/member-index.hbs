@@ -1,16 +1,14 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
-    <h3>
-      Your Memberships
-    </h3>
-  </div>
-  <div class='panel-body'>
+<div class='card'>
+  <h5 class='card-header'>
+    Your Memberships
+  </h5>
+  <div class='card-body'>
+    <p class='card-text'>These are the active groups of which you are currently a member. However, only members designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only access.</p>
     <div class='table-responsive'>
       <table class='table'>
-        <caption>These are the active groups of which you are currently a member. However, only members designated as a group admin will be able to edit and enter that group into a contest. All other members have view-only access. Please read the tutorials or FAQ to learn more.</caption>
         <thead>
           <tr>
-            <th class='col-md-1'>Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Primary Voice Part</th>
             <th>Start Date</th>
@@ -49,7 +47,7 @@
   </div>
   <div class='panel-footer'>
     <p>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
+      {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.
       {{/bs-button}}
     </p>
