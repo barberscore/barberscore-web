@@ -1,6 +1,6 @@
 <div class='col-md-6'>
   <section>
-    {{cloudinary-image model.imageId (hash width=64) class='img-responsive img-rounded'}}
+    {{cloudinary-image model.imageId (hash height=200) class='img-responsive img-rounded'}}
     <p>
       {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
         Want to Add/Replace/Remove your image?  Click here.
