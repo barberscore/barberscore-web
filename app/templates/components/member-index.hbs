@@ -19,7 +19,7 @@
           {{#each sortedMembers as |member|}}
             <tr>
               <td>
-                {{cloudinary-image member.group.imageId (hash width=64) class='img-responsive img-rounded'}}
+                {{cloudinary-image member.group.imageId (hash width=64) class='img-fluid img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.groups.group.details' member.group}}{{member.group.name}}{{/link-to}}
@@ -45,7 +45,7 @@
       </table>
     </div>
   </div>
-  <div class='panel-footer'>
+  <div class='card-footer'>
     <p>
       {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.

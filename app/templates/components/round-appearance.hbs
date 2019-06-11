@@ -1,6 +1,6 @@
 <section id="appearance-detail">
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.group.name}}
@@ -11,7 +11,7 @@
         {{/if}}
      </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{appearance-details model=model}}
       {{#if (or
         (eq model.status 'Started')
@@ -50,7 +50,7 @@
         {{log-index model=model}}
       </section> --}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.group.name}}
@@ -61,7 +61,7 @@
         {{/if}}
      </h4>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
           <li>{{appearance-delete model=model}}</li>

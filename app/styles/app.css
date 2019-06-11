@@ -42,7 +42,7 @@
   /*overflow-y: scroll;*/
 }
 
-.fixed-panel-footer {
+.fixed-card-footer {
   min-height: 55px;
   max-height: 55px;
   /*overflow-y: scroll;*/
@@ -65,7 +65,7 @@ section {
   margin-bottom: 20px;
 }
 
-.panel-heading .img-responsive {
+.card-header .img-fluid {
   display: block;
   width: auto;
   max-height: 100px;

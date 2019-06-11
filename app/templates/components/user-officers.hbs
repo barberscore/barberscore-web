@@ -14,7 +14,7 @@
       {{#each sortedOfficers as |officer|}}
         <tr>
           <td>
-            {{cloudinary-image officer.group.imageId (hash width=64) class='img-responsive img-rounded'}}
+            {{cloudinary-image officer.group.imageId (hash width=64) class='img-fluid img-rounded'}}
           </td>
           <td>
             {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}

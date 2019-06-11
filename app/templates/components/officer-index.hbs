@@ -1,10 +1,10 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Groups
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
       <table class='table table-hover table-sm'>
         <caption>You are an active officer for the following groups:</caption>
@@ -27,7 +27,7 @@
             {{else}}
               <tr>
                 <td>
-                  {{cloudinary-image officer.group.imageId (hash width=64) class='img-responsive img-rounded'}}
+                  {{cloudinary-image officer.group.imageId (hash width=64) class='img-fluid img-rounded'}}
                 </td>
                 <td>
                   {{#link-to 'dashboard.groups.group.details' officer.group}}{{officer.group.name}}{{/link-to}}
@@ -50,7 +50,7 @@
       </table>
     </div>
   </div>
-  <div class='panel-footer'>
+  <div class='card-footer'>
     <p>
       {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.

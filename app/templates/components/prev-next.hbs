@@ -1,18 +1,20 @@
-<ul class='list-inline pull-right'>
-  <li>
-    {{#bs-button
-      disabled=(not (has-previous model sortedArray))
-      onClick=(action 'trans' (previous model sortedArray))
-    }}
-     Previous
-    {{/bs-button}}
-  </li>
-  <li>
-    {{#bs-button
-      disabled=(not (has-next model sortedArray))
-      onClick=(action 'trans' (next model sortedArray))
-    }}
-      Next
-    {{/bs-button}}
-  </li>
-</ul>
+<div class='float-right'>
+  {{#bs-button-group
+    type='radio'
+  }}
+      {{#bs-button
+        type='outline-dark'
+        disabled=(not (has-previous model sortedArray))
+        onClick=(action 'trans' (previous model sortedArray))
+      }}
+       Previous
+      {{/bs-button}}
+      {{#bs-button
+        type='outline-dark'
+        disabled=(not (has-next model sortedArray))
+        onClick=(action 'trans' (next model sortedArray))
+      }}
+        Next
+      {{/bs-button}}
+  {{/bs-button-group}}
+</div>

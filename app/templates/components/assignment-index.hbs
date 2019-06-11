@@ -21,7 +21,7 @@
           {{#each sortedAssignments as |assignment|}}
             <tr>
               <td>
-                {{cloudinary-image assignment.convention.imageId (hash width=64) class='img-responsive img-rounded'}}
+                {{cloudinary-image assignment.convention.imageId (hash width=64) class='img-fluid img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.__str__}}{{/link-to}}

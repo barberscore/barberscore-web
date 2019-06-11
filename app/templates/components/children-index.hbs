@@ -14,7 +14,7 @@
       {{#each sortedGroups as |group|}}
         <tr>
           <td>
-            {{cloudinary-image group.imageId (hash width=64) class='img-responsive img-rounded'}}
+            {{cloudinary-image group.imageId (hash width=64) class='img-fluid img-rounded'}}
           </td>
           <td>
             {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}

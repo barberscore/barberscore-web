@@ -1,12 +1,12 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedOutcomes}}
       <h4>
         {{model.award.name}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{!-- <section>
       {{#if model.contest.notQualifier }}
         {{#power-select
@@ -72,7 +72,7 @@
         </div>
       </section>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.round.status 'Built')}}
           {{#if model.permissions.write}}
