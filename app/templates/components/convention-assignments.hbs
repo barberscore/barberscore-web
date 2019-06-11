@@ -23,13 +23,21 @@
                 <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
-                  {{cloudinary-image assignment.person.imageId (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{#if assignment.person}}
+                    {{cloudinary-image assignment.person.imageId (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{else}}
+                    {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{/if}}
                 </td>
               {{#if assignment.person.isLoading}}
                 <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
-                  {{assignment.person.commonName}}
+                  {{#if assignment.person}}
+                    {{assignment.person.commonName}}
+                  {{else}}
+                    (TBD)
+                  {{/if}}
                 </td>
               {{/if}}
                 <td>
