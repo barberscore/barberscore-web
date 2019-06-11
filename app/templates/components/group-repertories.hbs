@@ -1,10 +1,10 @@
 <div class='table-responsive'>
-  <table class='table'>
-    <thead>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
       <tr>
-        <th class='col-md-6'>Title</th>
-        <th class='col-md-5'>Arranger(s)</th>
-        <th class='col-md-1'>Delete</th>
+        <th>Title</th>
+        <th>Arranger(s)</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
               <td>{{repertory.chartTitle}}</td>
               <td>{{repertory.chartArrangers}}</td>
               <td>
-                {{#bs-button type='danger' size='xs' onClick=(perform deleteRepertory repertory) disabled=repertory.isDisabled}}Delete{{/bs-button}}
+                {{#bs-button type='danger' size='sm' onClick=(perform deleteRepertory repertory) disabled=repertory.isDisabled}}Delete{{/bs-button}}
               </td>
             {{/if}}
           {{/if}}
@@ -44,7 +44,7 @@
 </p>
 <section>
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed2' this)}}
       What is the policy for adding a Chart? Click Here.
     {{/bs-button}}
   </p>
@@ -79,7 +79,7 @@
 <p></p>
   {{/bs-collapse}}
   <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed' this)}}
       Have a new custom chart or parody? Or - is your chart not showing up in your search? Click Here.
     {{/bs-button}}
   </p>
@@ -96,7 +96,7 @@
   <section>
 {{#if (eq model.kind 'Quartet')}}
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed4' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed4' this)}}
       "Add New Chart" button is disabled? Click Here.
     {{/bs-button}}
 </p>
@@ -110,7 +110,7 @@ If you are the quartet contact (and you’re still not able to edit), submit an 
     {{/bs-collapse}}
 {{else}}
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed5' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed5' this)}}
       "Add New Chart" button is disabled? Click Here.
     {{/bs-button}}
 </p>
@@ -128,6 +128,7 @@ If you have been added to one of those roles (and you’re still not able to edi
 <div>
   {{#bs-modal
     open=createRepertoryModal
+    size='lg'
     onHidden=(pipe-action (action (mut createRepertoryModal) false) (action (mut createRepertoryModalError) false))
     as |modal|
   }}

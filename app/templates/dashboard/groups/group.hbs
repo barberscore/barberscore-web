@@ -1,11 +1,10 @@
-<section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
-      <h4>
+<section class='card'>
+    <div class='card-header'>
+      <h5>
         {{model.name}}
-      </h4>
+      </h5>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.groups.group.details"}}Details{{/nav.link-to}}
@@ -31,10 +30,9 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
-        <li class='pull-right'><h4>Group Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h5>Group Status: <strong>{{model.status}}</strong></h5></li>
       </ul>
     </div>
-  </div>
 </section>
