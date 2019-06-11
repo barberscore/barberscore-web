@@ -1,6 +1,6 @@
 <section id="appearance-detail">
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.group.name}}
@@ -11,7 +11,7 @@
         {{/if}}
      </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{appearance-details model=model}}
       {{#if (or
         (eq model.status 'Started')
@@ -36,8 +36,8 @@
           {{appearance-panelists model=model}}
           <div class='pull-right'>
             <ul class='list-inline'>
-              <li><h4>Practice Points: {{#if model.sumPractice}}<strong>{{model.sumPractice}}</strong>{{else}}N/A{{/if}}</h4></li>
-              <li><h4>Official Points: {{#if model.sumOfficial}}<strong>{{model.sumOfficial}}</strong>{{/if}}</h4></li>
+              <li class='list-inline-item'><h4>Practice Points: {{#if model.sumPractice}}<strong>{{model.sumPractice}}</strong>{{else}}N/A{{/if}}</h4></li>
+              <li class='list-inline-item'><h4>Official Points: {{#if model.sumOfficial}}<strong>{{model.sumOfficial}}</strong>{{/if}}</h4></li>
             </ul>
           </div>
         </section>
@@ -50,7 +50,7 @@
         {{log-index model=model}}
       </section> --}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
         #{{model.num}}: {{model.group.name}}
@@ -61,24 +61,24 @@
         {{/if}}
      </h4>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li>{{appearance-delete model=model}}</li>
+          <li class='list-inline-item'>{{appearance-delete model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li>{{appearance-start model=model}}</li>
-          <li>{{appearance-scratch model=model}}</li>
-          <li>{{appearance-mock model=model}}</li>
+          <li class='list-inline-item'>{{appearance-start model=model}}</li>
+          <li class='list-inline-item'>{{appearance-scratch model=model}}</li>
+          <li class='list-inline-item'>{{appearance-mock model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{appearance-finish model=model}}</li>
-          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
-          <li>{{appearance-mock model=model}}</li>
+          <li class='list-inline-item'>{{appearance-finish model=model}}</li>
+          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
+          <li class='list-inline-item'>{{appearance-mock model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
-          <li>{{appearance-verify model=model}}</li>
-          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
+          <li class='list-inline-item'>{{appearance-verify model=model}}</li>
+          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
         {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
-          <li>{{download-csa model=model}}</li>
-          {{!-- <li>{{appearance-scratch model=model}}</li> --}}
+          <li class='list-inline-item'>{{download-csa model=model}}</li>
+          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

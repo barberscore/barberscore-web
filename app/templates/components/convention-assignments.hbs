@@ -1,50 +1,62 @@
-<div class='table-responsive'>
-  <h3>
-    Assignments
-  </h3>
-  <table class='table'>
-    <caption>These are the assignments for this convention.</caption>
-    <thead>
-      <tr>
-        <th class='col-md-1'>Image</th>
-        <th>Person</th>
-        <th>Kind</th>
-        <th>Category</th>
-        <th>Email</th>
-        <th>Phone</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedAssignments as |assignment|}}
-        <tr>
-          {{#if assignment.isLoading}}
-            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+{{!-- <div class='card'>
+  <h5 class='card-header'>
+    Convention Assignments
+  </h5>
+   <div class='card-body'>
+ --}}    <div class='table-responsive'>
+      <table class='table table-hover table-sm'>
+        <caption>These are the assignments for this convention.</caption>
+        <thead class='thead-light'>
+          <tr>
+            <th>Image</th>
+            <th>Person</th>
+            <th>Kind</th>
+            <th>Category</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each sortedAssignments as |assignment|}}
+            <tr>
+              {{#if assignment.isLoading}}
+                <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>
+                  {{#if assignment.person}}
+                    {{cloudinary-image assignment.person.imageId (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{else}}
+                    {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{/if}}
+                </td>
+              {{#if assignment.person.isLoading}}
+                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td>
+                  {{#if assignment.person}}
+                    {{assignment.person.commonName}}
+                  {{else}}
+                    (TBD)
+                  {{/if}}
+                </td>
+              {{/if}}
+                <td>
+                  {{assignment.kind}}
+                </td>
+                <td>
+                  {{assignment.category}}
+                </td>
+                <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
+                <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
+              {{/if}}
+            </tr>
           {{else}}
-            <td>
-              {{cloudinary-image assignment.person.imageId (hash width=64) class='img-responsive img-rounded'}}
-            </td>
-          {{#if assignment.person.isLoading}}
-            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-          {{else}}
-            <td>
-              {{assignment.person.commonName}}
-            </td>
-          {{/if}}
-            <td>
-              {{assignment.kind}}
-            </td>
-            <td>
-              {{assignment.category}}
-            </td>
-            <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
-            <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
-          {{/if}}
-        </tr>
-      {{else}}
-        <tr>
-          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
+            <tr>
+              <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+{{!--   </div>
+</div> --}}

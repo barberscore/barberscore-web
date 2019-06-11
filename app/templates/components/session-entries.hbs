@@ -4,19 +4,19 @@
   </h4>
 {{else}}
   <div class='table-responsive'>
-    <table class='table'>
-      <thead>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
         <tr>
-          <th class='col-md-4'>Name</th>
-          <th class='col-md-1'>BHS ID</th>
-          <th class='col-md-1'>BHS Status</th>
-          <th class='col-md-1'>Representing</th>
-          <th class='col-md-1'>Contests Entered</th>
-          <th class='col-md-1'>Songs in Repertory</th>
+          <th>Name</th>
+          <th>BHS ID</th>
+          <th>BHS Status</th>
+          <th>Representing</th>
+          <th>Contests Entered</th>
+          <th>Songs in Repertory</th>
           {{#if (eq model.kind 'Chorus')}}
-            <th class='col-md-1'>Participants on Stage</th>
+            <th>Participants on Stage</th>
           {{/if}}
-          <th class='col-md-1'>Status</th>
+          <th>Status</th>
         </tr>
       </thead>
       <tbody>

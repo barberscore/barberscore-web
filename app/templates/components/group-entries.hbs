@@ -1,24 +1,24 @@
 <div class='table-responsive'>
-  <table class='table'>
-    <thead>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
       <tr>
-        <th class='col-md-4'>Convention</th>
-        <th class='col-md-4'>Venue</th>
-        <th class='col-md-2'>Dates</th>
-        <th class='col-md-2'>Status</th>
+        <th>Convention</th>
+        <th>Venue</th>
+        <th>Dates</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {{#each sortedEntries as |entry|}}
         <tr>
-          {{#if entry.isLoading}}
+          {{#if entry.session.convention.isLoading}}
             <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
             <td>
               {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.convention.nomen}}{{/link-to}}
             </td>
             <td>
-              {{entry.session.convention.venue.name}}
+              {{entry.session.convention.__str__}}
             </td>
             <td>
               {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
@@ -52,7 +52,7 @@
 <section>
 {{#if (eq model.kind 'Quartet')}}
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed2' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed2' this)}}
       "Create New Entry" button is disabled? Click Here.
     {{/bs-button}}
 </p>
@@ -66,7 +66,7 @@ If you are the quartet contact (and you’re still not able to edit), please sub
     {{/bs-collapse}}
 {{else}}
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed3' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed3' this)}}
       "Create New Entry" button is disabled? Click Here.
     {{/bs-button}}
 </p>
@@ -80,7 +80,7 @@ If you have been added to one of those roles (and you’re still not able to edi
     {{/bs-collapse}}
 {{/if}}
 <p>
-    {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed' this)}}
       Need more info for contest entry? Click Here.
     {{/bs-button}}
 </p>
@@ -106,6 +106,7 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
 <div>
   {{#bs-modal
     open=createEntryModal
+    size='lg'
     onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
     as |modal|
   }}
@@ -127,14 +128,18 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
         noMatchesMessage="We Could Not Find an Open Session with that Name"
         as |session|
       }}
-        <div class='row'>
-          <div class='col-xs-2'>
-            {{cloudinary-image session.convention.imageId (hash width=64) class='img-responsive img-rounded'}}
-          </div>
-          <div class='col-xs-10'>
-            {{session.convention.nomen}}<br>
-            {{session.kind}} Session<br>
-            {{session.convention.location}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}<br>
+        <div class='card'>
+          <div class='card-body'>
+            <div class='float-left'>
+              {{cloudinary-image session.convention.imageId (hash width=64) class='img-fluid img-rounded'}}
+            </div>
+            <div class='float-left pl-4 tight-line'>
+              <ul class='list-unstyled'>
+                <li>{{session.convention.__str__}}</li>
+                <li>{{session.kind}} Session</li>
+                <li>{{session.convention.location}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}</li>
+              </ul>
+            </div>
           </div>
         </div>
       {{/power-select}}

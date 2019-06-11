@@ -1,10 +1,10 @@
 <div class='table-responsive'>
-  <table class='table'>
-    <thead>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
       <tr>
-        <th class='col-md-1'>Include</th>
-        <th class='col-md-5'>Name</th>
-        <th class='col-md-6'>Description</th>
+        <th>Include</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +18,7 @@
                 type="checkbox"
                 checked=contestant.isIncluded
                 disabled=contestant.isDisabled
+                class='pl-2'
                 change=(perform toggleContestant contestant value='target.checked')
               }}
             </td>

@@ -13,13 +13,13 @@
   <p>Welcome {{currentUser.user.person.commonName}}</p>
   <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-default launcher'}}
+      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-light launcher'}}
         {{fa-icon 'users' size='5'}}<br>
         Memberships
       {{/link-to}}
     </p>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.assignments' tagName='button' disabled=assignmentDisabled class='btn btn-default launcher'}}
+      {{#link-to 'dashboard.assignments' tagName='button' disabled=assignmentDisabled class='btn btn-light launcher'}}
         {{fa-icon 'legal' size='5'}}<br>
         Assignments
       {{/link-to}}

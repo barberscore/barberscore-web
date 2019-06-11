@@ -1,16 +1,16 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Groups
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
-      <table class='table'>
+      <table class='table table-hover table-sm'>
         <caption>You are an officer of the following groups:</caption>
-        <thead>
+        <thead class='thead-light'>
           <tr>
-            <th class='col-md-1'>Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Kind</th>
           </tr>
@@ -19,7 +19,7 @@
           {{#each sortedGroups as |group|}}
             <tr>
               <td>
-                {{cloudinary-image group.imageId (hash width=64) class='img-responsive img-rounded'}}
+                {{cloudinary-image group.imageId (hash width=64) class='img-fluid img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
@@ -38,10 +38,10 @@
       </table>
     </div>
   </div>
-  <div class='panel-footer'>
+  <div class='card-footer'>
   <section>
     <p>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'collapsedNote' this)}}
+      {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
         Your group not listed? Click here.
       {{/bs-button}}
     </p>

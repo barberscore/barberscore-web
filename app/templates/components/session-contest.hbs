@@ -1,17 +1,17 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedContests}}
 
       <h4>
         {{model.award.name}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <div class='table-responsive'>
-        <table class='table'>
+        <table class='table table-hover table-sm'>
           <caption>Contestants: {{model.includedContestantsCount}}</caption>
-          <thead>
+          <thead class='thead-light'>
             <tr>
               <th>Name</th>
             </tr>

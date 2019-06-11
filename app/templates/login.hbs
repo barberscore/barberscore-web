@@ -16,10 +16,10 @@
   <div class='row'>
     <br>
     <br>
-    <div class='col-md-6'>
+    <div class='col-md-12'>
     <ul class='list-unstyled'>
       <li>
-        {{#bs-button class='btn btn-link' onClick=(toggle 'faq1' this)}}
+        {{#bs-button type='link' onClick=(toggle 'faq1' this)}}
           It says I have wrong email and password; what do I do?
         {{/bs-button}}
       </li>
@@ -38,7 +38,7 @@
         </p>
       {{/bs-collapse}}
       <li>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'faq2' this)}}
+      {{#bs-button type='link' onClick=(toggle 'faq2' this)}}
         I've asked for a new password but never get the email.  What do I do?
       {{/bs-button}}
       </li>
@@ -51,7 +51,7 @@
         </p>
       {{/bs-collapse}}
       <li>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'faq3' this)}}
+      {{#bs-button type='link' onClick=(toggle 'faq3' this)}}
         I've tried everything and still can't log in.
       {{/bs-button}}
       </li>
@@ -61,7 +61,7 @@
         </p>
       {{/bs-collapse}}
       <li>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'faq4' this)}}
+      {{#bs-button type='link' onClick=(toggle 'faq4' this)}}
         Who can login to Barberscore?
       {{/bs-button}}
       </li>
@@ -71,7 +71,7 @@
         </p>
       {{/bs-collapse}}
       <li>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'faq5' this)}}
+      {{#bs-button type='link' onClick=(toggle 'faq5' this)}}
         I have another question -- where can I get it answered?
       {{/bs-button}}
       </li>
@@ -84,3 +84,20 @@
   </div>
   </div>
 </section>
+{{#bs-navbar toggleBreakpoint=null position='fixed-bottom' as |navbar|}}
+  {{#navbar.content}}
+    {{#navbar.nav type='pills' class='mr-4 nav-pills' as |nav|}}
+      {{#nav.item}}
+        {{#link-to 'about'}}About{{/link-to}}
+      {{/nav.item}}
+      &nbsp;&nbsp;&nbsp;
+      {{#nav.item}}
+        {{#link-to 'faq'}}FAQ{{/link-to}}
+      {{/nav.item}}
+      &nbsp;&nbsp;&nbsp;
+      {{#nav.item}}
+        {{#link-to 'tutorials'}}Tutorials{{/link-to}}
+      {{/nav.item}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}

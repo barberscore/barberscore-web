@@ -5,15 +5,15 @@
     </h4>
   {{else if (and isEditing (or (eq model.status 'Closed')(eq model.status 'Verified')))}}
     <div>
-      {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+      {{#bs-button type='outline-dark'  class='mb-4' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
     <div class='table-responsive'>
-      <table class='table'>
-        <thead>
+      <table class='table table-hover table-sm'>
+        <thead class='thead-light'>
           <tr>
-            <th class='col-md-1'>OA</th>
-            <th class='col-md-3'>Name</th>
-            <th class='col-md-8'>Notes</th>
+            <th>OA</th>
+            <th>Name</th>
+            <th>Notes</th>
           </tr>
         </thead>
         {{!-- <tbody> --}}
@@ -60,19 +60,19 @@
       {{#if (or (eq model.status 'Closed')(eq model.status 'Verified'))}}
         <div class='row'>
           <div class='col-md-6'>
-            {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+            {{#bs-button type='outline-dark' class='mb-4' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
           </div>
         </div>
       {{/if}}
     </div>
     <div class='row'>
       <div class='col-md-12'>
-        <table class='table'>
-          <thead>
+        <table class='table table-hover table-sm'>
+          <thead class='thead-light'>
             <tr>
-              <th class='col-md-1'>OA</th>
-              <th class='col-md-3'>Name</th>
-              <th class='col-md-8'>Notes</th>
+              <th>OA</th>
+              <th>Name</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>

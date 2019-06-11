@@ -21,7 +21,26 @@ Barberscore Tutorials
   <li><a href="/assets/DRCJ_FAQs.pdf">{{fa-icon 'file-pdf-o'}} DRCJ FAQ for Competitor Entry and Contest Sessions</a></li>
 </ul>
   <br>
+<section>
 <h4>If you need support...</h4>
 <p>Email <a href='mailto:customerservice@barbershop.org'>customerservice@barbershop.org</a> and we'll do all we can to help.
 </p>
+</section>
 </div>
+{{#bs-navbar toggleBreakpoint=null position='fixed-bottom' as |navbar|}}
+  {{#navbar.content}}
+    {{#navbar.nav type='pills' class='mr-4 nav-pills' as |nav|}}
+      {{#nav.item}}
+        {{#link-to 'about'}}About{{/link-to}}
+      {{/nav.item}}
+      &nbsp;&nbsp;&nbsp;
+      {{#nav.item}}
+        {{#link-to 'faq'}}FAQ{{/link-to}}
+      {{/nav.item}}
+      &nbsp;&nbsp;&nbsp;
+      {{#nav.item}}
+        {{#link-to 'tutorials'}}Tutorials{{/link-to}}
+      {{/nav.item}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}

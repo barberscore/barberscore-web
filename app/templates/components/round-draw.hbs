@@ -8,16 +8,16 @@
       The Draw is available after the Round has Completed.
     </h4>
   {{else if (and isEditing (eq model.status 'Completed'))}}
-    <div>
-      {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+    <div class='pb-2'>
+      {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
     <div class='table-responsive'>
-      <table class='table'>
-        <thead>
+      <table class='table table-hover'>
+        <thead class='thead-light'>
           <tr>
-            <th class='col-md-1'>OA</th>
-            <th class='col-md-3'>Name</th>
-            <th class='col-md-8'>Notes</th>
+            <th>OA</th>
+            <th>Name</th>
+            <th>Notes</th>
           </tr>
         </thead>
           <tr>
@@ -57,9 +57,9 @@
   {{else}}
     <div>
       {{#if (eq model.status 'Completed')}}
-        <div class='row'>
+    <div class='pb-2'>
           <div class='col-md-6'>
-            {{#bs-button disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+            {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
           </div>
         </div>
       {{else}}
@@ -72,12 +72,12 @@
     </div>
     <div class='row'>
       <div class='col-md-12'>
-        <table class='table'>
-          <thead>
+        <table class='table table-hover'>
+          <thead class='thead-light'>
             <tr>
-              <th class='col-md-1'>Draw</th>
-              <th class='col-md-3'>Name</th>
-              <th class='col-md-8'>Notes</th>
+              <th>Draw</th>
+              <th>Name</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>

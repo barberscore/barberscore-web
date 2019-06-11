@@ -1,6 +1,6 @@
 
 <section>
-  {{cloudinary-image model.group.imageId (hash height=200) class='img-responsive img-rounded'}}
+  {{cloudinary-image model.group.imageId (hash height=200) class='img-fluid img-rounded'}}
   {{#if (eq model.group.kind 'Quartet')}}
     Participants: {{model.participants}}
   {{else}}

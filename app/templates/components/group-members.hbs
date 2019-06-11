@@ -1,22 +1,22 @@
 <div class='table-responsive'>
-  <table class='table'>
+  <table class='table table-hover table-sm'>
     <caption>
       <strong>Important:</strong>  The member status list in Barberscore is provided as convenience only; please note that for official status of your members please check the {{member-center}}.
     </caption>
-    <thead>
+    <thead class='thead-light'>
       <tr>
-        <th class='col-md-3'>Person</th>
+        <th>Person</th>
         {{#if (eq model.kind 'Quartet')}}
-          <th class='col-md-1'>Part</th>
+          <th>Part</th>
         {{/if}}
-        {{!-- <th class='col-md-2'>Email</th> --}}
-        <th class='col-md-1'>Gender</th>
-        <th class='col-md-1'>DOB</th>
-        <th class='col-md-1'>BHS ID</th>
-        <th class='col-md-1'>BHS Status</th>
-        <th class='col-md-1'>BHS Current Through</th>
-        <th class='col-md-1'>District Member</th>
-        {{!-- <th class='col-md-1'>Action</th> --}}
+        {{!-- <th>Email</th> --}}
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>BHS ID</th>
+        <th>BHS Status</th>
+        <th>BHS Current Through</th>
+        <th>District Member</th>
+        {{!-- <th>Action</th> --}}
         {{!-- <th>Start</th> --}}
         {{!-- <th>End</th> --}}
       </tr>

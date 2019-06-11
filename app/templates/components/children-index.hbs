@@ -1,11 +1,11 @@
 {{model}}
 <div class='table-responsive'>
   <h3>Child Groups</h3>
-  <table class='table'>
+  <table class='table table-hover table-sm'>
     <caption>The following groups are part of this Organization</caption>
-    <thead>
+    <thead class='thead-light'>
       <tr>
-        <th class='col-md-1'>Image</th>
+        <th>Image</th>
         <th>Name</th>
         <th>Kind</th>
       </tr>
@@ -14,7 +14,7 @@
       {{#each sortedGroups as |group|}}
         <tr>
           <td>
-            {{cloudinary-image group.imageId (hash width=64) class='img-responsive img-rounded'}}
+            {{cloudinary-image group.imageId (hash width=64) class='img-fluid img-rounded'}}
           </td>
           <td>
             {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}

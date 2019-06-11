@@ -4,13 +4,13 @@
   </h4>
 {{else}}
   <div class='table-responsive'>
-    <table class='table'>
-      <thead>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
         <tr>
-          <th class='col-md-1'>Status</th>
-          <th class='col-md-4'>Name</th>
-          <th class='col-md-5'>Description</th>
-          <th class='col-md-1'>Count</th>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Count</th>
         </tr>
       </thead>
       <tbody>
@@ -30,7 +30,7 @@
               {{#if contest.award.isLoading}}
                 <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}&nbsp;&nbsp;{{#if contest.isPrimary}}<span class="label label-success">Primary</span>{{/if}}</td>
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
               {{/if}}
               <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
               <td>{{contest.includedContestantsCount}}</td>

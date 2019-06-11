@@ -1,11 +1,11 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
-      <h4>
+  <div class='card'>
+    <div class='card-header'>
+      <h5>
         {{model.kind}}
-      </h4>
+      </h5>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
@@ -31,26 +31,26 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <div class='pull-right'>
-        <h4>
+        <h5>
           Round Status: <strong>{{model.status}}</strong>
-        </h4>
+        </h5>
       </div>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li>{{round-build model=model}}</li>
+          <li class='list-inline-item'>{{round-build model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li>{{round-start model=model}}</li>
-          <li>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-start model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-complete model=model}}</li>
-          <li>{{round-reset model=model}}</li>
-          <li>{{round-mock model=model}}</li>
+          <li class='list-inline-item'>{{round-complete model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-mock model=model}}</li>
         {{else if (eq model.status 'Completed')}}
-          <li>{{round-verify model=model}}</li>
+          <li class='list-inline-item'>{{round-verify model=model}}</li>
         {{else if (eq model.status 'Verified')}}
-          <li>{{round-publish model=model}}</li>
+          <li class='list-inline-item'>{{round-publish model=model}}</li>
         {{/if}}
       </ul>
     </div>

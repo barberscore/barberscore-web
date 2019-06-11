@@ -1,9 +1,9 @@
-<section>
-  <div class='row'>
-    <div class='col-md-2'>
-      {{cloudinary-image model.imageId (hash height=100) class='img-responsive img-rounded'}}
+<div class='card'>
+  <div class='card-header'>
+    <div class='float-left pb-2'>
+      {{cloudinary-image model.imageId (hash height=90) class='img-fluid img-rounded'}}
     </div>
-    <div class='col-md-10'>
+    <div class='float-left pl-4'>
       {{#if model.venue}}
         <ul class='list-unstyled'>
           <li><strong>{{model.venue.name}}</strong></li>
@@ -16,13 +16,12 @@
       {{/if}}
     </div>
   </div>
-  <hr>
   <div class='table-responsive'>
-    <table class='table'>
+    <table class='table table-hover table-sm '>
       <caption>
         The Open and Close dates refer to the contest entry period.  The Start and End dates refer to the contest itself.
       </caption>
-      <thead>
+      <thead class='thead-light'>
         <tr>
           <th>Event</th>
           <th>Date</th>
@@ -48,4 +47,4 @@
       </tbody>
     </table>
   </div>
-</section>
+</div>

@@ -2,22 +2,22 @@
     <h4>The Panelists are available after the Round is Built.</h4>
 {{else}}
   <div class='table-responsive'>
-    <table class='table'>
+    <table class='table table-hover table-sm'>
       <caption>
         If you need to change any panelists please do so before you start the Round.  Once the Round is started, you will not be able to change the Panelists.  (The Panelist Number will automatically be generated once the Round is Started.)
       </caption>
-      <thead>
+      <thead class='thead-light'>
         <tr>
-          <th class='col-md-1'>Num</th>
-          <th class='col-md-6'>Person</th>
-          <th class='col-md-2'>Category</th>
-          <th class='col-md-2'>Kind</th>
+          <th>Num</th>
+          <th>Person</th>
+          <th>Category</th>
+          <th>Kind</th>
         </tr>
       </thead>
       <tbody>
         {{#each sortedPanelists as |panelist|}}
           <tr>
-            <td>{{panelist.num}}</td>
+            <td>{{#if panelist.num}}{{panelist.num}}{{else}}(N/A){{/if}}</td>
             {{#if panelist.person.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}

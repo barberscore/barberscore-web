@@ -41,6 +41,7 @@ module.exports = function(environment) {
         '*.getsentry.com',
       ].join(' ')
     },
+
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

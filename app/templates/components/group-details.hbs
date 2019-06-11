@@ -1,41 +1,39 @@
-<div class='col-md-6'>
-  <section>
-    {{cloudinary-image model.imageId (hash height=200) class='img-responsive img-rounded'}}
-    <p>
-      {{#bs-button class='btn btn-link' onClick=(toggle 'customCollapsed' this)}}
-        Want to Add/Replace/Remove your image?  Click here.
-      {{/bs-button}}
-    </p>
-      {{#bs-collapse collapsed=customCollapsed}}
-        <p>
-          To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
-        </p>
-      {{/bs-collapse}}
-    {{#bs-form
-      model=model
-      formLayout='vertical'
-      as |form|
-    }}
-      {{#if (eq model.kind 'Quartet') }}
-        {{form.element controlType='text' disabled=model.isDisabled label='Active Members (TLBB)' placeholder='List your members in TLBB order as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
-      {{else}}
-        {{form.element controlType='text' disabled=model.isDisabled label='Director(s)' placeholder='Please list your Director(s) as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
-      {{/if}}
-      {{form.element controlType='textarea' rows=6 disabled=isDisabled label='Description' placeholder='Description - Write a few words to describe your group, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
-      {{form.element controlType='text' disabled=true  placeholder='N/A' property='district'}}
-      {{#unless (eq model.kind 'Quartet') }}
-        {{form.element controlType='text' disabled=true placeholder='N/A' property='chapter'}}
-      {{/unless}}
-      {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
-      {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
-      {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
-      {{!-- {{form.element controlType='text' disabled=true placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}} --}}
-      {{!-- {{form.element controlType='text' disabled=true placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}} --}}
-    {{/bs-form}}
-  </section>
-  <section>
-    <p>
-      <strong>Note:</strong>  You may only edit your picture, description and Current Members/Director(s).  To make changes to other fields please do so in {{member-center}}; they will be updated here generally within fifteen minutes.  If you are a non-BHS group and don't have access to the Member Center you may send your details to <a href='mailto:images@barberscore.com'>images@barberscore.com</a> and we'll update them for you.
-    </p>
-  </section>
-</div>
+<section>
+  {{cloudinary-image model.imageId (hash height=200) class='img-fluid img-rounded'}}
+  <p>
+    {{#bs-button type='link' onClick=(toggle 'customCollapsed' this)}}
+      Want to Add/Replace/Remove your image?  Click here.
+    {{/bs-button}}
+  </p>
+    {{#bs-collapse collapsed=customCollapsed}}
+      <p>
+        To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
+      </p>
+    {{/bs-collapse}}
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{#if (eq model.kind 'Quartet') }}
+      {{form.element controlType='text' disabled=model.isDisabled label='Active Members (TLBB)' placeholder='List your members in TLBB order as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
+    {{else}}
+      {{form.element controlType='text' disabled=model.isDisabled label='Director(s)' placeholder='Please list your Director(s) as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
+    {{/if}}
+    {{form.element controlType='textarea' rows=6 disabled=isDisabled label='Description' placeholder='Description - Write a few words to describe your group, suitable for a program description.' property='description' onChange=(perform autosave 'description')}}
+    {{form.element controlType='text' disabled=true  placeholder='N/A' property='district'}}
+    {{#unless (eq model.kind 'Quartet') }}
+      {{form.element controlType='text' disabled=true placeholder='N/A' property='chapter'}}
+    {{/unless}}
+    {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
+    {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
+    {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
+    {{!-- {{form.element controlType='text' disabled=true placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}} --}}
+    {{!-- {{form.element controlType='text' disabled=true placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}} --}}
+  {{/bs-form}}
+</section>
+<section>
+  <p>
+    <strong>Note:</strong>  You may only edit your picture, description and Current Members/Director(s).  To make changes to other fields please do so in {{member-center}}; they will be updated here generally within fifteen minutes.  If you are a non-BHS group and don't have access to the Member Center you may send your details to <a href='mailto:images@barberscore.com'>images@barberscore.com</a> and we'll update them for you.
+  </p>
+</section>

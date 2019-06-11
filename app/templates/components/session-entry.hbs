@@ -1,6 +1,6 @@
 <section id="entry-detail">
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
+  <div class='card'>
+    <div class='card-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
         {{model.group.name}}&nbsp;({{model.representing}})&nbsp;
@@ -11,32 +11,32 @@
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
           {{#if model.group.isSenior}}
-            <span class="label label-warning">Seniors</span>&nbsp;
+            <span class="badge badge-warning">Seniors</span>&nbsp;
           {{/if}}
           {{#if model.group.isYouth}}
-            <span class="label label-warning">Youth</span>&nbsp;
+            <span class="badge badge-warning">Youth</span>&nbsp;
           {{/if}}
           {{#if model.group.isMixed}}
-            <span class="label label-success">Mixed</span>&nbsp;
+            <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
           {{#if model.group.isFemale}}
-            <span class="label label-primary">Female</span>&nbsp;
+            <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
           {{#if model.group.division}}
-            <span class="label label-info">{{model.group.division}}</span>&nbsp;
+            <span class="badge badge-info">{{model.group.division}}</span>&nbsp;
           {{/if}}
           {{#if (eq model.group.status 'Active')}}
-            <span class="label label-success">Active</span>&nbsp;
+            <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
-            <span class="label label-danger">Inactive</span>&nbsp;
+            <span class="badge badge-danger">Inactive</span>&nbsp;
           {{/if}}
       </h4>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       <section>
         <div class='row'>
           <div class='col-md-6'>
-            {{cloudinary-image model.group.imageId (hash width=64) class='img-responsive img-rounded'}}
+            {{cloudinary-image model.group.imageId (hash width=640) class='img-fluid img-rounded'}}
           </div>
           <div class='col-md-6'>
             <p>
@@ -52,8 +52,8 @@
                 onChange=(perform autosave 'isMt')
                 as |bg|
               }}
-                {{#bg.button type='default' value=false disabled=model.isDisabled}}Not MicTester{{/bg.button}}
-                {{#bg.button type='default' value=true disabled=model.isDisabled}}Is MicTester{{/bg.button}}
+                {{#bg.button type='outline-dark' value=false disabled=model.isDisabled}}Not MicTester{{/bg.button}}
+                {{#bg.button type='outline-dark' value=true disabled=model.isDisabled}}Is MicTester{{/bg.button}}
               {{/bs-button-group}}
             </p>
           </div>
@@ -72,7 +72,7 @@
       <section>
         <p>
           Group Officers:
-          {{#bs-button class='btn' size='xs' onClick=(toggle 'officersCollapsed' this)}}
+          {{#bs-button type='outline-dark' size='xs' onClick=(toggle 'officersCollapsed' this)}}
             {{if officersCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
         </p>
@@ -84,7 +84,7 @@
       <section>
         <p>
           Group Members:
-          {{#bs-button class='btn' size='xs' onClick=(toggle 'membersCollapsed' this)}}
+          {{#bs-button type='outline-dark' size='xs' onClick=(toggle 'membersCollapsed' this)}}
             {{if membersCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
         </p>
@@ -96,7 +96,7 @@
       <section>
         <p>
           Repertory Songs:
-          {{#bs-button class='btn' size='xs' onClick=(toggle 'repertoriesCollapsed' this)}}
+          {{#bs-button type='outline-dark' size='xs' onClick=(toggle 'repertoriesCollapsed' this)}}
             {{if repertoriesCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
         </p>
@@ -121,7 +121,7 @@
       <section>
         <p>
           Activity Log:
-          {{#bs-button class='btn' size='xs' onClick=(toggle 'logsCollapsed' this)}}
+          {{#bs-button type='outline-dark' size='xs' onClick=(toggle 'logsCollapsed' this)}}
             {{if logsCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
         </p>
@@ -130,7 +130,7 @@
         {{/bs-collapse}}
       </section>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
         {{model.group.name}}&nbsp;({{model.representing}})&nbsp;
@@ -141,51 +141,51 @@
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
           {{#if model.group.isSenior}}
-            <span class="label label-warning">Seniors</span>&nbsp;
+            <span class="badge badge-warning">Seniors</span>&nbsp;
           {{/if}}
           {{#if model.group.isYouth}}
-            <span class="label label-warning">Youth</span>&nbsp;
+            <span class="badge badge-warning">Youth</span>&nbsp;
           {{/if}}
           {{#if model.group.isMixed}}
-            <span class="label label-success">Mixed</span>&nbsp;
+            <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
           {{#if model.group.isFemale}}
-            <span class="label label-primary">Female</span>&nbsp;
+            <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
           {{#if model.group.division}}
-            <span class="label label-info">{{model.group.division}}</span>&nbsp;
+            <span class="badge badge-info">{{model.group.division}}</span>&nbsp;
           {{/if}}
           {{#if (eq model.group.status 'Active')}}
-            <span class="label label-success">Active</span>&nbsp;
+            <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
-            <span class="label label-danger">Inactive</span>&nbsp;
+            <span class="badge badge-danger">Inactive</span>&nbsp;
           {{/if}}
       </h4>
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
         {{else if (eq model.status 'Built')}}
           {{#if model.session.isInvitational}}
-            <li>{{entry-invite model=model}}</li>
+            <li class='list-inline-item'>{{entry-invite model=model}}</li>
           {{else}}
-            <li>{{entry-approve model=model}}</li>
+            <li class='list-inline-item'>{{entry-approve model=model}}</li>
           {{/if}}
-          <li>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
         {{else if (eq model.status 'Invited')}}
-          <li>{{entry-submit model=model}}</li>
-          <li>{{entry-withdraw model=model}}</li>
+          <li class='list-inline-item'>{{entry-submit model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
         {{else if (eq model.status 'Submitted')}}
-          <li>{{entry-approve model=model}}</li>
-          <li>{{entry-withdraw model=model}}</li>
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
         {{else if (eq model.status 'Approved')}}
-          <li>{{entry-approve model=model}}</li>
-          <li>{{entry-withdraw model=model}}</li>
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
         {{else if (eq model.status 'Withdrawn')}}
-          <li>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
         {{else if (eq model.status 'Scratched')}}
-          <li>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

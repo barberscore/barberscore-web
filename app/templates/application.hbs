@@ -1,42 +1,60 @@
-{{#bs-navbar as |navbar|}}
-  <div class="navbar-header">
-    {{#navbar.toggle}}
-      {{fa-icon 'reorder'}}
-    {{/navbar.toggle}}
-    {{#link-to 'index' class='navbar-brand'}}<span>{{cloudinary-image 'bhs_logo' (hash height=30)}}</span>&nbsp;Barberscore{{/link-to}}
-  </div>
+{{#bs-navbar toggleBreakpoint=null position='sticky-top' class='mb-4' as |navbar|}}
+  {{#link-to 'index' active=False class='navbar-brand'}}<span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore{{/link-to}}
   {{#navbar.content}}
-    {{#navbar.nav type='pills' class='navbar-right' as |nav|}}
+    {{#navbar.nav class='ml-auto' as |nav|}}
+      {{#nav.item}}
+        {{!-- <div class='alert'> --}}
+          {{#each flashMessages.queue as |flash|}}
+            {{#bs-alert
+                type=flash.type
+                dismissible=false
+                fade=true
+            }}
+              <p>{{flash.message}}</p>
+            {{/bs-alert}}
+{{!--             {{#flash-message flash=flash as |component flash|}}
+              {{#bs-alert type=component.flashType}}
+                {{flash.content}}
+              {{/bs-alert}}
+              <small>{{flash.message}}</small>
+            {{/flash-message}} --}}
+          {{/each}}
+        {{!-- </div> --}}
+      {{/nav.item}}
+    {{/navbar.nav}}
+    {{#navbar.nav type='pills' class='ml-auto' as |nav|}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}
-          {{#bs-button onClick=(action "invalidateSession") class='btn-default navcenter pull-right'}}<img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
+          {{#bs-button type='outline-dark' onClick=(action "invalidateSession") }}
+            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
           {{/bs-button}}
         {{/nav.item}}
       {{else}}
         {{#nav.item}}
-          {{#link-to 'login'}}Login{{/link-to}}
+          {{#link-to 'login' active=False type='button'}}Login{{/link-to}}
         {{/nav.item}}
       {{/if}}
     {{/navbar.nav}}
   {{/navbar.content}}
 {{/bs-navbar}}
-
-<div class='container'>
-  <div class='alerts'>
+<div class='container-fluid'>
+  {{!-- <div class='alert'>
     {{#each flashMessages.queue as |flash|}}
       {{flash-message flash=flash}}
     {{/each}}
   </div>
-  {{!-- <section>
-    {{bread-crumbs tagName="ol" outputStyle="bootstrap" linkable=true}}
-  </section> --}}
+  {{#each flashMessages.queue as |flash|}}
+    {{#flash-message flash=flash as |component flash|}}
+      <h6>{{component.flashType}}</h6>
+      <p>{{flash.message}}</p>
+    {{/flash-message}}
+  {{/each}} --}}
+
+
   {{outlet}}
-  <div class="footer bottom-bar bottom-spacing">
-  <hr>
-    <ul class="nav nav-pills">
-      <li>{{#link-to 'about'}}About{{/link-to}}</li>
-      <li>{{#link-to 'faq'}}FAQ{{/link-to}}</li>
-      <li>{{#link-to 'tutorials'}}Tutorials{{/link-to}}</li>
-    </ul>
-  </div>
 </div>
+{{!-- <div class='alert alert-fixed'>
+  {{#each flashMessages.queue as |flash|}}
+    {{flash-message flash=flash}}
+  {{/each}}
+</div> --}}

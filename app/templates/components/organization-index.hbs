@@ -1,16 +1,16 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Organizations
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
-      <table class='table'>
+      <table class='table table-hover table-sm'>
         <caption>You are an active officer for the following organizations:</caption>
-        <thead>
+        <thead class='thead-light'>
           <tr>
-            <th class='col-md-1'>Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Kind</th>
           </tr>
@@ -19,7 +19,7 @@
           {{#each sortedGroups as |group|}}
             <tr>
               <td>
-                {{cloudinary-image group.imageId (hash width=64) class='img-responsive img-rounded'}}
+                {{cloudinary-image group.imageId (hash width=64) class='img-fluid img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}

@@ -1,16 +1,16 @@
-<div class='panel panel-default'>
-  <div class='panel-heading'>
+<div class='card'>
+  <div class='card-header'>
     <h3>
       Your Assignments
     </h3>
   </div>
-  <div class='panel-body'>
+  <div class='card-body'>
     <div class='table-responsive'>
-      <table class='table'>
+      <table class='table table-hover table-sm'>
         <caption>These are the conventions to which you are currently assigned.</caption>
-        <thead>
+        <thead class='thead-light'>
           <tr>
-            <th class='col-md-1'>Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Venue</th>
             <th>Date</th>
@@ -22,7 +22,7 @@
           {{#each sortedAssignments as |assignment|}}
             <tr>
               <td>
-                {{cloudinary-image assignment.convention.imageId (hash width=40) class='img-responsive img-rounded'}}
+                {{cloudinary-image assignment.convention.imageId (hash width=40) class='img-fluid img-rounded'}}
               </td>
               <td>
                 {{#link-to 'dashboard.conventions.convention.details' assignment.convention}}{{assignment.convention.nomen}}{{/link-to}}
