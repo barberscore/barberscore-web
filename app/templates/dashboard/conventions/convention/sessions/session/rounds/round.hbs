@@ -39,18 +39,18 @@
       </div>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li>{{round-build model=model}}</li>
+          <li class='list-inline-item'>{{round-build model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li>{{round-start model=model}}</li>
-          <li>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-start model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li>{{round-complete model=model}}</li>
-          <li>{{round-reset model=model}}</li>
-          <li>{{round-mock model=model}}</li>
+          <li class='list-inline-item'>{{round-complete model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
+          <li class='list-inline-item'>{{round-mock model=model}}</li>
         {{else if (eq model.status 'Completed')}}
-          <li>{{round-verify model=model}}</li>
+          <li class='list-inline-item'>{{round-verify model=model}}</li>
         {{else if (eq model.status 'Verified')}}
-          <li>{{round-publish model=model}}</li>
+          <li class='list-inline-item'>{{round-publish model=model}}</li>
         {{/if}}
       </ul>
     </div>
