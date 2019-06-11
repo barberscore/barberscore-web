@@ -1,11 +1,11 @@
 <section>
-  <div class='panel panel-default'>
-    <div class='panel-heading fixed-panel-header'>
-      <h4>
+  <div class='card'>
+    <div class='card-header'>
+      <h5>
         {{model.kind}}
-      </h4>
+      </h5>
     </div>
-    <div class='panel-body'>
+    <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
@@ -31,11 +31,11 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='panel-footer fixed-panel-footer'>
+    <div class='card-footer'>
       <div class='pull-right'>
-        <h4>
+        <h5>
           Round Status: <strong>{{model.status}}</strong>
-        </h4>
+        </h5>
       </div>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
