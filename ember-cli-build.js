@@ -11,10 +11,6 @@ module.exports = function(defaults) {
     },
     'ember-power-select': {
       theme: 'bootstrap'
-    },
-    sourcemaps: {
-      enabled: true,
-      extensions: ['js']
     }
   });
 
