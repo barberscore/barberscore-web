@@ -20,7 +20,7 @@
   "devDependencies": {
     "@ember/jquery": "^0.6.0",
     "@ember/optional-features": "^0.7.0",
-    "@sentry/browser": "^4.5.3",
+    "@sentry/browser": "^5.4.0",
     "algoliasearch": "^3.24.12",
     "bootstrap": "^4.0.0",
     "broccoli-asset-rev": "^3.0.0",
@@ -75,5 +75,8 @@
     "node": "^10.0.0",
     "npm": "^6.0.0",
     "yarn": "^1.0.0"
+  },
+  "dependencies": {
+    "@sentry/integrations": "^5.4.1"
   }
 }

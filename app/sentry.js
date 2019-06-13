@@ -1,11 +1,13 @@
 import * as Sentry from '@sentry/browser'
+import * as Integrations from '@sentry/integrations';
+
 import config from './config/environment';
 
 Sentry.init({
   dsn: config.APP.SENTRY_DSN,
   environment: config.environment,
   sendDefaultPii: true,
-  integrations: [new Sentry.Integrations.Ember()],
+  integrations: [new Integrations.Ember()],
   release: config.APP.HEROKU_RELEASE_VERSION,
   beforeSend: (event, hint) => {
    if (config.environment !== 'production' || hint.originalException.name === 'TransitionAborted') {

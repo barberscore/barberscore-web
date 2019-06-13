@@ -37,5 +37,11 @@ module.exports = function(defaults) {
     ]
   });
 
+  app.import('node_modules/@sentry/integrations/dist/index.js', {
+    using: [
+      { transformation: 'cjs', as: '@sentry/integrations' }
+    ]
+  });
+
   return app.toTree();
 };
