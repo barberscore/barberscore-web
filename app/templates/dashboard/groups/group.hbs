@@ -9,24 +9,18 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.groups.group.details"}}Details{{/nav.link-to}}
         {{/nav.item}}
-        {{#nav.item}}
+        {{!-- {{#nav.item}}
           {{#nav.link-to "dashboard.groups.group.officers"}}Officers{{/nav.link-to}}
         {{/nav.item}}
-        {{#if (or (eq model.kind 'International') (eq model.kind 'District'))}}
-          {{!-- {{#nav.item}}
-            {{#nav.link-to "dashboard.groups.group.children"}}Groups{{/nav.link-to}}
-          {{/nav.item}} --}}
-        {{else}}
-          {{#nav.item}}
-            {{#nav.link-to "dashboard.groups.group.members"}}Members{{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "dashboard.groups.group.repertories"}}Repertory{{/nav.link-to}}
-          {{/nav.item}}
-          {{#nav.item}}
-            {{#nav.link-to "dashboard.groups.group.entries"}}Entries{{/nav.link-to}}
-          {{/nav.item}}
-        {{/if}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.members"}}Members{{/nav.link-to}}
+        {{/nav.item}} --}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.repertories"}}Repertory{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.entries"}}Entries{{/nav.link-to}}
+        {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}
     </div>
