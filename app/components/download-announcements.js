@@ -6,9 +6,9 @@ import { inject as service } from '@ember/service';
 export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   announcements: task(function *() {
-    let pdf = yield this.model.announcements();
+    let docx = yield this.model.announcements();
     let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} Announcements`;
-    this.saveFileAs(fileName, pdf, 'application/pdf');
+    this.saveFileAs(fileName, docx, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });
