@@ -6,6 +6,7 @@ export default Model.extend({
   // Fields
   status: DS.attr('song-status'),
   legacyChart: DS.attr('string'),
+  denormChart: DS.attr(),
   num: DS.attr('number'),
   penalties: DS.attr(),
   stats: DS.attr(),
