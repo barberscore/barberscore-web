@@ -131,7 +131,7 @@ module.exports = function(environment) {
           onSessionRestore: true,
           onSessionExpire: true,
           options: {
-            scope: 'openid profile email',
+            scope: 'openid profile email app_metadata user_metadata',
             responseType: 'token id_token',
             audience: 'https://barberscore.auth0.com/userinfo',
             timeout: 5000

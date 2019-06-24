@@ -11,7 +11,7 @@ export default Controller.extend({
   actions: {
     login () {
       const authOptions = {
-        scope: 'openid profile email',
+        scope: 'openid profile email app_metadata user_metadata',
         responseType: 'token id_token',
         audience: 'https://barberscore.auth0.com/userinfo',
       };
