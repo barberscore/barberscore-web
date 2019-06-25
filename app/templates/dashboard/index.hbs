@@ -8,12 +8,22 @@
 {{/if}}
 {{outlet}}
  --}}
+<section>
+  <h3>
+    Important Notice!
+  </h3>
+  <h5>
+    Access is temporarily down while we upgrade systems in preparation for International.  If you are a group wishing to add charts to your repertory please send your request to {{barberscore-support}} and we'll process it manually.  Thank you.
+  </h5>
+
+</section>
+
 
 <section>
   <p>Welcome {{currentUser.user.person.commonName}}</p>
   <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.members' tagName='button' disabled=false class='btn btn-light launcher'}}
+      {{#link-to 'dashboard.members' tagName='button' disabled=true class='btn btn-light launcher'}}
         {{fa-icon 'users' size='5'}}<br>
         Memberships
       {{/link-to}}
