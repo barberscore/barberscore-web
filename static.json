@@ -24,6 +24,9 @@
     "/api/": {
       "origin": "${API_PROXY_HOST}/api/"
     },
+    "/log/": {
+      "origin": "${API_PROXY_HOST}/log/"
+    },
     "/bhs/": {
       "origin": "${API_PROXY_HOST}/bhs/"
     },
