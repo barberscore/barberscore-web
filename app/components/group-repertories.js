@@ -16,23 +16,6 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  officerPersons: mapBy(
-    'model.officers',
-    'person.id',
-  ),
-  currentPerson: alias(
-    'currentUser.user.person',
-  ),
-  isOfficer: computed(
-    'officerPersons',
-    'currentPerson',
-    function() {
-      return this.officerPersons.includes(this.get('currentPerson.id'));
-    }
-  ),
-  isCreate: not(
-    'isOfficer',
-  ),
   sortedRepertoriesProperties: [
     'chartTitle',
   ],
