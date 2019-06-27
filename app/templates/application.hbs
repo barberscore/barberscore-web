@@ -14,7 +14,7 @@
       {{#if session.isAuthenticated}}
         {{#nav.item}}
           {{#bs-button type='outline-dark' onClick=(action "invalidateSession") }}
-            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{currentUser.user.person.commonName}}
+            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{session.data.authenticated.profile.name}}
           {{/bs-button}}
         {{/nav.item}}
       {{else}}
