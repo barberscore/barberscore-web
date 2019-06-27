@@ -3,7 +3,7 @@ import { isEmpty } from '@ember/utils';
 import RSVP from 'rsvp';
 
 export default Service.extend({
-  session: service('session'),
+  session: service(),
   store: service(),
 
   load() {
@@ -11,7 +11,7 @@ export default Service.extend({
     if (!isEmpty(username)) {
       return this.store.query('user', {
         'username': username,
-      }).then(function(users) {
+      }).then(users => {
         return users.get('firstObject');
       }).catch(err => {
         alert(err.errors[0].detail)
