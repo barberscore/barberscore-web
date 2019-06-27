@@ -86,6 +86,10 @@ section {
   margin-top: 8px;
 }
 
+.points-box {
+  max-width: 100px;
+}
+
 .launcher {
   width: 200px;
   height: 200px;
