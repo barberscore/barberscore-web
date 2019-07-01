@@ -13,7 +13,6 @@ export default Controller.extend({
       const authOptions = {
         scope: 'openid profile email app_metadata user_metadata',
         responseType: 'token id_token',
-        audience: 'https://barberscore.auth0.com/userinfo',
       };
       this.session.authenticate(
         'authenticator:auth0-universal',

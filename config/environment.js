@@ -133,7 +133,7 @@ module.exports = function(environment) {
           options: {
             scope: 'openid profile email app_metadata user_metadata',
             responseType: 'token id_token',
-            audience: 'https://barberscore.auth0.com/userinfo',
+            // audience: 'https://barberscore.auth0.com/userinfo',
             timeout: 5000
           }
         }
