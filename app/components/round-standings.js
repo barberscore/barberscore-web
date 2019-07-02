@@ -12,12 +12,12 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
-    'status:asc',
     'runSum:desc',
     'runSng:desc',
     'runPer:desc',
     'entryPrelim:desc',
     'groupName',
+    'status:asc',
   ],
   multiAppearances: filterBy(
     'model.appearances',
