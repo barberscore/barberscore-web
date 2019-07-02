@@ -42,8 +42,8 @@
                 </td>
               {{/if}}
               <td>{{single-fixed appearance.entry.prelim}}</td>
-              <td>{{moment-format appearance.onstage 'HH:mm'}}</td>
-              <td>{{moment-format appearance.actualStart 'HH:mm'}}</td>
+              <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
+              <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
               <td>{{appearance.status}}</td>
             {{/if}}
           </tr>
