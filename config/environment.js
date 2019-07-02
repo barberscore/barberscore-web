@@ -8,7 +8,8 @@ module.exports = function(environment) {
     locationType: 'auto',
     moment: {
       outputFormat: 'LL',
-      allowEmpty: true // default: false
+      allowEmpty: true, // default: false
+      includeTimezone: 'subset'
     },
     storeConfigInMeta: true,
     contentSecurityPolicy: {
