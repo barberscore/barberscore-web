@@ -25,9 +25,8 @@
       format="HH:mm"
       showIcon=true
       isTime=true
-      disabled=model.isDisabled
+      disabled=true
       placeholder='Actual Start Time'
-      change=(perform autosave 'actualStart')
     }}
   </div>
   <div class='form-group'>
@@ -36,12 +35,15 @@
       format="HH:mm"
       showIcon=true
       isTime=true
-      disabled=model.isDisabled
+      disabled=true
       placeholder='Actual Finish Time'
-      change=(perform autosave 'actualFinish')
     }}
   </div>
-  {{!-- <li>Delta:  {{moment-diff model.onstage model.actual_start precision='minutes'}} Minutes</li> --}}
+  {{#if model.actualStart}}
+    <div class='form-group'>
+      &nbsp;&nbsp;&nbsp;Delta:  {{moment-diff model.onstage model.actualStart precision='minutes'}} Minutes
+    </div>
+  {{/if}}
 </div>
 {{#if (eq model.round.session.kind 'Chorus')}}
   <br>
