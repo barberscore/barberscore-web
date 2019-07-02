@@ -10,6 +10,7 @@
         <tr>
           <th>OA</th>
           <th>Name</th>
+          <th>Prelim</th>
           <th>Grid</th>
           <th>Actual</th>
           <th>Status</th>
@@ -40,6 +41,7 @@
                   {{/if}}
                 </td>
               {{/if}}
+              <td>{{single-fixed appearance.entry.prelim}}</td>
               <td>{{moment-format appearance.onstage 'HH:mm'}}</td>
               <td>{{moment-format appearance.actualStart 'HH:mm'}}</td>
               <td>{{appearance.status}}</td>
