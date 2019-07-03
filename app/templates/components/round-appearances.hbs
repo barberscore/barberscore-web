@@ -10,7 +10,9 @@
         <tr>
           <th>OA</th>
           <th>Name</th>
-          <th>Prelim</th>
+          {{#if model.session.isInvitational}}
+            <th>Prelim</th>
+          {{/if}}
           <th>Grid</th>
           <th>Actual</th>
           <th>Status</th>
@@ -41,7 +43,9 @@
                   {{/if}}
                 </td>
               {{/if}}
-              <td>{{single-fixed appearance.entry.prelim}}</td>
+              {{#if model.session.isInvitational}}
+                  <td>{{single-fixed appearance.entry.prelim}}</td>
+              {{/if}}
               <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
               <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
               <td>{{appearance.status}}</td>

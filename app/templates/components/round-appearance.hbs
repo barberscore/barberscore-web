@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.group.name}} <span class="badge badge-info">Prelim: {{model.entry.prelim}}</span>
+        #{{model.num}}: {{model.group.name}} {{#if (and model.entry.prelim model.round.session.isInvitational)}}<span class="badge badge-info">Prelim: {{model.entry.prelim}}</span>{{/if}}
         {{#if (eq model.status 'Variance')}}
           {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
