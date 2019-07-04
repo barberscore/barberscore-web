@@ -86,14 +86,17 @@ export default Model.extend({
     'num',
     0
   ),
-  runTot: alias(
+  runTotSum: alias(
     'runTotal.sum',
   ),
-  runSng: alias(
-    'runTotal.sum',
+  runSngSum: alias(
+    'runTotal.sng',
   ),
-  runPer: alias(
-    'runTotal.sum',
+  runPerSum: alias(
+    'runTotal.per',
+  ),
+  runTotAvg: alias(
+    'runTotal.avg',
   ),
   roundNum: alias(
     'round.num'

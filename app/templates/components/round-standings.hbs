@@ -48,11 +48,17 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
-                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
-                  <td>
-                    {{appearance.status}}
-                  </td>
+                  {{#if appearance.runTotal}}
+                    <td>{{appearance.runTotSum}}</td>
+                  {{else}}
+                    <td>N/A</td>
+                  {{/if}}
+                  {{#if appearance.runTotal}}
+                    <td>{{single-fixed appearance.runTotAvg}}</td>
+                      {{else}}
+                    <td>N/A</td>
+                  {{/if}}
+                  <td>{{appearance.status}}</td>
                 {{/if}}
               </tr>
             {{else}}
