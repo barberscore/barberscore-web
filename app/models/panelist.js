@@ -28,11 +28,11 @@ export default Model.extend({
   rowClass: computed(
     'kind', function() {
       if (this.category === 'Music') {
-        return 'warning score-height';
+        return 'table-warning score-height';
       } else if (this.category === 'Performance') {
-        return 'success score-height';
+        return 'table-success score-height';
       } else if (this.category === 'Singing') {
-        return 'info score-height';
+        return 'table-primary score-height';
       } else {
         return null;
       }

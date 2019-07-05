@@ -14,7 +14,7 @@
         <th>
           Kind
         </th>
-        <th>
+        <th class='text-center'>
           Num
         </th>
         <th class='text-right'>
@@ -25,11 +25,11 @@
     <tbody>
       {{#each sortedPanelists as |panelist|}}
         <tr class={{panelist.rowClass}}>
-          <td>{{panelist.person.commonName}}</td>
-          <td>{{panelist.category}}</td>
-          <td>{{panelist.kind}}</td>
-          <td>{{panelist.num}}</td>
-          <td>{{panelist-scores model=panelist appearance=model}}</td>
+          <td class='align-middle panelest-scoretext'>{{panelist.person.commonName}}</td>
+          <td class='align-middle panelest-scoretext'>{{panelist.category}}</td>
+          <td class='align-middle panelest-scoretext'>{{panelist.kind}}</td>
+          <td class='align-middle panelest-scoretext text-center'>{{panelist.num}}</td>
+          <td class='max-score'>{{panelist-scores model=panelist appearance=model}}</td>
         </tr>
       {{else}}
         <tr>
