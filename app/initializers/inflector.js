@@ -26,7 +26,6 @@ export function initialize(/* application */) {
   inflector.uncountable('statelog');
   inflector.uncountable('subscription');
   inflector.uncountable('user');
-  inflector.uncountable('venue');
 }
 
 export default {

@@ -4,16 +4,11 @@
       {{cloudinary-image model.imageId (hash height=90) class='img-fluid img-rounded'}}
     </div>
     <div class='float-left pl-4'>
-      {{#if model.venue}}
-        <ul class='list-unstyled'>
-          <li><strong>{{model.venue.name}}</strong></li>
-          <li>{{model.location}}</li>
-          <li>Airport(s): {{model.venue.airport}}</li>
-          <li>Timezone: {{model.timezone}}</li>
-        </ul>
-      {{else}}
-        (No venue selected.)
-      {{/if}}
+      <ul class='list-unstyled'>
+        <li><strong>{{model.venueName}}</strong></li>
+        <li>{{model.location}}</li>
+        <li>Timezone: {{model.timezone}}</li>
+      </ul>
     </div>
   </div>
   <div class='table-responsive'>
