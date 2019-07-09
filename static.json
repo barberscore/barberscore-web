@@ -21,8 +21,8 @@
     "/crossdomain.xml": { "Cache-Control": "public, max-age=512000" }
   },
   "proxies": {
-    "/api/": {
-      "origin": "${API_PROXY_HOST}/api/"
+    "/jwt/": {
+      "origin": "${API_PROXY_HOST}/jwt/"
     },
     "/log/": {
       "origin": "${API_PROXY_HOST}/log/"
