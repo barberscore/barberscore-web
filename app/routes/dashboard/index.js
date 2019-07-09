@@ -13,6 +13,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
       let username = this.get('session.data.authenticated.profile.sub');
       return this.store.query('person', {
         'user__username': username
+      }).catch(err => {
+        alert(err.errors[0].detail)
       }).then(response => response.firstObject);
     } else {
       return this.store.query('person', {
