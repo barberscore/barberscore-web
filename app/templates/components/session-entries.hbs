@@ -54,7 +54,7 @@
       <p>
         {{#bs-button
           type='success'
-          disabled=isDisabled
+          disabled=model.isDisabled
           onClick=(action (mut createEntryModal) true)
         }}
           Create New Entry

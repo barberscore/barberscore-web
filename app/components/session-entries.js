@@ -9,9 +9,6 @@ export default Component.extend({
   router: service(),
   algolia: service(),
   store: service(),
-  isDisabled: not(
-    'model.permissions.write',
-  ),
   sortedEntriesProperties: [
     'groupName',
   ],
