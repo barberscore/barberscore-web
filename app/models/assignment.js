@@ -10,6 +10,7 @@ export default Model.extend({
   category: DS.attr('assignment-category'),
   convention: DS.belongsTo('convention', {async: true}),
   person: DS.belongsTo('person', {async: true}),
+  user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),

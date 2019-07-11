@@ -8,18 +8,19 @@ export default Route.extend(AuthenticatedRouteMixin, {
   session: service(),
   store: service(),
   model() {
-    let userId = this.get('currentUser.user.id');
-    if (isEmpty(userId)) {
-      let username = this.get('session.data.authenticated.profile.sub');
-      return this.store.query('person', {
-        'user__username': username
-      }).catch(err => {
-        alert(err.errors[0].detail)
-      }).then(response => response.firstObject);
-    } else {
-      return this.store.query('person', {
-        'user': userId
-      }).then(response => response.firstObject);
-    }
+    // let userId = this.get('currentUser.user.id');
+    // if (isEmpty(userId)) {
+    //   let username = this.get('session.data.authenticated.profile.sub');
+    //   return this.store.query('person', {
+    //     'user__username': username
+    //   }).catch(err => {
+    //     alert(err.errors[0].detail)
+    //   }).then(response => response.firstObject);
+    // } else {
+    //   return this.store.query('person', {
+    //     'user': userId
+    //   }).then(response => response.firstObject);
+    // }
+    return this.get('currentUser.user');
   },
 });

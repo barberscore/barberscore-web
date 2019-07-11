@@ -23,18 +23,18 @@
                 <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
-                  {{#if assignment.person}}
-                    {{cloudinary-image assignment.person.imageId (hash width=64) class='img-fluid img-thumbnail'}}
+                  {{#if assignment.user}}
+                    {{cloudinary-image assignment.user.imageId (hash width=64) class='img-fluid img-thumbnail'}}
                   {{else}}
                     {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
                   {{/if}}
                 </td>
-              {{#if assignment.person.isLoading}}
+              {{#if assignment.user.isLoading}}
                 <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
                 <td>
-                  {{#if assignment.person}}
-                    {{assignment.person.commonName}}
+                  {{#if assignment.user.name}}
+                    {{assignment.user.name}}
                   {{else}}
                     (TBD)
                   {{/if}}
@@ -46,8 +46,8 @@
                 <td>
                   {{assignment.category}}
                 </td>
-                <td><a href='mailto:{{assignment.person.email}}'>{{assignment.person.email}}</a></td>
-                <td><a href='tel:{{assignment.person.cellPhone}}'>{{assignment.person.cellPhone}}</a></td>
+                <td><a href='mailto:{{assignment.user.email}}'>{{assignment.user.email}}</a></td>
+                <td>{{!-- <a href='tel:{{assignment.user.cellPhone}}'>{{assignment.user.cellPhone}}</a> --}}</td>
               {{/if}}
             </tr>
           {{else}}
