@@ -35,7 +35,7 @@
       </p>
       {{#bs-collapse collapsed=memberHelp}}
         <p>
-          Please indicate the names of your quartet that will be performing as you wish them to appear in the convention program. Names must be listed in order (T, L, Br, Bs) separated by commas. For example:
+          Please indicate the names of your quartet that will be performing as you wish them to appear on the Official Scoring Summary (OSS). Names must be listed in order (T, L, Br, Bs) separated by commas. For example:
         </p>
         <p>
           <strong>Tim Waurick, Joe Connelly, Brandon Guyton, Brett Littlefield</strong>
@@ -43,7 +43,7 @@
      {{/bs-collapse}}
     </section>
   {{else}}
-    {{form.element controlType='text' disabled=true placeholder='Chapter' label='Chapter' property='chapterCode'}}
+    {{!-- {{form.element controlType='text' disabled=true placeholder='Chapter' label='Chapter' property='chapterCode'}} --}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' label='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
     <section>
       <p>
@@ -53,7 +53,7 @@
       </p>
       {{#bs-collapse collapsed=directorHelp}}
         <p>
-          Please indicate the name of your director as you wish it to appear in the convention program. If you will have no director, you must type the word 'None'. If more than one director will be performing (limit of 2 directors), separate the names by a comma and a space.
+          Please indicate the name of your director as you wish it to appear on the Official Scoring Summary (OSS). If you will have no director, you must type the word 'None'. If more than one director will be performing (limit of 2 directors), separate the names by a comma and a space.
         </p>
        {{/bs-collapse}}
     </section>
