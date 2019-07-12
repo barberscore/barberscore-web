@@ -1,62 +1,54 @@
-{{!-- <div class='card'>
-  <h5 class='card-header'>
-    Convention Assignments
-  </h5>
-   <div class='card-body'>
- --}}    <div class='table-responsive'>
-      <table class='table table-hover table-sm'>
-        <caption>These are the assignments for this convention.</caption>
-        <thead class='thead-light'>
-          <tr>
-            <th>Image</th>
-            <th>Person</th>
-            <th>Kind</th>
-            <th>Category</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each sortedAssignments as |assignment|}}
-            <tr>
-              {{#if assignment.isLoading}}
-                <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                <td>
-                  {{#if assignment.user}}
-                    {{cloudinary-image assignment.user.imageId (hash width=64) class='img-fluid img-thumbnail'}}
-                  {{else}}
-                    {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
-                  {{/if}}
-                </td>
-              {{#if assignment.user.isLoading}}
-                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                <td>
-                  {{#if assignment.user.name}}
-                    {{assignment.user.name}}
-                  {{else}}
-                    (TBD)
-                  {{/if}}
-                </td>
-              {{/if}}
-                <td>
-                  {{assignment.kind}}
-                </td>
-                <td>
-                  {{assignment.category}}
-                </td>
-                <td><a href='mailto:{{assignment.user.email}}'>{{assignment.user.email}}</a></td>
-                <td>{{!-- <a href='tel:{{assignment.user.cellPhone}}'>{{assignment.user.cellPhone}}</a> --}}</td>
-              {{/if}}
-            </tr>
+<div class='table-responsive'>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
+      <tr>
+        {{!-- <th>Image</th> --}}
+        <th>Person</th>
+        <th>Kind</th>
+        <th>Category</th>
+        <th>Email</th>
+        {{!-- <th>Phone</th> --}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedAssignments as |assignment|}}
+        <tr>
+          {{#if assignment.isLoading}}
+            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
-            <tr>
-              <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-{{!--   </div>
-</div> --}}
+            {{!-- <td>
+              {{#if assignment.user}}
+                {{cloudinary-image assignment.user.imageId (hash width=64) class='img-fluid img-thumbnail'}}
+              {{else}}
+                {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
+              {{/if}}
+            </td> --}}
+          {{#if assignment.user.isLoading}}
+            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>
+              {{#if assignment.user.name}}
+                {{assignment.user.name}}
+              {{else}}
+                (TBD)
+              {{/if}}
+            </td>
+          {{/if}}
+            <td>
+              {{assignment.kind}}
+            </td>
+            <td>
+              {{assignment.category}}
+            </td>
+            <td><a href='mailto:{{assignment.user.email}}'>{{assignment.user.email}}</a></td>
+            <td>{{!-- <a href='tel:{{assignment.user.cellPhone}}'>{{assignment.user.cellPhone}}</a> --}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
