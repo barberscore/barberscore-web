@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { not, sort} from '@ember/object/computed';
+import { sort} from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 
@@ -12,9 +12,6 @@ export default Component.extend({
   customCollapsed2: true,
   customCollapsed4: true,
   customCollapsed5: true,
-  isDisabled: not(
-    'model.permissions.write',
-  ),
   sortedRepertoriesProperties: [
     'chartTitle',
   ],
