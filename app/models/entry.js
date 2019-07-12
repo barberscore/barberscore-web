@@ -16,9 +16,9 @@ export default Model.extend({
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
+  groupId: DS.attr('string'),
   stats: DS.attr(),
   session: DS.belongsTo('session', {async: true}),
-  group: DS.belongsTo('group', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
@@ -63,20 +63,13 @@ export default Model.extend({
       return this.statusOptions.indexOf(this.status);
     }
   ),
-  parentName: alias('group.parent.name'),
-  code: alias('group.parent.code'),
-  chapterCode: computed(
-    'parentName',
-    'code',
+  group: computed(
+    'groupId',
     function() {
-      return `${this.parentName} (${this.code})`;
+      return this.store.findRecord('group', this.groupId);
     }
   ),
-  allMembers: alias('group.members'),
   contestantCount: alias('contestants.length'),
-  activeMembersCount: alias('group.activeMembers.length'),
-  repertoryCount: alias('group.repertories.length'),
   conventionStatus: alias('session.convention.status'),
   conventionStart: alias('session.convention.startDate'),
-  groupName: alias('group.name')
 });
