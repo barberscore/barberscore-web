@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{model.group.name}}&nbsp;({{model.representing}})&nbsp;
+        {{model.group.name}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
           {{#if model.group.bhsId}}
             [{{model.group.bhsId}}]&nbsp;
           {{/if}}
@@ -133,7 +133,7 @@
     <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{model.group.name}}&nbsp;({{model.representing}})&nbsp;
+        {{model.group.name}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
           {{#if model.group.bhsId}}
             [{{model.group.bhsId}}]&nbsp;
           {{/if}}
