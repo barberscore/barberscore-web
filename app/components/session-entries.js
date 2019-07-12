@@ -27,9 +27,9 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (obj){
     try {
-      let group = yield this.store.findRecord('group', obj.objectID)
+      // let group = yield this.store.findRecord('group', obj.objectID)
       let entry = yield this.model.get('entries').createRecord({
-        group: group,
+        groupId: obj.objectID,
         description: '',
         contestants: [],
         isEvaluation: true,
