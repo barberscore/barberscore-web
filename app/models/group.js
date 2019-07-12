@@ -36,7 +36,6 @@ export default Model.extend({
   awards: DS.hasMany('award', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
-  entries: DS.hasMany('entry', {async: true}),
   members: DS.hasMany('member', {async: true}),
   officers: DS.hasMany('officer', {async: true}),
   repertories: DS.hasMany('repertory', {async: true}),
