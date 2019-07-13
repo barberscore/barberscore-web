@@ -20,6 +20,7 @@ export default Model.extend({
   stats: DS.attr(),
   session: DS.belongsTo('session', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
   statelogs: DS.hasMany('statelog', {async: true}),

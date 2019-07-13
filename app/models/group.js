@@ -34,6 +34,7 @@ export default Model.extend({
   parent: DS.belongsTo('group', {inverse:'children', async: true}),
   children: DS.hasMany('group', {inverse:'parent', async: true}),
   awards: DS.hasMany('award', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   conventions: DS.hasMany('convention', {async: true}),
   members: DS.hasMany('member', {async: true}),
