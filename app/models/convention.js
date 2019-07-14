@@ -22,10 +22,16 @@ export default Model.extend({
   location: DS.attr('string', {defaultValue: ''}),
   timezone: DS.attr('string'),
   description: DS.attr('string'),
-  group: DS.belongsTo('group', {async: true}),
   assignments: DS.hasMany('assignment', {async: true}),
   sessions: DS.hasMany('session', {async: true}),
   permissions: DS.attr(),
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      return this.store.findRecord('group', this.groupId);
+    }
+  ),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

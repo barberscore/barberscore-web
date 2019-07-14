@@ -10,9 +10,15 @@ export default Model.extend({
   kind: DS.attr('panelist-kind'),
   category: DS.attr('panelist-category'),
   round: DS.belongsTo('round', {async: true}),
-  person: DS.belongsTo('person', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
+  personId: DS.attr('string'),
+  person: computed(
+    'personId',
+    function() {
+      return this.store.findRecord('person', this.personId);
+    }
+  ),
 
   psa: memberAction({ path: 'psa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 

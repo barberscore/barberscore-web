@@ -22,12 +22,18 @@ export default Model.extend({
   size: DS.attr('award-size'),
   scope: DS.attr('award-scope'),
   treeSort: DS.attr('number'),
-  group: DS.belongsTo('group', {async: true}),
   parent: DS.belongsTo('award', {inverse:'children', async: true}),
   children: DS.hasMany('award', {inverse:'parent', async: true}),
   contests: DS.hasMany('contest', {async: true}),
   outcomes: DS.hasMany('outcome', {async: true}),
   permissions: DS.attr(),
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      return this.store.findRecord('group', this.groupId);
+    }
+  ),
 
   // Transitions
   activate: memberAction({path: 'activate', type: 'post'}),

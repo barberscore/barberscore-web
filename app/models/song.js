@@ -1,4 +1,5 @@
 import { not, sum, mapBy, filterBy } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -11,9 +12,15 @@ export default Model.extend({
   penalties: DS.attr(),
   stats: DS.attr(),
   appearance: DS.belongsTo('appearance', {async: true}),
-  chart: DS.belongsTo('chart', {async: true}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
+  chartId: DS.attr('string'),
+  chart: computed(
+    'chartId',
+    function() {
+      return this.store.findRecord('chart', this.chartId);
+    }
+  ),
 
   isDisabled: not(
     'permissions.write'

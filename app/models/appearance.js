@@ -10,6 +10,7 @@ import {
   notEmpty,
   sum
 } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -28,10 +29,7 @@ export default Model.extend({
   isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
   participants: DS.attr('string'),
-  entry: DS.belongsTo('entry', {async: true}),
-  group: DS.belongsTo('group', {async: true}),
   round: DS.belongsTo('round', {async: true}),
-  grid: DS.belongsTo('grid', {async: true}),
   songs: DS.hasMany('song', {async: true}),
   contenders: DS.hasMany('contender', {async: true}),
   permissions: DS.attr(),
@@ -148,5 +146,13 @@ export default Model.extend({
   ),
   sumOfficial: sum(
     'officialSongScores',
+  ),
+  // entry: DS.belongsTo('entry', {async: true}),
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      return this.store.findRecord('group', this.groupId);
+    }
   ),
 });

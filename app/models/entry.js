@@ -16,7 +16,6 @@ export default Model.extend({
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
-  groupId: DS.attr('string'),
   stats: DS.attr(),
   session: DS.belongsTo('session', {async: true}),
   appearance: DS.belongsTo('appearance', {async: true}),
@@ -30,6 +29,14 @@ export default Model.extend({
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
+
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      return this.store.findRecord('group', this.groupId);
+    }
+  ),
 
   isDisabled: not(
     'permissions.write'
@@ -64,12 +71,7 @@ export default Model.extend({
       return this.statusOptions.indexOf(this.status);
     }
   ),
-  group: computed(
-    'groupId',
-    function() {
-      return this.store.findRecord('group', this.groupId);
-    }
-  ),
+
   contestantCount: alias('contestants.length'),
   conventionStatus: alias('session.convention.status'),
   conventionStart: alias('session.convention.startDate'),
