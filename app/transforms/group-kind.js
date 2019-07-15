@@ -10,6 +10,7 @@ export default DS.Transform.extend({
       30: 'Chapter',
       32: 'Chorus',
       41: 'Quartet',
+      46: 'VLQ',
     };
     return map[serialized];
   },
@@ -23,6 +24,7 @@ export default DS.Transform.extend({
       'Chapter': 30,
       'Chorus': 32,
       'Quartet': 41,
+      'VLQ': 46,
     };
     return map[deserialized];
   }
