@@ -11,22 +11,25 @@ export default Model.extend({
   gender: DS.attr('award-gender'),
   level: DS.attr('award-level'),
   season: DS.attr('award-season'),
-  rounds: DS.attr('number'),
+  isSingle: DS.attr('boolean'),
   threshold: DS.attr('number'),
   minimum: DS.attr('number'),
   advance: DS.attr('number'),
   spots: DS.attr('number'),
   description: DS.attr('string'),
+  notes: DS.attr('string'),
+  district: DS.attr('string'),
   division: DS.attr('award-division'),
+
+
   age: DS.attr('award-age'),
+  isNovice: DS.attr('boolean'),
   size: DS.attr('award-size'),
+  sizeRange: DS.attr(),
   scope: DS.attr('award-scope'),
+  scopeRange: DS.attr(),
+
   treeSort: DS.attr('number'),
-  parent: DS.belongsTo('award', {inverse:'children', async: true}),
-  children: DS.hasMany('award', {inverse:'parent', async: true}),
-  contests: DS.hasMany('contest', {async: true}),
-  outcomes: DS.hasMany('outcome', {async: true}),
-  permissions: DS.attr(),
   groupId: DS.attr('string'),
   group: computed(
     'groupId',
@@ -35,14 +38,18 @@ export default Model.extend({
     }
   ),
 
-  // Transitions
+  parent: DS.belongsTo('award', {inverse:'children', async: true}),
+  permissions: DS.attr(),
+
+  contests: DS.hasMany('contest', {async: true}),
+  outcomes: DS.hasMany('outcome', {async: true}),
+
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
 
   isDisabled: not(
     'permissions.write'
   ),
-
 
   statusOptions: [
     'New',
@@ -54,10 +61,20 @@ export default Model.extend({
     'Chorus',
   ],
 
+  generOptions: [
+    'Male',
+    'Female',
+    'Mixed',
+  ],
+
   levelOptions: [
     'Championship',
-    'Award',
     'Qualifier',
+    'Representative',
+    'Deferred',
+    'Manual',
+    'Improved - Raw',
+    'Improved - Standard',
   ],
 
   ageOptions: [
@@ -70,19 +87,6 @@ export default Model.extend({
     'Midwinter',
     'Fall',
     'Spring',
-    'Video',
-  ],
-  sizeOptions: [
-    'Plateau 1',
-  ],
-  scopeOptions: [
-    'Plateau 1',
-  ],
-
-  roundOptions: [
-    1,
-    2,
-    3,
   ],
 
   isChampionship: equal(
@@ -93,6 +97,7 @@ export default Model.extend({
   groupParent: alias('group.parent'),
   groupKindSort: alias('group.kindSort'),
   groupNameSort: alias('group.name'),
+
   statusSort: computed(
     'status',
     'statusOptions',
