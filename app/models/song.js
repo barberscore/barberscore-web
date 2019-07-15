@@ -18,7 +18,11 @@ export default Model.extend({
   chart: computed(
     'chartId',
     function() {
-      return this.store.findRecord('chart', this.chartId);
+      if (this.chartId) {
+        return this.store.findRecord('chart', this.chartId);
+      } else {
+        return null;
+      }
     }
   ),
 

@@ -16,7 +16,11 @@ export default Model.extend({
   person: computed(
     'personId',
     function() {
-      return this.store.findRecord('person', this.personId);
+      if (this.personId) {
+        return this.store.findRecord('person', this.personId);
+      } else {
+        return null;
+      }
     }
   ),
 
