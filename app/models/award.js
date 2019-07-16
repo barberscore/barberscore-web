@@ -34,7 +34,11 @@ export default Model.extend({
   group: computed(
     'groupId',
     function() {
-      return this.store.findRecord('group', this.groupId);
+      if (this.groupId) {
+        return this.store.findRecord('group', this.groupId);
+      } else {
+        return null;
+      }
     }
   ),
 
