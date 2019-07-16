@@ -42,7 +42,7 @@ export default Model.extend({
   isDivided: DS.attr('boolean'),
 
   owners: DS.hasMany('user', {async: true}),
-  parent: DS.belongsTo('group', {inverse:'children', async: true}),
+  parent: DS.belongsTo('group', {async: true}),
 
   repertories: DS.hasMany('repertory', {async: true}),
   permissions: DS.attr(),
