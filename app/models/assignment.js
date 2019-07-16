@@ -9,11 +9,11 @@ export default Model.extend({
   kind: DS.attr('assignment-kind'),
   category: DS.attr('assignment-category'),
   convention: DS.belongsTo('convention', {async: true}),
-  personId: DS.attr('string'),
 
   user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
 
+  personId: DS.attr('string'),
   person: computed(
     'personId',
     function() {

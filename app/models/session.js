@@ -17,7 +17,7 @@ export default Model.extend({
 
   owners: DS.hasMany('user', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
-  target: DS.belongsTo('session', {inverse:'feeders', async: true}),
+  target: DS.belongsTo('session', {async: true}),
 
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),

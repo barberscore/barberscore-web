@@ -42,7 +42,7 @@ export default Model.extend({
     }
   ),
 
-  parent: DS.belongsTo('award', {inverse:'children', async: true}),
+  parent: DS.belongsTo('award', {async: true}),
   permissions: DS.attr(),
 
   contests: DS.hasMany('contest', {async: true}),
