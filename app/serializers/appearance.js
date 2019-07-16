@@ -5,5 +5,14 @@ export default DS.JSONAPISerializer.extend({
     songs: {
       serialize: true
     },
+    owners: {
+      serialize: false
+    },
+    varianceReport: {
+      serialize: false
+    },
+    csaReport: {
+      serialize: false
+    },
   }
 });
