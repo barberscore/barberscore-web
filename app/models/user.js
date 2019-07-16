@@ -9,7 +9,7 @@ export default DS.Model.extend({
   isActive: DS.attr('boolean'),
   isStaff: DS.attr('boolean'),
   permissions: DS.attr(),
-  assignments: DS.hasMany('assignment', {async: true}),
+
   isDisabled: not(
     'permissions.write'
   ),
