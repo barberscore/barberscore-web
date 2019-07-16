@@ -64,6 +64,7 @@ export default Component.extend({
         session: session,
         groupId: this.model.id,
         description: '',
+        notes: '',
         contestants: [],
         owners: owners,
         isEvaluation: true,

@@ -33,6 +33,7 @@ export default Component.extend({
         groupId: obj.objectID,
         owners: owners,
         description: '',
+        notes: '',
         contestants: [],
         isEvaluation: true,
         isPrivate: false,
