@@ -38,7 +38,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.runTotal}}
+                  {{#if appearance.stats}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -48,12 +48,12 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  {{#if appearance.runTotal}}
+                  {{#if appearance.stats}}
                     <td>{{appearance.runTotSum}}</td>
                   {{else}}
                     <td>N/A</td>
                   {{/if}}
-                  {{#if appearance.runTotal}}
+                  {{#if appearance.stats}}
                     <td>{{single-fixed appearance.runTotAvg}}</td>
                       {{else}}
                     <td>N/A</td>
@@ -91,7 +91,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.runTotal}}
+                  {{#if appearance.stats}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -101,8 +101,8 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
-                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
                   <td>
                     {{appearance.status}}
                   </td>
@@ -139,7 +139,7 @@
                 {{#if appearance.group.isLoading}}
                   <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
                 {{else}}
-                  {{#if appearance.runTotal}}
+                  {{#if appearance.stats}}
                     <td>{{inc index}}</td>
                   {{else}}
                     <td></td>
@@ -149,8 +149,8 @@
                   {{else}}
                     <td>{{appearance.group.name}}</td>
                   {{/if}}
-                  <td>{{#if appearance.runTotal}}{{appearance.runTotal.sum}}{{else}}N/A{{/if}}</td>
-                  <td>{{#if appearance.runTotal}}{{single-fixed appearance.runTotal.avg}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
+                  <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
                   <td>
                     {{appearance.status}}
                   </td>

@@ -92,25 +92,22 @@ export default Model.extend({
     0
   ),
   runTotSum: alias(
-    'runTotal.sum',
+    'stats.tot_points',
   ),
   runSngSum: alias(
-    'runTotal.sng',
+    'stats.sng_points',
   ),
   runPerSum: alias(
-    'runTotal.per',
+    'stats.per_points',
   ),
   runTotAvg: alias(
-    'runTotal.avg',
+    'stats.tot_score',
   ),
   roundNum: alias(
     'round.num'
   ),
   conventionName: alias(
     'round.session.convention.nomen',
-  ),
-  entryPrelim: alias(
-    'entry.prelim',
   ),
   sessionKind: alias(
     'round.session.kind',

@@ -12,10 +12,9 @@ export default Component.extend({
     'model.permissions.write',
   ),
   rankSortProperties: [
-    'runTotAvg:desc',
+    'runTotSum:desc',
     'runSngSum:desc',
     'runPerSum:desc',
-    'entryPrelim:desc',
     'groupName',
     'status:asc',
   ],

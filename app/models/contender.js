@@ -32,12 +32,12 @@ export default Model.extend({
   awardSort: alias('outcome.award.treeSort'),
 
   runSum: alias(
-    'appearance.runTotal.sum',
+    'appearance.stats.sum',
   ),
   runSng: alias(
-    'appearance.runTotal.sng',
+    'appearance.stats.sng',
   ),
   runPer: alias(
-    'appearance.runTotal.per',
+    'appearance.stats.per',
   ),
 });
