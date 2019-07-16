@@ -1,15 +1,4 @@
-import {
-  and,
-  alias,
-  gt,
-  lt,
-  mapBy,
-  sort,
-  not,
-  equal,
-  notEmpty,
-  sum
-} from '@ember/object/computed';
+import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -19,28 +8,42 @@ export default Model.extend({
   status: DS.attr('appearance-status'),
   num: DS.attr('number'),
   draw: DS.attr('number'),
+  isPrivate: DS.attr('boolean'),
+  isSingle: DS.attr('boolean'),
+  participants: DS.attr('string'),
+  representing: DS.attr('string'),
   onstage: DS.attr('date'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),
-  stats: DS.attr(),
-  runTotal: DS.attr(),
-  contesting: DS.attr({ defaultValue: function() { return []; } }),
-  isPrivate: DS.attr('boolean'),
-  isSingle: DS.attr('boolean'),
   pos: DS.attr('number'),
-  participants: DS.attr('string'),
+  stats: DS.attr(),
+  base: DS.attr('number'),
+  varianceReport: DS.attr('string'),
+  csaReport: DS.attr('string'),
+
+  owners: DS.hasMany('user', {async: true}),
   round: DS.belongsTo('round', {async: true}),
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      return this.store.findRecord('group', this.groupId);
+    }
+  ),
   songs: DS.hasMany('song', {async: true}),
   contenders: DS.hasMany('contender', {async: true}),
+
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
+  complete: memberAction({path: 'complete', type: 'post'}),
+  advance: memberAction({path: 'advance', type: 'post'}),
   scratch: memberAction({path: 'scratch', type: 'post'}),
+  disqualify: memberAction({path: 'disqualify', type: 'post'}),
 
   mock: memberAction({path: 'mock', type: 'get'}),
-
   variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),
   csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
@@ -148,11 +151,4 @@ export default Model.extend({
     'officialSongScores',
   ),
   // entry: DS.belongsTo('entry', {async: true}),
-  groupId: DS.attr('string'),
-  group: computed(
-    'groupId',
-    function() {
-      return this.store.findRecord('group', this.groupId);
-    }
-  ),
 });

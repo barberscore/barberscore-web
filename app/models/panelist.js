@@ -9,9 +9,11 @@ export default Model.extend({
   num: DS.attr('number'),
   kind: DS.attr('panelist-kind'),
   category: DS.attr('panelist-category'),
+  representing: DS.attr('string'),
+  psaReport: DS.attr('string'),
+
   round: DS.belongsTo('round', {async: true}),
-  scores: DS.hasMany('score', {async: true}),
-  permissions: DS.attr(),
+  user: DS.belongsTo('user', {async: true}),
   personId: DS.attr('string'),
   person: computed(
     'personId',
@@ -23,6 +25,8 @@ export default Model.extend({
       }
     }
   ),
+  scores: DS.hasMany('score', {async: true}),
+  permissions: DS.attr(),
 
   psa: memberAction({ path: 'psa', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
