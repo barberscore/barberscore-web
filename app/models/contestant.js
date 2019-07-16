@@ -5,9 +5,10 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('contestant-status'),
-  stats: DS.attr(),
+
   entry: DS.belongsTo('entry', {async: true}),
   contest: DS.belongsTo('contest', {async: true}),
+
   permissions: DS.attr(),
 
   include: memberAction({path: 'include', type: 'post'}),

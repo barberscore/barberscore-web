@@ -12,24 +12,15 @@ export default Model.extend({
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
+  base: DS.attr('number'),
   participants: DS.attr('string', {defaultValue: ''}),
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
-  stats: DS.attr(),
-  session: DS.belongsTo('session', {async: true}),
-  appearance: DS.belongsTo('appearance', {async: true}),
+  notes: DS.attr('string'),
+
   owners: DS.hasMany('user', {async: true}),
-  contestants: DS.hasMany('contestant', {async: true}),
-  permissions: DS.attr(),
-  statelogs: DS.hasMany('statelog', {async: true}),
-
-  build: memberAction({path: 'build', type: 'post'}),
-  invite: memberAction({path: 'invite', type: 'post'}),
-  withdraw: memberAction({path: 'withdraw', type: 'post'}),
-  submit: memberAction({path: 'submit', type: 'post'}),
-  approve: memberAction({path: 'approve', type: 'post'}),
-
+  session: DS.belongsTo('session', {async: true}),
   groupId: DS.attr('string'),
   group: computed(
     'groupId',
@@ -37,6 +28,15 @@ export default Model.extend({
       return this.store.findRecord('group', this.groupId);
     }
   ),
+  contestants: DS.hasMany('contestant', {async: true}),
+  permissions: DS.attr(),
+
+  build: memberAction({path: 'build', type: 'post'}),
+  invite: memberAction({path: 'invite', type: 'post'}),
+  withdraw: memberAction({path: 'withdraw', type: 'post'}),
+  submit: memberAction({path: 'submit', type: 'post'}),
+  approve: memberAction({path: 'approve', type: 'post'}),
+
 
   isDisabled: not(
     'permissions.write'
@@ -57,12 +57,11 @@ export default Model.extend({
 
   statusOptions: [
     'New',
+    'Built',
     'Invited',
     'Withdrawn',
     'Submitted',
     'Approved',
-    'Scratched',
-    'Disqualified',
   ],
   statusSort: computed(
     'status',
