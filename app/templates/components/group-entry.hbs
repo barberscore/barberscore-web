@@ -68,7 +68,7 @@ This is easy... does your group want to participate in an onsite evaluation by o
       <hr>
       <section>
           <p>
-            Song Repertory: {{model.repertoryCount}} &nbsp;&nbsp;
+            Song Repertory: {{model.group.repertoriesCount}} &nbsp;&nbsp;
           {{#bs-button type='outline-dark' size='sm' onClick=(toggle 'repertoryCollapsed' this)}}
             {{if repertoryCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
