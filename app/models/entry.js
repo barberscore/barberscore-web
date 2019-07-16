@@ -32,6 +32,7 @@ export default Model.extend({
       }
     }
   ),
+  statelogs: DS.hasMany('statelog', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
