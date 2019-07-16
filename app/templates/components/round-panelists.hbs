@@ -21,7 +21,7 @@
             {{#if panelist.person.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.fullName}}{{/link-to}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.commonName}}{{/link-to}}</td>
               <td>{{panelist.category}}</td>
               <td>{{panelist.kind}}</td>
             {{/if}}
