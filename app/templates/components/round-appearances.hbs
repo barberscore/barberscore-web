@@ -62,7 +62,8 @@
   <div>
     {{#if (eq model.status 'Built')}}
       <p>
-        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+        {{!-- {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
+        {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
       </p>
     {{/if}}
   </div>

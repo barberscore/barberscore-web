@@ -28,10 +28,10 @@ export default Component.extend({
   createPanelistModalError: false,
   savePanelist: task(function* (obj, category, kind, num){
     try {
-      let person = yield this.store.findRecord('person', obj.objectID)
+      // let person = yield this.store.findRecord('person', obj.objectID)
       yield this.store.createRecord('panelist', {
         num: num,
-        person: person,
+        personId: obj.objectID,
         round: this.model,
         category: category,
         kind: kind,

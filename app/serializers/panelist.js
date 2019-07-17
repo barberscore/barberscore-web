@@ -5,5 +5,11 @@ export default DS.JSONAPISerializer.extend({
     scores: {
       serialize: true
     },
+    psaReport: {
+      serialize: false
+    },
+    representing: {
+      serialize: false
+    },
   }
 });
