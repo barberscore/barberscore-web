@@ -9,8 +9,22 @@ export default Model.extend({
   num: DS.attr('number'),
   kind: DS.attr('panelist-kind'),
   category: DS.attr('panelist-category'),
+  representing: DS.attr('string'),
+  psaReport: DS.attr('string'),
+
   round: DS.belongsTo('round', {async: true}),
-  person: DS.belongsTo('person', {async: true}),
+  user: DS.belongsTo('user', {async: true}),
+  personId: DS.attr('string'),
+  person: computed(
+    'personId',
+    function() {
+      if (this.personId) {
+        return this.store.findRecord('person', this.personId);
+      } else {
+        return null;
+      }
+    }
+  ),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
 

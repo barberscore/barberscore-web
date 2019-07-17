@@ -1,4 +1,4 @@
-import { sort, filterBy, mapBy, alias, not } from '@ember/object/computed';
+import { sort, filterBy } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
@@ -12,25 +12,17 @@ export default Component.extend({
   customCollapsed: true,
   customCollapsed2: true,
   customCollapsed3: true,
-  officerPersons: mapBy(
-    'model.officers',
-    'person.id',
-  ),
-  currentPerson: alias(
-    'currentUser.user.person',
-  ),
-  isOfficer: computed(
-    'officerPersons',
-    'currentPerson',
+  groupEntries: computed(
+    'model',
     function() {
-      return this.officerPersons.includes(this.get('currentPerson.id'));
-    }
-  ),
-  isCreate: not(
-    'isOfficer',
-  ),
+      return this.store.query('entry', {
+        'session__status__lt': 30, // TODO HARDCODED, all except finished
+        'group_id': this.model.id,
+        'page_size': 100
+    });
+  }),
   filteredEntries: filterBy(
-    'model.entries',
+    'groupEntries',
     'conventionStatus',
     'Active',
   ),
@@ -67,10 +59,14 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (session){
     try {
-      let entry = yield this.model.get('entries').createRecord({
+      let owners = yield this.model.get('owners');
+      let entry = yield this.store.createRecord('entry', {
         session: session,
+        groupId: this.model.id,
         description: '',
+        notes: '',
         contestants: [],
+        owners: owners,
         isEvaluation: true,
         isPrivate: false,
       }).save();

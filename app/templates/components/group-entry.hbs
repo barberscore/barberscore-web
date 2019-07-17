@@ -50,7 +50,7 @@ This is easy... does your group want to participate in an onsite evaluation by o
           {{entry-contestants model=model}}
         </p>
       </section>
-      <hr>
+      {{!-- <hr>
       <section>
         <p>
           Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
@@ -64,11 +64,11 @@ This is easy... does your group want to participate in an onsite evaluation by o
             <strong>Note:</strong>  If you need to make changes to your membership please contact {{customer-support}}.
           </p>
         {{/bs-collapse}}
-      </section>
+      </section> --}}
       <hr>
       <section>
           <p>
-            Song Repertory: {{model.repertoryCount}} &nbsp;&nbsp;
+            Song Repertory: {{model.group.repertoriesCount}} &nbsp;&nbsp;
           {{#bs-button type='outline-dark' size='sm' onClick=(toggle 'repertoryCollapsed' this)}}
             {{if repertoryCollapsed 'Show' 'Hide'}}
           {{/bs-button}}
@@ -93,7 +93,9 @@ This is easy... does your group want to participate in an onsite evaluation by o
 
     <div class='card-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.status 'Built')}}
+        {{#if (eq model.status 'New')}}
+          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.groups.group.entries'}}</li>
+        {{else if (eq model.status 'Built')}}
           <li class='list-inline-item'>{{entry-submit model=model callback='dashboard.groups.group.entries'}}</li>
           <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.groups.group.entries'}}</li>
         {{else if (eq model.status 'Invited')}}

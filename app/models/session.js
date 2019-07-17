@@ -7,26 +7,31 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
+  numRounds: DS.attr('number'),
   isInvitational: DS.attr('boolean'),
-  footnotes: DS.attr('string'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
+  footnotes: DS.attr('string'),
   legacyReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
-  numRounds: DS.attr('number'),
+
+  owners: DS.hasMany('user', {async: true}),
   convention: DS.belongsTo('convention', {async: true}),
+  target: DS.belongsTo('session', {async: true}),
+
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
-  rounds: DS.hasMany('round', {async: true}),
-  permissions: DS.attr(),
 
+  permissions: DS.attr(),
+  rounds: DS.hasMany('round', {async: true}),
+
+  reset: memberAction({path: 'reset', type: 'post'}),
   build: memberAction({path: 'build', type: 'post'}),
   open: memberAction({path: 'open', type: 'post'}),
   close: memberAction({path: 'close', type: 'post'}),
   verify: memberAction({path: 'verify', type: 'post'}),
   package: memberAction({path: 'package', type: 'post'}),
   finish: memberAction({path: 'finish', type: 'post'}),
-  refresh: memberAction({path: 'refresh', type: 'get'}),
 
   legacy: memberAction({ path: 'legacy', type: 'get', ajaxOptions: { arraybuffer: true } }),
   drcj: memberAction({ path: 'drcj', type: 'get', ajaxOptions: { arraybuffer: true } }),
@@ -47,6 +52,7 @@ export default Model.extend({
 
   statusOptions: [
     'New',
+    'Built',
     'Opened',
     'Closed',
     'Verified',
@@ -56,6 +62,11 @@ export default Model.extend({
   kindOptions: [
     'Quartet',
     'Chorus',
+    'Mixed',
+    'Senior',
+    'Youth',
+    'Unknown',
+    'VLQ',
   ],
 
   numOptions: [

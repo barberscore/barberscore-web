@@ -6,6 +6,7 @@ import DS from 'ember-data';
 export default Model.extend({
   status: DS.attr('score-status'),
   points: DS.attr('number'),
+
   song: DS.belongsTo('song', {async: true}),
   panelist: DS.belongsTo('panelist', {async: true}),
   permissions: DS.attr(),

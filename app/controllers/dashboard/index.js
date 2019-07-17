@@ -1,11 +1,22 @@
 import Controller from '@ember/controller';
-import { empty } from '@ember/object/computed';
+import { empty, intersect } from '@ember/object/computed';
 
 export default Controller.extend({
-  membersDisabled: empty(
-    'model.members',
+  collapsedNote: true,
+  groupRoles: ['Manager',],
+  groupIntersect: intersect(
+    'model.roles',
+    'groupRoles',
+  ),
+  judgeRoles: ['SCJC', 'DRCJ', 'CA',],
+  judgeIntersect: intersect(
+    'model.roles',
+    'judgeRoles'
+  ),
+  groupsDisabled: empty(
+    'groupIntersect',
   ),
   assignmentsDisabled: empty(
-    'model.assignments',
+    'judgeIntersect',
   ),
 });

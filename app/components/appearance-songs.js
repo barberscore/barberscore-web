@@ -11,7 +11,7 @@ export default Component.extend({
     'sortedSongsProperties'
   ),
   autosave: task(function* (song, chart){
-    song.set('chart', chart);
+    song.set('chartId', chart.get('id'));
     try {
       yield song.save();
       this.flashMessages.success("Saved");

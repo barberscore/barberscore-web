@@ -15,7 +15,7 @@
     formLayout='vertical'
     as |form|
   }}
-    {{#if (eq model.kind 'Quartet') }}
+    {{!-- {{#if (eq model.kind 'Quartet') }}
       {{form.element controlType='text' disabled=model.isDisabled label='Active Members (TLBB)' placeholder='List your members in TLBB order as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
     {{else}}
       {{form.element controlType='text' disabled=model.isDisabled label='Director(s)' placeholder='Please list your Director(s) as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
@@ -24,7 +24,7 @@
     {{form.element controlType='text' disabled=true  placeholder='N/A' property='district'}}
     {{#unless (eq model.kind 'Quartet') }}
       {{form.element controlType='text' disabled=true placeholder='N/A' property='chapter'}}
-    {{/unless}}
+    {{/unless}} --}}
     {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
     {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
     {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
@@ -32,8 +32,8 @@
     {{!-- {{form.element controlType='text' disabled=true placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}} --}}
   {{/bs-form}}
 </section>
-<section>
+{{!-- <section>
   <p>
     <strong>Note:</strong>  You may only edit your picture, description and Current Members/Director(s).  To make changes to other fields please do so in {{member-center}}; they will be updated here generally within 24 hours.  If you are a non-BHS group and don't have access to the Member Center you may send your details to <a href='mailto:images@barberscore.com'>images@barberscore.com</a> and we'll update them for you.
   </p>
-</section>
+</section> --}}

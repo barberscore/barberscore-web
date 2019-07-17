@@ -5,5 +5,8 @@ export default DS.JSONAPISerializer.extend({
     contestants: {
       serialize: true
     },
+    owners: {
+      serialize: true
+    },
   }
 });

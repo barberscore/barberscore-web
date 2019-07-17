@@ -6,7 +6,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service('current-user'),
   model() {
     return this.store.query('assignment', {
-      'person__user': this.get('currentUser.user.id'),
+      'user': this.get('currentUser.user.id'),
       'status': 10,
       'convention__status': 10,
     });

@@ -3,6 +3,7 @@ import DS from 'ember-data';
 export default DS.Transform.extend({
   deserialize: function(serialized) {
     var map = {
+      '-20': 'Protected',
       '-10': 'Inactive',
       '0': 'New',
       '10': 'Active',
@@ -12,6 +13,7 @@ export default DS.Transform.extend({
 
   serialize: function(deserialized) {
     var map = {
+      'Protected': '-20',
       'New': '0',
       'Active': '10',
       'Inactive': '-10',

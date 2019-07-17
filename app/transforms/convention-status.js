@@ -5,6 +5,7 @@ export default DS.Transform.extend({
     var map = {
       '-10': 'Inactive',
       '0': 'New',
+      '5': 'Built',
       '10': 'Active',
     };
     return map[serialized];
@@ -14,6 +15,7 @@ export default DS.Transform.extend({
     var map = {
       'Inactive': '-10',
       'New': '0',
+      'Built': '5',
       'Active': '10',
     };
     return map[deserialized];

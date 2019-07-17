@@ -9,8 +9,21 @@ export default Model.extend({
   kind: DS.attr('assignment-kind'),
   category: DS.attr('assignment-category'),
   convention: DS.belongsTo('convention', {async: true}),
-  person: DS.belongsTo('person', {async: true}),
+
+  user: DS.belongsTo('user', {async: true}),
   permissions: DS.attr(),
+
+  personId: DS.attr('string'),
+  person: computed(
+    'personId',
+    function() {
+      if (this.personId) {
+        return this.store.findRecord('person', this.personId);
+      } else {
+        return null;
+      }
+    }
+  ),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

@@ -20,10 +20,10 @@
 
 
 <section>
-  <p>Welcome {{model.commonName}}</p>
+  <p>Welcome {{model.name}}</p>
   <div class='row'>
     <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.members' tagName='button' disabled=membersDisabled class='btn btn-light launcher'}}
+      {{#link-to 'dashboard.groups' tagName='button' disabled=groupsDisabled class='btn btn-light launcher'}}
         {{fa-icon 'users' size='5'}}<br>
         Memberships
       {{/link-to}}
@@ -35,6 +35,18 @@
       {{/link-to}}
     </p>
   </div>
+  <section>
+    <p>
+      {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
+        A button is grayed out and not clickable; why?
+      {{/bs-button}}
+    </p>
+    {{#bs-collapse collapsed=collapsedNote}}
+      <p>
+        The "Memberships" button is for certain group Officers, and the "Assignments" button is for Certified Judges.  If you believe something is in error and you should have access, please contact {{customer-support}}.
+      </p>
+    {{/bs-collapse}}
+  </section>
   {{!-- <div>
     <p>
       <strong>Note:</strong> If you are unable to click on Group Manager, please review your memberships in the <a href='https://members.barbershop.org'>BHS Member Center</a> and ensure you are an active member of your Quartet, or a Chapter Leader of your chorus.

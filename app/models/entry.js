@@ -12,23 +12,36 @@ export default Model.extend({
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
+  base: DS.attr('number'),
   participants: DS.attr('string', {defaultValue: ''}),
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
-  stats: DS.attr(),
+  notes: DS.attr('string'),
+
+  owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
-  group: DS.belongsTo('group', {async: true}),
-  appearance: DS.belongsTo('appearance', {async: true}),
+  groupId: DS.attr('string'),
+  group: computed(
+    'groupId',
+    function() {
+      if (this.groupId) {
+        return this.store.findRecord('group', this.groupId);
+      } else {
+        return null;
+      }
+    }
+  ),
+  statelogs: DS.hasMany('statelog', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
-  statelogs: DS.hasMany('statelog', {async: true}),
 
   build: memberAction({path: 'build', type: 'post'}),
   invite: memberAction({path: 'invite', type: 'post'}),
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
+
 
   isDisabled: not(
     'permissions.write'
@@ -49,12 +62,11 @@ export default Model.extend({
 
   statusOptions: [
     'New',
+    'Built',
     'Invited',
     'Withdrawn',
     'Submitted',
     'Approved',
-    'Scratched',
-    'Disqualified',
   ],
   statusSort: computed(
     'status',
@@ -63,20 +75,8 @@ export default Model.extend({
       return this.statusOptions.indexOf(this.status);
     }
   ),
-  parentName: alias('group.parent.name'),
-  code: alias('group.parent.code'),
-  chapterCode: computed(
-    'parentName',
-    'code',
-    function() {
-      return `${this.parentName} (${this.code})`;
-    }
-  ),
-  allMembers: alias('group.members'),
+
   contestantCount: alias('contestants.length'),
-  activeMembersCount: alias('group.activeMembers.length'),
-  repertoryCount: alias('group.repertories.length'),
   conventionStatus: alias('session.convention.status'),
   conventionStart: alias('session.convention.startDate'),
-  groupName: alias('group.name')
 });

@@ -4,11 +4,9 @@ import { alias, not, equal } from '@ember/object/computed';
 
 export default Model.extend({
   status: DS.attr('contender-status'),
-  stats: DS.attr(),
   appearance: DS.belongsTo('appearance', {async: true}),
   outcome: DS.belongsTo('outcome', {async: true}),
   permissions: DS.attr(),
-
 
   isDisabled: not(
     'permissions.write'
@@ -34,12 +32,12 @@ export default Model.extend({
   awardSort: alias('outcome.award.treeSort'),
 
   runSum: alias(
-    'appearance.runTotal.sum',
+    'appearance.stats.sum',
   ),
   runSng: alias(
-    'appearance.runTotal.sng',
+    'appearance.stats.sng',
   ),
-  runPEr: alias(
-    'appearance.runTotal.per',
+  runPer: alias(
+    'appearance.stats.per',
   ),
 });

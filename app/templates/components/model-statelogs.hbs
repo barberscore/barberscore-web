@@ -19,7 +19,7 @@
             {{#if statelog.by.isLoading}}
               <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{statelog.by.person.commonName}}</td>
+              <td>{{statelog.by.name}}</td>
             {{/if}}
             <td>
               {{moment-format statelog.timestamp 'LLLL'}}

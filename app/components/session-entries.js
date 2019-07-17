@@ -1,4 +1,4 @@
-import { not, sort } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
@@ -28,9 +28,12 @@ export default Component.extend({
   saveEntry: task(function* (obj){
     try {
       let group = yield this.store.findRecord('group', obj.objectID)
+      let owners = yield group.get('owners');
       let entry = yield this.model.get('entries').createRecord({
-        group: group,
+        groupId: obj.objectID,
+        owners: owners,
         description: '',
+        notes: '',
         contestants: [],
         isEvaluation: true,
         isPrivate: false,

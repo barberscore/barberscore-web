@@ -1,17 +1,29 @@
 import { not, sum, mapBy, filterBy } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
 export default Model.extend({
-  // Fields
   status: DS.attr('song-status'),
-  legacyChart: DS.attr('string'),
-  denormChart: DS.attr(),
   num: DS.attr('number'),
+  asterisks: DS.attr(),
+  dixons: DS.attr(),
   penalties: DS.attr(),
   stats: DS.attr(),
+
   appearance: DS.belongsTo('appearance', {async: true}),
-  chart: DS.belongsTo('chart', {async: true}),
+  chartId: DS.attr('string'),
+  chart: computed(
+    'chartId',
+    function() {
+      if (this.chartId) {
+        return this.store.findRecord('chart', this.chartId);
+      } else {
+        return null;
+      }
+    }
+  ),
+
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
 
@@ -45,11 +57,6 @@ export default Model.extend({
 
   statusOptions: [
     'New',
-    'Validated',
-    'Finished',
-    'Confirmed',
-    'Final',
-    'Announced',
   ],
 
   penaltyOptions: [
