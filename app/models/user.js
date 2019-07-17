@@ -8,6 +8,7 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   isActive: DS.attr('boolean'),
   isStaff: DS.attr('boolean'),
+  roles: DS.attr(),
   permissions: DS.attr(),
 
   isDisabled: not(

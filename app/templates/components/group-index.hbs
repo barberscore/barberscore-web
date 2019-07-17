@@ -5,9 +5,9 @@
     </h3>
   </div>
   <div class='card-body'>
-    <div class='table-responsive'>
+    <p class='card-text'>These are the active groups of which you are currently considered an officer.</p>
+    <div class='table-responsive table-sm'>
       <table class='table table-hover table-sm'>
-        <caption>You are an officer of the following groups:</caption>
         <thead class='thead-light'>
           <tr>
             <th>Image</th>
@@ -31,7 +31,7 @@
           {{else}}
             <tr>
               <td></td>
-              <td>(You are not listed as an officer for any active groups.)</td>
+              <td>(You are not listed as an officer for any active group.)</td>
             </tr>
           {{/each}}
         </tbody>
@@ -39,28 +39,37 @@
     </div>
   </div>
   <div class='card-footer'>
-  <section>
-    <p>
-      {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
+    {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
+      <p>
         Your group not listed? Click here.
-      {{/bs-button}}
-    </p>
+      </p>
+    {{/bs-button}}
     {{#bs-collapse collapsed=collapsedNote}}
       <p>
-        If your group is not listed, please review your memberships in the {{member-center}} and ensure you are the admin contact for your quartet or a designated Chapter Leader of your chorus (limited to: President, Secretary, Director, Assistant or Associate Director, and Chorus Manager).
+        This is the list of currently active groups for which you are considered an officer.
       </p>
       <p>
-        Also note that <em>newly registered quartets</em> will not show in Barberscore until BHS headquarters has:
+        If you believe this list is in error please contact {{customer-support}}.
+      </p>
+    {{/bs-collapse}}
+    {{!-- {{#bs-collapse collapsed=collapsedNote}}
+      <p>
+        This is the list of currently active groups for which you are considered an officer. Please access the BHS {{member-center}} and check your group subscription and membership status.
+      </p>
+      <p>
+        If the Member Center shows that you are a current member and your district-affiliated group is not listed please submit an inquiry to report the situation to {{customer-support}}.  (Only groups with a district-affiliation appear in Barberscore.)
+      </p>
+      <p><strong>NOTE:</strong> Please be patient as <em>newly registered quartets</em> will not be displayed in Barberscore until BHS headquarters has:
       </p>
       <ul class='list-styled'>
         <li>Approved the quartet name</li>
         <li>Processed the subscription fee</li>
-        <li>Updated the Member Center record</li>
+        <li>Finalized the Member Center record</li>
+        <li>Assigned a district</li>
       </ul>
       <p>
-        <em>This process can take up to 5 business days, or longer during peak season.</em>  Once made active in the {{member-center}}, the group will appear in Barberscore the next day.
+        <em>That process can take up to 5 business days.</em>
       </p>
-    {{/bs-collapse}}
-    </section>
+    {{/bs-collapse}} --}}
   </div>
 </div>
