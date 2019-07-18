@@ -22,6 +22,12 @@
     }
   },
   "env": {
+    "ALGOLIASEARCH_API_KEY_SEARCH": {
+      "required": true
+    },
+    "ALGOLIASEARCH_APPLICATION_ID": {
+      "required": true
+    },
     "API_HOST": {
       "description": "The host of the Barberscore API.",
       "required": true
@@ -50,6 +56,12 @@
       "description": "Required by Heroku.  Do not edit.",
       "value": "false",
       "required": true
+    },
+    "HEROKU_APP_NAME": {
+        "required": true
+    },
+    "HEROKU_PARENT_APP_NAME": {
+        "required": true
     }
   },
   "environments": {
