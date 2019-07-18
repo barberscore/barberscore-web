@@ -23,18 +23,24 @@
   },
   "env": {
     "API_HOST": {
-      "description": "The host of the Barberscore API.",
-      "required": true
+      "description": "The host of the Barberscore API."
     },
     "API_PROXY_HOST": {
-      "description": "The API Proxy URL.",
-      "required": true
+      "description": "The API Proxy URL."
     },
     "AUTH0_CLIENT_ID": {
       "description": "The Auth0 Client id.",
       "required": true
     },
     "AUTH0_DOMAIN": {
+      "description": "The Auth0 Client endpoint.",
+      "required": true
+    },
+    "SENTRY_API_KEY": {
+      "description": "The Auth0 Client id.",
+      "required": true
+    },
+    "SENTRY_DSN": {
       "description": "The Auth0 Client endpoint.",
       "required": true
     },
