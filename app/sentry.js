@@ -8,7 +8,6 @@ Sentry.init({
   environment: config.environment,
   sendDefaultPii: true,
   integrations: [new Integrations.Ember()],
-  release: config.APP.HEROKU_RELEASE_VERSION,
   beforeSend: (event, hint) => {
    if (config.environment !== 'production' || hint.originalException.name === 'TransitionAborted') {
     // eslint-disable-next-line
