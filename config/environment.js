@@ -106,12 +106,10 @@ module.exports = function(environment) {
       }
     };
   }
-  let herokuHost = process.env.HEROKU_APP_NAME;
-  let apiHost = herokuHost || 'https://www.barberscore.com';
   if (environment === 'production') {
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
-    ENV.APP.API_HOST = apiHost;
+    ENV.APP.API_HOST = process.env.API_HOST;
     ENV.APP.API_PROXY_HOST = process.env.API_PROXY_HOST;
     ENV['ember-algolia'] = {
       algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
