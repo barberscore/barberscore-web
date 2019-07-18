@@ -112,7 +112,6 @@ module.exports = function(environment) {
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
     ENV.APP.API_HOST = process.env.API_HOST;
-    ENV.APP.API_PROXY_HOST = process.env.API_PROXY_HOST;
     ENV['ember-algolia'] = {
       algoliaId: process.env.ALGOLIASEARCH_APPLICATION_ID,
       algoliaKey: process.env.ALGOLIASEARCH_API_KEY_SEARCH,

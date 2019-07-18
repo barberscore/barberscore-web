@@ -30,7 +30,6 @@ Set the following Environment Variables:
 
 ```
 API_HOST=http://localhost:4200
-API_PROXY_HOST=http://localhost:8000
 
 AUTH0_DOMAIN=barberscore-dev.auth0.com
 AUTH0_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
