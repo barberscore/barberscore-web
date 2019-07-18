@@ -58,6 +58,7 @@ module.exports = function(environment) {
       // when it is created
     },
   };
+
   if (environment === 'development') {
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.LOG_RESOLVER = false;
@@ -106,6 +107,7 @@ module.exports = function(environment) {
       }
     };
   }
+
   if (environment === 'production') {
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
