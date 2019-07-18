@@ -1,3 +1,4 @@
+1
 # Barberscore Web
 
 This is the front-end web application that powers the new contest entry and scoring system for the [Barbershop Harmony Society](http://www.barbershop.org).  The application can be found at https://www.barberscore.com.
