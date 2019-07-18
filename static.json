@@ -19,28 +19,5 @@
     "/assets/**": { "Cache-Control": "public, max-age=512000" },
     "/robots.txt": { "Cache-Control": "public, max-age=512000" },
     "/crossdomain.xml": { "Cache-Control": "public, max-age=512000" }
-  },
-  "proxies": {
-    "/jwt/": {
-      "origin": "${API_PROXY_HOST}/jwt/"
-    },
-    "/log/": {
-      "origin": "${API_PROXY_HOST}/log/"
-    },
-    "/bhs/": {
-      "origin": "${API_PROXY_HOST}/bhs/"
-    },
-    "/cmanager/": {
-      "origin": "${API_PROXY_HOST}/cmanager/"
-    },
-    "/smanager/": {
-      "origin": "${API_PROXY_HOST}/smanager/"
-    },
-    "/rmanager/": {
-      "origin": "${API_PROXY_HOST}/rmanager/"
-    },
-    "/stage/": {
-      "origin": "${API_PROXY_HOST}/stage/"
-    }
   }
 }
