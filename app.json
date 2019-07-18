@@ -22,11 +22,19 @@
     }
   },
   "env": {
+    "ALGOLIASEARCH_API_KEY_SEARCH": {
+      "required": true
+    },
+    "ALGOLIASEARCH_APPLICATION_ID": {
+      "required": true
+    },
     "API_HOST": {
-      "description": "The host of the Barberscore API."
+      "description": "The host of the Barberscore API.",
+      "required": true
     },
     "API_PROXY_HOST": {
-      "description": "The API Proxy URL."
+      "description": "The API Proxy URL.",
+      "required": true
     },
     "AUTH0_CLIENT_ID": {
       "description": "The Auth0 Client id.",
