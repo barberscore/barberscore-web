@@ -1,7 +1,7 @@
 {
   "name": "Barberscore Web",
-  "description": "Scoring and Contest Web UI for the Barbershop Harmony Society",
-  "logo": "https://barberscore-api.herokuapp.com/static/api/bhs_logo.png",
+  "description": "ontest Registration and Scoring Web UI for the Barbershop Harmony Society",
+  "logo": "https://res.cloudinary.com/barberscore/image/upload/v1554830585/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-web",
   "stack": "heroku-18",
   "buildpacks": [
