@@ -49,8 +49,10 @@
           <li class='list-inline-item'>{{round-mock model=model}}</li>
         {{else if (eq model.status 'Completed')}}
           <li class='list-inline-item'>{{round-verify model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Verified')}}
           <li class='list-inline-item'>{{round-publish model=model}}</li>
+          <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{/if}}
       </ul>
     </div>
