@@ -12,8 +12,8 @@ module.exports = function(defaults) {
     'ember-power-select': {
       theme: 'bootstrap'
     },
-    babel: {
-      sourceMaps: 'inline'
+    sourcemaps: {
+      enabled: true,
     }
   });
 
