@@ -1,6 +1,6 @@
 
 <section>
-  {{cloudinary-image model.group.imageId (hash height=200) class='img-fluid img-rounded'}}
+  {{cloudinary-image model.group.imageId (hash height=200) class='img-fluid img-rounded'}}<br>
   {{#if (eq model.group.kind 'Quartet')}}
     Participants: {{model.participants}}
   {{else}}
@@ -41,7 +41,7 @@
   </div>
   {{#if model.actualStart}}
     <div class='form-group'>
-      &nbsp;&nbsp;&nbsp;Delta:  {{moment-diff model.onstage model.actualStart precision='minutes'}} Minutes
+      &nbsp;&nbsp;&nbsp;{{!-- Delta:  {{moment-diff model.onstage model.actualStart precision='minutes'}} Minutes --}}
     </div>
   {{/if}}
 </div>

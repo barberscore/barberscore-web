@@ -5,6 +5,7 @@ import { task } from 'ember-concurrency';
 export default Component.extend({
   currentUser: service(),
   store: service(),
+  router: service(),
   flashMessages: service(),
   resetRoundModal: false,
   resetRoundModalError: false,
@@ -17,6 +18,7 @@ export default Component.extend({
       this.set('resetRoundModal', false);
       this.set('resetRoundModalError', false);
       this.flashMessages.success("Reset!");
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.details');
     } catch(e) {
       this.set('resetRoundModalError', true);
     }
