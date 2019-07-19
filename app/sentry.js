@@ -5,7 +5,7 @@ import config from './config/environment';
 
 Sentry.init({
   dsn: config.APP.SENTRY_DSN,
-  environment: config.environment,
+  environment: config.APP.HEROKU_APP_NAME,
   sendDefaultPii: true,
   integrations: [new Integrations.Ember()],
   beforeSend: (event, hint) => {
