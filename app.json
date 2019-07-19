@@ -37,15 +37,11 @@
       "required": true
     },
     "AUTH0_DOMAIN": {
-      "description": "The Auth0 Client endpoint.",
-      "required": true
-    },
-    "SENTRY_API_KEY": {
-      "description": "The Auth0 Client id.",
+      "description": "The Auth0 domain endpoint.",
       "required": true
     },
     "SENTRY_DSN": {
-      "description": "The Auth0 Client endpoint.",
+      "description": "The Sentry DSN endpoint.",
       "required": true
     },
     "NPM_CONFIG_PRODUCTION": {
