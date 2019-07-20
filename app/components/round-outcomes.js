@@ -27,17 +27,17 @@ export default Component.extend({
   createOutcomeModalError: false,
   saveOutcome: task(function* (obj, num){
     try {
-      let award = yield this.store.findRecord('award', obj.objectID)
+      // let award = yield this.store.findRecord('award', obj.objectID)
       yield this.store.createRecord('outcome', {
         num: num,
-        award: award,
+        awardId: obj.objectID,
         round: this.model,
         contenders: [],
       }).save();
       this.set('createOutcomeModal', false);
       this.set('createOutcomeModalError', false);
       this.set('num', null);
-      this.set('award', null);
+      this.set('awardId', null);
       this.set('contenders', null);
       this.flashMessages.success("Created!");
     } catch(e) {

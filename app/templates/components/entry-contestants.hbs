@@ -25,9 +25,9 @@
             {{#if contestant.contest.award.isLoading}}
               <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{contestant.contest.award.name}}</td>
-              {{#if contestant.contest.award.description}}
-                <td>{{contestant.contest.award.description}}</td>
+              <td>{{contestant.contest.awardName}}</td>
+              {{#if contestant.contest.awardDescription}}
+                <td>{{contestant.contest.awardDescription}}</td>
               {{else}}
                 <td>(No description available)</td>
               {{/if}}

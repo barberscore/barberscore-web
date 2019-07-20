@@ -6,7 +6,7 @@ import AdapterArrayBufferMixin from 'ember-cli-file-saver/mixins/adapter-arraybu
 
 export default DS.JSONAPIAdapter.extend(AdapterArrayBufferMixin, DataAdapterMixin, {
   host: ENV.APP.API_HOST,
-  namespace: 'cmanager',
+  namespace: 'bhs',
   coalesceFindRequests: false,
   authorize(xhr) {
     let { idToken } = this.get('session.data.authenticated');

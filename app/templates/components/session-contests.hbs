@@ -30,9 +30,9 @@
               {{#if contest.award.isLoading}}
                 <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
               {{else}}
-                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.award.name}}{{/link-to}}</td>
+                <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.awardName}}{{/link-to}}</td>
               {{/if}}
-              <td>{{#if contest.award.description}}{{contest.award.description}}{{else}}(No description available){{/if}}</td>
+              <td>{{#if contest.awardDescription}}{{contest.awardDescription}}{{else}}(No description available){{/if}}</td>
               <td>{{contest.includedContestantsCount}}</td>
             {{/if}}
           </tr>

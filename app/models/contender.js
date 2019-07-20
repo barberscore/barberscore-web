@@ -25,11 +25,6 @@ export default Model.extend({
 
   group: alias('appearance.group'),
   groupName: alias('appearance.group.name'),
-  contestGroupKindSort: alias('outcome.award.group.kindSort'),
-  contestAwardQualifier: alias('outcome.award.isQualifier'),
-  contestAwardAgeSort: alias('outcome.award.ageSort'),
-  contestAwardName: alias('outcome.award.name'),
-  awardSort: alias('outcome.award.treeSort'),
 
   runSum: alias(
     'appearance.stats.sum',

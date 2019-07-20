@@ -22,7 +22,7 @@
                 {{#if outcome.award.isLoading}}
                   Loading&nbsp;{{fa-icon 'spinner' spin=true}}
                 {{else}}
-                  {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.award.name}}{{/link-to}}
+                  {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.awardName}}{{/link-to}}
                 {{/if}}
               </td>
               <td>
@@ -83,12 +83,12 @@
             noMatchesMessage="We Could Not Find an Award with that Name"
             as |award|
           }}
-            Award: {{award.name}}
+            Award: {{awardName}}
           {{/power-select}}
         </p>
         {{#if createOutcomeModalError}}
         <p class='text-danger'>
-          Could not create outcome.  Be sure the draw numbers are unqiue!  Otherwise, please contact support.
+          Could not create outcome.  Be sure the draw numbers are unique!  Otherwise, please contact support.
         </p>
         {{/if}}
       {{/modal.body}}

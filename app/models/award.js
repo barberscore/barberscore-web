@@ -42,11 +42,11 @@ export default Model.extend({
     }
   ),
 
-  parent: DS.belongsTo('award', {async: true}),
+  // parent: DS.belongsTo('award', {async: true}),
   permissions: DS.attr(),
 
-  contests: DS.hasMany('contest', {async: true}),
-  outcomes: DS.hasMany('outcome', {async: true}),
+  // contests: DS.hasMany('contest', {async: true}),
+  // outcomes: DS.hasMany('outcome', {async: true}),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

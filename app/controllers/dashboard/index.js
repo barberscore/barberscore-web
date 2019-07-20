@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { empty, intersect } from '@ember/object/computed';
+import { intersect } from '@ember/object/computed';
 
 export default Controller.extend({
   collapsedNote: true,
@@ -13,10 +13,12 @@ export default Controller.extend({
     'model.roles',
     'judgeRoles'
   ),
-  groupsDisabled: empty(
-    'groupIntersect',
-  ),
-  assignmentsDisabled: empty(
-    'judgeIntersect',
-  ),
+  groupsDisabled: false,
+  assignmentsDisabled: false,
+  // groupsDisabled: empty(
+  //   'groupIntersect',
+  // ),
+  // assignmentsDisabled: empty(
+  //   'judgeIntersect',
+  // ),
 });

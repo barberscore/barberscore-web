@@ -7,7 +7,24 @@ export default Model.extend({
   status: DS.attr('contest-status'),
 
   session: DS.belongsTo('session', {async: true}),
-  award: DS.belongsTo('award', {async: true}),
+
+  awardId: DS.belongsTo('award', {async: true}),
+  awardName: DS.attr('string'),
+  awardKind: DS.attr('award-kind'),
+  awardGender: DS.attr('award-gender'),
+  awardLevel: DS.attr('award-level'),
+  awardSeason: DS.attr('award-season'),
+  awardIsSingle: DS.attr('boolean'),
+  awardDescription: DS.attr('string'),
+  awardDistrict: DS.attr('string'),
+  awardDivision: DS.attr('award-division'),
+  awardAge: DS.attr('award-age'),
+  awardIsNovice: DS.attr('boolean'),
+  awardSize: DS.attr('award-size'),
+  awardSizeRange: DS.attr(),
+  awardScope: DS.attr('award-scope'),
+  awardScopeRange: DS.attr(),
+
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
@@ -90,6 +107,4 @@ export default Model.extend({
   awardQualifier: alias('award.isQualifier'),
   awardAgeSort: alias('award.ageSort'),
   awardTreeSort: alias('award.treeSort'),
-  awardName: alias('award.name'),
-  awardLevel: alias('award.level'),
 });
