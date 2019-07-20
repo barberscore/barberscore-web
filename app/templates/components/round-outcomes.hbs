@@ -19,14 +19,10 @@
                 {{outcome.num}}
               </td>
               <td>
-                {{#if outcome.award.isLoading}}
-                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
-                {{else}}
-                  {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.awardName}}{{/link-to}}
-                {{/if}}
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.awardName}}{{/link-to}}
               </td>
               <td>
-                {{#if (eq outcome.award.level 'Manual')}}
+                {{#if (eq outcome.awardLevel 'Manual')}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
               </td>
@@ -73,7 +69,7 @@
           }}
         </p>
         <p>
-          {{#power-select
+          {{!-- {{#power-select
             search=(perform searchAward)
             selected=award
             onchange=(action (mut award))
@@ -84,7 +80,7 @@
             as |award|
           }}
             Award: {{awardName}}
-          {{/power-select}}
+          {{/power-select}} --}}
         </p>
         {{#if createOutcomeModalError}}
         <p class='text-danger'>
@@ -94,13 +90,13 @@
       {{/modal.body}}
       {{#modal.footer}}
         {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform saveOutcome award num) disabled=isDisabled}}
+        {{!-- {{#bs-button type='success' onClick=(perform saveOutcome award num) disabled=isDisabled}}
           {{#if saveOutcome.isRunning}}
             Creating {{fa-icon "spinner" spin=true}}
           {{else}}
             Create Outcome
           {{/if}}
-        {{/bs-button}}
+        {{/bs-button}} --}}
       {{/modal.footer}}
     {{/bs-modal}}
   </div>
