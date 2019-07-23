@@ -3,29 +3,29 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{model.group.name}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
-          {{#if model.group.bhsId}}
-            [{{model.group.bhsId}}]&nbsp;
+        {{model.groupName}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
+          {{#if model.groupBhsId}}
+            [{{model.groupBhsId}}]&nbsp;
           {{/if}}
           {{#if model.prelim}}
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
-          {{#if model.group.isSenior}}
+          {{#if model.groupIsSenior}}
             <span class="badge badge-warning">Seniors</span>&nbsp;
           {{/if}}
-          {{#if model.group.isYouth}}
+          {{#if model.groupIsYouth}}
             <span class="badge badge-warning">Youth</span>&nbsp;
           {{/if}}
-          {{#if model.group.isMixed}}
+          {{#if model.groupIsMixed}}
             <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
           {{#if model.group.isFemale}}
             <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
-          {{#if model.group.division}}
-            <span class="badge badge-info">{{model.group.division}}</span>&nbsp;
+          {{#if model.groupDivision}}
+            <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
           {{/if}}
-          {{#if (eq model.group.status 'Active')}}
+          {{#if (eq model.groupStatus 'Active')}}
             <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
             <span class="badge badge-danger">Inactive</span>&nbsp;
@@ -36,7 +36,7 @@
       <section>
         <div class='row'>
           <div class='col-md-6'>
-            {{cloudinary-image model.group.imageId (hash width=640) class='img-fluid img-rounded'}}
+            {{cloudinary-image model.groupImageId (hash width=640) class='img-fluid img-rounded'}}
           </div>
           <div class='col-md-6'>
             <p>
@@ -101,7 +101,7 @@
           {{/bs-button}}
         </p>
         {{#bs-collapse collapsed=repertoriesCollapsed}}
-          {{group-repertories model=model.group}}
+          {{entry-charts model=model}}
         {{/bs-collapse}}
       </section>
       <hr>
@@ -133,29 +133,29 @@
     <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{model.group.name}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
-          {{#if model.group.bhsId}}
-            [{{model.group.bhsId}}]&nbsp;
+        {{model.groupName}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
+          {{#if model.groupBhsId}}
+            [{{model.groupBhsId}}]&nbsp;
           {{/if}}
           {{#if model.prelim}}
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
-          {{#if model.group.isSenior}}
+          {{#if model.groupIsSenior}}
             <span class="badge badge-warning">Seniors</span>&nbsp;
           {{/if}}
-          {{#if model.group.isYouth}}
+          {{#if model.groupIsYouth}}
             <span class="badge badge-warning">Youth</span>&nbsp;
           {{/if}}
-          {{#if model.group.isMixed}}
+          {{#if model.groupIsMixed}}
             <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
           {{#if model.group.isFemale}}
             <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
-          {{#if model.group.division}}
-            <span class="badge badge-info">{{model.group.division}}</span>&nbsp;
+          {{#if model.groupDivision}}
+            <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
           {{/if}}
-          {{#if (eq model.group.status 'Active')}}
+          {{#if (eq model.groupStatus 'Active')}}
             <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
             <span class="badge badge-danger">Inactive</span>&nbsp;

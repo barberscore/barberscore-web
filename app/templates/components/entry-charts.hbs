@@ -1,0 +1,28 @@
+<div class='table-responsive'>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
+      <tr>
+        <th>Title</th>
+        <th>Arranger(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedCharts as |chart|}}
+        <tr>
+          {{#if repertory.isLoading}}
+            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+              <td>{{chart.title}}</td>
+              <td>{{chart.arrangers}}</td>
+          {{/if}}
+        </tr>
+      {{else}}
+        <tr>
+          <td>
+            No Songs in Group's Repertory.
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

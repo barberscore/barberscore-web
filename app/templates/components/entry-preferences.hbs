@@ -25,7 +25,7 @@
       {{#bg.button type='outline-dark' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
     {{/bs-button-group}}
   {{/form.element}}
-  {{#if (eq model.group.kind 'Quartet')}}
+  {{#if (eq model.groupKind 'Quartet')}}
     {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' label='Members: T, L, Br, Bs' property='participants' onChange=(perform autosave 'participants')}}
     <section>
       <p>

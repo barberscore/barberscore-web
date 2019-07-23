@@ -21,17 +21,28 @@ export default Model.extend({
 
   owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
+
   groupId: DS.attr('string'),
-  group: computed(
-    'groupId',
-    function() {
-      if (this.groupId) {
-        return this.store.findRecord('group', this.groupId);
-      } else {
-        return null;
-      }
-    }
-  ),
+  groupStatus: DS.attr('group-status'),
+  groupName: DS.attr('string'),
+  groupNomen: DS.attr('string'),
+  groupKind: DS.attr('group-kind'),
+  groupGender: DS.attr('group-gender'),
+  groupDivision: DS.attr('group-division'),
+  groupBhsId: DS.attr('number'),
+  groupCode: DS.attr('string'),
+  groupImageId: DS.attr('string'),
+  groupDescription: DS.attr('string'),
+  groupParticipants: DS.attr('string'),
+  groupTreeSort: DS.attr('number'),
+  groupInternational: DS.attr('string'),
+  groupDistrict: DS.attr('string'),
+  groupChapter: DS.attr('string'),
+  groupIsSenior: DS.attr('boolean'),
+  groupIsYouth: DS.attr('boolean'),
+  groupIsDivided: DS.attr('boolean'),
+  groupCharts: DS.attr(),
+
   statelogs: DS.hasMany('statelog', {async: true}),
   contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
@@ -58,6 +69,10 @@ export default Model.extend({
 
   includedContestantsCount: alias(
     'includedContestants.length'
+  ),
+
+  groupChartsCount: alias(
+    'groupCharts.length'
   ),
 
   statusOptions: [
