@@ -27,14 +27,12 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (obj){
     try {
-      let group = yield this.store.findRecord('group', obj.objectID)
-      let owners = yield group.get('owners');
+      let group = yield this.store.findRecord('group', obj.objectID);
+      let owners = yield group.owners;
       let entry = yield this.model.get('entries').createRecord({
         groupId: obj.objectID,
-        owners: owners,
-        description: '',
-        notes: '',
         contestants: [],
+        owners: owners,
         isEvaluation: true,
         isPrivate: false,
       }).save();
