@@ -16,6 +16,7 @@ export default Model.extend({
   participants: DS.attr('string', {defaultValue: ''}),
   pos: DS.attr('number'),
   representing: DS.attr('string', {defaultValue: ''}),
+  chapters: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string', {defaultValue: ''}),
   notes: DS.attr('string', {defaultValue: ''}),
   imageId: DS.attr('string'),

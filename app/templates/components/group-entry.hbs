@@ -12,34 +12,20 @@
         </section>
       {{/if}}
       <section>
-        <p>
-          Preferences
-        </p>
-        <p>
-         {{#bs-button type='link' onClick=(toggle 'whichChoice' this)}}
-      Which buttons should you select? Click Here.
-    {{/bs-button}}
-</p>
-    {{#bs-collapse collapsed=whichChoice}}
-<p>
-<strong>Compete for Awards -OR- Score/Eval Only?</strong>
-</p>
-<p>Choose <strong>Compete for Awards</strong> if you are officially entering the contest session. You will then select to include one or more contests/awards (for which you are eligible) below in the <em>Contests Entered</em> section. Your group will be scored and appear on the Official Scoring Summary (OSS).
-</p>
-<p>
-Choose <strong>Score/Eval Only</strong> if you are NOT officially entering any contest. In this case, you cannot select ANY contests/awards below in the <em>Contests Entered</em> section. Instead, your group will be adjuducated and receive private unofficial score results. Your group will NOT appear on the Official Scoring Summary (OSS).
-</p>
-<p>
-<strong>Skip Eval -OR- Include Eval?</strong>
-</p>
-<p>
-This is easy... does your group want to participate in an onsite evaluation by one or more judges after the contest? If you'd like to skip the evaluations, choose <strong>Skip Eval</strong>. If you want your group to be included in the post-contest evaluation schedule, choose <strong>Include Eval</strong>.
-</p>
-   {{/bs-collapse}}
-
-        <p>
-          {{entry-preferences model=model}}
-        </p>
+        <div class='row'>
+          <div class='col-md-6'>
+            {{cloudinary-image model.imageId (hash height=400) class='img-fluid img-rounded'}}<br>
+            {{model.groupDescription}}
+          </div>
+          <div class='col-md-6'>
+            <p>
+              <strong>Preferences</strong>
+            </p>
+            <p>
+              {{entry-preferences model=model}}
+            </p>
+          </div>
+        </div>
       </section>
       <hr>
       <section>
