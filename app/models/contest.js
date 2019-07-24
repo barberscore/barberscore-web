@@ -8,6 +8,8 @@ export default Model.extend({
 
   session: DS.belongsTo('session', {async: true}),
 
+  entries: DS.hasMany('entry', {async: true}),
+
   awardId: DS.belongsTo('award', {async: true}),
   awardName: DS.attr('string'),
   awardKind: DS.attr('award-kind'),

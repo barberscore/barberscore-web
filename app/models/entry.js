@@ -21,6 +21,8 @@ export default Model.extend({
   notes: DS.attr('string', {defaultValue: ''}),
   imageId: DS.attr('string'),
 
+  contests: DS.hasMany('contest', {async: true}),
+
   owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
 
