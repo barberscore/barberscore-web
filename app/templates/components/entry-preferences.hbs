@@ -21,8 +21,8 @@
       onChange=(perform autosave 'isEvaluation')
       as |bg|
     }}
-      {{#bg.button type='outline-dark' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
       {{#bg.button type='outline-dark' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
+      {{#bg.button type='outline-dark' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
     {{/bs-button-group}}
   {{/form.element}}
   {{#if (eq model.groupKind 'Quartet')}}

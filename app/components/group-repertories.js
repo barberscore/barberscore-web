@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { sort} from '@ember/object/computed';
+import { computed} from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 
@@ -15,8 +16,12 @@ export default Component.extend({
   sortedRepertoriesProperties: [
     'chartTitle',
   ],
+  group: computed(
+    'model', function() {
+    return this.store.findRecord('group', this.model.groupId);
+  }),
   sortedRepertories: sort(
-    'model.repertories',
+    'group.repertories',
     'sortedRepertoriesProperties'
   ),
   flashMessages: service(),
@@ -41,7 +46,7 @@ export default Component.extend({
       let chart = yield this.store.findRecord('chart', c.objectID)
       let repertory = yield this.store.createRecord('repertory', {
         chart: chart,
-        group: this.model,
+        group: this.group,
       }).save();
       yield repertory.activate({
         'by': this.get('currentUser.user.id'),
