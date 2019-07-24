@@ -18,6 +18,7 @@ export default Model.extend({
   representing: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string'),
   notes: DS.attr('string'),
+  imageId: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
