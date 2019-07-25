@@ -60,6 +60,7 @@ export default Component.extend({
     }
   }).drop(),
   categoryOptions: [
+    'DRCJ',
     'CA',
     'Music',
     'Performance',

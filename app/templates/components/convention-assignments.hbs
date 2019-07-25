@@ -65,7 +65,7 @@
             <div class='card'>
               <div class='card-body'>
                 <div class='float-left'>
-                  {{cloudinary-image 'media/bhs/person/image/f55b5da9-24c8-4f1b-a9b5-fa742f616114' (hash width=64) class='img-fluid img-rounded'}}
+                  {{cloudinary-image person.image_id (hash width=64) class='img-fluid img-rounded'}}
                 </div>
                 <div class='float-left pl-4 tight-line'>
                   <ul class='list-unstyled'>
@@ -112,7 +112,7 @@
       {{/modal.body}}
       {{#modal.footer}}
         {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform saveAssignment person category kind num) disabled=model.isDisabled}}
+        {{#bs-button type='success' onClick=(perform saveAssignment person category kind) disabled=model.isDisabled}}
           {{#if saveAssignment.isRunning}}
             Creating {{fa-icon "spinner" spin=true}}
           {{else}}
