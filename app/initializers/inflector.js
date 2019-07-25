@@ -7,7 +7,6 @@ export function initialize(/* application */) {
   inflector.uncountable('award');
   inflector.uncountable('chart');
   inflector.uncountable('contest');
-  inflector.uncountable('contestant');
   inflector.uncountable('convention');
   inflector.uncountable('contender');
   inflector.uncountable('entry');

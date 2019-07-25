@@ -1,4 +1,4 @@
-import { not, filterBy, alias } from '@ember/object/computed';
+import { not, alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -22,7 +22,6 @@ export default Model.extend({
   imageId: DS.attr('string'),
 
   contests: DS.hasMany('contest', {async: true}),
-
   owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
 
@@ -47,7 +46,6 @@ export default Model.extend({
   groupCharts: DS.attr(),
 
   statelogs: DS.hasMany('statelog', {async: true}),
-  contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
   build: memberAction({path: 'build', type: 'post'}),
@@ -65,17 +63,12 @@ export default Model.extend({
     'isMt'
   ),
 
-  includedContestants: filterBy(
-    'contestants',
-    'isIncluded'
-  ),
-
-  includedContestantsCount: alias(
-    'includedContestants.length'
-  ),
-
   groupChartsCount: alias(
     'groupCharts.length'
+  ),
+
+  contestsCount: alias(
+    'contests.length'
   ),
 
   statusOptions: [
@@ -94,7 +87,6 @@ export default Model.extend({
     }
   ),
 
-  contestantCount: alias('contestants.length'),
   conventionStatus: alias('session.convention.status'),
   conventionStart: alias('session.convention.startDate'),
 });

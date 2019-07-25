@@ -31,7 +31,7 @@ export default Component.extend({
       let owners = yield group.owners;
       let entry = yield this.model.get('entries').createRecord({
         groupId: obj.objectID,
-        contestants: [],
+        contests: [],
         owners: owners,
         isEvaluation: true,
         isPrivate: false,

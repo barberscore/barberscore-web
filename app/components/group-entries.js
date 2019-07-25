@@ -63,9 +63,7 @@ export default Component.extend({
       let entry = yield this.store.createRecord('entry', {
         session: session,
         groupId: this.model.id,
-        description: '',
-        notes: '',
-        contestants: [],
+        contests: [],
         owners: owners,
         isEvaluation: true,
         isPrivate: false,

@@ -2,7 +2,7 @@ import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
   attrs: {
-    contestants: {
+    contests: {
       serialize: true
     },
     owners: {

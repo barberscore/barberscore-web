@@ -1,18 +1,13 @@
 import Component from '@ember/component';
-import { sort, filterBy } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 
 export default Component.extend({
-  contestantSortProperties: [
+  sortedEntriesProperties: [
     'groupName:asc',
   ],
-  filteredContestants: filterBy(
-    'model.contestants',
-    'status',
-    'Included'
-  ),
-  sortedContestants: sort(
-    'filteredContestants',
-    'contestantSortProperties'
+  sortedEntries: sort(
+    'model.entries',
+    'sortedEntriesProperties'
   ),
   sortedContestsProperties: [
     'isPrimary:desc',

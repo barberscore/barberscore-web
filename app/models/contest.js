@@ -1,4 +1,4 @@
-import { alias, filterBy, equal, not, sort, mapBy, or } from '@ember/object/computed';
+import { alias, equal, not, or } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -27,7 +27,6 @@ export default Model.extend({
   awardScope: DS.attr('award-scope'),
   awardScopeRange: DS.attr(),
 
-  contestants: DS.hasMany('contestant', {async: true}),
   permissions: DS.attr(),
 
   include: memberAction({path: 'include', type: 'post'}),
@@ -71,15 +70,6 @@ export default Model.extend({
     'Qualifier',
   ],
 
-  includedContestants: filterBy(
-    'contestants',
-    'isIncluded'
-  ),
-
-  includedContestantsCount: alias(
-    'includedContestants.length'
-  ),
-
   isIncluded: equal(
     'status',
     'Included',
@@ -92,18 +82,8 @@ export default Model.extend({
   notQualifier: not(
     'isAwardQualifier',
   ),
-  mappedGroups: mapBy(
-    'includedContestants',
-    'group',
-  ),
 
-  contestantOptionsProperties: [
-    'name',
-  ],
-  groupOptions: sort(
-    'mappedGroups',
-    'contestantOptionsProperties'
-  ),
+  entriesCount: alias('entries.length'),
 
   groupKindSort: alias('award.group.kindSort'),
   awardQualifier: alias('award.isQualifier'),
