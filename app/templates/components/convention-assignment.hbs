@@ -1,0 +1,26 @@
+<section>
+  <div class='card'>
+    <div class='card-header'>
+        {{prev-next model=model sortedArray=sortedAssignments}}
+      <h4>
+        {{model.commonName}}
+      </h4>
+    </div>
+    <div class='card-body'>
+      <section>
+        <div>
+          {{cloudinary-image model.imageId (hash width=64) class='img-fluid img-rounded'}}
+        </div>
+        <h4>
+          {{model.kind}}&nbsp;{{model.category}}
+        </h4>
+      </section>
+    </div>
+    <div class='card-footer'>
+      <ul class='list-inline'>
+        <li>{{assignment-delete model=model}}</li>
+        <li class='pull-right'><h4>Assignment Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -21,7 +21,11 @@ Router.map(function() {
           path: 'details'
         });
         this.route('assignments', {
-          path: 'assignments'
+          path: 'assignments',
+        }, function () {
+          this.route('assignment', {
+            path: ':assignment_id'
+          });
         });
         this.route('sessions', {
           path: 'sessions'

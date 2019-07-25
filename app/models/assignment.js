@@ -14,16 +14,19 @@ export default Model.extend({
   permissions: DS.attr(),
 
   personId: DS.attr('string'),
-  person: computed(
-    'personId',
-    function() {
-      if (this.personId) {
-        return this.store.findRecord('person', this.personId);
-      } else {
-        return null;
-      }
-    }
-  ),
+  commonName: DS.attr('string'),
+  firstName: DS.attr('string', {defaultValue: ''}),
+  middleName: DS.attr('string', {defaultValue: ''}),
+  lastName: DS.attr('string', {defaultValue: ''}),
+  nickName: DS.attr('string', {defaultValue: ''}),
+  district: DS.attr('string', {defaultValue: ''}),
+  email: DS.attr('string'),
+  homePhone: DS.attr('string'),
+  workPhone: DS.attr('string'),
+  cellPhone: DS.attr('string'),
+  airports: DS.attr(),
+  imageId: DS.attr('string'),
+  bhsId: DS.attr('number'),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
@@ -32,7 +35,6 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  personLastName: alias('person.lastName'),
   conventionStart: alias('convention.startDate'),
   conventionStatus: alias('convention.status'),
   categorySort: computed(

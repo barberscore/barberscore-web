@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger'
+  disabled=model.isDisabled
+  onClick=(action (mut deleteAssignmentModal) true)
+}}
+  Remove Assignment
+{{/bs-button}}
+{{#bs-modal
+  open=deleteAssignmentModal
+  onHidden=(pipe-action (action (mut deleteAssignmentModal) false) (action (mut deleteAssignmentModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Remove Assignment</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will remove the judge from the panel.
+    </p>
+    {{#if deleteAssignmentModalError}}
+    <p class='text-danger'>
+      Could not remove assignment.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform deleteAssignment)}}
+      {{#if deleteAssignment.isRunning}}
+        Removing {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Remove Assignment
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

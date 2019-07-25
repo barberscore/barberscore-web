@@ -1,54 +1,125 @@
-<div class='table-responsive'>
-  <table class='table table-hover table-sm'>
-    <thead class='thead-light'>
-      <tr>
-        {{!-- <th>Image</th> --}}
-        <th>Person</th>
-        <th>Kind</th>
-        <th>Category</th>
-        <th>Email</th>
-        {{!-- <th>Phone</th> --}}
-      </tr>
-    </thead>
-    <tbody>
-      {{#each sortedAssignments as |assignment|}}
+{{#if (eq model.status 'New')}}
+    <h4>The Assignments are available after the Convention is Built.</h4>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
         <tr>
-          {{#if assignment.isLoading}}
-            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-          {{else}}
-            {{!-- <td>
-              {{#if assignment.user}}
-                {{cloudinary-image assignment.user.imageId (hash width=64) class='img-fluid img-thumbnail'}}
-              {{else}}
-                {{cloudinary-image 'missing_image' (hash width=64) class='img-fluid img-thumbnail'}}
-              {{/if}}
-            </td> --}}
-          {{#if assignment.user.isLoading}}
-            <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-          {{else}}
-            <td>
-              {{#if assignment.user.name}}
-                {{assignment.user.name}}
-              {{else}}
-                (TBD)
-              {{/if}}
-            </td>
-          {{/if}}
-            <td>
-              {{assignment.kind}}
-            </td>
-            <td>
-              {{assignment.category}}
-            </td>
-            <td><a href='mailto:{{assignment.user.email}}'>{{assignment.user.email}}</a></td>
-            <td>{{!-- <a href='tel:{{assignment.user.cellPhone}}'>{{assignment.user.cellPhone}}</a> --}}</td>
-          {{/if}}
+          <th>Person</th>
+          <th>Category</th>
+          <th>Kind</th>
+          <th>District</th>
+          <th>Email</th>
+          <th>Cell</th>
         </tr>
-      {{else}}
-        <tr>
-          <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
-</div>
+      </thead>
+      <tbody>
+        {{#each sortedAssignments as |assignment|}}
+          <tr>
+            <td>
+              {{#link-to 'dashboard.conventions.convention.assignments.assignment' assignment.id}}{{assignment.commonName}}{{/link-to}}
+            </td>
+            <td>{{assignment.category}}</td>
+            <td>{{assignment.kind}}</td>
+            <td>{{assignment.district}}</td>
+            <td><a href='mailto:{{assignment.email}}'>{{assignment.email}}</a></td>
+            <td><a href='tel:{{assignment.cellPhone}}'>{{assignment.cellPhone}}</a></td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No assignments created)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p>
+      {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAssignmentModal) true)}}Create New Assignment{{/bs-button}}
+    </p>
+  </div>
+  <div>
+    {{#bs-modal
+      open=createAssignmentModal
+      onHidden=(pipe-action (action (mut createAssignmentModal) false) (action (mut createAssignmentModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>New Assignment</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Enter the details for the Assignment.
+        </p>
+        <p>
+          {{#power-select
+            search=(perform searchPerson)
+            selected=person
+            onchange=(action (mut person))
+            placeholder="Enter Person Name"
+            allowClear=true
+            renderInPlace=true
+            noMatchesMessage="We Could Not Find a Person with that name"
+            as |person|
+          }}
+            <div class='card'>
+              <div class='card-body'>
+                <div class='float-left'>
+                  {{cloudinary-image 'media/bhs/person/image/f55b5da9-24c8-4f1b-a9b5-fa742f616114' (hash width=64) class='img-fluid img-rounded'}}
+                </div>
+                <div class='float-left pl-4 tight-line'>
+                  <ul class='list-unstyled'>
+                    <li>{{person.full_name}}</li>
+                    <li>{{person.bhs_id}}</li>
+                    <li>{{person.email}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=categoryOptions
+            selected=category
+            onchange=(action (mut category))
+            placeholder="Choose Category"
+            allowClear=true
+            renderInPlace=true
+            as |category|
+          }}
+            {{category}}
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=kindOptions
+            selected=kind
+            onchange=(action (mut kind))
+            placeholder="Choose Kind"
+            allowClear=true
+            renderInPlace=true
+            as |kind|
+          }}
+            {{kind}}
+          {{/power-select}}
+        </p>
+        {{#if createAssignmentModalError}}
+        <p class='text-danger'>
+          Could not create assignment.  Please contact support.
+        </p>
+        {{/if}}
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveAssignment person category kind num) disabled=isDisabled}}
+          {{#if saveAssignment.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Assignment
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
+{{/if}}
