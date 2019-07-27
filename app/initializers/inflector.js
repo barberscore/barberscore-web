@@ -18,6 +18,7 @@ export function initialize(/* application */) {
   inflector.uncountable('panelist');
   inflector.uncountable('person');
   inflector.uncountable('repertory');
+  inflector.uncountable('role');
   inflector.uncountable('round');
   inflector.uncountable('score');
   inflector.uncountable('session');
