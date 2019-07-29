@@ -8,12 +8,8 @@ export function initialize(/* application */) {
   inflector.uncountable('chart');
   inflector.uncountable('contest');
   inflector.uncountable('convention');
-  inflector.uncountable('contender');
   inflector.uncountable('entry');
-  inflector.uncountable('grid');
   inflector.uncountable('group');
-  inflector.uncountable('member');
-  inflector.uncountable('officer');
   inflector.uncountable('outcome');
   inflector.uncountable('panelist');
   inflector.uncountable('person');
@@ -24,7 +20,6 @@ export function initialize(/* application */) {
   inflector.uncountable('session');
   inflector.uncountable('song');
   inflector.uncountable('statelog');
-  inflector.uncountable('subscription');
   inflector.uncountable('user');
 }
 

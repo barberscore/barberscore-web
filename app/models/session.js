@@ -16,14 +16,12 @@ export default Model.extend({
   drcjReport: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
-  convention: DS.belongsTo('convention', {async: true}),
   target: DS.belongsTo('session', {async: true}),
 
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
 
   permissions: DS.attr(),
-  rounds: DS.hasMany('round', {async: true}),
 
   reset: memberAction({path: 'reset', type: 'post'}),
   build: memberAction({path: 'build', type: 'post'}),
@@ -41,14 +39,8 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionStatus: alias('convention.status'),
-  conventionIsActive: alias('convention.isActive'),
-  conventionName: alias('convention.nomen'),
-
   notArchived: not('isArchived'),
 
-  groupKindSort: alias('group.kindSort'),
-  groupName: alias('convention.groupName'),
 
   statusOptions: [
     'New',

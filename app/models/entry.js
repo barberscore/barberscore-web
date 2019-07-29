@@ -87,6 +87,4 @@ export default Model.extend({
     }
   ),
 
-  conventionStatus: alias('session.convention.status'),
-  conventionStart: alias('session.convention.startDate'),
 });

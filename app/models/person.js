@@ -17,7 +17,7 @@ export default Model.extend({
   part: DS.attr('person-part'),
   mon: DS.attr('number'),
   gender: DS.attr('person-gender'),
-  district: DS.attr('string', {defaultValue:''}),
+  representing: DS.attr('person-representing'),
   isDeceased: DS.attr('boolean'),
   isHonorary: DS.attr('boolean'),
   isSuspended: DS.attr('boolean'),
@@ -29,7 +29,6 @@ export default Model.extend({
   workPhone: DS.attr('string', {defaultValue:''}),
   cellPhone: DS.attr('string', {defaultValue:''}),
   airports: DS.attr(),
-  image: DS.attr('string'),
   description: DS.attr('string', {defaultValue:''}),
   notes: DS.attr('string', {defaultValue:''}),
   bhsId: DS.attr('number'),
@@ -46,13 +45,8 @@ export default Model.extend({
   // currentStatus: DS.attr('boolean'),
   // currentDistrict: DS.attr('boolean'),
 
-  user: DS.belongsTo('user', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
   permissions: DS.attr(),
-
-  assignments: DS.hasMany('assignment', {async: true}),
-  members: DS.hasMany('member', {async: true}),
-  officers: DS.hasMany('officer', {async: true}),
-  panelists: DS.hasMany('panelist', {async: true}),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

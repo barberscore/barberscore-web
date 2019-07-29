@@ -8,25 +8,21 @@ export default Model.extend({
   status: DS.attr('assignment-status'),
   kind: DS.attr('assignment-kind'),
   category: DS.attr('assignment-category'),
-  convention: DS.belongsTo('convention', {async: true}),
+  name: DS.attr('string'),
 
-  user: DS.belongsTo('user', {async: true}),
-  permissions: DS.attr(),
 
-  personId: DS.attr('string'),
-  commonName: DS.attr('string'),
   firstName: DS.attr('string', {defaultValue: ''}),
-  middleName: DS.attr('string', {defaultValue: ''}),
   lastName: DS.attr('string', {defaultValue: ''}),
-  nickName: DS.attr('string', {defaultValue: ''}),
-  district: DS.attr('string', {defaultValue: ''}),
+  representing: DS.attr('assignment-representing'),
   email: DS.attr('string'),
-  homePhone: DS.attr('string'),
-  workPhone: DS.attr('string'),
   cellPhone: DS.attr('string'),
   airports: DS.attr(),
-  imageId: DS.attr('string'),
   bhsId: DS.attr('number'),
+  personId: DS.attr('string'),
+  imageId: DS.attr('string'),
+
+  permissions: DS.attr(),
+
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

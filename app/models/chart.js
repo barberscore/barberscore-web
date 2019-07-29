@@ -13,12 +13,10 @@ export default Model.extend({
   holders: DS.attr('string'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  image: DS.attr('string'),
 
   nomen: DS.attr('string'),
   imageId: DS.attr('string'),
 
-  repertories: DS.hasMany('repertory', {async: true}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),

@@ -18,29 +18,18 @@ export default Model.extend({
   spots: DS.attr('number'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  district: DS.attr('string'),
+  representing: DS.attr('award-representing'),
   division: DS.attr('award-division'),
-
 
   age: DS.attr('award-age'),
   isNovice: DS.attr('boolean'),
+
   size: DS.attr('award-size'),
   sizeRange: DS.attr(),
   scope: DS.attr('award-scope'),
   scopeRange: DS.attr(),
 
   treeSort: DS.attr('number'),
-  groupId: DS.attr('string'),
-  group: computed(
-    'groupId',
-    function() {
-      if (this.groupId) {
-        return this.store.findRecord('group', this.groupId);
-      } else {
-        return null;
-      }
-    }
-  ),
 
   // parent: DS.belongsTo('award', {async: true}),
   permissions: DS.attr(),

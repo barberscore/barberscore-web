@@ -8,7 +8,7 @@ export default Model.extend({
   __str__: DS.attr('string'),
   status: DS.attr('convention-status'),
   name: DS.attr('string'),
-  district: DS.attr('string'),
+  representing: DS.attr('convention-representing'),
   season: DS.attr('convention-season'),
   panel: DS.attr('convention-panel'),
   year: DS.attr('number', {defaultValue: 2019}),
@@ -19,27 +19,12 @@ export default Model.extend({
   venueName: DS.attr('string', {defaultValue: ''}),
   location: DS.attr('string', {defaultValue: ''}),
   timezone: DS.attr('string'),
-  image: DS.attr('string'),
   description: DS.attr('string'),
   divisions: DS.attr(),
   kinds: DS.attr(),
 
-  groupId: DS.attr('string'),
-  group: computed(
-    'groupId',
-    function() {
-      if (this.groupId) {
-        return this.store.findRecord('group', this.groupId);
-      } else {
-        return null;
-      }
-    }
-  ),
   imageId: DS.attr('string'),
   permissions: DS.attr(),
-
-  assignments: DS.hasMany('assignment', {async: true}),
-  sessions: DS.hasMany('session', {async: true}),
 
   reset: memberAction({path: 'reset', type: 'post'}),
   build: memberAction({path: 'build', type: 'post'}),
