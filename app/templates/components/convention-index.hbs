@@ -24,7 +24,7 @@
                   {{cloudinary-image convention.imageId (hash width=64) class='img-fluid img-rounded'}}
                 </td>
                 <td>
-                  {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.__str__}}{{/link-to}}
+                  {{#link-to 'dashboard.conventions.convention.details' convention}}{{convention.nomen}}{{/link-to}}
                 </td>
                 <td>
                   {{convention.venueName}}<br>

@@ -1,5 +1,5 @@
 import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
-import { computed } from '@ember/object';
+// import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -21,10 +21,19 @@ export default Model.extend({
   varianceReport: DS.attr('string'),
   csaReport: DS.attr('string'),
 
-  owners: DS.hasMany('user', {async: true}),
-  round: DS.belongsTo('round', {async: true}),
+  groupId: DS.attr('string'),
+  name: DS.attr('string'),
+  kind: DS.attr('string'),
+  gender: DS.attr('string'),
+  district: DS.attr('string'),
+  division: DS.attr('string'),
+  bhsId: DS.attr('string'),
+  code: DS.attr('string'),
 
+  round: DS.belongsTo('round', {async: true}),
   songs: DS.hasMany('song', {async: true}),
+  outcomes: DS.hasMany('outcome', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),

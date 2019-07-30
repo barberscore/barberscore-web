@@ -1,15 +1,15 @@
 <section class='card'>
   <h5 class='card-header'>
-    {{model.__str__}}
+    {{model.nomen}}
   </h5>
   <div class='card-body'>
     {{#bs-nav type='tabs' as |nav|}}
       {{#nav.item}}
         {{#nav.link-to "dashboard.conventions.convention.details"}}Details{{/nav.link-to}}
       {{/nav.item}}
-      {{#nav.item}}
+      {{!-- {{#nav.item}}
         {{#nav.link-to "dashboard.conventions.convention.assignments"}}Assignments{{/nav.link-to}}
-      {{/nav.item}}
+      {{/nav.item}} --}}
       {{#nav.item}}
         {{#nav.link-to "dashboard.conventions.convention.sessions"}}Sessions{{/nav.link-to}}
       {{/nav.item}}

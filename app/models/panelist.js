@@ -1,4 +1,4 @@
-import { alias, not } from '@ember/object/computed';
+import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
@@ -9,22 +9,21 @@ export default Model.extend({
   num: DS.attr('number'),
   kind: DS.attr('panelist-kind'),
   category: DS.attr('panelist-category'),
-  representing: DS.attr('string'),
   psaReport: DS.attr('string'),
+  representing: DS.attr('string'),
 
   round: DS.belongsTo('round', {async: true}),
-  user: DS.belongsTo('user', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
+
   personId: DS.attr('string'),
-  person: computed(
-    'personId',
-    function() {
-      if (this.personId) {
-        return this.store.findRecord('person', this.personId);
-      } else {
-        return null;
-      }
-    }
-  ),
+  name: DS.attr('string'),
+  firstName: DS.attr('string'),
+  lastName: DS.attr('string'),
+  district: DS.attr('string'),
+  email: DS.attr('string'),
+  cellPhone: DS.attr('string'),
+  airports: DS.attr('string'),
+
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
 
@@ -34,10 +33,6 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionName: alias('round.session.convention.nomen'),
-  sessionKind: alias('round.session.kind'),
-  roundKind: alias('round.kind'),
-  personName: alias('person.commonName'),
 
   rowClass: computed(
     'kind', function() {
@@ -72,9 +67,6 @@ export default Model.extend({
       return this.kindOptions.indexOf(this.kind);
     }
   ),
-  personSort: alias('person.sortName'),
-  personLastName: alias('person.lastName'),
-  personFirstName: alias('person.firstName'),
   statusOptions: [
     'New',
     'Active',

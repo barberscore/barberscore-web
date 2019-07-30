@@ -1,3 +1,29 @@
 <section>
-  {{convention-sessions model=model}}
+  {{!-- {{convention-sessions model=model}} --}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Kind</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedSessions as |session|}}
+          <tr>
+            <td>
+              {{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}
+            </td>
+            <td>
+              {{session.status}}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(You do not have any current assignments.  Please check with David Mills or Chris Buechler if you believe this is in error.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </section>

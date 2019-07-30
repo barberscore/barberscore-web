@@ -18,24 +18,18 @@ export default Model.extend({
   spots: DS.attr('number'),
   description: DS.attr('string'),
   notes: DS.attr('string'),
-  representing: DS.attr('award-representing'),
+  district: DS.attr('award-district'),
   division: DS.attr('award-division'),
 
   age: DS.attr('award-age'),
   isNovice: DS.attr('boolean'),
-
   size: DS.attr('award-size'),
   sizeRange: DS.attr(),
   scope: DS.attr('award-scope'),
   scopeRange: DS.attr(),
-
   treeSort: DS.attr('number'),
 
-  // parent: DS.belongsTo('award', {async: true}),
   permissions: DS.attr(),
-
-  // contests: DS.hasMany('contest', {async: true}),
-  // outcomes: DS.hasMany('outcome', {async: true}),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

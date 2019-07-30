@@ -6,26 +6,25 @@ import { memberAction } from 'ember-api-actions';
 export default Model.extend({
   status: DS.attr('contest-status'),
 
-  session: DS.belongsTo('session', {async: true}),
-
   awardId: DS.belongsTo('award', {async: true}),
-  awardAge: DS.attr('award-age'),
-  awardDescription: DS.attr('string'),
-  awardDistrict: DS.attr('string'),
-  awardDivision: DS.attr('award-division'),
-  awardName: DS.attr('string'),
-  awardKind: DS.attr('award-kind'),
-  awardGender: DS.attr('award-gender'),
-  awardLevel: DS.attr('award-level'),
-  awardSeason: DS.attr('award-season'),
-  awardIsSingle: DS.attr('boolean'),
-  awardIsNovice: DS.attr('boolean'),
-  awardSize: DS.attr('award-size'),
-  awardSizeRange: DS.attr(),
-  awardScope: DS.attr('award-scope'),
-  awardScopeRange: DS.attr(),
-  awardTreeSort: DS.attr('number'),
+  name: DS.attr('string'),
+  kind: DS.attr('award-kind'),
+  gender: DS.attr('award-gender'),
+  level: DS.attr('award-level'),
+  season: DS.attr('award-season'),
+  description: DS.attr('string'),
+  district: DS.attr('string'),
+  division: DS.attr('award-division'),
+  age: DS.attr('award-age'),
+  isNovice: DS.attr('boolean'),
+  isSingle: DS.attr('boolean'),
+  size: DS.attr('award-size'),
+  sizeRange: DS.attr(),
+  scope: DS.attr('award-scope'),
+  scopeRange: DS.attr(),
+  treeSort: DS.attr('number'),
 
+  session: DS.belongsTo('session', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
   permissions: DS.attr(),
 
@@ -76,7 +75,7 @@ export default Model.extend({
   ),
 
   isAwardQualifier: equal(
-    'awardLevel',
+    'level',
     'Qualifier',
   ),
   notQualifier: not(

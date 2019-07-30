@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { alias, not } from '@ember/object/computed';
+import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
@@ -8,21 +8,21 @@ export default Model.extend({
   status: DS.attr('assignment-status'),
   kind: DS.attr('assignment-kind'),
   category: DS.attr('assignment-category'),
+
+  personId: DS.attr('string'),
   name: DS.attr('string'),
-
-
   firstName: DS.attr('string', {defaultValue: ''}),
   lastName: DS.attr('string', {defaultValue: ''}),
-  representing: DS.attr('assignment-representing'),
+  district: DS.attr('assignment-district'),
   email: DS.attr('string'),
   cellPhone: DS.attr('string'),
   airports: DS.attr(),
   bhsId: DS.attr('number'),
-  personId: DS.attr('string'),
+
   imageId: DS.attr('string'),
 
+  session: DS.belongsTo('session', {async: true}),
   permissions: DS.attr(),
-
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
@@ -31,8 +31,6 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionStart: alias('convention.startDate'),
-  conventionStatus: alias('convention.status'),
   categorySort: computed(
     'category',
     'categoryOptions',

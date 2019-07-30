@@ -5,10 +5,10 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  __str__: DS.attr('string'),
+  nomen: DS.attr('string'),
   status: DS.attr('convention-status'),
   name: DS.attr('string'),
-  representing: DS.attr('convention-representing'),
+  district: DS.attr('convention-district'),
   season: DS.attr('convention-season'),
   panel: DS.attr('convention-panel'),
   year: DS.attr('number', {defaultValue: 2019}),
@@ -24,6 +24,8 @@ export default Model.extend({
   kinds: DS.attr(),
 
   imageId: DS.attr('string'),
+  persons: DS.hasMany('person', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
   permissions: DS.attr(),
 
   reset: memberAction({path: 'reset', type: 'post'}),
@@ -34,7 +36,6 @@ export default Model.extend({
   isDisabled: not(
     'permissions.write'
   ),
-
 
   statusOptions: [
     'New',
@@ -55,12 +56,4 @@ export default Model.extend({
     'Quadruple',
     'Quintiple',
   ],
-  nomen: computed(
-    'district',
-    'season',
-    'year',
-    'name',
-    function() {
-    return `${this.district} ${this.season} ${this.year} ${this.name}`;
-  })
 });

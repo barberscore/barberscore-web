@@ -15,9 +15,24 @@ export default Model.extend({
   legacyReport: DS.attr('string'),
   drcjReport: DS.attr('string'),
 
-  owners: DS.hasMany('user', {async: true}),
-  target: DS.belongsTo('session', {async: true}),
+  convention_id: DS.attr('string'),
+  name: DS.attr('string'),
+  district: DS.attr('string'),
+  season: DS.attr('string'),
+  panel: DS.attr('string'),
+  year: DS.attr('string'),
+  openDate: DS.attr('date'),
+  closeDate: DS.attr('date'),
+  startDate: DS.attr('date'),
+  endDate: DS.attr('date'),
+  venueName: DS.attr('string'),
+  location: DS.attr('string'),
+  timezone: DS.attr('string'),
+  divisions: DS.attr(),
 
+  imageId: DS.attr('string'),
+
+  owners: DS.hasMany('user', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
 

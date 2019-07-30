@@ -11,13 +11,20 @@ export default Model.extend({
   spots: DS.attr('number'),
   date: DS.attr('isodate'),
   footnotes: DS.attr('string'),
-  isReviewed: DS.attr('boolean'),
   ossReport: DS.attr('string'),
   saReport: DS.attr('string'),
   legacyOss: DS.attr('string'),
+  isReviewed: DS.attr('boolean'),
+
+  conventionId: DS.attr('string'),
+  nomen: DS.attr('string'),
+  timezone: DS.attr('string'),
+  imageId: DS.attr('string'),
+
+  sessionId: DS.attr('string'),
+  sessionKind: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
-  session: DS.belongsTo('session', {async: true}),
 
   appearances: DS.hasMany('appearance', {async: true}),
   panelists: DS.hasMany('panelist', {async: true}),
@@ -42,11 +49,6 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  conventionName: alias('session.convention.nomen'),
-  sessionKind: alias('session.kind'),
-
-  conventionStatus: alias('session.convention.status'),
-  conventionIsActive: alias('session.convention.isActive'),
   statusOptions: [
     'New',
     'Drawn',
@@ -74,6 +76,5 @@ export default Model.extend({
       return this.statusOptions.indexOf(this.status);
     }
   ),
-  sessionConventionStartDate: alias('session.convention.startDate'),
-  sessionKindSort: alias('session.kindSort'),
+
 });
