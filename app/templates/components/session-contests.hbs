@@ -10,7 +10,7 @@
           <th>Status</th>
           <th>Name</th>
           <th>Description</th>
-          <th>Count</th>
+          {{!-- <th>Count</th> --}}
         </tr>
       </thead>
       <tbody>
@@ -23,13 +23,13 @@
                 {{input
                   type='checkbox'
                   checked=contest.isIncluded
-                  disabled=contest.isCheckboxDisabled
+                  disabled=true
                   change=(perform toggleContest contest value='target.checked')
                 }}
               </td>
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.name}}{{/link-to}}</td>
               <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
-              <td>{{contest.entriesCount}}</td>
+              {{!-- <td>{{contest.entriesCount}}</td> --}}
             {{/if}}
           </tr>
         {{else}}
