@@ -31,7 +31,7 @@ export default Component.extend({
     'statusSort',
   ],
   sortedEntries: sort(
-    'filteredEntries',
+    'groupEntries',
     'sortedEntriesProperties'
   ),
   sessionCall: computed(

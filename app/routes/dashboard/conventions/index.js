@@ -7,7 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     return this.store.query('convention', {
       'status': 10,
-      'persons__owners': this.get('currentUser.user.id'),
+      'persons__owners': this.currentUser.user.id,
     });
   },
 });

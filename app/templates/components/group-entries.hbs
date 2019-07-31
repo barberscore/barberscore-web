@@ -3,7 +3,7 @@
     <thead class='thead-light'>
       <tr>
         <th>Convention</th>
-        <th>Venue</th>
+        <th>Location</th>
         <th>Dates</th>
         <th>Status</th>
       </tr>
@@ -11,17 +11,17 @@
     <tbody>
       {{#each sortedEntries as |entry|}}
         <tr>
-          {{#if entry.session.convention.isLoading}}
+          {{#if entry.isLoading}}
             <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
             <td>
-              {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.convention.nomen}}{{/link-to}}
+              {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.name}}{{/link-to}}
             </td>
             <td>
-              {{entry.session.convention.__str__}}
+              {{entry.session.location}}
             </td>
             <td>
-              {{moment-format entry.session.convention.startDate 'L'}} - {{moment-format entry.session.convention.endDate 'L'}}
+              {{moment-format entry.session.startDate 'L'}} - {{moment-format entry.session.endDate 'L'}}
             </td>
             <td>
               {{entry.status}}

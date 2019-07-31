@@ -7,11 +7,7 @@ export default Route.extend(AuthenticatedRouteMixin, {
   model() {
     let { convention_id } = this.paramsFor('dashboard.conventions.convention');
     return this.store.query('session', {
-      'owners': this.currentUser.user.id,
-      'status__gt': 0,
-      'status__lt': 30,
       'convention_id': convention_id,
-      // 'kind__gt': 21,
     });
   },
 });

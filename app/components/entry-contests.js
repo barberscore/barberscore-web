@@ -9,7 +9,7 @@ export default Component.extend({
     'treeSort',
   ],
   sortedContests: sort(
-    'model.session.contests',
+    'options',
     'sortedContestsProperties',
   ),
   updateSelection: task(function *(newSelection, value, operation) {

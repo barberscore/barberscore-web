@@ -10,7 +10,7 @@
     <tbody>
       {{#multiselect-checkboxes
         tagName=''
-        options=sortedContests
+        options=options
         selection=model.contests
         onchange=(perform updateSelection)
         as |contest isSelected|
@@ -29,11 +29,6 @@
       {{/multiselect-checkboxes}}
     </tbody>
     <tfoot>
-      <tr>
-        <td colspan=3>
-          <em>Click on all the awards for which you wish to compete.</em>
-        </td>
-      </tr>
     </tfoot>
   </table>
 </div>
