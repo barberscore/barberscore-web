@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
   flashMessages: service(),
   sortedContestsProperties: [
-    'awardName',
+    'treeSort',
   ],
   sortedContests: sort(
     'model.session.contests',
