@@ -1,4 +1,3 @@
-import { computed } from '@ember/object';
 import { not } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';

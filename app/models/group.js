@@ -1,5 +1,5 @@
 import { computed } from '@ember/object';
-import { filterBy, not, alias, equal } from '@ember/object/computed';
+import { filterBy, not, equal } from '@ember/object/computed';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';

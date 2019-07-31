@@ -12,7 +12,7 @@ export default Component.extend({
     'options',
     'sortedContestsProperties',
   ),
-  updateSelection: task(function *(newSelection, value, operation) {
+  updateSelection: task(function *(newSelection, /*value, operation*/) {
     let entry = yield this.model;
     yield entry.get('contests').setObjects(newSelection);
     yield timeout(1000);
