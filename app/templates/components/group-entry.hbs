@@ -14,8 +14,18 @@
       <section>
         <div class='row'>
           <div class='col-md-6'>
-            {{cloudinary-image model.imageId (hash height=400) class='img-fluid img-rounded'}}<br>
-            {{model.groupDescription}}
+            <p>
+              {{cloudinary-image model.imageId (hash height=400) class='img-fluid img-rounded'}}<br>
+              {{!-- {{model.groupDescription}} --}}
+              {{#bs-button type='link' onClick=(toggle 'imageCollapsed' this)}}
+                Want to Add/Replace/Remove your image?  Click here.
+              {{/bs-button}}
+              {{#bs-collapse collapsed=imageCollapsed}}
+                <p>
+                  To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
+                </p>
+              {{/bs-collapse}}
+            </p>
           </div>
           <div class='col-md-6'>
             <p>
