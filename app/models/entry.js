@@ -54,13 +54,13 @@ export default Model.extend({
     'isMt'
   ),
 
-  groupChartsCount: alias(
-    'groupCharts.length'
-  ),
+  // groupChartsCount: alias(
+  //   'groupCharts.length'
+  // ),
 
-  contestsCount: alias(
-    'contests.length'
-  ),
+  // contestsCount: alias(
+  //   'contests.length'
+  // ),
 
   statusOptions: [
     'New',

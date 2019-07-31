@@ -9,10 +9,10 @@
         <tr>
           <th>Name</th>
           <th>BHS ID</th>
-          <th>BHS Status</th>
+          {{!-- <th>BHS Status</th> --}}
           <th>Representing</th>
           <th>Contests Entered</th>
-          <th>Songs in Repertory</th>
+          {{!-- <th>Songs in Repertory</th> --}}
           {{#if (eq model.kind 'Chorus')}}
             <th>Participants on Stage</th>
           {{/if}}
@@ -25,11 +25,11 @@
             {{#if entry.isLoading}}
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry}}{{entry.groupName}}{{/link-to}}</td>
-              <td>{{entry.groupBhsId}}</td>
-              <td>{{entry.groupStatus}}</td>
-              <td>{{entry.groupDistrict}}</td>
-              <td>{{entry.contestsCount}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry}}{{entry.name}}{{/link-to}}</td>
+              <td>{{entry.bhsId}}</td>
+              {{!-- <td>{{entry.status}}</td> --}}
+              <td>{{entry.district}}</td>
+              {{!-- <td>{{entry.contestsCount}}</td> --}}
               <td>{{entry.groupChartsCount}}</td>
               {{#if (eq model.kind 'Chorus')}}
                 <td>{{#if entry.pos}}{{entry.pos}}{{else}}N/A{{/if}}</td>
