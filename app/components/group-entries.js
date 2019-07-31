@@ -59,14 +59,10 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (session){
     try {
-      let owners = yield this.model.get('owners');
       let entry = yield this.store.createRecord('entry', {
         session: session,
         groupId: this.model.id,
-        contests: [],
-        owners: owners,
-        isEvaluation: true,
-        isPrivate: false,
+        repertories: [],
       }).save();
       let payload = yield entry.build({
         'by': this.get('currentUser.user.id'),

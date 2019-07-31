@@ -122,7 +122,7 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
         selected=session
         onchange=(action (mut session))
         placeholder="Choose Session"
-        searchField='conventionName'
+        searchField='name'
         allowClear=true
         renderInPlace=true
         noMatchesMessage="We Could Not Find an Open Session with that Name"
@@ -131,13 +131,13 @@ If you cannot locate your contest session, check with your DRCJ to see if the co
         <div class='card'>
           <div class='card-body'>
             <div class='float-left'>
-              {{cloudinary-image session.convention.imageId (hash width=64) class='img-fluid img-rounded'}}
+              {{cloudinary-image session.imageId (hash width=64) class='img-fluid img-rounded'}}
             </div>
             <div class='float-left pl-4 tight-line'>
               <ul class='list-unstyled'>
-                <li>{{session.convention.__str__}}</li>
+                <li>{{session.name}}</li>
                 <li>{{session.kind}} Session</li>
-                <li>{{session.convention.location}} {{moment-format session.convention.startDate 'L'}} - {{moment-format session.convention.endDate 'L'}}</li>
+                <li>{{session.location}} {{moment-format session.startDate 'L'}} - {{moment-format session.endDate 'L'}}</li>
               </ul>
             </div>
           </div>
