@@ -17,7 +17,7 @@ export default Model.extend({
 
   convention_id: DS.attr('string'),
   name: DS.attr('string'),
-  district: DS.attr('string'),
+  district: DS.attr('session-district'),
   season: DS.attr('string'),
   panel: DS.attr('string'),
   year: DS.attr('string'),
