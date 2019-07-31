@@ -8,5 +8,8 @@ export default DS.JSONAPISerializer.extend({
     owners: {
       serialize: true
     },
+    repertories: {
+      serialize: true
+    },
   }
 });

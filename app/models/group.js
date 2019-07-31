@@ -37,7 +37,7 @@ export default Model.extend({
     'permissions.write'
   ),
 
-  repertoriesCount: alias('repertories.length'),
+  // repertoriesCount: alias('repertories.length'),
 
   activeMembers: filterBy(
     'members',
@@ -45,7 +45,7 @@ export default Model.extend({
     'Active'
   ),
 
-  activesCount: alias('activeMembers.length'),
+  // activesCount: alias('activeMembers.length'),
 
   isFemale: equal(
     'gender',

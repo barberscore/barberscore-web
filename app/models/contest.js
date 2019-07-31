@@ -82,6 +82,6 @@ export default Model.extend({
     'isAwardQualifier',
   ),
 
-  entriesCount: alias('entries.length'),
+  // entriesCount: alias('entries.length'),
 
 });

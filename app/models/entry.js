@@ -6,11 +6,11 @@ import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('entry-status'),
-  isEvaluation: DS.attr('boolean'),
-  isPrivate: DS.attr('boolean'),
-  isMt: DS.attr('boolean'),
-  isSenior: DS.attr('boolean'),
-  isYouth: DS.attr('boolean'),
+  isEvaluation: DS.attr('boolean', {defaultValue: true}),
+  isPrivate: DS.attr('boolean', {defaultValue: false}),
+  isMt: DS.attr('boolean', {defaultValue: false}),
+  isSenior: DS.attr('boolean', {defaultValue: false}),
+  isYouth: DS.attr('boolean', {defaultValue: false}),
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
@@ -32,9 +32,10 @@ export default Model.extend({
   bhsId: DS.attr('number'),
   code: DS.attr('string', {defaultValue: ''}),
 
-  contests: DS.hasMany('contest', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
   session: DS.belongsTo('session', {async: true}),
+  contests: DS.hasMany('contest', {async: true}),
+  repertories: DS.hasMany('repertory', {async: true}),
+  owners: DS.hasMany('user', {async: true}),
 
   statelogs: DS.hasMany('statelog', {async: true}),
   permissions: DS.attr(),

@@ -17,6 +17,6 @@ export default Component.extend({
     yield entry.get('contests').setObjects(newSelection);
     yield timeout(1000);
     yield entry.save();
-    this.flashMessages.success(`${value.awardName} ${operation}!`);
+    this.flashMessages.success('Saved!');
   }).restartable(),
 });

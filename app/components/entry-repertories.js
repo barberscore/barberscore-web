@@ -2,11 +2,11 @@ import Component from '@ember/component';
 import { sort } from '@ember/object/computed';
 
 export default Component.extend({
-  sortedChartsProperties: [
+  sortedRepertoriesProperties: [
     'title',
   ],
-  sortedCharts: sort(
-    'model.groupCharts',
-    'sortedChartsProperties'
+  sortedRepertories: sort(
+    'model.repertories',
+    'sortedRepertoriesProperties'
   ),
 });

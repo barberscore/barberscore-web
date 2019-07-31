@@ -7,13 +7,13 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedCharts as |chart|}}
+      {{#each sortedRepertories as |repertory|}}
         <tr>
           {{#if repertory.isLoading}}
             <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
           {{else}}
-              <td>{{chart.title}}</td>
-              <td>{{chart.arrangers}}</td>
+              <td>{{repertory.title}}</td>
+              <td>{{repertory.arrangers}}</td>
           {{/if}}
         </tr>
       {{else}}

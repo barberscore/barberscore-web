@@ -46,7 +46,7 @@
 
 
 
-  {{#if (eq model.groupKind 'Quartet')}}
+  {{#if (eq model.kind 'Quartet')}}
 
     <label {{action (toggle 'memberHelp' this)}}>Members: T, L, Br, Bs {{fa-icon 'question-circle-o'}}</label>
     {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' property='participants' onChange=(perform autosave 'participants')}}
@@ -63,7 +63,7 @@
     {{form.element controlType='text' disabled=isDisabled placeholder='Chapter membership(s) of the quartet participants.' property='chapters' onChange=(perform autosave 'chapters')}}
     {{#bs-collapse collapsed=chapterHelp}}
       <p>
-        Please indicate the names of the Chapter(s) of your members, separated by commas. For example:
+        Please indicate your Chapter memberships as you wish to them to be announced, separated by commas. For example:
       </p>
       <p>
         <strong>Bay Area, Santa Fe, and Frank Thorne.</strong>
@@ -80,7 +80,7 @@
       </p>
     {{/bs-collapse}}
 
-{{!--     {{form.element controlType='text' disabled=true placeholder='Chorus Parent Chapter' label='Chapter' property='chapters' onChange=(perform autosave 'chapters')}} --}}
+    {{!-- {{form.element controlType='text' disabled=true placeholder='Chorus Parent Chapter' label='Chapter' property='chapters' onChange=(perform autosave 'chapters')}} --}}
 
     {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated number of participants' label='Participants-On-Stage' property='pos' onChange=(perform autosave 'pos')}}
 
