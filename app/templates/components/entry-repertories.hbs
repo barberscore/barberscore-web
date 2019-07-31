@@ -26,3 +26,53 @@
     </tbody>
   </table>
 </div>
+
+<section>
+  <p>
+  {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
+  </p>
+  <div>
+    {{#bs-modal
+      open=createRepertoryModal
+      size='lg'
+      onHidden=(pipe-action (action (mut createRepertoryModal) false) (action (mut createRepertoryModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>Add New Chart to Repertory</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Please select a chart to add.
+        </p>
+        {{#power-select
+          search=(perform searchChart)
+          selected=chart
+          onchange=(action (mut chart))
+          placeholder="Type in a partial title or arranger name"
+          allowClear=true
+          renderInPlace=true
+          noMatchesMessage="No charts found matching the search text. Try typing a partial title"
+          as |chart|
+        }}
+          Song: {{chart.title}} [{{chart.arrangers}}]
+        {{/power-select}}
+        {{#if createRepertoryModalError}}
+        <p class='text-danger'>
+          Could not Add chart.  Please contact support.
+        </p>
+        {{/if}}
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveRepertory chart) }}
+          {{#if saveRepertory.isRunning}}
+            Adding... {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Add Chart
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
+</section>
