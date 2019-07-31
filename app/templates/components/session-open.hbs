@@ -1,6 +1,6 @@
 {{#bs-button
   type='primary'
-  disabled=true
+  disabled=false
   onClick=(action (mut openSessionModal) true)
 }}
   Open Session
@@ -18,7 +18,7 @@
       Opening the Session allows Groups to enter the contest. If this Session is by Invitation-Only then you will need to add Entries manually.  Otherwise, clicking open will send an email to all Active groups within the District indicating they can now enter the contest.
     </p>
     <p>
-      <strong>Important:</strong> Be sure you have selected all the awards that may be given out during this session prior to opening it.  You won't be able to change this later without significant effort.  See the "Contests" tab in the session manager to include awards in this session.
+      <strong>Important:</strong> Be sure the list of Awards on the "Contests" tab is correct prior to opening the Session.  You won't be able to change this later without significant effort.  If you need to add to or remove from this list please contact Chris Buechler.
     </p>
     {{#if openSessionModalError}}
     <p class='text-danger'>
