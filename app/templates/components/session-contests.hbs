@@ -7,7 +7,6 @@
     <table class='table table-hover table-sm'>
       <thead class='thead-light'>
         <tr>
-          <th>Status</th>
           <th>Name</th>
           <th>Description</th>
           {{!-- <th>Count</th> --}}
@@ -19,14 +18,6 @@
             {{#if contest.isLoading}}
               <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>
-                {{input
-                  type='checkbox'
-                  checked=contest.isIncluded
-                  disabled=true
-                  change=(perform toggleContest contest value='target.checked')
-                }}
-              </td>
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.name}}{{/link-to}}</td>
               <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
               {{!-- <td>{{contest.entriesCount}}</td> --}}
