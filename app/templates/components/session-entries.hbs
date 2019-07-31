@@ -10,8 +10,8 @@
           <th>Name</th>
           <th>BHS ID</th>
           {{!-- <th>BHS Status</th> --}}
-          <th>Representing</th>
-          <th>Contests Entered</th>
+          <th>Director/Members</th>
+          {{!-- <th>Contests Entered</th> --}}
           {{!-- <th>Songs in Repertory</th> --}}
           {{#if (eq model.kind 'Chorus')}}
             <th>Participants on Stage</th>
@@ -28,7 +28,7 @@
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry}}{{entry.name}}{{/link-to}}</td>
               <td>{{entry.bhsId}}</td>
               {{!-- <td>{{entry.status}}</td> --}}
-              <td>{{entry.district}}</td>
+              <td>{{entry.participants}}</td>
               {{!-- <td>{{entry.contestsCount}}</td> --}}
               {{!-- <td>{{entry.groupChartsCount}}</td> --}}
               {{#if (eq model.kind 'Chorus')}}

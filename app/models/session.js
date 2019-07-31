@@ -82,46 +82,6 @@ export default Model.extend({
     3,
   ],
 
-  newEntries: filterBy(
-    'entries',
-    'status',
-    'New'
-  ),
-  builtEntries: filterBy(
-    'entries',
-    'status',
-    'Built'
-  ),
-  invitedEntries: filterBy(
-    'entries',
-    'status',
-    'Invited'
-  ),
-  withdrawnEntries: filterBy(
-    'entries',
-    'status',
-    'Withdrawn'
-  ),
-  submittedEntries: filterBy(
-    'entries',
-    'status',
-    'Submitted'
-  ),
-  approvedEntries: filterBy(
-    'entries',
-    'status',
-    'Approved'
-  ),
-
-  // newEntriesCount: alias('newEntries.length'),
-  // builtEntriesCount: alias('builtEntries.length'),
-  // invitedEntriesCount: alias('invitedEntries.length'),
-  // withdrawnEntriesCount: alias('withdrawnEntries.length'),
-  // submittedEntriesCount: alias('submittedEntries.length'),
-  // approvedEntriesCount: alias('approvedEntries.length'),
-  // totalEntriesCount: alias('entries.length'),
-  // contestCount: alias('contests.length'),
-
   statusSort: computed(
     'status',
     'statusOptions',

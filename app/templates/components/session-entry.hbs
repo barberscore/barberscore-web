@@ -19,13 +19,13 @@
           {{#if model.isMixed}}
             <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
-          {{#if model.isFemail}}
+          {{#if model.isFemale}}
             <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
           {{#if model.division}}
             <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
           {{/if}}
-          {{#if (eq model.groupStatus 'Active')}}
+          {{#if (eq model.status 'Active')}}
             <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
             {{!-- <span class="badge badge-danger">Inactive</span>&nbsp; --}}
@@ -60,7 +60,7 @@
         </div>
       </section>
       <section>
-        {{entry-contests model=model}}
+        {{entry-contests model=model options=model.session.contests}}
       </section>
       {{!-- <hr>
       <section>
@@ -127,29 +127,29 @@
     <div class='card-footer'>
       {{!-- {{prev-next model=model sortedArray=sortedEntries}} --}}
       <h4>
-        {{model.groupName}}&nbsp;{{#if model.representing}}({{model.representing}}){{/if}}&nbsp;
-          {{#if model.groupBhsId}}
-            [{{model.groupBhsId}}]&nbsp;
+        {{model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
+          {{#if model.bhsId}}
+            [{{model.bhsId}}]&nbsp;
           {{/if}}
           {{#if model.prelim}}
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
-          {{#if model.groupIsSenior}}
+          {{#if model.isSenior}}
             <span class="badge badge-warning">Seniors</span>&nbsp;
           {{/if}}
-          {{#if model.groupIsYouth}}
+          {{#if model.isYouth}}
             <span class="badge badge-warning">Youth</span>&nbsp;
           {{/if}}
-          {{#if model.groupIsMixed}}
+          {{#if model.isMixed}}
             <span class="badge badge-success">Mixed</span>&nbsp;
           {{/if}}
-          {{#if model.group.isFemale}}
+          {{#if model.isFemale}}
             <span class="badge badge-primary">Female</span>&nbsp;
           {{/if}}
-          {{#if model.groupDivision}}
+          {{#if model.division}}
             <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
           {{/if}}
-          {{#if (eq model.groupStatus 'Active')}}
+          {{#if (eq model.status 'Active')}}
             <span class="badge badge-success">Active</span>&nbsp;
           {{else}}
             {{!-- <span class="badge badge-danger">Inactive</span>&nbsp; --}}
