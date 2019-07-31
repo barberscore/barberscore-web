@@ -27,7 +27,7 @@ export default Model.extend({
   name: DS.attr('string', {defaultValue: ''}),
   kind: DS.attr('group-kind'),
   gender: DS.attr('group-gender'),
-  district: DS.attr('string', {defaultValue: ''}),
+  district: DS.attr('group-district'),
   division: DS.attr('group-division'),
   bhsId: DS.attr('number'),
   code: DS.attr('string', {defaultValue: ''}),
