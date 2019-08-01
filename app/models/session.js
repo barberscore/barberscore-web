@@ -1,4 +1,4 @@
-import { not, filterBy, sort } from '@ember/object/computed';
+import { not, sort } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
