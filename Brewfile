@@ -1,0 +1,10 @@
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/core"
+brew "git"
+brew "python"
+brew "node@10", link: true, conflicts_with: ['node']
+brew "pipenv"
+brew "yarn"
+brew "watchman"
+brew "heroku/brew/heroku"
