@@ -32,8 +32,8 @@
       "description": "The host of the Barberscore API.",
       "required": true
     },
-    "AUTH0_CLIENT_ID": {
-      "description": "The Auth0 Client id.",
+    "BARBERSCORE_CLIENT_ID": {
+      "description": "The Barberscore Client id.",
       "required": true
     },
     "AUTH0_DOMAIN": {
