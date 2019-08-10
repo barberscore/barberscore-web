@@ -32,7 +32,7 @@ Set the following Environment Variables:
 API_HOST=http://localhost:4200
 
 AUTH0_DOMAIN=barberscore-dev.auth0.com
-BARBERSCORE_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
+AUTH0_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
 ```
 
 ### Running

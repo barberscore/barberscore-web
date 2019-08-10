@@ -79,7 +79,7 @@ module.exports = function(environment) {
       routeAfterAuthentication: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
-        clientID: process.env.BARBERSCORE_CLIENT_ID,
+        clientID: process.env.AUTH0_CLIENT_ID,
         domain: process.env.AUTH0_DOMAIN,
         enableImpersonation: true,
       }
@@ -125,7 +125,7 @@ module.exports = function(environment) {
       routeAfterAuthentication: 'dashboard',
       routeIfAlreadyAuthenticated: 'dashboard',
       auth0: {
-        clientID: process.env.BARBERSCORE_CLIENT_ID,
+        clientID: process.env.AUTH0_CLIENT_ID,
         domain: process.env.AUTH0_DOMAIN,
         enableImpersonation: true,
         silentAuth : {
