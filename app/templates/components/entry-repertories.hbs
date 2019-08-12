@@ -4,6 +4,7 @@
       <tr>
         <th>Title</th>
         <th>Arranger(s)</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
           {{else}}
               <td>{{repertory.title}}</td>
               <td>{{repertory.arrangers}}</td>
+              <td>{{#bs-button type='danger' size='sm' onClick=(perform deleteRepertory repertory) disabled=model.isDisabled}}Delete{{/bs-button}}</td>
           {{/if}}
         </tr>
       {{else}}
