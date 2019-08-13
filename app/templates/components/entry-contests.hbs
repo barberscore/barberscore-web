@@ -5,6 +5,7 @@
         <th>Include</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Single-Round?</th>
       </tr>
     </thead>
     <tbody>
@@ -24,6 +25,9 @@
           </td>
           <td>
             {{contest.description}}
+          </td>
+          <td>
+            {{boolean-helper contest.isSingle}}
           </td>
         </tr>
       {{/multiselect-checkboxes}}
