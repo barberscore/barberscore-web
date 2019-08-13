@@ -24,20 +24,3 @@
     {{group.name}}
   </p> --}}
 </div>
-{{#bs-navbar toggleBreakpoint=null position='fixed-bottom' as |navbar|}}
-  {{#navbar.content}}
-    {{#navbar.nav type='pills' class='mr-4 nav-pills' as |nav|}}
-      {{#nav.item}}
-        {{#link-to 'about'}}About{{/link-to}}
-      {{/nav.item}}
-      &nbsp;&nbsp;&nbsp;
-      {{#nav.item}}
-        {{#link-to 'faq'}}FAQ{{/link-to}}
-      {{/nav.item}}
-      &nbsp;&nbsp;&nbsp;
-      {{#nav.item}}
-        {{#link-to 'tutorials'}}Tutorials{{/link-to}}
-      {{/nav.item}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
-{{/bs-navbar}}
