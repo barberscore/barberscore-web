@@ -10,11 +10,11 @@
       </p>
     {{/bs-collapse}}
   </p>
-  {{#bs-form
+  {{!-- {{#bs-form
     model=model
     formLayout='vertical'
     as |form|
-  }}
+  }} --}}
     {{!-- {{#if (eq model.kind 'Quartet') }}
       {{form.element controlType='text' disabled=model.isDisabled label='Active Members (TLBB)' placeholder='List your members in TLBB order as you\'d wish them to appear on a program.' property='participants' onChange=(perform autosave 'participants')}}
     {{else}}
@@ -25,12 +25,12 @@
     {{#unless (eq model.kind 'Quartet') }}
       {{form.element controlType='text' disabled=true placeholder='N/A' property='chapter'}}
     {{/unless}} --}}
-    {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}}
-    {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}}
-    {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}}
+    {{!-- {{form.element controlType='url' disabled=true placeholder='Website' property='website' onChange=(perform autosave 'website')}} --}}
+    {{!-- {{form.element controlType='email' disabled=true placeholder='Email' property='email' onChange=(perform autosave 'email')}} --}}
+    {{!-- {{form.element controlType='phone' disabled=true placeholder='Phone' property='phone' onChange=(perform autosave 'phone')}} --}}
     {{!-- {{form.element controlType='text' disabled=true placeholder='Facebook' property='facebook' onChange=(perform autosave 'facebook')}} --}}
     {{!-- {{form.element controlType='text' disabled=true placeholder='Twitter' property='twitter' onChange=(perform autosave 'twitter')}} --}}
-  {{/bs-form}}
+  {{!-- {{/bs-form}} --}}
 </section>
 {{!-- <section>
   <p>
