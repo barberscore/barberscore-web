@@ -6,6 +6,10 @@ import { denodeify } from 'rsvp'
 
 
 export default Component.extend({
+  customCollapsed: true,
+  customCollapsed2: true,
+  customCollapsed4: true,
+  customCollapsed5: true,
   sortedRepertoriesProperties: [
     'title',
   ],
