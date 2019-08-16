@@ -9,7 +9,7 @@
         <tr>
           <th>Name</th>
           <th>Description</th>
-          {{!-- <th>Count</th> --}}
+          <th>Single-Round?</th>
         </tr>
       </thead>
       <tbody>
@@ -20,7 +20,7 @@
             {{else}}
               <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.name}}{{/link-to}}</td>
               <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
-              {{!-- <td>{{contest.entriesCount}}</td> --}}
+              <td>{{boolean-helper contest.isSingle}}</td>
             {{/if}}
           </tr>
         {{else}}
