@@ -8,8 +8,5 @@ export default DS.JSONAPISerializer.extend({
       entries: {
         serialize: true
       },
-      rounds: {
-        serialize: true
-      },
     }
 });
