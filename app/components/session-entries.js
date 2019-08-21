@@ -29,8 +29,24 @@ export default Component.extend({
     try {
       let entry = yield this.model.get('entries').createRecord({
         groupId: obj.objectID,
+        name: obj.name,
+        kind: obj.get_kind_display,
+        gender: obj.get_gender_display,
+        district: obj.get_district_display,
+        division: obj.get_division_display,
+        participants: obj.participants,
+        chapters: obj.chapters,
+        image: obj.image_url,
+        bhsId: obj.bhs_id,
+        code: obj.code,
         repertories: [],
       }).save();
+      obj.owner_ids.forEach((user_id) => {
+        this.store.findRecord('user', user_id).then((user) => {
+          entry.get('owners').pushObject(user);
+          entry.save();
+        });
+      })
       let p = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
@@ -38,7 +54,8 @@ export default Component.extend({
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.flashMessages.success("Created!");
-      this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));
+      // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createEntryModalError', true);
