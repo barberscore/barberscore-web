@@ -8,12 +8,12 @@ export default Service.extend({
   store: service(),
 
   load() {
-    let username = this.get('session.data.authenticated.profile.sub');
-    if (!isEmpty(username)) {
-      return this.store.query('user', {
-        'username': username,
-      }).then(users => {
-        return users.get('firstObject');
+    let id = this.get('session.data.authenticated.profile.sub');
+    if (!isEmpty(id)) {
+      return this.store.findRecord(
+        'user', id
+      ).then(user => {
+        return user;
       }).catch(err => {
         alert(err.errors[0].detail)
         return RSVP.resolve()
