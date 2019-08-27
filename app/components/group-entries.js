@@ -15,10 +15,10 @@ export default Component.extend({
   groupEntries: computed(
     'model',
     function() {
-      return this.store.query('entry', {
+      return this.store.query('entry', { filter: {
         'session__status__lt': 30, // TODO HARDCODED, all except finished
         'group_id': this.model.id,
-        'page_size': 100
+      },
     });
   }),
   filteredEntries: filterBy(
@@ -41,13 +41,17 @@ export default Component.extend({
         'Chorus': 32,
         'Quartet': 41,
       };
-      return this.store.query('session', {
-        'status': 4, // TODO HARDCODED
-        'kind': kinds[this.get('model.kind')],
-        'is_invitational': false,
-        'page_size': 100
-    });
-  }),
+      return this.store.query(
+        'session', {
+          filter: {
+            'status': 4, // TODO HARDCODED
+            'kind': kinds[this.get('model.kind')],
+            'is_invitational': false,
+          },
+        }
+      );
+    }
+  ),
   sessionSortProperties: [
     'conventionName',
   ],

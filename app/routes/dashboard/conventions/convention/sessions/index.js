@@ -6,8 +6,8 @@ export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
   model() {
     let { convention_id } = this.paramsFor('dashboard.conventions.convention');
-    return this.store.query('session', {
+    return this.store.query('session', {filter: {
       'convention_id': convention_id,
-    });
+    }});
   },
 });

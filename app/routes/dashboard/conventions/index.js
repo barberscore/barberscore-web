@@ -5,9 +5,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service('current-user'),
   model() {
-    return this.store.query('convention', {
+    return this.store.query('convention', {filter:{
       'status': 10,
       'owners': this.currentUser.user.id,
-    });
+    }});
   },
 });
