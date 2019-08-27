@@ -6,14 +6,8 @@ export default DS.JSONAPISerializer.extend({
       return underscore(attr);
     },
     attrs: {
-      image: {
-        serialize: false
-      },
       imageId: {
         serialize: false
-      },
-      entries: {
-        serialize: true
       },
     }
 });
