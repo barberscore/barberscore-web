@@ -23,7 +23,7 @@ export default Component.extend({
     yield timeout(600);
     let kindModel = this.get('model.session.kind');
     let func = denodeify(this.algolia.search.bind(this.algolia))
-    let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel}` })
+    let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel} OR get_kind_display:VLQ` })
     return res.hits
   }),
   createAppearanceModal: false,
