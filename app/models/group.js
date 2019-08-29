@@ -27,6 +27,7 @@ export default Model.extend({
   imageId: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
+  charts: DS.hasMany('chart', {async: true}),
 
   permissions: DS.attr(),
 

@@ -17,6 +17,7 @@ export default Model.extend({
   nomen: DS.attr('string'),
   imageId: DS.attr('string'),
 
+  groups: DS.hasMany('group', {async: true}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),
