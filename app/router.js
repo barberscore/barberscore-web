@@ -112,6 +112,9 @@ Router.map(function() {
         this.route('details', {
           path: 'details'
         });
+        this.route('info', {
+          path: 'info'
+        });
         this.route('entries', {
           path: 'entries'
         }, function () {
