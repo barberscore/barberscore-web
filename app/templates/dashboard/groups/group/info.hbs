@@ -4,10 +4,16 @@
   </p>
   {{cloudinary-image model.imageId (hash height=200) class='img-fluid img-rounded'}}
   <p>
-    {{inline-help
-      title='Want to Add/Replace/Remove your image?  Click here.'
-      body='To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to images@barberscore.com.  We will update it within 24 hours.'
-    }}
+    {{#bs-button type='link' onClick=(toggle 'collapsed' this)}}
+      <p>
+        Want to Add/Replace/Remove your image?  Click here.
+      </p>
+    {{/bs-button}}
+    {{#bs-collapse collapsed=collapsed}}
+      <p>
+        To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to {{barberscore-images}}.  We will update it within 24 hours.
+      </p>
+    {{/bs-collapse}}
   </p>
   {{#bs-form
     model=model
