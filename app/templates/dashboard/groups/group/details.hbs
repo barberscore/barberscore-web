@@ -1,3 +1,22 @@
 <section>
-  {{group-details model=model}}
+  <p class='lead'>
+    This information is provided by the {{member-center}} and is not editable.  If you wish to make changes to this information please do so there; it will update here generally within about 24 hours.
+  </p>
+  {{#bs-form
+    model=model
+    formLayout='vertical'
+    as |form|
+  }}
+    {{form.element controlType='text' disabled=true label='Representing' property='district' }}
+    {{form.element controlType='url' disabled=true label='Website' property='website'}}
+    {{form.element controlType='email' disabled=true label='Email' property='email'}}
+    {{form.element controlType='phone' disabled=true label='Phone' property='phone'}}
+    {{form.element controlType='text' disabled=true label='Facebook' property='facebook'}}
+    {{form.element controlType='text' disabled=true label='Twitter' property='twitter'}}
+  {{/bs-form}}
 </section>
+{{!-- <section>
+  <p>
+    <strong>Note:</strong>  You may only edit your picture, description and Current Members/Director(s).  To make changes to other fields please do so in {{member-center}}; they will be updated here generally within 24 hours.  If you are a non-BHS group and don't have access to the Member Center you may send your details to <a href='mailto:images@barberscore.com'>images@barberscore.com</a> and we'll update them for you.
+  </p>
+</section> --}}
