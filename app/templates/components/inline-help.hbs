@@ -1,0 +1,10 @@
+    {{#bs-button type='link' onClick=(toggle 'collapsed' this)}}
+      <p>
+        {{title}}
+      </p>
+    {{/bs-button}}
+    {{#bs-collapse collapsed=collapsed}}
+      <p>
+        {{body}}
+      </p>
+    {{/bs-collapse}}
