@@ -1,3 +1,77 @@
 <section>
-  {{group-index model=model}}
+  <div class='card'>
+    <div class='card-header'>
+      <h3>
+        Your Groups
+      </h3>
+    </div>
+    <div class='card-body'>
+      <p class='card-text'>These are the active groups of which you are currently considered an officer.</p>
+      <div class='table-responsive table-sm'>
+        <table class='table table-hover table-sm'>
+          <thead class='thead-light'>
+            <tr>
+              {{!-- <th>Image</th> --}}
+              <th>Name</th>
+              <th>Kind</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedGroups as |group|}}
+              <tr>
+                {{!-- <td>
+                  {{cloudinary-image group.imageId (hash width=64) class='img-fluid img-rounded'}}
+                </td> --}}
+                <td>
+                  {{#link-to 'dashboard.groups.group.details' group}}{{group.name}}{{/link-to}}
+                </td>
+                <td>
+                  {{group.kind}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td></td>
+                <td>(You are not listed as an officer for any active group.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class='card-footer'>
+      {{#bs-button type='link' onClick=(toggle 'collapsedNote' this)}}
+        <p>
+          Your group not listed? Click here.
+        </p>
+      {{/bs-button}}
+      {{#bs-collapse collapsed=collapsedNote}}
+        <p>
+          This is the list of currently active groups for which you are considered an officer.
+        </p>
+        <p>
+          If you believe this list is in error please contact {{customer-support}}.
+        </p>
+      {{/bs-collapse}}
+      {{!-- {{#bs-collapse collapsed=collapsedNote}}
+        <p>
+          This is the list of currently active groups for which you are considered an officer. Please access the BHS {{member-center}} and check your group subscription and membership status.
+        </p>
+        <p>
+          If the Member Center shows that you are a current member and your district-affiliated group is not listed please submit an inquiry to report the situation to {{customer-support}}.  (Only groups with a district-affiliation appear in Barberscore.)
+        </p>
+        <p><strong>NOTE:</strong> Please be patient as <em>newly registered quartets</em> will not be displayed in Barberscore until BHS headquarters has:
+        </p>
+        <ul class='list-styled'>
+          <li>Approved the quartet name</li>
+          <li>Processed the subscription fee</li>
+          <li>Finalized the Member Center record</li>
+          <li>Assigned a district</li>
+        </ul>
+        <p>
+          <em>That process can take up to 5 business days.</em>
+        </p>
+      {{/bs-collapse}} --}}
+    </div>
+  </div>
 </section>
