@@ -1,3 +1,165 @@
 <section>
-  {{group-entries model=model}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Convention</th>
+          <th>Location</th>
+          <th>Dates</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedEntries as |entry|}}
+          <tr>
+            {{#if entry.isLoading}}
+              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>
+                {{#link-to 'dashboard.groups.group.entries.entry' entry}}{{entry.session.name}}{{/link-to}}
+              </td>
+              <td>
+                {{entry.session.location}}
+              </td>
+              <td>
+                {{moment-format entry.session.startDate 'L'}} - {{moment-format entry.session.endDate 'L'}}
+              </td>
+              <td>
+                {{entry.status}}
+              </td>
+            {{/if}}
+          </tr>
+        {{else}}
+          <tr>
+            <td>
+              (No current entries.)
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p>
+      {{#bs-button
+        type='success'
+        disabled=model.isDisabled
+        onClick=(action (mut createEntryModal) true)
+      }}
+        Create New Entry
+      {{/bs-button}}
+    </p>
+  </div>
+  <section>
+  {{#if (eq model.kind 'Quartet')}}
+  <p>
+      {{#bs-button type='link' onClick=(toggle 'customCollapsed2' this)}}
+        "Create New Entry" button is disabled? Click Here.
+      {{/bs-button}}
+  </p>
+      {{#bs-collapse collapsed=customCollapsed2}}
+  <p>
+    You must be designated as your quartet contact (as indicated in the BHS {{member-center}}) in order to enter your quartet into a contest. At present, the MC allows for only one contact person per quartet. In order to change it to someone else, either the current quartet contact must login to MC to transfer admin rights to another member, or you will need to contact BHS Customer Service to convince them that the contact is unable to do so.
+  </p>
+  <p>
+  If you are the quartet contact (and you’re still not able to edit), please submit an inquiry to report the situation to {{customer-support}}.
+  </p>
+      {{/bs-collapse}}
+  {{else}}
+  <p>
+      {{#bs-button type='link' onClick=(toggle 'customCollapsed3' this)}}
+        "Create New Entry" button is disabled? Click Here.
+      {{/bs-button}}
+  </p>
+      {{#bs-collapse collapsed=customCollapsed3}}
+  <p>
+  Previously, chorus entries were managed by designated chapter leaders - this has changed!! Now, you must be a Chorus leader. Only the following Chorus Leader roles (as identified in the {{member-center}}) have edit access for their chorus in Barberscore: Chorus Director, Chorus Associate or Assistant Director, or Chorus Manager. If needed – please communicate with your Chapter President, Secretary, or Treasurer – as only those 3 individuals have the permissions to change or add Chorus Leaders in the BHS Member Center. If you are one of these chapter leaders (such as Chapter Secretary) and don't know how to add yourself as a Chorus Manager, then please contact {{customer-support}} for assistance.
+  </p>
+  <p>
+  If you have been added to one of those roles (and you’re still not able to edit), please submit an inquiry to report the situation to {{customer-support}}.
+  </p>
+      {{/bs-collapse}}
+  {{/if}}
+  <p>
+      {{#bs-button type='link' onClick=(toggle 'customCollapsed' this)}}
+        Need more info for contest entry? Click Here.
+      {{/bs-button}}
+  </p>
+      {{#bs-collapse collapsed=customCollapsed}}
+  <p><em>There are two types of contests: </em><strong>Invitational</strong> <em>and </em><strong>Open</strong>
+  </p>
+  <p>
+  <strong>Open Contest Entries: </strong><em>(open to all eligible groups)</em>
+  </p>
+  <p>
+  Simply click the green <strong>Create New Entry</strong> button above. In the New Entry dialog box, click the drop-down menu of sessions to scroll through and locate your convention. Finally, click the green "Create Entry" button to start your contest entry process.
+  </p>
+  <p>
+  If you cannot locate your contest session, check with your DRCJ to see if the contest has been opened for entry. Or, if contest entry is now closed (perhaps you missed the entry deadline), you'll need to contact your DRCJ to see if a late entry exception is possible.
+  </p>
+  <p>
+  <strong>Invitational Contest Entries:</strong>
+  </p>
+  <p>You cannot enter this type of contest until your group has been invited (in Barberscore) by the DRCJ. Once invited, you should receive an invitation email, and you will also see a link to your contest session above on this page. Just click that link to start the contest entry process. Otherwise (if there is no link, and you feel your group should have been invited by now), please contact your DRCJ directly.
+  </p>
+     {{/bs-collapse}}
+  </section>
+  <div>
+    {{#bs-modal
+      open=createEntryModal
+      size='lg'
+      onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
+      as |modal|
+    }}
+      {{#modal.header}}
+        <h4>New Entry</h4>
+      {{/modal.header}}
+      {{#modal.body}}
+        <p>
+          Please pick a Session to enter.
+        </p>
+        {{#power-select
+          options=sessionOptions
+          selected=session
+          onchange=(action (mut session))
+          placeholder="Choose Session"
+          searchField='name'
+          allowClear=true
+          renderInPlace=true
+          noMatchesMessage="We Could Not Find an Open Session with that Name"
+          as |session|
+        }}
+          <div class='card'>
+            <div class='card-body'>
+              <div class='float-left'>
+                {{cloudinary-image session.imageId (hash width=64) class='img-fluid img-rounded'}}
+              </div>
+              <div class='float-left pl-4 tight-line'>
+                <ul class='list-unstyled'>
+                  <li>{{session.name}}</li>
+                  <li>{{session.kind}} Session</li>
+                  <li>{{session.location}} {{moment-format session.startDate 'L'}} - {{moment-format session.endDate 'L'}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        {{/power-select}}
+        {{#if createEntryModalError}}
+        <p class='text-danger'>
+          Could not delete entry.  Please contact support.
+        </p>
+        {{/if}}
+      {{/modal.body}}
+      {{#modal.footer}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveEntry session) disabled=isDisabled}}
+          {{#if saveEntry.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Entry
+          {{/if}}
+        {{/bs-button}}
+      {{/modal.footer}}
+    {{/bs-modal}}
+  </div>
 </section>
