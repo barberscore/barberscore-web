@@ -5,12 +5,12 @@ import { inject as service } from '@ember/service';
 export default Route.extend(AuthenticatedRouteMixin, {
   currentUser: service(),
   model() {
+    let { group_id } = this.paramsFor('dashboard.groups.group');
     return this.store.query(
-      'group', {
+      'entry', {
         filter: {
-          'status': 10,
-          'owners': this.currentUser.user.id,
-        }
+          'group_id': group_id,
+        },
       }
     );
   },
