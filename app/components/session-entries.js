@@ -10,7 +10,7 @@ export default Component.extend({
   algolia: service(),
   store: service(),
   sortedEntriesProperties: [
-    'groupName',
+    'name',
   ],
   sortedEntries: sort(
     'model.entries',
