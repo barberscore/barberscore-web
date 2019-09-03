@@ -1,4 +1,7 @@
 <section>
+  <p class='lead'>
+    Here is where you provide details related to this contest entry.
+  </p>
   <div class='card'>
     <div class='card-header'>
       <h5>
@@ -6,83 +9,46 @@
       </h5>
     </div>
     <div class='card-body'>
-      {{!-- {{#if (eq model.status 'Approved')}}
-        <p class='lead'>
-          Now that your entry has been approved by your DRCJ, you can no longer make edits to the entry itself. <em>However, updates to your repertory are allowed at any time.</em> Please contact your DRCJ directly if you need to make any other changes or wish to provide additional information.
-        </p>
-      {{/if}} --}}
       <section>
         <div class='row'>
-          <div class='col-md-6'>
+          <div class='col-9'>
+            <h4>
+              Preferences
+            </h4>
             <p>
-              {{cloudinary-image model.group.imageId (hash height=400) class='img-fluid img-rounded'}}<br>
-              {{#bs-button type='link' onClick=(toggle 'imageCollapsed' this)}}
-                Want to Add/Replace/Remove your image?  Click here.
-              {{/bs-button}}
-              {{#bs-collapse collapsed=imageCollapsed}}
-                <p>
-                  To Add/Replace/Remove Your Image, send the image (maximum size 5MB) to <a href='mailto:images@barberscore.com'>images@barberscore.com</a>.  We generally will update it within 24 hours.
-                </p>
-              {{/bs-collapse}}
-            </p>
-          </div>
-          <div class='col-md-6'>
-            <p>
-              <strong>Preferences</strong>
-            </p>
-            <p>
-              {{entry-preferences model=model.entry}}
-            </p>
-            <p>
-              <strong>Info</strong>
-            </p>
-            <p>
+              {{group-details model=model.group}}
               {{group-info model=model.group}}
+              {{entry-preferences model=model.entry}}
             </p>
           </div>
         </div>
       </section>
-      <hr>
       <section>
-        {{entry-contests model=model.entry options=model.entry.session.contests}}
-      </section>
-      {{!-- <hr>
-      <section>
+        <h4>
+          Contests
+        </h4>
         <p>
-          Active Members: {{model.activeMembersCount}} &nbsp;&nbsp;
-          {{#bs-button type='outline-dark' size='sm' onClick=(toggle 'membersCollapsed' this)}}
-            {{if membersCollapsed 'Show' 'Hide'}}
-          {{/bs-button}}
+          {{entry-contests model=model.entry options=model.entry.session.contests}}
         </p>
-        {{#bs-collapse collapsed=membersCollapsed}}
-          {{group-members model=model.group}}
-          <p>
-            <strong>Note:</strong>  If you need to make changes to your membership please contact {{customer-support}}.
-          </p>
-        {{/bs-collapse}}
-      </section> --}}
-      <hr>
-      <section>
-          <p>
-            Song Repertory: {{!-- {{model.group.repertoriesCount}} &nbsp;&nbsp; --}}
-          {{#bs-button type='outline-dark' size='sm' onClick=(toggle 'repertoryCollapsed' this)}}
-            {{if repertoryCollapsed 'Show' 'Hide'}}
-          {{/bs-button}}
-        </p>
-        {{#bs-collapse collapsed=repertoryCollapsed}}
-          {{entry-repertories model=model}}
-          <p>
-            <strong>Note:</strong>  Please make sure to enter your songs into your Repertory at least 7 days prior to the contest. You can add charts to your Repertory at any time (even after you submit your contest entry). Remember that any chart you perform on stage must be in your Repertory in advance, or you may be disqualified. Our system saves all of your chart entries, so feel free to add every contest song for which your group has copyright clearance (and legal copies of sheet music), you won't need to do it again for the next contest. For more information, please read the <a href="https://www.barberscore.com/faq">competitor FAQ</a> "What is the policy for adding song titles to our Chart Repertory?"
-          </p>
-        {{/bs-collapse}}
       </section>
-      <hr>
       <section>
+        <h4>
+          Repertory
+        </h4>
         <p>
-          Additional Notes:
+          {{group-charts model=model.group}}
         </p>
-        <div class='col-md-6'>
-          {{entry-description model=model.entry}}
+      </section>
+      <section>
+        <div class='row'>
+          <div class='col-6'>
+            <h4>
+              Additional Notes:
+            </h4>
+            <p>
+              {{entry-description model=model.entry}}
+            </p>
+          </div>
         </div>
       </section>
     </div>
@@ -105,7 +71,7 @@
         {{else if (eq model.entry.status 'Approved')}}
           <li class='list-inline-item'>{{entry-withdraw model=model.entry}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.entry.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

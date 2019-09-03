@@ -17,6 +17,7 @@ export default Model.extend({
   location: DS.attr('string'),
   participants: DS.attr('string'),
   chapters: DS.attr('string'),
+  pos: DS.attr('number'),
   isSenior: DS.attr('boolean'),
   isYouth: DS.attr('boolean'),
   description: DS.attr('string'),
