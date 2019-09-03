@@ -9,12 +9,17 @@
         formLayout='vertical'
         as |form|
       }}
+        {{form.element controlType='text' disabled=true label='Name' property='name' }}
         {{form.element controlType='text' disabled=true label='Representing' property='district' }}
-        {{form.element controlType='url' disabled=true label='Website' property='website'}}
+        {{#if (eq model.kind 'Chorus')}}
+          {{form.element controlType='text' disabled=true label='Code' property='code' }}
+        {{/if}}
+        {{form.element controlType='text' disabled=true label='BHS ID' property='bhsId' }}
+        {{!-- {{form.element controlType='url' disabled=true label='Website' property='website'}}
         {{form.element controlType='email' disabled=true label='Email' property='email'}}
         {{form.element controlType='phone' disabled=true label='Phone' property='phone'}}
         {{form.element controlType='text' disabled=true label='Facebook' property='facebook'}}
-        {{form.element controlType='text' disabled=true label='Twitter' property='twitter'}}
+        {{form.element controlType='text' disabled=true label='Twitter' property='twitter'}} --}}
       {{/bs-form}}
     </div>
   </div>

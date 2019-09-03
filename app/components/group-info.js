@@ -9,6 +9,7 @@ export default Component.extend({
   chapterHelp: true,
   scoringHelp: true,
   evalHelp: true,
+  posHelp: true,
   isDisabled: not(
     'model.permissions.write',
   ),
