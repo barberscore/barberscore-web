@@ -27,6 +27,12 @@ export default Component.extend({
   createEntryModalError: false,
   saveEntry: task(function* (obj){
     try {
+      let users = [];
+      obj.owner_ids.forEach((user_id) => {
+        this.store.findRecord('user', user_id).then((user) => {
+          users.push(user);
+        });
+      })
       let entry = yield this.model.get('entries').createRecord({
         groupId: obj.objectID,
         name: obj.name,
@@ -40,13 +46,8 @@ export default Component.extend({
         bhsId: obj.bhs_id,
         code: obj.code,
         repertories: [],
+        owners: users,
       }).save();
-      obj.owner_ids.forEach((user_id) => {
-        this.store.findRecord('user', user_id).then((user) => {
-          entry.get('owners').pushObject(user);
-          entry.save();
-        });
-      })
       let p = yield entry.build({
         'by': this.get('currentUser.user.id'),
       });
