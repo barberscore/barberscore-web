@@ -1,3 +1,78 @@
 <section>
-  {{group-entry model=model}}
+  <p class='lead'>
+    Here is where you provide details related to this contest entry.
+  </p>
+  <div class='card'>
+    <div class='card-header'>
+      <h4>
+        {{model.entry.session.district}} {{model.entry.session.name}} {{model.entry.session.kind}} Session Entry
+      </h4>
+    </div>
+    <div class='card-body'>
+      <section>
+        <div class='row'>
+          <div class='col-9'>
+            <h4>
+              Preferences
+            </h4>
+            <p>
+              {{entry-details model=model.entry}}
+              {{group-info model=model.group}}
+              {{entry-preferences model=model.entry}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h4>
+          Contests
+        </h4>
+        <p>
+          {{entry-contests model=model.entry options=model.entry.session.contests}}
+        </p>
+      </section>
+      <section>
+        <h4>
+          Repertory
+        </h4>
+        <p>
+          {{group-charts model=model.group}}
+        </p>
+      </section>
+      <section>
+        <div class='row'>
+          <div class='col-6'>
+            <h4>
+              Additional Notes:
+            </h4>
+            <p>
+              {{entry-description model=model.entry}}
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class='card-footer'>
+      <ul class='list-inline'>
+        {{#if (eq model.entry.status 'New')}}
+          <li class='list-inline-item'>{{entry-delete model=model.entry callback='dashboard.groups.group.entries'}}</li>
+        {{else if (eq model.entry.status 'Built')}}
+          <li class='list-inline-item'>{{entry-submit model=model.entry callback='dashboard.groups.group.entries'}}</li>
+          <li class='list-inline-item'>{{entry-delete model=model.entry callback='dashboard.groups.group.entries'}}</li>
+        {{else if (eq model.entry.status 'Invited')}}
+          <li class='list-inline-item'>{{entry-submit model=model.entry callback='dashboard.groups.group.entries'}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model.entry}}</li>
+        {{else if (eq model.entry.status 'Withdrawn')}}
+          <li class='list-inline-item'>{{entry-submit model=model.entry callback='dashboard.groups.group.entries'}}</li>
+        {{else if (eq model.entry.status 'Submitted')}}
+          <li class='list-inline-item'>{{entry-submit model=model.entry callback='dashboard.groups.group.entries'}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model.entry}}</li>
+        {{else if (eq model.entry.status 'Approved')}}
+          <li class='list-inline-item'>{{entry-withdraw model=model.entry}}</li>
+        {{/if}}
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.entry.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
 </section>

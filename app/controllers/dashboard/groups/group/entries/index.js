@@ -1,10 +1,9 @@
-import { sort, filterBy } from '@ember/object/computed';
+import Controller from '@ember/controller';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
-import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 
-export default Component.extend({
+export default Controller.extend({
   flashMessages: service(),
   router: service(),
   store: service(),
@@ -12,61 +11,29 @@ export default Component.extend({
   customCollapsed: true,
   customCollapsed2: true,
   customCollapsed3: true,
-  groupEntries: computed(
-    'model',
-    function() {
-      return this.store.query('entry', { filter: {
-        'session__status__lt': 30, // TODO HARDCODED, all except finished
-        'group_id': this.model.id,
-      },
-    });
-  }),
-  filteredEntries: filterBy(
-    'groupEntries',
-    'conventionStatus',
-    'Active',
-  ),
   sortedEntriesProperties: [
-    'conventionStart:desc',
     'statusSort',
   ],
   sortedEntries: sort(
-    'groupEntries',
+    'model.entries',
     'sortedEntriesProperties'
   ),
-  sessionCall: computed(
-    'model',
-    function() {
-      let kinds = {
-        'Chorus': 32,
-        'Quartet': 41,
-      };
-      return this.store.query(
-        'session', {
-          filter: {
-            'status': 4, // TODO HARDCODED
-            'kind': kinds[this.get('model.kind')],
-            'is_invitational': false,
-          },
-        }
-      );
-    }
-  ),
   sessionSortProperties: [
-    'conventionName',
+    'district',
+    'name',
   ],
   sessionOptions: sort(
-    'sessionCall',
+    'model.sessions',
     'sessionSortProperties'
   ),
   createEntryModal: false,
   createEntryModalError: false,
   saveEntry: task(function* (session){
     try {
-      let owners = yield this.model.get('owners');
+      let owners = yield this.model.group.get('owners');
       let entry = yield this.store.createRecord('entry', {
         session: session,
-        groupId: this.model.id,
+        groupId: this.model.group.id,
         repertories: [],
         owners: owners,
       }).save();

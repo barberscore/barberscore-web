@@ -1,3 +1,161 @@
-<section>
-  {{session-entry model=model}}
+<section id="entry-detail">
+  <div class='card'>
+    <div class='card-header'>
+      {{prev-next model=model sortedArray=sortedEntries}}
+      <h4>
+
+        {{model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
+          {{#if model.bhsId}}
+            [{{model.bhsId}}]&nbsp;
+          {{/if}}
+          {{#if model.prelim}}
+            {{single-fixed model.prelim}}&nbsp;
+          {{/if}}
+          {{#if model.isSenior}}
+            <span class="badge badge-warning">Seniors</span>&nbsp;
+          {{/if}}
+          {{#if model.isYouth}}
+            <span class="badge badge-warning">Youth</span>&nbsp;
+          {{/if}}
+          {{#if model.isMixed}}
+            <span class="badge badge-success">Mixed</span>&nbsp;
+          {{/if}}
+          {{#if model.isFemale}}
+            <span class="badge badge-primary">Female</span>&nbsp;
+          {{/if}}
+          {{#if model.division}}
+            <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
+          {{/if}}
+          {{#if (eq model.status 'Active')}}
+            <span class="badge badge-success">Active</span>&nbsp;
+          {{else}}
+            {{!-- <span class="badge badge-danger">Inactive</span>&nbsp; --}}
+          {{/if}}
+      </h4>
+    </div>
+    <div class='card-body'>
+      <section>
+        <div class='row'>
+          <div class='col-9'>
+            <h4>
+              Preferences
+            </h4>
+            <p>
+              {{entry-details model=model}}
+              {{group-info model=group}}
+              {{entry-preferences model=model}}
+              {{#bs-button-group
+                value=model.isMt
+                type='radio'
+                onChange=(perform autosave 'isMt')
+                as |bg|
+              }}
+                {{#bg.button type='outline-dark' value=false disabled=model.isDisabled}}Not MicTester{{/bg.button}}
+                {{#bg.button type='outline-dark' value=true disabled=model.isDisabled}}Is MicTester{{/bg.button}}
+              {{/bs-button-group}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h4>
+          Contests
+        </h4>
+        <p>
+          {{entry-contests model=model options=model.session.contests}}
+        </p>
+      </section>
+      <section>
+        <h4>
+          Repertory
+        </h4>
+        <p>
+          {{group-charts model=group}}
+        </p>
+      </section>
+      <section>
+        <div class='row'>
+          <div class='col-6'>
+            <h4>
+              Additional Notes:
+            </h4>
+            <p>
+              {{entry-description model=model}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <p>
+          Activity Log:
+          {{#bs-button type='outline-dark' size='sm' onClick=(toggle 'logsCollapsed' this)}}
+            {{if logsCollapsed 'Show' 'Hide'}}
+          {{/bs-button}}
+        </p>
+        {{#bs-collapse collapsed=logsCollapsed}}
+          {{model-statelogs model=model}}
+        {{/bs-collapse}}
+      </section>
+    </div>
+    <div class='card-footer'>
+      {{prev-next model=model sortedArray=sortedEntries}}
+      <h4>
+        {{model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
+          {{#if model.bhsId}}
+            [{{model.bhsId}}]&nbsp;
+          {{/if}}
+          {{#if model.prelim}}
+            {{single-fixed model.prelim}}&nbsp;
+          {{/if}}
+          {{#if model.isSenior}}
+            <span class="badge badge-warning">Seniors</span>&nbsp;
+          {{/if}}
+          {{#if model.isYouth}}
+            <span class="badge badge-warning">Youth</span>&nbsp;
+          {{/if}}
+          {{#if model.isMixed}}
+            <span class="badge badge-success">Mixed</span>&nbsp;
+          {{/if}}
+          {{#if model.isFemale}}
+            <span class="badge badge-primary">Female</span>&nbsp;
+          {{/if}}
+          {{#if model.division}}
+            <span class="badge badge-info">{{model.groupDivision}}</span>&nbsp;
+          {{/if}}
+          {{#if (eq model.status 'Active')}}
+            <span class="badge badge-success">Active</span>&nbsp;
+          {{else}}
+            {{!-- <span class="badge badge-danger">Inactive</span>&nbsp; --}}
+          {{/if}}
+      </h4>
+    </div>
+    <div class='card-footer'>
+      <ul class='list-inline'>
+        {{#if (eq model.status 'New')}}
+          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+        {{else if (eq model.status 'Built')}}
+          {{#if model.session.isInvitational}}
+            <li class='list-inline-item'>{{entry-invite model=model}}</li>
+          {{else}}
+            <li class='list-inline-item'>{{entry-approve model=model}}</li>
+          {{/if}}
+          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+        {{else if (eq model.status 'Invited')}}
+          <li class='list-inline-item'>{{entry-submit model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Submitted')}}
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Approved')}}
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+        {{else if (eq model.status 'Withdrawn')}}
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+        {{else if (eq model.status 'Scratched')}}
+          <li class='list-inline-item'>{{entry-approve model=model}}</li>
+        {{/if}}
+        <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
 </section>

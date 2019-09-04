@@ -14,11 +14,10 @@ export default Component.extend({
     'model',
     'appearance',
     function() {
-      return this.store.query('score', {
+      return this.store.query('score', {filter: {
         'panelist': this.get('model.id'),
         'song__appearance': this.get('appearance.id'),
-        'page_size': 100
-    });
+    }});
   }),
   sortedScores: sort(
     'scoresCall',

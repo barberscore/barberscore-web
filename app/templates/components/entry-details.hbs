@@ -1,0 +1,26 @@
+  <div class='row'>
+    <div class='col-6'>
+      {{#bs-form
+        model=model
+        formLayout='vertical'
+        as |form|
+      }}
+        <label {{action (toggle 'nameHelp' this)}}>Name: {{fa-icon 'question-circle-o'}}</label>
+        {{form.element controlType='text' disabled=true property='name' }}
+        {{#bs-collapse collapsed=nameHelp}}
+          <p>
+            Your group name is provided by the {{member-center}} and can only be edited there.
+          </p>
+        {{/bs-collapse}}
+
+        <label {{action (toggle 'representingHelp' this)}}>Representing: {{fa-icon 'question-circle-o'}}</label>
+        {{form.element controlType='text' disabled=true property='representing' }}
+        {{#bs-collapse collapsed=representingHelp}}
+          <p>
+            Your representing district is provided by the {{member-center}} and can only be edited there.
+          </p>
+        {{/bs-collapse}}
+
+      {{/bs-form}}
+    </div>
+  </div>

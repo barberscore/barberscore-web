@@ -1,0 +1,47 @@
+{{#bs-form
+  formLayout="vertical"
+  model=model
+  as |form|
+}}
+  {{#if (eq model.kind 'Quartet')}}
+
+    <label {{action (toggle 'memberHelp' this)}}>Members: T, L, Br, Bs {{fa-icon 'question-circle-o'}}</label>
+    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' property='participants' onChange=(perform autosave 'participants')}}
+    {{#bs-collapse collapsed=memberHelp}}
+      <p>
+        Please indicate the names of your quartet that will be performing as you wish them to appear on the Official Scoring Summary (OSS). Names must be listed in order (T, L, Br, Bs) separated by commas. For example:
+      </p>
+      <p>
+        <strong>Tim Waurick, Joe Connelly, Brandon Guyton, Brett Littlefield</strong>
+      </p>
+    {{/bs-collapse}}
+
+    <label {{action (toggle 'chapterHelp' this)}}>Chapters: {{fa-icon 'question-circle-o'}}</label>
+    {{form.element controlType='text' disabled=isDisabled placeholder='Chapter membership(s) of the quartet participants.' property='chapters' onChange=(perform autosave 'chapters')}}
+    {{#bs-collapse collapsed=chapterHelp}}
+      <p>
+        Please indicate your Chapter memberships as you wish to them to be announced, separated by commas. For example:
+      </p>
+      <p>
+        <strong>Bay Area, Santa Fe, and Frank Thorne.</strong>
+      </p>
+    {{/bs-collapse}}
+
+  {{else}}
+
+    <label {{action (toggle 'memberHelp' this)}}>Director(s): {{fa-icon 'question-circle-o'}}</label>
+    {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
+    {{#bs-collapse collapsed=memberHelp}}
+      <p>
+        Please indicate the name of your director as you wish it to appear on the Official Scoring Summary (OSS). If you will have no director, you must type the word 'None'. If more than one director will be performing (limit of 2 directors), separate the names by a comma and a space.
+      </p>
+    {{/bs-collapse}}
+    <label {{action (toggle 'posHelp' this)}}>Estimated Participants-On-Stage: {{fa-icon 'question-circle-o'}}</label>
+    {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated number of participants that will be performing on stage' property='pos' onChange=(perform autosave 'pos')}}
+    {{#bs-collapse collapsed=posHelp}}
+      <p>
+        Please indicate the esimated number of participants you expect to have on the risers for your appearance.  This does not need to be a precise accounting, but please make your best estimate.  It is used to help plan the number of risers and to determine eligibility for certain awards.
+      </p>
+    {{/bs-collapse}}
+  {{/if}}
+{{/bs-form}}

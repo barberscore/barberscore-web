@@ -112,6 +112,12 @@ Router.map(function() {
         this.route('details', {
           path: 'details'
         });
+        this.route('info', {
+          path: 'info'
+        });
+        this.route('charts', {
+          path: 'charts'
+        });
         this.route('entries', {
           path: 'entries'
         }, function () {
@@ -119,14 +125,8 @@ Router.map(function() {
             path: ':entry_id'
           });
         });
-        this.route('officers', {path: 'officers'}, function () {});
-        this.route('members', {path: 'members'}, function () {});
-        this.route('repertories', {path: 'repertories'}, function () {});
-        this.route('children', {path: 'children'}, function () {});
       });
     });
-    this.route('assignments', {path: 'assignment'}, function(){});
-    this.route('members', {path: 'member'}, function(){});
   });
   this.route('about');
   this.route('tutorials');

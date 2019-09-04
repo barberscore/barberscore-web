@@ -1,25 +1,22 @@
 <section class='card'>
     <div class='card-header'>
       <h5>
-        {{model.name}}
+        {{model.nomen}}
       </h5>
     </div>
     <div class='card-body'>
       {{#bs-nav type='tabs' as |nav|}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.groups.group.details"}}Details{{/nav.link-to}}
-        {{/nav.item}}
-        {{!-- {{#nav.item}}
-          {{#nav.link-to "dashboard.groups.group.officers"}}Officers{{/nav.link-to}}
+          {{#nav.link-to "dashboard.groups.group.details" model.id}}Details{{/nav.link-to}}
         {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.groups.group.members"}}Members{{/nav.link-to}}
-        {{/nav.item}} --}}
-        {{!-- {{#nav.item}}
-          {{#nav.link-to "dashboard.groups.group.repertories"}}Repertory{{/nav.link-to}}
-        {{/nav.item}} --}}
+          {{#nav.link-to "dashboard.groups.group.info" model.id}}Info{{/nav.link-to}}
+        {{/nav.item}}
         {{#nav.item}}
-          {{#nav.link-to "dashboard.groups.group.entries"}}Entries{{/nav.link-to}}
+          {{#nav.link-to "dashboard.groups.group.charts" model.id}}Repertory{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "dashboard.groups.group.entries" model.id}}Entries{{/nav.link-to}}
         {{/nav.item}}
       {{/bs-nav}}
       {{outlet}}

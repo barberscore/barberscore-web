@@ -1,1 +1,35 @@
-{{session-contest model=model}}
+<section>
+  <div class='card'>
+    <div class='card-header'>
+      {{prev-next model=model sortedArray=sortedContests}}
+
+      <h4>
+        {{model.name}}
+      </h4>
+    </div>
+    <div class='card-body'>
+      <div class='table-responsive'>
+        <table class='table table-hover table-sm'>
+          <thead class='thead-light'>
+            <tr>
+              <th>Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each sortedEntries as |entry|}}
+              <tr>
+                <td>
+                  {{entry.name}}
+                </td>
+              </tr>
+            {{else}}
+              <tr>
+                <td>(No groups entered for this contest.)</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
