@@ -14,7 +14,7 @@
         {{/bs-collapse}}
 
         <label {{action (toggle 'representingHelp' this)}}>Representing: {{fa-icon 'question-circle-o'}}</label>
-        {{form.element controlType='text' disabled=true property='district' }}
+        {{form.element controlType='text' disabled=true property='representing' }}
         {{#bs-collapse collapsed=representingHelp}}
           <p>
             Your representing district is provided by the {{member-center}} and can only be edited there.
