@@ -1,3 +1,104 @@
 <section>
-  {{session-entries model=model}}
+{{#if (or (eq model.status 'New') (eq model.status 'Built'))}}
+  <h4>
+    Entries can only be added once the Session has been Opened.
+  </h4>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Name</th>
+          <th>Representing</th>
+          <th>BHS ID</th>
+          <th>Director/Members</th>
+          {{!-- <th>Contests Entered</th> --}}
+          {{!-- <th>Songs in Repertory</th> --}}
+          {{#if (eq model.kind 'Chorus')}}
+            <th>Participants on Stage</th>
+          {{/if}}
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedEntries as |entry|}}
+          <tr>
+            {{#if entry.isLoading}}
+              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry.id}}{{entry.name}}{{/link-to}}</td>
+              <td>{{entry.district}}</td>
+              <td>{{entry.bhsId}}</td>
+              <td>{{entry.participants}}</td>
+              {{!-- <td>{{entry.contestsCount}}</td> --}}
+              {{!-- <td>{{entry.groupChartsCount}}</td> --}}
+              {{#if (eq model.kind 'Chorus')}}
+                <td>{{#if entry.pos}}{{entry.pos}}{{else}}N/A{{/if}}</td>
+              {{/if}}
+              <td>{{entry.status}}</td>
+            {{/if}}
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No groups currently entered for this session.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{#unless (or (eq model.status 'Packaged') (eq model.status 'Finished')) }}
+    <div>
+      <p>
+        {{#bs-button
+          type='success'
+          disabled=model.isDisabled
+          onClick=(action (mut createEntryModal) true)
+        }}
+          Create New Entry
+        {{/bs-button}}
+      </p>
+    </div>
+  {{/unless}}
+  {{#bs-modal
+    open=createEntryModal
+    onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>New Entry</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Select the group you wish to enter into the Session.
+      </p>
+      {{#power-select
+        search=(perform searchGroup)
+        selected=group
+        onchange=(action (mut group))
+        placeholder="Enter Group Name"
+        allowClear=true
+        renderInPlace=true
+        noMatchesMessage="We Could Not Find an Active Group with that Name"
+        as |group|
+      }}
+        Group: {{group.name}} {{#if group.code}}({{group.code}}){{/if}}{{#if group.bhs_id}} [{{group.bhs_id}}]{{/if}}
+      {{/power-select}}
+      {{#if createEntryModalError}}
+      <p class='text-danger'>
+        Could not create entry.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform saveEntry group) disabled=isDisabled}}
+        {{#if saveEntry.isRunning}}
+          Creating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Create Entry
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+{{/if}}
 </section>

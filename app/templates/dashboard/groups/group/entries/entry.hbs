@@ -4,9 +4,9 @@
   </p>
   <div class='card'>
     <div class='card-header'>
-      <h5>
+      <h4>
         {{model.entry.session.district}} {{model.entry.session.name}} {{model.entry.session.kind}} Session Entry
-      </h5>
+      </h4>
     </div>
     <div class='card-body'>
       <section>
@@ -16,7 +16,7 @@
               Preferences
             </h4>
             <p>
-              {{group-details model=model.group}}
+              {{entry-details model=model.entry}}
               {{group-info model=model.group}}
               {{entry-preferences model=model.entry}}
             </p>
