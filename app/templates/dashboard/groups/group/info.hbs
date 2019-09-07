@@ -1,6 +1,6 @@
 <section>
   <p class='lead'>
-    This information is specific to Barberscore and may be edited. It is needed primarily for the Official Scoring Summary (OSS) and announcements, and may also be used for the contest program and/or website.
+    This information is specific to Barberscore and is totally optional. It is used for the Competitor Scoring Analysis (CSA) and may also be used for the historical record, contest program and/or website.
   </p>
   {{cloudinary-image model.imageId (hash height=200) class='img-fluid img-rounded'}}
   <p>
@@ -20,7 +20,7 @@
     formLayout='vertical'
     as |form|
   }}
-    {{#if (eq model.kind 'Quartet') }}
+    {{!-- {{#if (eq model.kind 'Quartet') }}
       {{form.element
         controlType='text'
         disabled=model.isDisabled
@@ -46,7 +46,7 @@
         property='participants'
         onChange=(perform autosave 'participants')
       }}
-    {{/if}}
+    {{/if}} --}}
       {{form.element
         controlType='textarea'
         rows=6

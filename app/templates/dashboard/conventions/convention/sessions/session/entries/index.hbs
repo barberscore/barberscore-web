@@ -9,10 +9,15 @@
       <thead class='thead-light'>
         <tr>
           <th>Name</th>
-          <th>Representing</th>
+          <th>Area</th>
           <th>BHS ID</th>
-          <th>Director/Members</th>
-          {{!-- <th>Contests Entered</th> --}}
+          {{#if (eq model.kind 'Chorus')}}
+            <th>Director(s)</th>
+          {{else}}
+            <th>Members (TLBrBs)</th>
+          {{/if}}
+
+          <th>Chapters</th>
           {{!-- <th>Songs in Repertory</th> --}}
           {{#if (eq model.kind 'Chorus')}}
             <th>Participants on Stage</th>
@@ -30,6 +35,7 @@
               <td>{{entry.representing}}</td>
               <td>{{entry.bhsId}}</td>
               <td>{{entry.participants}}</td>
+              <td>{{entry.chapters}}</td>
               {{!-- <td>{{entry.contestsCount}}</td> --}}
               {{!-- <td>{{entry.groupChartsCount}}</td> --}}
               {{#if (eq model.kind 'Chorus')}}

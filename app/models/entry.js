@@ -9,8 +9,6 @@ export default Model.extend({
   isEvaluation: DS.attr('boolean', {defaultValue: true}),
   isPrivate: DS.attr('boolean', {defaultValue: false}),
   isMt: DS.attr('boolean', {defaultValue: false}),
-  isSenior: DS.attr('boolean', {defaultValue: false}),
-  isYouth: DS.attr('boolean', {defaultValue: false}),
   draw: DS.attr('number'),
   seed: DS.attr('number'),
   prelim: DS.attr('number'),
@@ -31,6 +29,8 @@ export default Model.extend({
   division: DS.attr('group-division'),
   bhsId: DS.attr('number'),
   code: DS.attr('string', {defaultValue: ''}),
+  isSenior: DS.attr('boolean', {defaultValue: false}),
+  isYouth: DS.attr('boolean', {defaultValue: false}),
 
   session: DS.belongsTo('session', {async: true}),
   contests: DS.hasMany('contest', {async: true}),

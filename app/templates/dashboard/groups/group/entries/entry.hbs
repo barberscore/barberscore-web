@@ -16,8 +16,9 @@
               Preferences
             </h4>
             <p>
-              {{entry-details model=model.entry}}
-              {{group-info model=model.group}}
+              {{!-- {{entry-details model=model.entry}} --}}
+              {{!-- {{group-info model=model.group}} --}}
+              {{entry-info model=model.entry}}
               {{entry-preferences model=model.entry}}
             </p>
           </div>
@@ -31,14 +32,14 @@
           {{entry-contests model=model.entry options=model.entry.session.contests}}
         </p>
       </section>
-      <section>
+      {{!-- <section>
         <h4>
           Repertory
         </h4>
         <p>
           {{group-charts model=model.group}}
         </p>
-      </section>
+      </section> --}}
       <section>
         <div class='row'>
           <div class='col-6'>
