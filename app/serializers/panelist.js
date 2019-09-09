@@ -12,7 +12,7 @@ export default DS.JSONAPISerializer.extend({
     psaReport: {
       serialize: false
     },
-    representing: {
+    area: {
       serialize: false
     },
   }

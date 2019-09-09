@@ -38,7 +38,7 @@ export default Controller.extend({
         name: obj.name,
         kind: obj.get_kind_display,
         gender: obj.get_gender_display,
-        representing: obj.get_district_display,
+        area: obj.get_district_display,
         district: obj.get_district_display,
         division: obj.get_division_display,
         participants: obj.participants,

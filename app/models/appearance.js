@@ -11,7 +11,7 @@ export default Model.extend({
   isPrivate: DS.attr('boolean'),
   isSingle: DS.attr('boolean'),
   participants: DS.attr('string'),
-  representing: DS.attr('string'),
+  area: DS.attr('string'),
   onstage: DS.attr('date'),
   actualStart: DS.attr('date'),
   actualFinish: DS.attr('date'),

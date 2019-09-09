@@ -10,7 +10,7 @@ export default Model.extend({
   kind: DS.attr('panelist-kind'),
   category: DS.attr('panelist-category'),
   psaReport: DS.attr('string'),
-  representing: DS.attr('string'),
+  area: DS.attr('string'),
 
   round: DS.belongsTo('round', {async: true}),
   owners: DS.hasMany('user', {async: true}),
