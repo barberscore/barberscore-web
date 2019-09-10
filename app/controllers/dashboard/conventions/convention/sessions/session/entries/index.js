@@ -55,6 +55,7 @@ export default Controller.extend({
       yield this.store.pushPayload(p);
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
+      this.set('group', null);
       this.flashMessages.success("Created!");
       // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
