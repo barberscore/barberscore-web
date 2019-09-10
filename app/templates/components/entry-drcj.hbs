@@ -1,0 +1,40 @@
+{{#bs-form
+  formLayout="vertical"
+  model=model
+  as |form|
+}}
+  <label {{action (toggle 'mtHelp' this)}}>Mic Tester: {{fa-icon 'question-circle-o'}}</label>
+  {{#form.element property='isMt' as |el|}}
+    {{#bs-button-group
+      value=el.value
+      type='radio'
+      onChange=(perform autosave 'isMt')
+      as |bg|
+    }}
+      {{#bg.button type='outline-dark' value=false disabled=isDisabled}}Not MicTester{{/bg.button}}
+      {{#bg.button type='outline-dark' value=true disabled=isDisabled}}Is MicTester{{/bg.button}}
+    {{/bs-button-group}}
+  {{/form.element}}
+
+  {{#bs-collapse collapsed=mtHelp}}
+    <p>
+      If this group is specified in advance to be a Mic Tester, please inidcate that here.
+    </p>
+  {{/bs-collapse}}
+
+  <label {{action (toggle 'prelimHelp' this)}}>Incoming Prelim Score: {{fa-icon 'question-circle-o'}}</label>
+  {{form.element controlType='tel' disabled=isDisabled placeholder='Incoming prelim score (optional)' property='prelim' onChange=(perform autosave 'prelim')}}
+  {{#bs-collapse collapsed=prelimHelp}}
+    <p>
+      If desired, indicate the incoming prelim score here.  The prelim score may be useful in providing some guidance on groups likely to advance.
+    </p>
+  {{/bs-collapse}}
+
+  <label {{action (toggle 'baseHelp' this)}}>Incoming Base Score: {{fa-icon 'question-circle-o'}}</label>
+  {{form.element controlType='tel' disabled=isDisabled placeholder='Incoming base score (conditional)' property='base' onChange=(perform autosave 'base')}}
+  {{#bs-collapse collapsed=baseHelp}}
+    <p>
+      The base score is what is used to calculate "Most-Improved" awards.  If you are offering a "most-improved" award this contest and the competitor is eligible, indicate the base score that will be used for determining this award here.
+    </p>
+  {{/bs-collapse}}
+{{/bs-form}}

@@ -38,21 +38,19 @@
         <div class='row'>
           <div class='col-9'>
             <h4>
-              Preferences
+              Group Preferences
             </h4>
             <p>
               {{!-- {{group-info model=group}} --}}
               {{entry-info model=model}}
               {{entry-preferences model=model}}
-              {{#bs-button-group
-                value=model.isMt
-                type='radio'
-                onChange=(perform autosave 'isMt')
-                as |bg|
-              }}
-                {{#bg.button type='outline-dark' value=false disabled=model.isDisabled}}Not MicTester{{/bg.button}}
-                {{#bg.button type='outline-dark' value=true disabled=model.isDisabled}}Is MicTester{{/bg.button}}
-              {{/bs-button-group}}
+            </p>
+            <br>
+            <h4>
+              DRCJ Preferences
+            </h4>
+            <p>
+              {{entry-drcj model=model}}
             </p>
           </div>
         </div>
