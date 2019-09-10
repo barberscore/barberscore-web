@@ -62,7 +62,6 @@ export default Controller.extend({
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createEntryModalError', true);
-        this.flashMessages.danger(e.detail);
       })
     }
   }).drop(),
