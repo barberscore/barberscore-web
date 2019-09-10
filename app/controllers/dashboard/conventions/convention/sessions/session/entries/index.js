@@ -60,9 +60,7 @@ export default Controller.extend({
       // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
     } catch(e) {
-      e.errors.forEach((e) => {
-        this.set('createEntryModalError', true);
-      })
+      this.set('createEntryModalError', true);
     }
   }).drop(),
   actions: {
