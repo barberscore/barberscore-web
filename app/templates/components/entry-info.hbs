@@ -16,7 +16,7 @@
       </p>
     {{/bs-collapse}}
 
-    <label {{action (toggle 'chapterHelp' this)}}>Chapters: {{fa-icon 'question-circle-o'}}</label>
+    <label {{action (toggle 'chapterHelp' this)}}>Chapter(s): {{fa-icon 'question-circle-o'}}</label>
     {{form.element controlType='text' disabled=isDisabled placeholder='Chapter membership(s) of the quartet participants.' property='chapters' onChange=(perform autosave 'chapters')}}
     {{#bs-collapse collapsed=chapterHelp}}
       <p>
@@ -34,6 +34,16 @@
     {{#bs-collapse collapsed=memberHelp}}
       <p>
         Please indicate the name of your director as you wish it to appear on the Official Scoring Summary (OSS). If you will have no director, you must type the word 'None'. If more than one director will be performing (limit of 2 directors), separate the names by a comma and a space.
+      </p>
+    {{/bs-collapse}}
+    <label {{action (toggle 'chapterHelp' this)}}>Chapter: {{fa-icon 'question-circle-o'}}</label>
+    {{form.element controlType='text' disabled=isDisabled placeholder='Chorus parent chapter' property='chapters' onChange=(perform autosave 'chapters')}}
+    {{#bs-collapse collapsed=chapterHelp}}
+      <p>
+        Please indicate the parent Chapter of your Chorus.  For example:
+      </p>
+      <p>
+        <strong>Alexandria, VA</strong>
       </p>
     {{/bs-collapse}}
     <label {{action (toggle 'posHelp' this)}}>Estimated Participants-On-Stage: {{fa-icon 'question-circle-o'}}</label>
