@@ -28,9 +28,14 @@
       <p class='text-danger'>
         Could not submit entry.  Please check to ensure:
         <ul>
-          <li>Your group is Active.</li>
-          <li>You haven't selected an award while in Score/Eval-Only.</li>
-          <li>If a chorus, you've entered your Director(s) and estimated Participants-on-Stage.</li>
+          <li>You haven't selected an Award while in Score/Eval-Only.</li>
+          {{#if (eq model.kind 'Quartet')}}
+            <li>You've specified your Members.</li>
+            <li>You've specified your Chapter(s).</li>
+          {{else}}
+            <li>You've specified your Director(s).</li>
+            <li>You've specified your estimated Participants-on-Stage.</li>
+          {{/if}}
         </ul>
         If you've done all this and still can't submit, please contact support at {{customer-support}}.
       </p>

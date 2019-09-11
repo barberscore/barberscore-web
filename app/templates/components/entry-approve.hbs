@@ -17,6 +17,18 @@
     <p>
       This approves (or re-approves) the entry for the group.  They will receive an email notifying them that they are all set for the contest.
     </p>
+    {{#if approveEntryModalError}}
+      <p class='text-danger'>
+        Could not Approve entry.  Please check to ensure:
+        <ul>
+          <li>The group hasn't selected an Award while in Score/Eval-Only.</li>
+          <li>The group has specified their Members/Director(s)</li>
+          <li>The group has specified their Chapter(s)</li>
+          <li>If a Chorus, the group has specified their Estimated participants on stage.</li>
+        </ul>
+        If you've verified all this and still can't approve, please let Chris Buechler or David Mills know -- it's bug we need to fix!
+      </p>
+    {{/if}}
   {{/modal.body}}
   {{#modal.footer}}
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
