@@ -7,6 +7,7 @@
 {{/bs-button}}
 {{#bs-modal
   open=submitEntryModal
+  size='lg'
   onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
   as |modal|
 }}
@@ -31,9 +32,10 @@
           <li>You haven't selected an Award while in Score/Eval-Only.</li>
           {{#if (eq model.kind 'Quartet')}}
             <li>You've specified your Members.</li>
-            <li>You've specified your Chapter(s).</li>
+            <li>You've specified your Chapter affiliations.</li>
           {{else}}
             <li>You've specified your Director(s).</li>
+            <li>You've specified your parent Chapter.</li>
             <li>You've specified your estimated Participants-on-Stage.</li>
           {{/if}}
         </ul>

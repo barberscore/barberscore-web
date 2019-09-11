@@ -67,6 +67,7 @@
   {{/unless}}
   {{#bs-modal
     open=createEntryModal
+    size='lg'
     onHidden=(pipe-action (action (mut createEntryModal) false) (action (mut createEntryModalError) false))
     as |modal|
   }}
