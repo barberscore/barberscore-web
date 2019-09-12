@@ -1,0 +1,117 @@
+<section>
+{{#if (eq model.status 'New')}}
+  <h4>
+    Assignments can only be changed once the Session has been Built.
+  </h4>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Name</th>
+          <th>Area</th>
+          <th>BHS ID</th>
+          <th>Kind</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sortedAssignments as |assignment|}}
+          <tr>
+            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.assignments.assignment' assignment.id}}{{assignment.name}}{{/link-to}}</td>
+            <td>{{assignment.district}}</td>
+            <td>{{assignment.bhsId}}</td>
+            <td>{{assignment.kind}}</td>
+            <td>{{assignment.category}}</td>
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No assignments for this Session.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <p>
+      {{#bs-button
+        type='success'
+        disabled=isDisabled
+        onClick=(action (mut createAssignmentModal) true)
+      }}
+        Create New Assignment
+      {{/bs-button}}
+    </p>
+  </div>
+  {{#bs-modal
+    open=createAssignmentModal
+    size='lg'
+    onHidden=(pipe-action (action (mut createAssignmentModal) false) (action (mut createAssignmentModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>New Assignment</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Select the person you wish to assign to the Session.
+      </p>
+        <p>
+          {{#power-select
+            search=(perform searchPerson)
+            selected=person
+            onchange=(action (mut person))
+            placeholder="Enter Person Name"
+            allowClear=true
+            renderInPlace=true
+            noMatchesMessage="We Could Not Find a person with that name"
+            as |person|
+          }}
+            Person: {{person.name}} [{{person.bhs_id}}]
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=categoryOptions
+            selected=category
+            onchange=(action (mut category))
+            placeholder="Choose Category"
+            allowClear=true
+            renderInPlace=true
+            as |category|
+          }}
+            {{category}}
+          {{/power-select}}
+        </p>
+        <p>
+          {{#power-select
+            options=kindOptions
+            selected=kind
+            onchange=(action (mut kind))
+            placeholder="Choose Kind"
+            allowClear=true
+            renderInPlace=true
+            as |kind|
+          }}
+            {{kind}}
+          {{/power-select}}
+        </p>
+      {{#if createAssignmentModalError}}
+      <p class='text-danger'>
+        Could not create assignment.  Please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform saveAssignment person category kind) disabled=isDisabled}}
+        {{#if saveAssignment.isRunning}}
+          Creating {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Create Assignment
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+{{/if}}
+</section>

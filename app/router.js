@@ -50,6 +50,13 @@ Router.map(function() {
                   path: ':entry_id'
                 });
               });
+              this.route('assignments', {
+                path: 'assignments'
+              }, function () {
+                this.route('assignment', {
+                  path: ':assignment_id'
+                });
+              });
               this.route('draw', {
                 path: 'draw'
               }, function () {

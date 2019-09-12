@@ -52,10 +52,10 @@ export default Model.extend({
   ],
   categoryOptions: [
     'DRCJ',
-    'Contest Administrator',
-    'Music Judge',
-    'Performance Judge',
-    'Singing Judge',
+    'CA',
+    'Music',
+    'Performance',
+    'Singing',
   ],
   kindOptions: [
     'Official',

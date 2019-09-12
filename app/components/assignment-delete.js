@@ -16,7 +16,7 @@ export default Component.extend({
       this.set('deleteAssignmentModal', false);
       this.set('deleteAssignmentModalError', false);
       this.flashMessages.success("Deleted!");
-      this.router.transitionTo('dashboard.conventions.convention.assignments');
+      this.router.transitionTo('dashboard.conventions.convention.sessions.session.assignments');
     } catch(e) {
       this.set('deleteAssignmentModalError', true);
     }

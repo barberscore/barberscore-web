@@ -35,6 +35,7 @@ export default Model.extend({
   owners: DS.hasMany('user', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),
+  assignments: DS.hasMany('assignment', {async: true}),
 
   permissions: DS.attr(),
 
