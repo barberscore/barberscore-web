@@ -11,7 +11,7 @@ export default Controller.extend({
   actions: {
     login () {
       const authOptions = {
-        scope: 'openid profile email app_metadata user_metadata',
+        scope: 'openid profile email',
         responseType: 'token id_token',
       };
       this.session.authenticate(
