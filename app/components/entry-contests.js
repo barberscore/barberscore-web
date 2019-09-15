@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { sort } from '@ember/object/computed';
+import { sort, not } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
@@ -8,6 +8,9 @@ export default Component.extend({
   sortedContestsProperties: [
     'treeSort',
   ],
+  isDisabled: not(
+    'model.permissions.write',
+  ),
   sortedContests: sort(
     'options',
     'sortedContestsProperties',

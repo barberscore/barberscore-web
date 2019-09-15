@@ -1,7 +1,13 @@
 <section>
-  <p class='lead'>
-    Here is where you provide details related to this contest entry.
-  </p>
+    {{#if (eq model.entry.status 'Approved')}}
+      <p class='lead'>
+        <strong>Note: </strong>Now that your entry is Approved you can no longer edit your submission directly.  Please contact the DRCJ (on your approval email) to request any changes.
+      </p>
+    {{else}}
+      <p class='lead'>
+        Here is where you provide details related to this contest entry.
+      </p>
+    {{/if}}
   <div class='card'>
     <div class='card-header'>
       <h4>
