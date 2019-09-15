@@ -50,6 +50,7 @@
     "ember-composable-helpers": "^2.2.0",
     "ember-concurrency": "^1.0.0",
     "ember-data": "~3.10.0",
+    "ember-data-date-only-transform": "^1.1.0",
     "ember-data-storefront": "^0.17.1",
     "ember-export-application-global": "^2.0.0",
     "ember-font-awesome": "^4.0.0-rc.3",
