@@ -5,6 +5,7 @@ import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
+  nomen: DS.attr('string'),
   status: DS.attr('session-status'),
   kind: DS.attr('session-kind'),
   numRounds: DS.attr('number'),
