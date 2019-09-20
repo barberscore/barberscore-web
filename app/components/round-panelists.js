@@ -12,7 +12,8 @@ export default Component.extend({
     'kindSort',
     'num',
     'categorySort',
-    'personSort',
+    'lastName',
+    'firstName',
   ],
   sortedPanelists: sort(
     'model.panelists',
@@ -28,13 +29,16 @@ export default Component.extend({
   createPanelistModalError: false,
   savePanelist: task(function* (obj, category, kind, num){
     try {
-      // let person = yield this.store.findRecord('person', obj.objectID)
       yield this.store.createRecord('panelist', {
         num: num,
         personId: obj.objectID,
+        name: obj.name,
+        firstName: obj.first_name,
+        lastName: obj.last_name,
         round: this.model,
         category: category,
         kind: kind,
+        owners: [],
         scores: [],
       }).save();
       this.set('createPanelistModal', false);

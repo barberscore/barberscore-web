@@ -3,13 +3,13 @@
     <div class='card-header'>
         {{prev-next model=model sortedArray=sortedPanelists}}
       <h4>
-        {{model.person.commonName}}
+        {{model.name}}
       </h4>
     </div>
     <div class='card-body'>
       <section>
         <div>
-          {{cloudinary-image model.person.imageId (hash width=64) class='img-fluid img-rounded'}}
+          {{cloudinary-image model.imageId (hash width=64) class='img-fluid img-rounded'}}
         </div>
         <h4>
           {{model.kind}}&nbsp;{{model.category}}

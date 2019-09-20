@@ -6,7 +6,7 @@ export default Component.extend({
     'num',
   ],
   sortedRounds: sort(
-    'model.rounds',
+    'model',
     'sortedRoundsProperties'
   ),
 });

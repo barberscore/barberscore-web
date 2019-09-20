@@ -17,14 +17,10 @@
       <tbody>
         {{#each sortedPanelists as |panelist|}}
           <tr>
-            <td>{{#if panelist.num}}{{panelist.num}}{{else}}(N/A){{/if}}</td>
-            {{#if panelist.person.isLoading}}
-              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.person.commonName}}{{/link-to}}</td>
-              <td>{{panelist.category}}</td>
-              <td>{{panelist.kind}}</td>
-            {{/if}}
+            <td>{{panelist.num}}</td>
+            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.name}}{{/link-to}}</td>
+            <td>{{panelist.category}}</td>
+            <td>{{panelist.kind}}</td>
           </tr>
         {{else}}
           <tr>
@@ -75,7 +71,7 @@
             noMatchesMessage="We Could Not Find a person with that name"
             as |person|
           }}
-            Person: {{person.full_name}}
+            Person: {{person.name}} [{{person.bhs_id}}]
           {{/power-select}}
         </p>
         <p>

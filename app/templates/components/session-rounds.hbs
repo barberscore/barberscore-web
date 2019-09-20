@@ -1,35 +1,26 @@
-{{#if (or
-    (eq model.status 'Packaged')
-    (eq model.status 'Finished')
-)}}
-  <div class='table-responsive'>
-    <table class='table table-hover table-sm'>
-      <thead class='thead-light'>
+<div class='table-responsive'>
+  <table class='table table-hover table-sm'>
+    <thead class='thead-light'>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sortedRounds as |round|}}
         <tr>
-          <th>Name</th>
-          <th>Status</th>
+          {{#if round.isLoading}}
+            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+          {{else}}
+            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
+            <td>{{round.status}}</td>
+          {{/if}}
         </tr>
-      </thead>
-      <tbody>
-        {{#each sortedRounds as |round|}}
-          <tr>
-            {{#if round.isLoading}}
-              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
-              <td>{{round.status}}</td>
-            {{/if}}
-          </tr>
-        {{else}}
-          <tr>
-            <td>No active Rounds currently assigned to you.</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-{{else}}
-  <h4>
-    The Rounds are only available after the Session has been packaged.
-  </h4>
-{{/if}}
+      {{else}}
+        <tr>
+          <td>No active Rounds currently assigned to you.</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
