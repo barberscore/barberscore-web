@@ -10,9 +10,6 @@
         <tr>
           <th>OA</th>
           <th>Name</th>
-          {{#if model.session.isInvitational}}
-            <th>Prelim</th>
-          {{/if}}
           <th>Grid</th>
           <th>Actual</th>
           <th>Status</th>
@@ -25,27 +22,20 @@
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>{{appearance.num}}</td>
-              {{#if appearance.group.isLoading}}
-                <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-              {{else}}
-                <td>
-                  {{#link-to
-                    'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                    appearance
-                  }}
-                    {{appearance.group.name}}
-                  {{/link-to}}
-                  &nbsp;
-                  {{#if (eq appearance.status 'Verified')}}
-                    {{fa-icon 'check-circle' class='text-success'}}
-                  {{else if (eq appearance.status 'Variance')}}
-                    {{download-variance model=appearance}}
-                  {{/if}}
-                </td>
-              {{/if}}
-              {{#if model.session.isInvitational}}
-                  <td>{{single-fixed appearance.entry.prelim}}</td>
-              {{/if}}
+              <td>
+                {{#link-to
+                  'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                  appearance
+                }}
+                  {{appearance.name}}
+                {{/link-to}}
+                &nbsp;
+                {{#if (eq appearance.status 'Verified')}}
+                  {{fa-icon 'check-circle' class='text-success'}}
+                {{else if (eq appearance.status 'Variance')}}
+                  {{download-variance model=appearance}}
+                {{/if}}
+              </td>
               <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
               <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
               <td>{{appearance.status}}</td>
