@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedOutcomes}}
       <h4>
-        {{model.awardName}}
+        {{model.name}}
       </h4>
     </div>
     <div class='card-body'>
@@ -33,7 +33,7 @@
             {{input
               class='form-control'
               type='text'
-              value=model.name
+              value=model.winner
               disabled=model.isDisabled
               placeholder='Result populated on Round Completion'
               change=(perform autosave model)

@@ -19,15 +19,15 @@
                 {{outcome.num}}
               </td>
               <td>
-                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.awardName}}{{/link-to}}
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{outcome.name}}{{/link-to}}
               </td>
               <td>
-                {{#if (eq outcome.awardLevel 'Manual')}}
+                {{#if (eq outcome.level 'Manual')}}
                   {{fa-icon 'check-circle' class='text-success'}}
                 {{/if}}
               </td>
               <td>
-                {{outcome.name}}
+                {{outcome.winner}}
               </td>
             </tr>
         {{else}}
