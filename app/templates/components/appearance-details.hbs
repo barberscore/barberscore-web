@@ -1,7 +1,7 @@
 
 <section>
-  {{cloudinary-image model.group.imageId (hash height=200) class='img-fluid img-rounded'}}<br>
-  {{#if (eq model.group.kind 'Quartet')}}
+  {{cloudinary-image model.imageId (hash height=200) class='img-fluid img-rounded'}}<br>
+  {{#if (eq model.kind 'Quartet')}}
     Participants: {{model.participants}}
   {{else}}
     Director(s): {{model.participants}}
@@ -45,7 +45,7 @@
     </div>
   {{/if}}
 </div>
-{{#if (eq model.round.session.kind 'Chorus')}}
+{{#if (eq model.round.sessionKind 'Chorus')}}
   <br>
   <div class='form-inline'>
     <div class='form-group'>

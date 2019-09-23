@@ -7,7 +7,7 @@ export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   csa: task(function *() {
     let pdf = yield this.model.csa();
-    let fileName = `${this.model.conventionName} ${this.model.sessionKind} Session ${this.model.groupName} CSA`;
+    let fileName = `${this.model.name} CSA`;
     this.saveFileAs(fileName, pdf, 'application/pdf');
     this.flashMessages.success("Downloaded!");
   }).drop(),
