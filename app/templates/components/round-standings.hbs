@@ -35,31 +35,23 @@
           <tbody>
             {{#each sortedMultiAppearances as |appearance index|}}
               <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'cut-line'}}">
-                {{#if appearance.group.isLoading}}
-                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{#if appearance.stats}}
+                  <td>{{inc index}}</td>
                 {{else}}
-                  {{#if appearance.stats}}
-                    <td>{{inc index}}</td>
-                  {{else}}
-                    <td></td>
-                  {{/if}}
-                  {{#if appearance.group.isLoading}}
-                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{appearance.group.name}}</td>
-                  {{/if}}
-                  {{#if appearance.stats}}
-                    <td>{{appearance.runTotSum}}</td>
-                  {{else}}
-                    <td>N/A</td>
-                  {{/if}}
-                  {{#if appearance.stats}}
-                    <td>{{single-fixed appearance.runTotAvg}}</td>
-                      {{else}}
-                    <td>N/A</td>
-                  {{/if}}
-                  <td>{{appearance.status}}</td>
+                  <td></td>
                 {{/if}}
+                <td>{{appearance.name}}</td>
+                {{#if appearance.stats}}
+                  <td>{{appearance.runTotSum}}</td>
+                {{else}}
+                  <td>N/A</td>
+                {{/if}}
+                {{#if appearance.stats}}
+                  <td>{{single-fixed appearance.runTotAvg}}</td>
+                    {{else}}
+                  <td>N/A</td>
+                {{/if}}
+                <td>{{appearance.status}}</td>
               </tr>
             {{else}}
               <tr>
@@ -88,25 +80,17 @@
           <tbody>
             {{#each sortedSingleAppearances as |appearance index|}}
               <tr>
-                {{#if appearance.group.isLoading}}
-                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{#if appearance.stats}}
+                  <td>{{inc index}}</td>
                 {{else}}
-                  {{#if appearance.stats}}
-                    <td>{{inc index}}</td>
-                  {{else}}
-                    <td></td>
-                  {{/if}}
-                  {{#if appearance.group.isLoading}}
-                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{appearance.group.name}}</td>
-                  {{/if}}
-                  <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
-                  <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
-                  <td>
-                    {{appearance.status}}
-                  </td>
+                  <td></td>
                 {{/if}}
+                <td>{{appearance.name}}</td>
+                <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
+                <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
+                <td>
+                  {{appearance.status}}
+                </td>
               </tr>
             {{else}}
               <tr>
@@ -136,26 +120,18 @@
           <tbody>
             {{#each sortedAppearances as |appearance index|}}
               <tr>
-                {{#if appearance.group.isLoading}}
-                  <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{#if appearance.stats}}
+                  <td>{{inc index}}</td>
                 {{else}}
-                  {{#if appearance.stats}}
-                    <td>{{inc index}}</td>
-                  {{else}}
-                    <td></td>
-                  {{/if}}
-                  {{#if appearance.group.isLoading}}
-                    <td>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-                  {{else}}
-                    <td>{{appearance.group.name}}</td>
-                  {{/if}}
-                  <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
-                  <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
-                  <td>
-                    {{appearance.status}}
-                  </td>
                   <td></td>
                 {{/if}}
+                <td>{{appearance.name}}</td>
+                <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
+                <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
+                <td>
+                  {{appearance.status}}
+                </td>
+                <td></td>
               </tr>
             {{else}}
               <tr>
