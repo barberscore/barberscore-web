@@ -7,7 +7,7 @@ export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   announcements: task(function *() {
     let docx = yield this.model.announcements();
-    let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.kind} Announcements`;
+    let fileName = `${this.model.nomen} Announcements`;
     this.saveFileAs(fileName, docx, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
     this.flashMessages.success("Downloaded!");
   }).drop(),
