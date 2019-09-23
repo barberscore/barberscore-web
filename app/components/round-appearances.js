@@ -33,7 +33,6 @@ export default Component.extend({
     try {
       let group = yield this.store.findRecord('group', obj.objectID)
       let owners = yield group.owners;
-      console.log(owners);
       yield this.store.createRecord('appearance', {
         num: num,
         participants: "",
@@ -58,7 +57,6 @@ export default Component.extend({
       this.set('group', null);
       this.flashMessages.success("Created!");
     } catch(e) {
-      console.log(e);
       e.errors.forEach((e) => {
         this.set('createAppearanceModalError', true);
         this.flashMessages.danger(e.detail);

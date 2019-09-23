@@ -18,7 +18,7 @@ export default Component.extend({
   ),
   searchAward: task(function* (term){
     yield timeout(600);
-    let kindModel = this.get('model.session.kind');
+    let kindModel = this.get('model.sessionKind');
     let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Award', query: term}, { filters: `get_kind_display:${kindModel}` })
     return res.hits
@@ -27,18 +27,27 @@ export default Component.extend({
   createOutcomeModalError: false,
   saveOutcome: task(function* (obj, num){
     try {
-      // let award = yield this.store.findRecord('award', obj.objectID)
+      let award = yield this.store.findRecord('award', obj.objectID)
       yield this.store.createRecord('outcome', {
         num: num,
         awardId: obj.objectID,
+        name: award.name,
+        kind: award.kind,
+        gender: award.gender,
+        level: award.level,
+        season: award.season,
+        description: award.description,
+        district: award.district,
+        division: award.division,
+        age: award.age,
+        isNovice: award.isNovice,
         round: this.model,
-        contenders: [],
+        appearances: [],
       }).save();
       this.set('createOutcomeModal', false);
       this.set('createOutcomeModalError', false);
       this.set('num', null);
       this.set('awardId', null);
-      this.set('contenders', null);
       this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {

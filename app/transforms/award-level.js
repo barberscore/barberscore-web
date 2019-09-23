@@ -5,10 +5,11 @@ export default DS.Transform.extend({
     var map = {
       10: 'Championship',
       30: 'Qualifier',
-      35: 'Top',
-      40: 'Award',
+      45: 'Representative',
       50: 'Deferred',
       60: 'Manual',
+      70: 'Improved - Raw',
+      80: 'Improved - Standard',
     };
     return map[serialized];
   },
@@ -17,10 +18,11 @@ export default DS.Transform.extend({
     var map = {
       'Championship': 10,
       'Qualifier': 30,
-      'Top': 35,
-      'Award': 40,
+      'Representative': 45,
       'Deferred': 50,
       'Manual': 60,
+      'Improved - Raw': 70,
+      'Improved - Standard': 80,
     };
     return map[deserialized];
   }

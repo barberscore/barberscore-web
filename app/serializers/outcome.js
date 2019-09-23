@@ -6,7 +6,7 @@ export default DS.JSONAPISerializer.extend({
     return underscore(attr);
   },
   attrs: {
-    contenders: {
+    appearances: {
       serialize: true
     },
   }
