@@ -11,16 +11,16 @@
         <tr>
           <td>
             {{#power-select
-              options=model.chartOptions
-              selected=song.chart
+              options=model.charts
+              selected=song.title
               onchange=(perform autosave song)
               placeholder="Choose Chart Title"
               searchField='title'
               allowClear=false
-              disabled=song.isDisabled
+              disabled=false
               as |chart|
             }}
-              Song {{song.num}}: {{chart.title}}
+              Song {{song.num}}: {{chart}}
             {{/power-select}}
           </td>
         </tr>

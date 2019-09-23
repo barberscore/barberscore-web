@@ -10,8 +10,11 @@ export default Component.extend({
     'model.songs',
     'sortedSongsProperties'
   ),
-  autosave: task(function* (song, chart){
-    song.set('chartId', chart.get('id'));
+  autosave: task(function* (song, chrt){
+    let chart = JSON.parse(chrt);
+    song.set('chartId', chart.pk);
+    song.set('title', chart.title);
+    song.set('arrangers', chart.arrangers);
     try {
       yield song.save();
       this.flashMessages.success("Saved");

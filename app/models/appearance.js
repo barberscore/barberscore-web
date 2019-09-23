@@ -29,6 +29,7 @@ export default Model.extend({
   division: DS.attr('string'),
   bhsId: DS.attr('string'),
   code: DS.attr('string'),
+  charts: DS.attr(),
 
   round: DS.belongsTo('round', {async: true}),
   songs: DS.hasMany('song', {async: true}),
