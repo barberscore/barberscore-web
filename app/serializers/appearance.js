@@ -10,7 +10,7 @@ export default DS.JSONAPISerializer.extend({
       serialize: true
     },
     owners: {
-      serialize: false
+      serialize: true
     },
     varianceReport: {
       serialize: false

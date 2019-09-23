@@ -22,7 +22,7 @@ export default Model.extend({
   imageId: DS.attr('string'),
 
   sessionId: DS.attr('string'),
-  sessionKind: DS.attr('string'),
+  sessionKind: DS.attr('session-kind'),
 
   owners: DS.hasMany('user', {async: true}),
 

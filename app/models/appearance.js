@@ -23,11 +23,11 @@ export default Model.extend({
 
   groupId: DS.attr('string'),
   name: DS.attr('string'),
-  kind: DS.attr('string'),
-  gender: DS.attr('string'),
-  district: DS.attr('string'),
-  division: DS.attr('string'),
-  bhsId: DS.attr('string'),
+  kind: DS.attr('group-kind'),
+  gender: DS.attr('group-gender'),
+  district: DS.attr('group-district'),
+  division: DS.attr('group-division'),
+  bhsId: DS.attr('number'),
   code: DS.attr('string'),
   charts: DS.attr(),
 

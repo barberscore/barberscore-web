@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import { mapBy } from '@ember/object/computed';
 
 export default Component.extend({
   flashMessages: service(),
@@ -21,7 +22,7 @@ export default Component.extend({
   ),
   searchGroup: task(function* (term){
     yield timeout(600);
-    let kindModel = this.get('model.session.kind');
+    let kindModel = this.get('model.sessionKind');
     let func = denodeify(this.algolia.search.bind(this.algolia))
     let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel} OR get_kind_display:VLQ` })
     return res.hits
@@ -31,13 +32,25 @@ export default Component.extend({
   saveAppearance: task(function* (obj, num){
     try {
       let group = yield this.store.findRecord('group', obj.objectID)
+      let owners = yield group.owners;
+      console.log(owners);
       yield this.store.createRecord('appearance', {
         num: num,
-        isPrivate: true,
-        group: group,
-        round: this.model,
         participants: "",
+        area: obj.get_district_display,
+        isPrivate: true,
+        groupId: obj.objectID,
+        name: obj.name,
+        kind: obj.get_kind_display,
+        gender: obj.get_gender_display,
+        district: obj.get_district_display,
+        division: obj.get_division_display,
+        bhsId: obj.bhs_id,
+        code: obj.code,
+        round: this.model,
         songs: [],
+        charts: [],
+        owners: owners,
       }).save();
       this.set('createAppearanceModal', false);
       this.set('createAppearanceModalError', false);
@@ -45,6 +58,7 @@ export default Component.extend({
       this.set('group', null);
       this.flashMessages.success("Created!");
     } catch(e) {
+      console.log(e);
       e.errors.forEach((e) => {
         this.set('createAppearanceModalError', true);
         this.flashMessages.danger(e.detail);

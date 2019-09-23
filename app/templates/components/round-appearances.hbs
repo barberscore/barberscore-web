@@ -52,8 +52,8 @@
   <div>
     {{#if (eq model.status 'Built')}}
       <p>
-        {{!-- {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
-        {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+        {{!-- {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
       </p>
     {{/if}}
   </div>
@@ -96,7 +96,7 @@
         </p>
         {{#if createAppearanceModalError}}
         <p class='text-danger'>
-          Could not create appearance.  Be sure the draw numbers are unqiue!  Otherwise, please contact support.
+          Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
         </p>
         {{/if}}
       {{/modal.body}}
