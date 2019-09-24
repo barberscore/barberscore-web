@@ -3,7 +3,6 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
-import { mapBy } from '@ember/object/computed';
 
 export default Component.extend({
   flashMessages: service(),
