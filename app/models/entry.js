@@ -19,7 +19,7 @@ export default Model.extend({
   chapters: DS.attr('string', {defaultValue: ''}),
   description: DS.attr('string', {defaultValue: ''}),
   notes: DS.attr('string', {defaultValue: ''}),
-  imageId: DS.attr('string'),
+  imageId: DS.attr('string', {defaultValue: 'missing_image'}),
 
   groupId: DS.attr('string'),
   name: DS.attr('string', {defaultValue: ''}),
