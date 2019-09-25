@@ -29,6 +29,7 @@ export default Model.extend({
   division: DS.attr('group-division'),
   bhsId: DS.attr('number'),
   code: DS.attr('string'),
+  imageId: DS.attr('string', {defaultValue: 'missing_image'}),
   charts: DS.attr(),
 
   round: DS.belongsTo('round', {async: true}),
