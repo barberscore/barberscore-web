@@ -52,9 +52,13 @@ export default Model.extend({
   ],
 
   penaltyOptions: [
-    10,
     30,
+    32,
+    34,
+    36,
+    38,
+    39,
     40,
-    50
+    50,
   ],
 });
