@@ -12,10 +12,10 @@ export default Component.extend({
     'sortedContestsProperties'
   ),
   sortedContendersProperties: [
-    'runSum:desc',
-    'runSng:desc',
-    'runPer:desc',
-    'name:asc',
+    'runTotSum:desc',
+    'runSngSum:desc',
+    'runPerSum:desc',
+    'name',
   ],
   sortedContenders: sort(
     'model.appearances',
