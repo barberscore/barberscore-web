@@ -1,7 +1,15 @@
 <section>
-  Round Date: {{#if model.date}}{{moment-format model.date 'LL'}}{{else}}(Unknown){{/if}}
+  Round Date: {{!-- {{#if model.date}}{{moment-format model.date 'LL'}}{{else}}(Unknown){{/if}} --}}
+    {{bs-datetimepicker
+      date=model.date
+      format="LL"
+      showIcon=true
+      isTime=false
+      disabled=false
+      allowInputToggle=true
+      change=(perform autosave)
+    }}
 </section>
 <section>
   {{round-footnotes model=model}}
 </section>
-
