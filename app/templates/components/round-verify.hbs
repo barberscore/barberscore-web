@@ -1,29 +1,29 @@
 {{#bs-button
   type='primary'
   disabled=model.isDisabled
-  onClick=(action (mut verifyRoundModal) true)
+  onClick=(action (mut finalizeRoundModal) true)
 }}
-  Verify Round
+  Finalize Round
 {{/bs-button}}
 {{#bs-modal
-  open=verifyRoundModal
-  onHidden=(pipe-action (action (mut verifyRoundModal) false) (action (mut verifyRoundModalError) false))
+  open=finalizeRoundModal
+  onHidden=(pipe-action (action (mut finalizeRoundModal) false) (action (mut finalizeRoundModalError) false))
   as |modal|
 }}
   {{#modal.header}}
-    <h4>Verify Round</h4>
+    <h4>Finalize Round</h4>
   {{/modal.header}}
   {{#modal.body}}
     <p>
-        Verifying the Round generates <strong>FINAL</strong> versions of the OSS, SA, Song Titles and Announcements.  They are not made public until the next step, but Verifying does mean that no further changes will be possible without administrative assistance. Pay particular attenion to the OSS for accuracy and completeness, making manual adjustments in the Appearances, Outcomes, and Draw as necesary <strong>BEFORE YOU VERIFY</strong>.
+        Finalizing the Round generates <strong>FINAL</strong> versions of the OSS, SA, Song Titles and Announcements.  They are not made public until the next step, but Finalizing does mean that no further changes will be possible without administrative assistance. Pay particular attenion to the OSS for accuracy and completeness, making manual adjustments in the Appearances, Outcomes, and Draw as necesary <strong>BEFORE YOU VERIFY</strong>.
 
     </p>
     <p>
         <strong>IMPORTANT:</strong>&nbsp;&nbsp;Please take the time to review all the reports thoroughly!  This step can not be undone easily.
     </p>
-    {{#if verifyRoundModalError}}
+    {{#if finalizeRoundModalError}}
     <p class='text-danger'>
-      Could not Verify Round.  Please ensure all Outcomes have been determined (including "Manual" awards).
+      Could not Finalize Round.  Please ensure all Outcomes have been determined (including "Manual" awards).
     </p>
     <p>
       If you are certain that the Appearances were verified try refreshing the page to see if things worked; otherwise contact support.
@@ -32,11 +32,11 @@
   {{/modal.body}}
   {{#modal.footer}}
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform verifyRound)}}
-      {{#if verifyRound.isRunning}}
-        Verifying {{fa-icon "spinner" spin=true}}
+    {{#bs-button type='primary' disabled=model.isError onClick=(perform finalizeRound)}}
+      {{#if finalizeRound.isRunning}}
+        Finalizing {{fa-icon "spinner" spin=true}}
       {{else}}
-        Verify Round
+        Finalize Round
       {{/if}}
     {{/bs-button}}
   {{/modal.footer}}

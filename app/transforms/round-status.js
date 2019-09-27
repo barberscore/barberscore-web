@@ -7,7 +7,7 @@ export default DS.Transform.extend({
       10: 'Built',
       20: 'Started',
       25: 'Completed',
-      27: 'Verified',
+      27: 'Finalized',
       30: 'Published',
     };
     return map[serialized];
@@ -19,7 +19,7 @@ export default DS.Transform.extend({
       'Built': 10,
       'Started': 20,
       'Completed': 25,
-      'Verified': 27,
+      'Finalized': 27,
       'Published': 30,
 };
     return map[deserialized];

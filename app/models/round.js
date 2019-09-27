@@ -35,7 +35,7 @@ export default Model.extend({
   build: memberAction({path: 'build', type: 'post'}),
   start: memberAction({path: 'start', type: 'post'}),
   complete: memberAction({path: 'complete', type: 'post'}),
-  verify: memberAction({path: 'verify', type: 'post'}),
+  finalize: memberAction({path: 'finalize', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
 
   mock: memberAction({path: 'mock', type: 'get'}),

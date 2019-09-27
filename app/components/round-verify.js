@@ -7,19 +7,19 @@ export default Component.extend({
   store: service(),
   router: service(),
   flashMessages: service(),
-  verifyRoundModal: false,
-  verifyRoundModalError: false,
-  verifyRound: task(function *() {
+  finalizeRoundModal: false,
+  finalizeRoundModalError: false,
+  finalizeRound: task(function *() {
     try {
-      let round = yield this.model.verify({
+      let round = yield this.model.finalize({
         'by': this.get('currentUser.user.id')
       });
       yield this.store.pushPayload('round', round);
-      this.set('verifyRoundModal', false);
-      this.set('verifyRoundModalError', false);
-      this.flashMessages.success("Verified!");
+      this.set('finalizeRoundModal', false);
+      this.set('finalizeRoundModalError', false);
+      this.flashMessages.success("Finalized!");
     } catch(e) {
-      this.set('verifyRoundModalError', true);
+      this.set('finalizeRoundModalError', true);
     }
   }).drop(),
 });
