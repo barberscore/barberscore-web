@@ -53,10 +53,10 @@ export default Component.extend({
         this.flashMessages.danger(error.detail);
       })
     }
-    let round = yield this.model.complete({
-      'by': this.get('currentUser.user.id')
-    });
-    yield this.store.pushPayload('round', round);
+    // let round = yield this.model.complete({
+    //   'by': this.get('currentUser.user.id')
+    // });
+    // yield this.store.pushPayload('round', round);
   }).restartable(),
 });
 
