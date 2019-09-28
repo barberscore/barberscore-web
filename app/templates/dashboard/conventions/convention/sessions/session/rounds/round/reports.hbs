@@ -1,5 +1,5 @@
 <section>
-  {{#if (or (eq model.status 'Completed')(eq model.status 'Verified'))}}
+  {{#if (or (eq model.status 'Completed')(eq model.status 'Finalized'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
