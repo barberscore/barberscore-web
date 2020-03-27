@@ -3,11 +3,11 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-
         {{model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
           {{#if model.bhsId}}
             [{{model.bhsId}}]&nbsp;
           {{/if}}
+          {{#if model.gender}}({{model.gender}})&nbsp;{{/if}}
           {{#if model.prelim}}
             {{single-fixed model.prelim}}&nbsp;
           {{/if}}
