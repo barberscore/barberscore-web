@@ -22,20 +22,32 @@
 <section>
   {{!-- <p>Welcome {{model.name}}</p> --}}
   <div class='row'>
-    <p class='col-md-3 text-center spacing'>
-      {{#link-to 'dashboard.groups' tagName='button' disabled=groupsDisabled class='btn btn-light launcher'}}
-        {{fa-icon 'users' size='5'}}<br>
-        Memberships<br>
-        (For Groups)
-      {{/link-to}}
-    </p>
+    {{#if (manager-only this.model.userRoles) }}
+      {{#if managerEnabled}}
+      <p class='col-md-3 text-center spacing'>
+        {{#link-to 'dashboard.groups' tagName='button' disabled=groupsDisabled class='btn btn-light launcher'}}
+          {{fa-icon 'users' size='5'}}<br>
+          Memberships<br>
+          (For Groups)
+        {{/link-to}}
+      </p>
+      {{else}}
+      <p class='col-md-3 text-center spacing'>
+        <a href="https://members.barbershop.org" class='btn btn-light launcher'>
+          {{fa-icon 'users' size='5'}}<br/>
+          Group and repertory management is now available via the Member Center.</a>
+      </p>
+      {{/if}}
+    {{/if}}
+    {{#if (is-judge this.model.userRoles)}}
     <p class='col-md-3 text-center spacing'>
       {{#link-to 'dashboard.conventions' tagName='button' disabled=assignmentsDisabled class='btn btn-light launcher'}}
         {{fa-icon 'legal' size='5'}}<br>
+        Judging<br/>
         Assignments<br>
-        (For Judges)
       {{/link-to}}
     </p>
+    {{/if}}
   </div>
   {{!-- <section>
     <p>
