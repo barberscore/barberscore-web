@@ -2,6 +2,10 @@ import DS from 'ember-data';
 
 export default DS.Transform.extend({
   deserialize: function(serialized) {
+    if (typeof serialized == 'string') {
+      return serialized;
+    }
+
     var map = {
       110: 'BHS',
       200: 'CAR',
@@ -21,6 +25,21 @@ export default DS.Transform.extend({
       370: 'SLD',
       375: 'SUN',
       380: 'SWD',
+      410: 'NxtGn',
+      420: 'MBHA',
+      430: 'HI',
+      440: 'SAI',
+      510: 'BABS',
+      515: 'BHA',
+      520: 'BHNZ',
+      525: 'BinG',
+      530: 'FABS',
+      540: 'HHar',
+      550: 'IABS',
+      560: 'LABBS',
+      565: 'SABS',
+      570: 'SNOBS',
+      575: 'SPATS'
      };
     return map[serialized];
   },
@@ -45,6 +64,21 @@ export default DS.Transform.extend({
       'SLD': 370,
       'SUN': 375,
       'SWD': 380,
+      'NxtGn': 410,
+      'MBHA': 420,
+      'HI': 430,
+      'SAI': 440,
+      'BABS': 510,
+      'BHA': 515,
+      'BHNZ': 520,
+      'BinG': 525,
+      'FABS': 530,
+      'HHar': 540,
+      'IABS': 550,
+      'LABBS': 560,
+      'SABS': 565,
+      'SNOBS': 570,
+      'SPATS': 575
     };
     return map[deserialized];
   }
