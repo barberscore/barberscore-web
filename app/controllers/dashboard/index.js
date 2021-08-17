@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import ENV from '../../config/environment';
 // import { intersect } from '@ember/object/computed';
 
 export default Controller.extend({
@@ -21,4 +22,5 @@ export default Controller.extend({
   // assignmentsDisabled: empty(
   //   'judgeIntersect',
   // ),
+  managerEnabled: ENV.APP.managerEnabled,
 });

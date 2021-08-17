@@ -21,7 +21,7 @@
               <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
               <td>
-                {{#link-to 'dashboard.groups.group.entries.entry' entry.id}}{{entry.session.name}}{{/link-to}}
+                {{#link-to 'dashboard.groups.group.entries.entry' entry.id}}{{entry.session.display_name}}{{/link-to}}
               </td>
               <td>
                 {{entry.session.location}}

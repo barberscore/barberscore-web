@@ -19,7 +19,7 @@
         {{/nav.item}}
       {{else}}
         {{#nav.item}}
-          {{#link-to 'login' active=False type='button'}}Login{{/link-to}}
+          {{#link-to 'login' active=False type='button'}}Judges Login{{/link-to}}
         {{/nav.item}}
       {{/if}}
     {{/navbar.nav}}
@@ -28,7 +28,7 @@
 <div class='container-fluid'>
   {{outlet}}
 </div>
-{{#bs-navbar toggleBreakpoint=null position='fixed-bottom' as |navbar|}}
+{{!-- {{#bs-navbar toggleBreakpoint=null position='fixed-bottom' as |navbar|}}
   {{#navbar.content}}
     {{#navbar.nav type='pills' class='mr-4 nav-pills' as |nav|}}
       {{#nav.item}}
@@ -44,4 +44,4 @@
       {{/nav.item}}
     {{/navbar.nav}}
   {{/navbar.content}}
-{{/bs-navbar}}
+{{/bs-navbar}} --}}

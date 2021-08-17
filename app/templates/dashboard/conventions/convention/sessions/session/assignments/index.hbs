@@ -19,7 +19,7 @@
         {{#each sortedAssignments as |assignment|}}
           <tr>
             <td>{{#link-to 'dashboard.conventions.convention.sessions.session.assignments.assignment' assignment.id}}{{assignment.name}}{{/link-to}}</td>
-            <td>{{assignment.district}}</td>
+            <td>{{assignment.display_district}}</td>
             <td>{{assignment.bhsId}}</td>
             <td>{{assignment.kind}}</td>
             <td>{{assignment.category}}</td>
@@ -96,6 +96,36 @@
             {{kind}}
           {{/power-select}}
         </p>
+        <hr/>
+        <h5>Copy Judge already assigned to this Convention</h5>
+        <p>
+          {{#power-select
+            options=categoryOptions
+            selected=category
+            onchange=(action (mut category))
+            placeholder="Select a Judge"
+            allowClear=true
+            renderInPlace=true
+            as |category|
+          }}
+            {{category}}
+          {{/power-select}}
+        </p>
+        <hr/>
+        <h5>Copy assignments from another Session</h5>
+        <p>
+          {{#power-select
+            options=categoryOptions
+            selected=category
+            onchange=(action (mut category))
+            placeholder="Choose another Session from this Convention"
+            allowClear=true
+            renderInPlace=true
+            as |category|
+          }}
+            {{category}}
+          {{/power-select}}
+        </p>
       {{#if createAssignmentModalError}}
       <p class='text-danger'>
         Could not create assignment.  Please contact support.
@@ -103,7 +133,7 @@
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{!-- {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}} --}}
       {{#bs-button type='success' onClick=(perform saveAssignment person category kind) disabled=isDisabled}}
         {{#if saveAssignment.isRunning}}
           Creating {{fa-icon "spinner" spin=true}}
