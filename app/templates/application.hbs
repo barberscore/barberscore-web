@@ -13,7 +13,7 @@
     {{#navbar.nav type='pills' class='ml-auto' as |nav|}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}
-          {{#bs-button type='outline-dark' onClick=(action "invalidateSession") }}
+          {{#bs-button type='outline-dark' class="btn-logout" onClick=(action "invalidateSession") }}
             <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{session.data.authenticated.profile.name}}
           {{/bs-button}}
         {{/nav.item}}
