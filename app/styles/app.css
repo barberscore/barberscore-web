@@ -128,3 +128,9 @@ input[type=checkbox] {
 .cut-line {
   border-top: solid 10px black;
 }
+
+.btn-logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
