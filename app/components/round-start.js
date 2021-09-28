@@ -19,6 +19,7 @@ export default Component.extend({
       this.set('startRoundModalError', false);
       this.flashMessages.success("Started!");
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.appearances');
+      window.location.reload(true);
     } catch(e) {
       this.set('startRoundModalError', true);
     }
