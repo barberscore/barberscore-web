@@ -22,6 +22,10 @@ export default Model.extend({
   divisions: DS.attr(),
   kinds: DS.attr(),
 
+  hasPracticePanelists: DS.attr('boolean'),
+  roundsFinalized: DS.attr('boolean'),
+  bbstixBaseFilename: DS.attr('string'),
+
   imageId: DS.attr('string'),
   persons: DS.hasMany('person', {async: true}),
   owners: DS.hasMany('user', {async: true}),
@@ -31,6 +35,9 @@ export default Model.extend({
   build: memberAction({path: 'build', type: 'post'}),
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
+
+  bbstix: memberAction({ path: 'bbstix', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  bbstixPractice: memberAction({ path: 'bbstix_practice', type: 'get', ajaxOptions: { arraybuffer: true } }),
 
   isDisabled: not(
     'permissions.write'

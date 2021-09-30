@@ -1,0 +1,12 @@
+{{#bs-button
+  type='success'
+  onClick=(perform bbstixPractice)
+}}
+  {{#if bbstixPractice.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if bbstixPractice.last.isError}}
+    Error Downloading
+  {{else}}
+    Download BBSTIX with Practice Judges&nbsp;&nbsp;{{fa-icon 'file-word-o'}}
+  {{/if}}
+{{/bs-button}}

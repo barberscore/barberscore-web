@@ -108,6 +108,9 @@ Router.map(function() {
               });
           });
         });
+        this.route('reports', {
+          path: 'reports'
+        });
       });
     });
     this.route('groups', {
