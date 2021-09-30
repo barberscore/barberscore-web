@@ -1,0 +1,14 @@
+<section>
+	{{#if model.roundsFinalized }}
+    <ul class='list-unstyled'>
+      <li class='double'>{{download-bbstix model=model}}</li>
+      {{#if model.hasPracticePanelists }}
+	      <li class='double'>{{download-bbstix-practice model=model}}</li>
+	    {{/if}}
+    </ul>
+  {{else}}
+    <p>
+      BBSTIX reports are available after all Rounds have reached a status of "Finalized" or "Published".
+    </p>
+  {{/if}}
+</section>

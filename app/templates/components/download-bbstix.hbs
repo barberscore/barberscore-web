@@ -1,0 +1,12 @@
+{{#bs-button
+  type='success'
+  onClick=(perform bbstix)
+}}
+  {{#if bbstix.isRunning}}
+    Downloading {{fa-icon "spinner" spin=true}}
+  {{else if bbstix.last.isError}}
+    Error Downloading
+  {{else}}
+    Download BBSTIX&nbsp;&nbsp;{{fa-icon 'file-word-o'}}
+  {{/if}}
+{{/bs-button}}
