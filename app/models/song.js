@@ -59,6 +59,9 @@ export default Model.extend({
     38,
     39,
     40,
+    44,
+    48,
     50,
+    54,
   ],
 });
