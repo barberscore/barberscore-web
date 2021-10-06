@@ -134,3 +134,10 @@ input[type=checkbox] {
   justify-content: center;
   align-items: center;
 }
+
+.alert-penalty {
+  margin-right: 0.3rem;
+  margin-left: 0.3rem;  
+  padding: 5px 15px;
+  height: auto;
+}
