@@ -24,7 +24,7 @@ export default Model.extend({
 
   hasPracticePanelists: DS.attr('boolean'),
   roundsFinalized: DS.attr('boolean'),
-  bbstixBaseFilename: DS.attr('string'),
+  baseFilename: DS.attr('string'),
 
   imageId: DS.attr('string'),
   persons: DS.hasMany('person', {async: true}),
