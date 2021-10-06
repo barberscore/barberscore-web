@@ -27,6 +27,7 @@ export default Component.extend({
     yield timeout(200);
     try {
       yield property.save();
+      this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
     } catch(e) {
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
