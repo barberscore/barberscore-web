@@ -19,7 +19,8 @@ export default Component.extend({
       this.set('startRoundModalError', false);
       this.flashMessages.success("Started!");
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.appearances');
-      this.store.find('round', this.get('id'), { include: 'appearances', reload: true });
+      window.location.reload(true);
+      // this.store.find('round', this.get('id'), { include: 'appearances', reload: true });
     } catch(e) {
       this.set('startRoundModalError', true);
     }
