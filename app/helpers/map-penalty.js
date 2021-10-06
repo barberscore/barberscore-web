@@ -10,7 +10,10 @@ export function fooBar(params) {
       38: 'Lack of Characteristic Chord Progression',
       39: 'Excessive Lyrics < 4 parts',
       40: 'Primarily Patriotic/Religious Intent',
+      44: 'Not in Good Taste',
+      48: 'Non-members Performing on Stage',
       50: 'Sound Equipment or Electronic Enhancement',
+      54: 'Sound equipment or Electronic enhancement',
     }
     return penaltyMap[params[0]];
   }
