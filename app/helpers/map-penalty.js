@@ -13,7 +13,6 @@ export function fooBar(params) {
       44: 'Not in Good Taste',
       48: 'Non-members Performing on Stage',
       50: 'Sound Equipment or Electronic Enhancement',
-      54: 'Sound equipment or Electronic enhancement',
     }
     return penaltyMap[params[0]];
   }
