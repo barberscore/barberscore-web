@@ -2,9 +2,7 @@
 	{{#if model.roundsFinalized }}
     <ul class='list-unstyled'>
       <li class='double'>{{download-bbstix model=model}}</li>
-      {{#if model.hasPracticePanelists }}
-	      <li class='double'>{{download-bbstix-practice model=model}}</li>
-	    {{/if}}
+      <li class='double'>{{download-bbstix-practice model=model}}</li>
     </ul>
   {{else}}
     <p>
