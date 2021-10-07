@@ -22,7 +22,6 @@ export default Model.extend({
   divisions: DS.attr(),
   kinds: DS.attr(),
 
-  hasPracticePanelists: DS.attr('boolean'),
   roundsFinalized: DS.attr('boolean'),
   baseFilename: DS.attr('string'),
 

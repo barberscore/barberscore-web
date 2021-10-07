@@ -18,6 +18,7 @@ export default Component.extend({
       this.set('finalizeRoundModal', false);
       this.set('finalizeRoundModalError', false);
       this.flashMessages.success("Finalized!");
+      this.store.findRecord('convention', this.model.conventionId, { reload: true });
     } catch(e) {
       this.set('finalizeRoundModalError', true);
     }
