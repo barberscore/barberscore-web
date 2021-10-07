@@ -6,9 +6,9 @@ import { inject as service } from '@ember/service';
 export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   bbstix: task(function *() {
-    let docx = yield this.model.bbstix();
+    let txt = yield this.model.bbstix();
     let fileName = `${this.model.baseFilename}_BBStix`;
-    this.saveFileAs(fileName, docx, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    this.saveFileAs(fileName, txt, 'text/plain');
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });
