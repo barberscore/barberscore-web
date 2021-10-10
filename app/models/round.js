@@ -23,6 +23,7 @@ export default Model.extend({
 
   sessionId: DS.attr('string'),
   sessionKind: DS.attr('session-kind'),
+  baseFilename: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
 
@@ -37,6 +38,7 @@ export default Model.extend({
   complete: memberAction({path: 'complete', type: 'post'}),
   finalize: memberAction({path: 'finalize', type: 'post'}),
   publish: memberAction({path: 'publish', type: 'post'}),
+  labels: memberAction({path: 'labels', type: 'post', ajaxOptions: { arraybuffer: true }}),
 
   mock: memberAction({path: 'mock', type: 'get'}),
   oss: memberAction({ path: 'oss', type: 'get', ajaxOptions: { arraybuffer: true } }),

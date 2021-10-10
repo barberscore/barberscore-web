@@ -1,0 +1,107 @@
+{{#bs-button
+  type='success'
+  disabled=model.isDisabled
+  onClick=(action (mut labelsModal) true)
+}}
+  Download Labels&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
+{{/bs-button}}
+{{#bs-modal
+  open=labelsModal
+  onHidden=(pipe-action (action (mut labelsModal) false) (action (mut labelsModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Contestant Labels</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+
+    <div class='form-group'>
+      <label for="postfix">File Name Postfix</label>
+      <small id="postfixHelp" class="text-muted">
+        (e.g. "A.A.A.B.R.F")
+      </small>
+      {{input
+        class='form-control'
+        id='postfix'
+        type='text'
+        disabled=model.isDisabled
+        placeholder='File postfix'
+        required='true'
+        value=postfix
+      }}
+    </div>
+
+    <div class='form-group'>
+      <label for="judges">Judge(s)</label>
+      <small id="judgesHelp" class="text-muted">
+        Select all, one, or specific judges
+      </small>
+      {{#power-select-multiple
+        options=this.filteredPanelists
+        id='judges'
+        selected=judges
+        onchange=(action (mut judges))
+        placeholder="All Judges"
+        allowClear=true
+        renderInPlace=true
+        noMatchesMessage="We Could Not Find a judge with that name"
+        as |judge|
+      }}
+        {{judge.lastName}}, {{judge.firstName}} [{{judge.category}}] - {{judge.kind}}
+      {{/power-select-multiple}}
+    </div>
+
+    <div class='form-group'>
+      <label for="groups">Contestant(s)</label>
+      <small id="groupsHelp" class="text-muted">
+        Select all, one, or specific contestents
+      </small>
+      {{#power-select-multiple
+        options=this.appearances
+        id='groups'
+        selected=groups
+        onchange=(action (mut groups))
+        placeholder="All Contestants"
+        allowClear=true
+        renderInPlace=true
+        noMatchesMessage="We Could Not Find a group with that name"
+        as |group|
+      }}
+        {{group.name}} [Draw: {{group.num}}]
+      {{/power-select-multiple}}
+    </div>
+
+    <div class='form-group'>
+      <label class="form-check-label" for="isReversed">Reverse Labels Order?</label>
+      <small id="reverseOrderHelp" class="text-muted">
+        Order of appearance will be high to low
+      </small>
+      <div class="custom-control custom-checkbox custom-control-inline">
+        {{input
+          class='custom-control-input'
+          type='checkbox'
+          id='isReversed'
+          checked=isReversed
+          key-press=(action (mut isReversed) true)
+        }}
+        <label class="custom-control-label" for="isReversed">Yes</label>
+      </div>
+    </div>
+
+    {{#if labelsModalError}}
+    <p class='text-danger'>
+      Could not download labels.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='success' onClick=(perform labels) disabled=model.isError}}
+      {{#if labels.isRunning}}
+        Downloading {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Download&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}
