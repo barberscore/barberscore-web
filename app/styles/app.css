@@ -141,3 +141,7 @@ input[type=checkbox] {
   padding: 5px 15px;
   height: auto;
 }
+
+ul.list-unstyled + ul.list-unstyled {
+  margin-top: -1rem;
+}

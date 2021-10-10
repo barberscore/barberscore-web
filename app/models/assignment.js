@@ -63,5 +63,6 @@ export default Model.extend({
     'Official',
     'Practice',
     'Observer',
+    'Former',
   ],
 });

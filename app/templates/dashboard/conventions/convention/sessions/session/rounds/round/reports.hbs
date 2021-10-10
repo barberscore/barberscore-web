@@ -1,4 +1,9 @@
 <section>
+  {{#if (not-eq model.status 'New')}}
+    <ul class='list-unstyled'>
+      <li class='double'>{{download-labels model=model}}</li>
+    </ul>
+  {{/if}}
   {{#if (or (eq model.status 'Completed')(eq model.status 'Finalized'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-oss model=model}}</li>

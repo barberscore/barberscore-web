@@ -47,6 +47,7 @@ export default Model.extend({
     'Built',
     'Active',
     'Inactive',
+    'Cancelled',
   ],
 
   seasonOptions: [
