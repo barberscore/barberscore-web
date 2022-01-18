@@ -40,7 +40,7 @@ export default Component.extend(FileSaverMixin, {
       });
       let postfix = `${this.get('postfix')}`.trim();
       let fileName = `${this.model.baseFilename}_Lbls${(postfix ? '_' + postfix : '')}.rtf`;
-      console.log('rtf', rtf);
+
       this.saveFileAs(fileName, rtf, 'application/rtf');
       this.set('labelsModal', false);
       this.set('labelsModalError', false);
