@@ -13,3 +13,8 @@
 <section>
   {{round-footnotes model=model}}
 </section>
+{{#unless (eq model.kind 'Finals')}}
+<section>
+  {{round-spots model=model}}
+</section>
+{{/unless}}
