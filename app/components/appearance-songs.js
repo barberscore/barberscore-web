@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
@@ -10,10 +11,24 @@ export default Component.extend({
     'model.songs',
     'sortedSongsProperties'
   ),
-  autosave: task(function* (song, chrt){
-    let chart = JSON.parse(chrt);
+  chartsList: computed(
+    'model',
+    'charts',
+    function() {
+      let repertory = this.get('model.charts');
+      let charts = [];
+
+      for (var i = repertory.length - 1; i >= 0; i--) {
+        let chart = JSON.parse(repertory[i]);
+        chart['songTitle'] = chart.title;
+        charts.push(chart);
+      }
+      return charts.sortBy('title');
+    }
+  ),
+  autosave: task(function* (song, chart){
     song.set('chartId', chart.pk);
-    song.set('title', chart.title);
+    song.set('title', chart.songTitle);
     song.set('arrangers', chart.arrangers);
     try {
       yield song.save();

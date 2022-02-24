@@ -11,8 +11,8 @@
         <tr>
           <td>
             {{#power-select
-              options=model.charts
-              selected=song.title
+              options=chartsList
+              selected=song
               onchange=(perform autosave song)
               placeholder="Choose Chart Title"
               searchField='title'
@@ -20,7 +20,7 @@
               disabled=false
               as |chart|
             }}
-              Song {{song.num}}: {{chart}}
+              Song {{song.num}}: {{chart.title}}
             {{/power-select}}
           </td>
         </tr>
