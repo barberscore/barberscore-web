@@ -1,9 +1,9 @@
 {{#bs-button disabled=model.isDisabled type='primary' onClick=(perform finishAppearance)}}
   {{#if finishAppearance.isRunning}}
-    Finishing {{fa-icon "spinner" spin=true}}
+    Concluding {{fa-icon "spinner" spin=true}}
   {{else}}
     {{#if (eq model.status 'Started')}}
-      Finish Appearance
+      Conclude Performance
     {{/if}}
   {{/if}}
 {{/bs-button}}
