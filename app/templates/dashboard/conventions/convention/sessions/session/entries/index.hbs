@@ -52,7 +52,7 @@
       </tbody>
     </table>
   </div>
-  {{#unless (or (eq model.status 'Packaged') (eq model.status 'Finished')) }}
+  {{#if (or (eq model.status 'Packaged')) }}
     <div>
       <p>
         {{#bs-button
@@ -64,7 +64,7 @@
         {{/bs-button}}
       </p>
     </div>
-  {{/unless}}
+  {{/if}}
   {{#bs-modal
     open=createEntryModal
     size='lg'

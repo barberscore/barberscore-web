@@ -3,7 +3,7 @@
   disabled=false
   onClick=(action (mut scratchAppearanceModal) true)
 }}
-  Scratch Appearance
+  Scratch Performance
 {{/bs-button}}
 {{#bs-modal
   open=scratchAppearanceModal
@@ -11,7 +11,7 @@
   as |modal|
 }}
   {{#modal.header}}
-    <h4>Scratch Appearance</h4>
+    <h4>Scratch Performance</h4>
   {{/modal.header}}
   {{#modal.body}}
     <p>
@@ -29,7 +29,7 @@
       {{#if scratchAppearance.isRunning}}
         Scratching {{fa-icon "spinner" spin=true}}
       {{else}}
-        Scratch Appearance
+        Scratch Performance
       {{/if}}
     {{/bs-button}}
   {{/modal.footer}}

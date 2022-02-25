@@ -1,0 +1,10 @@
+<div class='form-group'>
+  Spots moving forward:
+  <input
+    type="number"
+    value={{model.spots}}
+    disabled={{isDisabled}}
+    oninput={{perform autosave value='target.value'}}
+    class='form-control col-sm-1'
+  />
+</div>

@@ -1,10 +1,10 @@
-{{#bs-button
+{{!-- {{#bs-button
   type='danger'
   disabled=model.isDisabled
   onClick=(action (mut deleteAssignmentModal) true)
 }}
   Remove Assignment
-{{/bs-button}}
+{{/bs-button}} --}}
 {{#bs-modal
   open=deleteAssignmentModal
   onHidden=(pipe-action (action (mut deleteAssignmentModal) false) (action (mut deleteAssignmentModalError) false))

@@ -15,11 +15,11 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-      This will delete the Appearance.  Generally used to remove a Mic Tester that will not be scored.
+      This will delete the Performance.  Generally used to remove a Mic Tester that will not be scored.
     </p>
     {{#if deleteAppearanceModalError}}
     <p class='text-danger'>
-      Could not delete appearance.  Please contact support.
+      Could not delete performance.  Please contact support.
     </p>
     {{/if}}
   {{/modal.body}}
@@ -29,7 +29,7 @@
       {{#if deleteAppearance.isRunning}}
         Deleting {{fa-icon "spinner" spin=true}}
       {{else}}
-        Delete Appearance
+        Delete Performance
       {{/if}}
     {{/bs-button}}
   {{/modal.footer}}
