@@ -1,3 +1,4 @@
+{{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
 {{#bs-button
   type='success'
   disabled=model.isDisabled
@@ -5,6 +6,7 @@
 }}
   Download Labels&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
 {{/bs-button}}
+{{/if}}
 {{#bs-modal
   open=labelsModal
   onHidden=(pipe-action (action (mut labelsModal) false) (action (mut labelsModalError) false))
