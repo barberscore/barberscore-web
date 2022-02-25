@@ -10,6 +10,7 @@ export default Controller.extend({
   algolia: service(),
   store: service(),
   sortedEntriesProperties: [
+    'status',
     'name',
   ],
   sortedEntries: sort(
