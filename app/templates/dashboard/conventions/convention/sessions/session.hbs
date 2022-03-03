@@ -37,19 +37,21 @@
           Session Status: <strong>{{model.status}}</strong>
         </h5>
       </div>
-        <ul class='list-inline'>
-          {{#if (eq model.status 'New')}}
-            <li>{{session-build model=model}}</li>
-          {{else if (eq model.status 'Built')}}
-            <li>{{session-open model=model}}</li>
-          {{else if (eq model.status 'Opened')}}
-            <li>{{session-close model=model}}</li>
-          {{else if (eq model.status 'Closed')}}
-            <li>{{session-verify model=model}}</li>
-          {{else if (eq model.status 'Verified')}}
-            <li>{{session-package model=model}}</li>
-          {{/if}}
-        </ul>
+      {{!-- 
+      <ul class='list-inline'>
+        {{#if (eq model.status 'New')}}
+          <li>{{session-build model=model}}</li>
+        {{else if (eq model.status 'Built')}}
+          <li>{{session-open model=model}}</li>
+        {{else if (eq model.status 'Opened')}}
+          <li>{{session-close model=model}}</li>
+        {{else if (eq model.status 'Closed')}}
+          <li>{{session-verify model=model}}</li>
+        {{else if (eq model.status 'Verified')}}
+          <li>{{session-package model=model}}</li>
+        {{/if}}
+      </ul>
+      --}}
     </div>
   </div>
 </section>
