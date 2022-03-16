@@ -1,5 +1,5 @@
 <section>
-  {{#if (not-eq model.status 'New')}}
+  {{#if (or (eq model.status 'Built')(eq model.status 'Started'))}}
     <ul class='list-unstyled'>
       <li class='double'>{{download-labels model=model}}</li>
     </ul>
@@ -19,8 +19,8 @@
       <li class='double'>{{download-sa model=model}}</li>
     </ul>
   {{else}}
-    <h4>
-      Reports are available after the Round is Completed.
-    </h4>
+    <p>
+      OSS, SA, and Announcement Reports are available after the Round is Completed.
+    </p>
   {{/if}}
 </section>
