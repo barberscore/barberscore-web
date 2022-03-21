@@ -1,3 +1,4 @@
+import { computed } from '@ember/object';
 import { not, sort, filterBy} from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
@@ -10,6 +11,12 @@ export default Component.extend({
   store: service(),
   isDisabled: not(
     'model.permissions.write',
+  ),
+  isAdvancingNumberDisabled: computed(
+    'model',
+    function() {
+      return ['Completed', 'Finalized', 'Published'].includes(this.get('model.status'));
+    }
   ),
   rankSortProperties: [
     'runTotSum:desc',
