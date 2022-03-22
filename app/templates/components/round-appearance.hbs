@@ -69,13 +69,16 @@
           <li class='list-inline-item'>{{appearance-start model=model}}</li>
           <li class='list-inline-item'>{{appearance-scratch model=model}}</li>
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
+          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
         {{else if (eq model.status 'Started')}}
           <li class='list-inline-item'>{{appearance-finish model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
+          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li class='list-inline-item'>{{appearance-verify model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
+          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
         {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
           <li class='list-inline-item'>{{download-csa model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
