@@ -4,7 +4,7 @@
       {{prev-next model=model sortedArray=sortedContests}}
 
       <h4>
-        {{model.name}}
+        {{{model.name}}}
       </h4>
     </div>
     <div class='card-body'>
@@ -20,7 +20,7 @@
             {{#each sortedEntries as |entry|}}
               <tr>
                 <td>
-                  {{entry.name}}
+                  {{{entry.name}}}
                 </td>
               </tr>
             {{else}}

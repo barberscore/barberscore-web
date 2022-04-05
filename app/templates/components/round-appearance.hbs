@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.name}}
+        #{{model.num}}: {{{model.name}}}
         {{#if (eq model.status 'Variance')}}
           {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
@@ -53,7 +53,7 @@
     <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{model.name}}
+        #{{model.num}}: {{{model.name}}}
         {{#if (eq model.status 'Variance')}}
           {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
