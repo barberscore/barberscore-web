@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedOutcomes}}
       <h4>
-        {{model.name}}
+        {{{model.name}}}
       </h4>
     </div>
     <div class='card-body'>
@@ -20,7 +20,7 @@
           disabled=model.contest.isDisabled
           as |group|
         }}
-          Winner: {{group.name}}
+          Winner: {{{group.name}}}
         {{/power-select}}
       {{else}}
         (Qualifiers are determined by rule and appear on the OSS)
@@ -56,7 +56,7 @@
               {{#each sortedContenders as |contender|}}
                   <tr>
                     <td>
-                      {{contender.name}}
+                      {{{contender.name}}}
                     </td>
                     <td>
                       {{contender.runTotSum}}

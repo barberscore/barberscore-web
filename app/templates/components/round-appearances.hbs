@@ -27,7 +27,7 @@
                   'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                   appearance
                 }}
-                  {{appearance.name}}
+                  {{{appearance.name}}}
                 {{/link-to}}
                 &nbsp;
                 {{#if (eq appearance.status 'Verified')}}
@@ -91,7 +91,7 @@
             noMatchesMessage="We Could Not Find a group with that name"
             as |group|
           }}
-            Group: {{group.name}} [{{group.bhs_id}}]
+            Group: {{{group.name}}} [{{group.bhs_id}}]
           {{/power-select}}
         </p>
         {{#if createAppearanceModalError}}

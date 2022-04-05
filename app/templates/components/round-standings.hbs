@@ -40,7 +40,7 @@
                 {{else}}
                   <td></td>
                 {{/if}}
-                <td>{{appearance.name}}</td>
+                <td>{{{appearance.name}}}</td>
                 {{#if appearance.stats}}
                   <td>{{appearance.runTotSum}}</td>
                 {{else}}
@@ -85,7 +85,7 @@
                 {{else}}
                   <td></td>
                 {{/if}}
-                <td>{{appearance.name}}</td>
+                <td>{{{appearance.name}}}</td>
                 <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
                 <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
                 <td>
@@ -125,7 +125,7 @@
                 {{else}}
                   <td></td>
                 {{/if}}
-                <td>{{appearance.name}}</td>
+                <td>{{{appearance.name}}}</td>
                 <td>{{#if appearance.stats}}{{appearance.runTotSum}}{{else}}N/A{{/if}}</td>
                 <td>{{#if appearance.stats}}{{single-fixed appearance.runTotAvg}}{{else}}N/A{{/if}}</td>
                 <td>

@@ -31,7 +31,7 @@
             {{#if entry.isLoading}}
               <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
             {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry.id}}{{entry.name}}{{/link-to}}</td>
+              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' entry.id}}{{{entry.name}}}{{/link-to}}</td>
               <td>{{entry.area}}</td>
               <td>{{entry.bhsId}}</td>
               <td>{{entry.participants}}</td>
