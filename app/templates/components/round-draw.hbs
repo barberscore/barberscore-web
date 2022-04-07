@@ -9,7 +9,7 @@
     </h4>
   {{else if (and isEditing (eq model.status 'Completed'))}}
     <div class='pb-2'>
-      {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+      {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked. Click to Unlock Draw{{/if}}{{/bs-button}}
     </div>
     <div class='table-responsive'>
       <table class='table table-hover'>
@@ -25,7 +25,11 @@
               MT
             </td>
             <td>
-              {{{mt.0.name}}}
+              {{#if hasMt}}
+                {{{mt.0.name}}}
+              {{else}}
+                No MT advanced
+              {{/if}}
             </td>
             <td>
             </td>
@@ -78,6 +82,7 @@
               <th>Draw</th>
               <th>Name</th>
               <th>Notes</th>
+              <th class="actions">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -86,9 +91,18 @@
                 MT
               </td>
               <td>
-                {{{mt.0.name}}}
+                {{#if hasMt}}
+                  {{{mt.0.name}}}
+                {{/if}}
               </td>
               <td>
+              </td>
+              <td>
+                {{#if hasMt}}
+                  {{#each mt as |appearance|}}
+                    {{round-draw-remove model=appearance}}
+                  {{/each}}
+                {{/if}}
               </td>
             </tr>
             {{#each sortedAppearances as |appearance|}}
@@ -102,6 +116,9 @@
                 <td>
                   {{appearance.notes}}
                 </td>
+                <td>
+                  {{round-draw-remove model=appearance}}
+                </td>
               </tr>
             {{else}}
               <tr>
@@ -114,6 +131,13 @@
     </div>
     {{#if (eq model.status 'Completed')}}
       <div class='row'>
+        <div class='col-md-12'>
+          <p>
+            {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut advanceGroupModal) true)}}Add Advancing Group{{/bs-button}}
+          </p>          
+        </div>
+      </div>
+      <div class='row'>
         <div class='col-md-6'>
           <p><strong>Note:</strong> If you wish to edit the draw, please click the "Unlock Draw" button.  You'll then be able to make adjustments, which will automatically save.</p>
         </div>
@@ -121,3 +145,58 @@
     {{/if}}
   {{/if}}
 </section>
+<div>
+  {{#bs-modal
+    open=advanceGroupModal
+    onHidden=(pipe-action (action (mut advanceGroupModal) false) (action (mut advanceGroupModalError) false))
+    as |modal|
+  }}
+    {{#modal.header}}
+      <h4>Advance Group</h4>
+    {{/modal.header}}
+    {{#modal.body}}
+      <p>
+        Select the group to advance into the next round.
+      </p>
+      <p>
+        {{input
+          class='form-control'
+          type='tel'
+          placeholder='Enter Draw (0 = MT)'
+          value=this.draw
+          min=0
+          max=99
+        }}
+      </p>
+      <p>
+        {{#power-select
+          options=sortedRoundAppearances
+          selected=group
+          onchange=(action (mut group))
+          placeholder="Enter Group Name"
+          allowClear=true
+          renderInPlace=true
+          noMatchesMessage="We Could Not Find a group with that name"
+          as |group|
+        }}
+          Group: {{{group.name}}} [{{group.bhsId}}]
+        {{/power-select}}
+      </p>
+      {{#if advanceGroupModalError}}
+      <p class='text-danger'>
+        Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
+      </p>
+      {{/if}}
+    {{/modal.body}}
+    {{#modal.footer}}
+      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+      {{#bs-button type='success' onClick=(perform advanceGroup group draw) disabled=isDisabled}}
+        {{#if advanceGroup.isRunning}}
+          Advancing {{fa-icon "spinner" spin=true}}
+        {{else}}
+          Advance Group
+        {{/if}}
+      {{/bs-button}}
+    {{/modal.footer}}
+  {{/bs-modal}}
+</div>

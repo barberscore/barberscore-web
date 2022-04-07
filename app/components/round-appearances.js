@@ -1,4 +1,5 @@
-import { not, sort } from '@ember/object/computed';
+import { not, sort, filterBy, alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
@@ -9,9 +10,17 @@ export default Component.extend({
   router: service(),
   algolia: service(),
   store: service(),
+  isEditing: false,
   isDisabled: not(
     'model.permissions.write',
   ),
+  mt: alias('sortedAppearances.firstObject'),
+  hasMt: computed('mt', function() {
+    if (this.mt.num === 0) {
+      return true;
+    }
+    return false;
+  }),
   sortedAppearancesProperties: [
     'num',
   ],
@@ -36,7 +45,7 @@ export default Component.extend({
         num: num,
         participants: "",
         area: obj.get_district_display,
-        isPrivate: true,
+        isPrivate: false,
         groupId: obj.objectID,
         name: obj.name,
         kind: obj.get_kind_display,
@@ -73,6 +82,16 @@ export default Component.extend({
   actions: {
     cancelAppearance(appearance){
       appearance.deleteRecord();
+    },
+    toggleOrderOfAppearance(){
+      this.toggleProperty('isEditing');
+    },
+    reorderItems(itemModels) {
+      itemModels.forEach(function(item, index) {
+        item.set('num', index + 1);          
+      });
+      itemModels.invoke('save');
+      this.flashMessages.success('Success');
     },
   }
 });

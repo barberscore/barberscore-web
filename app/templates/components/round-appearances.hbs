@@ -1,115 +1,305 @@
 {{#if (eq model.status 'New')}}
     <h4>The Appearances are available after the Round is Built.</h4>
 {{else}}
-  <div class='table-responsive'>
-    <table class='table table-hover table-sm'>
-      <caption>
-        The Order of Appearance for all groups in this Round.  Click on a group to enter scores.
-      </caption>
-      <thead class='thead-light'>
-        <tr>
-          <th>OA</th>
-          <th>Name</th>
-          <th>Grid</th>
-          <th>Actual</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each sortedAppearances as |appearance|}}
+    {{#if (and isEditing (eq model.status 'Built'))}}
+    <div class='row pb-2'>
+      <div class='col-md-6'>
+        {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleOrderOfAppearance')}}{{#if isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}{{/bs-button}}
+      </div>
+    </div>
+    <div class='table-responsive'>
+      <table class='table table-hover table-sm'>
+        <caption>
+          The Order of Appearance for all groups in this Round.  Click on a group to enter scores.
+        </caption>
+        <thead class='thead-light'>
           <tr>
-            {{#if appearance.isLoading}}
-              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
-            {{else}}
-              <td>{{appearance.num}}</td>
-              <td>
+            <th>OA</th>
+            <th>Name</th>
+            <th>Grid</th>
+            <th>Actual</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+          <tr>
+            <td>
+              MT
+            </td>
+            <td>
+              {{#if hasMt}}
                 {{#link-to
                   'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                  appearance
+                  mt.id
                 }}
-                  {{{appearance.name}}}
+                  {{{mt.name}}}
                 {{/link-to}}
-                &nbsp;
-                {{#if (eq appearance.status 'Verified')}}
-                  {{fa-icon 'check-circle' class='text-success'}}
-                {{else if (eq appearance.status 'Variance')}}
-                  {{download-variance model=appearance}}
-                {{/if}}
+              {{/if}}
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+              {{round-appearance-delete model=mt}}
+            </td>
+          </tr>
+          {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+            {{#each sortedAppearances as |appearance|}}
+              {{#if (gt appearance.num 0)}}
+                {{#sortable-item tagName="tr" model=appearance group=group class='handle' handle=".handle"}}
+                  {{#if appearance.isLoading}}
+                    <td colspan=5>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                  {{else}}
+                    <td>{{appearance.num}}</td>
+                    <td>
+                      {{#link-to
+                        'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                        appearance
+                      }}
+                        {{{appearance.name}}}
+                      {{/link-to}}
+                      &nbsp;
+                      {{#if (eq appearance.status 'Verified')}}
+                        {{fa-icon 'check-circle' class='text-success'}}
+                      {{else if (eq appearance.status 'Variance')}}
+                        {{download-variance model=appearance}}
+                      {{/if}}
+                    </td>
+                    <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
+                    <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
+                    <td>{{appearance.status}}</td>
+                    <td>
+                      {{round-appearance-delete model=appearance}}
+                    </td>
+                  {{/if}}
+                {{/sortable-item}}
+              {{/if}}
+            {{else}}
+              <tr>
+                <td>(No groups currently entered for this session.)</td>
+              </tr>
+            {{/each}}
+          {{/sortable-group}}
+      </table>
+    </div>
+    <div>
+      {{#if (eq model.status 'Built')}}
+        <p>
+          {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+          {{!-- {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
+        </p>
+      {{/if}}
+    </div>
+    <div>
+      {{#bs-modal
+        open=createAppearanceModal
+        onHidden=(pipe-action (action (mut createAppearanceModal) false) (action (mut createAppearanceModalError) false))
+        as |modal|
+      }}
+        {{#modal.header}}
+          <h4>New Appearance</h4>
+        {{/modal.header}}
+        {{#modal.body}}
+          <p>
+            Enter the details for the Appearance.
+          </p>
+          <p>
+            {{input
+              class='form-control'
+              type='tel'
+              placeholder='Enter Order of Appearance (0 = MT)'
+              value=this.num
+              min=-10
+              max=99
+            }}
+          </p>
+          <p>
+            {{#power-select
+              search=(perform searchGroup)
+              selected=group
+              onchange=(action (mut group))
+              placeholder="Enter Group Name"
+              allowClear=true
+              renderInPlace=true
+              noMatchesMessage="We Could Not Find a group with that name"
+              as |group|
+            }}
+              Group: {{{group.name}}} [{{group.bhs_id}}]
+            {{/power-select}}
+          </p>
+          {{#if createAppearanceModalError}}
+          <p class='text-danger'>
+            Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
+          </p>
+          {{/if}}
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+          {{#bs-button type='success' onClick=(perform saveAppearance group num) disabled=isDisabled}}
+            {{#if saveAppearance.isRunning}}
+              Creating {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Create Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{/modal.footer}}
+      {{/bs-modal}}
+    </div>
+  {{else}}
+    {{#if (eq model.status 'Built')}}
+    <div class='row pb-2'>
+      <div class='col-md-6'>
+        {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleOrderOfAppearance')}}{{#if isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}{{/bs-button}}
+      </div>
+    </div>
+    {{/if}}
+    <div class='table-responsive'>
+      <table class='table table-hover table-sm'>
+        <caption>
+          The Order of Appearance for all groups in this Round.  Click on a group to enter scores.
+        </caption>
+        <thead class='thead-light'>
+          <tr>
+            <th>OA</th>
+            <th>Name</th>
+            <th>Grid</th>
+            <th>Actual</th>
+            <th>Status</th>
+            <th class="actions"></th>
+          </tr>
+        </thead>
+          <tr>
+            <td>
+              MT
+            </td>
+            <td>
+              {{#if hasMt}}
+                {{#link-to
+                  'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                  mt.id
+                }}
+                  {{{mt.name}}}
+                {{/link-to}}
+              {{/if}}
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            {{#if (and hasMt (eq model.status 'Built'))}}
+              <td>
+                {{round-appearance-delete model=mt}}
               </td>
-              <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
-              <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
-              <td>{{appearance.status}}</td>
             {{/if}}
           </tr>
-        {{else}}
-          <tr>
-            <td>(No groups currently entered for this session.)</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
-  <div>
-    {{#if (eq model.status 'Built')}}
-      <p>
-        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
-        {{!-- {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
-      </p>
-    {{/if}}
-  </div>
-  <div>
-    {{#bs-modal
-      open=createAppearanceModal
-      onHidden=(pipe-action (action (mut createAppearanceModal) false) (action (mut createAppearanceModalError) false))
-      as |modal|
-    }}
-      {{#modal.header}}
-        <h4>New Appearance</h4>
-      {{/modal.header}}
-      {{#modal.body}}
-        <p>
-          Enter the details for the Appearance.
-        </p>
-        <p>
-          {{input
-            class='form-control'
-            type='tel'
-            placeholder='Enter Draw'
-            value=this.num
-            min=-10
-            max=99
-          }}
-        </p>
-        <p>
-          {{#power-select
-            search=(perform searchGroup)
-            selected=group
-            onchange=(action (mut group))
-            placeholder="Enter Group Name"
-            allowClear=true
-            renderInPlace=true
-            noMatchesMessage="We Could Not Find a group with that name"
-            as |group|
-          }}
-            Group: {{{group.name}}} [{{group.bhs_id}}]
-          {{/power-select}}
-        </p>
-        {{#if createAppearanceModalError}}
-        <p class='text-danger'>
-          Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
-        </p>
-        {{/if}}
-      {{/modal.body}}
-      {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform saveAppearance group num) disabled=isDisabled}}
-          {{#if saveAppearance.isRunning}}
-            Creating {{fa-icon "spinner" spin=true}}
+          <tbody>
+          {{#each sortedAppearances as |appearance|}}
+            {{#if (gt appearance.num 0)}}
+              <tr>
+                {{#if appearance.isLoading}}
+                  <td colspan=5>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                {{else}}
+                  <td>{{appearance.num}}</td>
+                  <td>
+                    {{#link-to
+                      'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                      appearance
+                    }}
+                      {{{appearance.name}}}
+                    {{/link-to}}
+                    &nbsp;
+                    {{#if (eq appearance.status 'Verified')}}
+                      {{fa-icon 'check-circle' class='text-success'}}
+                    {{else if (eq appearance.status 'Variance')}}
+                      {{download-variance model=appearance}}
+                    {{/if}}
+                  </td>
+                  <td>{{moment-format appearance.onstage 'HH:mm' allow-empty=true}}</td>
+                  <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
+                  <td>{{appearance.status}}</td>
+                  {{#if (eq model.status 'Built')}}
+                    <td>
+                      {{round-appearance-delete model=appearance}}
+                    </td>
+                  {{/if}}
+                {{/if}}
+              </tr>
+            {{/if}}
           {{else}}
-            Create Appearance
+            <tr>
+              <td>(No groups currently entered for this session.)</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    <div>
+      {{#if (eq model.status 'Built')}}
+        <p>
+          {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}}
+          {{!-- {{#bs-button type='success' disabled=true onClick=(action (mut createAppearanceModal) true)}}Create New Appearance{{/bs-button}} --}}
+        </p>
+      {{/if}}
+    </div>
+    <div>
+      {{#bs-modal
+        open=createAppearanceModal
+        onHidden=(pipe-action (action (mut createAppearanceModal) false) (action (mut createAppearanceModalError) false))
+        as |modal|
+      }}
+        {{#modal.header}}
+          <h4>New Appearance</h4>
+        {{/modal.header}}
+        {{#modal.body}}
+          <p>
+            Enter the details for the Appearance.
+          </p>
+          <p>
+            {{input
+              class='form-control'
+              type='tel'
+              placeholder='Enter Order of Appearance (0 = MT)'
+              value=this.num
+              min=-10
+              max=99
+            }}
+          </p>
+          <p>
+            {{#power-select
+              search=(perform searchGroup)
+              selected=group
+              onchange=(action (mut group))
+              placeholder="Enter Group Name"
+              allowClear=true
+              renderInPlace=true
+              noMatchesMessage="We Could Not Find a group with that name"
+              as |group|
+            }}
+              Group: {{{group.name}}} [{{group.bhs_id}}]
+            {{/power-select}}
+          </p>
+          {{#if createAppearanceModalError}}
+          <p class='text-danger'>
+            Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
+          </p>
           {{/if}}
-        {{/bs-button}}
-      {{/modal.footer}}
-    {{/bs-modal}}
-  </div>
+        {{/modal.body}}
+        {{#modal.footer}}
+          {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+          {{#bs-button type='success' onClick=(perform saveAppearance group num) disabled=isDisabled}}
+            {{#if saveAppearance.isRunning}}
+              Creating {{fa-icon "spinner" spin=true}}
+            {{else}}
+              Create Appearance
+            {{/if}}
+          {{/bs-button}}
+        {{/modal.footer}}
+      {{/bs-modal}}
+    </div>
+  {{/if}}  
 {{/if}}
