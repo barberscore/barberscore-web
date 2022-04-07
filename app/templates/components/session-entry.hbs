@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{{model.name}}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
+        {{html-safe model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
           {{#if model.bhsId}}
             [{{model.bhsId}}]&nbsp;
           {{/if}}
@@ -128,7 +128,7 @@
     <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedEntries}}
       <h4>
-        {{{model.name}}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
+        {{html-safe model.name}}&nbsp;{{#if model.district}}({{model.district}}){{/if}}&nbsp;
           {{#if model.bhsId}}
             [{{model.bhsId}}]&nbsp;
           {{/if}}

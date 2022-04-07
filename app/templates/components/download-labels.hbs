@@ -69,7 +69,7 @@
         noMatchesMessage="We Could Not Find a group with that name"
         as |group|
       }}
-        {{{group.name}}} [Draw: {{group.num}}]
+        {{html-safe group.name}} [Draw: {{group.num}}]
       {{/power-select-multiple}}
     </div>
 

@@ -19,7 +19,7 @@
                 {{outcome.num}}
               </td>
               <td>
-                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{{outcome.name}}}{{/link-to}}
+                {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
               </td>
               <td>
                 {{#if (or (eq outcome.level 'Manual') (eq outcome.level 'Improved - Raw') (eq outcome.level 'Improved - Standard'))}}
@@ -80,7 +80,7 @@
             noMatchesMessage="We Could Not Find an Award with that Name"
             as |award|
           }}
-            Award: {{{award.name}}}
+            Award: {{html-safe award.name}}
           {{/power-select}}
         </p>
         {{#if createOutcomeModalError}}

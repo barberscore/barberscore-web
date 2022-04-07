@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger btn-sm'
+  disabled=model.isDisabled
+  onClick=(action (mut removeFromDrawModal) true)
+}}
+  Remove from Draw
+{{/bs-button}}
+{{#bs-modal
+  open=removeFromDrawModal
+  onHidden=(pipe-action (action (mut removeFromDrawModal) false) (action (mut removeFromDrawModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Delete From Draw</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will remove <strong>{{html-safe model.name}}</strong> from advancing.
+    </p>
+    {{#if removeFromDrawModalError}}
+    <p class='text-danger'>
+      Could not remove from draw.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform removeFromDraw)}}
+      {{#if removeFromDraw.isRunning}}
+        Deleting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Delete
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

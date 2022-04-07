@@ -1,0 +1,36 @@
+{{#bs-button
+  type='danger btn-sm'
+  disabled=model.isDisabled
+  onClick=(action (mut deleteAppearanceModal) true)
+}}
+  Delete Appearance
+{{/bs-button}}
+{{#bs-modal
+  open=deleteAppearanceModal
+  onHidden=(pipe-action (action (mut deleteAppearanceModal) false) (action (mut deleteAppearanceModalError) false))
+  as |modal|
+}}
+  {{#modal.header}}
+    <h4>Delete Appearance</h4>
+  {{/modal.header}}
+  {{#modal.body}}
+    <p>
+      This will remove <strong>{{html-safe model.name}}</strong> from this round.
+    </p>
+    {{#if deleteAppearanceModalError}}
+    <p class='text-danger'>
+      Could not delete performance.  Please contact support.
+    </p>
+    {{/if}}
+  {{/modal.body}}
+  {{#modal.footer}}
+    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+    {{#bs-button type='danger' onClick=(perform deleteAppearance)}}
+      {{#if deleteAppearance.isRunning}}
+        Deleting {{fa-icon "spinner" spin=true}}
+      {{else}}
+        Delete Appearance
+      {{/if}}
+    {{/bs-button}}
+  {{/modal.footer}}
+{{/bs-modal}}

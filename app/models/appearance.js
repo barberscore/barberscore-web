@@ -22,6 +22,7 @@ export default Model.extend({
   csaReport: DS.attr('string'),
 
   groupId: DS.attr('string'),
+  entryId: DS.attr('string'),
   name: DS.attr('string'),
   kind: DS.attr('group-kind'),
   gender: DS.attr('group-gender'),

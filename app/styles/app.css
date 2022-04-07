@@ -145,3 +145,7 @@ input[type=checkbox] {
 ul.list-unstyled + ul.list-unstyled {
   margin-top: -1rem;
 }
+
+.table thead th.actions {
+  width: 190px;
+}
