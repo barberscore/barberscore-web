@@ -26,7 +26,7 @@
             </td>
             <td>
               {{#if hasMt}}
-                {{{mt.0.name}}}
+                {{html-safe mt.0.name}}
               {{else}}
                 No MT advanced
               {{/if}}
@@ -41,7 +41,7 @@
                   {{item.draw}}
                 </td>
                 <td>
-                  {{{item.name}}}
+                  {{html-safe item.name}}
                 </td>
                 <td>{{item.notes}}</td>
               {{/sortable-item}}
@@ -92,7 +92,7 @@
               </td>
               <td>
                 {{#if hasMt}}
-                  {{{mt.0.name}}}
+                  {{html-safe mt.0.name}}
                 {{/if}}
               </td>
               <td>
@@ -111,7 +111,7 @@
                   {{appearance.draw}}
                 </td>
                 <td>
-                  {{{appearance.name}}}
+                  {{html-safe appearance.name}}
                 </td>
                 <td>
                   {{appearance.notes}}
@@ -179,7 +179,7 @@
           noMatchesMessage="We Could Not Find a group with that name"
           as |group|
         }}
-          Group: {{{group.name}}} [{{group.bhsId}}]
+          Group: {{html-safe group.name}} [{{group.bhsId}}]
         {{/power-select}}
       </p>
       {{#if advanceGroupModalError}}

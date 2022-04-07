@@ -15,7 +15,7 @@
   {{/modal.header}}
   {{#modal.body}}
     <p>
-      This will remove <strong>{{{ model.name }}}</strong> from this round.
+      This will remove <strong>{{html-safe model.name}}</strong> from this round.
     </p>
     {{#if deleteAppearanceModalError}}
     <p class='text-danger'>

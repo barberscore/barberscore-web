@@ -3,7 +3,7 @@
     <div class='card-header'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{{model.name}}}
+        #{{model.num}}: {{html-safe model.name}}
         {{#if (eq model.status 'Variance')}}
           {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}
@@ -23,6 +23,10 @@
       )}}
         <section>
           {{appearance-songs model=model}}
+
+          <p>
+            {{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' model.entryId }}Update Repertoiry{{/link-to}}
+          </p>
         </section>
       {{/if}}
       {{#if (or
@@ -53,7 +57,7 @@
     <div class='card-footer'>
       {{prev-next model=model sortedArray=sortedAppearances}}
       <h4>
-        #{{model.num}}: {{{model.name}}}
+        #{{model.num}}: {{html-safe model.name}}
         {{#if (eq model.status 'Variance')}}
           {{download-variance model=model}}
         {{else if (eq model.status 'Verified')}}

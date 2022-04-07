@@ -32,7 +32,7 @@
                   'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                   mt.id
                 }}
-                  {{{mt.name}}}
+                  {{html-safe mt.name}}
                 {{/link-to}}
               {{/if}}
             </td>
@@ -59,7 +59,7 @@
                         'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                         appearance
                       }}
-                        {{{appearance.name}}}
+                        {{html-safe appearance.name}}
                       {{/link-to}}
                       &nbsp;
                       {{#if (eq appearance.status 'Verified')}}
@@ -127,7 +127,7 @@
               noMatchesMessage="We Could Not Find a group with that name"
               as |group|
             }}
-              Group: {{{group.name}}} [{{group.bhs_id}}]
+              Group: {{html-safe group.name}} [{{group.bhs_id}}]
             {{/power-select}}
           </p>
           {{#if createAppearanceModalError}}
@@ -181,7 +181,7 @@
                   'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                   mt.id
                 }}
-                  {{{mt.name}}}
+                  {{html-safe mt.name}}
                 {{/link-to}}
               {{/if}}
             </td>
@@ -210,7 +210,7 @@
                       'dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
                       appearance
                     }}
-                      {{{appearance.name}}}
+                      {{html-safe appearance.name}}
                     {{/link-to}}
                     &nbsp;
                     {{#if (eq appearance.status 'Verified')}}
@@ -280,7 +280,7 @@
               noMatchesMessage="We Could Not Find a group with that name"
               as |group|
             }}
-              Group: {{{group.name}}} [{{group.bhs_id}}]
+              Group: {{html-safe group.name}} [{{group.bhs_id}}]
             {{/power-select}}
           </p>
           {{#if createAppearanceModalError}}
