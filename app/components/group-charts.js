@@ -32,7 +32,7 @@ export default Component.extend({
   deleteRepertoryModalError: false,
   saveRepertory: task(function* (obj){
     try {
-      let group = this.model;
+      let group = yield this.model;
       let chart = yield this.store.findRecord('chart', obj.objectID);
       group.get('charts').pushObject(chart);
       yield group.save();
@@ -48,7 +48,7 @@ export default Component.extend({
   }).drop(),
   deleteRepertory: task(function *(repertory) {
     try {
-      let group = this.model;
+      let group = yield this.model;
       group.get('charts').removeObject(repertory);
       yield group.save();
       this.set('deleteRepertoryModal', false);

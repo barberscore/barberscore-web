@@ -14,16 +14,26 @@ export default Component.extend({
   chartsList: computed(
     'model',
     'charts',
-    function() {
-      let repertory = this.get('model.charts');
-      let charts = [];
+    {
+      get() {
+        if (this._charts) {
+          return this._charts;
+        }
 
-      for (var i = repertory.length - 1; i >= 0; i--) {
-        let chart = JSON.parse(repertory[i]);
-        chart['songTitle'] = chart.title;
-        charts.push(chart);
+        let repertory = this.get('model.charts');
+        let charts = [];
+
+        for (var i = repertory.length - 1; i >= 0; i--) {
+          let chart = JSON.parse(repertory[i]);
+          chart['songTitle'] = chart.title;
+          charts.push(chart);
+        }
+        return charts.sortBy('title');
+      },
+
+      set(key, value) {
+        return this._charts = value;
       }
-      return charts.sortBy('title');
     }
   ),
   autosave: task(function* (song, chart){

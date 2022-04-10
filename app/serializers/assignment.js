@@ -5,12 +5,12 @@ export default DS.JSONAPISerializer.extend({
     keyForAttribute(attr) {
       return underscore(attr);
     },
-  attrs: {
-    imageId: {
-      serialize: false
-    },
-    commonName: {
-      serialize: false
-    },
-  }
+    attrs: {
+      imageId: {
+        serialize: false
+      },
+      commonName: {
+        serialize: false
+      },
+    }
 });
