@@ -82,7 +82,9 @@
               <th>Draw</th>
               <th>Name</th>
               <th>Notes</th>
-              <th class="actions">Actions</th>
+              {{#if (eq model.status 'Completed')}}
+                <th class="actions">Actions</th>
+              {{/if}}
             </tr>
           </thead>
           <tbody>
@@ -97,6 +99,7 @@
               </td>
               <td>
               </td>
+              {{#if (eq model.status 'Completed')}}
               <td>
                 {{#if hasMt}}
                   {{#each mt as |appearance|}}
@@ -104,6 +107,7 @@
                   {{/each}}
                 {{/if}}
               </td>
+              {{/if}}
             </tr>
             {{#each sortedAppearances as |appearance|}}
               <tr>
@@ -116,9 +120,11 @@
                 <td>
                   {{appearance.notes}}
                 </td>
+                {{#if (eq model.status 'Completed')}}
                 <td>
                   {{round-draw-remove model=appearance}}
                 </td>
+                {{/if}}
               </tr>
             {{else}}
               <tr>

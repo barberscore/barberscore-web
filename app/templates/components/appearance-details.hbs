@@ -46,16 +46,16 @@
 </div>
 {{#if (eq model.round.sessionKind 'Chorus')}}
   <br>
-  <div class='form-inline'>
-    <div class='form-group'>
+  <div class='form-inline row'>
+    <div class='form-group col'>
+      <label class="mr-2 col-form-label">Participants on Stage:</label>
       {{input
-        class='form-control text-right'
+        class='form-control col-sm-1 text-right'
         type='tel'
         value=model.pos
         min=0
         disabled=model.isDisabled
         max=200
-        placeholder='Participants on Stage'
         key-press=(perform autosave value='target.value')
       }}
     </div>
