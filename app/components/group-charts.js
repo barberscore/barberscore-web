@@ -36,8 +36,15 @@ export default Component.extend({
       let chart = yield this.store.findRecord('chart', obj.objectID);
       group.get('charts').pushObject(chart);
       yield group.save();
+      // Update associated entries...
+      let entry = yield this.entry;
+      let p = yield entry.update_charts({
+        'by': this.get('currentUser.user.id'),
+      });
+      yield this.store.pushPayload(p);
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
+      this.set('obj', null);
       this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {
