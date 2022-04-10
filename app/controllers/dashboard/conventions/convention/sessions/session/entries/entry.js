@@ -19,8 +19,17 @@ export default Controller.extend({
     'sortedEntriesProperties'
   ),
   group: computed(
-    'model', function() {
-      return this.store.findRecord('group', this.model.get('groupId'));
+    'model', {
+      get() {
+        if (this._group) {
+          return this._group;
+        }
+        return this.store.findRecord('group', this.model.get('groupId'));
+      },
+
+      set(key, value) {
+        return this._group = value;
+      }
     }
   ),
   autosave: task(function* (property, value){

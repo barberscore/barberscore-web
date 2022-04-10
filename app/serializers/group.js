@@ -9,5 +9,8 @@ export default DS.JSONAPISerializer.extend({
       imageId: {
         serialize: false
       },
+      charts: {
+        serialize: true
+      },      
     }
 });

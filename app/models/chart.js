@@ -20,6 +20,9 @@ export default Model.extend({
   groups: DS.hasMany('group', {async: true}),
   permissions: DS.attr(),
 
+  // songs: DS.hasMany('song', {async: true}),
+  // repertories: DS.hasMany('repertory', {async: true}),
+
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),
   protect: memberAction({path: 'protect', type: 'post'}),

@@ -45,6 +45,7 @@ export default Model.extend({
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
+  update_charts: memberAction({path: 'update_charts', type: 'post'}),
 
 
   isDisabled: not(
