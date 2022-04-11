@@ -24,9 +24,9 @@
         <section>
           {{appearance-songs model=model}}
 
-          <p>
+          {{#if model.entryId}}<p>
             {{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' model.entryId }}Update Repertory or contests on entry{{/link-to}}
-          </p>
+          </p>{{/if}}
         </section>
       {{/if}}
       {{#if (or
