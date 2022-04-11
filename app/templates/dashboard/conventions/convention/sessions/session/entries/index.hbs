@@ -88,7 +88,7 @@
         noMatchesMessage="We Could Not Find an Active Group with that Name"
         as |group|
       }}
-        Group: {{group.name}} {{#if group.code}}({{group.code}}){{/if}}{{#if group.bhs_id}} [{{group.bhs_id}}]{{/if}}
+        Group: {{group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
       {{/power-select}}
       {{#if createEntryModalError}}
       <p class='text-danger'>
