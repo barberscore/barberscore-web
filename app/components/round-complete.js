@@ -16,6 +16,7 @@ export default Component.extend({
       yield this.store.pushPayload('round', round);
       this.set('completeRoundModal', false);
       this.set('completeRoundModalError', false);
+      this.model.hasMany('appearances').reload();
       this.flashMessages.success("Completed!");
     } catch(e) {
       this.set('completeRoundModalError', true);

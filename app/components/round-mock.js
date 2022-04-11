@@ -18,6 +18,7 @@ export default Component.extend({
         'by': this.get('currentUser.user.id'),
       });
       yield this.store.pushPayload('round', round);
+      this.model.hasMany('appearances').reload();
       this.flashMessages.success("Mocked!");
     } catch(e) {
       this.flashMessages.error(e);
