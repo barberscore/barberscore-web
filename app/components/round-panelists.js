@@ -29,6 +29,19 @@ export default Component.extend({
   createPanelistModalError: false,
   savePanelist: task(function* (obj, category, kind, num){
     try {
+      if (obj === undefined) {
+        throw { errors: [{detail: 'Please select a Person.'}] };
+      }
+      else if (category === undefined) {
+        throw { errors: [{detail: 'Please select a Category.'}] };
+      }
+      else if (kind === undefined) {
+        throw { errors: [{detail: 'Please select the Kind of panelist.'}] };
+      }
+      else if (category !== undefined && category != 'CA' && num === undefined) {
+        throw { errors: [{detail: 'Please enter a Number for this panelist.'}] };        
+      }
+
       yield this.store.createRecord('panelist', {
         num: num,
         personId: obj.objectID,
@@ -50,7 +63,11 @@ export default Component.extend({
       this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {
-        this.set('createPanelistModalError', true);
+        if (e.detail) {
+          this.set('createPanelistModalError', e.detail);
+        } else {
+          this.set('createPanelistModalError', 'Could not create panelist.  Please contact support.');
+        }
         this.flashMessages.danger(e.detail);
       })
     }
