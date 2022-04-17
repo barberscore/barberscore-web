@@ -8,12 +8,33 @@
     </div>
     <div class='card-body'>
       <section>
+        {{#if model.imageId}}
         <div>
           {{cloudinary-image model.imageId (hash width=64) class='img-fluid img-rounded'}}
         </div>
+        {{/if}}
         <h4>
           {{model.kind}}&nbsp;{{model.category}}
         </h4>
+        {{#if isScoringJudge}}
+          <div class="form-row">
+            <label class="mr-2 col-form-label">Number:</label>
+            {{input
+              class='form-control col-sm-1 text-right'
+              type='tel'
+              value=model.num
+              min=0
+              disabled=model.isDisabled
+              max=200
+              key-press=(perform autosave value='target.value')
+            }}
+          </div>
+        {{/if}}
+        {{#if savePanelistError}}
+          <p class='text-danger'>
+            {{savePanelistError}}
+          </p>
+        {{/if}}
       </section>
     </div>
     <div class='card-footer'>
