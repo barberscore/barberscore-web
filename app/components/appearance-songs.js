@@ -28,6 +28,15 @@ export default Component.extend({
           chart['songTitle'] = chart.title;
           charts.push(chart);
         }
+
+        // Fallback option
+        const unknownChart = {
+          title: 'Song not in Repertory',
+          arrangers: '',
+          pk: null,
+          songTitle: 'Song not in Repertory',
+        }
+        charts.push(unknownChart);
         return charts.sortBy('title');
       },
 

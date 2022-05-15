@@ -6,7 +6,6 @@
         </caption>
       <thead class='thead-light'>
         <tr>
-          <th>Num</th>
           <th>Contest</th>
           <th>Manual</th>
           <th>Result</th>
@@ -15,9 +14,6 @@
       <tbody>
         {{#each sortedOutcomes as |outcome|}}
             <tr>
-              <td>
-                {{outcome.num}}
-              </td>
               <td>
                 {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
               </td>
