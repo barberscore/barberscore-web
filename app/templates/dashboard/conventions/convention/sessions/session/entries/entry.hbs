@@ -59,6 +59,9 @@
         <h4>
           Contests
         </h4>
+        {{#if model.session.roundsPublished}}
+          <p><small><em>Contests can't be changed after the round is published.</em></small></p>
+        {{/if}}
         <p>
           {{entry-contests model=model options=model.session.contests}}
         </p>
