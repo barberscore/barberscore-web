@@ -33,6 +33,8 @@ export default Model.extend({
 
   imageId: DS.attr('string'),
 
+  roundsPublished: DS.attr('boolean'),
+
   owners: DS.hasMany('user', {async: true}),
   contests: DS.hasMany('contest', {async: true}),
   entries: DS.hasMany('entry', {async: true}),

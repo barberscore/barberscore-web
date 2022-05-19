@@ -46,6 +46,7 @@ export default Model.extend({
   submit: memberAction({path: 'submit', type: 'post'}),
   approve: memberAction({path: 'approve', type: 'post'}),
   update_charts: memberAction({path: 'update_charts', type: 'post'}),
+  contest: memberAction({path: 'contest', type: 'post'}),
 
 
   isDisabled: not(
