@@ -6,6 +6,7 @@
         </caption>
       <thead class='thead-light'>
         <tr>
+          <th>Printed</th>
           <th>Contest</th>
           <th>Manual</th>
           <th>Result</th>
@@ -15,6 +16,9 @@
         {{#each sortedOutcomes as |outcome|}}
             <tr>
               <td>
+                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome)}}
+              </td>
+              <td>
                 {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
               </td>
               <td>
@@ -23,7 +27,7 @@
                 {{/if}}
               </td>
               <td>
-                {{outcome.winner}}
+                {{html-safe outcome.winner}}
               </td>
             </tr>
         {{else}}

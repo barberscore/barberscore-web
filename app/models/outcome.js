@@ -23,6 +23,7 @@ export default Model.extend({
   scope: DS.attr('string'),
   scopeRange: DS.attr('string'),
   treeSort: DS.attr('string'),
+  printed: DS.attr('boolean'),
 
   round: DS.belongsTo('round', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),

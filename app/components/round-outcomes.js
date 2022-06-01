@@ -64,6 +64,17 @@ export default Component.extend({
       this.flashMessages.danger("Problem!");
     }
   }).drop(),
+  autosave: task(function* (outcome){
+    yield timeout(200);
+    try {
+      yield outcome.save();
+      this.flashMessages.success("Updated!");
+    } catch(e) {
+      e.errors.forEach((error) => {
+        this.flashMessages.danger(error.detail);
+      })
+    }
+  }).restartable(),
   actions: {
     cancelOutcome(outcome){
       outcome.deleteRecord();
