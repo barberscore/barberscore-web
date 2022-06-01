@@ -39,6 +39,15 @@
               change=(perform autosave model)
             }}
           </p>
+
+          <p>
+            <label>
+            {{input
+              type='checkbox'
+              checked=model.printed
+              change=(perform autosave model)
+            }} Printed on OSS: </label>
+          </p>
       </section>
       <section>
         <div class='table-responsive'>

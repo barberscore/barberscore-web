@@ -3,6 +3,7 @@ import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
+  store: service(),
   flashMessages: service(),
   sortedContestsProperties: [
     'num',
