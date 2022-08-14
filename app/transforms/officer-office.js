@@ -5,7 +5,7 @@ export default DS.Transform.extend({
     var map = {
       100: 'SCJC Chair',
       110: 'SCJC Chair Past',
-      120: 'SCJC CA',
+      120: 'SCJC ADM',
       130: 'SCJC MUS',
       140: 'SCJC PER',
       150: 'SCJC SNG',
@@ -31,7 +31,7 @@ export default DS.Transform.extend({
     var map = {
       'SCJC Chair': 100,
       'SCJC Chair Past': 110,
-      'SCJC CA': 120,
+      'SCJC ADM': 120,
       'SCJC MUS': 130,
       'SCJC PER': 140,
       'SCJC SNG': 150,
@@ -39,7 +39,8 @@ export default DS.Transform.extend({
       'SCJC Admin': 170,
       'DRCJ': 210,
       'DRCJ Assistant': 220,
-      'JUDGE CA': 230,
+      'JUDGE PC': 225,
+      'JUDGE ADM': 230,
       'JUDGE MUS': 240,
       'JUDGE PER': 250,
       'JUDGE SNG': 260,
