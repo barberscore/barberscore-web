@@ -3,7 +3,7 @@
   "description": "ontest Registration and Scoring Web UI for the Barbershop Harmony Society",
   "logo": "https://res.cloudinary.com/barberscore/image/upload/v1554830585/bhs_logo.png",
   "repository": "https://github.com/barberscore/barberscore-web",
-  "stack": "heroku-22",
+  "stack": "heroku-18",
   "buildpacks": [
     {
       "url": "https://github.com/heroku/heroku-buildpack-nodejs"

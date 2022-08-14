@@ -34,10 +34,10 @@ http {
     keepalive_timeout 5;
     root dist/;
   
-    # mruby_post_read_handler /app/bin/config/lib/ngx_mruby/headers.rb cache;
+    mruby_post_read_handler /app/bin/config/lib/ngx_mruby/headers.rb cache;
 
     location / {
-      # mruby_set $fallback /app/bin/config/lib/ngx_mruby/routes_fallback.rb cache;
+      mruby_set $fallback /app/bin/config/lib/ngx_mruby/routes_fallback.rb cache;
     
       try_files $uri.html $uri $uri/ $fallback;
     
@@ -53,8 +53,8 @@ http {
   
     location ~ ^/.*$ {
       set $route /.*;
-      # mruby_set $path /app/bin/config/lib/ngx_mruby/routes_path.rb cache;
-      # mruby_set $fallback /app/bin/config/lib/ngx_mruby/routes_fallback.rb cache;
+      mruby_set $path /app/bin/config/lib/ngx_mruby/routes_path.rb cache;
+      mruby_set $fallback /app/bin/config/lib/ngx_mruby/routes_fallback.rb cache;
     
       try_files $uri.html $uri $uri/ $path $fallback;
     
