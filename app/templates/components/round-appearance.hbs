@@ -65,17 +65,17 @@
         {{/if}}
      </h4>
     </div>
-    <div class='card-footer'>
+    <div class='card-footer actions'>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
           <li class='list-inline-item'>{{appearance-delete model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li class='list-inline-item'>{{appearance-start model=model}}</li>
+          <li class='list-inline-item primary'>{{appearance-start model=model}}</li>
           <li class='list-inline-item'>{{appearance-scratch model=model}}</li>
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
           <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li class='list-inline-item'>{{appearance-finish model=model}}</li>
+          <li class='list-inline-item primary'>{{appearance-finish model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
           <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>

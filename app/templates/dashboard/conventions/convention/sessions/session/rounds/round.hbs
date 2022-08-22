@@ -1,4 +1,4 @@
-<section>
+<section id="round">
   <div class='card'>
     <div class='card-header'>
       <h5>
@@ -31,7 +31,7 @@
       {{/bs-nav}}
       {{outlet}}
     </div>
-    <div class='card-footer'>
+    <div class='card-footer actions'>
       <div class='pull-right'>
         <h5>
           Round Status: <strong>{{model.status}}</strong>
@@ -39,20 +39,20 @@
       </div>
       <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
-          <li class='list-inline-item'>{{round-build model=model}}</li>
+          <li class='list-inline-item primary'>{{round-build model=model}}</li>
           <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Built')}}
-          <li class='list-inline-item'>{{round-start model=model}}</li>
+          <li class='list-inline-item primary'>{{round-start model=model}}</li>
           <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Started')}}
-          <li class='list-inline-item'>{{round-complete model=model}}</li>
+          <li class='list-inline-item primary'>{{round-complete model=model}}</li>
           <li class='list-inline-item'>{{round-reset model=model}}</li>
           <li class='list-inline-item'>{{round-mock model=model}}</li>
         {{else if (eq model.status 'Completed')}}
-          <li class='list-inline-item'>{{round-finalize model=model}}</li>
+          <li class='list-inline-item primary'>{{round-finalize model=model}}</li>
           <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Finalized')}}
-          <li class='list-inline-item'>{{round-publish model=model}}</li>
+          <li class='list-inline-item primary'>{{round-publish model=model}}</li>
           <li class='list-inline-item'>{{round-reset model=model}}</li>
         {{else if (eq model.status 'Published')}}
           <li class='list-inline-item'>{{round-reset model=model}}</li>
