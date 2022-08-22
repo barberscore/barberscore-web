@@ -2,6 +2,9 @@
   <div class='table-responsive'>
     <table class='table table-hover table-sm'>
         <caption>
+          <small>Drag an outcome up or down in the list to change the order the outcomes will be printed on the OSS</small>
+        </caption>
+        <caption>
           Outcomes refers to the awards that will be announced out at the conclusion of this particular round. Winners are determined at Round Verification and can be overriden by the PC or ADM if necessary. <strong>NOTE:</strong> Awards that have a checkmark under the "Manual" column must be manually entered by the PC or ADM.
         </caption>
       <thead class='thead-light'>
@@ -12,9 +15,9 @@
           <th>Result</th>
         </tr>
       </thead>
-      <tbody>
+      {{#sortable-group tagName='tbody' onChange="reorderOutcomes" as |group|}}
         {{#each sortedOutcomes as |outcome|}}
-            <tr>
+          {{#sortable-item tagName="tr" model=outcome group=group class='handle' handle=".handle"}}
               <td>
                 {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome)}}
               </td>
@@ -29,13 +32,13 @@
               <td>
                 {{html-safe outcome.winner}}
               </td>
-            </tr>
+          {{/sortable-item}}
         {{else}}
           <tr>
             <td colspan=3>No award outcomes this round.</td>
           </tr>
         {{/each}}
-      </tbody>
+      {{/sortable-group}}
     </table>
   </div>
   <div>

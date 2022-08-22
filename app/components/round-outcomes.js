@@ -10,6 +10,7 @@ export default Component.extend({
   algolia: service(),
   store: service(),
   sortedOutcomesProperties: [
+    'treeSort',
     'num',
   ],
   sortedOutcomes: sort(
@@ -79,6 +80,13 @@ export default Component.extend({
     cancelOutcome(outcome){
       outcome.deleteRecord();
     },
+    reorderOutcomes(outcomesModels) {
+      outcomesModels.forEach(function(outcome, index) {
+        outcome.set('treeSort', index + 1);
+      });
+      outcomesModels.invoke('save');
+      this.flashMessages.success('Order Changed');
+    },    
   }
 });
 

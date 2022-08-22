@@ -1,4 +1,5 @@
 import { not } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import Model from 'ember-data/model';
 import DS from 'ember-data';
 
@@ -31,6 +32,18 @@ export default Model.extend({
 
   isDisabled: not(
     'permissions.write'
+  ),
+
+  order: computed(
+    'num',
+    'treeSort',
+    function() {
+      if (this.treeSort) {
+        return this.treeSort;
+      } else {
+        return this.num;
+      }
+    }
   ),
 
 });
