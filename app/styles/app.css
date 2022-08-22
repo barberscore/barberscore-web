@@ -149,3 +149,18 @@ ul.list-unstyled + ul.list-unstyled {
 .table thead th.actions {
   width: 190px;
 }
+
+#round .card-footer.actions .list-inline,
+#appearance-detail .card-footer.actions .list-inline {
+  display: flex;
+}
+
+#round .card-footer.actions .list-inline li.primary,
+#appearance-detail .card-footer.actions .list-inline li.primary {
+  margin-right: 6rem;  
+}
+
+#round .card-footer.actions .list-inline li.pull-right,
+#appearance-detail .card-footer.actions .list-inline li.pull-right {
+  margin-left: auto;
+}
