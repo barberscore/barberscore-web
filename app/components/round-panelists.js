@@ -38,7 +38,7 @@ export default Component.extend({
       else if (kind === undefined) {
         throw { errors: [{detail: 'Please select the Kind of panelist.'}] };
       }
-      else if (category !== undefined && category != 'CA' && num === undefined) {
+      else if (category !== undefined && category != 'ADM' && category != 'PC' && num === undefined) {
         throw { errors: [{detail: 'Please enter a Number for this panelist.'}] };        
       }
 
@@ -81,7 +81,8 @@ export default Component.extend({
     }
   }).drop(),
   categoryOptions: [
-    'CA',
+    'PC',
+    'ADM',
     'Music',
     'Performance',
     'Singing',
