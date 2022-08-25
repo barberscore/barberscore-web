@@ -9,7 +9,7 @@ export default Controller.extend({
   //   'model.roles',
   //   'groupRoles',
   // ),
-  judgeRoles: ['SCJC', 'DRCJ', 'CA',],
+  judgeRoles: ['SCJC', 'DRCJ', 'CA', 'ADM', 'PC',],
   // judgeIntersect: intersect(
   //   'model.roles',
   //   'judgeRoles'

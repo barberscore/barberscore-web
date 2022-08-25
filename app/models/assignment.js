@@ -54,7 +54,8 @@ export default Model.extend({
   ],
   categoryOptions: [
     'DRCJ',
-    'CA',
+    'PC',
+    'ADM',
     'Music',
     'Performance',
     'Singing',
