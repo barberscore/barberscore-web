@@ -31,7 +31,8 @@ export default Controller.extend({
   createAssignmentModal: false,
   createAssignmentModalError: false,
   categoryOptions: [
-    'CA',
+    'PC',
+    'ADM',
     'Music',
     'Performance',
     'Singing',
