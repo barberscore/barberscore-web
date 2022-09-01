@@ -33,12 +33,25 @@ export default Component.extend({
     'model.round.panelists',
     'sortedPanelistsProperties'
   ),
+  categoryOptions: [
+    'PC',
+    'ADM',
+    'Music',
+    'Performance',
+    'Singing',
+  ],
+  kindOptions: [
+    'Official',
+    'Practice',
+    'Observer',
+  ],
   autosave: task(function* (field, value){
-    const IsNumeric = (num) => /^-{0,1}\d*\.{0,1}\d+$/.test(num);
+    // const IsNumeric = (num) => /^-{0,1}\d*\.{0,1}\d+$/.test(num);
     yield timeout(1000);
+
     try {
-      if (!IsNumeric(value)) {
-        throw { errors: [{detail: 'The number must be numeric2.'}] };
+      if (isNaN(this.model.get('num'))) {
+        throw { errors: [{detail: 'The number must be numeric.'}] };
       }
     } catch(e) {
       e.errors.forEach((error) => {
