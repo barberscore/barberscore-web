@@ -12,15 +12,20 @@ export default Component.extend({
     'host',
     'https://www.barberscore.com',
   ),
+  mockRoundModal: false,
+  mockRoundModalError: false,
   mockRound: task(function *() {
     try {
       let round = yield this.model.mock({
         'by': this.get('currentUser.user.id'),
       });
       yield this.store.pushPayload('round', round);
+      this.set('mockRoundModal', false);
+      this.set('mockRoundModalError', false);
       this.model.hasMany('appearances').reload();
       this.flashMessages.success("Mocked!");
     } catch(e) {
+      this.set('mockRoundModalError', true);
       this.flashMessages.error(e);
     }
   }).drop(),
