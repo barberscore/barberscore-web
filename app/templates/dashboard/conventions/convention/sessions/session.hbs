@@ -22,9 +22,9 @@
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.draw"}}Draw{{/nav.link-to}}
         {{/nav.item}}
-        {{#nav.item}}
+{{!--         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.reports"}}Reports{{/nav.link-to}}
-        {{/nav.item}}
+        {{/nav.item}} --}}
         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds"}}Rounds{{/nav.link-to}}
         {{/nav.item}}
@@ -37,7 +37,7 @@
           Session Status: <strong>{{model.status}}</strong>
         </h5>
       </div>
-      <ul class='list-inline'>
+      {{!-- <ul class='list-inline'>
         {{#if (eq model.status 'New')}}
           <li>{{session-build model=model}}</li>
         {{else if (eq model.status 'Built')}}
@@ -49,7 +49,7 @@
         {{else if (eq model.status 'Verified')}}
           <li>{{session-package model=model}}</li>
         {{/if}}
-      </ul>
+      </ul> --}}
     </div>
   </div>
 </section>
