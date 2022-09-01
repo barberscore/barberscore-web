@@ -13,9 +13,48 @@
           {{cloudinary-image model.imageId (hash width=64) class='img-fluid img-rounded'}}
         </div>
         {{/if}}
-        <h4>
-          {{model.kind}}&nbsp;{{model.category}}
-        </h4>
+
+        <div class='row'>
+          <div class='col-sm-2'>
+            <p>
+              <label>Kind</label>
+            {{#power-select
+              options=kindOptions
+              selected=model.kind
+              onchange=(perform autosave 'kind' value='target.value')
+              placeholder="Choose Kind"
+              as |kind|
+            }}
+              {{kind}}
+            {{/power-select}}
+            </p>
+
+            <p>
+              <label>Category</label>
+            {{#power-select
+              options=categoryOptions
+              selected=model.category
+              onchange=(perform autosave 'category' value='target.value')
+              placeholder="Choose Category"
+              renderInPlace=true
+              as |category|
+            }}
+              {{category}}
+            {{/power-select}}
+
+            {{!-- {{#power-select
+              search=false
+              options=categoryOptions
+              selected=model.category
+              onchange=(action (mut group))
+              as |cat|
+            }}
+              {{cat}}
+            {{/power-select}} --}}
+            </p>
+          </div>
+        </div>
+
         {{#if isScoringJudge}}
           <div class="form-row">
             <label class="mr-2 col-form-label">Number:</label>
@@ -41,7 +80,7 @@
       <ul class='list-inline'>
         {{#if (eq model.round.status 'Built')}}
           <li>{{panelist-delete model=model}}</li>
-        {{else if (eq model.category 'CA')}}
+        {{else if (or (eq model.category 'PC')(eq model.category 'ADM')(eq model.category 'CA'))}}
           <li></li>
         {{else if (or (eq model.round.status 'Completed')(eq model.round.status 'Finalized')(eq model.round.status 'Published'))}}
           <li>{{download-psa model=model}}</li>
