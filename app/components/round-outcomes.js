@@ -43,6 +43,7 @@ export default Component.extend({
         age: award.age,
         isNovice: award.isNovice,
         round: this.model,
+        printed: true,
         appearances: [],
       }).save();
       this.set('createOutcomeModal', false);

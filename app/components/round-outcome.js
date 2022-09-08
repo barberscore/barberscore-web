@@ -23,11 +23,13 @@ export default Component.extend({
     'sortedContendersProperties'
   ),
   autosave: task(function* (property){
+    console.log('property', property);
     yield timeout(200);
     try {
-      yield property.save();
+      yield this.model.save();
       this.flashMessages.success("Saved!");
     } catch(e) {
+      console.log('error', e)
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
       })

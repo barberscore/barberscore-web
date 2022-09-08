@@ -25,10 +25,21 @@ export default Model.extend({
   scopeRange: DS.attr('string'),
   treeSort: DS.attr('string'),
   printed: DS.attr('boolean'),
+  printOnFinalsOss: DS.attr('boolean'),
 
   round: DS.belongsTo('round', {async: true}),
   appearances: DS.hasMany('appearance', {async: true}),
   permissions: DS.attr(),
+
+  isFinals: computed(
+    'round',
+    function() {
+      if (this.round.get('kind') == 'Finals') {
+        return true;
+      }
+      return false;
+    }
+  ),
 
   isDisabled: not(
     'permissions.write'

@@ -36,7 +36,7 @@
               value=model.winner
               disabled=model.isDisabled
               placeholder='Result populated on Round Completion'
-              change=(perform autosave model)
+              change=(perform autosave 'winner' value='target.value')
             }}
           </p>
 
@@ -45,9 +45,20 @@
             {{input
               type='checkbox'
               checked=model.printed
-              change=(perform autosave model)
-            }} Printed on OSS: </label>
+              click=(perform autosave model)
+            }} Printed on OSS</label>
           </p>
+
+          {{#unless model.isFinals}}
+          <p>
+            <label>
+            {{input
+              type='checkbox'
+              checked=model.printOnFinalsOss
+              click=(perform autosave model)
+            }} Include on Finals OSS</label>
+          </p>
+          {{/unless}}
       </section>
       <section>
         <div class='table-responsive'>
