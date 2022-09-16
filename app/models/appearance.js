@@ -85,8 +85,13 @@ export default Model.extend({
     'Announced',
   ],
 
-
+  
   isMulti: not('isSingle'),
+
+  isMT: equal(
+    'num',
+    0
+  ),
   notMT: gt(
     'num',
     0

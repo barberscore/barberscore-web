@@ -25,8 +25,12 @@ export default Component.extend({
     'name',
     'status:asc',
   ],
-  multiAppearances: filterBy(
+  notMtFilter: filterBy(
     'model.appearances',
+    'notMT',
+  ),
+  multiAppearances: filterBy(
+    'notMtFilter',
     'isMulti',
   ),
   singleAppearances: filterBy(
