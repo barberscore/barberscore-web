@@ -10,8 +10,8 @@ export default Component.extend({
   flashMessages: service(),
   sortedPanelistsProperties: [
     'kindSort',
-    'num',
     'categorySort',
+    'num',
     'lastName',
     'firstName',
   ],
