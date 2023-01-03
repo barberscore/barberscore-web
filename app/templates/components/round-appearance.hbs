@@ -85,6 +85,7 @@
           <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
         {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
           <li class='list-inline-item'>{{download-csa model=model}}</li>
+          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
