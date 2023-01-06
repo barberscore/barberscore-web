@@ -1,22 +1,29 @@
 <div style="display: flex; align-items: center;">
-  {{#bs-button
-    type='success'
-    onClick=(perform oss)
-  }}
-    {{#if oss.isRunning}}
-      Downloading {{fa-icon "spinner" spin=true}}
-    {{else if oss.last.isError}}
-      Error Downloading
-    {{else}}
-      {{#if (eq model.status 'Completed')}}
-        Download <em>Draft</em> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+  <BsDropdown as |dd|>
+    {{#bs-button
+      type='success'
+      onClick=(perform oss)
+    }}
+      {{#if oss.isRunning}}
+        Downloading {{fa-icon "spinner" spin=true}}
+      {{else if oss.last.isError}}
+        Error Downloading
       {{else}}
-        Download <strong>Final</strong> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+        {{#if (eq model.status 'Completed')}}
+          Download <em>Draft</em> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+        {{else}}
+          Download <strong>Final</strong> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+        {{/if}}{{ model.status }}
       {{/if}}
-    {{/if}}
-  {{/bs-button}}
-
-  <div style="margin-left:1em;">
-    <em><small>Adjust included awards and display order from the {{#link-to "dashboard.conventions.convention.sessions.session.rounds.round.outcomes"}}Outcomes{{/link-to}} tab.</small></em>
-  </div>
+    {{/bs-button}}
+    <dd.button @type="success"><span class="caret"></span></dd.button>
+    <dd.menu as |menu|>
+      <menu.item>
+        <button class="dropdown-item" onclick={{perform oss 'Legal'}}>Download on Legal Paper</button>
+      </menu.item>
+      <menu.item>
+        <button class="dropdown-item" onclick={{perform oss 'Letter'}}>Download on Letter Paper</button>
+      </menu.item>
+    </dd.menu>
+  </BsDropdown>
 </div>

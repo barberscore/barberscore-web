@@ -16,8 +16,8 @@ export default Component.extend(FileSaverMixin,{
         .replace(/--+/g,'-');
     }
   ),
-  oss: task(function *() {
-    let pdf = yield this.model.oss();
+  oss: task(function *(paperSize) {
+    let pdf = yield this.model.oss({ paperSize: paperSize });
     let fileName = this.filename;
     this.saveFileAs(fileName, pdf, 'application/pdf');
     this.flashMessages.success("Downloaded!");
