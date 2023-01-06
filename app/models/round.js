@@ -41,7 +41,7 @@ export default Model.extend({
   labels: memberAction({path: 'labels', type: 'post', ajaxOptions: { arraybuffer: true }}),
 
   mock: memberAction({path: 'mock', type: 'get'}),
-  oss: memberAction({ path: 'oss', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  oss: memberAction({ path: 'oss', type: 'post', ajaxOptions: { arraybuffer: true } }),
   sa: memberAction({ path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } }),
   legacyoss: memberAction({ path: 'legacyoss', type: 'get', ajaxOptions: { arraybuffer: true } }),
   titles: memberAction({ path: 'titles', type: 'get', ajaxOptions: { arraybuffer: true } }),
