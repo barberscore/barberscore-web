@@ -18,6 +18,7 @@ export default Model.extend({
   pos: DS.attr('number'),
   stats: DS.attr(),
   base: DS.attr('number'),
+  diff: DS.attr('number'),
   varianceReport: DS.attr('string'),
   csaReport: DS.attr('string'),
 

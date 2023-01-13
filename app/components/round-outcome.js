@@ -18,9 +18,19 @@ export default Component.extend({
     'runPerSum:desc',
     'name',
   ],
+  sortedImprovedContendersProperties: [
+    'diff:desc',
+    'runSngSum:desc',
+    'runPerSum:desc',
+    'name',
+  ],
   sortedContenders: sort(
     'model.appearances',
     'sortedContendersProperties'
+  ),
+  sortedImprovedContenders: sort(
+    'model.appearances',
+    'sortedImprovedContendersProperties'
   ),
   autosave: task(function* (property){
     console.log('property', property);
