@@ -66,28 +66,61 @@
           <table class='table table-hover table-sm'>
               <caption>
                 Contenders for this particular award.
+                {{#if (eq model.level 'Improved - Standard')}}
+                  <br/>
+                  <p>Points minus base score, highest number is winner. (<em>Must have a positive differential</em>)</p>
+                {{/if}}
+                {{#if (eq model.level 'Improved - Raw')}}
+                  <br/>
+                  <p>Points minus base score, highest number is winner. (<em>Can have a negative differential</em>)</p>
+                {{/if}}
               </caption>
             <thead class='thead-light'>
               <tr>
                 <th>Name</th>
                 <th>Points</th>
+                {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
+                  <th>Base Score</th>
+                  <th>Difference</th>
+                {{/if}}
               </tr>
             </thead>
             <tbody>
-              {{#each sortedContenders as |contender|}}
+              {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
+                {{#each sortedImprovedContenders as |contender|}}
+                    <tr>
+                      <td>
+                        {{html-safe contender.name}}
+                      </td>
+                      <td>
+                        {{contender.runTotSum}}
+                      </td>
+                      {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
+                        <td>{{contender.base}}</td>
+                        <td>{{contender.diff}}</td>
+                      {{/if}}
+                    </tr>
+                {{else}}
                   <tr>
-                    <td>
-                      {{html-safe contender.name}}
-                    </td>
-                    <td>
-                      {{contender.runTotSum}}
-                    </td>
+                    <td colspan=3>Standings not yet available.</td>
                   </tr>
+                {{/each}}
               {{else}}
-                <tr>
-                  <td colspan=3>Standings not yet available.</td>
-                </tr>
-              {{/each}}
+                {{#each sortedContenders as |contender|}}
+                    <tr>
+                      <td>
+                        {{html-safe contender.name}}
+                      </td>
+                      <td>
+                        {{contender.runTotSum}}
+                      </td>
+                    </tr>
+                {{else}}
+                  <tr>
+                    <td colspan=3>Standings not yet available.</td>
+                  </tr>
+                {{/each}}
+              {{/if}}
             </tbody>
           </table>
         </div>

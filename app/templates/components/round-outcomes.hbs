@@ -30,7 +30,7 @@
               {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
             </td>
             <td>
-              {{#if (or (eq outcome.level 'Manual') (eq outcome.level 'Improved - Raw') (eq outcome.level 'Improved - Standard'))}}
+              {{#if (or (eq outcome.level 'Manual'))}}
                 {{fa-icon 'check-circle' class='text-success'}}
               {{/if}}
             </td>
