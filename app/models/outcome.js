@@ -19,6 +19,7 @@ export default Model.extend({
   division: DS.attr('award-division'),
   age: DS.attr('award-age'),
   isNovice: DS.attr('boolean'),
+  isSingle: DS.attr('boolean'),
   size: DS.attr('string'),
   sizeRange: DS.attr('string'),
   scope: DS.attr('string'),

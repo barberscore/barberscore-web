@@ -50,7 +50,7 @@
             }} Printed on OSS</label>
           </p>
 
-          {{#unless model.isFinals}}
+          {{#if (and model.isSingle (if model.isFinals false true))}}
           <p>
             <label>
             {{input
@@ -59,7 +59,7 @@
               click=(perform autosave model)
             }} Include on Finals OSS</label>
           </p>
-          {{/unless}}
+          {{/if}}
       </section>
       <section>
         <div class='table-responsive'>
