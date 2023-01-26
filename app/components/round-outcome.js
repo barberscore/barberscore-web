@@ -33,14 +33,12 @@ export default Component.extend({
     'model.appearances',
     'sortedImprovedContendersProperties'
   ),
-  autosave: task(function* (property){
-    console.log('property', property);
+  autosave: task(function* (){
     yield timeout(200);
     try {
       yield this.model.save();
       this.flashMessages.success("Saved!");
     } catch(e) {
-      console.log('error', e)
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
       })
