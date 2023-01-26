@@ -67,12 +67,14 @@
               <caption>
                 Contenders for this particular award.
                 {{#if (eq model.level 'Improved - Standard')}}
-                  <br/>
-                  <p>Points minus base score, highest number is winner. (<em>Must have a positive differential</em>)</p>
+                  <br/><br/>
+                  <p>Points minus base score, highest number is winner. (<em>Must have a positive differential</em>)<br/>
+                  In the case of a tie, winner will be the group with lowest total score.</p>
                 {{/if}}
                 {{#if (eq model.level 'Improved - Raw')}}
-                  <br/>
-                  <p>Points minus base score, highest number is winner. (<em>Can have a negative differential</em>)</p>
+                  <br/><br/>
+                  <p>Points minus base score, highest number is winner. (<em>Can have a negative differential</em>)<br/>
+                  In the case of a tie, winner will be the group with lowest total score.</p>
                 {{/if}}
               </caption>
             <thead class='thead-light'>
