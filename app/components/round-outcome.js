@@ -20,6 +20,7 @@ export default Component.extend({
   ],
   sortedImprovedContendersProperties: [
     'diff:desc',
+    'runTotSum',
     'runSngSum:desc',
     'runPerSum:desc',
     'name',
