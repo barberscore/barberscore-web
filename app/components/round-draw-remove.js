@@ -8,7 +8,7 @@ export default Component.extend({
   flashMessages: service(),
   removeFromDrawModal: false,
   removeFromDrawModalError: false,
-  removeFromDraw: task(function *(appearance) {
+  removeFromDraw: task(function *() {
     yield this.model.set('draw', null);
     try {
       yield this.model.save();

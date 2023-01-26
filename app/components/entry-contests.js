@@ -23,7 +23,7 @@ export default Component.extend({
       yield timeout(1000);
       yield entry.save();
 
-      let contest = yield this.model.contest({
+      yield this.model.contest({
         'by': this.get('currentUser.user.id'),
       });
       this.flashMessages.success('Contests Updated!');
