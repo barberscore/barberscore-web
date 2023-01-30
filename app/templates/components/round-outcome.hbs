@@ -40,6 +40,7 @@
             }}
           </p>
 
+          {{#if (or (and model.isSingle (if model.isFinals false true)) model.isFinals) }}
           <p>
             <label>
             {{input
@@ -48,9 +49,8 @@
               disabled=model.printOnFinalsOss
               click=(perform autosave model)
             }} Printed on OSS</label>
-          </p>
+          </p> 
 
-          {{#if (and model.isSingle (if model.isFinals false true))}}
           <p>
             <label>
             {{input

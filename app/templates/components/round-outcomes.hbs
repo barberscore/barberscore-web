@@ -9,7 +9,7 @@
         </caption>
       <thead class='thead-light'>
         <tr>
-          {{#unless (eq model.kind 'Finals')}}<th>Include on<br/>Finals OSS</th>{{/unless}}
+          <th>Include on<br/>Finals OSS</th>
           <th>Printed</th>
           <th>Contest</th>
           <th>Manual</th>
@@ -18,14 +18,16 @@
       </thead>
       {{#each sortedOutcomes as |outcome|}}
         {{#sortable-item tagName="tr" model=outcome group=group class='handle' handle=".handle"}}
-            {{#unless (eq model.kind 'Finals')}}
+            {{#if (or (and outcome.isSingle (if model.isFinals false true)) model.isFinals) }}
             <td>
-              {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform autosave outcome)}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform autosave outcome)}}
             </td>
-            {{/unless}}
             <td>
-              {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome) disabled=outcome.printOnFinalsOss}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome) disabled=outcome.printOnFinalsOss}}
             </td>
+            {{else}}
+              <td colspan='2'></td>
+            {{/if}}
             <td>
               {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
             </td>
