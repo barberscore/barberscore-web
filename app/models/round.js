@@ -51,6 +51,16 @@ export default Model.extend({
     'permissions.write'
   ),
 
+  isFinals: computed(
+    'round',
+    function() {
+      if (this.get('kind') == 'Finals') {
+        return true;
+      }
+      return false;
+    }
+  ),
+
   statusOptions: [
     'New',
     'Drawn',
