@@ -23,15 +23,22 @@ export default Component.extend({
     'scoresCall',
     'sortedScoresProperties'
   ),
-  autosave: task(function* (property){
+  autosave: task(function* (property, element){
     yield timeout(200);
-    try {
-      yield property.save();
-      this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
-    } catch(e) {
-      e.errors.forEach((error) => {
-        this.flashMessages.danger(error.detail);
-      })
+
+    if (property.points > 100) {
+      this.flashMessages.danger("Scores cannot exceed 100.");
+      this.$(element.target).addClass('is-invalid').focus();
+    } else {
+      this.$(element.target).removeClass('is-invalid')
+      try {
+        yield property.save();
+        this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
+      } catch(e) {
+        e.errors.forEach((error) => {
+          this.flashMessages.danger(error.detail);
+        })
+      }  
     }
   }).restartable(),
 });

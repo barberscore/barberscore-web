@@ -10,7 +10,7 @@ export default Component.extend({
   host: ENV.APP.API_HOST,
   isProduction: equal(
     'host',
-    'https://www.barberscore.com',
+    'https://api.barberscore.com',
   ),
   mockRoundModal: false,
   mockRoundModalError: false,
