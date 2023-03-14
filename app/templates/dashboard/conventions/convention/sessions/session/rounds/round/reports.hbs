@@ -18,6 +18,9 @@
       <li class='double'>{{download-oss model=model}}</li>
       <li class='double'>{{download-sa model=model}}</li>
       <li class='double'>{{download-announcements model=model}}</li>
+      {{#unless (eq model.kind 'Finals') }}
+        <li class='double'>{{download-titles model=model}}</li>
+      {{/unless}}
     </ul>
   {{else}}
     <p>
