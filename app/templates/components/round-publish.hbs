@@ -22,7 +22,9 @@
     </h4>
     {{#if publishRoundModalError}}
     <p class='text-danger'>
-      Could not Publish Round.  Please contact support.
+      {{#if publishRoundModalErrorMessage}}
+        {{ publishRoundModalErrorMessage }}
+      {{/if}}
     </p>
     {{/if}}
   {{/modal.body}}

@@ -9,8 +9,10 @@ export default Component.extend({
   flashMessages: service(),
   publishRoundModal: false,
   publishRoundModalError: false,
+  publishRoundModalErrorMessage: null,
   publishRound: task(function *() {
     try {
+      this.set('publishRoundModalErrorMessage', null);
       let round = yield this.model.publish({
         'by': this.get('currentUser.user.id')
       });
@@ -21,6 +23,7 @@ export default Component.extend({
       this.store.findRecord('session', this.model.sessionId, { reload: true });
     } catch(e) {
       this.set('publishRoundModalError', true);
+      this.set('publishRoundModalErrorMessage', e.errors.status);
     }
   }).drop(),
 });
