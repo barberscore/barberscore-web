@@ -24,6 +24,11 @@ export default Model.extend({
   sessionId: DS.attr('string'),
   sessionKind: DS.attr('session-kind'),
   baseFilename: DS.attr('string'),
+  scoresheetFilename: DS.attr('string'),
+
+  revisionNumber: DS.attr('number'),
+  revisionDate: DS.attr('string'),
+  revisionNomen: DS.attr('string'),
 
   owners: DS.hasMany('user', {async: true}),
 

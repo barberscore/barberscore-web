@@ -1,11 +1,18 @@
 import Component from '@ember/component';
-import { not } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
 
 export default Component.extend({
-  isDisabled: not(
-    'model.permissions.write',
-  ),
+  isDisabled: computed('model.{permissions.write,status}', function() {
+    if (this.get('model.status') == 'Published') {
+      return true;
+    }
+    if (this.get('model.permissions.write')) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
   autosave: task(function* (value){
     let round = yield this.model;
     round.set('date', value);

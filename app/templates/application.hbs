@@ -45,3 +45,9 @@
     {{/navbar.nav}}
   {{/navbar.content}}
 {{/bs-navbar}} --}}
+
+{{#unless (eq env 'production')}}
+<div class="environment-name">
+  {{ env }}
+</div>  
+{{/unless}}

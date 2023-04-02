@@ -37,6 +37,8 @@ export default Model.extend({
   repertories: DS.hasMany('repertory', {async: true}),
   owners: DS.hasMany('user', {async: true}),
 
+  notificationList: DS.attr('string'),
+
   statelogs: DS.hasMany('statelog', {async: true}),
   permissions: DS.attr(),
 

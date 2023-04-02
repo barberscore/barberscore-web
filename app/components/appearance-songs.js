@@ -45,6 +45,12 @@ export default Component.extend({
       }
     }
   ),
+  isDisabled: computed('model.round.status', function() {
+    if (this.get('model.round.status') == 'Published') {
+      return true;
+    }
+    return false;
+  }),
   autosave: task(function* (song, chart){
     song.set('chartId', chart.pk);
     song.set('title', chart.songTitle);

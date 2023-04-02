@@ -20,7 +20,7 @@
               onchange=(perform autosave song)
               placeholder="(No Penalties)"
               allowClear=true
-              disabled=song.isDisabled
+              disabled=isDisabled
               as |penalties|
             }}
               {{map-penalty penalties}}
@@ -34,5 +34,7 @@
       {{/each}}
     </tbody>
   </table>
-  <div class="alert alert-warning alert-penalty" role="alert">Penalties should only be recorded if one judge assessed a penalty of 5 or more points for a specific rule violation.</div>
+  {{#unless (eq model.round.status 'Published') }}
+    <div class="alert alert-warning alert-penalty" role="alert">Penalties should only be recorded if one judge assessed a penalty of 5 or more points for a specific rule violation.</div>
+  {{/unless}}
 {{!-- </div> --}}

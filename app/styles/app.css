@@ -173,3 +173,28 @@ ul.list-unstyled + ul.list-unstyled {
 .warning {
   color: red;
 }
+
+.active.btn-outline-dark.disabled, 
+.active.btn-outline-dark:disabled {
+  color: #fff;
+  background-color: #343a40;
+  border-color: #343a40;
+  opacity: 1;
+}
+
+.list-inline-item.disqualify {
+  margin-left: 6em;
+}
+
+.environment-name {
+  background-color: #ca0404;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 5px 5px 5px 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 5px 0 0 0;
+  text-transform: capitalize;
+}
