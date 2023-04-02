@@ -58,8 +58,9 @@
     </div>
     {{/if}}
   {{else}}
+    {{#unless model.roundsPublished }}
     <div>
-      {{#if (or (eq model.status 'Closed')(eq model.status 'Packaged'))}}
+      {{#if (or (eq model.status 'Packaged'))}}
         <div class='row'>
           <div class='col-md-6'>
             {{#bs-button type='outline-dark' class='mb-4' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
@@ -67,6 +68,7 @@
         </div>
       {{/if}}
     </div>
+    {{/unless}}
     <div class='row'>
       <div class='col-md-12'>
         <table class='table table-hover table-sm'>

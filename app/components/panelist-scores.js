@@ -7,6 +7,12 @@ import { task, timeout } from 'ember-concurrency';
 export default Component.extend({
   flashMessages: service(),
   store: service(),
+  isDisabled: computed('appearance', function() {
+    if (this.get('appearance.round.status') == 'Published') {
+      return true;
+    }
+    return false;
+  }),
   sortedScoresProperties: [
     'songNum',
   ],

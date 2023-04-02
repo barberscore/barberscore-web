@@ -19,6 +19,7 @@
             <p>
               <label>Kind</label>
             {{#power-select
+              disabled=isDisabled
               options=kindOptions
               selected=model.kind
               onchange=(perform autosave 'kind' value='target.value')
@@ -32,6 +33,7 @@
             <p>
               <label>Category</label>
             {{#power-select
+              disabled=isDisabled
               options=categoryOptions
               selected=model.category
               onchange=(perform autosave 'category' value='target.value')
@@ -63,7 +65,7 @@
               type='tel'
               value=model.num
               min=0
-              disabled=model.isDisabled
+              disabled=isDisabled
               max=200
               key-press=(perform autosave value='target.value')
             }}

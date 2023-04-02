@@ -6,8 +6,9 @@ import { inject as service } from '@ember/service';
 export default Component.extend(FileSaverMixin,{
   flashMessages: service(),
   sa: task(function *() {
+    let model = yield this.model.reload();
     let pdf = yield this.model.sa();
-    let fileName = `${this.model.nomen} SA`;
+    let fileName = `${model.scoresheetFilename} SA`;
     this.saveFileAs(fileName, pdf, 'application/pdf');
     this.flashMessages.success("Downloaded!");
   }).drop(),

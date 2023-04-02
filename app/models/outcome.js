@@ -46,6 +46,16 @@ export default Model.extend({
     'permissions.write'
   ),
 
+  disablePrinted: computed(
+    'round',
+    function() {
+      if (this.round.get('status') == 'Published') {
+        return true;
+      }
+      return this.get('printOnFinalsOss');
+    }
+  ),
+
   order: computed(
     'num',
     'treeSort',

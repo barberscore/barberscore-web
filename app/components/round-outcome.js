@@ -2,9 +2,17 @@ import Component from '@ember/component';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
+import { computed } from '@ember/object';
+
 export default Component.extend({
   store: service(),
   flashMessages: service(),
+  isDisabled: computed('model', function() {
+    if (this.get('model.round.status') == 'Published') {
+      return true;
+    }
+    return false;
+  }),
   sortedContestsProperties: [
     'num',
   ],

@@ -132,29 +132,31 @@
     </div>
     <div class='card-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.status 'New')}}
-          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
-        {{else if (eq model.status 'Built')}}
-          {{#if model.session.isInvitational}}
-            <li class='list-inline-item'>{{entry-invite model=model}}</li>
-          {{else}}
-            <li class='list-inline-item'>{{entry-approve model=model}}</li>
+        {{#unless model.session.roundsPublished}}
+          {{#if (eq model.status 'New')}}
+            <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          {{else if (eq model.status 'Built')}}
+            {{#if model.session.isInvitational}}
+              <li class='list-inline-item'>{{entry-invite model=model}}</li>
+            {{else}}
+              {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
+            {{/if}}
+            <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          {{else if (eq model.status 'Invited')}}
+            <li class='list-inline-item'>{{entry-submit model=model}}</li>
+            <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Submitted')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
+            <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Approved')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
+            <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
+          {{else if (eq model.status 'Withdrawn')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
+          {{else if (eq model.status 'Scratched')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
           {{/if}}
-          <li class='list-inline-item'>{{entry-delete model=model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
-        {{else if (eq model.status 'Invited')}}
-          <li class='list-inline-item'>{{entry-submit model=model}}</li>
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
-        {{else if (eq model.status 'Submitted')}}
-          <li class='list-inline-item'>{{entry-approve model=model}}</li>
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
-        {{else if (eq model.status 'Approved')}}
-          <li class='list-inline-item'>{{entry-approve model=model}}</li>
-          <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
-        {{else if (eq model.status 'Withdrawn')}}
-          <li class='list-inline-item'>{{entry-approve model=model}}</li>
-        {{else if (eq model.status 'Scratched')}}
-          <li class='list-inline-item'>{{entry-approve model=model}}</li>
-        {{/if}}
+        {{/unless}}
         <li class='pull-right'><h4>Entry Status: <strong>{{model.status}}</strong></h4></li>
       </ul>
     </div>

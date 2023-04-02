@@ -4,7 +4,9 @@
         <tr>
           <th>Title</th>
           <th>Arranger(s)</th>
+          {{#unless entry.session.roundsPublished}}
           <th>Remove</th>
+          {{/unless}}
         </tr>
       </thead>
       <tbody>
@@ -12,9 +14,11 @@
           <tr>
             <td>{{repertory.title}}</td>
             <td>{{repertory.arrangers}}</td>
+            {{#unless entry.session.roundsPublished}}
             <td>
               {{#bs-button type='danger' size='sm' disabled=model.isDisabled onClick=(perform deleteRepertory repertory)}}Remove Chart{{/bs-button}}
             </td>
+            {{/unless}}
           </tr>
         {{else}}
           <tr>
@@ -24,6 +28,7 @@
           </tr>
         {{/each}}
       </tbody>
+      {{#unless entry.session.roundsPublished}}
       <tfoot>
         <tr>
           <p>
@@ -31,6 +36,7 @@
           </p>
         </tr>
       </tfoot>
+      {{/unless}}
     </table>
   </div>
   <div>

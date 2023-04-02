@@ -24,9 +24,13 @@
         <section>
           {{appearance-songs model=model}}
 
-          {{#if model.entryId}}<p>
-            {{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' model.entryId }}Update Repertory or contests on entry{{/link-to}}
-          </p>{{/if}}
+          {{#unless (eq model.round.status 'Published')}}
+            {{#if model.entryId}}
+              <p>
+                {{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' model.entryId }}Update Repertory or contests on entry{{/link-to}}
+              </p>
+            {{/if}}
+          {{/unless}}
         </section>
       {{/if}}
       {{#if (or
@@ -73,20 +77,20 @@
           <li class='list-inline-item primary'>{{appearance-start model=model}}</li>
           <li class='list-inline-item'>{{appearance-scratch model=model}}</li>
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
-          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
         {{else if (eq model.status 'Started')}}
           <li class='list-inline-item primary'>{{appearance-finish model=model}}</li>
-          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
           <li class='list-inline-item'>{{appearance-mock model=model}}</li>
-          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
         {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
           <li class='list-inline-item'>{{appearance-verify model=model}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
-          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
         {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
           <li class='list-inline-item'>{{download-csa model=model}}</li>
-          <li class='list-inline-item'>{{appearance-disqualify model=model}}</li>
-          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
+          {{#unless (eq model.round.status 'Published')}}
+            <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
+          {{/unless}}
         {{/if}}
         <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
       </ul>

@@ -7,7 +7,12 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: service(),
   router: service(),
-  isDisabled: true,
+  isDisabled: computed('model.round.status', function() {
+    if (this.get('model.round.status') == 'Published') {
+      return true;
+    }
+    return false;
+  }),
   savePanelistError: false,
   isScoringJudge: computed(
     'model',

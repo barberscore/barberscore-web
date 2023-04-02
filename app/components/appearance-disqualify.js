@@ -15,7 +15,7 @@ export default Component.extend({
       yield this.store.pushPayload('appearance', appearance);
       this.set('disqualifyAppearanceModal', false);
       this.set('disqualifyAppearanceModalError', false);
-      this.flashMessages.success("Disqaulified!");
+      this.flashMessages.success("Disqualified!");
     } catch(e) {
       this.set('disqualifyAppearanceModalError', true);
     }

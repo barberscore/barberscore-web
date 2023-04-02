@@ -1,6 +1,7 @@
+import Component from '@ember/component';
+import { computed } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
-import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 
@@ -9,6 +10,12 @@ export default Component.extend({
   router: service(),
   algolia: service(),
   store: service(),
+  isDisabled: computed('model', function() {
+    if (this.get('model.status') == 'Published') {
+      return true;
+    }
+    return false;
+  }),
   sortedOutcomesProperties: [
     'treeSort',
     'num',

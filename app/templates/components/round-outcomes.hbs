@@ -2,10 +2,7 @@
   <div class='table-responsive'>
     <table class='table table-hover table-sm'>
         <caption>
-          <small>Drag an outcome up or down in the list to change the order the outcomes will be printed on the OSS</small>
-        </caption>
-        <caption>
-          Outcomes refers to the awards that will be announced out at the conclusion of this particular round. Winners are determined at Round Verification and can be overriden by the PC or ADM if necessary. <strong>NOTE:</strong> Awards that have a checkmark under the "Manual" column must be manually entered by the PC or ADM.
+          Outcomes refers to the awards that will be announced out at the conclusion of this particular round. Winners are determined at Round Completion and can be overriden by the PC or ADM if necessary.<br/><strong>NOTE:</strong> Awards that have a checkmark under the "Manual" column must be manually entered by the PC or ADM.
         </caption>
       <thead class='thead-light'>
         <tr>
@@ -20,10 +17,10 @@
         {{#sortable-item tagName="tr" model=outcome group=group class='handle' handle=".handle"}}
             {{#if (or (and outcome.isSingle (if model.isFinals false true)) model.isFinals) }}
             <td>
-                {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform autosave outcome)}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform autosave outcome) disabled=isDisabled}}
             </td>
             <td>
-                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome) disabled=outcome.printOnFinalsOss}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome) disabled=outcome.disablePrinted}}
             </td>
             {{else}}
               <td colspan='2'></td>
@@ -47,13 +44,13 @@
       {{/each}}
     </table>
   </div>
-  <div>
+  {{!-- <div>
     {{#if (eq model.status 'Built')}}
       <p>
         {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createOutcomeModal) true)}}Create New Outcome{{/bs-button}}
       </p>
     {{/if}}
-  </div>
+  </div> --}}
   <div>
     {{#bs-modal
       open=createOutcomeModal
