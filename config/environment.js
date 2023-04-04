@@ -61,6 +61,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
+    ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.LOG_RESOLVER = false;
     ENV.APP.LOG_ACTIVE_GENERATION = false;
@@ -88,6 +89,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.locationType = 'none';
     ENV.APP.rootElement = '#ember-testing';
@@ -110,6 +112,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
     ENV.APP.HEROKU_APP_NAME = process.env.HEROKU_APP_NAME;
     ENV.APP.HEROKU_RELEASE_VERSION = process.env.HEROKU_RELEASE_VERSION;
