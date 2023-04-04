@@ -1,10 +1,12 @@
+        {{ entry.isDisabled }}
+
   <div class='table-responsive'>
     <table class='table table-hover table-sm'>
       <thead class='thead-light'>
         <tr>
           <th>Title</th>
           <th>Arranger(s)</th>
-          {{#unless entry.session.roundsPublished}}
+          {{#unless entry.isDisabled}}
           <th>Remove</th>
           {{/unless}}
         </tr>
@@ -14,9 +16,9 @@
           <tr>
             <td>{{repertory.title}}</td>
             <td>{{repertory.arrangers}}</td>
-            {{#unless entry.session.roundsPublished}}
+            {{#unless entry.isDisabled}}
             <td>
-              {{#bs-button type='danger' size='sm' disabled=model.isDisabled onClick=(perform deleteRepertory repertory)}}Remove Chart{{/bs-button}}
+              {{#bs-button type='danger' size='sm' disabled=entry.isDisabled onClick=(perform deleteRepertory repertory)}}Remove Chart{{/bs-button}}
             </td>
             {{/unless}}
           </tr>
@@ -28,17 +30,19 @@
           </tr>
         {{/each}}
       </tbody>
-      {{#unless entry.session.roundsPublished}}
+
+      {{#unless entry.isDisabled}}
       <tfoot>
         <tr>
           <p>
-            {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
+            {{#bs-button type='success' disabled=entry.isDisabled onClick=(action (mut createRepertoryModal) true)}}Add New Chart{{/bs-button}}
           </p>
         </tr>
       </tfoot>
       {{/unless}}
     </table>
   </div>
+  {{#unless entry.isDisabled}}
   <div>
     <ul class='list-unstyled'>
       <li>
@@ -125,6 +129,7 @@
       </li>
     </ul>
   </div>
+  {{/unless}}
   <div>
     {{#bs-modal
       open=createRepertoryModal

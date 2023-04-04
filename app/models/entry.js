@@ -51,8 +51,21 @@ export default Model.extend({
   contest: memberAction({path: 'contest', type: 'post'}),
 
 
-  isDisabled: not(
-    'permissions.write'
+  isDisabled: computed(
+    'permissions.write','session.(roundsPublished,status}', 
+    function() {
+      if (this.get('session.status') != 'Packaged') {
+        return true;
+      }
+      if (this.get('session.roundsPublished')) {
+        return true;
+      }
+      if (this.get('permissions.write')) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   ),
 
   notMt: not(

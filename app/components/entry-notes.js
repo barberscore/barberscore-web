@@ -4,6 +4,9 @@ import { computed } from '@ember/object';
 
 export default Component.extend({
   isDisabled: computed('model.{permissions.write,session.roundsPublished}', function() {
+    if (this.get('model.session.status') != 'Packaged') {
+      return true;
+    }
     if (this.get('model.session.roundsPublished')) {
       return true;
     }

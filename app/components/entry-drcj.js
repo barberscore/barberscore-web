@@ -8,6 +8,9 @@ export default Component.extend({
   prelimHelp: true,
   baseHelp: true,
   isDisabled: computed('model.{permissions.write,session.roundsPublished}', function() {
+    if (this.get('model.session.status') != 'Packaged') {
+      return true;
+    }
     if (this.get('model.session.roundsPublished')) {
       return true;
     }

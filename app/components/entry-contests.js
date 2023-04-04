@@ -1,7 +1,8 @@
 import Component from '@ember/component';
-import { sort, not } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -9,9 +10,19 @@ export default Component.extend({
   sortedContestsProperties: [
     'treeSort',
   ],
-  isDisabled: not(
-    'model.permissions.write',
-  ),
+  isDisabled: computed('model.{permissions.write,session.roundsPublished}', function() {
+    if (this.get('model.session.status') != 'Packaged') {
+      return true;
+    }
+    if (this.get('model.session.roundsPublished')) {
+      return true;
+    }
+    if (this.get('model.permissions.write')) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
   sortedContests: sort(
     'options',
     'sortedContestsProperties',
