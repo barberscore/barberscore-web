@@ -2,8 +2,8 @@ import Component from '@ember/component';
 import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
-import { denodeify } from 'rsvp'
-
+import { denodeify } from 'rsvp';
+import { computed } from '@ember/object';
 
 export default Component.extend({
   customCollapsed: true,
@@ -21,6 +21,19 @@ export default Component.extend({
   algolia: service(),
   currentUser: service(),
   flashMessages: service(),
+  isDisabled: computed('model.{permissions.write,session.roundsPublished}', function() {
+    if (this.get('model.session.status') != 'Packaged') {
+      return true;
+    }
+    if (this.get('model.session.roundsPublished')) {
+      return true;
+    }
+    if (this.get('model.permissions.write')) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
   searchChart: task(function* (term){
     yield timeout(600);
     let func = denodeify(this.algolia.search.bind(this.algolia))
