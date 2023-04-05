@@ -72,24 +72,24 @@ export default Controller.extend({
         name: obj.name,
         kind: obj.get_kind_display,
         gender: obj.get_gender_display,
-        area: obj.get_district_display,
         district: obj.get_district_display,
         division: obj.get_division_display,
         participants: obj.participants,
         chapters: obj.chapters,
         notificationList: notificationList,
         image: obj.image_url,
-        bhsId: obj.bhs_id,
+        bhsId: (obj.bhs_id ? obj.bhs_id : obj.code),
         code: obj.code,
         repertories: [],
         owners: users,
       }).save();
-      let p = yield entry.build({
+      let p = yield entry.create_manual_entry({
         'by': this.get('currentUser.user.id'),
       });
       yield this.store.pushPayload(p);
       this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
+      this.set('notificationList', '');
       this.set('group', null);
       this.flashMessages.success("Created!");
       // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));

@@ -43,6 +43,7 @@ export default Model.extend({
   permissions: DS.attr(),
 
   build: memberAction({path: 'build', type: 'post'}),
+  create_manual_entry: memberAction({path: 'create_manual_entry', type: 'post'}),
   invite: memberAction({path: 'invite', type: 'post'}),
   withdraw: memberAction({path: 'withdraw', type: 'post'}),
   submit: memberAction({path: 'submit', type: 'post'}),
