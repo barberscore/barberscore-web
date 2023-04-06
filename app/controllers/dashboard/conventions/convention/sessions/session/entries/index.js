@@ -38,6 +38,7 @@ export default Controller.extend({
   },
   createEntryModal: false,
   createEntryModalError: false,
+  createEntryModalSuccessMessage: "",
   selectGroupModalError: false,
   notificationListModalError: false,
   notificationList: null,
@@ -87,13 +88,15 @@ export default Controller.extend({
         'by': this.get('currentUser.user.id'),
       });
       yield this.store.pushPayload(p);
-      this.set('createEntryModal', false);
       this.set('createEntryModalError', false);
       this.set('notificationList', '');
       this.set('group', null);
       this.flashMessages.success("Created!");
-      // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries.entry', entry.get('id'));
-      this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
+      this.set('createEntryModalSuccessMessage', "A Draw must be assigned for this entry prior to building a round.");
+      // this.set('createEntryModal', false);
+
+      // this.router.transitionTo('dashboard.conventions.convention.sessions.session.entries');
+      this.get('dashboard.conventions.convention.sessions.session.entries').reload();
     } catch(e) {
       this.set('createEntryModalError', true);
     }
@@ -101,7 +104,6 @@ export default Controller.extend({
   actions: {
     cancelEntry(entry){
       entry.deleteRecord();
-    },
+    }
   }
-
 });

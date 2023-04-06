@@ -148,7 +148,7 @@
           {{else if (eq model.status 'Submitted')}}
             {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
             <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
-          {{else if (eq model.status 'Approved')}}
+          {{else if (and (eq model.status 'Approved')(eq model.session.status 'Packaged'))}}
             {{!-- <li class='list-inline-item'>{{entry-approve model=model}}</li> --}}
             <li class='list-inline-item'>{{entry-withdraw model=model}}</li>
           {{else if (eq model.status 'Withdrawn')}}

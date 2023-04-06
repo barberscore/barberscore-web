@@ -21,6 +21,7 @@ export default Component.extend({
     yield song.set('penalties', penalties);
     try {
       yield song.save();
+      this.get('model').reload();
       this.flashMessages.success("Saved");
     } catch(e) {
       e.errors.forEach((error) => {

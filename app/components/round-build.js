@@ -8,6 +8,7 @@ export default Component.extend({
   flashMessages: service(),
   buildRoundModal: false,
   buildRoundModalError: false,
+  buildRoundModalErrorMessage: "Could not Build Round.  Please contact Support.", 
   buildRound: task(function *() {
     try {
       let round = yield this.model.build({
@@ -18,7 +19,9 @@ export default Component.extend({
       this.set('buildRoundModalError', false);
       this.flashMessages.success("Built!");
     } catch(e) {
+      console.log("e", e);
       this.set('buildRoundModalError', true);
+      this.set('buildRoundModalErrorMessage', e.errors.status);
     }
   }).drop(),
 });
