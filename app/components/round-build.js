@@ -19,7 +19,6 @@ export default Component.extend({
       this.set('buildRoundModalError', false);
       this.flashMessages.success("Built!");
     } catch(e) {
-      console.log("e", e);
       this.set('buildRoundModalError', true);
       this.set('buildRoundModalErrorMessage', e.errors.status);
     }
