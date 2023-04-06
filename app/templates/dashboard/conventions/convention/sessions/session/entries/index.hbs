@@ -78,53 +78,63 @@
       <h4>New Entry</h4>
     {{/modal.header}}
     {{#modal.body}}
-      <p>
-        Select the group you wish to enter into the Session.
-      </p>
-      <div class='form-group'>
-      {{#power-select
-        search=(perform searchGroup)
-        selected=group
-        onchange=(action (mut group))
-        placeholder="Enter Group Name"
-        allowClear=true
-        renderInPlace=true
-        noMatchesMessage="We Could Not Find an Active Group with that Name"
-        as |group|
-      }}
-        Group: {{group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
-      {{/power-select}}
-      {{#if selectGroupModalError}}
-      <p class='text-danger'>
-        A Group must be selected.
-      </p>
-      {{/if}}
-      </div>
-      <div class='form-group'>
-        {{textarea value=notificationList property='notificationList' rows="3" class="form-control" required="true" placeholder="Enter email addresses that should be sent CSA and OSS following performances. Comma separate mulitple multiple addresses."}}
-
-        {{#if notificationListModalError}}
+      {{#unless createEntryModalSuccessMessage}}
+        <p>
+          Select the group you wish to enter into the Session.
+        </p>
+        <div class='form-group'>
+        {{#power-select
+          search=(perform searchGroup)
+          selected=group
+          onchange=(action (mut group))
+          placeholder="Enter Group Name"
+          allowClear=true
+          renderInPlace=true
+          noMatchesMessage="We Could Not Find an Active Group with that Name"
+          as |group|
+        }}
+          Group: {{group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
+        {{/power-select}}
+        {{#if selectGroupModalError}}
         <p class='text-danger'>
-          Please enter valid email address(es).
+          A Group must be selected.
         </p>
         {{/if}}
-      </div>
+        </div>
+        <div class='form-group'>
+          {{textarea value=notificationList property='notificationList' rows="3" class="form-control" required="true" placeholder="Enter email addresses that should be sent CSA and OSS following performances. Comma separate mulitple multiple addresses."}}
 
-      {{#if createEntryModalError}}
-      <p class='text-danger'>
-        Could not create entry.  Please contact support.
-      </p>
+          {{#if notificationListModalError}}
+          <p class='text-danger'>
+            Please enter valid email address(es).
+          </p>
+          {{/if}}
+        </div>
+        {{#if createEntryModalError}}
+        <p class='text-danger'>
+          Could not create entry.  Please contact support.
+        </p>
+        {{/if}}
+      {{/unless}}
+      {{#if createEntryModalSuccessMessage}}
+        <p>{{ createEntryModalSuccessMessage }}</p>
       {{/if}}
     {{/modal.body}}
     {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='success' onClick=(perform saveEntry group notificationList) disabled=isDisabled}}
-        {{#if saveEntry.isRunning}}
-          Creating {{fa-icon "spinner" spin=true}}
-        {{else}}
-          Create Entry
-        {{/if}}
-      {{/bs-button}}
+      {{#unless createEntryModalSuccessMessage}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
+        {{#bs-button type='success' onClick=(perform saveEntry group notificationList) disabled=isDisabled}}
+          {{#if saveEntry.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Entry
+          {{/if}}
+        {{/bs-button}}
+      {{/unless}}
+      {{#if createEntryModalSuccessMessage}}
+        {{#bs-button onClick=(action modal.close) type="default"}}Close{{/bs-button}}
+        {{#link-to "dashboard.conventions.convention.sessions.session.draw" class="btn btn-success"}}Edit Draw{{/link-to}}
+      {{/if}}
     {{/modal.footer}}
   {{/bs-modal}}
 {{/if}}
