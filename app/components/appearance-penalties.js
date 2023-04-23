@@ -17,13 +17,18 @@ export default Component.extend({
     'model.songs',
     'sortedSongsProperties'
   ),
+  appearancePenalityModal: false,
   autosave: task(function* (song, penalties){
     yield song.set('penalties', penalties);
     try {
       yield song.save();
       this.get('model').reload();
       this.flashMessages.success("Saved");
+      if (penalties.length) {
+        this.set('appearancePenalityModal', true);
+      }
     } catch(e) {
+      this.set('appearancePenalityModal', false);
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
       })
