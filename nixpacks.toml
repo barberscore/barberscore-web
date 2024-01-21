@@ -1,4 +1,2 @@
-[
-phases.setup
-]
+[phases.setup]
 pkgs = ["python310"]
