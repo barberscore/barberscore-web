@@ -1,4 +1,4 @@
-import * as Sentry from '@sentry/browser'
+import * as Sentry from '@sentry/ember'
 import * as Integrations from '@sentry/integrations';
 
 import config from './config/environment';
