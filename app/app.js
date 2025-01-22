@@ -2,7 +2,7 @@ import Application from '@ember/application';
 import Resolver from './resolver';
 import Sentry from './sentry';
 import loadInitializers from 'ember-load-initializers';
-import config from './config/environment';
+import config from 'barberscore-web/config/environment';
 
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
@@ -12,5 +12,3 @@ const App = Application.extend({
 });
 
 loadInitializers(App, config.modulePrefix);
-
-export default App;

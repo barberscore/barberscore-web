@@ -7,7 +7,7 @@ module.exports = function(defaults) {
     'ember-bootstrap': {
       'bootstrapVersion': 4,
       'importBootstrapFont': false,
-      'importBootstrapCSS': true
+      'importBootstrapCSS': false
     },
     'ember-power-select': {
       theme: 'bootstrap'
@@ -41,6 +41,8 @@ module.exports = function(defaults) {
       { transformation: 'cjs', as: '@sentry/integrations' }
     ]
   });
+
+  app.import('node_modules/dist/css/bootstrap.css');
 
   return app.toTree();
 };
