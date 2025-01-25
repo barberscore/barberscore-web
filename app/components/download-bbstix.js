@@ -1,9 +1,8 @@
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
-import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 import { inject as service } from '@ember/service';
 
-export default Component.extend(FileSaverMixin,{
+export default Component.extend({
   flashMessages: service(),
   bbstix: task(function *() {
     let txt = yield this.model.bbstix();

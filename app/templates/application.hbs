@@ -3,18 +3,18 @@
   {{#navbar.content}}
     {{#navbar.nav class='ml-auto' as |nav|}}
       {{#nav.item}}
-        {{#each flashMessages.queue as |flash|}}
+        {{#each this.flashMessages.queue as |flash|}}
           {{#bs-alert type=flash.type dismissible=false fade=true}}
-            <p>{{flash.message}}</p>
+            <p>{{this.flash.message}}</p>
           {{/bs-alert}}
         {{/each}}
       {{/nav.item}}
     {{/navbar.nav}}
     {{#navbar.nav type='pills' class='ml-auto' as |nav|}}
-      {{#if session.isAuthenticated}}
+      {{#if this.session.isAuthenticated}}
         {{#nav.item}}
           {{#bs-button type='outline-dark' class="btn-logout" onClick=(action "invalidateSession") }}
-            <img src='{{session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{session.data.authenticated.profile.name}}
+            <img src='{{this.session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{this.session.data.authenticated.profile.name}}
           {{/bs-button}}
         {{/nav.item}}
       {{else}}

@@ -1,9 +1,9 @@
 {{#bs-button
-  disabled=model.isDisabled
+  disabled=this.model.isDisabled
   type='primary'
-  onClick=(perform startAppearance)
+  onClick=(perform this.startAppearance)
 }}
-  {{#if startAppearance.isRunning}}
+  {{#if this.startAppearance.isRunning}}
     Starting {{fa-icon "spinner" spin=true}}
   {{else}}
     Start Performance

@@ -4,6 +4,7 @@ import Controller from '@ember/controller';
 export default Controller.extend({
   currentUser: service(),
   session: service(),
+  model: null,
   actions: {
     invalidateSession () {
       this.session.invalidate();

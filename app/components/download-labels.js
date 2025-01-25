@@ -1,10 +1,9 @@
 import Component from '@ember/component';
-import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 import { inject as service } from '@ember/service';
 import { filterBy } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
-export default Component.extend(FileSaverMixin, {
+export default Component.extend({
   init: function(){
     this._super();
     this.panelists = this.filteredPanelists;
@@ -36,7 +35,7 @@ export default Component.extend(FileSaverMixin, {
         'postfix': this.get('postfix'),
         'judges': this.get('judges'),
         'groups': this.get('groups'),
-        'isReversed': this.get('isReversed'),      
+        'isReversed': this.get('isReversed'),
       });
       let postfix = `${this.get('postfix')}`.trim();
       let fileName = `${this.model.baseFilename}_Lbls${(postfix ? '_' + postfix : '')}.rtf`;

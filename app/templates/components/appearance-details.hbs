@@ -1,16 +1,16 @@
 
 <section>
-  {{#if (eq model.kind 'Quartet')}}
-    Participants: {{model.participants}}
+  {{#if (eq this.model.kind 'Quartet')}}
+    Participants: {{this.model.participants}}
   {{else}}
-    Director(s): {{model.participants}}
+    Director(s): {{this.model.participants}}
   {{/if}}
 </section>
 
 <div class='form-inline'>
   <div class='form-group'>
     {{bs-datetimepicker
-      date=model.onstage
+      date=this.model.onstage
       format="HH:mm"
       showIcon=true
       isTime=true
@@ -20,7 +20,7 @@
   </div>
   <div class='form-group'>
     {{bs-datetimepicker
-      date=model.actualStart
+      date=this.model.actualStart
       format="HH:mm"
       showIcon=true
       isTime=true
@@ -30,7 +30,7 @@
   </div>
   <div class='form-group'>
     {{bs-datetimepicker
-      date=model.actualFinish
+      date=this.model.actualFinish
       format="HH:mm"
       showIcon=true
       isTime=true
@@ -38,13 +38,13 @@
       placeholder='Actual Finish Time'
     }}
   </div>
-  {{#if model.actualStart}}
+  {{#if this.model.actualStart}}
     <div class='form-group'>
-      &nbsp;&nbsp;&nbsp;{{!-- Delta:  {{moment-diff model.onstage model.actualStart precision='minutes'}} Minutes --}}
+      &nbsp;&nbsp;&nbsp;{{!-- Delta:  {{moment-diff this.model.onstage this.model.actualStart precision='minutes'}} Minutes --}}
     </div>
   {{/if}}
 </div>
-{{#if (eq model.round.sessionKind 'Chorus')}}
+{{#if (eq this.model.round.sessionKind 'Chorus')}}
   <br>
   <div class='form-inline row'>
     <div class='form-group col'>
@@ -52,7 +52,7 @@
       {{input
         class='form-control col-sm-1 text-right'
         type='tel'
-        value=model.pos
+        value=this.model.pos
         min=0
         disabled=isDisabled
         max=200

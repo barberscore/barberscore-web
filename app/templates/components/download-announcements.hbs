@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform announcements)
-}}
+<BsButton
+  @type='success'
+  @onClick=(perform announcements)
+>
   {{#if announcements.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
+    Downloading <FaIcon @icon="spinner" />
   {{else if announcements.last.isError}}
     Error Downloading
   {{else}}
-    Download Announcements&nbsp;&nbsp;{{fa-icon 'file-word-o'}}
+    Download Announcements&nbsp;&nbsp;<FaIcon @icon='file-word-o' />
   {{/if}}
-{{/bs-button}}
+</BsButton>

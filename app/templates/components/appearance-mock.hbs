@@ -1,38 +1,38 @@
-{{#unless isProduction}}
-  {{#bs-button
-  type='outline-dark'
-  disabled=model.isDisabled
-  onClick=(action (mut mockAppearanceModal) true)
-  }}
+{{#unless this.isProduction}}
+  <BsButton
+    @type='outline-dark'
+    @disabled=this.model.isDisabled
+    @onClick=(action (mut this.mockAppearanceModal) true)
+  >
     Mock Performance
-  {{/bs-button}}
-  {{#bs-modal
-    open=mockAppearanceModal
-    onHidden=(pipe-action (action (mut mockAppearanceModal) false) (action (mut mockAppearanceModalError) false))
+  </BsButton>
+  <BsModal
+    @open=this.mockAppearanceModal
+    @onHidden=(pipe-action (action (mut this.mockAppearanceModal) false) (action (mut this.mockAppearanceModalError) false))
     as |modal|
-  }}
-    {{#modal.header}}
+  >
+    <modal.header>
       <h4>Mock Performance</h4>
-    {{/modal.header}}
-    {{#modal.body}}
+    </modal.header>
+    <modal.body>
       <p>
           Are you sure you would like to mock this performance?
       </p>
-      {{#if mockAppearanceModalError}}
+      {{#if this.mockAppearanceModalError}}
       <p class='text-danger'>
         Could not mock Performance.
       </p>
       {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform mockAppearance)}}
-        {{#if mockAppearance.isRunning}}
+    </modal.body>
+    <modal.footer>
+      <BsButton @onClick=(action modal.close) @type="default">Cancel</BsButton>
+      <BsButton @type='primary' @disabled=this.model.isError @onClick=(perform this.mockAppearance)>
+        {{#if this.mockAppearance.isRunning}}
           Mocking... {{fa-icon "spinner" spin=true}}
         {{else}}
           Mock Performance
         {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
+      </BsButton>
+    </modal.footer>
+  </BsModal>
 {{/unless}}

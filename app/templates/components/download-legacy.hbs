@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform legacy)
-}}
+<BsButton
+  @type='success'
+  @onClick=(perform legacy)
+>
   {{#if legacy.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
+    Downloading <FaIcon @icon="spinner" />
   {{else if legacy.last.isError}}
     Error Downloading
   {{else}}
-    Download Legacy Report&nbsp;&nbsp;{{fa-icon 'file-excel-o'}}
+    Download Legacy Report&nbsp;&nbsp;<FaIcon @icon='file-excel-o' />
   {{/if}}
-{{/bs-button}}
+</BsButton>

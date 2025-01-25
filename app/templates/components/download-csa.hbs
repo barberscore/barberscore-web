@@ -1,10 +1,10 @@
 {{#bs-button
   type='success'
-  onClick=(perform csa)
+  onClick=(perform this.csa)
 }}
-  {{#if csa.isRunning}}
+  {{#if this.csa.isRunning}}
     Downloading {{fa-icon "spinner" spin=true}}
-  {{else if csa.last.isError}}
+  {{else if this.csa.last.isError}}
     Error Downloading
   {{else}}
     Download CSA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}

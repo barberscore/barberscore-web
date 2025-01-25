@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform bbstix)
-}}
+<BsButton
+  @type='success'
+  @onClick=(perform bbstix)
+>
   {{#if bbstix.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
+    Downloading <FaIcon @icon="spinner" />
   {{else if bbstix.last.isError}}
     Error Downloading
   {{else}}
-    Download BBSTIX&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
+    Download BBSTIX&nbsp;&nbsp;<FaIcon @icon='file-text-o' />
   {{/if}}
-{{/bs-button}}
+</BsButton>

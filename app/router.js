@@ -146,4 +146,4 @@ Router.map(function() {
   });
 });
 
-export default Router;
+// export default Router;

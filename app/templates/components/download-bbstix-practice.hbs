@@ -1,10 +1,10 @@
 {{#bs-button
   type='success'
-  onClick=(perform bbstixPractice)
+  onClick=(perform this.bbstixPractice)
 }}
-  {{#if bbstixPractice.isRunning}}
+  {{#if this.bbstixPractice.isRunning}}
     Downloading {{fa-icon "spinner" spin=true}}
-  {{else if bbstixPractice.last.isError}}
+  {{else if this.bbstixPractice.last.isError}}
     Error Downloading
   {{else}}
     Download BBSTIX2&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
