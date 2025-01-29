@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+// import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Route.extend(AuthenticatedRouteMixin, {
+export default Route.extend({
   model() {
     let group = this.modelFor('dashboard.groups.group');
     let group_id = group.get('id');

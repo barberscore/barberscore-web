@@ -2,9 +2,9 @@
   @type='success'
   @onClick=(perform bbstix)
 >
-  {{#if bbstix.isRunning}}
-    Downloading <FaIcon @icon="spinner" />
-  {{else if bbstix.last.isError}}
+  {{#if this.bbstix.isRunning}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
+  {{else if this.bbstix.last.isError}}
     Error Downloading
   {{else}}
     Download BBSTIX&nbsp;&nbsp;<FaIcon @icon='file-text-o' />

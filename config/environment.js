@@ -5,7 +5,7 @@ module.exports = function (environment) {
     modulePrefix: 'barberscore-web',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'history',
     moment: {
       outputFormat: 'LL',
       allowEmpty: true, // default: false
@@ -56,7 +56,7 @@ module.exports = function (environment) {
       managerEnabled: false,
     },
   };
-
+  console.log(process.env);
   if (environment === 'development') {
     ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;

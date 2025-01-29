@@ -1,5 +1,5 @@
 {{#bs-navbar toggleBreakpoint=null position='sticky-top' class='mb-4' as |navbar|}}
-  {{#link-to 'index' active=False class='navbar-brand'}}<span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore{{/link-to}}
+  <LinkTo @route='index' @active=false @class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore</LinkTo>
   {{#navbar.content}}
     {{#navbar.nav class='ml-auto' as |nav|}}
       {{#nav.item}}
@@ -19,7 +19,7 @@
         {{/nav.item}}
       {{else}}
         {{#nav.item}}
-          {{#link-to 'login' active=False type='button'}}Judges Login{{/link-to}}
+          <LinkTo @route='login' @active=false @type='button'>Judges Login</LinkTo>
         {{/nav.item}}
       {{/if}}
     {{/navbar.nav}}
@@ -46,7 +46,7 @@
   {{/navbar.content}}
 {{/bs-navbar}} --}}
 
-{{#unless (eq env 'production')}}
+{{#unless (eq this.env 'production')}}
 <div class="environment-name">
   {{ env }}
 </div>

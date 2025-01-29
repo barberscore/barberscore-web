@@ -2,9 +2,9 @@
   @type='success'
   @onClick=(perform legacy)
 >
-  {{#if legacy.isRunning}}
+  {{#if this.legacy.isRunning}}
     Downloading <FaIcon @icon="spinner" />
-  {{else if legacy.last.isError}}
+  {{else if this.legacy.last.isError}}
     Error Downloading
   {{else}}
     Download Legacy Report&nbsp;&nbsp;<FaIcon @icon='file-excel-o' />

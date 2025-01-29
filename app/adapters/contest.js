@@ -1,9 +1,9 @@
 import DS from 'ember-data';
 import ENV from '../config/environment';
 import { isPresent } from '@ember/utils';
-import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
+// import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
-export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+export default DS.JSONAPIAdapter.extend({
   host: ENV.APP.API_HOST,
   namespace: 'registration',
   coalesceFindRequests: false,

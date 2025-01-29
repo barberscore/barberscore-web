@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform drcj)
-}}
-  {{#if drcj.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
-  {{else if drcj.last.isError}}
+<BsButton
+  @type='success'
+  @onClick=(perform drcj)
+>
+  {{#if this.drcj.isRunning}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
+  {{else if this.drcj.last.isError}}
     Error Downloading
   {{else}}
     Download DRCJ Report&nbsp;&nbsp;{{fa-icon 'file-excel-o'}}
   {{/if}}
-{{/bs-button}}
+</BsButton>
