@@ -1,30 +1,30 @@
-{{#bs-navbar toggleBreakpoint=null position='sticky-top' class='mb-4' as |navbar|}}
-  <LinkTo @route='index' @active=false @class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore</LinkTo>
-  {{#navbar.content}}
-    {{#navbar.nav class='ml-auto' as |nav|}}
-      {{#nav.item}}
+<BsNavbar @toggleBreakpoint=null position='sticky-top' class='mb-4 navbar-expand-lg' as |navbar|>
+    <LinkTo @route='index' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore</LinkTo>
+  <navbar.content class="show">
+    <navbar.nav class='mr-auto flex-grow-1' as |nav|>
+      <nav.item>
         {{#each this.flashMessages.queue as |flash|}}
           {{#bs-alert type=flash.type dismissible=false fade=true}}
             <p>{{this.flash.message}}</p>
           {{/bs-alert}}
         {{/each}}
-      {{/nav.item}}
-    {{/navbar.nav}}
-    {{#navbar.nav type='pills' class='ml-auto' as |nav|}}
+      </nav.item>
+    </navbar.nav>
+    <navbar.nav @type='pills' class='ml-auto' as |nav|>
       {{#if this.session.isAuthenticated}}
-        {{#nav.item}}
-          {{#bs-button type='outline-dark' class="btn-logout" onClick=(action "invalidateSession") }}
+        <nav.item>
+          <BsButton @type='outline-dark' class="btn-logout" @onClick={{action 'invalidateSession'}}>
             <img src='{{this.session.data.authenticated.profile.picture}}' width='20'>&nbsp;Logout {{this.session.data.authenticated.profile.name}}
-          {{/bs-button}}
-        {{/nav.item}}
+          </BsButton>
+        </nav.item>
       {{else}}
-        {{#nav.item}}
+        <nav.item>
           <LinkTo @route='login' @active=false @type='button'>Judges Login</LinkTo>
-        {{/nav.item}}
+        </nav.item>
       {{/if}}
-    {{/navbar.nav}}
-  {{/navbar.content}}
-{{/bs-navbar}}
+    </navbar.nav>
+  </navbar.content>
+</BsNavbar>
 <div class='container-fluid'>
   {{outlet}}
 </div>

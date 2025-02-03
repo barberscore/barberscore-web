@@ -8,10 +8,19 @@ export default Route.extend({
   currentUser: service(),
   session: service(),
   store: service(),
+
+  beforeModel(transition) {
+    this.session.requireAuthentication(transition, 'login');
+  },
   userRoles() {
     let profile = this.get('session.data.authenticated.profile')
+    console.log("userRoles called");
+    console.log(profile);
+    if (this.get('session.isAuthenticated')) {
+    console.log(this.get('session.data'));
     let roles = profile['https://www.barberscore.com/roles'];
     return roles;
+    }
   },
   model() {
     return RSVP.hash({

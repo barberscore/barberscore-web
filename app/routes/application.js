@@ -6,8 +6,9 @@ export default Route.extend({
   currentUser: service(),
   session: service(),
 
-  beforeModel() {
+  beforeModel: async function() {
     this._super(...arguments);
+    await this.get('session').setup();
     return this._loadCurrentUser();
   },
 

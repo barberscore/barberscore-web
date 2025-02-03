@@ -3,6 +3,7 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   session: service(),
+  router: service(),
   faq1: true,
   faq2: true,
   faq3: true,
@@ -15,9 +16,11 @@ export default Controller.extend({
         responseType: 'token id_token',
       };
       this.session.authenticate(
-        'authenticator:auth0-universal',
+        'authenticator:auth0',
         authOptions
-      );
+      ).then(() => {
+        this.router.transitionTo('dashboard');
+      });
     },
   }
 });

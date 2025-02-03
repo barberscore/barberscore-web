@@ -54,9 +54,10 @@ module.exports = function (environment) {
       // Here you can pass flags/options to your application instance
       // when it is created
       managerEnabled: false,
+      AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+      AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID
     },
   };
-  console.log(process.env);
   if (environment === 'development') {
     ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;
