@@ -1,14 +1,16 @@
 <div class='card'>
   <div class='card-header'>
-    <div class='float-left pb-2'>
-      {{cloudinary-image this.model.imageId (hash height=90) class='img-fluid img-rounded'}}
-    </div>
-    <div class='float-left pl-4'>
-      <ul class='list-unstyled'>
-        <li><strong>{{this.model.venueName}}</strong></li>
-        <li>{{this.model.location}}</li>
-        <li>Timezone: {{this.model.timezone}}</li>
-      </ul>
+    <div class="row">
+      <div class='col-md-1'>
+        <CloudinaryImage @publicId={{this.model.imageId}} @options={{hash height='90'}} class='img-fluid img-rounded' />
+      </div>
+      <div class='col-md-9'>
+        <ul class='list-unstyled'>
+          <li><strong>{{this.model.venueName}}</strong></li>
+          <li>{{this.model.location}}</li>
+          <li>Timezone: {{this.model.timezone}}</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class='table-responsive'>

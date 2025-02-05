@@ -7,7 +7,8 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   isActive: DS.attr('boolean'),
   isStaff: DS.attr('boolean'),
-  roles: DS.hasMany('role', {async: true}),
+  roles: DS.hasMany('role', {async: true, inverse: 'users'}),
+  conventions: DS.hasMany('convention', {async: true, inverse: 'owners'}),
   permissions: DS.attr(),
 
   isDisabled: not(

@@ -1,7 +1,7 @@
 import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
 // import { computed } from '@ember/object';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
+import Model from '@ember-data/model';
+import DS from '@ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
@@ -86,7 +86,7 @@ export default Model.extend({
     'Announced',
   ],
 
-  
+
   isMulti: not('isSingle'),
 
   isMT: equal(

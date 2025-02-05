@@ -1,7 +1,7 @@
 import { not } from '@ember/object/computed';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('person-status'),
@@ -29,8 +29,12 @@ export default Model.extend({
   owners: DS.hasMany('user', {async: true}),
   permissions: DS.attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  activate: async function (data) {
+    return await apiAction(this, {path: 'activate', method: 'post'})
+  },
+  deactivate: async function (data) {
+    return await apiAction(this, {path: 'deactivate', method: 'post'})
+  },
 
   isDisabled: not(
     'permissions.write'

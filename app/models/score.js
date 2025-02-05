@@ -1,7 +1,7 @@
 import { alias, not, equal, and } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
+import Model from '@ember-data/model';
+import DS from '@ember-data';
 
 export default Model.extend({
   status: DS.attr('score-status'),

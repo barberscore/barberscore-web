@@ -18,7 +18,11 @@ export default Route.extend({
   },
 
   _loadCurrentUser() {
-    return this.currentUser.load().catch(() => this.session.invalidate());
+    return this.currentUser.load().catch((err) => {
+      console.log("Load current user failed");
+      console.log(err);
+      // this.session.invalidate()
+    });
   },
   actions: {
     sessionRequiresAuthentication: function(){

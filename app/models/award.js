@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import { equal, not, alias } from '@ember/object/computed';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
 import { memberAction } from 'ember-api-actions';
 

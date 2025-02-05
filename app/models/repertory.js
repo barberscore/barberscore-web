@@ -1,6 +1,6 @@
 import { not } from '@ember/object/computed';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
+import Model from '@ember-data/model';
+import DS from '@ember-data';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
@@ -10,7 +10,7 @@ export default Model.extend({
   title: DS.attr('string'),
   arrangers: DS.attr('string'),
 
-  entry: DS.belongsTo('entry', {async: true}),
+  entry: DS.belongsTo('entry', {async: true, inverse: 'repertories'}),
   permissions: DS.attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),

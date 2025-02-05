@@ -1,8 +1,8 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('entry-status'),
@@ -32,28 +32,44 @@ export default Model.extend({
   isSenior: DS.attr('boolean', {defaultValue: false}),
   isYouth: DS.attr('boolean', {defaultValue: false}),
 
-  session: DS.belongsTo('session', {async: true}),
-  contests: DS.hasMany('contest', {async: true}),
-  repertories: DS.hasMany('repertory', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
+  session: DS.belongsTo('session', {async: true, inverse: 'entries'}),
+  contests: DS.hasMany('contest', {async: true, inverse: 'entries'}),
+  repertories: DS.hasMany('repertory', {async: true, inverse: 'entry'}),
+  owners: DS.hasMany('user', {async: true, inverse: null}),
 
   notificationList: DS.attr('string'),
 
   statelogs: DS.hasMany('statelog', {async: true}),
   permissions: DS.attr(),
 
-  build: memberAction({path: 'build', type: 'post'}),
-  create_manual_entry: memberAction({path: 'create_manual_entry', type: 'post'}),
-  invite: memberAction({path: 'invite', type: 'post'}),
-  withdraw: memberAction({path: 'withdraw', type: 'post'}),
-  submit: memberAction({path: 'submit', type: 'post'}),
-  approve: memberAction({path: 'approve', type: 'post'}),
-  update_charts: memberAction({path: 'update_charts', type: 'post'}),
-  contest: memberAction({path: 'contest', type: 'post'}),
+  build: async function(data) {
+    return await apiAction(this, {path: 'build', method: 'post'})
+  },
+  create_manual_entry: async function (data) {
+    return await apiAction(this, {path: 'create_manual_entry', method: 'post'})
+  },
+  invite: async function (data) {
+    return await apiAction(this, {path: 'invite', method: 'post'})
+  },
+  withdraw: async function (data) {
+    return await apiAction(this, {path: 'withdraw', method: 'post'})
+  },
+  submit: async function(data) {
+    return await apiAction(this, {path: 'submit', method: 'post'})
+  },
+  approve: async function(data) {
+    return await apiAction(this, {path: 'approve', method: 'post'})
+  },
+  update_charts: async function(data) {
+    return await apiAction(this, {path: 'update_charts', method: 'post'})
+  },
+  contest: async function(data) {
+    return await apiAction(this, {path: 'contest', method: 'post'})
+  },
 
 
   isDisabled: computed(
-    'permissions.write','session.(roundsPublished,status}', 
+    'permissions.write','session.(roundsPublished,status}',
     function() {
       if (this.get('session.status') != 'Packaged') {
         return true;

@@ -3,11 +3,16 @@ import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  isLoading: false,
+  fileDownload: service(),
   flashMessages: service(),
-  bbstix: task(function *() {
-    let txt = yield this.model.bbstix();
-    let fileName = `${this.model.baseFilename}_BBStix`;
-    this.saveFileAs(fileName, txt, 'text/plain');
-    this.flashMessages.success("Downloaded!");
-  }).drop(),
+  actions: {
+    downloadBbstix: async function() {
+      this.set('isLoading', true);
+      let fileName = `${this.model.baseFilename}_BBStix`;
+      await this.fileDownload.downloadFile(this.model, 'bbstix', fileName);
+      this.set('isLoading', false);
+      this.flashMessages.success("Downloaded!");
+    }
+  }
 });

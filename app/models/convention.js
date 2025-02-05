@@ -1,7 +1,7 @@
 import { not } from '@ember/object/computed';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -26,17 +26,29 @@ export default Model.extend({
   baseFilename: DS.attr('string'),
 
   imageId: DS.attr('string'),
-  persons: DS.hasMany('person', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
+  persons: DS.hasMany('person', {async: true, inverse: 'conventions'}),
+  owners: DS.hasMany('user', {async: true, inverse: 'conventions'}),
   permissions: DS.attr(),
 
-  reset: memberAction({path: 'reset', type: 'post'}),
-  build: memberAction({path: 'build', type: 'post'}),
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  reset: async function (data) {
+    return await apiAction(this, {path: 'reset', method: 'POST'})
+  },
+  build: async function (data) {
+    return await apiAction(this, {path: 'build', method: 'POST'})
+  },
+  activate: async function (data) {
+    return await apiAction(this, {path: 'activate', method: 'POST'})
+  },
+  deactivate: async function (data) {
+    return await apiAction(this, {path: 'deactivate', method: 'POST'})
+  },
 
-  bbstix: memberAction({ path: 'bbstix', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  bbstixPractice: memberAction({ path: 'bbstix_practice', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  bbstix: async function (data) {
+    return await apiAction(this, { path: 'bbstix', method: 'GET', adapterOptions: { arraybuffer: true, responseType: 'arraybuffer', ajaxOptions: { dataType: 'text' } } })
+  },
+  bbstixPractice: async function (data) {
+    return await apiAction(this, { path: 'bbstix_practice', method: 'GET', adapterOptions: { arraybuffer: true, responseType: 'arraybuffer' } })
+  },
 
   isDisabled: not(
     'permissions.write'

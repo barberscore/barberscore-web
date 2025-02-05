@@ -46,9 +46,4 @@ export default class OAuth2 extends OAuth2ImplicitGrant {
       }
   }
 
-  restore() {
-    console.log("Restore called");
-    return {access_token: true}
-  }
-
 }

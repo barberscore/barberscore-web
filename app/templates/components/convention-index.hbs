@@ -18,13 +18,13 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedConventions as |convention|}}
+            {{#each this.sortedConventions as |convention|}}
               <tr>
                 <td>
-                  {{cloudinary-image convention.imageId (hash width=64) class='img-fluid img-rounded'}}
+                  <CloudinaryImage @publicId={{convention.imageId}} @options={{hash width='64'}} class='img-fluid img-rounded' />
                 </td>
                 <td>
-                  {{#link-to 'dashboard.conventions.convention.details' convention.id}}{{convention.nomen}}{{/link-to}}
+                  <LinkTo @route='dashboard.conventions.convention.details' @model={{convention}}>{{convention.nomen}}</LinkTo>
                 </td>
                 <td>
                   {{convention.venueName}}<br>

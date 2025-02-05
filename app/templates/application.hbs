@@ -1,12 +1,10 @@
 <BsNavbar @toggleBreakpoint=null position='sticky-top' class='mb-4 navbar-expand-lg' as |navbar|>
     <LinkTo @route='index' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png"></span>&nbsp;Barberscore</LinkTo>
   <navbar.content class="show">
-    <navbar.nav class='mr-auto flex-grow-1' as |nav|>
+    <navbar.nav class='mx-auto' as |nav|>
       <nav.item>
         {{#each this.flashMessages.queue as |flash|}}
-          {{#bs-alert type=flash.type dismissible=false fade=true}}
-            <p>{{this.flash.message}}</p>
-          {{/bs-alert}}
+          <FlashMessage @flash={{flash}} />
         {{/each}}
       </nav.item>
     </navbar.nav>

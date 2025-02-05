@@ -8,10 +8,10 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedSessions as |session|}}
+        {{#each this.sortedSessions as |session|}}
           <tr>
             <td>
-              {{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}
+              <LinkTo @route='dashboard.conventions.convention.sessions.session.details' @model={{session}}>{{session.kind}}</LinkTo>
             </td>
             <td>
               {{session.status}}

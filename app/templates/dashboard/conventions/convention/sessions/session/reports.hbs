@@ -1,8 +1,8 @@
 <section>
-  {{#if (or (eq model.status 'Verified')(eq model.status 'Packaged')) }}
+  {{#if (or (eq this.model.status 'Verified')(eq this.model.status 'Packaged')) }}
     <ul class='list-unstyled'>
-      <li class='double'>{{download-drcj model=model}}</li>
-      <li class='double'>{{download-legacy model=model}}</li>
+      <li class='double'>{{download-drcj model=this.model}}</li>
+      <li class='double'>{{download-legacy model=this.model}}</li>
     </ul>
   {{else}}
     <p>

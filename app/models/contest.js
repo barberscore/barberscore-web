@@ -1,12 +1,12 @@
 import { alias, equal, not, or } from '@ember/object/computed';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('contest-status'),
 
-  awardId: DS.belongsTo('award', {async: true}),
+  awardId: DS.belongsTo('award', {async: true, inverse: null}),
   name: DS.attr('string'),
   kind: DS.attr('award-kind'),
   gender: DS.attr('award-gender'),
@@ -24,12 +24,16 @@ export default Model.extend({
   scopeRange: DS.attr(),
   treeSort: DS.attr('number'),
 
-  session: DS.belongsTo('session', {async: true}),
-  entries: DS.hasMany('entry', {async: true}),
+  session: DS.belongsTo('session', {async: true, inverse: null}),
+  entries: DS.hasMany('entry', {async: true, inverse: 'contests'}),
   permissions: DS.attr(),
 
-  include: memberAction({path: 'include', type: 'post'}),
-  exclude: memberAction({path: 'exclude', type: 'post'}),
+  include: async function (data) {
+    return await apiAction(this, {path: 'include', method: 'post'})
+  },
+  exclude: async function (data) {
+    return await apiAction(this, {path: 'exclude', method: 'post'})
+  },
 
   isDisabled: not(
     'permissions.write'

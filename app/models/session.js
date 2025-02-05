@@ -1,8 +1,8 @@
 import { not, sort } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from 'ember-data/model';
+import Model from '@ember-data/model';
 import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   nomen: DS.attr('string'),
@@ -35,23 +35,41 @@ export default Model.extend({
 
   roundsPublished: DS.attr('boolean'),
 
-  owners: DS.hasMany('user', {async: true}),
-  contests: DS.hasMany('contest', {async: true}),
-  entries: DS.hasMany('entry', {async: true}),
-  assignments: DS.hasMany('assignment', {async: true}),
+  owners: DS.hasMany('user', {async: true, inverse: null}),
+  contests: DS.hasMany('contest', {async: true, inverse: null}),
+  entries: DS.hasMany('entry', {async: true, inverse: null}),
+  assignments: DS.hasMany('assignment', {async: true, inverse: null}),
 
   permissions: DS.attr(),
 
-  reset: memberAction({path: 'reset', type: 'post'}),
-  build: memberAction({path: 'build', type: 'post'}),
-  open: memberAction({path: 'open', type: 'post'}),
-  close: memberAction({path: 'close', type: 'post'}),
-  verify: memberAction({path: 'verify', type: 'post'}),
-  package: memberAction({path: 'package', type: 'post'}),
-  finish: memberAction({path: 'finish', type: 'post'}),
+  reset: async function (data) {
+    return await apiAction(this, {path: 'reset', method: 'post'})
+  },
+  build: async function (data) {
+    return await apiAction(this, {path: 'build', method: 'post'})
+  },
+  open: async function (data) {
+    return await apiAction(this, {path: 'open', method: 'post'})
+  },
+  close: async function (data) {
+    return await apiAction(this, {path: 'close', method: 'post'})
+  },
+  verify: async function (data) {
+    return await apiAction(this, {path: 'verify', method: 'post'})
+  },
+  package: async function (data) {
+    return await apiAction(this, {path: 'package', method: 'post'})
+  },
+  finish: async function (data) {
+    return await apiAction(this, {path: 'finish', method: 'post'})
+  },
 
-  legacy: memberAction({ path: 'legacy', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  drcj: memberAction({ path: 'drcj', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  legacy: async function (data) {
+    return await apiAction(this, { path: 'legacy', method: 'get', ajaxOptions: { arraybuffer: true } })
+  },
+  drcj: async function (data) {
+    return await apiAction(this, { path: 'drcj', method: 'get', ajaxOptions: { arraybuffer: true } })
+  },
 
 
   isDisabled: not(
