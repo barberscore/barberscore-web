@@ -204,6 +204,23 @@ ul.list-unstyled + ul.list-unstyled {
   padding: .75rem 1rem;
 }
 
+.badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+}
+
+.badge-primary {
+    color: #fff;
+    background-color: #007bff;
+}
+
 
 @import "ember-power-select";
 

@@ -115,6 +115,7 @@
     "auth0-js": "^9.28.0",
     "babel-plugin-ember-template-compilation": "^2.3.0",
     "ember-basic-dropdown": "^8.5.0",
+    "ember-composable-helpers": "^5.0.0",
     "ember-inflector": "^5.0.2"
   }
 }

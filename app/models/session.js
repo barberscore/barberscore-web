@@ -4,6 +4,8 @@ import Model from '@ember-data/model';
 import DS from 'ember-data';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
+const ASSIGNMENT_SORT_KEYS = ['kindSort', 'categorySort', 'lastName', 'firstName'];
+
 export default Model.extend({
   nomen: DS.attr('string'),
   status: DS.attr('session-status'),
@@ -37,9 +39,8 @@ export default Model.extend({
 
   owners: DS.hasMany('user', {async: true, inverse: null}),
   contests: DS.hasMany('contest', {async: true, inverse: null}),
-  entries: DS.hasMany('entry', {async: true, inverse: null}),
-  assignments: DS.hasMany('assignment', {async: true, inverse: null}),
-
+  entries: DS.hasMany('entry', {async: true, inverse: 'session'}),
+  assignments: DS.hasMany('assignment', {async: true, inverse: 'session'}),
   permissions: DS.attr(),
 
   reset: async function (data) {

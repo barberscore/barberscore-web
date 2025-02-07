@@ -39,7 +39,7 @@ export default Model.extend({
 
   notificationList: DS.attr('string'),
 
-  statelogs: DS.hasMany('statelog', {async: true}),
+  statelogs: DS.hasMany('statelog', {async: true, inverse: null}),
   permissions: DS.attr(),
 
   build: async function(data) {

@@ -7,7 +7,10 @@ import { pluralize } from '@ember-data/request-utils/string';
 const URL_PATHS = {
   'user': 'user',
   'convention': 'convention',
-  'session': 'session'
+  'session': 'session',
+  'entry': 'entry',
+  'assignment': 'assignment',
+  'contest': 'contest'
 }
 
 export default class ApplicationAdapter extends JSONAPIAdapter {

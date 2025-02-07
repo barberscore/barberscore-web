@@ -1,5 +1,5 @@
 <section>
-{{#if (eq model.status 'New')}}
+{{#if (eq this.model.status 'New')}}
   <h4>
     Assignments can only be changed once the Session has been Built.
   </h4>
@@ -16,9 +16,9 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedAssignments as |assignment|}}
+        {{#each this.model.assignments as |assignment|}}
           <tr>
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.assignments.assignment' assignment.id}}{{assignment.name}}{{/link-to}}</td>
+            <td><LinkTo @route='dashboard.conventions.convention.sessions.session.assignments.assignment' @model={{assignment}}>{{assignment.name}}</LinkTo></td>
             <td>{{assignment.display_district}}</td>
             <td>{{assignment.bhsId}}</td>
             <td>{{assignment.kind}}</td>
@@ -37,16 +37,16 @@
       {{#bs-button
         type='success'
         disabled=isDisabled
-        onClick=(action (mut createAssignmentModal) true)
+        onClick=(action (mut this.createAssignmentModal) true)
       }}
         Create New Assignment
       {{/bs-button}}
     </p>
   </div> --}}
   {{#bs-modal
-    open=createAssignmentModal
+    open=this.createAssignmentModal
     size='lg'
-    onHidden=(pipe-action (action (mut createAssignmentModal) false) (action (mut createAssignmentModalError) false))
+    onHidden=(pipe-action (action (mut this.createAssignmentModal) false) (action (mut this.createAssignmentModalError) false))
     as |modal|
   }}
     {{#modal.header}}
@@ -126,7 +126,7 @@
             {{category}}
           {{/power-select}}
         </p>
-      {{#if createAssignmentModalError}}
+      {{#if this.createAssignmentModalError}}
       <p class='text-danger'>
         Could not create assignment.  Please contact support.
       </p>

@@ -15,7 +15,7 @@ export default Model.extend({
   title: DS.attr('string'),
   arrangers: DS.attr('string'),
 
-  appearance: DS.belongsTo('appearance', {async: true}),
+  appearance: DS.belongsTo('appearance', {async: true, inverse: 'songs'}),
   scores: DS.hasMany('score', {async: true}),
   permissions: DS.attr(),
 

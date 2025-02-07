@@ -1,8 +1,10 @@
 import Controller from '@ember/controller';
 import { sort, not } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import ArrayProxy from '@ember/array/proxy';
 
 export default Controller.extend({
   isDisabled: not(
@@ -14,10 +16,6 @@ export default Controller.extend({
     'lastName',
     'firstName',
   ],
-  sortedAssignments: sort(
-    'model.assignments',
-    'sortedAssignmentsProperties'
-  ),
   flashMessages: service(),
   router: service(),
   algolia: service(),

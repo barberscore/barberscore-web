@@ -34,10 +34,10 @@ export default Model.extend({
   imageId: DS.attr('string', {defaultValue: 'missing_image'}),
   charts: DS.attr(),
 
-  round: DS.belongsTo('round', {async: true}),
-  songs: DS.hasMany('song', {async: true}),
-  outcomes: DS.hasMany('outcome', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
+  round: DS.belongsTo('round', {async: true, inverse: 'appearances'}),
+  songs: DS.hasMany('song', {async: true, inverse: 'appearence'}),
+  outcomes: DS.hasMany('outcome', {async: true, inverse: 'appearences'}),
+  owners: DS.hasMany('user', {async: true, inverse: null}),
   permissions: DS.attr(),
 
   start: memberAction({path: 'start', type: 'post'}),

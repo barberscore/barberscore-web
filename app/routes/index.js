@@ -4,11 +4,13 @@ import { inject as service } from '@ember/service';
 export default Route.extend({
   session: service(),
   router: service(),
+  currentUser: service(),
   activate: function() {
     if (location.hash.includes("state=") ||
       location.search.includes("error=")) {
         this.session.authenticate('authenticator:auth0', {}).then(() => {
-        this.router.transitionTo('dashboard');
+          this.currentUser.load();
+          this.router.transitionTo('dashboard');
       });
     }
   }
