@@ -1,20 +1,20 @@
 <div class='float-right'>
-  {{#bs-button-group
-    type='radio'
-  }}
-      {{#bs-button
-        type='outline-dark'
-        disabled=(not (has-previous model sortedArray))
-        onClick=(action 'trans' (previous model sortedArray))
-      }}
+  <BsButtonGroup
+    @type='radio'
+  >
+      <BsButton
+        @type='outline-dark'
+        @disabled={{not (has-previous this.model this.sortedArray)}}
+        @onClick={{action 'trans' (previous this.model this.sortedArray)}}
+      >
        Previous
-      {{/bs-button}}
-      {{#bs-button
-        type='outline-dark'
-        disabled=(not (has-next model sortedArray))
-        onClick=(action 'trans' (next model sortedArray))
-      }}
+      </BsButton>
+      <BsButton
+        @type='outline-dark'
+        @disabled={{not (has-next this.model this.sortedArray)}}
+        @onClick={{action 'trans' (next this.model this.sortedArray)}}
+      >
         Next
-      {{/bs-button}}
-  {{/bs-button-group}}
+      </BsButton>
+  </BsButtonGroup>
 </div>

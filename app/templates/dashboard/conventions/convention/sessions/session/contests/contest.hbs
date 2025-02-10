@@ -1,10 +1,10 @@
 <section>
   <div class='card'>
     <div class='card-header'>
-      {{prev-next model=model sortedArray=sortedContests}}
+      <!-- {{prev-next model=this.model sortedArray=this.model.entries}} -->
 
       <h4>
-        {{model.name}}
+        {{this.model.name}}
       </h4>
     </div>
     <div class='card-body'>
@@ -16,7 +16,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedEntries as |entry|}}
+            {{#each this.model.entries as |entry|}}
               <tr>
                 <td>
                   {{entry.name}}
