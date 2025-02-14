@@ -1,14 +1,14 @@
 import { alias, not, equal, and } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
+import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('score-status'),
   points: DS.attr('number'),
 
-  song: DS.belongsTo('song', {async: true}),
-  panelist: DS.belongsTo('panelist', {async: true}),
+  song: DS.belongsTo('song', {async: true, inverse: 'scores'}),
+  panelist: DS.belongsTo('panelist', {async: true, inverse: 'scores'}),
   permissions: DS.attr(),
 
   kind: alias('panelist.kind'),

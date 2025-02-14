@@ -2,59 +2,59 @@
   <div class='card'>
     <div class='card-header'>
       <h5>
-        {{model.kind}}
+        {{this.model.kind}}
       </h5>
     </div>
     <div class='card-body'>
-      {{#bs-nav type='tabs' as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.details"}}Details{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.panelists"}}Panelists{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.appearances"}}Appearances{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.outcomes"}}Outcomes{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.standings"}}Standings{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.draw"}}Draw{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds.round.reports"}}Reports{{/nav.link-to}}
-        {{/nav.item}}
-      {{/bs-nav}}
+      <BsNav @type='tabs' as |nav|>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.details">Details</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.panelists">Panelists</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.appearances">Appearances</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.outcomes">Outcomes</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.standings">Standings</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.draw">Draw</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds.round.reports">Reports</nav.linkTo>
+        </nav.item>
+      </BsNav>
       {{outlet}}
     </div>
     <div class='card-footer actions'>
       <div class='pull-right'>
         <h5>
-          Round Status: <strong>{{model.status}}</strong>
+          Round Status: <strong>{{this.model.status}}</strong>
         </h5>
       </div>
       <ul class='list-inline'>
-        {{#if (eq model.status 'New')}}
-          <li class='list-inline-item primary'>{{round-build model=model}}</li>
-          <li class='list-inline-item'>{{round-reset model=model}}</li>
-        {{else if (eq model.status 'Built')}}
-          <li class='list-inline-item primary'>{{round-start model=model}}</li>
-          <li class='list-inline-item'>{{round-reset model=model}}</li>
-        {{else if (eq model.status 'Started')}}
-          <li class='list-inline-item primary'>{{round-complete model=model}}</li>
-          <li class='list-inline-item'>{{round-reset model=model}}</li>
-          <li class='list-inline-item'>{{round-mock model=model}}</li>
-        {{else if (eq model.status 'Completed')}}
-          <li class='list-inline-item primary'>{{round-finalize model=model}}</li>
-          <li class='list-inline-item'>{{round-reset model=model}}</li>
-        {{else if (eq model.status 'Finalized')}}
-          <li class='list-inline-item primary'>{{round-publish model=model}}</li>
-          <li class='list-inline-item'>{{round-reset model=model}}</li>
-        {{else if (eq model.status 'Published')}}
+        {{#if (eq this.model.status 'New')}}
+          <li class='list-inline-item primary'>{{round-build model=this.model}}</li>
+          <li class='list-inline-item'>{{round-reset model=this.model}}</li>
+        {{else if (eq this.model.status 'Built')}}
+          <li class='list-inline-item primary'>{{round-start model=this.model}}</li>
+          <li class='list-inline-item'>{{round-reset model=this.model}}</li>
+        {{else if (eq this.model.status 'Started')}}
+          <li class='list-inline-item primary'>{{round-complete model=this.model}}</li>
+          <li class='list-inline-item'>{{round-reset model=this.model}}</li>
+          <li class='list-inline-item'>{{round-mock model=this.model}}</li>
+        {{else if (eq this.model.status 'Completed')}}
+          <li class='list-inline-item primary'>{{round-finalize model=this.model}}</li>
+          <li class='list-inline-item'>{{round-reset model=this.model}}</li>
+        {{else if (eq this.model.status 'Finalized')}}
+          <li class='list-inline-item primary'>{{round-publish model=this.model}}</li>
+          <li class='list-inline-item'>{{round-reset model=this.model}}</li>
+        {{else if (eq this.model.status 'Published')}}
         {{/if}}
       </ul>
     </div>

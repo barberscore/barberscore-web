@@ -39,7 +39,7 @@ export default Component.extend({
         throw { errors: [{detail: 'Please select the Kind of panelist.'}] };
       }
       else if (category !== undefined && category != 'ADM' && category != 'PC' && category != 'CA' && num === undefined) {
-        throw { errors: [{detail: 'Please enter a Number for this panelist.'}] };        
+        throw { errors: [{detail: 'Please enter a Number for this panelist.'}] };
       }
 
       yield this.store.createRecord('panelist', {

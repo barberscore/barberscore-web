@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  flashMessages: service(),
   isDisabled: computed('model.{permissions.write,status}', function() {
     if (this.get('model.status') == 'Published') {
       return true;
@@ -15,7 +17,7 @@ export default Component.extend({
   }),
   autosave: task(function* (value){
     let round = yield this.model;
-    round.set('date', value);
+    round.set('date', value.date);
     yield timeout(1000);
     try {
       yield round.save();

@@ -1,7 +1,7 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
+import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('outcome-status'),
@@ -28,8 +28,8 @@ export default Model.extend({
   printed: DS.attr('boolean'),
   printOnFinalsOss: DS.attr('boolean'),
 
-  round: DS.belongsTo('round', {async: true}),
-  appearances: DS.hasMany('appearance', {async: true}),
+  round: DS.belongsTo('round', {async: true, inverse: 'outcomes'}),
+  appearances: DS.hasMany('appearance', {async: true, inverse: 'outcomes'}),
   permissions: DS.attr(),
 
   isFinals: computed(

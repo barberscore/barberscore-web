@@ -1,8 +1,8 @@
 import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
 // import { computed } from '@ember/object';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
-import { memberAction } from 'ember-api-actions';
+import DS from 'ember-data';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('appearance-status'),
@@ -40,17 +40,36 @@ export default Model.extend({
   owners: DS.hasMany('user', {async: true, inverse: null}),
   permissions: DS.attr(),
 
-  start: memberAction({path: 'start', type: 'post'}),
-  finish: memberAction({path: 'finish', type: 'post'}),
-  verify: memberAction({path: 'verify', type: 'post'}),
-  complete: memberAction({path: 'complete', type: 'post'}),
-  advance: memberAction({path: 'advance', type: 'post'}),
-  scratch: memberAction({path: 'scratch', type: 'post'}),
-  disqualify: memberAction({path: 'disqualify', type: 'post'}),
-
-  mock: memberAction({path: 'mock', type: 'get'}),
-  variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  start: async function(data) {
+    return await apiAction(this, {path: 'start', method: 'POST'})
+  },
+  finish: async function(data) {
+    return await apiAction(this, {path: 'finish', method: 'POST'})
+  },
+  verify: async function(data) {
+    return await apiAction(this, {path: 'verify', method: 'POST'})
+  },
+  complete: async function(data) {
+    return await apiAction(this, {path: 'complete', method: 'POST'})
+  },
+  advance: async function(data) {
+    return await apiAction(this, {path: 'advance', method: 'POST'})
+  },
+  scratch: async function(data) {
+    return await apiAction(this, {path: 'scratch', method: 'POST'})
+  },
+  disqualify: async function(data) {
+    return await apiAction(this, {path: 'disqualify', method: 'POST'})
+  },
+  mock: async function(data) {
+    return await apiAction(this, {path: 'mock', method: 'GET'})
+  },
+  variance: async function(data) {
+    return await apiAction(this, { path: 'variance', method: 'GET', ajaxOptions: { arraybuffer: true } })
+  },
+  csa: async function(data) {
+    return await apiAction(this, { path: 'csa', method: 'GET', ajaxOptions: { arraybuffer: true } })
+  },
 
   isDisabled: not(
     'permissions.write'

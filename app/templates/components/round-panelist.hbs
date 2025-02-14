@@ -1,16 +1,17 @@
 <section>
+  {{this.sortedPanelists}}
   <div class='card'>
     <div class='card-header'>
-        {{prev-next model=model sortedArray=sortedPanelists}}
+        <!-- {{prev-next model=this.model sortedArray=this.sortedPanelists}} -->
       <h4>
-        {{model.name}}
+        {{this.model.name}}
       </h4>
     </div>
     <div class='card-body'>
       <section>
-        {{#if model.imageId}}
+        {{#if this.model.imageId}}
         <div>
-          {{cloudinary-image model.imageId (hash width=64) class='img-fluid img-rounded'}}
+          <CloudinaryImage @publicId={{this.model.imageId}} @options={{hash height='64'}} class='img-fluid img-rounded' />
         </div>
         {{/if}}
 
@@ -18,46 +19,37 @@
           <div class='col-sm-2'>
             <p>
               <label>Kind</label>
-            {{#power-select
-              disabled=isDisabled
-              options=kindOptions
-              selected=model.kind
-              onchange=(perform autosave 'kind' value='target.value')
-              placeholder="Choose Kind"
+              <PowerSelect
+              @disabled={{this.isDisabled}}
+              @options={{this.kindOptions}}
+              @selected={{this.model.kind}}
+              @onChange={{perform this.autosave 'kind' value='target.value'}}
+              @placeholder="Choose Kind"
               as |kind|
-            }}
+              >
               {{kind}}
-            {{/power-select}}
+            </PowerSelect>
             </p>
 
             <p>
               <label>Category</label>
-            {{#power-select
-              disabled=isDisabled
-              options=categoryOptions
-              selected=model.category
-              onchange=(perform autosave 'category' value='target.value')
-              placeholder="Choose Category"
-              renderInPlace=true
+              <PowerSelect
+              @disabled={{this.isDisabled}}
+              @options={{this.categoryOptions}}
+              @selected={{this.model.category}}
+              @onChange={{perform this.autosave 'category' value='target.value'}}
+              @placeholder="Choose Category"
+              @renderInPlace={{true}}
               as |category|
-            }}
+            >
               {{category}}
-            {{/power-select}}
+            </PowerSelect>
 
-            {{!-- {{#power-select
-              search=false
-              options=categoryOptions
-              selected=model.category
-              onchange=(action (mut group))
-              as |cat|
-            }}
-              {{cat}}
-            {{/power-select}} --}}
             </p>
           </div>
         </div>
 
-        {{#if isScoringJudge}}
+        {{#if this.isScoringJudge}}
           <div class="form-row">
             <label class="mr-2 col-form-label">Number:</label>
             {{input
@@ -71,23 +63,23 @@
             }}
           </div>
         {{/if}}
-        {{#if savePanelistError}}
+        {{#if this.savePanelistError}}
           <p class='text-danger'>
-            {{savePanelistError}}
+            {{this.savePanelistError}}
           </p>
         {{/if}}
       </section>
     </div>
     <div class='card-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.round.status 'Built')}}
-          <li>{{panelist-delete model=model}}</li>
-        {{else if (or (eq model.category 'PC')(eq model.category 'ADM')(eq model.category 'CA'))}}
+        {{#if (eq this.model.round.status 'Built')}}
+          <li>{{panelist-delete model=this.model}}</li>
+        {{else if (or (eq this.model.category 'PC')(eq this.model.category 'ADM')(eq this.model.category 'CA'))}}
           <li></li>
-        {{else if (or (eq model.round.status 'Completed')(eq model.round.status 'Finalized')(eq model.round.status 'Published'))}}
+        {{else if (or (eq this.model.round.status 'Completed')(eq this.model.round.status 'Finalized')(eq this.model.round.status 'Published'))}}
           <li>{{download-psa model=model}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Panelist Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='pull-right'><h4>Panelist Status: <strong>{{this.model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

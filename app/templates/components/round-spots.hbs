@@ -2,9 +2,9 @@
   Spots Available in Next Round (blank for unlimited):
   <input
     type="number"
-    value={{model.spots}}
-    disabled={{isDisabled}}
-    oninput={{perform autosave value='target.value'}}
+    value={{this.model.spots}}
+    disabled={{this.isDisabled}}
+    oninput={{perform this.autosave value='target.value'}}
     class='form-control col-sm-1'
   />
 </div>

@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 export default Component.extend({
   store: service(),
@@ -34,10 +34,15 @@ export default Component.extend({
     'categorySort',
     'personSort',
   ],
-  sortedPanelists: sort(
-    'model.round.panelists',
-    'sortedPanelistsProperties'
-  ),
+  sortedPanelists: computed('this.model.round', 'this.model.round.panelists.[]', 'this.model.round.panelists.length', 'this.model.round.panelists.isFulfilled', function() {
+    console.log("Model fulfilled?");
+    console.log(this.get('model.round.panelists.isFulfilled'));
+    console.log(this.get('model.round.isFulfilled'));
+    const that = this;
+    if (this.get('model.round.panelists.isFulfilled'))
+      return this.get('model.round.panelists');
+    return [];
+  }),
   categoryOptions: [
     'PC',
     'ADM',

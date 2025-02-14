@@ -1,8 +1,8 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
-import { memberAction } from 'ember-api-actions';
+import DS from 'ember-data';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('panelist-status'),
@@ -12,8 +12,8 @@ export default Model.extend({
   psaReport: DS.attr('string'),
   area: DS.attr('string'),
 
-  round: DS.belongsTo('round', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
+  round: DS.belongsTo('round', {async: true, inverse: 'panelists'}),
+  owners: DS.hasMany('user', {async: true, inverse: null}),
 
   personId: DS.attr('string'),
   name: DS.attr('string'),
@@ -24,10 +24,12 @@ export default Model.extend({
   cellPhone: DS.attr('string'),
   airports: DS.attr('string'),
 
-  scores: DS.hasMany('score', {async: true}),
+  scores: DS.hasMany('score', {async: true, inverse: 'panelist'}),
   permissions: DS.attr(),
 
-  psa: memberAction({ path: 'psa', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  psa: async function(data) {
+    return await apiAction(this, { path: 'psa', method: 'GET', ajaxOptions: { arraybuffer: true } })
+  },
 
   isDisabled: not(
     'permissions.write'
