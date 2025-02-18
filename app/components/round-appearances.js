@@ -14,9 +14,10 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  mt: alias('sortedAppearances.firstObject'),
-  hasMt: computed('mt', function() {
-    if (this.mt.num === 0) {
+  mt: alias('model.appearences.firstObject'),
+  hasMt: computed('model.appearences.firstObject', 'model.appearences.@each.id', function() {
+    console.log(this.get('model'));
+    if (this.model.appearences && this.model.appearences.firstObject.num === 0) {
       return true;
     }
     return false;
@@ -88,7 +89,7 @@ export default Component.extend({
     },
     reorderItems(itemModels) {
       itemModels.forEach(function(item, index) {
-        item.set('num', index + 1);          
+        item.set('num', index + 1);
       });
       itemModels.invoke('save');
       this.flashMessages.success('Success');

@@ -4281,7 +4281,7 @@ broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.4.3:
     symlink-or-copy "^1.0.1"
     walk-sync "^0.3.1"
 
-broccoli-persistent-filter@^2.2.1, broccoli-persistent-filter@^2.3.0, broccoli-persistent-filter@^2.3.1:
+broccoli-persistent-filter@^2.2.1, broccoli-persistent-filter@^2.3.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-2.3.1.tgz#4a052e0e0868b344c3a2977e35a3d497aa9eca72"
   integrity sha512-hVsmIgCDrl2NFM+3Gs4Cr2TA6UPaIZip99hN8mtkaUPgM8UeVnCbxelCvBjUBHo0oaaqP5jzqqnRVvb568Yu5g==
@@ -6253,16 +6253,6 @@ ember-cli-get-component-path-option@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
   integrity sha512-k47TDwcJ2zPideBCZE8sCiShSxQSpebY2BHcX2DdipMmBox5gsfyVrbKJWIHeSTTKyEUgmBIvQkqTOozEziCZA==
 
-ember-cli-htmlbars@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-3.1.0.tgz#87806c2a0bca2ab52d4fb8af8e2215c1ca718a99"
-  integrity sha512-cgvRJM73IT0aePUG7oQ/afB7vSRBV3N0wu9BrWhHX2zkR7A7cUBI7KC9VPk6tbctCXoM7BRGsCC4aIjF7yrfXA==
-  dependencies:
-    broccoli-persistent-filter "^2.3.1"
-    hash-for-dep "^1.5.1"
-    json-stable-stringify "^1.0.1"
-    strip-bom "^3.0.0"
-
 ember-cli-htmlbars@^5.7.1, ember-cli-htmlbars@^5.7.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.2.tgz#e0cd2fb3c20d85fe4c3e228e6f0590ee1c645ba8"
@@ -6918,13 +6908,15 @@ ember-simple-auth@^7.1.2:
     ember-cookies "^1.3.0"
     silent-error "^1.0.0"
 
-ember-sortable@^1.11.1:
-  version "1.12.10"
-  resolved "https://registry.yarnpkg.com/ember-sortable/-/ember-sortable-1.12.10.tgz#3d28ae7cae4cc5fe0e067ff08ee0f5d4d0e8353e"
-  integrity sha512-QYgm5IQtXvbsk9/MOTb/ECGuX57wEsVBuYxdc4OZ+ZXzgx4HnujBDn4zz+0eLFkopVnuqRy7TRMQsZEeMzvTAA==
+ember-sortable@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/ember-sortable/-/ember-sortable-5.2.3.tgz#078fe32841e5e797cb792157dc4034d5529cb73b"
+  integrity sha512-WEU4sxCWhPbgpvDqIN9yw50suyn4kyWQwFPliAcZJgERN/p4WLq9b78HjNL6dORahhlhHikNaeshj6h22mD3FQ==
   dependencies:
-    ember-cli-babel "^7.1.2"
-    ember-cli-htmlbars "^3.0.0"
+    "@embroider/addon-shim" "^1.8.9"
+    "@embroider/macros" "^1.16.6"
+    "@glimmer/env" "^0.1.7"
+    rsvp "^4.8.5"
 
 ember-source@~5.8.0:
   version "5.8.0"
@@ -14426,11 +14418,6 @@ strip-ansi@^7.0.1:
   integrity sha512-iq6eVVI64nQQTRYq2KtEg2d2uU7LElhTJwsH4YzIHZshxlgZms/wIc4VoDQTlG/IvVIrBKG06CrZnp0qv7hkcQ==
   dependencies:
     ansi-regex "^6.0.1"
-
-strip-bom@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
-  integrity sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==
 
 strip-bom@^4.0.0:
   version "4.0.0"

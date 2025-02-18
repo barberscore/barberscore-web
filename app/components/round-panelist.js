@@ -35,9 +35,6 @@ export default Component.extend({
     'personSort',
   ],
   sortedPanelists: computed('this.model.round', 'this.model.round.panelists.[]', 'this.model.round.panelists.length', 'this.model.round.panelists.isFulfilled', function() {
-    console.log("Model fulfilled?");
-    console.log(this.get('model.round.panelists.isFulfilled'));
-    console.log(this.get('model.round.isFulfilled'));
     const that = this;
     if (this.get('model.round.panelists.isFulfilled'))
       return this.get('model.round.panelists');

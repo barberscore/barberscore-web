@@ -1,29 +1,35 @@
-Disabled: {{ isDisabled }}
-{{ model.disablePrinted }}
+Disabled: {{ this.isDisabled }}
+{{ this.model.disablePrinted }}
 <section>
   <div class='card'>
     <div class='card-header'>
-      {{prev-next model=model sortedArray=sortedOutcomes}}
-      <h4>
-        {{html-safe model.name}}
-      </h4>
+      <div class="row">
+        <div class="col-md-6">
+          <h4>
+            {{html-safe this.model.name}}
+          </h4>
+        </div>
+        <div class="col-md-6">
+          {{prev-next model=this.model sortedArray=this.sortedOutcomes}}
+        </div>
+      </div>
     </div>
     <div class='card-body'>
       {{!-- <section>
-      {{#if model.contest.notQualifier }}
-        {{#power-select
-          options=model.contest.groupOptions
-          selected=model.contest.group
-          onchange=(action (mut model.contest.group))
-          onclose=(action "saveModel" model.contest)
-          placeholder="Choose Award Winner"
-          searchField='name'
-          allowClear=true
-          disabled=model.contest.isDisabled
+      {{#if this.model.contest.notQualifier }}
+        <PowerSelect
+          @options={{this.model.contest.groupOptions}}
+          @selected={{this.model.contest.group}}
+          @onChange={{action (mut this.model.contest.group)}}
+          @onClose={{action "saveModel" this.model.contest}}
+          @placeholder="Choose Award Winner"
+          @searchField='name'
+          @allowClear={{true}}
+          @disabled={{this.model.contest.isDisabled}}
           as |group|
-        }}
+        >
           Winner: {{html-safe group.name}}
-        {{/power-select}}
+        </PowerSelect>
       {{else}}
         (Qualifiers are determined by rule and appear on the OSS)
       {{/if }}
@@ -32,34 +38,34 @@ Disabled: {{ isDisabled }}
       <section>
           <p>
             <label>Result as Printed on OSS: </label>
-            {{input
+            <input
               class='form-control'
               type='text'
-              value=model.winner
-              disabled=isDisabled
+              value={{this.model.winner}}
+              disabled={{this.isDisabled}}
               placeholder='Result populated on Round Completion'
-              change=(perform autosave 'winner' value='target.value')
-            }}
+              change={{perform this.autosave 'winner' value='target.value'}}
+            />
           </p>
 
-          {{#if (or (and model.isSingle (if model.isFinals false true)) model.isFinals) }}
+          {{#if (or (and this.model.isSingle (if this.model.isFinals false true)) this.model.isFinals) }}
           <p>
             <label>
             {{input
               type='checkbox'
-              checked=model.printed
-              disabled=model.disablePrinted
-              click=(perform autosave model)
+              checked=this.model.printed
+              disabled=this.model.disablePrinted
+              click=(perform this.autosave this.model)
             }} Printed on OSS</label>
-          </p> 
+          </p>
 
           <p>
             <label>
             {{input
               disabled=isDisabled
               type='checkbox'
-              checked=model.printOnFinalsOss
-              click=(perform autosave model)
+              checked=this.model.printOnFinalsOss
+              click=(perform this.autosave this.model)
             }} Include on Finals OSS</label>
           </p>
           {{/if}}
@@ -69,12 +75,12 @@ Disabled: {{ isDisabled }}
           <table class='table table-hover table-sm'>
               <caption>
                 Contenders for this particular award.
-                {{#if (eq model.level 'Improved - Standard')}}
+                {{#if (eq this.model.level 'Improved - Standard')}}
                   <br/><br/>
                   <p>Points minus base score, highest number is winner. (<em>Must have a positive differential</em>)<br/>
                   In the case of a tie, winner will be the group with lowest total score.</p>
                 {{/if}}
-                {{#if (eq model.level 'Improved - Raw')}}
+                {{#if (eq this.model.level 'Improved - Raw')}}
                   <br/><br/>
                   <p>Points minus base score, highest number is winner. (<em>Can have a negative differential</em>)<br/>
                   In the case of a tie, winner will be the group with lowest total score.</p>
@@ -84,15 +90,15 @@ Disabled: {{ isDisabled }}
               <tr>
                 <th>Name</th>
                 <th>Points</th>
-                {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
+                {{#if (or (eq this.model.level 'Improved - Standard')(eq this.model.level 'Improved - Raw'))}}
                   <th>Base Score</th>
                   <th>Difference</th>
                 {{/if}}
               </tr>
             </thead>
             <tbody>
-              {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
-                {{#each sortedImprovedContenders as |contender|}}
+              {{#if (or (eq this.model.level 'Improved - Standard')(eq this.model.level 'Improved - Raw'))}}
+                {{#each this.sortedImprovedContenders as |contender|}}
                     <tr>
                       <td>
                         {{html-safe contender.name}}
@@ -111,7 +117,7 @@ Disabled: {{ isDisabled }}
                   </tr>
                 {{/each}}
               {{else}}
-                {{#each sortedContenders as |contender|}}
+                {{#each this.sortedContenders as |contender|}}
                     <tr>
                       <td>
                         {{html-safe contender.name}}
@@ -133,9 +139,9 @@ Disabled: {{ isDisabled }}
     </div>
     <div class='card-footer'>
       <ul class='list-inline'>
-        {{#if (eq model.round.status 'Built')}}
-          {{#if model.permissions.write}}
-            <li>{{outcome-delete model=model}}</li>
+        {{#if (eq this.model.round.status 'Built')}}
+          {{#if this.model.permissions.write}}
+            <li>{{outcome-delete model=this.model}}</li>
           {{/if}}
         {{/if}}
         {{!-- <li class='pull-right'><h4>Contest Status: <strong>{{model.status}}</strong></h4></li> --}}

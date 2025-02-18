@@ -8,35 +8,14 @@
 </section>
 
 <div class='form-inline'>
-  <div class='form-group'>
-    {{bs-datetimepicker
-      date=this.model.onstage
-      format="HH:mm"
-      showIcon=true
-      isTime=true
-      disabled=true
-      placeholder='Grid Time N/A'
-    }}
+  <div class='form-group d-inline-block'>
+    <input type="text" value={{if this.model.onstage (moment-format this.model.onstage 'HH:mm') 'Grid Time N/A'}} disabled={{true}} placeholder='Grid Time N/A' />
   </div>
-  <div class='form-group'>
-    {{bs-datetimepicker
-      date=this.model.actualStart
-      format="HH:mm"
-      showIcon=true
-      isTime=true
-      disabled=true
-      placeholder='Actual Start Time'
-    }}
+  <div class='form-group d-inline-block'>
+    <input type="text" value={{if this.model.actualStart (moment-format this.model.actualStart 'HH:mm') 'Actual Start Time'}} disabled={{true}} placeholder='Actual Start Time' />
   </div>
-  <div class='form-group'>
-    {{bs-datetimepicker
-      date=this.model.actualFinish
-      format="HH:mm"
-      showIcon=true
-      isTime=true
-      disabled=true
-      placeholder='Actual Finish Time'
-    }}
+  <div class='form-group d-inline-block'>
+    <input type="text" value={{if this.model.actualFinish (moment-format this.model.actualFinish 'HH:mm') 'Actual Finish Time'}} disabled={{true}} placeholder='Actual Finish Time' />
   </div>
   {{#if this.model.actualStart}}
     <div class='form-group'>
@@ -56,7 +35,7 @@
         min=0
         disabled=isDisabled
         max=200
-        key-press=(perform autosave value='target.value')
+        key-press=(perform this.autosave value='target.value')
       }}
     </div>
   </div>

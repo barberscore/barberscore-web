@@ -1,4 +1,4 @@
-{{#unless (eq model.status 'New')}}
+{{#unless (eq this.model.status 'New')}}
   <div class='table-responsive'>
     <table class='table table-hover table-sm'>
         <caption>
@@ -13,20 +13,22 @@
           <th>Result</th>
         </tr>
       </thead>
-      {{#each sortedOutcomes as |outcome|}}
-        {{#sortable-item tagName="tr" model=outcome group=group class='handle' handle=".handle"}}
-            {{#if (or (and outcome.isSingle (if model.isFinals false true)) model.isFinals) }}
+      <tbody>
+      {{#each this.sortedOutcomes as |outcome|}}
+        <tr>
+
+            {{#if (or (and outcome.isSingle (if this.model.isFinals false true)) this.model.isFinals) }}
             <td>
-                {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform autosave outcome) disabled=isDisabled}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printOnFinalsOss click=(perform this.autosave outcome) disabled=this.isDisabled}}
             </td>
             <td>
-                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform autosave outcome) disabled=outcome.disablePrinted}}
+                {{input type="checkbox" class='pl-2' checked=outcome.printed click=(perform this.autosave outcome) disabled=outcome.disablePrinted}}
             </td>
             {{else}}
               <td colspan='2'></td>
             {{/if}}
             <td>
-              {{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' outcome}}{{html-safe outcome.name}}{{/link-to}}
+              <LinkTo @route='dashboard.conventions.convention.sessions.session.rounds.round.outcomes.outcome' @model={{outcome}}>{{html-safe outcome.name}}</LinkTo>
             </td>
             <td>
               {{#if (or (eq outcome.level 'Manual'))}}
@@ -36,32 +38,33 @@
             <td>
               {{html-safe outcome.winner}}
             </td>
-        {{/sortable-item}}
+          </tr>
       {{else}}
         <tr>
           <td colspan=3>No award outcomes this round.</td>
         </tr>
       {{/each}}
+      </tbody>
     </table>
   </div>
   {{!-- <div>
-    {{#if (eq model.status 'Built')}}
+    {{#if (eq this.model.status 'Built')}}
       <p>
-        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createOutcomeModal) true)}}Create New Outcome{{/bs-button}}
+        <BsButton @type='success' @disabled={{this.model.isDisabled}} @onClick={{action (mut createOutcomeModal) true}}>Create New Outcome</BsButton>
       </p>
     {{/if}}
   </div> --}}
   <div>
-    {{#bs-modal
-      open=createOutcomeModal
-      onHidden=(pipe-action (action (mut createOutcomeModal) false) (action (mut createOutcomeModalError) false))
+    <BsModal
+      @open={{this.createOutcomeModal}}
+      @onHidden={{pipe-action (action (mut this.createOutcomeModal) false) (action (mut this.createOutcomeModalError) false)}}
       size='lg'
       as |modal|
-    }}
-      {{#modal.header}}
+    >
+      <modal.header>
         <h4>New Outcome</h4>
-      {{/modal.header}}
-      {{#modal.body}}
+      </modal.header>
+      <modal.body>
         <p>
           Enter the details for the Outcome.
         </p>
@@ -76,36 +79,36 @@
           }}
         </p>
         <p>
-          {{#power-select
-            search=(perform searchAward)
-            selected=award
-            onchange=(action (mut award))
-            placeholder="Enter Award Name"
-            allowClear=true
-            renderInPlace=true
-            noMatchesMessage="We Could Not Find an Award with that Name"
+          <PowerSelect
+            @search={{perform this.searchAward}}
+            @selected={{this.award}}
+            @onChange={{action (mut this.award)}}
+            @placeholder="Enter Award Name"
+            @allowClear={{true}}
+            @renderInPlace={{true}}
+            @noMatchesMessage="We Could Not Find an Award with that Name"
             as |award|
-          }}
+          >
             Award: {{html-safe award.name}}
-          {{/power-select}}
+          </PowerSelect>
         </p>
-        {{#if createOutcomeModalError}}
+        {{#if this.createOutcomeModalError}}
         <p class='text-danger'>
           Could not create outcome. Be sure the draw numbers are unique! Otherwise, please contact support.
         </p>
         {{/if}}
-      {{/modal.body}}
-      {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform saveOutcome award num) disabled=isDisabled}}
-          {{#if saveOutcome.isRunning}}
-            Creating {{fa-icon "spinner" spin=true}}
+      </modal.body>
+      <modal.footer>
+        <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+        <BsButton @type='success' @onClick={{perform this.saveOutcome this.award this.num}} @disabled={{this.isDisabled}}>
+          {{#if this.saveOutcome.isRunning}}
+            Creating <FaIcon @icon="spinner" @spin={{true}} />
           {{else}}
             Create Outcome
           {{/if}}
-        {{/bs-button}}
-      {{/modal.footer}}
-    {{/bs-modal}}
+        </BsButton>
+      </modal.footer>
+    </BsModal>
   </div>
 {{else}}
   <h4>

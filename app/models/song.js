@@ -1,7 +1,7 @@
 import { not, sum, mapBy, filterBy } from '@ember/object/computed';
 // import { computed } from '@ember/object';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
+import DS from 'ember-data';
 
 export default Model.extend({
   status: DS.attr('song-status'),
@@ -16,7 +16,7 @@ export default Model.extend({
   arrangers: DS.attr('string'),
 
   appearance: DS.belongsTo('appearance', {async: true, inverse: 'songs'}),
-  scores: DS.hasMany('score', {async: true}),
+  scores: DS.hasMany('score', {async: true, inverse: 'song'}),
   permissions: DS.attr(),
 
   isDisabled: not(

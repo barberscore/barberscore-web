@@ -35,8 +35,8 @@ export default Model.extend({
   charts: DS.attr(),
 
   round: DS.belongsTo('round', {async: true, inverse: 'appearances'}),
-  songs: DS.hasMany('song', {async: true, inverse: 'appearence'}),
-  outcomes: DS.hasMany('outcome', {async: true, inverse: 'appearences'}),
+  songs: DS.hasMany('song', {async: true, inverse: 'appearance'}),
+  outcomes: DS.hasMany('outcome', {async: true, inverse: 'appearances'}),
   owners: DS.hasMany('user', {async: true, inverse: null}),
   permissions: DS.attr(),
 

@@ -8,23 +8,23 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedSongs as |song|}}
+      {{#each this.sortedSongs as |song|}}
         <tr>
           <td>
             {{song.title}}
           </td>
           <td>
-            {{#power-select-multiple
-              options=song.penaltyOptions
-              selected=song.penalties
-              onchange=(perform autosave song)
-              placeholder="(No Penalties)"
-              allowClear=true
-              disabled=isDisabled
+            <PowerSelectMultiple
+              @options={{song.penaltyOptions}}
+              @selected={{song.penalties}}
+              @onChange={{perform this.autosave song}}
+              @placeholder="(No Penalties)"
+              @allowClear={{true}}
+              @disabled={{this.isDisabled}}
               as |penalties|
-            }}
-              {{map-penalty penalties}}
-            {{/power-select-multiple}}
+            >
+              {{map-penalty this.penalties}}
+            </PowerSelectMultiple>
           </td>
         </tr>
       {{else}}
@@ -34,24 +34,24 @@
       {{/each}}
     </tbody>
   </table>
-  {{#unless (eq model.round.status 'Published') }}
+  {{#unless (eq this.model.round.status 'Published') }}
     <div class="alert alert-warning alert-penalty" role="alert">Penalties should only be recorded if one judge assessed a penalty of 5 or more points for a specific rule violation.</div>
   {{/unless}}
 {{!-- </div> --}}
-{{#bs-modal
-  open=appearancePenalityModal
-  onHidden=(pipe-action (action (mut appearancePenalityModal) false))
+<BsModal
+  @open={{this.appearancePenalityModal}}
+  @onHidden={{pipe-action (action (mut this.appearancePenalityModal) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Penality Notice</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       A penalty should only be indicated if it is for at least 5 points from a single judge for a single rule violation.  Any penalties for less than 5 points should not be entered in Scoring Manager so if that is the case, please remove it before Verifying this Appearance.
     </p>
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="primary"}}I Understand{{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} type="primary">I Understand</BsButton>
+  </modal.footer>
+</BsModal>

@@ -37,12 +37,15 @@ export default Component.extend({
           songTitle: 'Song not in Repertory',
         }
         charts.push(unknownChart);
-        return charts.sortBy('title');
+        return charts.sort(function(a, b) {
+          return a.title < b.title;
+        });
       },
 
       set(key, value) {
         return this._charts = value;
       }
+
     }
   ),
   isDisabled: computed('model.round.status', function() {

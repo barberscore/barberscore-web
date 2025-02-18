@@ -10,13 +10,20 @@ export default Component.extend({
     }
     return false;
   }),
-  sortedSongsProperties: [
-    'num',
-  ],
-  sortedSongs: sort(
-    'model.songs',
-    'sortedSongsProperties'
-  ),
+  sortedSongs: [],
+  init: function() {
+    this._super(...arguments);
+    this.setSongs();
+  },
+  setSongs: function() {
+    const that = this;
+    this.get('model.songs').then(function(songs) {
+      const updatedSongs = songs.toSorted(function(a, b) {
+        return a.num < b.num ? -1 : 1;
+      });
+      that.set('sortedSongs', updatedSongs);
+    });
+  },
   appearancePenalityModal: false,
   autosave: task(function* (song, penalties){
     yield song.set('penalties', penalties);
