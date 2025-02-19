@@ -1,15 +1,15 @@
 <section>
-  {{#if (eq model.kind 'Finals')}}
+  {{#if (eq this.model.kind 'Finals')}}
     <h4>
       (There is no next round to Draw.)
     </h4>
-  {{else if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
+  {{else if (or (eq this.model.status 'New')(eq this.model.status 'Built')(eq this.model.status 'Started'))}}
     <h4>
       The Draw is available after the Round has Completed.
     </h4>
-  {{else if (and isEditing (eq model.status 'Completed'))}}
+  {{else if (and this.isEditing (eq this.model.status 'Completed'))}}
     <div class='pb-2'>
-      {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked. Click to Unlock Draw{{/if}}{{/bs-button}}
+      <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleDraw'}}>{{#if this.isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked. Click to Unlock Draw{{/if}}</BsButton>
     </div>
     <div class='table-responsive'>
       <table class='table table-hover'>
@@ -25,8 +25,8 @@
               MT
             </td>
             <td>
-              {{#if hasMt}}
-                {{html-safe mt.0.name}}
+              {{#if this.hasMt}}
+                {{html-safe this.mt.0.name}}
               {{else}}
                 No MT advanced
               {{/if}}
@@ -35,7 +35,7 @@
             </td>
           </tr>
           {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-            {{#each sortedAppearances as |item|}}
+            {{#each this.sortedAppearances as |item|}}
               {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
                 <td>
                   {{item.draw}}
@@ -60,10 +60,10 @@
     </div>
   {{else}}
     <div>
-      {{#if (eq model.status 'Completed')}}
+      {{#if (eq this.model.status 'Completed')}}
     <div class='pb-2'>
           <div class='col-md-6'>
-            {{#bs-button type='outline-dark' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+            <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleDraw'}}>{{#if this.isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}</BsButton>
           </div>
         </div>
       {{else}}
@@ -82,7 +82,7 @@
               <th>Draw</th>
               <th>Name</th>
               <th>Notes</th>
-              {{#if (eq model.status 'Completed')}}
+              {{#if (eq this.model.status 'Completed')}}
                 <th class="actions">Actions</th>
               {{/if}}
             </tr>
@@ -93,23 +93,23 @@
                 MT
               </td>
               <td>
-                {{#if hasMt}}
-                  {{html-safe mt.0.name}}
+                {{#if this.hasMt}}
+                  {{html-safe this.mt.0.name}}
                 {{/if}}
               </td>
               <td>
               </td>
-              {{#if (eq model.status 'Completed')}}
+              {{#if (eq this.model.status 'Completed')}}
               <td>
-                {{#if hasMt}}
-                  {{#each mt as |appearance|}}
+                {{#if this.hasMt}}
+                  {{#each this.mt as |appearance|}}
                     {{round-draw-remove model=appearance}}
                   {{/each}}
                 {{/if}}
               </td>
               {{/if}}
             </tr>
-            {{#each sortedAppearances as |appearance|}}
+            {{#each this.sortedAppearances as |appearance|}}
               <tr>
                 <td>
                   {{appearance.draw}}
@@ -120,7 +120,7 @@
                 <td>
                   {{appearance.notes}}
                 </td>
-                {{#if (eq model.status 'Completed')}}
+                {{#if (eq this.model.status 'Completed')}}
                 <td>
                   {{round-draw-remove model=appearance}}
                 </td>
@@ -135,12 +135,12 @@
         </table>
       </div>
     </div>
-    {{#if (eq model.status 'Completed')}}
+    {{#if (eq this.model.status 'Completed')}}
       <div class='row'>
         <div class='col-md-12'>
           <p>
-            {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut advanceGroupModal) true)}}Add Advancing Group{{/bs-button}}
-          </p>          
+            <BsButton @type='success' @disabled={{this.model.isDisabled}} @onClick={{action (mut this.advanceGroupModal) true}}>Add Advancing Group</BsButton>
+          </p>
         </div>
       </div>
       <div class='row'>
@@ -152,15 +152,15 @@
   {{/if}}
 </section>
 <div>
-  {{#bs-modal
-    open=advanceGroupModal
-    onHidden=(pipe-action (action (mut advanceGroupModal) false) (action (mut advanceGroupModalError) false))
+  <BsModal
+    @open={{this.advanceGroupModal}}
+    @onHidden={{pipe-action (action (mut this.advanceGroupModal) false) (action (mut this.advanceGroupModalError) false)}}
     as |modal|
-  }}
-    {{#modal.header}}
+  >
+    <modal.header>
       <h4>Advance Group</h4>
-    {{/modal.header}}
-    {{#modal.body}}
+    </modal.header>
+    <modal.body>
       <p>
         Select the group to advance into the next round.
       </p>
@@ -175,34 +175,34 @@
         }}
       </p>
       <p>
-        {{#power-select
-          options=sortedRoundAppearances
-          selected=group
-          onchange=(action (mut group))
-          placeholder="Enter Group Name"
-          allowClear=true
-          renderInPlace=true
-          noMatchesMessage="We Could Not Find a group with that name"
+        <PowerSelect
+          @options={{this.sortedRoundAppearances}}
+          @selected={{this.group}}
+          @onChange={{action (mut this.group)}}
+          @placeholder="Enter Group Name"
+          @allowClear={{true}}
+          @renderInPlace={{true}}
+          @noMatchesMessage="We Could Not Find a group with that name"
           as |group|
-        }}
+        >
           Group: {{html-safe group.name}} [{{group.bhsId}}]
-        {{/power-select}}
+        </PowerSelect>
       </p>
-      {{#if advanceGroupModalError}}
+      {{#if this.advanceGroupModalError}}
       <p class='text-danger'>
         Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
       </p>
       {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
+    </modal.body>
+    <modal.footer>
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='success' onClick=(perform advanceGroup group draw) disabled=isDisabled}}
-        {{#if advanceGroup.isRunning}}
-          Advancing {{fa-icon "spinner" spin=true}}
+      <BsButton @type='success' @onClick={{perform this.advanceGroup this.group this.draw}} @disabled={{this.isDisabled}}>
+        {{#if this.advanceGroup.isRunning}}
+          Advancing <FaIcon @icon="spinner" @spin={{true}} />
         {{else}}
           Advance Group
         {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
+      </BsButton>
+    </modal.footer>
+  </BsModal>
 </div>
