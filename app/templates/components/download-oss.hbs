@@ -1,28 +1,28 @@
 <div class='download-oss-button-wrapper'>
   <BsDropdown as |dd|>
-    {{#bs-button
-      type='success'
-      onClick=(perform oss)
-    }}
-      {{#if oss.isRunning}}
-        Downloading {{fa-icon "spinner" spin=true}}
-      {{else if oss.last.isError}}
+    <BsButton
+      @type='success'
+      @onClick={{perform this.oss}}
+    >
+      {{#if this.oss.isRunning}}
+        Downloading <FaIcon @icon="spinner" @spin={{true}} />
+      {{else if this.oss.last.isError}}
         Error Downloading
       {{else}}
-        {{#if (eq model.status 'Completed')}}
-          Download <em>Draft</em> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+        {{#if (eq this.model.status 'Completed')}}
+          Download <em>Draft</em> OSS&nbsp;&nbsp;<FaIcon @icon='file-text' />
         {{else}}
-          Download <strong>Final</strong> OSS&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+          Download <strong>Final</strong> OSS&nbsp;&nbsp;<FaIcon @icon='file-text' />
         {{/if}}
       {{/if}}
-    {{/bs-button}}
+    </BsButton>
     <dd.button @type="success"><span class="caret"></span></dd.button>
     <dd.menu as |menu|>
       <menu.item>
-        <button class="dropdown-item" onclick={{perform oss 'Legal'}}>Download on Legal Paper</button>
+        <button class="dropdown-item" onclick={{perform this.oss 'Legal'}}>Download on Legal Paper</button>
       </menu.item>
       <menu.item>
-        <button class="dropdown-item" onclick={{perform oss 'Letter'}}>Download on Letter Paper</button>
+        <button class="dropdown-item" onclick={{perform this.oss 'Letter'}}>Download on Letter Paper</button>
       </menu.item>
     </dd.menu>
   </BsDropdown>

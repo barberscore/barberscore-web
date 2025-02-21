@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
+  fileDownload: service(),
   filename: function(name) {
     return `${name} OSS`
     .replace(/ /g,'-')
@@ -12,10 +13,9 @@ export default Component.extend({
     .replace(/--+/g,'-');
   },
   oss: task(function *(paperSize) {
-    let model = yield this.model.reload();
-    let pdf = yield this.model.oss({ paperSize: paperSize });
-    let fileName = this.filename(model.scoresheetFilename);
-    this.saveFileAs(fileName, pdf, 'application/pdf');
+    let model = this.model;
+    let fileName = this.filename(model.scoresheetFilename) + '.pdf';
+    yield this.fileDownload.downloadFile(this.model, 'oss', fileName, 'application/pdf');
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });

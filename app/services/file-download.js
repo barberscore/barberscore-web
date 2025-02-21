@@ -31,7 +31,7 @@ export default Service.extend({
     return url.href;
   },
 
-  downloadFile: async function(record, path, fileName) {
+  downloadFile: async function(record, path, fileName, fileType) {
     let modelClass = record.constructor;
     let modelName = modelClass.modelName;
     let snapshot = record._createSnapshot();
@@ -42,8 +42,10 @@ export default Service.extend({
     let response = await fetch(url, {
       headers: headers
     })
+    if (!fileType)
+      fileType='text/plain';
     response = await response.text();
-    const blob = new Blob([response], { type: 'text/plain' });
+    const blob = new Blob([response], { type: fileType });
     const downloadUrl = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = downloadUrl;
