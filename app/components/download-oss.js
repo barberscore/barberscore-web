@@ -14,8 +14,8 @@ export default Component.extend({
   },
   oss: task(function *(paperSize) {
     let model = this.model;
-    let fileName = this.filename(model.scoresheetFilename) + '.pdf';
-    yield this.fileDownload.downloadFile(this.model, 'oss', fileName, 'application/pdf');
+    let fileName = this.filename(model.scoresheetFilename);
+    yield this.fileDownload.downloadFile(this.model, 'oss', fileName, 'application/pdf', { paperSize: paperSize });
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });

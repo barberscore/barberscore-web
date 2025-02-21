@@ -31,7 +31,7 @@ export default Service.extend({
     return url.href;
   },
 
-  downloadFile: async function(record, path, fileName, fileType) {
+  downloadFile: async function(record, path, fileName, fileType, data) {
     let modelClass = record.constructor;
     let modelName = modelClass.modelName;
     let snapshot = record._createSnapshot();
@@ -39,12 +39,18 @@ export default Service.extend({
     let baseUrl = adapter.buildURL(modelName, record.id, snapshot, 'updateRecord');
     let headers = this.getHeaders();
     let url = this.addPath(baseUrl, path);
-    let response = await fetch(url, {
-      headers: headers
-    })
+    if (data)
+      url += `?${Object.keys(data).map(k=>`${k}=${data[k]}`).join('&')}`;
+    let config = {
+      headers: headers,
+    };
+    let response = await fetch(url, config)
     if (!fileType)
       fileType='text/plain';
-    response = await response.text();
+    if (fileType == 'text/plain')
+      response = await response.text();
+    else
+      response = await response.blob();
     const blob = new Blob([response], { type: fileType });
     const downloadUrl = URL.createObjectURL(blob);
     const a = document.createElement("a");
