@@ -10,9 +10,15 @@ export default Component.extend({
     Invited: 0,
     Submitted: 0,
     Withdrawn: 0,
-    Approved: 0
+    Approved: 0,
+    total: 0
   },
-  allEntries: computed('model.entries.@each.id', function() {
+  allEntries: [],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setEntriesCount();
+  },
+  setEntriesCount: function() {
     const that = this;
     this.get('model.entries').then(function(entriesObj) {
       const entries = {
@@ -21,14 +27,15 @@ export default Component.extend({
         Invited: 0,
         Submitted: 0,
         Withdrawn: 0,
-        Approved: 0
+        Approved: 0,
+        total: 0
       };
       entriesObj.map(function(item) {
         var existingValue = entries[item.status] || 0;
         entries[item.status] = existingValue + 1;
+        entries.total += 1;
       });
       that.set('entriesCount', entries);
     });
-    return this.get('model.entries');
-  }),
+  }
 });

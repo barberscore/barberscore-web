@@ -1,36 +1,36 @@
-{{#bs-button
-  type='danger'
-  disabled=false
-  onClick=(action (mut withdrawEntryModal) true)
-}}
+<BsButton
+  @type='danger'
+  @disabled={{false}}
+  @onClick={{action (mut this.withdrawEntryModal) true}}
+>
   Withdraw Entry
-{{/bs-button}}
-{{#bs-modal
-  open=withdrawEntryModal
-  onHidden=(pipe-action (action (mut withdrawEntryModal) false) (action (mut withdrawEntryModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.withdrawEntryModal}}
+  @onHidden={{pipe-action (action (mut this.withdrawEntryModal) false) (action (mut this.withdrawEntryModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Withdraw Entry</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This will formally withdraw your entry in this contest.  Any decision to re-enter the contest must be reviewed and approved by the DRCJ.
     </p>
-    {{#if submitEntryModalError}}
+    {{#if this.submitEntryModalError}}
     <p class='text-danger'>
       Could not withdraw entry.  Please contact support.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='danger' onClick=(perform withdrawEntry)}}
-      {{#if withdrawEntry.isRunning}}
-        Withdrawing {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
+    <BsButton @type='danger' @onClick={{perform this.withdrawEntry}}>
+      {{#if this.withdrawEntry.isRunning}}
+        Withdrawing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Withdraw Entry
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

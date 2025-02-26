@@ -1,57 +1,58 @@
-{{#bs-form
-  formLayout="vertical"
-  model=model
+<BsForm
+  @formLayout="vertical"
+  @model={{this.model}}
+  @disabled={{this.isDisabled}}
   as |form|
-}}
-  {{#if (eq model.kind 'Quartet')}}
+>
+  {{#if (eq this.model.kind 'Quartet')}}
 
-    <label {{action (toggle 'memberHelp' this)}}>Members: T, L, Br, Bs {{fa-icon 'question-circle-o'}}</label>
-    {{form.element controlType='text' disabled=isDisabled placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' property='participants' onChange=(perform autosave 'participants')}}
-    {{#bs-collapse collapsed=memberHelp}}
+    <label {{action (toggle 'memberHelp' this)}}>Members: T, L, Br, Bs <FaIcon @icon='question-circle' /></label>
+    <form.element @controlType='text' @placeholder='Quartet Members Appearing on Stage, ordered TLBrBs, comma separated' @property='participants' @onChange={{perform this.autosave 'participants'}} />
+    <BsCollapse @collapsed={{this.memberHelp}}>
       <p>
         Please indicate the names of your quartet that will be performing as you wish them to appear on the Official Scoring Summary (OSS). Names must be listed in order (T, L, Br, Bs) separated by commas. For example:
       </p>
       <p>
         <strong>Tim Waurick, Joe Connelly, Brandon Guyton, Brett Littlefield</strong>
       </p>
-    {{/bs-collapse}}
+    </BsCollapse>
 
-    <label {{action (toggle 'chapterHelp' this)}}>Chapter(s): {{fa-icon 'question-circle-o'}}</label>
-    {{form.element controlType='text' disabled=isDisabled placeholder='Chapter membership(s) of the quartet participants.' property='chapters' onChange=(perform autosave 'chapters')}}
-    {{#bs-collapse collapsed=chapterHelp}}
+    <label {{action this.toggleProperty 'chapterHelp'}}>Chapter(s): <FaIcon @icon='question-circle' /></label>
+    <form.element @controlType='text' @placeholder='Chapter membership(s) of the quartet participants.' @property='chapters' @onChange={{perform this.autosave 'chapters'}} />
+    <BsCollapse @collapsed={{this.chapterHelp}}>
       <p>
         Please indicate your Chapter memberships as you wish to them to be announced, separated by commas. For example:
       </p>
       <p>
         <strong>Bay Area, Santa Fe, and Frank Thorne.</strong>
       </p>
-    {{/bs-collapse}}
+    </BsCollapse>
 
   {{else}}
 
-    <label {{action (toggle 'memberHelp' this)}}>Director(s): {{fa-icon 'question-circle-o'}}</label>
-    {{form.element controlType='text' disabled=isDisabled placeholder='Director(s)' property='participants' onChange=(perform autosave 'participants')}}
-    {{#bs-collapse collapsed=memberHelp}}
+    <label {{action (toggle 'memberHelp' this)}}>Director(s): <FaIcon @icon='question-circle' /></label>
+    <form.element @controlType='text' @placeholder='Director(s)' @property='participants' @onChange={{perform this.autosave 'participants'}} />
+    <BsCollapse collapsed={{this.memberHelp}} >
       <p>
         Please indicate the name of your director as you wish it to appear on the Official Scoring Summary (OSS). If you will have no director, you must type the word 'None'. If more than one director will be performing (limit of 2 directors), separate the names by a comma and a space.
       </p>
-    {{/bs-collapse}}
-    <label {{action (toggle 'chapterHelp' this)}}>Chapter: {{fa-icon 'question-circle-o'}}</label>
-    {{form.element controlType='text' disabled=isDisabled placeholder='Chorus parent chapter' property='chapters' onChange=(perform autosave 'chapters')}}
-    {{#bs-collapse collapsed=chapterHelp}}
+    </BsCollapse>
+    <label {{action this.toggleProperty 'chapterHelp'}}>Chapter: <FaIcon @icon='question-circle' /></label>
+    <form.element @controlType='text' @placeholder='Chorus parent chapter' @property='chapters' @onChange={{perform this.autosave 'chapters'}} />
+    <BsCollapse @collapsed={{this.chapterHelp}}>
       <p>
         Please indicate the parent Chapter of your Chorus.  For example:
       </p>
       <p>
         <strong>Alexandria, VA</strong>
       </p>
-    {{/bs-collapse}}
-    <label {{action (toggle 'posHelp' this)}}>Estimated Participants-On-Stage: {{fa-icon 'question-circle-o'}}</label>
-    {{form.element controlType='tel' disabled=isDisabled placeholder='Estimated number of participants that will be performing on stage' property='pos' onChange=(perform autosave 'pos')}}
-    {{#bs-collapse collapsed=posHelp}}
+    </BsCollapse>
+    <label {{action this.toggleProperty 'posHelp'}}>Estimated Participants-On-Stage: <FaIcon @icon='question-circle-o' /></label>
+    <form.element @controlType='tel' @placeholder='Estimated number of participants that will be performing on stage' @property='pos' @onChange={{perform this.autosave 'pos'}} />
+    <BsCollapse @collapsed={{this.posHelp}}>
       <p>
         Please indicate the esimated number of participants you expect to have on the risers for your appearance.  This does not need to be a precise accounting, but please make your best estimate.  It is used to help plan the number of risers and to determine eligibility for certain awards.
       </p>
-    {{/bs-collapse}}
+    </BsCollapse>
   {{/if}}
-{{/bs-form}}
+</BsForm>

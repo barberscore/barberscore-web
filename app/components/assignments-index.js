@@ -1,4 +1,4 @@
-import Controller from '@ember/controller';
+import Component from '@ember/component';
 import { sort, not } from '@ember/object/computed';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
@@ -6,7 +6,7 @@ import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
 import ArrayProxy from '@ember/array/proxy';
 
-export default Controller.extend({
+export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),

@@ -1,0 +1,119 @@
+<section id="entry-detail">
+  <div class='card'>
+    <div class='card-header'>
+      <div class="row">
+        <div class="col-md-6">
+          {{entry-card-name model=this.model}}
+        </div>
+        <div class="col-md-6">
+          {{prev-next model=this.model sortedArray=this.sortedEntries}}
+        </div>
+      </div>
+    </div>
+    <div class='card-body'>
+      <section>
+        <div class='row'>
+          <div class='col-9'>
+            <h4>
+              Group Preferences
+            </h4>
+            <p>
+              {{!-- {{group-info model=group}} --}}
+              {{entry-info model=this.model}}
+              {{entry-preferences model=this.model}}
+            </p>
+            <br>
+            <h4>
+              DRCJ Preferences
+            </h4>
+            <p>
+              {{entry-drcj model=this.model}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h4>
+          Contests
+        </h4>
+        {{#if this.model.session.roundsPublished}}
+          <p><small><em>Contests can't be changed once the final round is published.</em></small></p>
+        {{/if}}
+        <p>
+          {{entry-contests model=this.model options=this.contests lockContests=this.model.session.roundsPublished}}
+        </p>
+      </section>
+      <section>
+        <h4>
+          Repertory
+        </h4>
+        <p>
+          {{group-charts model=this.group entry=this.model}}
+        </p>
+      </section>
+      <section>
+        <div class='row'>
+          <div class='col-6'>
+            <h4>
+              Additional Notes:
+            </h4>
+            <p>
+              {{entry-notes model=this.model}}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <p>
+          Activity Log:
+          <BsButton @type='outline-dark' @size='sm' @onClick={{toggle 'logsCollapsed' this}}>
+            {{if this.logsCollapsed 'Show' 'Hide'}}
+          </BsButton>
+        </p>
+        <BsCollapse @collapsed={{this.logsCollapsed}}>
+          {{model-statelogs model=this.model}}
+        </BsCollapse>
+      </section>
+    </div>
+    <div class='card-footer'>
+      <div class="row">
+        <div class="col-md-6">
+          {{entry-card-name model=this.model}}
+        </div>
+        <div class="col-md-6">
+          {{prev-next model=this.model sortedArray=this.sortedEntries}}
+        </div>
+      </div>
+    </div>
+    <div class='card-footer'>
+      <ul class='list-inline'>
+        {{#unless this.model.session.roundsPublished}}
+          {{#if (eq this.model.status 'New')}}
+            <li class='list-inline-item'>{{entry-delete model=this.model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          {{else if (eq this.model.status 'Built')}}
+            {{#if this.model.session.isInvitational}}
+              <li class='list-inline-item'>{{entry-invite model=this.model}}</li>
+            {{else}}
+              {{!-- <li class='list-inline-item'>{{entry-approve model=this.model}}</li> --}}
+            {{/if}}
+            <li class='list-inline-item'>{{entry-delete model=this.model callback='dashboard.conventions.convention.sessions.session.entries'}}</li>
+          {{else if (eq this.model.status 'Invited')}}
+            <li class='list-inline-item'>{{entry-submit model=this.model}}</li>
+            <li class='list-inline-item'>{{entry-withdraw model=this.model}}</li>
+          {{else if (eq this.model.status 'Submitted')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=this.model}}</li> --}}
+            <li class='list-inline-item'>{{entry-withdraw model=this.model}}</li>
+          {{else if (and (eq this.model.status 'Approved')(eq this.model.session.status 'Packaged'))}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=this.model}}</li> --}}
+            <li class='list-inline-item'>{{entry-withdraw model=this.model}}</li>
+          {{else if (eq this.model.status 'Withdrawn')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=this.model}}</li> --}}
+          {{else if (eq this.model.status 'Scratched')}}
+            {{!-- <li class='list-inline-item'>{{entry-approve model=this.model}}</li> --}}
+          {{/if}}
+        {{/unless}}
+        <li class='text-end'><h4>Entry Status: <strong>{{this.model.status}}</strong></h4></li>
+      </ul>
+    </div>
+  </div>
+</section>

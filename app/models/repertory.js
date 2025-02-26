@@ -1,7 +1,7 @@
 import { not } from '@ember/object/computed';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
-import { memberAction } from 'ember-api-actions';
+import DS from 'ember-data';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   status: DS.attr('repertory-status'),
@@ -13,8 +13,12 @@ export default Model.extend({
   entry: DS.belongsTo('entry', {async: true, inverse: 'repertories'}),
   permissions: DS.attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  activate: async function() {
+    return await apiAction(this, {path: 'activate', method: 'POST'});
+  },
+  deactivate: async function() {
+    return await apiAction(this, {path: 'deactivate', method: 'POST'});
+  },
 
   isDisabled: not(
     'permissions.write'

@@ -12,18 +12,26 @@ export default Component.extend({
   customCollapsed2: true,
   customCollapsed4: true,
   customCollapsed5: true,
-  sortedRepertoriesProperties: [
-    'title',
-  ],
-  sortedRepertories: sort(
-    'model.charts',
-    'sortedRepertoriesProperties'
-  ),
+  sortedRepertories: [],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setRepertories();
+  },
+  setRepertories: function() {
+    const that = this;
+    if (!this.get('model'))
+      return;
+    this.get('model.charts').then(function(charts) {
+      charts = charts.toSorted(function(a, b) {
+        return a.title < b.title ? -1 : 1;
+      });
+      that.set('sortedRepertories', charts);
+    });
+  },
   flashMessages: service(),
   searchChart: task(function* (term){
     yield timeout(600);
-    let func = denodeify(this.algolia.search.bind(this.algolia))
-    let res = yield func({ indexName: 'Chart', query: term})
+    let res = yield this.algolia.search({ indexName: 'Chart', query: term})
     return res.hits
   }),
   createRepertoryModal: false,
@@ -34,19 +42,23 @@ export default Component.extend({
     try {
       let group = yield this.model;
       let chart = yield this.store.findRecord('chart', obj.objectID);
-      group.get('charts').pushObject(chart);
+      let charts = yield group.get('charts');
+      charts.push(chart);
+      group.set('charts', charts);
       yield group.save();
       // Update associated entries...
       let entry = yield this.entry;
       let p = yield entry.update_charts({
         'by': this.get('currentUser.user.id'),
       });
+      this.setRepertories();
       yield this.store.pushPayload(p);
       this.set('createRepertoryModal', false);
       this.set('createRepertoryModalError', false);
       this.set('obj', null);
       this.flashMessages.success("Created!");
     } catch(e) {
+      console.error(e);
       e.errors.forEach((e) => {
         this.set('createRepertoryModalError', true);
         this.flashMessages.danger(e.detail);
@@ -56,12 +68,18 @@ export default Component.extend({
   deleteRepertory: task(function *(repertory) {
     try {
       let group = yield this.model;
-      group.get('charts').removeObject(repertory);
+      let charts = yield group.get('charts')
+      charts = charts.filter(function(chart) {
+        return chart.id != repertory.id;
+      });
+      yield group.set('charts', charts);
       yield group.save();
       this.set('deleteRepertoryModal', false);
       this.set('deleteRepertoryModalError', false);
       this.flashMessages.success("Removed!");
+      this.setRepertories();
     } catch(e) {
+      console.error(e);
         this.set('deleteRepertoryModalError', true);
       this.flashMessages.danger("Problem!");
     }

@@ -19,7 +19,7 @@ export default Component.extend({
     } else {
       return true;
     }
-  }), 
+  }),
   flashMessages: service(),
   autosave: task(function* (property, value){
     this.model.set(property, value);
@@ -33,4 +33,9 @@ export default Component.extend({
       })
     }
   }).restartable(),
+  actions: {
+    toggleProperty: function(propertyName) {
+      this.toggleProperty(propertyName);
+    },
+  }
 });

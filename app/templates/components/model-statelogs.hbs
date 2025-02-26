@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedStatelogs as |statelog|}}
+      {{#each this.sortedStatelogs as |statelog|}}
         <tr>
           {{#if statelog.isLoading}}
             <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>

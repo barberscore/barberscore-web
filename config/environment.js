@@ -55,7 +55,9 @@ module.exports = function (environment) {
       // when it is created
       managerEnabled: false,
       AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-      AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID
+      AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+      ALGOLIA_APPLICATION_ID: process.env.ALGOLIASEARCH_APPLICATION_ID,
+      ALGOLIA_API_KEY: process.env.ALGOLIASEARCH_API_KEY_SEARCH
     },
   };
   if (environment === 'development') {

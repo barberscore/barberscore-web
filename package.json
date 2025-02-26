@@ -114,6 +114,7 @@
     "@ember-data/store": "^5.3.10",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@sentry/browser": "^8.52.0",
+    "algoliasearch": "^5.20.3",
     "auth0-js": "^9.28.0",
     "babel-plugin-ember-template-compilation": "^2.3.0",
     "ember-basic-dropdown": "^8.5.0",

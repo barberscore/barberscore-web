@@ -1,0 +1,36 @@
+<section>
+  {{#if (eq this.model.status 'New')}}
+    <h4>
+      Contests are available after the Session has been Built.
+    </h4>
+  {{else}}
+    <div class='table-responsive'>
+      <table class='table table-hover table-sm'>
+        <thead class='thead-light'>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Single-Round?</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each this.sortedContests as |contest|}}
+            <tr>
+              {{#if contest.isLoading}}
+                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              {{else}}
+                <td><LinkTo @route='dashboard.conventions.convention.sessions.session.contests.contest' @model={{contest}}>{{contest.name}}</LinkTo></td>
+                <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
+                <td>{{boolean-helper contest.isSingle}}</td>
+              {{/if}}
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan=3>No contests.</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</section>

@@ -4,7 +4,12 @@ import { inject as service } from '@ember/service';
 
 export default Route.extend({
   currentUser: service(),
+  algolia: service(),
   session: service(),
+  init: function() {
+    this._super(...arguments);
+    this.algolia.setupClient();
+  },
 
   beforeModel: async function() {
     this._super(...arguments);

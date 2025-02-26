@@ -1,46 +1,47 @@
-{{#bs-form
-  formLayout="vertical"
-  model=model
+<BsForm
+  @formLayout="vertical"
+  @model={{this.model}}
+  @disabled={{this.isDisabled}}
   as |form|
-}}
-  <label {{action (toggle 'scoringHelp' this)}}>Scoring Choice: {{fa-icon 'question-circle-o'}}</label>
-  {{#form.element property='isPrivate' as |el|}}
-    {{#bs-button-group
-      value=el.value
-      type='radio'
-      onChange=(perform autosave 'isPrivate')
+>
+  <label {{action this.toggleProperty 'scoringHelp' }}>Scoring Choice: <FaIcon @icon='question-circle' /></label>
+  <form.element @property='isPrivate' as |el|>
+    <BsButtonGroup
+      @value={{el.value}}
+      @type='radio'
+      @onChange={{perform this.autosave 'isPrivate'}}
       as |bg|
-    }}
-      {{#bg.button type='outline-dark' value=false disabled=isDisabled}}Compete for Award(s){{/bg.button}}
-      {{#bg.button type='outline-dark' value=true disabled=isDisabled}}Score/Eval Only{{/bg.button}}
-    {{/bs-button-group}}
-  {{/form.element}}
+    >
+      <bg.button @type='outline-dark' @value={{false}} disabled={{this.isDisabled}}>Compete for Award(s)</bg.button>
+      <bg.button @type='outline-dark' @value={{true}} disabled={{this.isDisabled}}>Score/Eval Only</bg.button>
+    </BsButtonGroup>
+  </form.element>
 
-  {{#bs-collapse collapsed=scoringHelp}}
+  <BsCollapse @collapsed={{this.scoringHelp}}>
     <p>
       Choose <strong>Compete for Awards</strong> if you are officially entering the contest session. You will then select to include one or more contests/awards (for which you are eligible) below in the <em>Contests Entered</em> section. Your group will be scored and appear on the Official Scoring Summary (OSS).
     </p>
     <p>
       Choose <strong>Score/Eval Only</strong> if you are NOT officially entering any contest. In this case, you cannot select ANY contests/awards below in the <em>Contests Entered</em> section. Instead, your group will be adjuducated and receive private unofficial score results. Your group will NOT appear on the Official Scoring Summary (OSS).
     </p>
-  {{/bs-collapse}}
+  </BsCollapse>
 
-  <label {{action (toggle 'evalHelp' this)}}>Evaluation Choice: {{fa-icon 'question-circle-o'}}</label>
-  {{#form.element property='isEvaluation' as |el|}}
-    {{#bs-button-group
-      value=el.value
-      type='radio'
-      onChange=(perform autosave 'isEvaluation')
+  <label {{action this.toggleProperty 'evalHelp'}}>Evaluation Choice: <FaIcon @icon='question-circle' /></label>
+  <form.element @property='isEvaluation' as |el|>
+    <BsButtonGroup
+      @value={{el.value}}
+      @type='radio'
+      @onChange={{perform this.autosave 'isEvaluation'}}
       as |bg|
-    }}
-      {{#bg.button type='outline-dark' value=true disabled=isDisabled}}Include Eval{{/bg.button}}
-      {{#bg.button type='outline-dark' value=false disabled=isDisabled}}Skip Eval{{/bg.button}}
-    {{/bs-button-group}}
-  {{/form.element}}
+    >
+      <bg.button @type='outline-dark' @value={{true}} disabled={{this.isDisabled}}>Include Eval</bg.button>
+      <bg.button @type='outline-dark' @value={{false}} disabled={{this.isDisabled}}>Skip Eval</bg.button>
+    </BsButtonGroup>
+  </form.element>
 
-  {{#bs-collapse collapsed=evalHelp}}
+  <BsCollapse @collapsed={{this.evalHelp}}>
     <p>
       This is easy... does your group want to participate in an onsite evaluation by one or more judges after the contest? If you want your group to be included in the post-contest evaluation schedule, choose <strong>Include Eval</strong>.  If you'd like to skip the evaluations, choose <strong>Skip Eval</strong>.
     </p>
-  {{/bs-collapse}}
-{{/bs-form}}
+  </BsCollapse>
+</BsForm>

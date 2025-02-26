@@ -43,28 +43,28 @@ export default Model.extend({
   permissions: DS.attr(),
 
   build: async function(data) {
-    return await apiAction(this, {path: 'build', method: 'post'})
+    return await apiAction(this, {path: 'build', method: 'POST', data: data})
   },
   create_manual_entry: async function (data) {
-    return await apiAction(this, {path: 'create_manual_entry', method: 'post'})
+    return await apiAction(this, {path: 'create_manual_entry', method: 'POST', data: data})
   },
   invite: async function (data) {
-    return await apiAction(this, {path: 'invite', method: 'post'})
+    return await apiAction(this, {path: 'invite', method: 'POST', data: data})
   },
   withdraw: async function (data) {
-    return await apiAction(this, {path: 'withdraw', method: 'post'})
+    return await apiAction(this, {path: 'withdraw', method: 'POST', data: data})
   },
   submit: async function(data) {
-    return await apiAction(this, {path: 'submit', method: 'post'})
+    return await apiAction(this, {path: 'submit', method: 'POST', data: data})
   },
   approve: async function(data) {
-    return await apiAction(this, {path: 'approve', method: 'post'})
+    return await apiAction(this, {path: 'approve', method: 'POST', data: data})
   },
   update_charts: async function(data) {
-    return await apiAction(this, {path: 'update_charts', method: 'post'})
+    return await apiAction(this, {path: 'update_charts', method: 'POST', data: data})
   },
   contest: async function(data) {
-    return await apiAction(this, {path: 'contest', method: 'post'})
+    return await apiAction(this, {path: 'contest', method: 'POST', data: data})
   },
 
 

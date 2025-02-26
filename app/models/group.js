@@ -1,8 +1,8 @@
 import { computed } from '@ember/object';
 import { filterBy, not, equal } from '@ember/object/computed';
 import Model from '@ember-data/model';
-import DS from '@ember-data';
-import { memberAction } from 'ember-api-actions';
+import DS from 'ember-data';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
   name: DS.attr('string'),
@@ -27,13 +27,17 @@ export default Model.extend({
   nomen: DS.attr('string'),
   imageId: DS.attr('string'),
 
-  owners: DS.hasMany('user', {async: true}),
-  charts: DS.hasMany('chart', {async: true}),
+  owners: DS.hasMany('user', {async: true, inverse: null}),
+  charts: DS.hasMany('chart', {async: true, inverse: 'groups'}),
 
   permissions: DS.attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  activate: async function(data) {
+    return await apiAction(this, {path: 'activate', method: 'POST'})
+  },
+  deactivate: async function(data) {
+    return await apiAction(this, {path: 'deactivate', method: 'POST'})
+  },
 
   isDisabled: not(
     'permissions.write'

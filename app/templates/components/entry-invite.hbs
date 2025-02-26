@@ -1,36 +1,36 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut inviteEntryModal) true)
-}}
-  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Invited'))}}Re-Invite Entry{{else}}Invite Entry{{/if}}
-{{/bs-button}}
-{{#bs-modal
-  open=inviteEntryModal
-  onHidden=(pipe-action (action (mut inviteEntryModal) false) (action (mut inviteEntryModalError) false))
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.inviteEntryModal) true}}
+>
+  {{#if (or (eq this.model.status 'Withdrawn')(eq this.model.status 'Invited'))}}Re-Invite Entry{{else}}Invite Entry{{/if}}
+</BsButton>
+<BsModal
+  @open={{this.inviteEntryModal}}
+  @onHidden={{pipe-action (action (mut this.inviteEntryModal) false) (action (mut this.inviteEntryModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Invite Entry</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This will formally invite the group to participate in the Session your entry into the contest.  They will be sent an email with instructions how to accept or decline their invitation.
     </p>
-  {{/modal.body}}
-    {{#if inviteEntryModalError}}
+  </modal.body>
+    {{#if this.inviteEntryModalError}}
       <p class='text-danger'>
         Could not Invite Entry.  Check to ensure the entry is valid and try again.  Otherwise, contact support at {{customer-support}}.
       </p>
     {{/if}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' onClick=(perform inviteEntry)}}
-      {{#if inviteEntry.isRunning}}
-        Inviting {{fa-icon "spinner" spin=true}}
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @onClick={{perform this.inviteEntry}}>
+      {{#if this.inviteEntry.isRunning}}
+        Inviting <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Invite Entry
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

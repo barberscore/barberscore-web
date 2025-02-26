@@ -1,0 +1,142 @@
+<section>
+{{#if (or (eq this.model.status 'New') (eq this.model.status 'Built'))}}
+  <h4>
+    Entries can only be added once the Session has been Opened.
+  </h4>
+{{else}}
+  <div class='table-responsive'>
+    <table class='table table-hover table-sm'>
+      <thead class='thead-light'>
+        <tr>
+          <th>Name</th>
+          <th>Area</th>
+          <th>BHS ID</th>
+          {{#if (eq this.model.kind 'Chorus')}}
+            <th>Director(s)</th>
+          {{else}}
+            <th>Members (TLBrBs)</th>
+          {{/if}}
+
+          <th>Chapters</th>
+          {{!-- <th>Songs in Repertory</th> --}}
+          {{#if (eq this.model.kind 'Chorus')}}
+            <th>Participants on Stage</th>
+          {{/if}}
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.sortedEntries as |entry|}}
+          <tr>
+            {{#if entry.isLoading}}
+              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            {{else}}
+              <td><LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{entry}}>{{html-safe entry.name}}</LinkTo></td>
+              <td>{{entry.area}}</td>
+              <td>{{entry.bhsId}}</td>
+              <td>{{entry.participants}}</td>
+              <td>{{entry.chapters}}</td>
+              {{!-- <td>{{entry.contestsCount}}</td> --}}
+              {{!-- <td>{{entry.groupChartsCount}}</td> --}}
+              {{#if (eq this.model.kind 'Chorus')}}
+                <td>{{#if entry.pos}}{{entry.pos}}{{else}}N/A{{/if}}</td>
+              {{/if}}
+              <td>{{entry.status}}</td>
+            {{/if}}
+          </tr>
+        {{else}}
+          <tr>
+            <td>(No groups currently entered for this session.)</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+
+  {{#unless this.model.roundsPublished}}
+    {{#if (and (eq this.model.status 'Packaged')) }}
+      <div>
+        <p>
+          <BsButton
+            @type='success'
+            @disabled={{this.model.isDisabled}}
+            @onClick={{action (mut this.createEntryModal) true}}
+          >
+            Create New Entry
+          </BsButton>
+        </p>
+      </div>
+    {{/if}}
+  {{/unless}}
+  <BsModal
+    @open={{this.createEntryModal}}
+    @size='lg'
+    @onHidden={{pipe-action (action (mut this.createEntryModal) false) (action (mut this.createEntryModalError) false)}}
+    as |modal|
+>
+    <modal.header>
+      <h4>New Entry</h4>
+    </modal.header>
+    <modal.body>
+      {{#unless this.createEntryModalSuccessMessage}}
+        <p>
+          Select the group you wish to enter into the Session.
+        </p>
+        <div class='form-group'>
+        <PowerSelect
+          @searchEnabled={{true}}
+          @search={{perform this.searchGroup}}
+          @selected={{this.group}}
+          @onChange={{action (mut this.group)}}
+          @placeholder="Enter Group Name"
+          @allowClear={{true}}
+          @renderInPlace={{true}}
+          @noMatchesMessage="We Could Not Find an Active Group with that Name"
+          as |group|
+        >
+          Group: {{group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
+        </PowerSelect>
+        {{#if this.selectGroupModalError}}
+        <p class='text-danger'>
+          A Group must be selected.
+        </p>
+        {{/if}}
+        </div>
+        <div class='form-group'>
+          {{textarea value=this.notificationList property='notificationList' rows="3" class="form-control" required="true" placeholder="Enter email addresses that should be sent CSA and OSS following performances. Comma separate mulitple multiple addresses."}}
+
+          {{#if this.notificationListModalError}}
+          <p class='text-danger'>
+            Please enter valid email address(es).
+          </p>
+          {{/if}}
+        </div>
+        {{#if this.createEntryModalError}}
+        <p class='text-danger'>
+          Could not create entry.  Please contact support.
+        </p>
+        {{/if}}
+      {{/unless}}
+      {{#if this.createEntryModalSuccessMessage}}
+        <p>{{ this.createEntryModalSuccessMessage }}</p>
+      {{/if}}
+    </modal.body>
+    <modal.footer>
+      {{#unless this.createEntryModalSuccessMessage}}
+        <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
+        <BsButton @type='success' @onClick={{perform this.saveEntry this.group this.notificationList}} @disabled=this.isDisabled>
+          {{#if this.saveEntry.isRunning}}
+            Creating {{fa-icon "spinner" spin=true}}
+          {{else}}
+            Create Entry
+          {{/if}}
+        </BsButton>
+      {{/unless}}
+      {{#if this.createEntryModalSuccessMessage}}
+        <BsButton @onClick={{action modal.close}} @type="default">Close</BsButton>
+        <LinkTo @route="dashboard.conventions.convention.sessions.session.draw" class="btn btn-success">Edit Draw</LinkTo>
+      {{/if}}
+    </modal.footer>
+  </BsModal>
+{{/if}}
+</section>

@@ -1,20 +1,20 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut submitEntryModal) true)
-}}
-  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Submitted'))}}Re-Submit Entry{{else}}Submit Entry{{/if}}
-{{/bs-button}}
-{{#bs-modal
-  open=submitEntryModal
-  size='lg'
-  onHidden=(pipe-action (action (mut submitEntryModal) false) (action (mut submitEntryModalError) false))
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  onClick={{action (mut this.submitEntryModal) true}}
+>
+  {{#if (or (eq this.model.status 'Withdrawn')(eq this.model.status 'Submitted'))}}Re-Submit Entry{{else}}Submit Entry{{/if}}
+</BsButton>
+<BsModal
+  @open={{this.submitEntryModal}}
+  @size='lg'
+  @onHidden={{pipe-action (action (mut this.submitEntryModal) false) (action (mut this.submitEntryModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Submit Entry</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This will formally submit your entry into the contest.
     </p>
@@ -25,12 +25,12 @@
           <li>You certify that you have complied with copyright law in the acquisition, arranging, and learning of our contest songs/arrangements and will perform only legally cleared songs in the contest. You understand that ineligibility or disqualification will be a consequence for violation of this statement.</li>
           <li>You certify that you will perform songs listed in our song Repertory.  Any song performed that does not exist in the Repertory before the performance may result in disqualification.</li>
         </ul>
-    {{#if submitEntryModalError}}
+    {{#if this.submitEntryModalError}}
       <p class='text-danger'>
         Could not submit entry.  Please check to ensure:
         <ul>
           <li>You haven't selected an Award while in Score/Eval-Only.</li>
-          {{#if (eq model.kind 'Quartet')}}
+          {{#if (eq this.model.kind 'Quartet')}}
             <li>You've specified your Members.</li>
             <li>You've specified your Chapter affiliations.</li>
           {{else}}
@@ -42,15 +42,15 @@
         If you've done all this and still can't submit, please contact support at {{customer-support}}.
       </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' onClick=(perform submitEntry)}}
-      {{#if submitEntry.isRunning}}
-        Submitting {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @onClick={{perform this.submitEntry}}>
+      {{#if this.submitEntry.isRunning}}
+        Submitting <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Submit Entry
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>
