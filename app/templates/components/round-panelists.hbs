@@ -51,18 +51,19 @@
           Enter the details for the Panelist.
         </p>
         <p>
-          {{input
+          <Input
             class='form-control'
             type='tel'
             placeholder='Enter Number'
-            value=this.num
+            @value={{this.num}}
             min=1
             max=99
-          }}
+          />
         </p>
         <p>
           <PowerSelect
             @search={{perform this.searchPerson}}
+            @searchEnabled={{true}}
             @selected={{this.person}}
             @onChange={{action (mut this.person)}}
             @placeholder="Enter Person Name"
@@ -78,7 +79,7 @@
           <PowerSelect
             @options={{this.categoryOptions}}
             @selected={{this.category}}
-            @onchange={{action (mut this.category)}}
+            @onChange={{action (mut this.category)}}
             @placeholder="Choose Category"
             @allowClear={{true}}
             @renderInPlace={{true}}
@@ -107,7 +108,7 @@
         {{/if}}
       </modal.body>
       <modal.footer>
-        <BsButton @onClick={{action this.modal.close}} @type="default">Cancel</BsButton>
+        <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
         <BsButton @type='success' @onClick={{perform this.savePanelist this.person this.category this.kind this.num}} @disabled={{this.isDisabled}}>
           {{#if this.savePanelist.isRunning}}
             Creating <FaIcon @icon="spinner" @spin={{true}} />

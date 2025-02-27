@@ -237,6 +237,5 @@ ul.list-unstyled + ul.list-unstyled {
   @include ember-power-calendar($cell-size: 70px);
 }
 
-
 // Components
 @import "components/round-appearance";

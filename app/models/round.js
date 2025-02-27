@@ -38,25 +38,25 @@ export default Model.extend({
   permissions: DS.attr(),
 
   reset: async function(data) {
-    return await apiAction(this, {path: 'reset', type: 'POST'})
+    return await apiAction(this, {path: 'reset', method: 'POST', data: data})
   },
   build: async function(data) {
-    return await apiAction(this, {path: 'build', type: 'POST'})
+    return await apiAction(this, {path: 'build', method: 'POST', data: data})
   },
   start: async function(data) {
-    return await apiAction(this, {path: 'start', type: 'POST'})
+    return await apiAction(this, {path: 'start', method: 'POST', data: data})
   },
   complete: async function(data) {
-    return await apiAction(this, {path: 'complete', type: 'post'})
+    return await apiAction(this, {path: 'complete', method: 'POST', data: data})
   },
   finalize: async function(data) {
-    return await apiAction(this, {path: 'finalize', type: 'post'})
+    return await apiAction(this, {path: 'finalize', method: 'POST', data: data})
   },
   publish: async function(data) {
-    return await apiAction(this, {path: 'publish', type: 'post'})
+    return await apiAction(this, {path: 'publish', method: 'POST', data: data})
   },
   labels: async function(data) {
-    return await apiAction(this, {path: 'labels', type: 'post', ajaxOptions: { arraybuffer: true }})
+    return await apiAction(this, {path: 'labels', method: 'POST', ajaxOptions: { arraybuffer: true, data: data }})
   },
 
   mock: async function(data) {

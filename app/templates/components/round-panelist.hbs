@@ -52,15 +52,15 @@
         {{#if this.isScoringJudge}}
           <div class="form-row">
             <label class="mr-2 col-form-label">Number:</label>
-            {{input
+            <Input
               class='form-control col-sm-1 text-right'
               type='tel'
-              value=model.num
+              @value={{this.model.num}}
               min=0
-              disabled=isDisabled
+              disabled={{this.isDisabled}}
               max=200
-              key-press=(perform autosave value='target.value')
-            }}
+              onchange={{perform this.autosave value='target.value'}}
+            />
           </div>
         {{/if}}
         {{#if this.savePanelistError}}
@@ -77,7 +77,7 @@
         {{else if (or (eq this.model.category 'PC')(eq this.model.category 'ADM')(eq this.model.category 'CA'))}}
           <li></li>
         {{else if (or (eq this.model.round.status 'Completed')(eq this.model.round.status 'Finalized')(eq this.model.round.status 'Published'))}}
-          <li>{{download-psa model=model}}</li>
+          <li>{{download-psa model=this.model}}</li>
         {{/if}}
         <li class='pull-right'><h4>Panelist Status: <strong>{{this.model.status}}</strong></h4></li>
       </ul>

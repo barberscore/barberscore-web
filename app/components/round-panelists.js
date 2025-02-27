@@ -8,22 +8,33 @@ export default Component.extend({
   store: service(),
   algolia: service(),
   flashMessages: service(),
-  sortedPanelistsProperties: [
-    'kindSort',
-    'categorySort',
-    'num',
-    'lastName',
-    'firstName',
-  ],
-  sortedPanelists: sort(
-    'model.panelists',
-    'sortedPanelistsProperties'
-  ),
+  sortedPanelists: [],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setPanelists();
+  },
+  setPanelists: function() {
+    const that = this;
+    this.get('model.panelists').then(function(panelists) {
+      panelists = panelists.toSorted(function(a, b) {
+        if (a.kindSort != b.kindSort)
+          return a.kindSort < b.kindSort ? -1 : 1;
+        if (a.categorySort != b.categorySort)
+          return a.categorySort < b.categorySort ? -1 : 1;
+        if (a.num != b.num)
+          return a.num < b.num ? -1 : 1;
+        if (a.lastName != b.lastName)
+          return a.lastName < b.lastName ? -1 : 1;
+        if (a.firstName != b.firstName)
+          return a.firstName < b.firstName ? -1 : 1;
+      });
+      that.set('sortedPanelists', panelists);
+    });
+  },
   searchPerson: task(function* (term){
     yield timeout(600);
-    let func = denodeify(this.algolia.search.bind(this.algolia))
-    let res = yield func({ indexName: 'Person', query: term})
-    return res.hits
+    let res = yield this.algolia.search({ indexName: 'Person', query: term})
+    return res.hits;
   }),
   createPanelistModal: false,
   createPanelistModalError: false,
@@ -60,6 +71,7 @@ export default Component.extend({
       this.set('person', null);
       this.set('category', null);
       this.set('kind', null);
+      this.setPanelists();
       this.flashMessages.success("Created!");
     } catch(e) {
       e.errors.forEach((e) => {
