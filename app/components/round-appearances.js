@@ -32,8 +32,7 @@ export default Component.extend({
   searchGroup: task(function* (term){
     yield timeout(600);
     let kindModel = this.get('model.sessionKind');
-    let func = denodeify(this.algolia.search.bind(this.algolia))
-    let res = yield func({ indexName: 'Group', query: term}, { filters: `get_kind_display:${kindModel} OR get_kind_display:VLQ` })
+    let res = yield this.algolia.search({ indexName: 'Group', query: term})
     return res.hits
   }),
   createAppearanceModal: false,
@@ -48,13 +47,13 @@ export default Component.extend({
         area: obj.get_district_display,
         isPrivate: false,
         groupId: obj.objectID,
-        name: obj.name,
+        name: group.name,
         kind: obj.get_kind_display,
         gender: obj.get_gender_display,
         district: obj.get_district_display,
         division: obj.get_division_display,
-        bhsId: obj.bhs_id,
-        code: obj.code,
+        bhsId: group.bhs_id,
+        code: group.code,
         round: this.model,
         songs: [],
         charts: [],

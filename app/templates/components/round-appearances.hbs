@@ -4,7 +4,7 @@
     {{#if (and this.isEditing (eq this.model.status 'Built'))}}
     <div class='row pb-2'>
       <div class='col-md-6'>
-        <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleOrderOfAppearance'}}>{{#if isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}</BsButton>
+        <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleOrderOfAppearance'}}>{{#if this.isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}</BsButton>
       </div>
     </div>
     <div class='table-responsive'>
@@ -22,34 +22,34 @@
             <th></th>
           </tr>
         </thead>
-          <tr>
-            <td>
-              MT
-            </td>
-            <td>
-              {{#if this.hasMt}}
-                <LinkTo
-                  @route='dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                  @model={{mt}}
-                >
-                  {{html-safe mt.name}}
-                </LinkTo>
-              {{/if}}
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-            </td>
-            <td>
-              {{round-appearance-delete model=mt}}
-            </td>
-          </tr>
-          {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+          <tbody {{sortable-group onChange=(action 'reorderItems')}}>
+            <tr>
+              <td>
+                MT
+              </td>
+              <td>
+                {{#if this.hasMt}}
+                  <LinkTo
+                    @route='dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
+                    @model={{this.mt}}
+                  >
+                    {{html-safe this.mt.name}}
+                  </LinkTo>
+                {{/if}}
+              </td>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>
+              </td>
+              <td>
+                {{round-appearance-delete model=this.mt}}
+              </td>
+            </tr>
             {{#each this.model.appearances as |appearance|}}
               {{#if (gt appearance.num 0)}}
-                {{#sortable-item tagName="tr" model=appearance group=group class='handle' handle=".handle"}}
+                <tr {{sortable-item model=appearance}} {{sortable-handle}}>
                   {{#if appearance.isLoading}}
                     <td colspan=5>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
                   {{else}}
@@ -75,14 +75,14 @@
                       {{round-appearance-delete model=appearance}}
                     </td>
                   {{/if}}
-                {{/sortable-item}}
+                </tr>
               {{/if}}
             {{else}}
               <tr>
                 <td>(No groups currently entered for session.)</td>
               </tr>
             {{/each}}
-          {{/sortable-group}}
+          </tbody>
       </table>
     </div>
     <div>
@@ -151,7 +151,7 @@
     {{#if (eq this.model.status 'Built')}}
     <div class='row pb-2'>
       <div class='col-md-6'>
-        <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleOrderOfAppearance'}}>{{#if isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}</BsButton>
+        <BsButton @type='outline-dark' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleOrderOfAppearance'}}>{{#if this.isEditing}}Lock Appearance Order{{else}}Change Appearance Order{{/if}}</BsButton>
       </div>
     </div>
     {{/if}}
@@ -258,20 +258,21 @@
             Enter the details for the Appearance.
           </p>
           <p>
-            {{input
+            <Input
               class='form-control'
               type='tel'
               placeholder='Enter Order of Appearance (0 = MT)'
-              value=num
+              @value={{this.num}}
               min=-10
               max=99
-            }}
+            />
           </p>
           <p>
             <PowerSelect
-              @search={{perform searchGroup}}
-              @selected={{group}}
-              @onChange={{action (mut group)}}
+              @searchEnabled={{true}}
+              @search={{perform this.searchGroup}}
+              @selected={{this.group}}
+              @onChange={{action (mut this.group)}}
               @placeholder="Enter Group Name"
               @allowClear={{true}}
               @renderInPlace={{true}}
@@ -281,7 +282,7 @@
               Group: {{html-safe group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
             </PowerSelect>
           </p>
-          {{#if createAppearanceModalError}}
+          {{#if this.createAppearanceModalError}}
           <p class='text-danger'>
             Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
           </p>
@@ -289,8 +290,8 @@
         </modal.body>
         <modal.footer>
           <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
-          <BsButton @type='success' @onClick={{perform saveAppearance group num}} @disabled={{isDisabled}}>
-            {{#if saveAppearance.isRunning}}
+          <BsButton @type='success' @onClick={{perform this.saveAppearance this.group this.num}} @disabled={{this.isDisabled}}>
+            {{#if this.saveAppearance.isRunning}}
               Creating <FaIcon @icon="spinner" @spin={{true}} />
             {{else}}
               Create Appearance

@@ -10,13 +10,13 @@ export default Component.extend({
   deleteAppearanceModalError: false,
   deleteAppearance: task(function *() {
     try {
-      yield this.model.destroyRecord({
-        'by': this.get('currentUser.user.id'),
-      });
       this.set('deleteAppearanceModal', false);
       this.set('deleteAppearanceModalError', false);
       this.flashMessages.success("Deleted!");
       this.router.transitionTo('dashboard.conventions.convention.sessions.session.rounds.round.appearances');
+      yield this.model.destroyRecord({
+        'by': this.get('currentUser.user.id'),
+      });
     } catch(e) {
       this.set('deleteAppearanceModalError', true);
     }

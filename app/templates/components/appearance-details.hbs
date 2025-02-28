@@ -28,15 +28,15 @@
   <div class='form-inline row'>
     <div class='form-group col'>
       <label class="mr-2 col-form-label">Participants on Stage:</label>
-      {{input
+      <Input
         class='form-control col-sm-1 text-right'
         type='tel'
-        value=this.model.pos
+        @value={{this.model.pos}}
         min=0
-        disabled=isDisabled
+        @disabled={{this.isDisabled}}
         max=200
-        key-press=(perform this.autosave value='target.value')
-      }}
+        @key-press={{perform this.autosave value='target.value'}}
+      />
     </div>
   </div>
 {{/if}}
