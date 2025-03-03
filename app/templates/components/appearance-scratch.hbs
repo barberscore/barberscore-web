@@ -1,13 +1,13 @@
 <BsButton
   @type='danger'
   @disabled=false
-  @onClick=(action (mut scratchAppearanceModal) true)
+  @onClick={{action (mut this.scratchAppearanceModal) true}}
 >
   Scratch Performance
 </BsButton>
 <BsModal
-  @open=scratchAppearanceModal
-  @onHidden=(pipe-action (action (mut scratchAppearanceModal) false) (action (mut scratchAppearanceModalError) false))
+  @open={{this.scratchAppearanceModal}}
+  @onHidden={{pipe-action (action (mut this.scratchAppearanceModal) false) (action (mut this.scratchAppearanceModalError) false)}}
   as |modal|
 >
   <modal.header>
@@ -20,17 +20,17 @@
     <p>
       Once scratched there is no way to reinstate this appearance.  It is best to simply skip this group for now and wait until all other groups have concluded their performances just in case this group becomes able to perform before the end of the round.
     </p>
-    {{#if submitAppearanceModalError}}
+    {{#if this.submitAppearanceModalError}}
     <p class='text-danger'>
       Could not scratch appearance.  Please contact support.
     </p>
     {{/if}}
   </modal.body>
   <modal.footer>
-    <BsButton @onClick=(action modal.close) @type="default">Cancel</BsButton>
-    <BsButton @type='danger' @onClick=(perform scratchAppearance)>
-      {{#if scratchAppearance.isRunning}}
-        Scratching {{fa-icon "spinner" spin=true}}
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='danger' @onClick={{perform this.scratchAppearance}}>
+      {{#if this.scratchAppearance.isRunning}}
+        Scratching <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Scratch Performance
       {{/if}}

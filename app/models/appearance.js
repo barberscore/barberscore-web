@@ -41,10 +41,10 @@ export default Model.extend({
   permissions: DS.attr(),
 
   start: async function(data) {
-    return await apiAction(this, {path: 'start', method: 'POST'})
+    return await apiAction(this, {path: 'start', method: 'POST', data: data})
   },
   finish: async function(data) {
-    return await apiAction(this, {path: 'finish', method: 'POST'})
+    return await apiAction(this, {path: 'finish', method: 'POST', data: data})
   },
   verify: async function(data) {
     return await apiAction(this, {path: 'verify', method: 'POST'})
@@ -56,13 +56,13 @@ export default Model.extend({
     return await apiAction(this, {path: 'advance', method: 'POST'})
   },
   scratch: async function(data) {
-    return await apiAction(this, {path: 'scratch', method: 'POST'})
+    return await apiAction(this, {path: 'scratch', method: 'POST', data: data})
   },
   disqualify: async function(data) {
-    return await apiAction(this, {path: 'disqualify', method: 'POST'})
+    return await apiAction(this, {path: 'disqualify', method: 'POST', data: data})
   },
   mock: async function(data) {
-    return await apiAction(this, {path: 'mock', method: 'GET'})
+    return await apiAction(this, {path: 'mock', method: 'GET', data: data})
   },
   variance: async function(data) {
     return await apiAction(this, { path: 'variance', method: 'GET', ajaxOptions: { arraybuffer: true } })

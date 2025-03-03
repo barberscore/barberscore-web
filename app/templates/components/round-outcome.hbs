@@ -38,35 +38,35 @@ Disabled: {{ this.isDisabled }}
       <section>
           <p>
             <label>Result as Printed on OSS: </label>
-            <input
+            <Input
               class='form-control'
-              type='text'
-              value={{this.model.winner}}
+              @type='text'
+              @value={{this.model.winner}}
               disabled={{this.isDisabled}}
               placeholder='Result populated on Round Completion'
-              change={{perform this.autosave 'winner' value='target.value'}}
+              {{on "input" (perform this.autosave 'winner' value='target.value')}}
             />
           </p>
 
           {{#if (or (and this.model.isSingle (if this.model.isFinals false true)) this.model.isFinals) }}
           <p>
             <label>
-            {{input
-              type='checkbox'
-              checked=this.model.printed
-              disabled=this.model.disablePrinted
-              click=(perform this.autosave this.model)
-            }} Printed on OSS</label>
+            <Input
+              @type='checkbox'
+              @checked={{this.model.printed}}
+              disabled={{this.model.disablePrinted}}
+              {{on "input" (perform this.autosave this.model)}}
+            /> Printed on OSS</label>
           </p>
 
           <p>
             <label>
-            {{input
-              disabled=isDisabled
-              type='checkbox'
-              checked=this.model.printOnFinalsOss
-              click=(perform this.autosave this.model)
-            }} Include on Finals OSS</label>
+            <Input
+              disabled=this.isDisabled
+              @type='checkbox'
+              @checked={{this.model.printOnFinalsOss}}
+              {{on "input" (perform this.autosave this.model)}}
+            /> Include on Finals OSS</label>
           </p>
           {{/if}}
       </section>
@@ -106,7 +106,7 @@ Disabled: {{ this.isDisabled }}
                       <td>
                         {{contender.runTotSum}}
                       </td>
-                      {{#if (or (eq model.level 'Improved - Standard')(eq model.level 'Improved - Raw'))}}
+                      {{#if (or (eq this.model.level 'Improved - Standard')(eq this.model.level 'Improved - Raw'))}}
                         <td>{{contender.base}}</td>
                         <td>{{contender.diff}}</td>
                       {{/if}}

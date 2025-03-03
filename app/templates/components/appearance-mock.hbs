@@ -2,13 +2,13 @@
   <BsButton
     @type='outline-dark'
     @disabled=this.model.isDisabled
-    @onClick=(action (mut this.mockAppearanceModal) true)
+    @onClick={{action (mut this.mockAppearanceModal) true}}
   >
     Mock Performance
   </BsButton>
   <BsModal
-    @open=this.mockAppearanceModal
-    @onHidden=(pipe-action (action (mut this.mockAppearanceModal) false) (action (mut this.mockAppearanceModalError) false))
+    @open={{this.mockAppearanceModal}}
+    @onHidden={{pipe-action (action (mut this.mockAppearanceModal) false) (action (mut this.mockAppearanceModalError) false)}}
     as |modal|
   >
     <modal.header>
@@ -25,10 +25,10 @@
       {{/if}}
     </modal.body>
     <modal.footer>
-      <BsButton @onClick=(action modal.close) @type="default">Cancel</BsButton>
-      <BsButton @type='primary' @disabled=this.model.isError @onClick=(perform this.mockAppearance)>
+      <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+      <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.mockAppearance}}>
         {{#if this.mockAppearance.isRunning}}
-          Mocking... {{fa-icon "spinner" spin=true}}
+          Mocking... <FaIcon @icon="spinner" @spin={{true}} />
         {{else}}
           Mock Performance
         {{/if}}

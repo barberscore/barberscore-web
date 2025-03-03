@@ -88,14 +88,14 @@
     <div>
       {{#if (eq this.model.status 'Built')}}
         <p>
-          <BsButton @type='success' @disabled={{this.model.isDisabled}} @onClick={{action (mut createAppearanceModal) true}}>Create New Appearance</BsButton>
+          <BsButton @type='success' @disabled={{this.model.isDisabled}} @onClick={{action (mut this.createAppearanceModal) true}}>Create New Appearance</BsButton>
         </p>
       {{/if}}
     </div>
     <div>
       <BsModal
-        @open={{createAppearanceModal}}
-        @onHidden={{pipe-action (action (mut createAppearanceModal) false) (action (mut createAppearanceModalError) false)}}
+        @open={{this.createAppearanceModal}}
+        @onHidden={{pipe-action (action (mut this.createAppearanceModal) false) (action (mut this.createAppearanceModalError) false)}}
         as |modal|
       >
         <modal.header>
@@ -129,7 +129,7 @@
               Group: {{html-safe group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
             </PowerSelect>
           </p>
-          {{#if createAppearanceModalError}}
+          {{#if this.createAppearanceModalError}}
           <p class='text-danger'>
             Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
           </p>

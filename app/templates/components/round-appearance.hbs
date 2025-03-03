@@ -28,7 +28,7 @@
           {{#unless (eq this.model.round.status 'Published')}}
             {{#if this.model.entryId}}
               <p>
-                <LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{model.entryId}}>Update Repertory or contests on entry</LinkTo>
+                <LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{this.model.entryId}}>Update Repertory or contests on entry</LinkTo>
               </p>
             {{/if}}
           {{/unless}}

@@ -1,36 +1,36 @@
-{{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Started'))}}
-{{#bs-button
-  type='success'
-  disabled=model.isDisabled
-  onClick=(action (mut labelsModal) true)
-}}
-  Download Labels&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
-{{/bs-button}}
+{{#if (or (eq this.model.status 'New')(eq this.model.status 'Built')(eq this.model.status 'Started'))}}
+<BsButton
+  @type='success'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.labelsModal) true}}
+>
+  Download Labels&nbsp;&nbsp;<FaIcon @icon='file-text' />
+</BsButton>
 {{/if}}
-{{#bs-modal
-  open=labelsModal
-  onHidden=(pipe-action (action (mut labelsModal) false) (action (mut labelsModalError) false))
+<BsModal
+  @open={{this.labelsModal}}
+  @onHidden={{pipe-action (action (mut this.labelsModal) false) (action (mut this.labelsModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Contestant Labels</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
 
     <div class='form-group'>
       <label for="postfix">File Name Postfix</label>
       <small id="postfixHelp" class="text-muted">
         (e.g. "A.A.A.B.R.F")
       </small>
-      {{input
+      <Input
         class='form-control'
         id='postfix'
-        type='text'
-        disabled=model.isDisabled
+        @type='text'
+        disabled={{this.model.isDisabled}}
         placeholder='File postfix'
         required='true'
-        value=postfix
-      }}
+        @value={{this.postfix}}
+      />
     </div>
 
     <div class='form-group'>
@@ -38,19 +38,19 @@
       <small id="judgesHelp" class="text-muted">
         Select all, one, or specific judges
       </small>
-      {{#power-select-multiple
-        options=this.filteredPanelists
+      <PowerSelectMultiple
+        @options={{this.filteredPanelists}}
         id='judges'
-        selected=judges
-        onchange=(action (mut judges))
-        placeholder="All Judges"
-        allowClear=true
-        renderInPlace=true
-        noMatchesMessage="We Could Not Find a judge with that name"
+        @selected={{this.judges}}
+        @onChange={{action (mut this.judges)}}
+        @placeholder="All Judges"
+        @allowClear={{true}}
+        @renderInPlace={{true}}
+        @noMatchesMessage="We Could Not Find a judge with that name"
         as |judge|
-      }}
+      >
         {{judge.lastName}}, {{judge.firstName}} [{{judge.category}}] - {{judge.kind}}
-      {{/power-select-multiple}}
+      </PowerSelectMultiple>
     </div>
 
     <div class='form-group'>
@@ -58,19 +58,19 @@
       <small id="groupsHelp" class="text-muted">
         Select all, one, or specific contestents
       </small>
-      {{#power-select-multiple
-        options=this.appearances
-        id='groups'
-        selected=groups
-        onchange=(action (mut groups))
-        placeholder="All Contestants"
-        allowClear=true
-        renderInPlace=true
-        noMatchesMessage="We Could Not Find a group with that name"
+      <PowerSelectMultiple
+        @options={{this.appearances}}
+        @id='groups'
+        @selected={{this.groups}}
+        @onChange={{action (mut this.groups)}}
+        @placeholder="All Contestants"
+        @allowClear={{true}}
+        @renderInPlace={{true}}
+        @noMatchesMessage="We Could Not Find a group with that name"
         as |group|
-      }}
+      >
         {{html-safe group.name}} [Draw: {{group.num}}]
-      {{/power-select-multiple}}
+      </PowerSelectMultiple>
     </div>
 
     <div class='form-group'>
@@ -79,31 +79,31 @@
         Order of appearance will be high to low
       </small>
       <div class="custom-control custom-checkbox custom-control-inline">
-        {{input
+        <Input
           class='custom-control-input'
-          type='checkbox'
+          @type='checkbox'
           id='isReversed'
-          checked=isReversed
-          key-press=(action (mut isReversed) true)
-        }}
+          @checked={{this.isReversed}}
+          @key-press={{action (mut this.isReversed) true}}
+        />
         <label class="custom-control-label" for="isReversed">Yes</label>
       </div>
     </div>
 
-    {{#if labelsModalError}}
+    {{#if this.labelsModalError}}
     <p class='text-danger'>
       Could not download labels.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='success' onClick=(perform labels) disabled=model.isError}}
-      {{#if labels.isRunning}}
-        Downloading {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='success' @onClick={{perform this.labels}} disabled={{this.model.isError}}>
+      {{#if this.labels.isRunning}}
+        Downloading <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
-        Download&nbsp;&nbsp;{{fa-icon 'file-text-o'}}
+        Download&nbsp;&nbsp;<FaIcon @icon='file-text' />
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

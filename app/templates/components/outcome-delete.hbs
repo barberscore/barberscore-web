@@ -1,36 +1,36 @@
-{{#bs-button
-  type='danger'
-  disabled=model.isDisabled
-  onClick=(action (mut deleteOutcomeModal) true)
-}}
+<BsButton
+  @type='danger'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.deleteOutcomeModal) true}}
+>
   Delete Outcome
-{{/bs-button}}
-{{#bs-modal
-  open=deleteOutcomeModal
-  onHidden=(pipe-action (action (mut deleteOutcomeModal) false) (action (mut deleteOutcomeModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.deleteOutcomeModal}}
+  @onHidden={{pipe-action (action (mut this.deleteOutcomeModal) false) (action (mut this.deleteOutcomeModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Delete Outcome</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This will delete the Outcome.  Generally used to remove a Contest added in error, or for which all contenders have scratched.
     </p>
-    {{#if deleteOutcomeModalError}}
+    {{#if this.deleteOutcomeModalError}}
     <p class='text-danger'>
       Could not delete outcome.  Please contact support.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='danger' onClick=(perform deleteOutcome)}}
-      {{#if deleteOutcome.isRunning}}
-        Deleting {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
+    <BsButton @type='danger' @onClick={{perform this.deleteOutcome}}>
+      {{#if this.deleteOutcome.isRunning}}
+        Deleting <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Delete Outcome
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>
