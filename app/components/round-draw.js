@@ -4,6 +4,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import { later } from '@ember/runloop';
 
 export default Component.extend({
   flashMessages: service(),
@@ -72,10 +73,16 @@ export default Component.extend({
       this.toggleProperty('isEditing');
     },
     reorderItems(itemModels) {
+      const that = this;
       itemModels.forEach(function(item, index) {
         item.set('draw', index + 1);
+        item.save()
       });
-      itemModels.invoke('save');
+
+      later(() => {
+        that.setAppearances();
+      }, 1000);
+      // itemModels.invoke('save');
       this.flashMessages.success('Success');
     },
   }

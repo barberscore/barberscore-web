@@ -34,9 +34,9 @@
             <td>
             </td>
           </tr>
-          {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
+          <tbody {{sortable-group onChange=(action "reorderItems")}} as  |group|>
             {{#each this.sortedAppearances as |item|}}
-              {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
+              <tr {{sortable-item model=item group=group}} {{sortable-handle}}>
                 <td>
                   {{item.draw}}
                 </td>
@@ -44,13 +44,13 @@
                   {{html-safe item.name}}
                 </td>
                 <td>{{item.notes}}</td>
-              {{/sortable-item}}
+              </tr>
             {{else}}
               <tr>
                 <td>(No appearances.)</td>
               </tr>
             {{/each}}
-          {{/sortable-group}}
+          </tbody>
       </table>
     </div>
     <div class='row'>
