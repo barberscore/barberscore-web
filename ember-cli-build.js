@@ -12,7 +12,8 @@ module.exports = function(defaults) {
     },
     'ember-bootstrap': {
       'importBootstrapFont': false,
-      'importBootstrapCSS': false
+      'importBootstrapCSS': false,
+      'insertEmberWormholeElementToDom': false
     },
     'ember-power-select': {
       theme: 'bootstrap'
