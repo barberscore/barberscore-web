@@ -34,9 +34,9 @@
             <td>
             </td>
           </tr>
-          <tbody {{sortable-group onChange=(action "reorderItems")}} as  |group|>
+          <tbody {{sortable-group onChange=(action "reorderItems")}}>
             {{#each this.sortedAppearances as |item|}}
-              <tr {{sortable-item model=item group=group}} {{sortable-handle}}>
+              <tr {{sortable-item model=item}} {{sortable-handle}}>
                 <td>
                   {{item.draw}}
                 </td>

@@ -1,6 +1,7 @@
-import DS from 'ember-data';
+import Transform from '@ember-data/serializer';
 
-export default DS.Transform.extend({
+
+export default Transform.extend({
   deserialize: function(serialized) {
     var map = {
       32: 'Chorus',

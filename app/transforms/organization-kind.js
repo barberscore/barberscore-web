@@ -1,4 +1,4 @@
-import DS from 'ember-data';
+import Transform from '@ember-data/serializer';
 
 export const groupKindMap = {
   'International': 1,
@@ -10,7 +10,7 @@ export const groupKindMap = {
   'Quartet': 41,
 }
 
-export default DS.Transform.extend({
+export default Transform.extend({
   deserialize: function(serialized) {
     var map = {
       1: 'International',

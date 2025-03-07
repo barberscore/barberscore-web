@@ -1,41 +1,40 @@
 import { computed } from '@ember/object';
 import { not } from '@ember/object/computed';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, hasMany } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('round-status'),
-  kind: DS.attr('round-kind'),
-  num: DS.attr('number'),
-  spots: DS.attr('number'),
-  date: DS.attr('isodate'),
-  footnotes: DS.attr('string'),
-  ossReport: DS.attr('string'),
-  saReport: DS.attr('string'),
-  legacyOss: DS.attr('string'),
-  isReviewed: DS.attr('boolean'),
+  status: attr('round-status'),
+  kind: attr('round-kind'),
+  num: attr('number'),
+  spots: attr('number'),
+  date: attr('isodate'),
+  footnotes: attr('string'),
+  ossReport: attr('string'),
+  saReport: attr('string'),
+  legacyOss: attr('string'),
+  isReviewed: attr('boolean'),
 
-  conventionId: DS.attr('string'),
-  nomen: DS.attr('string'),
-  timezone: DS.attr('string'),
-  imageId: DS.attr('string'),
+  conventionId: attr('string'),
+  nomen: attr('string'),
+  timezone: attr('string'),
+  imageId: attr('string'),
 
-  sessionId: DS.attr('string'),
-  sessionKind: DS.attr('session-kind'),
-  baseFilename: DS.attr('string'),
-  scoresheetFilename: DS.attr('string'),
+  sessionId: attr('string'),
+  sessionKind: attr('session-kind'),
+  baseFilename: attr('string'),
+  scoresheetFilename: attr('string'),
 
-  revisionNumber: DS.attr('number'),
-  revisionDate: DS.attr('string'),
-  revisionNomen: DS.attr('string'),
+  revisionNumber: attr('number'),
+  revisionDate: attr('string'),
+  revisionNomen: attr('string'),
 
-  owners: DS.hasMany('user', {async: true, inverse: null}),
+  owners: hasMany('user', {async: true, inverse: null}),
 
-  appearances: DS.hasMany('appearance', {async: true, inverse: 'round'}),
-  panelists: DS.hasMany('panelist', {async: true, inverse: 'round'}),
-  outcomes: DS.hasMany('outcome', {async: true, inverse: 'round'}),
-  permissions: DS.attr(),
+  appearances: hasMany('appearance', {async: true, inverse: 'round'}),
+  panelists: hasMany('panelist', {async: true, inverse: 'round'}),
+  outcomes: hasMany('outcome', {async: true, inverse: 'round'}),
+  permissions: attr(),
 
   reset: async function(data) {
     return await apiAction(this, {path: 'reset', method: 'POST', data: data})

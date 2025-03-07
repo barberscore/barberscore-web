@@ -1,23 +1,22 @@
 import { not, sum, mapBy, filterBy } from '@ember/object/computed';
 // import { computed } from '@ember/object';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default Model.extend({
-  status: DS.attr('song-status'),
-  num: DS.attr('number'),
-  asterisks: DS.attr(),
-  dixons: DS.attr(),
-  penalties: DS.attr(),
-  stats: DS.attr(),
+  status: attr('song-status'),
+  num: attr('number'),
+  asterisks: attr(),
+  dixons: attr(),
+  penalties: attr(),
+  stats: attr(),
 
-  chartId: DS.attr('string'),
-  title: DS.attr('string'),
-  arrangers: DS.attr('string'),
+  chartId: attr('string'),
+  title: attr('string'),
+  arrangers: attr('string'),
 
-  appearance: DS.belongsTo('appearance', {async: true, inverse: 'songs'}),
-  scores: DS.hasMany('score', {async: true, inverse: 'song'}),
-  permissions: DS.attr(),
+  appearance: belongsTo('appearance', {async: true, inverse: 'songs'}),
+  scores: hasMany('score', {async: true, inverse: 'song'}),
+  permissions: attr(),
 
   isDisabled: not(
     'permissions.write'

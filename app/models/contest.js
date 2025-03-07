@@ -1,32 +1,31 @@
 import { alias, equal, not, or } from '@ember/object/computed';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('contest-status'),
+  status: attr('contest-status'),
 
-  awardId: DS.belongsTo('award', {async: true, inverse: null}),
-  name: DS.attr('string'),
-  kind: DS.attr('award-kind'),
-  gender: DS.attr('award-gender'),
-  level: DS.attr('award-level'),
-  season: DS.attr('award-season'),
-  description: DS.attr('string'),
-  district: DS.attr('string'),
-  division: DS.attr('award-division'),
-  age: DS.attr('award-age'),
-  isNovice: DS.attr('boolean'),
-  isSingle: DS.attr('boolean'),
-  size: DS.attr('award-size'),
-  sizeRange: DS.attr(),
-  scope: DS.attr('award-scope'),
-  scopeRange: DS.attr(),
-  treeSort: DS.attr('number'),
+  awardId: belongsTo('award', {async: true, inverse: null}),
+  name: attr('string'),
+  kind: attr('award-kind'),
+  gender: attr('award-gender'),
+  level: attr('award-level'),
+  season: attr('award-season'),
+  description: attr('string'),
+  district: attr('string'),
+  division: attr('award-division'),
+  age: attr('award-age'),
+  isNovice: attr('boolean'),
+  isSingle: attr('boolean'),
+  size: attr('award-size'),
+  sizeRange: attr(),
+  scope: attr('award-scope'),
+  scopeRange: attr(),
+  treeSort: attr('number'),
 
-  session: DS.belongsTo('session', {async: true, inverse: null}),
-  entries: DS.hasMany('entry', {async: true, inverse: 'contests'}),
-  permissions: DS.attr(),
+  session: belongsTo('session', {async: true, inverse: null}),
+  entries: hasMany('entry', {async: true, inverse: 'contests'}),
+  permissions: attr(),
 
   include: async function (data) {
     return await apiAction(this, {path: 'include', method: 'post'})

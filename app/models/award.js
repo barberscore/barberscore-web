@@ -1,35 +1,34 @@
 import { computed } from '@ember/object';
 import { equal, not, alias } from '@ember/object/computed';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr }  from '@ember-data/model';
 import { memberAction } from 'ember-api-actions';
 
 export default Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('award-status'),
-  kind: DS.attr('award-kind'),
-  gender: DS.attr('award-gender'),
-  level: DS.attr('award-level'),
-  season: DS.attr('award-season'),
-  isSingle: DS.attr('boolean'),
-  threshold: DS.attr('number'),
-  minimum: DS.attr('number'),
-  advance: DS.attr('number'),
-  spots: DS.attr('number'),
-  description: DS.attr('string'),
-  notes: DS.attr('string'),
-  district: DS.attr('award-district'),
-  division: DS.attr('award-division'),
+  name: attr('string'),
+  status: attr('award-status'),
+  kind: attr('award-kind'),
+  gender: attr('award-gender'),
+  level: attr('award-level'),
+  season: attr('award-season'),
+  isSingle: attr('boolean'),
+  threshold: attr('number'),
+  minimum: attr('number'),
+  advance: attr('number'),
+  spots: attr('number'),
+  description: attr('string'),
+  notes: attr('string'),
+  district: attr('award-district'),
+  division: attr('award-division'),
 
-  age: DS.attr('award-age'),
-  isNovice: DS.attr('boolean'),
-  size: DS.attr('award-size'),
-  sizeRange: DS.attr(),
-  scope: DS.attr('award-scope'),
-  scopeRange: DS.attr(),
-  treeSort: DS.attr('number'),
+  age: attr('award-age'),
+  isNovice: attr('boolean'),
+  size: attr('award-size'),
+  sizeRange: attr(),
+  scope: attr('award-scope'),
+  scopeRange: attr(),
+  treeSort: attr('number'),
 
-  permissions: DS.attr(),
+  permissions: attr(),
 
   activate: memberAction({path: 'activate', type: 'post'}),
   deactivate: memberAction({path: 'deactivate', type: 'post'}),

@@ -1,31 +1,30 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, hasMany, belongsTo }  from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('panelist-status'),
-  num: DS.attr('number'),
-  kind: DS.attr('panelist-kind'),
-  category: DS.attr('panelist-category'),
-  psaReport: DS.attr('string'),
-  area: DS.attr('string'),
+  status: attr('panelist-status'),
+  num: attr('number'),
+  kind: attr('panelist-kind'),
+  category: attr('panelist-category'),
+  psaReport: attr('string'),
+  area: attr('string'),
 
-  round: DS.belongsTo('round', {async: true, inverse: 'panelists'}),
-  owners: DS.hasMany('user', {async: true, inverse: null}),
+  round: belongsTo('round', {async: true, inverse: 'panelists'}),
+  owners: hasMany('user', {async: true, inverse: null}),
 
-  personId: DS.attr('string'),
-  name: DS.attr('string'),
-  firstName: DS.attr('string'),
-  lastName: DS.attr('string'),
-  district: DS.attr('string'),
-  email: DS.attr('string'),
-  cellPhone: DS.attr('string'),
-  airports: DS.attr('string'),
+  personId: attr('string'),
+  name: attr('string'),
+  firstName: attr('string'),
+  lastName: attr('string'),
+  district: attr('string'),
+  email: attr('string'),
+  cellPhone: attr('string'),
+  airports: attr('string'),
 
-  scores: DS.hasMany('score', {async: true, inverse: 'panelist'}),
-  permissions: DS.attr(),
+  scores: hasMany('score', {async: true, inverse: 'panelist'}),
+  permissions: attr(),
 
   psa: async function(data) {
     return await apiAction(this, { path: 'psa', method: 'GET', ajaxOptions: { arraybuffer: true } })

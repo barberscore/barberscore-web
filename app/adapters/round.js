@@ -1,4 +1,3 @@
-import DS from 'ember-data';
 import ENV from '../config/environment';
 import { isPresent } from '@ember/utils';
 import ApplicationAdapter from './application';

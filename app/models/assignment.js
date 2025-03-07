@@ -1,30 +1,29 @@
 import { computed } from '@ember/object';
 import { not } from '@ember/object/computed';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, belongsTo, hasMany } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('assignment-status'),
-  kind: DS.attr('assignment-kind'),
-  category: DS.attr('assignment-category'),
+  status: attr('assignment-status'),
+  kind: attr('assignment-kind'),
+  category: attr('assignment-category'),
 
-  personId: DS.attr('string'),
-  name: DS.attr('string'),
-  firstName: DS.attr('string', {defaultValue: ''}),
-  lastName: DS.attr('string', {defaultValue: ''}),
-  display_district: DS.attr('assignment-district'),
-  district: DS.attr('assignment-district'),
-  area: DS.attr('string'),
-  email: DS.attr('string'),
-  cellPhone: DS.attr('string'),
-  airports: DS.attr(),
-  bhsId: DS.attr('number'),
+  personId: attr('string'),
+  name: attr('string'),
+  firstName: attr('string', {defaultValue: ''}),
+  lastName: attr('string', {defaultValue: ''}),
+  display_district: attr('assignment-district'),
+  district: attr('assignment-district'),
+  area: attr('string'),
+  email: attr('string'),
+  cellPhone: attr('string'),
+  airports: attr(),
+  bhsId: attr('number'),
 
-  imageId: DS.attr('string'),
+  imageId: attr('string'),
 
-  session: DS.belongsTo('session', {async: true, inverse: 'assignments'}),
-  permissions: DS.attr(),
+  session: belongsTo('session', {async: true, inverse: 'assignments'}),
+  permissions: attr(),
 
   activate: async function(data) {
     return await apiAction(this, {path: 'activate', method: 'post'})

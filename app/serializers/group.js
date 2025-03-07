@@ -1,16 +1,12 @@
-import { underscore } from '@ember/string';
-import DS from 'ember-data';
+import ApplicationSerializer from './application';
 
-export default DS.JSONAPISerializer.extend({
-    keyForAttribute(attr) {
-      return underscore(attr);
-    },
+export default ApplicationSerializer.extend({
     attrs: {
       imageId: {
         serialize: false
       },
       charts: {
         serialize: true
-      },      
+      },
     }
 });

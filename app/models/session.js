@@ -1,47 +1,46 @@
 import { not, sort } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, hasMany } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 const ASSIGNMENT_SORT_KEYS = ['kindSort', 'categorySort', 'lastName', 'firstName'];
 
 export default Model.extend({
-  nomen: DS.attr('string'),
-  status: DS.attr('session-status'),
-  kind: DS.attr('session-kind'),
-  numRounds: DS.attr('number'),
-  isInvitational: DS.attr('boolean'),
-  description: DS.attr('string'),
-  notes: DS.attr('string'),
-  footnotes: DS.attr('string'),
-  legacyReport: DS.attr('string'),
-  drcjReport: DS.attr('string'),
+  nomen: attr('string'),
+  status: attr('session-status'),
+  kind: attr('session-kind'),
+  numRounds: attr('number'),
+  isInvitational: attr('boolean'),
+  description: attr('string'),
+  notes: attr('string'),
+  footnotes: attr('string'),
+  legacyReport: attr('string'),
+  drcjReport: attr('string'),
 
-  convention_id: DS.attr('string'),
-  name: DS.attr('string'),
-  district: DS.attr('session-district'),
-  season: DS.attr('string'),
-  panel: DS.attr('string'),
-  year: DS.attr('string'),
-  openDate: DS.attr('date'),
-  closeDate: DS.attr('date'),
-  startDate: DS.attr('date'),
-  endDate: DS.attr('date'),
-  venueName: DS.attr('string'),
-  location: DS.attr('string'),
-  timezone: DS.attr('string'),
-  divisions: DS.attr(),
+  convention_id: attr('string'),
+  name: attr('string'),
+  district: attr('session-district'),
+  season: attr('string'),
+  panel: attr('string'),
+  year: attr('string'),
+  openDate: attr('date'),
+  closeDate: attr('date'),
+  startDate: attr('date'),
+  endDate: attr('date'),
+  venueName: attr('string'),
+  location: attr('string'),
+  timezone: attr('string'),
+  divisions: attr(),
 
-  imageId: DS.attr('string'),
+  imageId: attr('string'),
 
-  roundsPublished: DS.attr('boolean'),
+  roundsPublished: attr('boolean'),
 
-  owners: DS.hasMany('user', {async: true, inverse: null}),
-  contests: DS.hasMany('contest', {async: true, inverse: null}),
-  entries: DS.hasMany('entry', {async: true, inverse: 'session'}),
-  assignments: DS.hasMany('assignment', {async: true, inverse: 'session'}),
-  permissions: DS.attr(),
+  owners: hasMany('user', {async: true, inverse: null}),
+  contests: hasMany('contest', {async: true, inverse: null}),
+  entries: hasMany('entry', {async: true, inverse: 'session'}),
+  assignments: hasMany('assignment', {async: true, inverse: 'session'}),
+  permissions: attr(),
 
   reset: async function (data) {
     return await apiAction(this, {path: 'reset', method: 'post'})

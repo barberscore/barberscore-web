@@ -1,8 +1,8 @@
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 
-export default DS.Model.extend({
-  timestamp: DS.attr('date'),
-  transition: DS.attr('string'),
-  description: DS.attr('string'),
-  by: DS.belongsTo('user', {async: true, inverse: null}),
+export default Model.extend({
+  timestamp: attr('date'),
+  transition: attr('string'),
+  description: attr('string'),
+  by: belongsTo('user', {async: true, inverse: null}),
 });

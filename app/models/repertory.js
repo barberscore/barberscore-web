@@ -1,17 +1,16 @@
 import { not } from '@ember/object/computed';
-import Model from '@ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, belongsTo } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('repertory-status'),
+  status: attr('repertory-status'),
 
-  chart_id: DS.attr('string'),
-  title: DS.attr('string'),
-  arrangers: DS.attr('string'),
+  chart_id: attr('string'),
+  title: attr('string'),
+  arrangers: attr('string'),
 
-  entry: DS.belongsTo('entry', {async: true, inverse: 'repertories'}),
-  permissions: DS.attr(),
+  entry: belongsTo('entry', {async: true, inverse: 'repertories'}),
+  permissions: attr(),
 
   activate: async function() {
     return await apiAction(this, {path: 'activate', method: 'POST'});
