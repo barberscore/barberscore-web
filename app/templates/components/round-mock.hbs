@@ -1,38 +1,38 @@
 {{#unless isProduction}}
-  {{#bs-button
-  type='outline-dark'
-  disabled=model.isDisabled
-  onClick=(action (mut mockRoundModal) true)
-  }}
+  <BsButton
+  @type='outline-dark'
+  @disabled={{this.model.isDisabled}}
+  onClick={{action (mut this.mockRoundModal) true}}
+  >
     Mock Round
-  {{/bs-button}}
-  {{#bs-modal
-    open=mockRoundModal
-    onHidden=(pipe-action (action (mut mockRoundModal) false) (action (mut mockRoundModalError) false))
+  </BsButton>
+  <BsModal
+    @open={{this.mockRoundModal}}
+    @onHidden={{pipe-action (action (mut this.mockRoundModal) false) (action (mut this.mockRoundModalError) false)}}
     as |modal|
-  }}
-    {{#modal.header}}
+  >
+    <modal.header>
       <h4>Mock Round</h4>
-    {{/modal.header}}
-    {{#modal.body}}
+    </modal.header>
+    <modal.body>
       <p>
           Are you sure you would like to mock all scores for this round?
       </p>
-      {{#if mockRoundModalError}}
+      {{#if this.mockRoundModalError}}
       <p class='text-danger'>
         Could not mock Round.
       </p>
       {{/if}}
-    {{/modal.body}}
-    {{#modal.footer}}
-      {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-      {{#bs-button type='primary' disabled=model.isError onClick=(perform mockRound)}}
-        {{#if mockRound.isRunning}}
-          Mocking... {{fa-icon "spinner" spin=true}}
+    </modal.body>
+    <modal.footer>
+      <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+      <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.mockRound}}>
+        {{#if this.mockRound.isRunning}}
+          Mocking... <FaIcon @icon="spinner" @spin={{true}} />
         {{else}}
           Mock Round
         {{/if}}
-      {{/bs-button}}
-    {{/modal.footer}}
-  {{/bs-modal}}
+      </BsButton>
+    </modal.footer>
+  </BsModal>
 {{/unless}}

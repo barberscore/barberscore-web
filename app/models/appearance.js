@@ -46,13 +46,13 @@ export default Model.extend({
     return await apiAction(this, {path: 'finish', method: 'POST', data: data})
   },
   verify: async function(data) {
-    return await apiAction(this, {path: 'verify', method: 'POST'})
+    return await apiAction(this, {path: 'verify', method: 'POST', data: data})
   },
   complete: async function(data) {
-    return await apiAction(this, {path: 'complete', method: 'POST'})
+    return await apiAction(this, {path: 'complete', method: 'POST', data: data})
   },
   advance: async function(data) {
-    return await apiAction(this, {path: 'advance', method: 'POST'})
+    return await apiAction(this, {path: 'advance', method: 'POST', data: data})
   },
   scratch: async function(data) {
     return await apiAction(this, {path: 'scratch', method: 'POST', data: data})

@@ -1,41 +1,41 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut publishRoundModal) true)
-}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.publishRoundModal) true}}
+>
   Publish Round
-{{/bs-button}}
-{{#bs-modal
-  open=publishRoundModal
-  onHidden=(pipe-action (action (mut publishRoundModal) false) (action (mut publishRoundModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.publishRoundModal}}
+  @onHidden={{pipe-action (action (mut this.publishRoundModal) false) (action (mut this.publishRoundModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Publish Round</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
         This officially ends the round and makes the final reports public. The OSS, SA and CSA reports are all emailed to the competitors, panelists and DRCJ, as applicable.  This step cannot be undone without the intervention of a BS Admin so be sure your results are ready to be seen by the public before Publishing.
     </p>
     <h4>
       The Round should not be "Published" until the announcements are over as emails are sent immediately!
     </h4>
-    {{#if publishRoundModalError}}
+    {{#if this.publishRoundModalError}}
     <p class='text-danger'>
-      {{#if publishRoundModalErrorMessage}}
-        {{ publishRoundModalErrorMessage }}
+      {{#if this.publishRoundModalErrorMessage}}
+        {{ this.publishRoundModalErrorMessage }}
       {{/if}}
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform publishRound)}}
-      {{#if publishRound.isRunning}}
-        Publishing {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
+    <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.publishRound}}>
+      {{#if this.publishRound.isRunning}}
+        Publishing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Publish Round
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

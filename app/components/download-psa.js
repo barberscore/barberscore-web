@@ -4,10 +4,10 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
   flashMessages: service(),
+  fileDownload: service(),
   psa: task(function *() {
-    let pdf = yield this.model.psa();
     let fileName = `${this.model.conventionName} ${this.model.sessionKind} ${this.model.roundKind} ${this.model.personName} PSA`;
-    this.saveFileAs(fileName, pdf, 'application/pdf');
+    this.fileDownload.downloadFile(this.model, 'psa', fileName, 'application/pdf');
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });

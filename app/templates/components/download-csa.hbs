@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform this.csa)
-}}
+<BsButton
+  @type='success'
+  @onClick={{perform this.csa}}
+>
   {{#if this.csa.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
   {{else if this.csa.last.isError}}
     Error Downloading
   {{else}}
-    Download CSA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+    Download CSA&nbsp;&nbsp;<FaIcon @icon='file-pdf' />
   {{/if}}
-{{/bs-button}}
+</BsButton>

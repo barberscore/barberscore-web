@@ -1,11 +1,11 @@
-{{#bs-button
-  disabled=this.model.isDisabled
-  type='primary'
-  onClick=(perform this.startAppearance)
-}}
+<BsButton
+  @disabled={{this.model.isDisabled}}
+  @type='primary'
+  @onClick=(perform this.startAppearance)
+>
   {{#if this.startAppearance.isRunning}}
-    Starting {{fa-icon "spinner" spin=true}}
+    Starting <FaIcon @icon="spinner" @spin={{true}} />
   {{else}}
     Start Performance
   {{/if}}
-{{/bs-button}}
+</BsButton>

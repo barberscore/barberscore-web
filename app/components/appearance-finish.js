@@ -13,7 +13,7 @@ export default Component.extend({
       yield this.store.pushPayload('appearance', appearance);
       this.flashMessages.success("Finished!");
     } catch(e) {
-      this.flashMessages.error(e);
+      this.flashMessages.danger(e);
     }
   }).drop(),
 });
