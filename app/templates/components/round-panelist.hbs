@@ -79,7 +79,7 @@
         {{else if (or (eq this.model.round.status 'Completed')(eq this.model.round.status 'Finalized')(eq this.model.round.status 'Published'))}}
           <li>{{download-psa model=this.model}}</li>
         {{/if}}
-        <li class='pull-right'><h4>Panelist Status: <strong>{{this.model.status}}</strong></h4></li>
+        <li class='float-end'><h4>Panelist Status: <strong>{{this.model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

@@ -1,3 +1,13 @@
+.card {
+  --bs-card-spacer-y: 1.25rem;
+  --bs-card-spacer-x: 1.25rem;
+}
+
+.card-header {
+  --bs-card-cap-padding-y: 0.75rem;
+  --bs-card-cap-padding-x: 1.25rem;
+}
+
 .active {
   font-weight: bold;
 }
@@ -202,6 +212,11 @@ ul.list-unstyled + ul.list-unstyled {
 .breadcrumb {
   background-color: #e9ecef;
   padding: .75rem 1rem;
+  border-radius: .25rem;
+
+  .breadcrumb-item a {
+    text-decoration: none;
+  }
 }
 
 .badge {
