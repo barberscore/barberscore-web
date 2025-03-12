@@ -1,26 +1,26 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut finalizeRoundModal) true)
-}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.finalizeRoundModal) true}}
+>
   Finalize Round
-{{/bs-button}}
-{{#bs-modal
-  open=finalizeRoundModal
-  onHidden=(pipe-action (action (mut finalizeRoundModal) false) (action (mut finalizeRoundModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.finalizeRoundModal}}
+  @onHidden={{pipe-action (action (mut this.finalizeRoundModal) false) (action (mut this.finalizeRoundModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Finalize Round</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
         Finalizing the Round generates <strong>FINAL</strong> versions of the OSS, SA, Song Titles and Announcements and emails the SA to the panel. These are not made public until the next step, but Finalizing should mean that no further changes are expected, especially to the scores. Pay particular attention to the OSS for accuracy and completeness, making manual adjustments in the Appearances, Outcomes, and Draw as necessary <strong>BEFORE YOU VERIFY</strong>.
     </p>
     <p>
         <strong>IMPORTANT:</strong>&nbsp;&nbsp;Please take the time to review all the reports thoroughly!
     </p>
-    {{#if finalizeRoundModalError}}
+    {{#if this.finalizeRoundModalError}}
     <p class='text-danger'>
       Could not Finalize Round.  Please ensure all Outcomes have been determined (including "Manual" awards).
     </p>
@@ -28,15 +28,15 @@
       If you are certain that the Appearances were verified try refreshing the page to see if things worked; otherwise contact support.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform finalizeRound)}}
-      {{#if finalizeRound.isRunning}}
-        Finalizing {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.finalizeRound}}>
+      {{#if this.finalizeRound.isRunning}}
+        Finalizing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Finalize Round
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

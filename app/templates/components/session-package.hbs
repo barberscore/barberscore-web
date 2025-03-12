@@ -1,36 +1,36 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut packageSessionModal) true)
-}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.packageSessionModal) true}}
+>
   Package Session
-{{/bs-button}}
-{{#bs-modal
-  open=packageSessionModal
-  onHidden=(pipe-action (action (mut packageSessionModal) false) (action (mut packageSessionModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.packageSessionModal}}
+  @onHidden={{pipe-action (action (mut this.packageSessionModal) false) (action (mut this.packageSessionModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Package Session</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
         This packages the Session and represents the official handoff from the DRCJ to the Panel Chair and Administrator. After the session is packaged it is put into a locked down state; you won't be able to add, withdraw, re-arrange the draw or take any actions. Any further changes must be handled by the PC or ADM.
     </p>
-    {{#if packageSessionModalError}}
+    {{#if this.packageSessionModalError}}
     <p class='text-danger'>
       Could not Package Session.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform packageSession)}}
-      {{#if packageSession.isRunning}}
-        Packaging {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.packageSession}}>
+      {{#if this.packageSession.isRunning}}
+        Packaging <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Package Session
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

@@ -43,25 +43,25 @@ export default Model.extend({
   permissions: attr(),
 
   reset: async function (data) {
-    return await apiAction(this, {path: 'reset', method: 'post'})
+    return await apiAction(this, {path: 'reset', method: 'POST', data: data})
   },
   build: async function (data) {
-    return await apiAction(this, {path: 'build', method: 'post'})
+    return await apiAction(this, {path: 'build', method: 'POST', data: data})
   },
   open: async function (data) {
-    return await apiAction(this, {path: 'open', method: 'post'})
+    return await apiAction(this, {path: 'open', method: 'POST', data: data})
   },
   close: async function (data) {
-    return await apiAction(this, {path: 'close', method: 'post'})
+    return await apiAction(this, {path: 'close', method: 'POST', data: data})
   },
   verify: async function (data) {
-    return await apiAction(this, {path: 'verify', method: 'post'})
+    return await apiAction(this, {path: 'verify', method: 'POST', data: data})
   },
   package: async function (data) {
-    return await apiAction(this, {path: 'package', method: 'post'})
+    return await apiAction(this, {path: 'package', method: 'POST', data: data})
   },
   finish: async function (data) {
-    return await apiAction(this, {path: 'finish', method: 'post'})
+    return await apiAction(this, {path: 'finish', method: 'POST', data: data})
   },
 
   legacy: async function (data) {
