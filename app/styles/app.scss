@@ -1,9 +1,27 @@
+.table-warning {
+  --bs-table-bg: #ffeeba;
+  --bs-table-border-color: #ffdf7e;
+  --bs-table-hover-bg: #ffe8a1;
+}
+
+.table-success {
+  --bs-table-bg: #c3e6cb;
+  --bs-table-border-color: #8fd19e;
+  --bs-table-hover-bg: #b1dfbb;
+}
+
+.table-primary {
+  --bs-table-bg: #b8daff;
+  --bs-table-border-color: #7abaff;
+  --bs-table-hover-bg: #9fcdff;
+}
+
 .card {
   --bs-card-spacer-y: 1.25rem;
   --bs-card-spacer-x: 1.25rem;
 }
 
-.card-header {
+.card-header, .card-footer {
   --bs-card-cap-padding-y: 0.75rem;
   --bs-card-cap-padding-x: 1.25rem;
 }
@@ -139,6 +157,31 @@ input[type=checkbox] {
   border-top: solid 10px black;
 }
 
+.btn {
+  --bs-border-radius: .25rem;
+}
+
+.btn-primary {
+  --bs-btn-bg: #007bff;
+  --bs-btn-border-color: #007bff; 
+  --bs-btn-hover-bg: #0069d9;
+  --bs-btn-hover-border-color: #0062cc;
+}
+
+.btn-success {
+  --bs-btn-bg: #28a745;
+  --bs-btn-border-color: #28a745; 
+  --bs-btn-hover-bg: #218838;
+  --bs-btn-hover-border-color: #1e7e34;
+}
+
+.btn-danger {
+  --bs-btn-bg: #dc3545;
+  --bs-btn-border-color: #dc3545; 
+  --bs-btn-hover-bg: #c82333;
+  --bs-btn-hover-border-color: #bd2130;
+}
+
 .btn-logout {
   display: flex;
   justify-content: center;
@@ -236,6 +279,26 @@ ul.list-unstyled + ul.list-unstyled {
     background-color: #007bff;
 }
 
+.table .thead-light th {
+    color: #495057;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    padding: .3rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.table tbody tr:last-of-type td {
+  border-bottom: none;
+}
 
 @import "ember-power-select";
 @import "ember-power-datepicker";
