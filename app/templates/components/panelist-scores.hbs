@@ -1,11 +1,11 @@
 {{#each this.scoresCall as |score|}}
-  <input
+  <Input
     class='form-control text-right big-num'
-    type='tel'
-    value={{score.points}}
+    @type='tel'
+    @value={{score.points}}
     min=0
     max=100
     disabled={{this.isDisabled}}
-    onchange={{perform this.autosave score element='target.id'}}
+    {{on "input" (perform this.autosave score element='target.id')}}
   />
 {{/each}}

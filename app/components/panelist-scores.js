@@ -76,9 +76,9 @@ export default Component.extend({
 
     if (property.points > 100) {
       this.flashMessages.danger("Scores cannot exceed 100.");
-      this.$(element.target).addClass('is-invalid').focus();
+      $(element.target).addClass('is-invalid').focus();
     } else {
-      this.$(element.target).removeClass('is-invalid')
+      $(element.target).removeClass('is-invalid')
       try {
         yield property.save();
         this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
