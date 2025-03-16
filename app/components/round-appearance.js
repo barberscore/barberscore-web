@@ -71,4 +71,11 @@ export default Component.extend({
     yield this.store.pushPayload('appearance', appearance);
     this.flashMessages.success("Mocked!");
   }).drop(),
+  actions: {
+    onScoreChange: function() {
+      this.set('practicePoints', 0);
+      this.set('officialPoints', 0);
+      this.setScores();
+    }
+  }
 });

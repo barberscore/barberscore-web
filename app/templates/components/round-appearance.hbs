@@ -42,7 +42,7 @@
         (eq this.model.status 'Advanced')
       )}}
         <section>
-          {{appearance-panelists model=this.model}}
+          {{appearance-panelists model=this.model onScoreChange=(action 'onScoreChange')}}
           <div class='text-end'>
             <ul class='list-inline'>
               <li class='list-inline-item'><h5>Practice Points: {{#if this.practicePoints}}<strong>{{this.practicePoints}}</strong>{{else}}N/A{{/if}}</h5></li>
@@ -60,7 +60,7 @@
       </section> --}}
     </div>
     <div class='card-footer'>
-      {{prev-next model=this.model sortedArray=this.sortedAppearances}}
+      {{prev-next model=this.model sortedArray=this.appearances}}
       <h4>
         #{{this.model.num}}: {{html-safe this.model.name}}
         {{#if (eq this.model.status 'Variance')}}

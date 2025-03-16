@@ -81,6 +81,7 @@ export default Component.extend({
       $(element.target).removeClass('is-invalid')
       try {
         yield property.save();
+        this.onScoreChange();
         this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
       } catch(e) {
         e.errors.forEach((error) => {
