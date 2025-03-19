@@ -7,10 +7,19 @@ export default Component.extend({
   sortedSongsProperties: [
     'num',
   ],
-  sortedSongs: sort(
-    'model.songs',
-    'sortedSongsProperties'
-  ),
+  sortedSongs: null,
+  didReceiveAttrs: function() {
+    this.setSongs();
+  },
+  setSongs: function() {
+    const that = this;
+    this.get('model.songs').then(function(songs) {
+      const updatedSongs = songs.toSorted(function(a, b) {
+        return a.num < b.num ? -1 : 1;
+      });
+      that.set('sortedSongs', updatedSongs);
+    });
+  },
   chartsList: computed(
     'model',
     'charts',
