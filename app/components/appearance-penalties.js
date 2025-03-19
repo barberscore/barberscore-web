@@ -11,7 +11,7 @@ export default Component.extend({
     return false;
   }),
   sortedSongs: [],
-  init: function() {
+  didReceiveAttrs: function() {
     this._super(...arguments);
     this.setSongs();
   },

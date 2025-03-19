@@ -9,7 +9,7 @@ export default Component.extend({
   officialPoints: 0,
   practicePoints: 0,
   appearances: [],
-  init: function() {
+  didReceiveAttrs: function() {
     this._super(...arguments);
     this.setScores();
     this.setAppearances();
@@ -25,6 +25,8 @@ export default Component.extend({
   },
   setScores: function() {
     const that = this;
+    this.set('officialPoints', 0);
+    this.set('practicePoints', 0);
 
     this.get('model.songs').then(async function(songs) {
       let officialPoints = 0;
