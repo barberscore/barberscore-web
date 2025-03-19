@@ -4,14 +4,14 @@
   >
       <BsButton
         @type='outline-dark'
-        @disabled={{not (has-previous this.model this.sortedArray)}}
+        disabled={{(or (not (has-previous this.model this.sortedArray)) this.disableButtons)}}
         @onClick={{action 'trans' (previous this.model this.sortedArray)}}
       >
        Previous
       </BsButton>
       <BsButton
         @type='outline-dark'
-        @disabled={{not (has-next this.model this.sortedArray)}}
+        disabled={{(or (not (has-next this.model this.sortedArray)) this.disableButtons)}}
         @onClick={{action 'trans' (next this.model this.sortedArray)}}
       >
         Next
