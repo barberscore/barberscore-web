@@ -1,5 +1,4 @@
-        {{ this.entry.isDisabled }}
-
+        {{!-- {{ this.entry.isDisabled }} --}}
   <div class='table-responsive'>
     <table class='table table-hover table-sm'>
       <thead class='thead-light'>
@@ -43,7 +42,7 @@
     </table>
   </div>
   {{#unless this.entry.isDisabled}}
-  <div>B
+  <div>
     <ul class='list-unstyled'>
       <li>
         <BsButton @type='link' @onClick={{toggle 'customCollapsed2' this}}>
