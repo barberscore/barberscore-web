@@ -2,7 +2,7 @@
   {{this.sortedPanelists}}
   <div class='card'>
     <div class='card-header'>
-        <!-- {{prev-next model=this.model sortedArray=this.sortedPanelists}} -->
+        {{!-- prev-next model=this.model sortedArray=this.sortedPanelists --}}
       <h4>
         {{this.model.name}}
       </h4>
@@ -50,17 +50,20 @@
         </div>
 
         {{#if this.isScoringJudge}}
-          <div class="form-row">
+          <div class="form-group">
             <label class="mr-2 col-form-label">Number:</label>
-            <Input
-              class='form-control col-sm-1 text-right'
-              type='tel'
-              @value={{this.model.num}}
-              min=0
-              disabled={{this.isDisabled}}
-              max=200
-              onchange={{perform this.autosave value='target.value'}}
-            />
+            <div class='col-sm-1'>
+              <Input
+                class='form-control text-right'
+                type='tel'
+                size="10"
+                @value={{this.model.num}}
+                min=0
+                disabled={{this.isDisabled}}
+                max=200
+                onchange={{perform this.autosave value='target.value'}}
+              />
+            </div>
           </div>
         {{/if}}
         {{#if this.savePanelistError}}
