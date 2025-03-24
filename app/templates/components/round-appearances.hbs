@@ -47,7 +47,7 @@
                 {{round-appearance-delete model=this.mt}}
               </td>
             </tr>
-            {{#each this.model.appearances as |appearance|}}
+            {{#each this.sortedAppearances as |appearance|}}
               {{#if (gt appearance.num 0)}}
                 <tr {{sortable-item model=appearance}} {{sortable-handle}}>
                   {{#if appearance.isLoading}}
@@ -178,9 +178,9 @@
               {{#if this.hasMt}}
                 <LinkTo
                   @route='dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                  @model={{mt}}
+                  @model={{this.mt}}
                 >
-                  {{html-safe mt.name}}
+                  {{html-safe this.mt.name}}
                 </LinkTo>
               {{/if}}
             </td>
@@ -192,12 +192,12 @@
             </td>
             {{#if (and this.hasMt (eq this.model.status 'Built'))}}
               <td>
-                {{round-appearance-delete model=mt}}
+                {{round-appearance-delete model=this.mt}}
               </td>
             {{/if}}
           </tr>
           <tbody>
-          {{#each this.model.appearances as |appearance|}}
+          {{#each this.sortedAppearances as |appearance|}}
             {{#if (gt appearance.num 0)}}
               <tr>
                 {{#if appearance.isLoading}}

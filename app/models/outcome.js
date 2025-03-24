@@ -47,6 +47,7 @@ export default Model.extend({
 
   disablePrinted: computed(
     'round',
+    'printOnFinalsOss',
     function() {
       if (this.round.get('status') == 'Published') {
         return true;

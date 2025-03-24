@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import Component from '@ember/component';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import { later } from '@ember/runloop';
 
 export default Component.extend({
   flashMessages: service(),
@@ -14,21 +15,33 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  mt: alias('model.appearences.firstObject'),
-  hasMt: computed('model.appearences.firstObject', 'model.appearences.@each.id', function() {
-    console.log(this.get('model'));
-    if (this.model.appearences && this.model.appearences.firstObject.num === 0) {
-      return true;
-    }
-    return false;
-  }),
+  mt: null,
+  hasMt: false,
+  sortedAppearances: [],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setAppearances();
+  },
+  setAppearances: function() {
+    const that = this;
+    this.get('model.appearances')
+      .then(function(appearances) {
+        appearances.map(function(appearance) {
+          if (appearance.num === 0) {
+            console.log(appearance);
+            that.set('mt', appearance);
+            that.set('hasMt', true);
+          }
+        });
+        appearances = appearances.toSorted(function(a, b) {
+          return a.num < b.num ? -1 : 1;
+        });
+        that.set('sortedAppearances', appearances);
+      });
+  },
   sortedAppearancesProperties: [
     'num',
   ],
-  sortedAppearances: sort(
-    'model.appearances',
-    'sortedAppearancesProperties'
-  ),
   searchGroup: task(function* (term){
     yield timeout(600);
     let kindModel = this.get('model.sessionKind');
@@ -64,6 +77,7 @@ export default Component.extend({
       this.set('num', null);
       this.set('group', null);
       this.flashMessages.success("Created!");
+      this.setAppearances();
     } catch(e) {
       e.errors.forEach((e) => {
         this.set('createAppearanceModalError', true);
@@ -87,10 +101,14 @@ export default Component.extend({
       this.toggleProperty('isEditing');
     },
     reorderItems(itemModels) {
+      const that = this;
       itemModels.forEach(function(item, index) {
         item.set('num', index + 1);
+        item.save();
       });
-      itemModels.invoke('save');
+      later(() => {
+        that.setAppearances();
+      }, 1000);
       this.flashMessages.success('Success');
     },
   }
