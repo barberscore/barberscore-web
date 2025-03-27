@@ -23,7 +23,7 @@
                 <FaIcon @icon='check-circle' class='text-success' />
               {{/if}}
             {{else}}
-              {{input type="checkbox" class='pl-2' disabled=this.isDisabled checked=isSelected}}
+              <Input @type="checkbox" class='pl-2' disabled={{this.isDisabled}} @checked={{isSelected}} />
             {{/if}}
           </td>
           <td>

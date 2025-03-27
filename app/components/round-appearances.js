@@ -97,6 +97,9 @@ export default Component.extend({
     cancelAppearance(appearance){
       appearance.deleteRecord();
     },
+    onDeleteAppearance: function() {
+      this.setAppearances();
+    },
     toggleOrderOfAppearance(){
       this.toggleProperty('isEditing');
     },

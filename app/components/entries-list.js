@@ -102,6 +102,7 @@ export default Component.extend({
       this.set('createEntryModalError', false);
       this.set('notificationList', '');
       this.set('group', null);
+      this.setSortedEntries();
       this.flashMessages.success("Created!");
       this.set('createEntryModalSuccessMessage', "A Draw must be assigned for this entry prior to building a round.");
       // this.set('createEntryModal', false);

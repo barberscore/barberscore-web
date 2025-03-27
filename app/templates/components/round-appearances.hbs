@@ -44,7 +44,7 @@
               <td>
               </td>
               <td>
-                {{round-appearance-delete model=this.mt}}
+                {{round-appearance-delete model=this.mt onDeleteAppearance=(action 'onDeleteAppearance')}}
               </td>
             </tr>
             {{#each this.sortedAppearances as |appearance|}}
@@ -72,7 +72,7 @@
                     <td>{{moment-format appearance.actualStart 'HH:mm' allow-empty=true}}</td>
                     <td>{{appearance.status}}</td>
                     <td>
-                      {{round-appearance-delete model=appearance}}
+                      {{round-appearance-delete model=appearance onDeleteAppearance=(action 'onDeleteAppearance')}}
                     </td>
                   {{/if}}
                 </tr>
@@ -106,14 +106,14 @@
             Enter the details for the Appearance.
           </p>
           <p>
-            {{input
+            <Input
               class='form-control'
               type='tel'
               placeholder='Enter Order of Appearance (0 = MT)'
-              value=num
+              @value={{this.num}}
               min=-10
               max=99
-            }}
+            />
           </p>
           <p>
             <PowerSelect
@@ -137,7 +137,7 @@
         </modal.body>
         <modal.footer>
           <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
-          <BsButton @type='success' @onClick={{perform saveAppearance group num}} @disabled={{isDisabled}}>
+          <BsButton @type='success' @onClick={{perform saveAppearance this.group this.num}} @disabled={{isDisabled}}>
             {{#if saveAppearance.isRunning}}
               Creating <FaIcon @icon="spinner" @spin={{true}} />
             {{else}}
@@ -192,7 +192,7 @@
             </td>
             {{#if (and this.hasMt (eq this.model.status 'Built'))}}
               <td>
-                {{round-appearance-delete model=this.mt}}
+                {{round-appearance-delete model=this.mt onDeleteAppearance=(action 'onDeleteAppearance')}}
               </td>
             {{/if}}
           </tr>
@@ -223,7 +223,7 @@
                   <td>{{appearance.status}}</td>
                   {{#if (eq this.model.status 'Built')}}
                     <td>
-                      {{round-appearance-delete model=appearance}}
+                      {{round-appearance-delete model=appearance onDeleteAppearance=(action 'onDeleteAppearance')}}
                     </td>
                   {{/if}}
                 {{/if}}

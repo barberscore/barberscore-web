@@ -165,14 +165,14 @@
         Select the group to advance into the next round.
       </p>
       <p>
-        {{input
+        <Input
           class='form-control'
           type='tel'
           placeholder='Enter Draw (0 = MT)'
-          value=this.draw
+          @value={{this.draw}}
           min=0
           max=99
-        }}
+        />
       </p>
       <p>
         <PowerSelect

@@ -17,6 +17,7 @@ export default Component.extend({
       yield this.model.destroyRecord({
         'by': this.get('currentUser.user.id'),
       });
+      this.onDeleteAppearance();
     } catch(e) {
       this.set('deleteAppearanceModalError', true);
     }

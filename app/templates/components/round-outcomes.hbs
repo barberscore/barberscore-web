@@ -69,14 +69,14 @@
           Enter the details for the Outcome.
         </p>
         <p>
-          {{input
+          <Input
             class='form-control'
             type='tel'
             placeholder='Enter Award Number'
-            value=this.num
+            @value={{this.num}}
             min=-10
             max=99
-          }}
+          />
         </p>
         <p>
           <PowerSelect

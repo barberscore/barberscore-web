@@ -103,7 +103,7 @@
         {{/if}}
         </div>
         <div class='form-group'>
-          {{textarea value=this.notificationList property='notificationList' rows="3" class="form-control" required="true" placeholder="Enter email addresses that should be sent CSA and OSS following performances. Comma separate mulitple multiple addresses."}}
+          <Textarea @value={{this.notificationList}} property='notificationList' rows="3" class="form-control my-2" required="true" placeholder="Enter email addresses that should be sent CSA and OSS following performances. Comma separate mulitple multiple addresses." />
 
           {{#if this.notificationListModalError}}
           <p class='text-danger'>
