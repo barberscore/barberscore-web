@@ -16,6 +16,16 @@
   --bs-table-hover-bg: #9fcdff;
 }
 
+caption {
+  color: #6c757d;
+  padding-top: .75em;
+  padding-bottom: .75em;
+}
+
+.table-sm > :not(caption) > * > * {
+  padding: .3em;
+}
+
 .card {
   --bs-card-spacer-y: 1.25rem;
   --bs-card-spacer-x: 1.25rem;
