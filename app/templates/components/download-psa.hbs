@@ -3,10 +3,10 @@
   onClick=(perform psa)
 }}
   {{#if psa.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
   {{else if psa.last.isError}}
     Error Downloading
   {{else}}
-    Download PSA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+    Download PSA&nbsp;&nbsp;<FaIcon @icon='file-text' />
   {{/if}}
 {{/bs-button}} --}}

@@ -29,7 +29,7 @@
         {{#each this.sortedEntries as |entry|}}
           <tr>
             {{#if entry.isLoading}}
-              <td colspan=8>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=8>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
               <td><LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{entry}}>{{html-safe entry.name}}</LinkTo></td>
               <td>{{entry.area}}</td>
@@ -126,7 +126,7 @@
         <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
         <BsButton @type='success' @onClick={{perform this.saveEntry this.group this.notificationList}} @disabled=this.isDisabled>
           {{#if this.saveEntry.isRunning}}
-            Creating {{fa-icon "spinner" spin=true}}
+            Creating <FaIcon @icon="spinner" @spin={{true}} />
           {{else}}
             Create Entry
           {{/if}}

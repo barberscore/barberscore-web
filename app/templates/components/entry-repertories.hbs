@@ -11,7 +11,7 @@
       {{#each sortedRepertories as |repertory|}}
         <tr>
           {{#if repertory.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=2>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
               <td>{{repertory.title}}</td>
               <td>{{repertory.arrangers}}</td>
@@ -161,7 +161,7 @@ here
         {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
         {{#bs-button type='success' onClick=(perform saveRepertory chart) }}
           {{#if saveRepertory.isRunning}}
-            Adding... {{fa-icon "spinner" spin=true}}
+            Adding... <FaIcon @icon="spinner" @spin={{true}} />
           {{else}}
             Add Chart
           {{/if}}

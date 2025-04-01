@@ -11,9 +11,9 @@
     <tbody>
       {{#each sortedSessions as |session|}}
         <tr>
-          <td>{{#link-to 'dashboard.conventions.convention.sessions.session.details' session}}{{session.kind}}{{/link-to}}</td>
+          <td><LinkTo @route='dashboard.conventions.convention.sessions.session.details' @model={{session}}>{{session.kind}}</LinkTo></td>
           {{#if session.groupName.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=2>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
             <td>{{session.groupName}}</td>
           {{/if}}

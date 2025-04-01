@@ -63,7 +63,7 @@
                       </LinkTo>
                       &nbsp;
                       {{#if (eq appearance.status 'Verified')}}
-                        {{fa-icon 'check-circle' class='text-success'}}
+                        <FaIcon @icon='check-circle' class='text-success' />
                       {{else if (eq appearance.status 'Variance')}}
                         {{download-variance model=appearance}}
                       {{/if}}

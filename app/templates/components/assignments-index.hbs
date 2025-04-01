@@ -136,7 +136,7 @@
       {{!-- {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}} --}}
       {{#bs-button type='success' onClick=(perform saveAssignment person category kind) disabled=isDisabled}}
         {{#if saveAssignment.isRunning}}
-          Creating {{fa-icon "spinner" spin=true}}
+          Creating <FaIcon @icon="spinner" @spin={{true}} />
         {{else}}
           Create Assignment
         {{/if}}

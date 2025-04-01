@@ -21,7 +21,7 @@
             {{#if officer.group.isLoading}}
               <tr>
                 <td colspan=4>
-                  Loading&nbsp;{{fa-icon 'spinner' spin=true}}
+                  Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} />
                 </td>
               </tr>
             {{else}}

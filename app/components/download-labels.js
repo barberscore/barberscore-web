@@ -56,6 +56,7 @@ export default Component.extend({
       let postfix = `${this.get('postfix')}`.trim();
 
       this.saveFileAs(fileName, rtf, 'application/rtf'); */
+      let postfix = `${this.get('postfix')}`.trim();
       let fileName = `${this.model.baseFilename}_Lbls${(postfix ? '_' + postfix : '')}.rtf`;
       let data = {
         'postfix': this.get('postfix'),

@@ -11,10 +11,10 @@
       {{#each sortedRepertories as |repertory|}}
         <tr>
           {{#if repertory.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=2>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
             {{#if repertory.chart.isLoading}}
-              <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=2>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
               <td>{{repertory.chartTitle}}</td>
               <td>{{repertory.chartArrangers}}</td>
@@ -161,7 +161,7 @@ If you have been added to one of those roles (and you’re still not able to edi
       {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
       {{#bs-button type='success' onClick=(perform saveRepertory chart) }}
         {{#if saveRepertory.isRunning}}
-          Adding... {{fa-icon "spinner" spin=true}}
+          Adding... <FaIcon @icon="spinner" @spin={{true}} />
         {{else}}
           Add Chart
         {{/if}}

@@ -11,13 +11,13 @@
       {{#each this.sortedStatelogs as |statelog|}}
         <tr>
           {{#if statelog.isLoading}}
-            <td colspan=6>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=6>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
             <td>
               {{capitalize-word statelog.transition}}
             </td>
             {{#if statelog.by.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=1>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
               <td>{{statelog.by.name}}</td>
             {{/if}}

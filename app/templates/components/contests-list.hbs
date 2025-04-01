@@ -17,7 +17,7 @@
           {{#each this.sortedContests as |contest|}}
             <tr>
               {{#if contest.isLoading}}
-                <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+                <td colspan=1>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
               {{else}}
                 <td><LinkTo @route='dashboard.conventions.convention.sessions.session.contests.contest' @model={{contest}}>{{contest.name}}</LinkTo></td>
                 <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
