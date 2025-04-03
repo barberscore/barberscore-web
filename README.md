@@ -35,7 +35,6 @@ AUTH0_DOMAIN=barberscore-dev.auth0.com
 AUTH0_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
 ```
 
-
 ### Running
 
 * `ember serve`
