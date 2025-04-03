@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 import { pluralize } from '@ember-data/request-utils/string';
 import Inflector from 'ember-inflector';
 import { uncountable } from '@ember-data/request-utils/string';
+import ENV from '../config/environment';
 
 const URL_PATHS = {
   'user': 'user',
@@ -38,6 +39,8 @@ uncountable('statelog');
 uncountable('user');
 
 export default class ApplicationAdapter extends JSONAPIAdapter {
+  host = ENV.APP.API_HOST,
+
   @service session;
 
   @computed('session.{data.authenticated.id_token,isAuthenticated}')
