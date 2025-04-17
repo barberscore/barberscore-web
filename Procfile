@@ -1,1 +1,1 @@
-web: ember serve --environment=production --port $PORT
+web: bin/start-nginx-static
