@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each this.model.panelists as |panelist|}}
+        {{#each this.sortedPanelists as |panelist|}}
           <tr>
             <td>{{panelist.num}}</td>
             <td><LinkTo @route='dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' @model={{panelist}}>{{panelist.name}}</LinkTo></td>
