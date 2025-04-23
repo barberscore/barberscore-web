@@ -62,6 +62,7 @@ export default Component.extend({
         let score = scoresCall[i];
         scores.push(score);
       }
+      scores.sort((a, b) => a.songNum - b.songNum);
       that.set('scoresCall', scores);
       that.set('panelistId', panelistId);
       that.set('appearanceId', appearanceId);
