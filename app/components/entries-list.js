@@ -20,7 +20,7 @@ export default Component.extend({
       entries = entries.toSorted(function(a, b) {
         if (a.status != b.status)
           return a.status < b.status ? -1 : 1;
-        return a.name < b.name ? -1 : 1;
+        return a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1;
       });
       that.set('sortedEntries', entries);
     });
