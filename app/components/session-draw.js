@@ -30,12 +30,15 @@ export default Component.extend({
       });
       that.set('mt', mt);
       let notMt = entriesObj.filter(function(item) {
-        return item.notMt;
+        if (item.status == 'Approved') {
+          return item.notMt;
+        }
       });
       that.set('notMt', notMt);
-      entriesObj = entriesObj.toSorted(function(a, b) {
+      entriesObj = notMt.toSorted(function(a, b) {
         return a.draw < b.draw ? -1 : 1;
       });
+
       that.set('sortedEntries', entriesObj);
     });
   },

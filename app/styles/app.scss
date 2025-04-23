@@ -26,6 +26,11 @@ caption {
   padding: .3em;
 }
 
+.table-responsive .table-sm > thead + tr > td {
+  padding: .3em !important;
+  border-bottom-width: var(--bs-border-width);
+}
+
 .card {
   --bs-card-spacer-y: 1.25rem;
   --bs-card-spacer-x: 1.25rem;
