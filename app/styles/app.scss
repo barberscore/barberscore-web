@@ -31,6 +31,11 @@ caption {
   border-bottom-width: var(--bs-border-width);
 }
 
+.table-responsive .table-sm > thead + tr > td a {
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  padding-left: 0;
+}    
+
 .card {
   --bs-card-spacer-y: 1.25rem;
   --bs-card-spacer-x: 1.25rem;
