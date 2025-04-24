@@ -1,9 +1,11 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { sort } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  flashMessages: service(),
   sortedSongsProperties: [
     'num',
   ],

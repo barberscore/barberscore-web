@@ -1,7 +1,7 @@
 <BsButton
   @disabled={{this.model.isDisabled}}
   @type='primary'
-  @onClick=(perform this.startAppearance)
+  @onClick={{perform this.startAppearance}}
 >
   {{#if this.startAppearance.isRunning}}
     Starting <FaIcon @icon="spinner" @spin={{true}} />

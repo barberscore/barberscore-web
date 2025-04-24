@@ -13,7 +13,7 @@
             <PowerSelect
               @options={{this.chartsList}}
               @selected={{song}}
-              @onChange={{perform this.autosave this.song}}
+              @onChange={{perform this.autosave song}}
               @placeholder="Choose Chart Title"
               @searchField='title'
               @allowClear={{false}}
