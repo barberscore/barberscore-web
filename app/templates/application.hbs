@@ -1,14 +1,14 @@
-<BsNavbar @toggleBreakpoint=null position='sticky-top' class='mb-4 navbar-expand-md' as |navbar|>
+<BsNavbar @toggleBreakpoint=null class='mb-4 navbar-expand sticky-top' as |navbar|>
     <LinkTo @route='index' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png" width="32"></span>&nbsp;Barberscore</LinkTo>
   <navbar.content class="show">
-    <navbar.nav class='mx-auto' as |nav|>
+    <navbar.nav class='ms-auto' as |nav|>
       <nav.item>
         {{#each this.flashMessages.queue as |flash|}}
           <FlashMessage @flash={{flash}} />
         {{/each}}
       </nav.item>
     </navbar.nav>
-    <navbar.nav @type='pills' class='ml-auto' as |nav|>
+    <navbar.nav @type='pills' class='ms-auto' as |nav|>
       {{#if this.session.isAuthenticated}}
         <nav.item>
           <BsButton @type='outline-dark' class="btn-logout" @onClick={{action 'invalidateSession'}}>
