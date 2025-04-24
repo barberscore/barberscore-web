@@ -341,3 +341,7 @@ ul.list-unstyled + ul.list-unstyled {
 
 // Components
 @import "components/round-appearance";
+
+input[type=checkbox] {
+  accent-color: #0275ff;
+}
