@@ -44,6 +44,10 @@ caption {
   border-bottom-width: var(--bs-border-width);
 }
 
+.table-responsive .table-sm > thead + tr > td:last-of-type > div {
+  padding-left: 0;
+}
+
 .table-responsive .table-sm > thead + tr > td a {
   color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
   padding-left: 0;
