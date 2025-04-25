@@ -13,6 +13,8 @@ export default Component.extend({
     try {
       yield this.model.save();
       this.flashMessages.success("Removed!");
+      this.set('removeFromDrawModal', false);
+      this.onRemove();
     } catch(e) {
       this.flashMessages.danger("Problem!");
     }

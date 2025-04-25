@@ -86,5 +86,8 @@ export default Component.extend({
       // itemModels.invoke('save');
       this.flashMessages.success('Success');
     },
+    removeFromDraw() {
+      this.setAppearances();
+    },
   }
 });

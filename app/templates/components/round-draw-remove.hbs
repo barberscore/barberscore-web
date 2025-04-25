@@ -25,7 +25,7 @@
   </modal.body>
   <modal.footer>
     <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
-    <BsButton @type='danger' @onClick=(perform this.removeFromDraw)>
+    <BsButton @type='danger' @onClick={{perform this.removeFromDraw}}>
       {{#if this.removeFromDraw.isRunning}}
         Deleting <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}

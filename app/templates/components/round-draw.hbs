@@ -103,7 +103,7 @@
               <td>
                 {{#if this.hasMt}}
                   {{#each this.mt as |appearance|}}
-                    {{round-draw-remove model=appearance}}
+                    {{round-draw-remove model=appearance onRemove=(action 'removeFromDraw')}}
                   {{/each}}
                 {{/if}}
               </td>
@@ -122,7 +122,7 @@
                 </td>
                 {{#if (eq this.model.status 'Completed')}}
                 <td>
-                  {{round-draw-remove model=appearance}}
+                  {{round-draw-remove model=appearance onRemove=(action 'removeFromDraw')}}
                 </td>
                 {{/if}}
               </tr>
