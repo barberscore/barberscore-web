@@ -48,6 +48,7 @@ export default Component.extend({
     try {
       yield obj.set('draw', draw);
       yield obj.save();
+      this.setAppearances();
       this.set('advanceGroupModal', false);
       this.set('advanceGroupModalError', false);
       this.set('draw', null);
