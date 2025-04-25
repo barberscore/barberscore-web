@@ -53,6 +53,15 @@ caption {
   padding-left: 0;
 }    
 
+.table-responsive .table-sm > tbody > tr.sortable-item {
+  cursor: move;
+}
+
+.table-responsive .table-sm > tbody > tr.sortable-item > td > a {
+  pointer-events: none;
+  cursor: move;
+}
+
 .table-responsive .table > thead + tr > td {
   padding: 0.5rem 0.5rem;
   border-bottom-width: var(--bs-border-width);
