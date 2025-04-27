@@ -23,7 +23,10 @@ export default Component.extend({
       this.store.findRecord('session', this.model.sessionId, { reload: true });
     } catch(e) {
       this.set('publishRoundModalError', true);
-      this.set('publishRoundModalErrorMessage', e.errors.status);
+      e.errors.forEach((error) => {
+        let res = JSON.parse(error.detail);
+        this.set('publishRoundModalErrorMessage', res.errors.status);
+      })
     }
   }).drop(),
 });
