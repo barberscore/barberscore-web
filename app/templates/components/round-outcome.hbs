@@ -60,7 +60,7 @@
           <p>
             <label>
             <Input
-              disabled=this.isDisabled
+              disabled={{this.isDisabled}}
               @type='checkbox'
               @checked={{this.model.printOnFinalsOss}}
               {{on "input" (perform this.autosave this.model)}}
