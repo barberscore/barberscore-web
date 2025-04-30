@@ -58,6 +58,7 @@ export default Component.extend({
       let scores = [];
       for (var i=scoresCall.length - 1; i>=0; i--) {
         let score = scoresCall[i];
+        await score.get('song.num');
         scores.push(score);
       }
       scores = scores.toSorted(function(a, b) {
