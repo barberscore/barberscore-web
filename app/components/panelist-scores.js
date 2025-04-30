@@ -46,23 +46,25 @@ export default Component.extend({
       }
     }
   ), */
-  didRender: function() {
+  didReceiveAttrs: function() {
     console.log("Did render");
     const that = this;
     const panelistId = this.get('model.id');
     const appearanceId = this.get('appearance.id');
-    if (this.panelistId == panelistId & this.appearanceId == appearanceId)
-      return;
     this.store.query('score', {filter: {
           'panelist': this.get('model.id'),
           'song__appearance': this.get('appearance.id'),
-    }}).then(function (scoresCall) {
+    }}).then(async function (scoresCall) {
       let scores = [];
       for (var i=scoresCall.length - 1; i>=0; i--) {
         let score = scoresCall[i];
         scores.push(score);
       }
-      scores.sort((a, b) => a.songNum < b.songNum ? -1 : 1);
+      await scores.sort(async function(a, b) {
+        var firstSongNum = await a.get('song.num');
+        var secondSongNum = await b.get('song.num');
+        return firstSongNum <secondSongNum ? -1 : 1;
+      });
       that.set('scoresCall', scores);
       that.set('panelistId', panelistId);
       that.set('appearanceId', appearanceId);
