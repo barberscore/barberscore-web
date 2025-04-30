@@ -37,7 +37,7 @@
         min=0
         @disabled={{this.isDisabled}}
         max=200
-        @key-press={{perform this.autosave value='target.value'}}
+        {{on "input" (perform this.autosave 'pos' value='target.value')}}
       />
     </div>
   </div>
