@@ -60,10 +60,12 @@ export default Component.extend({
         let score = scoresCall[i];
         scores.push(score);
       }
-      await scores.sort(async function(a, b) {
-        var firstSongNum = await a.get('song.num');
-        var secondSongNum = await b.get('song.num');
-        return firstSongNum <secondSongNum ? -1 : 1;
+      scores = scores.toSorted(function(a, b) {
+        var firstSongNum = a.get('song.num');
+        var secondSongNum = b.get('song.num');
+        console.log(a.num);
+        console.log(firstSongNum + ' ' + secondSongNum)
+        return firstSongNum < secondSongNum ? -1 : 1;
       });
       that.set('scoresCall', scores);
       that.set('panelistId', panelistId);
