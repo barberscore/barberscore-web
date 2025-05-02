@@ -64,8 +64,8 @@ export default Component.extend({
         scores.push(score);        
       }
       scores = scores.toSorted(function(a, b) {
-        var firstSongNum = a.get('songNum');
-        var secondSongNum = b.get('songNum');
+        var firstSongNum = a.get('song.num');
+        var secondSongNum = b.get('song.num');
         console.log(a.num);
         console.log(firstSongNum + ' ' + secondSongNum)
         return firstSongNum - secondSongNum;
