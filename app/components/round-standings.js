@@ -23,15 +23,24 @@ export default Component.extend({
     this.setAppearances();
   },
   sortAppearances: function(a, b){
-    if (a.runTotSum != b.runTotSum)
-      return a.runTotSum < b.runTotSum ? 1: -1;
-    if (a.runSngSum != b.runSngSum)
-      return a.runSngSum < b.runSngSum ? 1: -1;
-    if (a.runPerSum != b.runPerSum)
-      return a.runPerSum < b.runPerSum ? 1: -1;
-    if (a.name != b.name)
-      return a.name < b.name ? -1 : 1;
-    return a.status < b.status ? -1: 1;
+    // Descending by runTotSum
+    if (a.runTotSum !== b.runTotSum)
+      return b.runTotSum - a.runTotSum;
+
+    // Descending by runSngSum
+    if (a.runSngSum !== b.runSngSum)
+      return b.runSngSum - a.runSngSum;
+
+    // Descending by runPerSum
+    if (a.runPerSum !== b.runPerSum)
+      return b.runPerSum - a.runPerSum;
+
+    // Ascending by name
+    if (a.name !== b.name)
+      return a.name.localeCompare(b.name);
+
+    // Ascending by status
+    return a.status.localeCompare(b.status);
   },
   setAppearances: function() {
     const that = this;
@@ -39,6 +48,7 @@ export default Component.extend({
       let notMtFilter = appearances.filter((appearance) => appearance.notMT);
       let multiAppearances = notMtFilter.filter((appearance) => appearance.isMulti);
       multiAppearances = multiAppearances.toSorted(that.sortAppearances);
+      console.log('multiAppearances', multiAppearances);
       that.set('sortedMultiAppearances', multiAppearances);
       let singleAppearances = appearances.filter((appearance) => appearance.isSingle);
       singleAppearances = singleAppearances.toSorted(that.sortAppearances);
