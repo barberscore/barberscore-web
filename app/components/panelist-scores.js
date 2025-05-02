@@ -58,16 +58,26 @@ export default Component.extend({
       let scores = [];
       for (var i=scoresCall.length - 1; i>=0; i--) {
         let score = scoresCall[i];
-        await score.get('song.num');
-        scores.push(score);
+        let song = await score?.get('song')
+        // console.log('score', score);
+        // console.log('score', score.songNum);
+        scores.push(score);        
       }
       scores = scores.toSorted(function(a, b) {
-        var firstSongNum = a.get('song.num');
-        var secondSongNum = b.get('song.num');
+        var firstSongNum = a.get('songNum');
+        var secondSongNum = b.get('songNum');
         console.log(a.num);
         console.log(firstSongNum + ' ' + secondSongNum)
-        return firstSongNum < secondSongNum ? -1 : 1;
+        return firstSongNum - secondSongNum;
       });
+
+      // for (let i = 0; i < scores.length; i++) {
+      //   let score = scores[i];
+      //   console.log('score', score.songNum);
+      // }
+      // 
+      // console.log("------------");
+
       that.set('scoresCall', scores);
       that.set('panelistId', panelistId);
       that.set('appearanceId', appearanceId);
