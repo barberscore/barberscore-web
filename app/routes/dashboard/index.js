@@ -8,15 +8,20 @@ export default Route.extend({
   currentUser: service(),
   session: service(),
   store: service(),
+  router: service(),
 
   beforeModel(transition) {
     this.session.requireAuthentication(transition, 'login');
+    let profile = this.get('session.data.authenticated.profile')
+    if (!profile) {
+      this.router.transitionTo('login');
+    }
   },
   userRoles() {
     let profile = this.get('session.data.authenticated.profile')
     console.log("userRoles called");
     console.log(profile);
-    if (this.get('session.isAuthenticated')) {
+    if (this.get('session.isAuthenticated') && profile) {
     console.log(this.get('session.data'));
     let roles = profile['https://www.barberscore.com/roles'];
     return roles;

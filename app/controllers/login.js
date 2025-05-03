@@ -18,9 +18,7 @@ export default Controller.extend({
       this.session.authenticate(
         'authenticator:auth0',
         authOptions
-      ).then(() => {
-        this.router.transitionTo('dashboard');
-      });
+      );
     },
   }
 });
