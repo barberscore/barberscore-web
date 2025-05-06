@@ -40,6 +40,11 @@ export default Component.extend({
           charts.push(chart);
         }
 
+        // Sort charts list in alphabetical order
+        charts = charts.sort(function(a, b) {
+          return a.title.localeCompare(b.title);
+        });
+
         // Fallback option
         const unknownChart = {
           title: 'Song not in Repertory',
@@ -48,9 +53,7 @@ export default Component.extend({
           songTitle: 'Song not in Repertory',
         }
         charts.push(unknownChart);
-        return charts.sort(function(a, b) {
-          return a.title < b.title;
-        });
+        return charts
       },
 
       set(key, value) {
