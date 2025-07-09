@@ -1,12 +1,12 @@
-{{#bs-button
-  type='success'
-  onClick=(perform titles)
-}}
-  {{#if titles.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
-  {{else if titles.last.isError}}
+<BsButton
+  @type='success'
+  @onClick={{perform this.titles}}
+>
+  {{#if this.titles.isRunning}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
+  {{else if this.titles.last.isError}}
     Error Downloading
   {{else}}
-    Download Titles&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+    Download Titles&nbsp;&nbsp;<FaIcon @icon='file-text' />
   {{/if}}
-{{/bs-button}}
+</BsButton>

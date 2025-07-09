@@ -1,35 +1,35 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item">{{#link-to 'index' active=False}}Home{{/link-to}}</li>
-    <li class="breadcrumb-item">{{#link-to 'dashboard.conventions' active=False}}Conventions{{/link-to}}</li>
+    <li class="breadcrumb-item"><LinkTo @route='index' @active={{false}}>Home</LinkTo></li>
+    <li class="breadcrumb-item"><LinkTo @route='dashboard.conventions' @active={{false}}>Conventions</LinkTo></li>
   </ol>
 </nav>
 <section class='card'>
   <h5 class='card-header'>
-    {{model.nomen}}
+    {{this.model.nomen}}
   </h5>
   <div class='card-body'>
-    {{#bs-nav type='tabs' as |nav|}}
-      {{#nav.item}}
-        {{#nav.link-to "dashboard.conventions.convention.details"}}Details{{/nav.link-to}}
-      {{/nav.item}}
-      {{!-- {{#nav.item}}
-        {{#nav.link-to "dashboard.conventions.convention.assignments"}}Assignments{{/nav.link-to}}
-      {{/nav.item}} --}}
-      {{#nav.item}}
-        {{#nav.link-to "dashboard.conventions.convention.sessions"}}Sessions{{/nav.link-to}}
-      {{/nav.item}}
-      {{#nav.item}}
-        {{#nav.link-to "dashboard.conventions.convention.reports"}}Reports{{/nav.link-to}}
-      {{/nav.item}}
-    {{/bs-nav}}
+    <BsNav @type="tabs" as |nav|>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.details">Details</nav.linkTo>
+        </nav.item>
+        {{!-- <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.assignments">Assignments</nav.linkTo>
+        </nav.item> --}}
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions">Sessions</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.reports">Reports</nav.linkTo>
+        </nav.item>
+    </BsNav>
     {{outlet}}
   </div>
   <div class='card-footer'>
-    <ul class='list-inline'>
-      <li class='pull-right'>
+    <ul class='list-inline mb-0'>
+      <li class='text-end'>
         <h5>
-          Convention Status: <strong>{{model.status}}</strong>
+          Convention Status: <strong>{{this.model.status}}</strong>
         </h5>
       </li>
     </ul>

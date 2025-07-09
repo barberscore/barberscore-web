@@ -1,10 +1,13 @@
 <div class='form-group'>
   Spots Available in Next Round (blank for unlimited):
-  <input
-    type="number"
-    value={{model.spots}}
-    disabled={{isDisabled}}
-    oninput={{perform autosave value='target.value'}}
-    class='form-control col-sm-1'
-  />
+  <div class='col-sm-1'>
+    <input
+      type="tel"
+      size="10"
+      value={{this.model.spots}}
+      disabled={{this.isDisabled}}
+      oninput={{perform this.autosave value='target.value'}}
+      class='form-control'
+    />
+  </div>
 </div>

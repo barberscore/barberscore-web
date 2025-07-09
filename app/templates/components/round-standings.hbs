@@ -1,21 +1,22 @@
-{{#if (or (eq model.status 'New')(eq model.status 'Built'))}}
+{{#if (or (eq this.model.status 'New')(eq this.model.status 'Built'))}}
     <h4>Standings are available after the Round is Started.</h4>
 {{else}}
-  {{#unless (eq model.kind 'Finals')}}
+  {{#unless (eq this.model.kind 'Finals')}}
     <section>
-        {{#bs-form
-          formLayout="vertical"
-          model=model
+        <BsForm
+          @formLayout="vertical"
+          @model={{this.model}}
+          @disabled={{this.isAdvancingNumberDisabled}}
           as |form|
-        }}
-          {{form.element
-            controlType='tel'
-            disabled=isAdvancingNumberDisabled
-            label='Spots Available in Next Round (blank for unlimited).'
-            property='spots'
-            size=10
-            onChange=(perform autosave 'spots')}}
-        {{/bs-form}}
+        >
+          <form.element
+            @controlType='tel'
+            @label='Spots Available in Next Round (blank for unlimited).'
+            @property='spots'
+            @size='10'
+            @onChange={{perform this.autosave 'spots'}}
+          />
+        </BsForm>
     </section>
     <section>
       <div class='table-responsive'>
@@ -33,8 +34,8 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedMultiAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index model.spots) (not-eq model.kind 'Finals')) 'cut-line'}}">
+            {{#each this.sortedMultiAppearances as |appearance index|}}
+              <tr class="{{if (and (eq index this.model.spots) (not-eq this.model.kind 'Finals')) 'cut-line'}}">
                 {{#if appearance.stats}}
                   <td>{{inc index}}</td>
                 {{else}}
@@ -78,7 +79,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedSingleAppearances as |appearance index|}}
+            {{#each this.sortedSingleAppearances as |appearance index|}}
               <tr>
                 {{#if appearance.stats}}
                   <td>{{inc index}}</td>
@@ -119,7 +120,7 @@
             </tr>
           </thead>
           <tbody>
-            {{#each sortedAppearances as |appearance index|}}
+            {{#each this.sortedAppearances as |appearance index|}}
               <tr>
                 {{#if appearance.stats}}
                   <td>{{inc index}}</td>

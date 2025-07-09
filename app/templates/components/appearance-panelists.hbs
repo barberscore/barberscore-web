@@ -23,13 +23,13 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedPanelists as |panelist|}}
+      {{#each this.sortedPanelists as |panelist|}}
         <tr class={{panelist.rowClass}}>
           <td class='align-middle panelest-scoretext'>{{panelist.name}}</td>
           <td class='align-middle panelest-scoretext'>{{panelist.category}}</td>
           <td class='align-middle panelest-scoretext'>{{panelist.kind}}</td>
           <td class='align-middle panelest-scoretext text-center'>{{panelist.num}}</td>
-          <td class='max-score'>{{panelist-scores model=panelist appearance=model}}</td>
+          <td class='max-score'>{{panelist-scores model=panelist appearance=this.model onScoreChange=this.onScoreChange}}</td>
         </tr>
       {{else}}
         <tr>
@@ -39,7 +39,7 @@
     </tbody>
     <tfoot>
       <tr>
-        {{!-- <td colspan=4 class='text-right'>{{model.sumSongs}}</td> --}}
+        {{!-- <td colspan=4 class='text-right'>{{this.model.sumSongs}}</td> --}}
       </tr>
     </tfoot>
   </table>

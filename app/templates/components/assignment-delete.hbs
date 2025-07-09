@@ -5,7 +5,7 @@
 }}
   Remove Assignment
 {{/bs-button}} --}}
-{{#bs-modal
+{{!-- {{#bs-modal
   open=deleteAssignmentModal
   onHidden=(pipe-action (action (mut deleteAssignmentModal) false) (action (mut deleteAssignmentModalError) false))
   as |modal|
@@ -27,10 +27,10 @@
     {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
     {{#bs-button type='danger' onClick=(perform deleteAssignment)}}
       {{#if deleteAssignment.isRunning}}
-        Removing {{fa-icon "spinner" spin=true}}
+        Removing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Remove Assignment
       {{/if}}
     {{/bs-button}}
   {{/modal.footer}}
-{{/bs-modal}}
+{{/bs-modal}} --}}

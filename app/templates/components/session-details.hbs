@@ -1,38 +1,38 @@
 <section>
   <div class='row'>
     <div class='col-md-4'>
-      <p>Invitational: {{boolean-helper model.isInvitational}}</p>
-      <p>Number of Rounds: {{model.numRounds}}</p>
+      <p>Invitational: {{boolean-helper this.model.isInvitational}}</p>
+      <p>Number of Rounds: {{this.model.numRounds}}</p>
       <ul class="list-group">
         <li class="list-group-item">
           <h5>Counts</h5>
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{newEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.New}}</span>
           New Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{builtEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.Built}}</span>
           Built Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{invitedEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.Invited}}</span>
           Invited Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{submittedEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.Submitted}}</span>
           Submitted Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{withdrawnEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.Withdrawn}}</span>
           Withdrawn Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{approvedEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.Approved}}</span>
           Approved Entries
         </li>
         <li class="list-group-item">
-          <span class="badge badge-pill badge-primary">{{totalEntriesCount}}</span>
+          <span class="badge badge-pill badge-primary">{{this.entriesCount.total}}</span>
           Total Entries
         </li>
       </ul>

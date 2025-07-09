@@ -7,12 +7,12 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedRounds as |round|}}
+      {{#each this.sortedRounds as |round|}}
         <tr>
           {{#if round.isLoading}}
-            <td colspan=2>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=2>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.details' round}}{{round.kind}}{{/link-to}}</td>
+            <td><LinkTo @route='dashboard.conventions.convention.sessions.session.rounds.round.details' @model={{round}}>{{round.kind}}</LinkTo></td>
             <td>{{round.status}}</td>
           {{/if}}
         </tr>

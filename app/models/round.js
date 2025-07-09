@@ -1,56 +1,81 @@
 import { computed } from '@ember/object';
 import { not } from '@ember/object/computed';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import Model, { attr, hasMany } from '@ember-data/model';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('round-status'),
-  kind: DS.attr('round-kind'),
-  num: DS.attr('number'),
-  spots: DS.attr('number'),
-  date: DS.attr('isodate'),
-  footnotes: DS.attr('string'),
-  ossReport: DS.attr('string'),
-  saReport: DS.attr('string'),
-  legacyOss: DS.attr('string'),
-  isReviewed: DS.attr('boolean'),
+  status: attr('round-status'),
+  kind: attr('round-kind'),
+  num: attr('number'),
+  spots: attr('number'),
+  date: attr('isodate'),
+  footnotes: attr('string'),
+  ossReport: attr('string'),
+  saReport: attr('string'),
+  legacyOss: attr('string'),
+  isReviewed: attr('boolean'),
 
-  conventionId: DS.attr('string'),
-  nomen: DS.attr('string'),
-  timezone: DS.attr('string'),
-  imageId: DS.attr('string'),
+  conventionId: attr('string'),
+  nomen: attr('string'),
+  timezone: attr('string'),
+  imageId: attr('string'),
 
-  sessionId: DS.attr('string'),
-  sessionKind: DS.attr('session-kind'),
-  baseFilename: DS.attr('string'),
-  scoresheetFilename: DS.attr('string'),
+  sessionId: attr('string'),
+  sessionKind: attr('session-kind'),
+  baseFilename: attr('string'),
+  scoresheetFilename: attr('string'),
 
-  revisionNumber: DS.attr('number'),
-  revisionDate: DS.attr('string'),
-  revisionNomen: DS.attr('string'),
+  revisionNumber: attr('number'),
+  revisionDate: attr('string'),
+  revisionNomen: attr('string'),
 
-  owners: DS.hasMany('user', {async: true}),
+  owners: hasMany('user', {async: true, inverse: null}),
 
-  appearances: DS.hasMany('appearance', {async: true}),
-  panelists: DS.hasMany('panelist', {async: true}),
-  outcomes: DS.hasMany('outcome', {async: true}),
-  permissions: DS.attr(),
+  appearances: hasMany('appearance', {async: true, inverse: 'round'}),
+  panelists: hasMany('panelist', {async: true, inverse: 'round'}),
+  outcomes: hasMany('outcome', {async: true, inverse: 'round'}),
+  permissions: attr(),
 
-  reset: memberAction({path: 'reset', type: 'post'}),
-  build: memberAction({path: 'build', type: 'post'}),
-  start: memberAction({path: 'start', type: 'post'}),
-  complete: memberAction({path: 'complete', type: 'post'}),
-  finalize: memberAction({path: 'finalize', type: 'post'}),
-  publish: memberAction({path: 'publish', type: 'post'}),
-  labels: memberAction({path: 'labels', type: 'post', ajaxOptions: { arraybuffer: true }}),
+  reset: async function(data) {
+    return await apiAction(this, {path: 'reset', method: 'POST', data: data})
+  },
+  build: async function(data) {
+    return await apiAction(this, {path: 'build', method: 'POST', data: data})
+  },
+  start: async function(data) {
+    return await apiAction(this, {path: 'start', method: 'POST', data: data})
+  },
+  complete: async function(data) {
+    return await apiAction(this, {path: 'complete', method: 'POST', data: data})
+  },
+  finalize: async function(data) {
+    return await apiAction(this, {path: 'finalize', method: 'POST', data: data})
+  },
+  publish: async function(data) {
+    return await apiAction(this, {path: 'publish', method: 'POST', data: data})
+  },
+  labels: async function(data) {
+    return await apiAction(this, {path: 'labels', method: 'POST', ajaxOptions: { arraybuffer: true, data: data }})
+  },
 
-  mock: memberAction({path: 'mock', type: 'get'}),
-  oss: memberAction({ path: 'oss', type: 'post', ajaxOptions: { arraybuffer: true } }),
-  sa: memberAction({ path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  legacyoss: memberAction({ path: 'legacyoss', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  titles: memberAction({ path: 'titles', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  announcements: memberAction({ path: 'announcements', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  mock: async function(data) {
+    return await apiAction(this, {path: 'mock', method: 'GET'})
+  },
+  oss: async function(data) {
+    return await apiAction(this, { path: 'oss', type: 'post', ajaxOptions: { arraybuffer: true } })
+  },
+  sa: async function(data) {
+    return await apiAction(this, { path: 'sa', type: 'get', ajaxOptions: { arraybuffer: true } })
+  },
+  legacyoss: async function(data) {
+    return await apiAction(this, { path: 'legacyoss', type: 'get', ajaxOptions: { arraybuffer: true } })
+  },
+  titles: async function(data) {
+    return await apiAction(this, { path: 'titles', type: 'get', ajaxOptions: { arraybuffer: true } })
+  },
+  announcements: async function(data) {
+    return await apiAction(this, { path: 'announcements', type: 'get', ajaxOptions: { arraybuffer: true } })
+  },
 
   isDisabled: not(
     'permissions.write'

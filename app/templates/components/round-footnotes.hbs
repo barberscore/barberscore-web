@@ -1,8 +1,8 @@
 <div class='form-group'>
   <textarea
-    value={{model.footnotes}}
-    disabled={{isDisabled}}
-    oninput={{perform autosave value='target.value'}}
+    value={{this.model.footnotes}}
+    disabled={{this.isDisabled}}
+    oninput={{perform this.autosave value='target.value'}}
     class='form-control'
     rows='3'
     placeholder='Enter any footnotes associated with the Round.  Will print on the OSS.'

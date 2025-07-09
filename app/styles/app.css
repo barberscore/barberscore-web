@@ -137,7 +137,7 @@ input[type=checkbox] {
 
 .alert-penalty {
   margin-right: 0.3rem;
-  margin-left: 0.3rem;  
+  margin-left: 0.3rem;
   padding: 5px 15px;
   height: auto;
 }
@@ -157,7 +157,7 @@ ul.list-unstyled + ul.list-unstyled {
 
 #round .card-footer.actions .list-inline li.primary,
 #appearance-detail .card-footer.actions .list-inline li.primary {
-  margin-right: 6rem;  
+  margin-right: 6rem;
 }
 
 #round .card-footer.actions .list-inline li.pull-right,
@@ -174,7 +174,7 @@ ul.list-unstyled + ul.list-unstyled {
   color: red;
 }
 
-.active.btn-outline-dark.disabled, 
+.active.btn-outline-dark.disabled,
 .active.btn-outline-dark:disabled {
   color: #fff;
   background-color: #343a40;

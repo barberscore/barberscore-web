@@ -1,8 +1,10 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { task, timeout } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
+  flashMessages: service(),
   isDisabled: computed('model.{permissions.write,status}', function() {
     if (this.get('model.status') == 'Published') {
       return true;
@@ -21,6 +23,7 @@ export default Component.extend({
       yield round.save();
       this.flashMessages.success("Saved");
     } catch(e) {
+      console.error(e);
       e.errors.forEach((error) => {
         this.flashMessages.danger(error.detail);
       })

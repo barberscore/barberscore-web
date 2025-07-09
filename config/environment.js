@@ -1,11 +1,11 @@
 'use strict';
 
-module.exports = function(environment) {
-  let ENV = {
+module.exports = function (environment) {
+  const ENV = {
     modulePrefix: 'barberscore-web',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'history',
     moment: {
       outputFormat: 'LL',
       allowEmpty: true, // default: false
@@ -44,22 +44,22 @@ module.exports = function(environment) {
     },
 
     EmberENV: {
+      EXTEND_PROTOTYPES: false,
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. EMBER_NATIVE_DECORATOR_SUPPORT: true
       },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false
-      }
     },
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
       managerEnabled: false,
+      AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
+      AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
+      ALGOLIA_APPLICATION_ID: process.env.ALGOLIASEARCH_APPLICATION_ID,
+      ALGOLIA_API_KEY: process.env.ALGOLIASEARCH_API_KEY_SEARCH
     },
   };
-
   if (environment === 'development') {
     ENV.APP.ENVIRONMENT_NAME = process.env.ENVIRONMENT_NAME;
     ENV.APP.SENTRY_DSN = process.env.SENTRY_DSN;

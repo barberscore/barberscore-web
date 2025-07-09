@@ -1,16 +1,16 @@
-{{#bs-button
-  type='success'
-  onClick=(perform sa)
-}}
-  {{#if sa.isRunning}}
-    Downloading {{fa-icon "spinner" spin=true}}
-  {{else if sa.last.isError}}
+<BsButton
+  @type='success'
+  @onClick={{perform this.sa}}
+>
+  {{#if this.sa.isRunning}}
+    Downloading <FaIcon @icon="spinner" @spin={{true}} />
+  {{else if this.sa.last.isError}}
     Error Downloading
   {{else}}
-    {{#if (eq model.status 'Completed')}}
-      Download <em>Draft</em> SA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+    {{#if (eq this.model.status 'Completed')}}
+      Download <em>Draft</em> SA&nbsp;&nbsp;<FaIcon @icon='file-text' />
     {{else}}
-      Download <strong>Final</strong> SA&nbsp;&nbsp;{{fa-icon 'file-pdf-o'}}
+      Download <strong>Final</strong> SA&nbsp;&nbsp;<FaIcon @icon='file-text' />
     {{/if}}
   {{/if}}
-{{/bs-button}}
+</BsButton>

@@ -13,15 +13,15 @@
       {{#each sortedOfficers as |officer|}}
         <tr>
           {{#if officer.isLoading}}
-            <td colspan=4>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+            <td colspan=4>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
           {{else}}
             {{#if officer.person.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=1>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
               <td>{{officer.person.commonName}}</td>
             {{/if}}
             {{#if officer.office.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=1>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
               <td>{{officer.office}}</td>
             {{/if}}

@@ -1,6 +1,6 @@
 <section>
   Round Date: {{!-- {{#if model.date}}{{moment-format model.date 'LL'}}{{else}}(Unknown){{/if}} --}}
-    {{bs-datetimepicker
+    {{!-- {{bs-datetimepicker
       date=model.date
       format="LL"
       showIcon=true
@@ -8,14 +8,24 @@
       disabled=isDisabled
       allowInputToggle=true
       change=(perform autosave)
-    }}
+    }} --}}
+    <PowerDatepicker @selected={{this.model.date}} @onSelect={{perform this.autosave}} @disabled={{this.isDisabled}} as |dp|>
+      <dp.Trigger tabindex="-1">
+        <input type="text" class="form-control" readonly value={{moment-format this.model.date 'MMMM DD, YYYY'}} disabled={{this.isDisabled}}>
+      </dp.Trigger>
+
+      <dp.Content class="demo-calendar-small">
+        <dp.Nav />
+        <dp.Days />
+      </dp.Content>
+    </PowerDatepicker>
   <small><em>If the round takes place across multiple days, set the round date to the last day of the round.</em></small>
 </section>
 <section>
-  {{round-footnotes model=model}}
+  {{round-footnotes model=this.model}}
 </section>
-{{#unless (eq model.kind 'Finals')}}
+{{#unless (eq this.model.kind 'Finals')}}
 <section>
-  {{round-spots model=model}}
+  {{round-spots model=this.model}}
 </section>
 {{/unless}}

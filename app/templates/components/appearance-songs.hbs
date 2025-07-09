@@ -7,21 +7,21 @@
       </tr>
     </thead>
     <tbody>
-      {{#each sortedSongs as |song|}}
+      {{#each this.sortedSongs as |song|}}
         <tr>
           <td>
-            {{#power-select
-              options=chartsList
-              selected=song
-              onchange=(perform autosave song)
-              placeholder="Choose Chart Title"
-              searchField='title'
-              allowClear=false
-              disabled=isDisabled
+            <PowerSelect
+              @options={{this.chartsList}}
+              @selected={{song}}
+              @onChange={{perform this.autosave song}}
+              @placeholder="Choose Chart Title"
+              @searchField='title'
+              @allowClear={{false}}
+              @disabled={{this.isDisabled}}
               as |chart|
-            }}
+            >
               Song {{song.num}}: {{chart.title}}
-            {{/power-select}}
+            </PowerSelect>
           </td>
         </tr>
       {{else}}

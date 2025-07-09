@@ -1,36 +1,35 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 
 export default Model.extend({
-  status: DS.attr('outcome-status'),
-  num: DS.attr('number'),
-  winner: DS.attr('string'),
+  status: attr('outcome-status'),
+  num: attr('number'),
+  winner: attr('string'),
 
-  awardId: DS.attr('string'),
-  name: DS.attr('string'),
-  kind: DS.attr('award-kind'),
-  gender: DS.attr('award-gender'),
-  level: DS.attr('award-level'),
-  season: DS.attr('award-season'),
-  description: DS.attr('string'),
-  district: DS.attr('award-district'),
-  division: DS.attr('award-division'),
-  age: DS.attr('award-age'),
-  isNovice: DS.attr('boolean'),
-  isSingle: DS.attr('boolean'),
-  size: DS.attr('string'),
-  sizeRange: DS.attr('string'),
-  scope: DS.attr('string'),
-  scopeRange: DS.attr('string'),
-  treeSort: DS.attr('string'),
-  printed: DS.attr('boolean'),
-  printOnFinalsOss: DS.attr('boolean'),
+  awardId: attr('string'),
+  name: attr('string'),
+  kind: attr('award-kind'),
+  gender: attr('award-gender'),
+  level: attr('award-level'),
+  season: attr('award-season'),
+  description: attr('string'),
+  district: attr('award-district'),
+  division: attr('award-division'),
+  age: attr('award-age'),
+  isNovice: attr('boolean'),
+  isSingle: attr('boolean'),
+  size: attr('string'),
+  sizeRange: attr('string'),
+  scope: attr('string'),
+  scopeRange: attr('string'),
+  treeSort: attr('string'),
+  printed: attr('boolean'),
+  printOnFinalsOss: attr('boolean'),
 
-  round: DS.belongsTo('round', {async: true}),
-  appearances: DS.hasMany('appearance', {async: true}),
-  permissions: DS.attr(),
+  round: belongsTo('round', {async: true, inverse: 'outcomes'}),
+  appearances: hasMany('appearance', {async: true, inverse: 'outcomes'}),
+  permissions: attr(),
 
   isFinals: computed(
     'round',
@@ -48,6 +47,7 @@ export default Model.extend({
 
   disablePrinted: computed(
     'round',
+    'printOnFinalsOss',
     function() {
       if (this.round.get('status') == 'Published') {
         return true;

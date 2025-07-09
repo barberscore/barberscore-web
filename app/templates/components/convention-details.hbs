@@ -1,14 +1,16 @@
 <div class='card'>
   <div class='card-header'>
-    <div class='float-left pb-2'>
-      {{cloudinary-image model.imageId (hash height=90) class='img-fluid img-rounded'}}
-    </div>
-    <div class='float-left pl-4'>
-      <ul class='list-unstyled'>
-        <li><strong>{{model.venueName}}</strong></li>
-        <li>{{model.location}}</li>
-        <li>Timezone: {{model.timezone}}</li>
-      </ul>
+    <div class="row">
+      <div class='col'>
+        <div class="float-start pb-2">
+          <CloudinaryImage @publicId={{this.model.imageId}} @options={{hash height='90' width='90'}} class='img-fluid img-rounded' />
+        </div>
+        <ul class='list-unstyled float-start ps-4'>
+          <li><strong>{{this.model.venueName}}</strong></li>
+          <li>{{this.model.location}}</li>
+          <li>Timezone: {{this.model.timezone}}</li>
+        </ul>
+      </div>
     </div>
   </div>
   <div class='table-responsive'>
@@ -25,19 +27,19 @@
       <tbody>
         <tr>
           <td>Open Date</td>
-          <td>{{moment-format model.openDate 'LL'}}</td>
+          <td>{{moment-format this.model.openDate 'LL'}}</td>
         </tr>
         <tr>
           <td>Close Date</td>
-          <td>{{moment-format model.closeDate 'LL'}}</td>
+          <td>{{moment-format this.model.closeDate 'LL'}}</td>
         </tr>
         <tr>
           <td>Start Date</td>
-          <td>{{moment-format model.startDate 'LL'}}</td>
+          <td>{{moment-format this.model.startDate 'LL'}}</td>
         </tr>
         <tr>
           <td>End Date</td>
-          <td>{{moment-format model.endDate 'LL'}}</td>
+          <td>{{moment-format this.model.endDate 'LL'}}</td>
         </tr>
       </tbody>
     </table>

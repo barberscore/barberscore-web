@@ -1,15 +1,15 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(perform verifyAppearance)
-}}
-  {{#if verifyAppearance.isRunning}}
-    Checking... {{fa-icon "spinner" spin=true}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{perform this.verifyAppearance}}
+>
+  {{#if this.verifyAppearance.isRunning}}
+    Checking... <FaIcon @icon="spinner" @spin={{true}} />
   {{else}}
-    {{#if (eq model.status 'Finished')}}
+    {{#if (eq this.model.status 'Finished')}}
       Check Appearance
-    {{else if (eq model.status 'Variance')}}
+    {{else if (eq this.model.status 'Variance')}}
       Verify Appearance
     {{/if}}
   {{/if}}
-{{/bs-button}}
+</BsButton>

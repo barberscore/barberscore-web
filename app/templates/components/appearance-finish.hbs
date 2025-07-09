@@ -1,9 +1,9 @@
-{{#bs-button disabled=model.isDisabled type='primary' onClick=(perform finishAppearance)}}
-  {{#if finishAppearance.isRunning}}
-    Concluding {{fa-icon "spinner" spin=true}}
+<BsButton @disabled={{this.model.isDisabled}} @type='primary' @onClick={{perform this.finishAppearance}}>
+  {{#if this.finishAppearance.isRunning}}
+    Concluding <FaIcon @icon="spinner" />
   {{else}}
-    {{#if (eq model.status 'Started')}}
+    {{#if (eq this.model.status 'Started')}}
       Conclude Performance
     {{/if}}
   {{/if}}
-{{/bs-button}}
+</BsButton>

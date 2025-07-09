@@ -25,7 +25,7 @@ export default Component.extend({
       this.flashMessages.success("Mocked!");
     } catch(e) {
       this.set('mockRoundModalError', true);
-      this.flashMessages.error(e);
+      this.flashMessages.danger(e);
     }
   }).drop(),
 });

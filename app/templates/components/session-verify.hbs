@@ -1,36 +1,36 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut verifySessionModal) true)
-}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.verifySessionModal) true}}
+>
   Verify Session
-{{/bs-button}}
-{{#bs-modal
-  open=verifySessionModal
-  onHidden=(pipe-action (action (mut verifySessionModal) false) (action (mut verifySessionModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.verifySessionModal}}
+  @onHidden={{pipe-action (action (mut this.verifySessionModal) false) (action (mut this.verifySessionModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Verify Session</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
         This action verifies a closed session and produces the draft Legacy and DRCJ Reports (which will be exposed via links on the Reports tab). It will also send an email to all approved entries's group managers informing them of the intial draw.  You can still manually add entries and/or rearrange the draw following verification if needed; the reports will automatically update.
     </p>
-    {{#if verifySessionModalError}}
+    {{#if this.verifySessionModalError}}
     <p class='text-danger'>
       Could not Verify Session.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform verifySession)}}
-      {{#if verifySession.isRunning}}
-        Verifying {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.verifySession}}>
+      {{#if this.verifySession.isRunning}}
+        Verifying <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Verify Session
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

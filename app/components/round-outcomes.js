@@ -10,20 +10,31 @@ export default Component.extend({
   router: service(),
   algolia: service(),
   store: service(),
+  sortedOutcomes: [],
+  init: function() {
+    this._super(...arguments);
+    this.setOutcomes();
+  },
+  setOutcomes: function() {
+    const that = this;
+    this.get('model.outcomes').then(function(outcomes) {
+      const updatedOutcomes = outcomes.map(function(outcome) {
+          return outcome
+      });
+      updatedOutcomes.sort(function(a, b) {
+        if (a.treeSort != b.treeSort)
+          return a.treeSort < b.treeSort ? -1 : 1;
+        return a.num < b.num ? -1 : 1;
+      });
+      that.set('sortedOutcomes', updatedOutcomes);
+    });
+  },
   isDisabled: computed('model', function() {
     if (this.get('model.status') == 'Published') {
       return true;
     }
     return false;
   }),
-  sortedOutcomesProperties: [
-    'treeSort',
-    'num',
-  ],
-  sortedOutcomes: sort(
-    'model.outcomes',
-    'sortedOutcomesProperties'
-  ),
   searchAward: task(function* (term){
     yield timeout(600);
     let kindModel = this.get('model.sessionKind');
@@ -94,7 +105,7 @@ export default Component.extend({
       });
       outcomesModels.invoke('save');
       this.flashMessages.success('Order Changed');
-    },    
+    },
   }
 });
 

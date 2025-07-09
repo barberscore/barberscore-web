@@ -1,8 +1,8 @@
 <section>
-	{{#if model.roundsFinalized }}
+	{{#if this.model.roundsFinalized }}
     <ul class='list-unstyled'>
-      <li class='double'>{{download-bbstix model=model}}</li>
-      <li class='double'>{{download-bbstix-practice model=model}}</li>
+      <li class='double'>{{download-bbstix model=this.model}}</li>
+      <li class='double'>{{download-bbstix-practice model=this.model}}</li>
     </ul>
   {{else}}
     <p>

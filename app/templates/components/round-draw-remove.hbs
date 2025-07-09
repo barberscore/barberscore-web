@@ -1,36 +1,36 @@
-{{#bs-button
-  type='danger btn-sm'
-  disabled=model.isDisabled
-  onClick=(action (mut removeFromDrawModal) true)
-}}
+<BsButton
+  @type='danger btn-sm'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.removeFromDrawModal) true}}
+>
   Remove from Draw
-{{/bs-button}}
-{{#bs-modal
-  open=removeFromDrawModal
-  onHidden=(pipe-action (action (mut removeFromDrawModal) false) (action (mut removeFromDrawModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.removeFromDrawModal}}
+  @onHidden={{pipe-action (action (mut this.removeFromDrawModal) false) (action (mut this.removeFromDrawModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Delete From Draw</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
-      This will remove <strong>{{html-safe model.name}}</strong> from advancing.
+      This will remove <strong>{{html-safe this.model.name}}</strong> from advancing.
     </p>
-    {{#if removeFromDrawModalError}}
+    {{#if this.removeFromDrawModalError}}
     <p class='text-danger'>
       Could not remove from draw.  Please contact support.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='danger' onClick=(perform removeFromDraw)}}
-      {{#if removeFromDraw.isRunning}}
-        Deleting {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='danger' @onClick={{perform this.removeFromDraw}}>
+      {{#if this.removeFromDraw.isRunning}}
+        Deleting <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Delete
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

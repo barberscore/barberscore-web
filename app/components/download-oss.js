@@ -1,10 +1,10 @@
 import Component from '@ember/component';
 import { task } from 'ember-concurrency';
-import FileSaverMixin from 'ember-cli-file-saver/mixins/file-saver';
 import { inject as service } from '@ember/service';
 
-export default Component.extend(FileSaverMixin,{
+export default Component.extend({
   flashMessages: service(),
+  fileDownload: service(),
   filename: function(name) {
     return `${name} OSS`
     .replace(/ /g,'-')
@@ -13,10 +13,9 @@ export default Component.extend(FileSaverMixin,{
     .replace(/--+/g,'-');
   },
   oss: task(function *(paperSize) {
-    let model = yield this.model.reload();
-    let pdf = yield this.model.oss({ paperSize: paperSize });
+    let model = this.model;
     let fileName = this.filename(model.scoresheetFilename);
-    this.saveFileAs(fileName, pdf, 'application/pdf');
+    yield this.fileDownload.downloadFile(this.model, 'oss', fileName, 'application/pdf', { paperSize: paperSize });
     this.flashMessages.success("Downloaded!");
   }).drop(),
 });

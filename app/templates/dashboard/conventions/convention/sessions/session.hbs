@@ -2,52 +2,52 @@
   <div class='card'>
     <div class='card-header'>
       <h5>
-        {{model.kind}} Session
+        {{this.model.kind}} Session
       </h5>
     </div>
     <div class='card-body'>
-      {{#bs-nav type='tabs' as |nav|}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.details"}}Details{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.assignments"}}Assignments{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.contests"}}Contests{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.entries"}}Entries{{/nav.link-to}}
-        {{/nav.item}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.draw"}}Draw{{/nav.link-to}}
-        {{/nav.item}}
+      <BsNav @type='tabs' as |nav|>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.details">Details</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.assignments">Assignments</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.contests">Contests</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.entries">Entries</nav.linkTo>
+        </nav.item>
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.draw">Draw</nav.linkTo>
+        </nav.item>
 {{!--         {{#nav.item}}
           {{#nav.link-to "dashboard.conventions.convention.sessions.session.reports"}}Reports{{/nav.link-to}}
         {{/nav.item}} --}}
-        {{#nav.item}}
-          {{#nav.link-to "dashboard.conventions.convention.sessions.session.rounds"}}Rounds{{/nav.link-to}}
-        {{/nav.item}}
-      {{/bs-nav}}
+        <nav.item>
+          <nav.linkTo @route="dashboard.conventions.convention.sessions.session.rounds">Rounds</nav.linkTo>
+        </nav.item>
+      </BsNav>
       {{outlet}}
     </div>
     <div class='card-footer'>
-      <div class='pull-right'>
+      <div class='text-end'>
         <h5>
-          Session Status: <strong>{{model.status}}</strong>
+          Session Status: <strong>{{this.model.status}}</strong>
         </h5>
       </div>
       {{!-- <ul class='list-inline'>
-        {{#if (eq model.status 'New')}}
-          <li>{{session-build model=model}}</li>
-        {{else if (eq model.status 'Built')}}
-          <li>{{session-open model=model}}</li>
-        {{else if (eq model.status 'Opened')}}
-          <li>{{session-close model=model}}</li>
-        {{else if (eq model.status 'Closed')}}
-          <li>{{session-verify model=model}}</li>
-        {{else if (eq model.status 'Verified')}}
-          <li>{{session-package model=model}}</li>
+        {{#if (eq this.model.status 'New')}}
+          <li>{{session-build model=this.model}}</li>
+        {{else if (eq this.model.status 'Built')}}
+          <li>{{session-open model=this.model}}</li>
+        {{else if (eq this.model.status 'Opened')}}
+          <li>{{session-close model=this.model}}</li>
+        {{else if (eq this.model.status 'Closed')}}
+          <li>{{session-verify model=this.model}}</li>
+        {{else if (eq this.model.status 'Verified')}}
+          <li>{{session-package model=this.model}}</li>
         {{/if}}
       </ul> --}}
     </div>

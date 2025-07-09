@@ -1,16 +1,27 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { sort } from '@ember/object/computed';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
+  flashMessages: service(),
   sortedSongsProperties: [
     'num',
   ],
-  sortedSongs: sort(
-    'model.songs',
-    'sortedSongsProperties'
-  ),
+  sortedSongs: null,
+  didReceiveAttrs: function() {
+    this.setSongs();
+  },
+  setSongs: function() {
+    const that = this;
+    this.get('model.songs').then(function(songs) {
+      const updatedSongs = songs.toSorted(function(a, b) {
+        return a.num < b.num ? -1 : 1;
+      });
+      that.set('sortedSongs', updatedSongs);
+    });
+  },
   chartsList: computed(
     'model',
     'charts',
@@ -29,6 +40,11 @@ export default Component.extend({
           charts.push(chart);
         }
 
+        // Sort charts list in alphabetical order
+        charts = charts.sort(function(a, b) {
+          return a.title.localeCompare(b.title);
+        });
+
         // Fallback option
         const unknownChart = {
           title: 'Song not in Repertory',
@@ -37,12 +53,13 @@ export default Component.extend({
           songTitle: 'Song not in Repertory',
         }
         charts.push(unknownChart);
-        return charts.sortBy('title');
+        return charts
       },
 
       set(key, value) {
         return this._charts = value;
       }
+
     }
   ),
   isDisabled: computed('model.round.status', function() {

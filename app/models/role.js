@@ -1,12 +1,12 @@
 import { not } from '@ember/object/computed';
-import DS from 'ember-data';
+import Model, { attr, hasMany } from '@ember-data/model';
 
-export default DS.Model.extend({
-  rolename: DS.attr('string'),
-  name: DS.attr('string'),
-  description: DS.attr('string'),
-  users: DS.hasMany('user', {async: true}),
-  permissions: DS.attr(),
+export default Model.extend({
+  rolename: attr('string'),
+  name: attr('string'),
+  description: attr('string'),
+  users: hasMany('user', {async: true}),
+  permissions: attr(),
 
   isDisabled: not(
     'permissions.write'

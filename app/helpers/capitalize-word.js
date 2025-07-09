@@ -2,7 +2,7 @@ import { helper } from '@ember/component/helper';
 
 export function capitalizeWord(params) {
   if (params[0]) {
-    return params[0].capitalize();
+    return String(params[0][0]).toUpperCase() + String(params[0]).slice(1);
   }
 }
 

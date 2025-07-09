@@ -1,39 +1,42 @@
 import { computed } from '@ember/object';
 import { filterBy, not, equal } from '@ember/object/computed';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import Model, { attr, hasMany } from '@ember-data/model';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  name: DS.attr('string'),
-  status: DS.attr('group-status'),
-  kind: DS.attr('group-kind'),
-  gender: DS.attr('group-gender'),
-  district: DS.attr('group-district'),
-  division: DS.attr('group-division'),
-  bhsId: DS.attr('number'),
-  code: DS.attr('string'),
-  website: DS.attr('string'),
-  location: DS.attr('string'),
-  // participants: DS.attr('string'),
-  // chapters: DS.attr('string'),
-  // pos: DS.attr('number'),
-  isSenior: DS.attr('boolean'),
-  isYouth: DS.attr('boolean'),
-  description: DS.attr('string'),
-  notes: DS.attr('string'),
-  sourceId: DS.attr('string'),
+  name: attr('string'),
+  status: attr('group-status'),
+  kind: attr('group-kind'),
+  gender: attr('group-gender'),
+  district: attr('group-district'),
+  division: attr('group-division'),
+  bhsId: attr('number'),
+  code: attr('string'),
+  website: attr('string'),
+  location: attr('string'),
+  // participants: attr('string'),
+  // chapters: attr('string'),
+  // pos: attr('number'),
+  isSenior: attr('boolean'),
+  isYouth: attr('boolean'),
+  description: attr('string'),
+  notes: attr('string'),
+  sourceId: attr('string'),
 
-  nomen: DS.attr('string'),
-  imageId: DS.attr('string'),
+  nomen: attr('string'),
+  imageId: attr('string'),
 
-  owners: DS.hasMany('user', {async: true}),
-  charts: DS.hasMany('chart', {async: true}),
+  owners: hasMany('user', {async: true, inverse: null}),
+  charts: hasMany('chart', {async: true, inverse: 'groups'}),
 
-  permissions: DS.attr(),
+  permissions: attr(),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
+  activate: async function(data) {
+    return await apiAction(this, {path: 'activate', method: 'POST'})
+  },
+  deactivate: async function(data) {
+    return await apiAction(this, {path: 'deactivate', method: 'POST'})
+  },
 
   isDisabled: not(
     'permissions.write'

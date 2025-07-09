@@ -35,4 +35,9 @@ export default Component.extend({
       })
     }
   }).restartable(),
+  actions: {
+    toggleProperty: function(propertyName) {
+      this.toggleProperty(propertyName);
+    },
+  }
 });

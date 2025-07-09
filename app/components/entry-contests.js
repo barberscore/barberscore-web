@@ -10,6 +10,19 @@ export default Component.extend({
   sortedContestsProperties: [
     'treeSort',
   ],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setContests();
+  },
+  setContests: function() {
+    const that = this;
+    this.get('model.contests').then(function(res) {
+      res = res.map(function(contest) {
+        return contest;
+      });
+      that.set('selectedContests', res);
+    });
+  },
   isDisabled: computed('model.{permissions.write,session.roundsPublished}', function() {
     if (this.get('model.session.status') != 'Packaged') {
       return true;
@@ -30,7 +43,8 @@ export default Component.extend({
   updateSelection: task(function *(newSelection, /*value, operation*/) {
     try {
       let entry = yield this.model;
-      yield entry.get('contests').setObjects(newSelection);
+      // yield entry.get('contests').setObjects(newSelection);
+      yield entry.set('contests', newSelection);
       yield timeout(1000);
       yield entry.save();
 
@@ -39,7 +53,8 @@ export default Component.extend({
       });
       this.flashMessages.success('Contests Updated!');
     } catch(e) {
-      this.flashMessages.error('Unable change contests!');
+      console.error(e);
+      this.flashMessages.danger('Unable change contests!');
     }
   }).restartable(),
 });

@@ -1,98 +1,99 @@
 <section id="appearance-detail">
   <div class='card'>
     <div class='card-header'>
-      {{prev-next model=model sortedArray=sortedAppearances}}
+      {{this.sortedAppearances.length}}
+      {{prev-next model=this.model sortedArray=this.appearances}}
       <h4>
-        #{{model.num}}: {{html-safe model.name}}
-        {{#if (eq model.status 'Variance')}}
-          {{download-variance model=model}}
-        {{else if (eq model.status 'Verified')}}
-          {{fa-icon 'check-circle' class='text-success'}}
+        #{{this.model.num}}: {{html-safe this.model.name}}
+        {{#if (eq this.model.status 'Variance')}}
+          {{download-variance model=this.model}}
+        {{else if (eq this.model.status 'Verified')}}
+          <FaIcon @icon='check-circle' class='text-success' />
         {{/if}}
      </h4>
     </div>
     <div class='card-body'>
-      {{appearance-details model=model}}
+      {{appearance-details model=this.model}}
       {{#if (or
-        (eq model.status 'Started')
-        (eq model.status 'Finished')
-        (eq model.status 'Variance')
-        (eq model.status 'Verified')
-        (eq model.status 'Completed')
-        (eq model.status 'Advanced')
+        (eq this.model.status 'Started')
+        (eq this.model.status 'Finished')
+        (eq this.model.status 'Variance')
+        (eq this.model.status 'Verified')
+        (eq this.model.status 'Completed')
+        (eq this.model.status 'Advanced')
       )}}
         <section>
-          {{appearance-songs model=model}}
+          {{appearance-songs model=this.model}}
 
-          {{#unless (eq model.round.status 'Published')}}
-            {{#if model.entryId}}
+          {{#unless (eq this.model.round.status 'Published')}}
+            {{#if this.model.entryId}}
               <p>
-                {{#link-to 'dashboard.conventions.convention.sessions.session.entries.entry' model.entryId }}Update Repertory or contests on entry{{/link-to}}
+                <LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{this.model.entryId}}>Update Repertory or contests on entry</LinkTo>
               </p>
             {{/if}}
           {{/unless}}
         </section>
       {{/if}}
       {{#if (or
-        (eq model.status 'Variance')
-        (eq model.status 'Finished')
-        (eq model.status 'Verified')
-        (eq model.status 'Completed')
-        (eq model.status 'Advanced')
+        (eq this.model.status 'Variance')
+        (eq this.model.status 'Finished')
+        (eq this.model.status 'Verified')
+        (eq this.model.status 'Completed')
+        (eq this.model.status 'Advanced')
       )}}
         <section>
-          {{appearance-panelists model=model}}
-          <div class='pull-right'>
+          {{appearance-panelists model=this.model onScoreChange=(action 'onScoreChange')}}
+          <div class='text-end'>
             <ul class='list-inline'>
-              <li class='list-inline-item'><h5>Practice Points: {{#if model.sumPractice}}<strong>{{model.sumPractice}}</strong>{{else}}N/A{{/if}}</h5></li>
-              <li class='list-inline-item'><h4>Official Points: {{#if model.sumOfficial}}<strong>{{model.sumOfficial}}</strong>{{/if}}</h4></li>
+              <li class='list-inline-item'><h5>Practice Points: {{#if this.practicePoints}}<strong>{{this.practicePoints}}</strong>{{else}}N/A{{/if}}</h5></li>
+              <li class='list-inline-item'><h4>Official Points: {{#if this.officialPoints}}<strong>{{this.officialPoints}}</strong>{{/if}}</h4></li>
             </ul>
           </div>
         </section>
         <section>
-          {{appearance-penalties model=model}}
+          {{appearance-penalties model=this.model}}
         </section>
       {{/if}}
       {{!-- <hr>
       <section>
-        {{log-index model=model}}
+        {{log-index model=this.model}}
       </section> --}}
     </div>
     <div class='card-footer'>
-      {{prev-next model=model sortedArray=sortedAppearances}}
+      {{prev-next model=this.model sortedArray=this.appearances}}
       <h4>
-        #{{model.num}}: {{html-safe model.name}}
-        {{#if (eq model.status 'Variance')}}
-          {{download-variance model=model}}
-        {{else if (eq model.status 'Verified')}}
-          {{fa-icon 'check-circle' class='text-success'}}
+        #{{this.model.num}}: {{html-safe this.model.name}}
+        {{#if (eq this.model.status 'Variance')}}
+          {{download-variance model=this.model}}
+        {{else if (eq this.model.status 'Verified')}}
+          <FaIcon @icon='check-circle' class='text-success' />
         {{/if}}
      </h4>
     </div>
     <div class='card-footer actions'>
       <ul class='list-inline'>
-        {{#if (eq model.status 'New')}}
-          <li class='list-inline-item'>{{appearance-delete model=model}}</li>
-        {{else if (eq model.status 'Built')}}
-          <li class='list-inline-item primary'>{{appearance-start model=model}}</li>
-          <li class='list-inline-item'>{{appearance-scratch model=model}}</li>
-          <li class='list-inline-item'>{{appearance-mock model=model}}</li>
-          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
-        {{else if (eq model.status 'Started')}}
-          <li class='list-inline-item primary'>{{appearance-finish model=model}}</li>
-          <li class='list-inline-item'>{{appearance-mock model=model}}</li>
-          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
-        {{else if (or (eq model.status 'Finished') (eq model.status 'Variance'))}}
-          <li class='list-inline-item'>{{appearance-verify model=model}}</li>
-          {{!-- <li class='list-inline-item'>{{appearance-scratch model=model}}</li> --}}
-          <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
-        {{else if (or (eq model.status 'Verified')(eq model.status 'Completed'))}}
-          <li class='list-inline-item'>{{download-csa model=model}}</li>
-          {{#unless (eq model.round.status 'Published')}}
-            <li class='list-inline-item disqualify'>{{appearance-disqualify model=model}}</li>
+        {{#if (eq this.model.status 'New')}}
+          <li class='list-inline-item'>{{appearance-delete model=this.model}}</li>
+        {{else if (eq this.model.status 'Built')}}
+          <li class='list-inline-item primary'>{{appearance-start model=this.model}}</li>
+          <li class='list-inline-item'>{{appearance-scratch model=this.model}}</li>
+          <li class='list-inline-item'>{{appearance-mock model=this.model}}</li>
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
+        {{else if (eq this.model.status 'Started')}}
+          <li class='list-inline-item primary'>{{appearance-finish model=this.model}}</li>
+          <li class='list-inline-item'>{{appearance-mock model=this.model}}</li>
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
+        {{else if (or (eq this.model.status 'Finished') (eq this.model.status 'Variance'))}}
+          <li class='list-inline-item'>{{appearance-verify model=this.model}}</li>
+          {{!-- <li class='list-inline-item'>{{appearance-scratch model=this.model}}</li> --}}
+          <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
+        {{else if (or (eq this.model.status 'Verified')(eq this.model.status 'Completed'))}}
+          <li class='list-inline-item'>{{download-csa model=this.model}}</li>
+          {{#unless (eq this.model.round.status 'Published')}}
+            <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
           {{/unless}}
         {{/if}}
-        <li class='pull-right'><h4>Appearance Status: <strong>{{model.status}}</strong></h4></li>
+        <li class='ms-auto'><h4>Appearance Status: <strong>{{this.model.status}}</strong></h4></li>
       </ul>
     </div>
   </div>

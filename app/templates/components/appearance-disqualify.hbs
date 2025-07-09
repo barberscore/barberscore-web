@@ -1,36 +1,36 @@
-{{#bs-button
-  type='danger'
-  disabled=false
-  onClick=(action (mut disqualifyAppearanceModal) true)
-}}
+<BsButton
+  @type='danger'
+  @disabled={{false}}
+  @onClick={{action (mut this.disqualifyAppearanceModal) true}}
+>
   Disqualify Performance
-{{/bs-button}}
-{{#bs-modal
-  open=disqualifyAppearanceModal
-  onHidden=(pipe-action (action (mut disqualifyAppearanceModal) false) (action (mut disqualifyAppearanceModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.disqualifyAppearanceModal}}
+  @onHidden={{pipe-action (action (mut this.disqualifyAppearanceModal) false) (action (mut this.disqualifyAppearanceModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Disqualify Performance</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This will formally disqualify this competitor.<br><strong class="warning">This cannot be undone.</strong>
     </p>
-    {{#if submitAppearanceModalError}}
+    {{#if this.submitAppearanceModalError}}
     <p class='text-danger'>
       Could not disqualify appearance. Please contact support.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='danger' onClick=(perform disqualifyAppearance)}}
-      {{#if disqualifyAppearance.isRunning}}
-        Disqualifing {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} type="default">Cancel</BsButton>
+    <BsButton @type='danger' @onClick={{perform this.disqualifyAppearance}}>
+      {{#if this.disqualifyAppearance.isRunning}}
+        Disqualifing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Disqualify Performance
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

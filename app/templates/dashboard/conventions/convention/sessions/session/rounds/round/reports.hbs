@@ -1,25 +1,25 @@
 <section>
-  {{#if (or (eq model.status 'Built')(eq model.status 'Started'))}}
+  {{#if (or (eq this.model.status 'Built')(eq this.model.status 'Started'))}}
     <ul class='list-unstyled'>
-      <li class='double'>{{download-labels model=model}}</li>
+      <li class='double'>{{download-labels model=this.model}}</li>
     </ul>
   {{/if}}
-  {{#if (or (eq model.status 'Completed')(eq model.status 'Finalized'))}}
+  {{#if (or (eq this.model.status 'Completed')(eq this.model.status 'Finalized'))}}
     <ul class='list-unstyled'>
-      <li class='double'>{{download-oss model=model}}</li>
-      <li class='double'>{{download-sa model=model}}</li>
-      <li class='double'>{{download-announcements model=model}}</li>
-      {{#unless (eq model.kind 'Finals') }}
-        <li class='double'>{{download-titles model=model}}</li>
+      <li class='double'>{{download-oss model=this.model}}</li>
+      <li class='double'>{{download-sa model=this.model}}</li>
+      <li class='double'>{{download-announcements model=this.model}}</li>
+      {{#unless (eq this.model.kind 'Finals') }}
+        <li class='double'>{{download-titles model=this.model}}</li>
       {{/unless}}
     </ul>
-  {{else if (eq model.status 'Published')}}
+  {{else if (eq this.model.status 'Published')}}
     <ul class='list-unstyled'>
-      <li class='double'>{{download-oss model=model}}</li>
-      <li class='double'>{{download-sa model=model}}</li>
-      <li class='double'>{{download-announcements model=model}}</li>
-      {{#unless (eq model.kind 'Finals') }}
-        <li class='double'>{{download-titles model=model}}</li>
+      <li class='double'>{{download-oss model=this.model}}</li>
+      <li class='double'>{{download-sa model=this.model}}</li>
+      <li class='double'>{{download-announcements model=this.model}}</li>
+      {{#unless (eq this.model.kind 'Finals') }}
+        <li class='double'>{{download-titles model=this.model}}</li>
       {{/unless}}
     </ul>
   {{else}}

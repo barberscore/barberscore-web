@@ -1,11 +1,11 @@
 <section>
-  {{#if (or (eq model.status 'New')(eq model.status 'Built')(eq model.status 'Opened'))}}
+  {{#if (or (eq this.model.status 'New')(eq this.model.status 'Built')(eq this.model.status 'Opened'))}}
     <h4>
       The Draw can only be adjusted after the Session has been Closed.
     </h4>
-  {{else if (and isEditing (or (eq model.status 'Closed')(eq model.status 'Packaged')))}}
+  {{else if (and this.isEditing (or (eq this.model.status 'Closed')(eq this.model.status 'Packaged')))}}
     <div>
-      {{#bs-button type='outline-dark'  class='mb-4' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+      <BsButton @type='outline-dark'  class='mb-4' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleDraw'}}>{{#if this.isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}</BsButton>
     </div>
     <div class='table-responsive'>
       <table class='table table-hover table-sm'>
@@ -17,22 +17,22 @@
           </tr>
         </thead>
         {{!-- <tbody> --}}
-          {{#if mt}}
+          {{#if this.mt}}
             <tr>
               <td>
                 MT
               </td>
               <td>
-                {{html-safe mt.0.name}}
+                {{html-safe this.mt.0.name}}
               </td>
               <td>
-                {{mt.0.notes}}
+                {{this.mt.0.notes}}
               </td>
             </tr>
           {{/if}}
-          {{#sortable-group tagName='tbody' onChange="reorderItems" as |group|}}
-            {{#each sortedEntries as |item|}}
-              {{#sortable-item tagName="tr" model=item group=group class='handle' handle=".handle"}}
+          <tbody {{sortable-group onChange=(action 'reorderItems')}}>
+            {{#each this.sortedEntries as |item|}}
+              <tr {{sortable-item model=item}} {{sortable-handle}} class="handle">
                 <td>
                   {{item.draw}}
                 </td>
@@ -40,17 +40,17 @@
                   {{html-safe item.name}}
                 </td>
                 <td>{{item.notes}}</td>
-              {{/sortable-item}}
+              </tr>
             {{else}}
               <tr>
                 <td>(No entries.)</td>
               </tr>
             {{/each}}
-          {{/sortable-group}}
+          </tbody>
         {{!-- </tbody> --}}
       </table>
     </div>
-    {{#if (or (eq model.status 'Closed')(eq model.status 'Packaged'))}}
+    {{#if (or (eq this.model.status 'Closed')(eq this.model.status 'Packaged'))}}
     <div class='row'>
       <div class='col-md-6'>
         <p><strong>Note:</strong> To adjust the draw, simply grab a row and reposition it to where you want.  To confirm this initial (random) draw, then grab a row and return to its original position.  Each move reorders the list and saves automatically.</p>
@@ -58,12 +58,12 @@
     </div>
     {{/if}}
   {{else}}
-    {{#unless model.roundsPublished }}
+    {{#unless this.model.roundsPublished }}
     <div>
-      {{#if (or (eq model.status 'Packaged'))}}
+      {{#if (or (eq this.model.status 'Packaged'))}}
         <div class='row'>
           <div class='col-md-6'>
-            {{#bs-button type='outline-dark' class='mb-4' disabled=model.isDisabled onClick=(action 'toggleDraw')}}{{#if isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}{{/bs-button}}
+            <BsButton @type='outline-dark' class='mb-4' @disabled={{this.model.isDisabled}} @onClick={{action 'toggleDraw'}}>{{#if this.isEditing}}Draw is Unlocked.  Click to Lock Draw{{else}}Draw is Locked.  Click to Unlock Draw{{/if}}</BsButton>
           </div>
         </div>
       {{/if}}
@@ -80,20 +80,20 @@
             </tr>
           </thead>
           <tbody>
-            {{#if mt}}
+            {{#if this.mt}}
               <tr>
                 <td>
                   MT
                 </td>
                 <td>
-                  {{html-safe mt.0.name}}
+                  {{html-safe this.mt.0.name}}
                 </td>
                 <td>
-                  {{mt.0.notes}}
+                  {{this.mt.0.notes}}
                 </td>
               </tr>
             {{/if}}
-            {{#each sortedEntries as |entry|}}
+            {{#each this.sortedEntries as |entry|}}
               <tr>
                 <td>
                   {{entry.draw}}
@@ -114,7 +114,7 @@
         </table>
       </div>
     </div>
-    {{#if (or (eq model.status 'Closed')(eq model.status 'Packaged'))}}
+    {{#if (or (eq this.model.status 'Closed')(eq this.model.status 'Packaged'))}}
       <div class='row'>
         <div class='col-md-6'>
           <p><strong>Note:</strong> If you wish to edit the draw, please click the "Unlock Draw" button.  You'll then be able to make adjustments, which will automatically save.</p>

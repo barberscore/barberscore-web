@@ -35,6 +35,7 @@ AUTH0_DOMAIN=barberscore-dev.auth0.com
 AUTH0_CLIENT_ID=C68OwqrFDjUa6lv8t4jZQPDksWmrtvoF
 ```
 
+
 ### Running
 
 * `ember serve`
@@ -48,3 +49,25 @@ Get useful information about Ember here:
 * [Ember CLI](https://ember-cli.com/)
 
 If you have any questions let us know at admin@barberscore.com!
+
+### Linting
+
+- `yarn lint`
+- `yarn lint:fix`
+
+### Building
+
+- `yarn ember build` (development)
+- `yarn build` (production)
+
+### Deploying
+
+Specify what it takes to deploy your app.
+
+## Further Reading / Useful Links
+
+- [ember.js](https://emberjs.com/)
+- [ember-cli](https://cli.emberjs.com/release/)
+- Development Browser Extensions
+  - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
+  - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)

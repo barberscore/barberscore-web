@@ -1,6 +1,6 @@
-import Inflector from 'ember-inflector';
+/* import Inflector from 'ember-inflector';
 
-export function initialize(/* application */) {
+export function initialize() {
   const inflector = Inflector.inflector;
   inflector.uncountable('appearance');
   inflector.uncountable('assignment');
@@ -26,4 +26,4 @@ export function initialize(/* application */) {
 export default {
   name: 'inflector',
   initialize
-};
+}; */

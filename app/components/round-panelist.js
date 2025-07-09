@@ -2,17 +2,42 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { sort } from '@ember/object/computed';
 import { task, timeout } from 'ember-concurrency';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 
 export default Component.extend({
   store: service(),
   router: service(),
+  flashMessages: service(),
   isDisabled: computed('model.round.status', function() {
     if (this.get('model.round.status') == 'Published') {
       return true;
     }
     return false;
   }),
+  sortedPanelists: [],
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setPanelists();
+  },
+  setPanelists: function() {
+    const that = this;
+    this.get('model.round.panelists')
+      .then(function(panelists) {
+        panelists = panelists.toSorted(function(a, b) {
+          if (a.kindSort != b.kindSort)
+            return a.kindSort < b.kindSort ? -1 : 1;
+          if (a.categorySort != b.categorySort)
+            return a.categorySort < b.categorySort ? -1 : 1;
+          if (a.num != b.num)
+            return a.num < b.num ? -1 : 1;
+          if (a.lastName != b.lastName)
+            return a.lastName < b.lastName ? -1 : 1;
+          if (a.firstName != b.firstName)
+            return a.firstName < b.firstName ? -1 : 1;
+        });
+        that.set('sortedPanelists', panelists);
+      });
+  },
   savePanelistError: false,
   isScoringJudge: computed(
     'model',
@@ -34,10 +59,6 @@ export default Component.extend({
     'categorySort',
     'personSort',
   ],
-  sortedPanelists: sort(
-    'model.round.panelists',
-    'sortedPanelistsProperties'
-  ),
   categoryOptions: [
     'PC',
     'ADM',

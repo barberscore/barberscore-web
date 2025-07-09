@@ -1,36 +1,36 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut closeSessionModal) true)
-}}
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.closeSessionModal) true}}
+>
   Close Session
-{{/bs-button}}
-{{#bs-modal
-  open=closeSessionModal
-  onHidden=(pipe-action (action (mut closeSessionModal) false) (action (mut closeSessionModalError) false))
+</BsButton>
+<BsModal
+  @open={{this.closeSessionModal}}
+  @onHidden={{pipe-action (action (mut this.closeSessionModal) false) (action (mut this.closeSessionModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Close Session</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
         Prior to closing this session, ensure that all entries you wish to be included in the draw are now in the "Approved" status. This also closes the session to new entries (in the case of an "Open" session) and sets the initial draw randomly.  You will still be able to manually add entries or re-sort the draw.  Also, this is considered a "private" action; the draw and list of entries will not be made public until the next action (Verify) is taken.
     </p>
-    {{#if closeSessionModalError}}
+    {{#if this.closeSessionModalError}}
     <p class='text-danger'>
       Could not Close Session.  Be sure all entries are either in the Approved or Withdrawn state and that the current date is after the scheduled Close Date.
     </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' disabled=model.isError onClick=(perform closeSession)}}
-      {{#if closeSession.isRunning}}
-        Closing {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @disabled={{this.model.isError}} @onClick={{perform this.closeSession}}>
+      {{#if this.closeSession.isRunning}}
+        Closing <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Close Session
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

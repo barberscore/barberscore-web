@@ -16,9 +16,9 @@
         {{#each sortedContests as |contest|}}
           <tr>
             {{#if contest.isLoading}}
-              <td colspan=1>Loading&nbsp;{{fa-icon 'spinner' spin=true}}</td>
+              <td colspan=1>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
-              <td>{{#link-to 'dashboard.conventions.convention.sessions.session.contests.contest' contest}}{{contest.name}}{{/link-to}}</td>
+              <td><LinkTo @route='dashboard.conventions.convention.sessions.session.contests.contest' @model={{contest}}>{{contest.name}}</LinkTo></td>
               <td>{{#if contest.description}}{{contest.description}}{{else}}(No description available){{/if}}</td>
               <td>{{boolean-helper contest.isSingle}}</td>
             {{/if}}

@@ -1,4 +1,4 @@
-{{#if (eq model.status 'New')}}
+{{#if (eq this.model.status 'New')}}
     <h4>The Panelists are available after the Round is Built.</h4>
 {{else}}
   <div class='table-responsive'>
@@ -15,10 +15,10 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sortedPanelists as |panelist|}}
+        {{#each this.sortedPanelists as |panelist|}}
           <tr>
             <td>{{panelist.num}}</td>
-            <td>{{#link-to 'dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' panelist}}{{panelist.name}}{{/link-to}}</td>
+            <td><LinkTo @route='dashboard.conventions.convention.sessions.session.rounds.round.panelists.panelist' @model={{panelist}}>{{panelist.name}}</LinkTo></td>
             <td>{{panelist.category}}</td>
             <td>{{panelist.kind}}</td>
           </tr>
@@ -31,91 +31,92 @@
     </table>
   </div>
   <div>
-    {{#if (eq model.status 'Built')}}
+    {{#if (eq this.model.status 'Built')}}
       <p>
-        {{#bs-button type='success' disabled=model.isDisabled onClick=(action (mut createPanelistModal) true)}}Create New Panelist{{/bs-button}}
+        <BsButton @type='success' @disabled={{this.model.isDisabled}} @onClick={{action (mut this.createPanelistModal) true}}>Create New Panelist</BsButton>
       </p>
     {{/if}}
   </div>
   <div>
-    {{#bs-modal
-      open=createPanelistModal
-      onHidden=(pipe-action (action (mut createPanelistModal) false) (action (mut createPanelistModalError) false))
+    <BsModal
+      @open={{this.createPanelistModal}}
+      @onHidden={{pipe-action (action (mut this.createPanelistModal) false) (action (mut this.createPanelistModalError) false)}}
       as |modal|
-    }}
-      {{#modal.header}}
+    >
+      <modal.header>
         <h4>New Panelist</h4>
-      {{/modal.header}}
-      {{#modal.body}}
+      </modal.header>
+      <modal.body>
         <p>
           Enter the details for the Panelist.
         </p>
         <p>
-          {{input
+          <Input
             class='form-control'
             type='tel'
             placeholder='Enter Number'
-            value=this.num
+            @value={{this.num}}
             min=1
             max=99
-          }}
+          />
         </p>
         <p>
-          {{#power-select
-            search=(perform searchPerson)
-            selected=person
-            onchange=(action (mut person))
-            placeholder="Enter Person Name"
-            allowClear=true
-            renderInPlace=true
-            noMatchesMessage="We Could Not Find a person with that name"
+          <PowerSelect
+            @search={{perform this.searchPerson}}
+            @searchEnabled={{true}}
+            @selected={{this.person}}
+            @onChange={{action (mut this.person)}}
+            @placeholder="Enter Person Name"
+            @allowClear={{true}}
+            @renderInPlace={{true}}
+            @noMatchesMessage="We Could Not Find a person with that name"
             as |person|
-          }}
+          >
             Person: {{person.name}} [{{person.bhs_id}}]
-          {{/power-select}}
+          </PowerSelect>
         </p>
         <p>
-          {{#power-select
-            options=categoryOptions
-            selected=category
-            onchange=(action (mut category))
-            placeholder="Choose Category"
-            allowClear=true
-            renderInPlace=true
+          <PowerSelect
+            @options={{this.categoryOptions}}
+            @selected={{this.category}}
+            @onChange={{action (mut this.category)}}
+            @placeholder="Choose Category"
+            @allowClear={{true}}
+            @renderInPlace={{true}}
             as |category|
-          }}
+          >
             {{category}}
-          {{/power-select}}
+          </PowerSelect>
         </p>
         <p>
-          {{#power-select
-            options=kindOptions
-            selected=kind
-            onchange=(action (mut kind))
-            placeholder="Choose Kind"
-            allowClear=true
-            renderInPlace=true
+          <PowerSelect
+            @options={{this.kindOptions}}
+            @selected={{this.kind}}
+            @onChange={{action (mut this.kind)}}
+            @placeholder="Choose Kind"
+            @allowClear={{true}}
+            @renderInPlace={{true}}
             as |kind|
-          }}
+          >
             {{kind}}
-          {{/power-select}}
+          </PowerSelect>
         </p>
-        {{#if createPanelistModalError}}
+        {{#if this.createPanelistModalError}}
         <p class='text-danger'>
-          {{createPanelistModalError}}
+          {{this.createPanelistModalError}}
         </p>
         {{/if}}
-      {{/modal.body}}
-      {{#modal.footer}}
-        {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-        {{#bs-button type='success' onClick=(perform savePanelist person category kind num) disabled=isDisabled}}
-          {{#if savePanelist.isRunning}}
-            Creating {{fa-icon "spinner" spin=true}}
+      </modal.body>
+      <modal.footer>
+        <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+        <BsButton @type='success' @onClick={{perform this.savePanelist this.person this.category this.kind this.num}} @disabled={{this.isDisabled}}>
+          {{#if this.savePanelist.isRunning}}
+            Creating <FaIcon @icon="spinner" @spin={{true}} />
           {{else}}
             Create Panelist
           {{/if}}
-        {{/bs-button}}
-      {{/modal.footer}}
-    {{/bs-modal}}
+        </BsButton>
+      </modal.footer>
+    </BsModal>
   </div>
 {{/if}}

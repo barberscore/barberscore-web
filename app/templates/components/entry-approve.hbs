@@ -1,23 +1,23 @@
-{{#bs-button
-  type='primary'
-  disabled=model.isDisabled
-  onClick=(action (mut approveEntryModal) true)
-}}
-  {{#if (or (eq model.status 'Withdrawn')(eq model.status 'Approved'))}}Re-Approve Entry{{else}}Approve Entry{{/if}}
-{{/bs-button}}
-{{#bs-modal
-  open=approveEntryModal
-  onHidden=(pipe-action (action (mut approveEntryModal) false) (action (mut approveEntryModalError) false))
+<BsButton
+  @type='primary'
+  @disabled={{this.model.isDisabled}}
+  @onClick={{action (mut this.approveEntryModal) true}}
+>
+  {{#if (or (eq this.model.status 'Withdrawn')(eq this.model.status 'Approved'))}}Re-Approve Entry{{else}}Approve Entry{{/if}}
+</BsButton>
+<BsModal
+  @open={{this.approveEntryModal}}
+  @onHidden={{pipe-action (action (mut this.approveEntryModal) false) (action (mut this.approveEntryModalError) false)}}
   as |modal|
-}}
-  {{#modal.header}}
+>
+  <modal.header>
     <h4>Approve Entry</h4>
-  {{/modal.header}}
-  {{#modal.body}}
+  </modal.header>
+  <modal.body>
     <p>
       This approves (or re-approves) the entry for the group.  They will receive an email notifying them that they are all set for the contest.
     </p>
-    {{#if approveEntryModalError}}
+    {{#if this.approveEntryModalError}}
       <p class='text-danger'>
         Could not Approve entry.  Please check to ensure:
         <ul>
@@ -29,15 +29,15 @@
         If you've verified all this and still can't approve, please let Chris Buechler or David Mills know -- it's bug we need to fix!
       </p>
     {{/if}}
-  {{/modal.body}}
-  {{#modal.footer}}
-    {{#bs-button onClick=(action modal.close) type="default"}}Cancel{{/bs-button}}
-    {{#bs-button type='primary' onClick=(perform approveEntry)}}
-      {{#if approveEntry.isRunning}}
-        Approving {{fa-icon "spinner" spin=true}}
+  </modal.body>
+  <modal.footer>
+    <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
+    <BsButton @type='primary' @onClick={{perform approveEntry}}>
+      {{#if this.approveEntry.isRunning}}
+        Approving <FaIcon @icon="spinner" @spin={{true}} />
       {{else}}
         Approve Entry
       {{/if}}
-    {{/bs-button}}
-  {{/modal.footer}}
-{{/bs-modal}}
+    </BsButton>
+  </modal.footer>
+</BsModal>

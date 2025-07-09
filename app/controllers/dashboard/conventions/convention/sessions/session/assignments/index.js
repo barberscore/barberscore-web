@@ -1,8 +1,10 @@
 import Controller from '@ember/controller';
 import { sort, not } from '@ember/object/computed';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 import { denodeify } from 'rsvp'
+import ArrayProxy from '@ember/array/proxy';
 
 export default Controller.extend({
   isDisabled: not(
@@ -14,14 +16,31 @@ export default Controller.extend({
     'lastName',
     'firstName',
   ],
-  sortedAssignments: sort(
-    'model.assignments',
-    'sortedAssignmentsProperties'
-  ),
+  didReceiveAttrs: function() {
+    this._super(...arguments);
+    this.setSortedAssignments();
+  },
+  sortedAssignments: [],
   flashMessages: service(),
   router: service(),
   algolia: service(),
   store: service(),
+  setSortedAssignments: function() {
+    const that = this;
+    this.get('model.assignments').then(function(assignments) {
+      assignments = assignments.toSorted(function(a, b) {
+        if (a.kindSort != b.kindSort)
+          return a.kindSort < b.kindSort ? -1 : 1;
+        if (a.categorySort != b.categorySort)
+          return a.categorySort < b.categorySort ? -1 : 1;
+        if (a.lastName != b.lastName)
+          return a.lastName < b.lastName ? -1 : 1;
+        if (a.firstName != b.firstName)
+          return a.firstName < b.firstName ? -1 : 1;
+      });
+      that.set('sortedAssignments', assignments);
+    });
+  },
   searchPerson: task(function* (term){
     yield timeout(600);
     let func = denodeify(this.algolia.search.bind(this.algolia))

@@ -18,7 +18,10 @@ export default Component.extend({
         this.flashMessages.success("Verified");
       }
     } catch(e) {
-      this.flashMessages.danger(e.errors.status);
+      e.errors.forEach((error) => {
+        let res = JSON.parse(error.detail);
+        this.flashMessages.danger(res.errors.status);
+      })
     }
   }).drop(),
 });

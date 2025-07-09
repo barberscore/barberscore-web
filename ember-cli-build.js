@@ -1,13 +1,19 @@
 'use strict';
+require('dotenv').config();
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    babel: {
+      plugins: [
+        require.resolve('ember-auto-import/babel-plugin'),
+      ],
+    },
     'ember-bootstrap': {
-      'bootstrapVersion': 4,
       'importBootstrapFont': false,
-      'importBootstrapCSS': true
+      'importBootstrapCSS': false,
+      'insertEmberWormholeElementToDom': false
     },
     'ember-power-select': {
       theme: 'bootstrap'
@@ -30,7 +36,7 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
   // app.import('node_modules/popper.js/dist/umd/popper.js.map', { destDir: 'assets' });
-  app.import('node_modules/@sentry/browser/dist/index.js', {
+  /* app.import('node_modules/@sentry/browser/dist/index.js', {
     using: [
       { transformation: 'cjs', as: '@sentry/browser' }
     ]
@@ -40,7 +46,9 @@ module.exports = function(defaults) {
     using: [
       { transformation: 'cjs', as: '@sentry/integrations' }
     ]
-  });
+  }); */
+
+  app.import('node_modules/bootstrap/dist/css/bootstrap.css');
 
   return app.toTree();
 };

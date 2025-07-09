@@ -1,0 +1,30 @@
+<h4>
+        {{html-safe @model.name}}&nbsp;{{#if @model.district}}({{@model.district}}){{/if}}&nbsp;
+          {{#if @model.bhsId}}
+            [{{@model.bhsId}}]&nbsp;
+          {{/if}}
+          {{#if @model.gender}}({{@model.gender}})&nbsp;{{/if}}
+          {{#if @model.prelim}}
+            {{single-fixed @model.prelim}}&nbsp;
+          {{/if}}
+          {{#if @model.isSenior}}
+            <span class="badge badge-warning">Seniors</span>&nbsp;
+          {{/if}}
+          {{#if @model.isYouth}}
+            <span class="badge badge-warning">Youth</span>&nbsp;
+          {{/if}}
+          {{#if @model.isMixed}}
+            <span class="badge badge-success">Mixed</span>&nbsp;
+          {{/if}}
+          {{#if @model.isFemale}}
+            <span class="badge badge-primary">Female</span>&nbsp;
+          {{/if}}
+          {{#if @model.division}}
+            <span class="badge badge-info">{{@model.groupDivision}}</span>&nbsp;
+          {{/if}}
+          {{#if (eq @model.status 'Active')}}
+            <span class="badge badge-success">Active</span>&nbsp;
+          {{else}}
+            {{!-- <span class="badge badge-danger">Inactive</span>&nbsp; --}}
+          {{/if}}
+</h4>

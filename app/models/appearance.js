@@ -1,56 +1,74 @@
 import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
 // import { computed } from '@ember/object';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('appearance-status'),
-  num: DS.attr('number'),
-  draw: DS.attr('number'),
-  isPrivate: DS.attr('boolean'),
-  isSingle: DS.attr('boolean'),
-  participants: DS.attr('string'),
-  area: DS.attr('string'),
-  onstage: DS.attr('date'),
-  actualStart: DS.attr('date'),
-  actualFinish: DS.attr('date'),
-  pos: DS.attr('number'),
-  stats: DS.attr(),
-  base: DS.attr('number'),
-  diff: DS.attr('number'),
-  varianceReport: DS.attr('string'),
-  csaReport: DS.attr('string'),
+  status: attr('appearance-status'),
+  num: attr('number'),
+  draw: attr('number'),
+  isPrivate: attr('boolean'),
+  isSingle: attr('boolean'),
+  participants: attr('string'),
+  area: attr('string'),
+  onstage: attr('date'),
+  actualStart: attr('date'),
+  actualFinish: attr('date'),
+  pos: attr('number'),
+  stats: attr(),
+  base: attr('number'),
+  diff: attr('number'),
+  varianceReport: attr('string'),
+  csaReport: attr('string'),
 
-  groupId: DS.attr('string'),
-  entryId: DS.attr('string'),
-  name: DS.attr('string'),
-  kind: DS.attr('group-kind'),
-  gender: DS.attr('group-gender'),
-  district: DS.attr('group-district'),
-  division: DS.attr('group-division'),
-  bhsId: DS.attr('number'),
-  code: DS.attr('string'),
-  imageId: DS.attr('string', {defaultValue: 'missing_image'}),
-  charts: DS.attr(),
+  groupId: attr('string'),
+  entryId: attr('string'),
+  name: attr('string'),
+  kind: attr('group-kind'),
+  gender: attr('group-gender'),
+  district: attr('group-district'),
+  division: attr('group-division'),
+  bhsId: attr('number'),
+  code: attr('string'),
+  imageId: attr('string', {defaultValue: 'missing_image'}),
+  charts: attr(),
 
-  round: DS.belongsTo('round', {async: true}),
-  songs: DS.hasMany('song', {async: true}),
-  outcomes: DS.hasMany('outcome', {async: true}),
-  owners: DS.hasMany('user', {async: true}),
-  permissions: DS.attr(),
+  round: belongsTo('round', {async: true, inverse: 'appearances'}),
+  songs: hasMany('song', {async: true, inverse: 'appearance'}),
+  outcomes: hasMany('outcome', {async: true, inverse: 'appearances'}),
+  owners: hasMany('user', {async: true, inverse: null}),
+  permissions: attr(),
 
-  start: memberAction({path: 'start', type: 'post'}),
-  finish: memberAction({path: 'finish', type: 'post'}),
-  verify: memberAction({path: 'verify', type: 'post'}),
-  complete: memberAction({path: 'complete', type: 'post'}),
-  advance: memberAction({path: 'advance', type: 'post'}),
-  scratch: memberAction({path: 'scratch', type: 'post'}),
-  disqualify: memberAction({path: 'disqualify', type: 'post'}),
-
-  mock: memberAction({path: 'mock', type: 'get'}),
-  variance: memberAction({ path: 'variance', type: 'get', ajaxOptions: { arraybuffer: true } }),
-  csa: memberAction({ path: 'csa', type: 'get', ajaxOptions: { arraybuffer: true } }),
+  start: async function(data) {
+    return await apiAction(this, {path: 'start', method: 'POST', data: data})
+  },
+  finish: async function(data) {
+    return await apiAction(this, {path: 'finish', method: 'POST', data: data})
+  },
+  verify: async function(data) {
+    return await apiAction(this, {path: 'verify', method: 'POST', data: data})
+  },
+  complete: async function(data) {
+    return await apiAction(this, {path: 'complete', method: 'POST', data: data})
+  },
+  advance: async function(data) {
+    return await apiAction(this, {path: 'advance', method: 'POST', data: data})
+  },
+  scratch: async function(data) {
+    return await apiAction(this, {path: 'scratch', method: 'POST', data: data})
+  },
+  disqualify: async function(data) {
+    return await apiAction(this, {path: 'disqualify', method: 'POST', data: data})
+  },
+  mock: async function(data) {
+    return await apiAction(this, {path: 'mock', method: 'GET', data: data})
+  },
+  variance: async function(data) {
+    return await apiAction(this, { path: 'variance', method: 'GET', ajaxOptions: { arraybuffer: true } })
+  },
+  csa: async function(data) {
+    return await apiAction(this, { path: 'csa', method: 'GET', ajaxOptions: { arraybuffer: true } })
+  },
 
   isDisabled: not(
     'permissions.write'
@@ -86,7 +104,7 @@ export default Model.extend({
     'Announced',
   ],
 
-  
+
   isMulti: not('isSingle'),
 
   isMT: equal(
@@ -157,5 +175,5 @@ export default Model.extend({
   sumOfficial: sum(
     'officialSongScores',
   ),
-  // entry: DS.belongsTo('entry', {async: true}),
+  // entry: belongsTo('entry', {async: true}),
 });

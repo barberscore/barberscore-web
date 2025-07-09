@@ -1,31 +1,36 @@
 import { not } from '@ember/object/computed';
 import { computed } from '@ember/object';
-import Model from 'ember-data/model';
-import DS from 'ember-data';
-import { memberAction } from 'ember-api-actions';
+import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
+import { apiAction } from '@mainmatter/ember-api-actions';
 
 export default Model.extend({
-  status: DS.attr('chart-status'),
-  title: DS.attr('string'),
-  arrangers: DS.attr('string'),
-  composers: DS.attr('string'),
-  lyricists: DS.attr('string'),
-  holders: DS.attr('string'),
-  description: DS.attr('string'),
-  notes: DS.attr('string'),
+  status: attr('chart-status'),
+  title: attr('string'),
+  arrangers: attr('string'),
+  composers: attr('string'),
+  lyricists: attr('string'),
+  holders: attr('string'),
+  description: attr('string'),
+  notes: attr('string'),
 
-  nomen: DS.attr('string'),
-  imageId: DS.attr('string'),
+  nomen: attr('string'),
+  imageId: attr('string'),
 
-  groups: DS.hasMany('group', {async: true}),
-  permissions: DS.attr(),
+  groups: hasMany('group', {async: true, inverse: 'charts'}),
+  permissions: attr(),
 
-  // songs: DS.hasMany('song', {async: true}),
-  // repertories: DS.hasMany('repertory', {async: true}),
+  // songs: hasMany('song', {async: true}),
+  // repertories: hasMany('repertory', {async: true}),
 
-  activate: memberAction({path: 'activate', type: 'post'}),
-  deactivate: memberAction({path: 'deactivate', type: 'post'}),
-  protect: memberAction({path: 'protect', type: 'post'}),
+  activate: async function(data) {
+    return await apiAction(this, {path: 'activate', method: 'POST'})
+  },
+  deactivate: async function(data) {
+    return await apiAction(this, {path: 'deactivate', method: 'POST'})
+  },
+  protect: async function(data) {
+    return await apiAction(this, {path: 'protect', method: 'POST'})
+  },
 
   isDisabled: not(
     'permissions.write'

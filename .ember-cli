@@ -1,4 +1,5 @@
 {
   "disableAnalytics": false,
-  "proxy": "http://localhost:8000"
+  "proxy": "http://localhost:8000",
+  "isTypeScriptProject": false
 }
