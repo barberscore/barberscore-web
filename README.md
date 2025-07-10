@@ -23,7 +23,6 @@ You will need the latest versions of the following core dependencies properly in
 * `cd barberscore-web`
 * `yarn install`
 
-
 ### Configuration
 
 Set the following Environment Variables:
