@@ -61,7 +61,7 @@ export default Component.extend({
         let song = await score?.get('song')
         // console.log('score', score);
         // console.log('score', score.songNum);
-        scores.push(score);        
+        scores.push(score);
       }
       scores = scores.toSorted(function(a, b) {
         var firstSongNum = a.get('song.num');
@@ -75,7 +75,7 @@ export default Component.extend({
       //   let score = scores[i];
       //   console.log('score', score.songNum);
       // }
-      // 
+      //
       // console.log("------------");
 
       that.set('scoresCall', scores);
@@ -88,7 +88,7 @@ export default Component.extend({
     'sortedScoresProperties'
   ),
   autosave: task(function* (property, element){
-    yield timeout(200);
+    yield timeout(1000);
 
     if (property.points > 100) {
       this.flashMessages.danger("Scores cannot exceed 100.");
@@ -98,7 +98,6 @@ export default Component.extend({
       try {
         yield property.save();
         this.onScoreChange();
-        this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
       } catch(e) {
         e.errors.forEach((error) => {
           this.flashMessages.danger(error.detail);
