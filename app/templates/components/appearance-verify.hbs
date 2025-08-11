@@ -1,6 +1,6 @@
 <BsButton
   @type='primary'
-  @disabled={{this.model.isDisabled}}
+  disabled={{this.disableButton}}
   @onClick={{perform this.verifyAppearance}}
 >
   {{#if this.verifyAppearance.isRunning}}

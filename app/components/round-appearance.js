@@ -57,6 +57,7 @@ export default Component.extend({
       })
     }
   }).restartable(),
+  disableCheckAppearance: false,
   sortedAppearancesProperties: [
     'num',
   ],
@@ -78,6 +79,10 @@ export default Component.extend({
       this.set('practicePoints', 0);
       this.set('officialPoints', 0);
       this.setScores();
+    },
+    setDisableCheckAppearance: function(value) {
+      console.log("Setting disable check appearance to ", value);
+      this.set('disableCheckAppearance', value);
     }
   }
 });

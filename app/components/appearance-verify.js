@@ -1,11 +1,21 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 
 export default Component.extend({
   store: service(),
   router: service(),
   flashMessages: service(),
+  disableCheckAppearance: false,
+  disableButton: computed(
+    'model.isDisabled',
+    'disableCheckAppearance', {
+      get() {
+        return this.get('model.isDisabled') || this.get('disableCheckAppearance');
+      }
+    }
+  ),
   verifyAppearance: task(function *() {
     try {
       let appearance = yield this.model.verify({

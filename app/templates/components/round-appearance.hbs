@@ -42,7 +42,7 @@
         (eq this.model.status 'Advanced')
       )}}
         <section>
-          {{appearance-panelists model=this.model onScoreChange=(action 'onScoreChange')}}
+          {{appearance-panelists model=this.model onScoreChange=(action 'onScoreChange') setDisableCheckAppearance=(action 'setDisableCheckAppearance')}}
           <div class='text-end'>
             <ul class='list-inline'>
               <li class='list-inline-item'><h5>Practice Points: {{#if this.practicePoints}}<strong>{{this.practicePoints}}</strong>{{else}}N/A{{/if}}</h5></li>
@@ -84,7 +84,7 @@
           <li class='list-inline-item'>{{appearance-mock model=this.model}}</li>
           <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
         {{else if (or (eq this.model.status 'Finished') (eq this.model.status 'Variance'))}}
-          <li class='list-inline-item'>{{appearance-verify model=this.model}}</li>
+          <li class='list-inline-item'>{{appearance-verify model=this.model disableCheckAppearance=this.disableCheckAppearance}}</li>
           {{!-- <li class='list-inline-item'>{{appearance-scratch model=this.model}}</li> --}}
           <li class='list-inline-item disqualify'>{{appearance-disqualify model=this.model}}</li>
         {{else if (or (eq this.model.status 'Verified')(eq this.model.status 'Completed'))}}

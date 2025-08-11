@@ -88,6 +88,7 @@ export default Component.extend({
     'sortedScoresProperties'
   ),
   autosave: task(function* (property, element){
+    this.get('setDisableCheckAppearance')(true);
     yield timeout(1000);
 
     if (property.points > 100) {
@@ -98,7 +99,10 @@ export default Component.extend({
       try {
         yield property.save();
         this.onScoreChange();
+        this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
+        this.get('setDisableCheckAppearance')(false);
       } catch(e) {
+        this.get('setDisableCheckAppearance')(false);
         e.errors.forEach((error) => {
           this.flashMessages.danger(error.detail);
         })
