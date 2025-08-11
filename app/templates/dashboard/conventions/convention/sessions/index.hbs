@@ -3,7 +3,7 @@
     <table class='table table-hover table-sm'>
       <thead class='thead-light'>
         <tr>
-          <th>Kind</th>
+          <th>Name</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -11,7 +11,7 @@
         {{#each this.sortedSessions as |session|}}
           <tr>
             <td>
-              <LinkTo @route='dashboard.conventions.convention.sessions.session.details' @model={{session}}>{{session.kind}}</LinkTo>
+              <LinkTo @route='dashboard.conventions.convention.sessions.session.details' @model={{session}}>{{session.name}}</LinkTo>
             </td>
             <td>
               {{session.status}}
