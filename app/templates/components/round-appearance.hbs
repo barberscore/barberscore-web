@@ -101,6 +101,8 @@
 
 {{#if (eq this.model.status 'Variance')}}
 <BsModal
+  @keyboard={{false}}
+  @backdropClose={{false}}
   as |modal|
 >
   <modal.header>
