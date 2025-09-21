@@ -102,6 +102,7 @@ export default Component.extend({
         this.store.findRecord('appearance', this.get('appearance.id'), { reload: true });
         this.get('setDisableCheckAppearance')(false);
       } catch(e) {
+        console.log(e);
         this.get('setDisableCheckAppearance')(false);
         e.errors.forEach((error) => {
           this.flashMessages.danger(error.detail);

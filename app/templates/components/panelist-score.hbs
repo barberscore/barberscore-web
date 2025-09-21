@@ -1,0 +1,9 @@
+  <Input
+    class='form-control text-right big-num'
+    @type='tel'
+    @value={{this.score.points}}
+    min=0
+    max=100
+    disabled={{this.isDisabled}}
+    {{on "input" (perform this.autosave this.score element='target.id')}}
+  />

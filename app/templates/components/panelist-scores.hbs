@@ -1,11 +1,3 @@
 {{#each this.scoresCall as |score|}}
-  <Input
-    class='form-control text-right big-num'
-    @type='tel'
-    @value={{score.points}}
-    min=0
-    max=100
-    disabled={{this.isDisabled}}
-    {{on "input" (perform this.autosave score element='target.id')}}
-  />
+  {{panelist-score score=score onScoreChange=this.onScoreChange setDisableCheckAppearance=this.setDisableCheckAppearance appearance=this.appearance}}
 {{/each}}
