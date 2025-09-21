@@ -98,3 +98,21 @@
     </div>
   </div>
 </section>
+
+{{#if (eq this.model.status 'Variance')}}
+<BsModal
+  as |modal|
+>
+  <modal.header>
+    <h4>Variance Generated</h4>
+  </modal.header>
+  <modal.body>
+    The appearance has generated a variance. Please download the report and confirm if the appearnance can be verified.
+    {{download-variance model=this.model}}
+  </modal.body>
+  <modal.footer>
+    {{appearance-verify model=this.model disableCheckAppearance=this.disableCheckAppearance}}
+    {{appearance-disqualify model=this.model}}
+  </modal.footer>
+</BsModal>
+{{/if}}
