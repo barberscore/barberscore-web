@@ -11,6 +11,13 @@
           <li>Timezone: {{this.model.timezone}}</li>
         </ul>
       </div>
+      <div class='col-auto'>
+        {{#if (eq (env) "staging")}}
+          <button type="button" class="btn btn-warning btn-sm" {{action "syncFromProd" this.model}}>
+            Sync from Prod
+          </button>
+        {{/if}}
+      </div>
     </div>
   </div>
   <div class='table-responsive'>
