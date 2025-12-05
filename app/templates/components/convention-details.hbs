@@ -12,7 +12,7 @@
         </ul>
       </div>
       <div class='col-auto'>
-        {{#if (eq (env) "production")}}
+        {{#if (and (eq (env) "production") this.canShowSyncButton)}}
           <button type="button" class="btn btn-warning btn-sm" {{action "syncFromProd" this.model}}>
             Sync to Staging
           </button>
