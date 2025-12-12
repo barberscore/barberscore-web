@@ -7,6 +7,7 @@ export default Component.extend({
   session: service(),
   flashMessages: service(),
   store: service(),
+  isLoading: false,
 
   init() {
     this._super(...arguments);
@@ -61,6 +62,7 @@ export default Component.extend({
 
   actions: {
     async syncFromProd(convention) {
+      this.set('isLoading', true);
       try {
         const headers = {};
         if (this.session.isAuthenticated) {
@@ -81,6 +83,8 @@ export default Component.extend({
       } catch (error) {
         this.flashMessages.danger('Failed to sync convention from production. Please try again.');
         console.error('Sync error:', error);
+      } finally {
+        this.set('isLoading', false);
       }
     }
   }
