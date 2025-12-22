@@ -1,4 +1,4 @@
-import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum} from '@ember/object/computed';
+import { and, alias, gt, lt, mapBy, sort, not, equal, notEmpty, sum, lte} from '@ember/object/computed';
 // import { computed } from '@ember/object';
 import Model, { attr, hasMany, belongsTo } from '@ember-data/model';
 import { apiAction } from '@mainmatter/ember-api-actions';
@@ -107,7 +107,7 @@ export default Model.extend({
 
   isMulti: not('isSingle'),
 
-  isMT: equal(
+  isMT: lte(
     'num',
     0
   ),

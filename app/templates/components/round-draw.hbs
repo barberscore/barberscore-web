@@ -20,20 +20,22 @@
             <th>Notes</th>
           </tr>
         </thead>
-          <tr>
-            <td>
-              MT
-            </td>
-            <td>
-              {{#if this.hasMt}}
-                {{html-safe this.mt.0.name}}
-              {{else}}
-                No MT advanced
-              {{/if}}
-            </td>
-            <td>
-            </td>
-          </tr>
+          {{#if this.hasMt}}
+            {{#each this.mt as |mtObj|}}
+              <tr>
+                <td>
+                  MT
+                </td>
+                <td>
+                  {{html-safe mtObj.name}}
+                </td>
+                <td>
+                </td>
+              </tr>
+            {{/each}}
+          {{else}}
+            No MT advanced
+          {{/if}}
           <tbody {{sortable-group onChange=(action "reorderItems")}}>
             {{#each this.sortedAppearances as |item|}}
               <tr {{sortable-item model=item}} {{sortable-handle}}>
@@ -88,27 +90,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                MT
-              </td>
-              <td>
-                {{#if this.hasMt}}
-                  {{html-safe this.mt.0.name}}
-                {{/if}}
-              </td>
-              <td>
-              </td>
-              {{#if (eq this.model.status 'Completed')}}
-              <td>
-                {{#if this.hasMt}}
-                  {{#each this.mt as |appearance|}}
-                    {{round-draw-remove model=appearance onRemove=(action 'removeFromDraw')}}
-                  {{/each}}
-                {{/if}}
-              </td>
-              {{/if}}
-            </tr>
+            {{#if this.hasMt}}
+              {{#each this.mt as |mtObj|}}
+                <tr>
+                  <td>
+                    MT
+                  </td>
+                  <td>
+                    {{html-safe mtObj.name}}
+                  </td>
+                  <td>
+                    {{round-draw-remove model=mtObj onRemove=(action 'removeFromDraw')}}
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              No MT advanced
+            {{/if}}
             {{#each this.sortedAppearances as |appearance|}}
               <tr>
                 <td>
@@ -168,7 +166,7 @@
         <Input
           class='form-control'
           type='tel'
-          placeholder='Enter Draw (0 = MT)'
+          placeholder='Enter Draw (less than or equal to 0 = MT)'
           @value={{this.draw}}
           min=0
           max=99

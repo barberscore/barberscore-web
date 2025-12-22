@@ -18,17 +18,20 @@
         </thead>
         {{!-- <tbody> --}}
           {{#if this.mt}}
-            <tr>
-              <td>
-                MT
-              </td>
-              <td>
-                {{html-safe this.mt.0.name}}
-              </td>
-              <td>
-                {{this.mt.0.notes}}
-              </td>
-            </tr>
+            {{#each this.mt as |mtObj|}}
+              <tr>
+                <td>
+                  MT
+                </td>
+                <td>
+                  {{html-safe mtObj.name}}
+                </td>
+                <td>
+                </td>
+              </tr>
+            {{/each}}
+          {{else}}
+            No MT advanced
           {{/if}}
           <tbody {{sortable-group onChange=(action 'reorderItems')}}>
             {{#each this.sortedEntries as |item|}}
@@ -81,17 +84,20 @@
           </thead>
           <tbody>
             {{#if this.mt}}
-              <tr>
-                <td>
-                  MT
-                </td>
-                <td>
-                  {{html-safe this.mt.0.name}}
-                </td>
-                <td>
-                  {{this.mt.0.notes}}
-                </td>
-              </tr>
+              {{#each this.mt as |mtObj|}}
+                <tr>
+                  <td>
+                    MT
+                  </td>
+                  <td>
+                    {{html-safe mtObj.name}}
+                  </td>
+                  <td>
+                  </td>
+                </tr>
+              {{/each}}
+            {{else}}
+              No MT advanced
             {{/if}}
             {{#each this.sortedEntries as |entry|}}
               <tr>
