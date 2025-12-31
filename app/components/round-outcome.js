@@ -7,6 +7,7 @@ import { computed } from '@ember/object';
 export default Component.extend({
   store: service(),
   flashMessages: service(),
+  fileDownload: service(),
   isDisabled: computed('model', function() {
     if (this.get('model.round.status') == 'Published') {
       return true;
@@ -92,6 +93,13 @@ export default Component.extend({
     'model.appearances',
     'sortedImprovedContendersProperties'
   ), */
+  filename: function(name) {
+    return `${name} OSS`
+    .replace(/ /g,'-')
+    .replace(/_/g,'-')
+    .replace(/[^\w-]+/g,'')
+    .replace(/--+/g,'-');
+  },
   autosave: task(function* (){
     yield timeout(200);
     try {
@@ -103,4 +111,10 @@ export default Component.extend({
       })
     }
   }).restartable(),
+  downloadOss: task(function *(paperSize, outcomeId) {
+    let model = this.model;
+    let fileName = this.filename(model.name);
+    yield this.fileDownload.downloadFile(this.model, 'oss', fileName, 'application/pdf', { paperSize: paperSize, outcomeId: outcomeId });
+    this.flashMessages.success("Downloaded!");
+  }).drop(),
 });
