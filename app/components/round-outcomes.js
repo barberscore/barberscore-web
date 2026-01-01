@@ -7,6 +7,7 @@ import { denodeify } from 'rsvp'
 
 export default Component.extend({
   flashMessages: service(),
+  fileDownload: service(),
   router: service(),
   algolia: service(),
   store: service(),
@@ -44,6 +45,13 @@ export default Component.extend({
   }),
   createOutcomeModal: false,
   createOutcomeModalError: false,
+  filename: function(name) {
+    return `${name} OSS`
+    .replace(/ /g,'-')
+    .replace(/_/g,'-')
+    .replace(/[^\w-]+/g,'')
+    .replace(/--+/g,'-');
+  },
   saveOutcome: task(function* (obj, num){
     try {
       let award = yield this.store.findRecord('award', obj.objectID)
@@ -95,6 +103,12 @@ export default Component.extend({
       })
     }
   }).restartable(),
+  downloadOss: task(function *(paperSize, outcome) {
+    let model = outcome;
+    let fileName = this.filename(model.name);
+    yield this.fileDownload.downloadFile(model, 'oss', fileName, 'application/pdf', { paperSize: paperSize, outcomeId: outcome.id });
+    this.flashMessages.success("Downloaded!");
+  }).drop(),
   actions: {
     cancelOutcome(outcome){
       outcome.deleteRecord();

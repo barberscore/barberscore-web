@@ -11,6 +11,7 @@
           <th>Contest</th>
           <th>Manual</th>
           <th>Result</th>
+          <th>Download OSS</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +38,9 @@
             </td>
             <td>
               {{html-safe outcome.winner}}
+            </td>
+            <td>
+              <button class="btn btn-success" onclick={{perform this.downloadOss 'Legal' outcome}}>Download OSS</button>
             </td>
           </tr>
       {{else}}
