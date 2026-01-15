@@ -15,7 +15,7 @@ export default Component.extend({
   isDisabled: not(
     'model.permissions.write',
   ),
-  mt: null,
+  mt: [],
   hasMt: false,
   sortedAppearances: [],
   didReceiveAttrs: function() {
@@ -24,19 +24,21 @@ export default Component.extend({
   },
   setAppearances: function() {
     const that = this;
+    const mt = [];
     this.get('model.appearances')
       .then(function(appearances) {
-        appearances.map(function(appearance) {
-          if (appearance.num === 0) {
-            console.log(appearance);
-            that.set('mt', appearance);
-            that.set('hasMt', true);
-          }
-        });
         appearances = appearances.toSorted(function(a, b) {
           return a.num < b.num ? -1 : 1;
         });
+        appearances.map(function(appearance) {
+          if (appearance.num <= 0) {
+            console.log(appearance);
+            mt.push(appearance);
+            that.set('hasMt', true);
+          }
+        });
         that.set('sortedAppearances', appearances);
+        that.set('mt', mt);
       });
   },
   sortedAppearancesProperties: [
@@ -107,6 +109,18 @@ export default Component.extend({
       const that = this;
       itemModels.forEach(function(item, index) {
         item.set('num', index + 1);
+        item.save();
+      });
+      later(() => {
+        that.setAppearances();
+      }, 1000);
+      this.flashMessages.success('Success');
+    },
+    reorderMTs(itemModels) {
+      const that = this;
+      const length = itemModels.length;
+      itemModels.forEach(function(item, index) {
+        item.set('num', (length * -1) + index + 1);
         item.save();
       });
       later(() => {

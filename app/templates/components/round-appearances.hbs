@@ -22,20 +22,19 @@
             <th></th>
           </tr>
         </thead>
-          <tbody {{sortable-group onChange=(action 'reorderItems')}}>
-            <tr>
+          <tbody {{sortable-group onChange=(action 'reorderMTs') groupName='MT'}}>
+            {{#each this.mt as |mtObj|}}
+            <tr {{sortable-item model=mtObj groupName='MT'}} {{sortable-handle}}>
               <td>
                 MT
               </td>
               <td>
-                {{#if this.hasMt}}
                   <LinkTo
                     @route='dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                    @model={{this.mt}}
+                    @model={{mtObj}}
                   >
-                    {{html-safe this.mt.name}}
+                    {{html-safe mtObj.name}}
                   </LinkTo>
-                {{/if}}
               </td>
               <td>
               </td>
@@ -44,12 +43,15 @@
               <td>
               </td>
               <td>
-                {{round-appearance-delete model=this.mt onDeleteAppearance=(action 'onDeleteAppearance')}}
+                {{round-appearance-delete model=mtObj onDeleteAppearance=(action 'onDeleteAppearance')}}
               </td>
             </tr>
+            {{/each}}
+            </tbody>
+            <tbody {{sortable-group onChange=(action 'reorderItems') groupName='appearance'}}>
             {{#each this.sortedAppearances as |appearance|}}
               {{#if (gt appearance.num 0)}}
-                <tr {{sortable-item model=appearance}} {{sortable-handle}}>
+                <tr {{sortable-item model=appearance groupName='appearance'}} {{sortable-handle}}>
                   {{#if appearance.isLoading}}
                     <td colspan=5>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
                   {{else}}
@@ -170,19 +172,19 @@
             <th class="actions"></th>
           </tr>
         </thead>
+        <tbody>
+          {{#each this.mt as |mtObj|}}
           <tr>
             <td>
               MT
             </td>
             <td>
-              {{#if this.hasMt}}
                 <LinkTo
                   @route='dashboard.conventions.convention.sessions.session.rounds.round.appearances.appearance'
-                  @model={{this.mt}}
+                  @model={{mtObj}}
                 >
-                  {{html-safe this.mt.name}}
+                  {{html-safe mtObj.name}}
                 </LinkTo>
-              {{/if}}
             </td>
             <td>
             </td>
@@ -192,11 +194,11 @@
             </td>
             {{#if (and this.hasMt (eq this.model.status 'Built'))}}
               <td>
-                {{round-appearance-delete model=this.mt onDeleteAppearance=(action 'onDeleteAppearance')}}
+                {{round-appearance-delete model=mtObj onDeleteAppearance=(action 'onDeleteAppearance')}}
               </td>
             {{/if}}
           </tr>
-          <tbody>
+          {{/each}}
           {{#each this.sortedAppearances as |appearance|}}
             {{#if (gt appearance.num 0)}}
               <tr>
