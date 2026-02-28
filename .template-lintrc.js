@@ -13,6 +13,8 @@ module.exports = {
     'table-groups': false,
     'no-unnecessary-concat': false,
     'link-rel-noopener': false,
-    'no-curly-component-invocation': { allow: ['member-center', 'customer-support'] },
+    'no-curly-component-invocation': {
+      allow: ['member-center', 'customer-support'],
+    },
   }
 };
