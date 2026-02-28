@@ -20,9 +20,10 @@
             <th>Notes</th>
           </tr>
         </thead>
+        <tbody {{sortable-group onChange=(action 'reorderMTs') groupName='MT'}}>
           {{#if this.hasMt}}
             {{#each this.mt as |mtObj|}}
-              <tr>
+              <tr {{sortable-item model=mtObj groupName='MT'}} {{sortable-handle}}>
                 <td>
                   MT ({{mtObj.draw}})
                 </td>
@@ -36,9 +37,11 @@
           {{else}}
             No MT advanced
           {{/if}}
-          <tbody {{sortable-group onChange=(action "reorderItems")}}>
+        </tbody>
+          <tbody {{sortable-group onChange=(action 'reorderItems') groupName='appearance'}}>
             {{#each this.sortedAppearances as |item|}}
-              <tr {{sortable-item model=item}} {{sortable-handle}}>
+            {{#if (gt item.draw 0)}}
+              <tr {{sortable-item model=item groupName='appearance'}} {{sortable-handle}}>
                 <td>
                   {{item.draw}}
                 </td>
@@ -47,6 +50,7 @@
                 </td>
                 <td>{{item.notes}}</td>
               </tr>
+            {{/if}}
             {{else}}
               <tr>
                 <td>(No appearances.)</td>
@@ -94,7 +98,7 @@
               {{#each this.mt as |mtObj|}}
                 <tr>
                   <td>
-                    MT
+                    MT ({{mtObj.draw}})
                   </td>
                   <td>
                     {{html-safe mtObj.name}}
@@ -111,22 +115,24 @@
               No MT advanced
             {{/if}}
             {{#each this.sortedAppearances as |appearance|}}
-              <tr>
-                <td>
-                  {{appearance.draw}}
-                </td>
-                <td>
-                  {{html-safe appearance.name}}
-                </td>
-                <td>
-                  {{appearance.notes}}
-                </td>
-                {{#if (eq this.model.status 'Completed')}}
-                <td>
-                  {{round-draw-remove model=appearance onRemove=(action 'removeFromDraw')}}
-                </td>
-                {{/if}}
-              </tr>
+              {{#if (gt appearance.draw 0)}}
+                <tr>
+                  <td>
+                    {{appearance.draw}}
+                  </td>
+                  <td>
+                    {{html-safe appearance.name}}
+                  </td>
+                  <td>
+                    {{appearance.notes}}
+                  </td>
+                  {{#if (eq this.model.status 'Completed')}}
+                  <td>
+                    {{round-draw-remove model=appearance onRemove=(action 'removeFromDraw')}}
+                  </td>
+                  {{/if}}
+                </tr>
+              {{/if}}
             {{else}}
               <tr>
                 <td>(No appearances.)</td>
@@ -186,7 +192,7 @@
           @noMatchesMessage="We Could Not Find a group with that name"
           as |group|
         >
-          Group: {{html-safe group.name}} [{{group.bhsId}}]
+          Group: {{html-safe group.name}} [{{#if group.bhs_id}}{{group.bhs_id}}{{else if group.code}}{{group.code}}{{/if}}]
         </PowerSelect>
       </p>
       <p><em>Additional MT appearances may be added under the Appearances tab in the next round after it is built.</em></p>
