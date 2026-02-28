@@ -23,9 +23,8 @@ module.exports = {
     browser: true
   },
   rules: {
-    "ember/avoid-leaking-state-in-ember-objects": "off"
+    'ember/avoid-leaking-state-in-ember-objects': 'off',
   },
-  rules: {},
   overrides: [
     // node files
     {
