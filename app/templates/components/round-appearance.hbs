@@ -6,7 +6,7 @@
       <h4>
         #{{this.model.num}}: {{html-safe this.model.name}}
         {{#if this.model.varianceReport}}
-          {{download-variance model=this.model}}123
+          {{download-variance model=this.model}}
         {{/if}}
         {{#if (eq this.model.status 'Verified')}}
           <FaIcon @icon='check-circle' class='text-success' />
@@ -65,7 +65,7 @@
       <h4>
         #{{this.model.num}}: {{html-safe this.model.name}}
         {{#if this.model.varianceReport}}
-          {{download-variance model=this.model}}123
+          {{download-variance model=this.model}}
         {{/if}}
         {{#if (eq this.model.status 'Verified')}}
           <FaIcon @icon='check-circle' class='text-success' />
