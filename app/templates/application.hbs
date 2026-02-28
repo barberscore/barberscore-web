@@ -1,5 +1,9 @@
 <BsNavbar @toggleBreakpoint=null class='mb-4 navbar-expand sticky-top' as |navbar|>
-    <LinkTo @route='index' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png" width="32"></span>&nbsp;Barberscore</LinkTo>
+    {{#if this.session.isAuthenticated}}
+      <LinkTo @route='dashboard.conventions' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png" width="32"></span>&nbsp;Barberscore</LinkTo>
+    {{else}}
+      <LinkTo @route='index' @active=false class='navbar-brand'><span><img src="/assets/bhs_logo_sm.png" width="32"></span>&nbsp;Barberscore</LinkTo>
+    {{/if}}
   <navbar.content class="show">
     <navbar.nav class='ms-auto' as |nav|>
       <nav.item>
