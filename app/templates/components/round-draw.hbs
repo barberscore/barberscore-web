@@ -99,9 +99,12 @@
                   <td>
                     {{html-safe mtObj.name}}
                   </td>
+                  <td></td>
+                  {{#if (eq this.model.status 'Completed')}}
                   <td>
                     {{round-draw-remove model=mtObj onRemove=(action 'removeFromDraw')}}
                   </td>
+                  {{/if}}
                 </tr>
               {{/each}}
             {{else}}
@@ -168,7 +171,7 @@
           type='tel'
           placeholder='Enter Draw (less than or equal to 0 = MT)'
           @value={{this.draw}}
-          min=0
+          min=-10
           max=99
         />
       </p>
@@ -186,6 +189,7 @@
           Group: {{html-safe group.name}} [{{group.bhsId}}]
         </PowerSelect>
       </p>
+      <p><em>Additional MT appearances may be added under the Appearances tab in the next round after it is built.</em></p>
       {{#if this.advanceGroupModalError}}
       <p class='text-danger'>
         Could not create appearance.  Be sure the draw numbers are unique!  Otherwise, please contact support.
