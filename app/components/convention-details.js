@@ -56,8 +56,12 @@ export default Component.extend({
     });
   }),
 
-  canShowSyncButton: computed('isSuperAdmin', 'allSessionsInSyncableState', function() {
-    return this.get('isSuperAdmin') || this.get('allSessionsInSyncableState');
+  isProductionEnvironment: computed(function() {
+    return ENV.APP.ENVIRONMENT_NAME === 'production';
+  }),
+
+  canShowSyncButton: computed('isSuperAdmin', 'allSessionsInSyncableState', 'isProductionEnvironment', function() {
+    return this.get('isProductionEnvironment') && (this.get('isSuperAdmin') || this.get('allSessionsInSyncableState'));
   }),
 
   actions: {
