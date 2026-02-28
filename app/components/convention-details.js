@@ -61,7 +61,10 @@ export default Component.extend({
   }),
 
   canShowSyncButton: computed('isSuperAdmin', 'allSessionsInSyncableState', 'isProductionEnvironment', function() {
-    return this.get('isProductionEnvironment') && (this.get('isSuperAdmin') || this.get('allSessionsInSyncableState'));
+  return (
+        this.get('isProductionEnvironment') &&
+        (this.get('isSuperAdmin') || this.get('allSessionsInSyncableState'))
+      );
   }),
 
   actions: {

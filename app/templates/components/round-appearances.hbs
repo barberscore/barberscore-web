@@ -119,9 +119,9 @@
           </p>
           <p>
             <PowerSelect
-              @search={{perform searchGroup}}
-              @selected={{group}}
-              @onChange={{action (mut group)}}
+              @search={{perform this.searchGroup}}
+              @selected={{this.group}}
+              @onChange={{action (mut this.group)}}
               @placeholder="Enter Group Name"
               @allowClear={{true}}
               @renderInPlace={{true}}
@@ -139,8 +139,8 @@
         </modal.body>
         <modal.footer>
           <BsButton @onClick={{action modal.close}} @type="default">Cancel</BsButton>
-          <BsButton @type='success' @onClick={{perform saveAppearance this.group this.num}} @disabled={{isDisabled}}>
-            {{#if saveAppearance.isRunning}}
+          <BsButton @type='success' @onClick={{perform this.saveAppearance this.group this.num}} @disabled={{this.isDisabled}}>
+            {{#if this.saveAppearance.isRunning}}
               Creating <FaIcon @icon="spinner" @spin={{true}} />
             {{else}}
               Create Appearance
