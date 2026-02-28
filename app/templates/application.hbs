@@ -21,7 +21,7 @@
         </nav.item>
       {{else}}
         <nav.item>
-          <LinkTo @route='login' @active=false @type='button'>Judges Login</LinkTo>
+          <BsButton @type='primary' @onClick={{action 'login'}}>Judges Login</BsButton>
         </nav.item>
       {{/if}}
     </navbar.nav>
