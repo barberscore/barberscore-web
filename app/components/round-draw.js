@@ -12,29 +12,45 @@ export default Component.extend({
   algolia: service(),
   store: service(),
   isEditing: false,
+  mt: [],
+  hasMt: false,
+  sortedAppearances: [],
   didReceiveAttrs: function() {
     this._super(...arguments);
     this.setAppearances();
   },
   setAppearances: function() {
     const that = this;
-    this.get('model.appearances').then(function(appearances) {
-      let mtFilter = appearances.filter((appearance) => appearance.draw === 0);
-      that.set('mt', mtFilter);
-      that.set('hasMt', mtFilter.length > 0);
-      let drawnFilter = appearances.filter((appearance) => appearance.isDrawn);
-      let notDrawnFilter = appearances.filter((appearance) => appearance.isDrawn == false);
-      drawnFilter.sort(function(a, b) {
-        return a.draw < b.draw ? -1 : 1;
-      });
-      that.set('sortedAppearances', drawnFilter);
-      notDrawnFilter.sort(function(a, b) {
-        return a.num < b.num ? -1 : 1;
-      });
-      that.set('sortedRoundAppearances', notDrawnFilter);
+    this.get('model.appearances')
+      .then(function(appearances) {
+        const mt = [];
+        let notDrawnFilter = appearances.filter((appearance) => appearance.isDrawn == false);
+        // Remove entries with a null draw
+        appearances = appearances.filter(function(appearance) {
+          return appearance.draw != null;
+        });
+        appearances = appearances.toSorted(function(a, b) {
+          return a.draw < b.draw ? -1 : 1;
+        });
+        appearances.map(function(appearance) {
+          if (appearance.draw <= 0) {
+            console.log('MT appearance', appearance);
+            mt.push(appearance);
+            that.set('hasMt', true);
+          }
+        });
+        that.set('sortedAppearances', appearances);
+        that.set('mt', mt);
 
-    });
+        notDrawnFilter.sort(function(a, b) {
+          return a.num < b.num ? -1 : 1;
+        });
+        that.set('sortedRoundAppearances', notDrawnFilter);
+      });
   },
+  sortedAppearancesProperties: [
+    'draw',
+  ],
   searchGroup: task(function* (term){
     yield timeout(600);
     let kindModel = this.get('model.sessionKind');
@@ -77,13 +93,23 @@ export default Component.extend({
       const that = this;
       itemModels.forEach(function(item, index) {
         item.set('draw', index + 1);
-        item.save()
+        item.save();
       });
-
       later(() => {
         that.setAppearances();
       }, 1000);
-      // itemModels.invoke('save');
+      this.flashMessages.success('Success');
+    },
+    reorderMTs(itemModels) {
+      const that = this;
+      const length = itemModels.length;
+      itemModels.forEach(function(item, index) {
+        item.set('draw', (length * -1) + index + 1);
+        item.save();
+      });
+      later(() => {
+        that.setAppearances();
+      }, 1000);
       this.flashMessages.success('Success');
     },
     removeFromDraw() {
