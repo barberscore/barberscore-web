@@ -5,9 +5,10 @@
       {{prev-next model=this.model sortedArray=this.appearances}}
       <h4>
         #{{this.model.num}}: {{html-safe this.model.name}}
-        {{#if (eq this.model.status 'Variance')}}
-          {{download-variance model=this.model}}
-        {{else if (eq this.model.status 'Verified')}}
+        {{#if this.model.varianceReport}}
+          {{download-variance model=this.model}}123
+        {{/if}}
+        {{#if (eq this.model.status 'Verified')}}
           <FaIcon @icon='check-circle' class='text-success' />
         {{/if}}
      </h4>
@@ -63,9 +64,10 @@
       {{prev-next model=this.model sortedArray=this.appearances}}
       <h4>
         #{{this.model.num}}: {{html-safe this.model.name}}
-        {{#if (eq this.model.status 'Variance')}}
-          {{download-variance model=this.model}}
-        {{else if (eq this.model.status 'Verified')}}
+        {{#if this.model.varianceReport}}
+          {{download-variance model=this.model}}123
+        {{/if}}
+        {{#if (eq this.model.status 'Verified')}}
           <FaIcon @icon='check-circle' class='text-success' />
         {{/if}}
      </h4>
