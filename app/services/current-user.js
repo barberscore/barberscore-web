@@ -13,12 +13,6 @@ export default Service.extend({
       return this.store.findRecord(
         'user', id
       ).then(user => {
-        return user;
-      }).catch(err => {
-        console.error(err);
-        alert(err.errors[0].detail)
-        return RSVP.resolve()
-      }).then((user) => {
         Sentry.setUser({
             id: user.id,
             name: user.name,
@@ -26,6 +20,8 @@ export default Service.extend({
             email: user.email,
         });
         return this.set('user', user);
+      }).catch(err => {
+        console.error(err);
       });
     } else {
       return RSVP.resolve();

@@ -38,11 +38,14 @@ export default class OAuth2 extends OAuth2ImplicitGrant {
         let urlParams = new URLSearchParams(window.location.hash.replace(/^#+/, ''));
         urlParams = this.paramsToObject(urlParams)
         const profile = await this.fetchUserInfo(urlParams.access_token);
-        console.log(profile);
         urlParams.profile = profile;
+        window.history.replaceState(null, document.title, window.location.pathname + window.location.search);
         return urlParams;
       } else {
         webAuth.authorize();
+        // Return a pending promise so the session is not marked as authenticated
+        // before the page redirects to Auth0
+        return new Promise(() => {});
       }
   }
 

@@ -10,5 +10,11 @@ export default Controller.extend({
     invalidateSession () {
       this.session.invalidate();
     },
+    login () {
+      this.session.authenticate('authenticator:auth0', {
+        scope: 'openid profile email',
+        responseType: 'token id_token',
+      });
+    },
   }
 });
