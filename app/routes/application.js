@@ -26,6 +26,9 @@ export default Route.extend({
     return this.currentUser.load().catch((err) => {
       console.log("Load current user failed");
       console.log(err);
+      if (err && err.errors && err.errors[0] && err.errors[0].status === '401') {
+        this.session.invalidate();
+      }
     });
   },
   actions: {

@@ -22,6 +22,7 @@ export default Service.extend({
         return this.set('user', user);
       }).catch(err => {
         console.error(err);
+        throw err;
       });
     } else {
       return RSVP.resolve();
