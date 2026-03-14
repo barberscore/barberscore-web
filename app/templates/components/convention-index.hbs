@@ -13,8 +13,8 @@
             <tr>
               <th>Image</th>
               <th>Name</th>
-              <th>Venue</th>
-              <th>Date</th>
+              <th class='d-none d-sm-table-cell'>Venue</th>
+              <th class='d-none d-sm-table-cell'>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -25,12 +25,16 @@
                 </td>
                 <td>
                   <LinkTo @route='dashboard.conventions.convention.details' @model={{convention}}>{{convention.nomen}}</LinkTo>
+                  <div class='d-sm-none convention-mobile-details'>
+                    <div>{{convention.venueName}}, {{convention.location}}</div>
+                    <div>{{moment-format convention.startDate 'L'}} - {{moment-format convention.endDate 'L'}}</div>
+                  </div>
                 </td>
-                <td>
+                <td class='d-none d-sm-table-cell'>
                   {{convention.venueName}}<br>
                   {{convention.location}}
                 </td>
-                <td>
+                <td class='d-none d-sm-table-cell'>
                   {{moment-format convention.startDate 'L'}} - {{moment-format convention.endDate 'L'}}
                 </td>
               </tr>

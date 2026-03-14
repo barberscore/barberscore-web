@@ -9,18 +9,18 @@
       <thead class='thead-light'>
         <tr>
           <th>Name</th>
-          <th>Area</th>
-          <th>BHS ID</th>
+          <th class='d-none d-sm-table-cell'>Area</th>
+          <th class='d-none d-sm-table-cell'>BHS ID</th>
           {{#if (eq this.model.kind 'Chorus')}}
-            <th>Director(s)</th>
+            <th class='d-none d-sm-table-cell'>Director(s)</th>
           {{else}}
-            <th>Members (TLBrBs)</th>
+            <th class='d-none d-sm-table-cell'>Members (TLBrBs)</th>
           {{/if}}
 
-          <th>Chapters</th>
+          <th class='d-none d-sm-table-cell'>Chapters</th>
           {{!-- <th>Songs in Repertory</th> --}}
           {{#if (eq this.model.kind 'Chorus')}}
-            <th>Participants on Stage</th>
+            <th class='d-none d-sm-table-cell'>Participants on Stage</th>
           {{/if}}
           <th>Status</th>
         </tr>
@@ -31,15 +31,24 @@
             {{#if entry.isLoading}}
               <td colspan=8>Loading&nbsp;<FaIcon @icon='spinner' @spin={{true}} /></td>
             {{else}}
-              <td><LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{entry}}>{{html-safe entry.name}}</LinkTo></td>
-              <td>{{entry.area}}</td>
-              <td>{{entry.bhsId}}</td>
-              <td>{{entry.participants}}</td>
-              <td>{{entry.chapters}}</td>
+              <td>
+                <LinkTo @route='dashboard.conventions.convention.sessions.session.entries.entry' @model={{entry}}>{{html-safe entry.name}}</LinkTo>
+                <div class='d-sm-none entry-mobile-details'>
+                  {{entry.area}} &middot; #{{entry.bhsId}}
+                  <br>{{entry.participants}}
+                  {{#if entry.chapters}}
+                    <br>{{entry.chapters}}
+                  {{/if}}
+                </div>
+              </td>
+              <td class='d-none d-sm-table-cell'>{{entry.area}}</td>
+              <td class='d-none d-sm-table-cell'>{{entry.bhsId}}</td>
+              <td class='d-none d-sm-table-cell'>{{entry.participants}}</td>
+              <td class='d-none d-sm-table-cell'>{{entry.chapters}}</td>
               {{!-- <td>{{entry.contestsCount}}</td> --}}
               {{!-- <td>{{entry.groupChartsCount}}</td> --}}
               {{#if (eq this.model.kind 'Chorus')}}
-                <td>{{#if entry.pos}}{{entry.pos}}{{else}}N/A{{/if}}</td>
+                <td class='d-none d-sm-table-cell'>{{#if entry.pos}}{{entry.pos}}{{else}}N/A{{/if}}</td>
               {{/if}}
               <td>{{entry.status}}</td>
             {{/if}}

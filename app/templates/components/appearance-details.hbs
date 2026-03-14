@@ -18,7 +18,7 @@
     <input class="form-control" type="text" value={{if this.model.actualFinish (moment-format this.model.actualFinish 'HH:mm') 'Actual Finish Time'}} disabled={{true}} placeholder='Actual Finish Time' />
   </div>
   {{#if this.model.actualStart}}
-    <div class='form-group'>
+    <div class='form-group d-none d-sm-inline-block'>
       &nbsp;&nbsp;&nbsp;{{!-- Delta:  {{moment-diff this.model.onstage this.model.actualStart precision='minutes'}} Minutes --}}
     </div>
   {{/if}}
