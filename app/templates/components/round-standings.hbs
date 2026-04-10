@@ -35,7 +35,7 @@
           </thead>
           <tbody>
             {{#each this.sortedMultiAppearances as |appearance index|}}
-              <tr class="{{if (and (eq index this.model.spots) (not-eq this.model.kind 'Finals')) 'cut-line'}}">
+              <tr class="{{if (and (eq index this.cutLineIndex) (not-eq this.model.kind 'Finals')) 'cut-line'}}">
                 {{#if appearance.stats}}
                   <td>{{inc index}}</td>
                 {{else}}

@@ -47,8 +47,13 @@ export default Component.extend({
     this.get('model.appearances').then(function(appearances) {
       let notMtFilter = appearances.filter((appearance) => appearance.notMT);
       let multiAppearances = notMtFilter.filter((appearance) => appearance.isMulti);
-      multiAppearances = multiAppearances.toSorted(that.sortAppearances);
-      console.log('multiAppearances', multiAppearances);
+      let advanced = multiAppearances.filter((a) => a.status === 'Advanced');
+      let notAdvanced = multiAppearances.filter((a) => a.status !== 'Advanced');
+      advanced = advanced.toSorted(that.sortAppearances);
+      notAdvanced = notAdvanced.toSorted(that.sortAppearances);
+      multiAppearances = advanced.concat(notAdvanced);
+      let spots = that.get('model.spots') || 0;
+      that.set('cutLineIndex', Math.max(spots, advanced.length));
       that.set('sortedMultiAppearances', multiAppearances);
       let singleAppearances = appearances.filter((appearance) => appearance.isSingle);
       singleAppearances = singleAppearances.toSorted(that.sortAppearances);
@@ -74,5 +79,3 @@ export default Component.extend({
     // yield this.store.pushPayload('round', round);
   }).restartable(),
 });
-
-
