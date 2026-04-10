@@ -45,8 +45,8 @@ export default Component.extend({
   }),
   createOutcomeModal: false,
   createOutcomeModalError: false,
-  filename: function(name) {
-    return `${name} OSS`
+  filename: function(name, sessionKind, roundKind) {
+    return `${name} ${sessionKind} ${roundKind} OSS`
     .replace(/ /g,'-')
     .replace(/_/g,'-')
     .replace(/[^\w-]+/g,'')
@@ -105,7 +105,10 @@ export default Component.extend({
   }).restartable(),
   downloadOss: task(function *(paperSize, outcome) {
     let model = outcome;
-    let fileName = this.filename(model.name);
+    let round = this.model;
+    let sessionKind = round ? round.sessionKind : '';
+    let roundKind = round ? round.kind : '';
+    let fileName = this.filename(model.name, sessionKind, roundKind);
     yield this.fileDownload.downloadFile(model, 'oss', fileName, 'application/pdf', { paperSize: paperSize, outcomeId: outcome.id });
     this.flashMessages.success("Downloaded!");
   }).drop(),
