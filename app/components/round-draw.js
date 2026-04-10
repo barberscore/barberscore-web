@@ -62,6 +62,13 @@ export default Component.extend({
   advanceGroupModalError: false,
   advanceGroup: task(function* (obj, draw){
     try {
+      if (!draw && draw !== 0) {
+        let appearances = this.get('sortedAppearances') || [];
+        let maxDraw = appearances.reduce(function(max, a) {
+          return (a.draw != null && a.draw > max) ? a.draw : max;
+        }, 0);
+        draw = maxDraw + 1;
+      }
       yield obj.set('draw', draw);
       yield obj.save();
       this.setAppearances();
