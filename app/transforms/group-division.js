@@ -32,6 +32,9 @@ export default Transform.extend({
       270: 'SWD Northwest',
       280: 'SWD Southeast',
       290: 'SWD Southwest',
+      300: 'LOL East',
+      310: 'LOL Central',
+      320: 'LOL West',
     };
     return map[serialized];
   },
@@ -67,6 +70,9 @@ export default Transform.extend({
       'SWD Northwest': 270,
       'SWD Southeast': 280,
       'SWD Southwest': 290,
+      'LOL East': 300,
+      'LOL Central': 310,
+      'LOL West': 320,
     };
     return map[deserialized];
   }
